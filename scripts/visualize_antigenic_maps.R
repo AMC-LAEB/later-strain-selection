@@ -1,0 +1,3801 @@
+library(Racmacs)
+library(ggplot2)
+options(RacOptimizer.num_cores = 10)
+
+setwd('~/Desktop/later-strain-selection')
+
+dir <- "./data/HI_data/individual_HI_tables/"
+acmap_dir <- "./analysis/antigenic_comparison/antigenic_maps/maps"
+coords_dir <- "./analysis/antigenic_comparison/antigenic_maps/coords"
+
+#load individual maps
+map1 <- read.acmap(file.path(acmap_dir, 'map1.ace'))
+map2 <- read.acmap(file.path(acmap_dir, 'map2.ace'))
+map3 <- read.acmap(file.path(acmap_dir, 'map3.ace'))
+map4 <- read.acmap(file.path(acmap_dir, 'map4.ace'))
+map5 <- read.acmap(file.path(acmap_dir, 'map5.ace'))
+map6 <- read.acmap(file.path(acmap_dir, 'map6.ace'))
+map7 <- read.acmap(file.path(acmap_dir, 'map7.ace'))
+map8 <- read.acmap(file.path(acmap_dir, 'map8.ace'))
+map9 <- read.acmap(file.path(acmap_dir, 'map9.ace'))
+map10 <- read.acmap(file.path(acmap_dir, 'map10.ace'))
+map11 <- read.acmap(file.path(acmap_dir, 'map11.ace'))
+map12 <- read.acmap(file.path(acmap_dir, 'map12.ace'))
+map13 <- read.acmap(file.path(acmap_dir, 'map13.ace'))
+map14 <- read.acmap(file.path(acmap_dir, 'map14.ace'))
+map15 <- read.acmap(file.path(acmap_dir, 'map15.ace'))
+map16 <- read.acmap(file.path(acmap_dir, 'map16.ace'))
+map17 <- read.acmap(file.path(acmap_dir, 'map17.ace'))
+map18 <- read.acmap(file.path(acmap_dir, 'map18.ace'))
+map19 <- read.acmap(file.path(acmap_dir, 'map19.ace'))
+map20 <- read.acmap(file.path(acmap_dir, 'map20.ace'))
+map21 <- read.acmap(file.path(acmap_dir, 'map21.ace'))
+map22 <- read.acmap(file.path(acmap_dir, 'map22.ace'))
+map23 <- read.acmap(file.path(acmap_dir, 'map23.ace'))
+map24 <- read.acmap(file.path(acmap_dir, 'map24.ace'))
+map25 <- read.acmap(file.path(acmap_dir, 'map25.ace'))
+map26 <- read.acmap(file.path(acmap_dir, 'map26.ace'))
+map27 <- read.acmap(file.path(acmap_dir, 'map27.ace'))
+map28 <- read.acmap(file.path(acmap_dir, 'map28.ace'))
+map29 <- read.acmap(file.path(acmap_dir, 'map29.ace'))
+map30 <- read.acmap(file.path(acmap_dir, 'map30.ace'))
+map31 <- read.acmap(file.path(acmap_dir, 'map31.ace'))
+map32 <- read.acmap(file.path(acmap_dir, 'map32.ace'))
+map33 <- read.acmap(file.path(acmap_dir, 'map33.ace'))
+map34 <- read.acmap(file.path(acmap_dir, 'map34.ace'))
+map35 <- read.acmap(file.path(acmap_dir, 'map35.ace'))
+map36 <- read.acmap(file.path(acmap_dir, 'map36.ace'))
+map37 <- read.acmap(file.path(acmap_dir, 'map37.ace'))
+map38 <- read.acmap(file.path(acmap_dir, 'map38.ace'))
+map39 <- read.acmap(file.path(acmap_dir, 'map39.ace'))
+map40 <- read.acmap(file.path(acmap_dir, 'map40.ace'))
+map41 <- read.acmap(file.path(acmap_dir, 'map41.ace'))
+map42 <- read.acmap(file.path(acmap_dir, 'map42.ace'))
+map43 <- read.acmap(file.path(acmap_dir, 'map43.ace'))
+map44 <- read.acmap(file.path(acmap_dir, 'map44.ace'))
+map45 <- read.acmap(file.path(acmap_dir, 'map45.ace'))
+map46 <- read.acmap(file.path(acmap_dir, 'map46.ace'))
+map47 <- read.acmap(file.path(acmap_dir, 'map47.ace'))
+map48 <- read.acmap(file.path(acmap_dir, 'map48.ace'))
+map49 <- read.acmap(file.path(acmap_dir, 'map49.ace'))
+map50 <- read.acmap(file.path(acmap_dir, 'map50.ace'))
+map51 <- read.acmap(file.path(acmap_dir, 'map51.ace'))
+map52 <- read.acmap(file.path(acmap_dir, 'map52.ace'))
+map53 <- read.acmap(file.path(acmap_dir, 'map53.ace'))
+map54 <- read.acmap(file.path(acmap_dir, 'map54.ace'))
+map55 <- read.acmap(file.path(acmap_dir, 'map55.ace'))
+map56 <- read.acmap(file.path(acmap_dir, 'map56.ace'))
+map57 <- read.acmap(file.path(acmap_dir, 'map57.ace'))
+map58 <- read.acmap(file.path(acmap_dir, 'map58.ace'))
+map59 <- read.acmap(file.path(acmap_dir, 'map59.ace'))
+map60 <- read.acmap(file.path(acmap_dir, 'map60.ace'))
+map61 <- read.acmap(file.path(acmap_dir, 'map61.ace'))
+map62 <- read.acmap(file.path(acmap_dir, 'map62.ace'))
+map63 <- read.acmap(file.path(acmap_dir, 'map63.ace'))
+map64 <- read.acmap(file.path(acmap_dir, 'map64.ace'))
+map65 <- read.acmap(file.path(acmap_dir, 'map65.ace'))
+map66 <- read.acmap(file.path(acmap_dir, 'map66.ace'))
+map67 <- read.acmap(file.path(acmap_dir, 'map67.ace'))
+map68 <- read.acmap(file.path(acmap_dir, 'map68.ace'))
+map69 <- read.acmap(file.path(acmap_dir, 'map69.ace'))
+map70 <- read.acmap(file.path(acmap_dir, 'map70.ace'))
+map71 <- read.acmap(file.path(acmap_dir, 'map71.ace'))
+map72 <- read.acmap(file.path(acmap_dir, 'map72.ace'))
+map73 <- read.acmap(file.path(acmap_dir, 'map73.ace'))
+map74 <- read.acmap(file.path(acmap_dir, 'map74.ace'))
+map75 <- read.acmap(file.path(acmap_dir, 'map75.ace'))
+map76 <- read.acmap(file.path(acmap_dir, 'map76.ace'))
+map77 <- read.acmap(file.path(acmap_dir, 'map77.ace'))
+map78 <- read.acmap(file.path(acmap_dir, 'map78.ace'))
+map79 <- read.acmap(file.path(acmap_dir, 'map79.ace'))
+map80 <- read.acmap(file.path(acmap_dir, 'map80.ace'))
+map81 <- read.acmap(file.path(acmap_dir, 'map81.ace'))
+map82 <- read.acmap(file.path(acmap_dir, 'map82.ace'))
+map83 <- read.acmap(file.path(acmap_dir, 'map83.ace'))
+map84 <- read.acmap(file.path(acmap_dir, 'map84.ace'))
+map85 <- read.acmap(file.path(acmap_dir, 'map85.ace'))
+map86 <- read.acmap(file.path(acmap_dir, 'map86.ace'))
+map87 <- read.acmap(file.path(acmap_dir, 'map87.ace'))
+map88 <- read.acmap(file.path(acmap_dir, 'map88.ace'))
+map89 <- read.acmap(file.path(acmap_dir, 'map89.ace'))
+map90 <- read.acmap(file.path(acmap_dir, 'map90.ace'))
+map91 <- read.acmap(file.path(acmap_dir, 'map91.ace'))
+map92 <- read.acmap(file.path(acmap_dir, 'map92.ace'))
+map93 <- read.acmap(file.path(acmap_dir, 'map93.ace'))
+map94 <- read.acmap(file.path(acmap_dir, 'map94.ace'))
+map95 <- read.acmap(file.path(acmap_dir, 'map95.ace'))
+map96 <- read.acmap(file.path(acmap_dir, 'map96.ace'))
+map97 <- read.acmap(file.path(acmap_dir, 'map97.ace'))
+map98 <- read.acmap(file.path(acmap_dir, 'map98.ace'))
+map99 <- read.acmap(file.path(acmap_dir, 'map99.ace'))
+map100 <- read.acmap(file.path(acmap_dir, 'map100.ace'))
+map101 <- read.acmap(file.path(acmap_dir, 'map101.ace'))
+map102 <- read.acmap(file.path(acmap_dir, 'map102.ace'))
+map103 <- read.acmap(file.path(acmap_dir, 'map103.ace'))
+map104 <- read.acmap(file.path(acmap_dir, 'map104.ace'))
+map105 <- read.acmap(file.path(acmap_dir, 'map105.ace'))
+map106 <- read.acmap(file.path(acmap_dir, 'map106.ace'))
+map107 <- read.acmap(file.path(acmap_dir, 'map107.ace'))
+map108 <- read.acmap(file.path(acmap_dir, 'map108.ace'))
+map109 <- read.acmap(file.path(acmap_dir, 'map109.ace'))
+map110 <- read.acmap(file.path(acmap_dir, 'map110.ace'))
+map111 <- read.acmap(file.path(acmap_dir, 'map111.ace'))
+map112 <- read.acmap(file.path(acmap_dir, 'map112.ace'))
+map113 <- read.acmap(file.path(acmap_dir, 'map113.ace'))
+map114 <- read.acmap(file.path(acmap_dir, 'map114.ace'))
+map115 <- read.acmap(file.path(acmap_dir, 'map115.ace'))
+map116 <- read.acmap(file.path(acmap_dir, 'map116.ace'))
+map117 <- read.acmap(file.path(acmap_dir, 'map117.ace'))
+map118 <- read.acmap(file.path(acmap_dir, 'map118.ace'))
+map119 <- read.acmap(file.path(acmap_dir, 'map119.ace'))
+map120 <- read.acmap(file.path(acmap_dir, 'map120.ace'))
+map121 <- read.acmap(file.path(acmap_dir, 'map121.ace'))
+map122 <- read.acmap(file.path(acmap_dir, 'map122.ace'))
+map123 <- read.acmap(file.path(acmap_dir, 'map123.ace'))
+map124 <- read.acmap(file.path(acmap_dir, 'map124.ace'))
+map125 <- read.acmap(file.path(acmap_dir, 'map125.ace'))
+map126 <- read.acmap(file.path(acmap_dir, 'map126.ace'))
+map127 <- read.acmap(file.path(acmap_dir, 'map127.ace'))
+map128 <- read.acmap(file.path(acmap_dir, 'map128.ace'))
+map129 <- read.acmap(file.path(acmap_dir, 'map129.ace'))
+map130 <- read.acmap(file.path(acmap_dir, 'map130.ace'))
+map131 <- read.acmap(file.path(acmap_dir, 'map131.ace'))
+map132 <- read.acmap(file.path(acmap_dir, 'map132.ace'))
+map133 <- read.acmap(file.path(acmap_dir, 'map133.ace'))
+map134 <- read.acmap(file.path(acmap_dir, 'map134.ace'))
+map135 <- read.acmap(file.path(acmap_dir, 'map135.ace'))
+map136 <- read.acmap(file.path(acmap_dir, 'map136.ace'))
+map137 <- read.acmap(file.path(acmap_dir, 'map137.ace'))
+map138 <- read.acmap(file.path(acmap_dir, 'map138.ace'))
+map139 <- read.acmap(file.path(acmap_dir, 'map139.ace'))
+map140 <- read.acmap(file.path(acmap_dir, 'map140.ace'))
+map141 <- read.acmap(file.path(acmap_dir, 'map141.ace'))
+map142 <- read.acmap(file.path(acmap_dir, 'map142.ace'))
+map143 <- read.acmap(file.path(acmap_dir, 'map143.ace'))
+map144 <- read.acmap(file.path(acmap_dir, 'map144.ace'))
+map145 <- read.acmap(file.path(acmap_dir, 'map145.ace'))
+map146 <- read.acmap(file.path(acmap_dir, 'map146.ace'))
+map147 <- read.acmap(file.path(acmap_dir, 'map147.ace'))
+map148 <- read.acmap(file.path(acmap_dir, 'map148.ace'))
+map149 <- read.acmap(file.path(acmap_dir, 'map149.ace'))
+map150 <- read.acmap(file.path(acmap_dir, 'map150.ace'))
+map151 <- read.acmap(file.path(acmap_dir, 'map151.ace'))
+map152 <- read.acmap(file.path(acmap_dir, 'map152.ace'))
+map153 <- read.acmap(file.path(acmap_dir, 'map153.ace'))
+map154 <- read.acmap(file.path(acmap_dir, 'map154.ace'))
+map155 <- read.acmap(file.path(acmap_dir, 'map155.ace'))
+map156 <- read.acmap(file.path(acmap_dir, 'map156.ace'))
+map157 <- read.acmap(file.path(acmap_dir, 'map157.ace'))
+map158 <- read.acmap(file.path(acmap_dir, 'map158.ace'))
+map159 <- read.acmap(file.path(acmap_dir, 'map159.ace'))
+map160 <- read.acmap(file.path(acmap_dir, 'map160.ace'))
+map161 <- read.acmap(file.path(acmap_dir, 'map161.ace'))
+map162 <- read.acmap(file.path(acmap_dir, 'map162.ace'))
+map163 <- read.acmap(file.path(acmap_dir, 'map163.ace'))
+
+# check if maps are good
+checkHemisphering(map1)
+checkHemisphering(map2)
+checkHemisphering(map3)
+checkHemisphering(map4)
+checkHemisphering(map5)
+checkHemisphering(map6)
+checkHemisphering(map7)
+checkHemisphering(map8)
+checkHemisphering(map9)
+checkHemisphering(map10)
+checkHemisphering(map11)
+checkHemisphering(map12)
+checkHemisphering(map13)
+checkHemisphering(map14)
+checkHemisphering(map15)
+checkHemisphering(map16)
+checkHemisphering(map17)
+checkHemisphering(map18)
+checkHemisphering(map19)
+checkHemisphering(map20)
+checkHemisphering(map21)
+checkHemisphering(map22)
+checkHemisphering(map23)
+checkHemisphering(map24)
+checkHemisphering(map25)
+checkHemisphering(map26)
+checkHemisphering(map27)
+checkHemisphering(map28)
+checkHemisphering(map29)
+checkHemisphering(map30)
+checkHemisphering(map31)
+checkHemisphering(map32)
+checkHemisphering(map33)
+checkHemisphering(map34)
+checkHemisphering(map35)
+checkHemisphering(map36)
+checkHemisphering(map37)
+checkHemisphering(map38)
+checkHemisphering(map39)
+checkHemisphering(map40)
+checkHemisphering(map41)
+checkHemisphering(map42)
+checkHemisphering(map43)
+checkHemisphering(map44)
+checkHemisphering(map45)
+checkHemisphering(map46)
+checkHemisphering(map47)
+checkHemisphering(map48)
+checkHemisphering(map49)
+checkHemisphering(map50)
+checkHemisphering(map51)
+checkHemisphering(map52)
+checkHemisphering(map53)
+checkHemisphering(map54)
+checkHemisphering(map55)
+checkHemisphering(map56)
+checkHemisphering(map57)
+checkHemisphering(map58)
+checkHemisphering(map59)
+checkHemisphering(map60)
+checkHemisphering(map61)
+checkHemisphering(map62)
+checkHemisphering(map63)
+checkHemisphering(map64)
+checkHemisphering(map65)
+checkHemisphering(map66)
+checkHemisphering(map67)
+checkHemisphering(map68)
+checkHemisphering(map69)
+checkHemisphering(map70)
+checkHemisphering(map71)
+checkHemisphering(map72)
+checkHemisphering(map73)
+checkHemisphering(map74)
+checkHemisphering(map75)
+checkHemisphering(map76)
+checkHemisphering(map77)
+checkHemisphering(map78)
+checkHemisphering(map79)
+checkHemisphering(map80)
+checkHemisphering(map81)
+checkHemisphering(map82)
+checkHemisphering(map83)
+checkHemisphering(map84)
+checkHemisphering(map85)
+checkHemisphering(map86)
+checkHemisphering(map87)
+checkHemisphering(map88)
+checkHemisphering(map89)
+checkHemisphering(map90)
+checkHemisphering(map91)
+checkHemisphering(map92)
+checkHemisphering(map93)
+checkHemisphering(map94)
+checkHemisphering(map95)
+checkHemisphering(map96)
+checkHemisphering(map97)
+checkHemisphering(map98)
+checkHemisphering(map99)
+checkHemisphering(map100)
+checkHemisphering(map101)
+checkHemisphering(map102)
+checkHemisphering(map103)
+checkHemisphering(map104)
+checkHemisphering(map105)
+checkHemisphering(map106)
+checkHemisphering(map107)
+checkHemisphering(map108)
+checkHemisphering(map109)
+checkHemisphering(map110)
+checkHemisphering(map111)
+checkHemisphering(map112)
+checkHemisphering(map113)
+checkHemisphering(map114)
+checkHemisphering(map115)
+checkHemisphering(map116)
+checkHemisphering(map117)
+checkHemisphering(map118)
+checkHemisphering(map119)
+checkHemisphering(map120)
+checkHemisphering(map121)
+checkHemisphering(map122)
+checkHemisphering(map123)
+checkHemisphering(map124)
+checkHemisphering(map125)
+checkHemisphering(map126)
+checkHemisphering(map127)
+checkHemisphering(map128)
+checkHemisphering(map129)
+checkHemisphering(map130)
+checkHemisphering(map131)
+checkHemisphering(map132)
+checkHemisphering(map133)
+checkHemisphering(map134)
+checkHemisphering(map135)
+checkHemisphering(map136)
+checkHemisphering(map137)
+checkHemisphering(map138)
+checkHemisphering(map139)
+checkHemisphering(map140)
+checkHemisphering(map141)
+checkHemisphering(map142)
+checkHemisphering(map143)
+checkHemisphering(map144)
+checkHemisphering(map145)
+checkHemisphering(map146)
+checkHemisphering(map147)
+checkHemisphering(map148)
+checkHemisphering(map149)
+checkHemisphering(map150)
+checkHemisphering(map151)
+checkHemisphering(map152)
+checkHemisphering(map153)
+checkHemisphering(map154)
+checkHemisphering(map155)
+checkHemisphering(map156)
+checkHemisphering(map157)
+checkHemisphering(map158)
+checkHemisphering(map159)
+checkHemisphering(map160)
+checkHemisphering(map161)
+checkHemisphering(map162)
+checkHemisphering(map163)
+#################### MAP 1 ####################
+#### colered by tables
+agSize(map1) <- 5
+agFill(map1) <- 'grey50'
+ag_2003_table5 <- agNames(map1) %in% c("A/Hong Kong/1550/02|*|*","A/Sendai/4952/02|*|*","A/Netherlands/369/02|2002-12-30|*","A/Austria/79807/03|*|*","A/Rome/3/03|2003-02-01|*","A/Prague/34/03|2003-02-02|*","A/Slovakia/252/03|2003-02-05|*","A/Latvia/1506/03|2003-02-10|*","A/Perugia/7/03|2003-02-10|*","A/Hannover/94/03|2003-02-17|*",
+	"A/Belgrade/1061/03|2003-02-21|*","A/Geneva/3340/03|2003-02-25|*","A/Greece/109/03|2003-03-21|*","A/Oslo/3391/03|2003-05-01|*","A/Dakar/11/02|2002-05-29|*","A/Lyon/476/03|2003-02-05|*","A/Netherlands/17/03|2003-02-16|*","A/Firenze/10/03|2003-02-24|*","A/Berlin/35/03|2003-02-27|*","A/Parma/18/03|2003-03-03|*",
+	"A/Moscow/48/03|2003-03-03|*","A/Geneva/3767/03|2003-03-06|*","A/Dakar/10/03|2003-03-10|*","A/St. Petersburg/122/03|2003-03-11|*","A/Denmark/44/03|2003-03-13|*","A/Stockholm/10/03|2003-03-17|*","A/Iceland/22/03|2003-03-19|*","A/Finland/300/03|2003-03-28|*","A/Barcelona/364/03|2003-04-23|*","A/Madagascar/69863/03|2003-05-19|*",
+	"A/Israel/3650/03|2003-06-03|*","A/Johannesburg/28/03|2003-06-04|*","A/Hong Kong/1227/03|2003-07-05|*")
+ag_2003_table6 <- agNames(map1) %in% c("A/Wyoming/3/03|*|*","A/UK/1861/03|*|*","A/Austria/77956/03|*|*","A/Belgrade/1285/03|2003-02-24|*","A/Goteborg/1/03|2003-03-05|*","A/Hannover/154/03|2003-03-07|*","A/Albania/20/03|2003-03-14|*","A/Montpellier/1279/03|2003-03-27|*","A/Geneva/4841/03|2003-04-02|*","A/Lyon/1331/03|2003-05-05|*",
+	"A/Netherlands/222/03|*|*","A/Shanghai/369/03|*|*","A/Oslo/2221/03|2003-02-01|*","A/Singapore/55/03|2003-02-10|*","A/Stockholm/9/03|2003-03-17|*","A/Indonesia/22/03|2003-03-25|*","A/Geneva/4620/03|2003-03-26|*","A/Lyon/1158/03|2003-03-31|*","A/Auckland/6/03|2003-05-16|*","A/Poitiers/1375/03|2003-05-22|*",
+	"A/Johannesburg/36/03|2003-06-01|*","A/Madagascar/70074/03|2003-06-13|*","A/Israel/3'/03|2003-06-19|*","A/Hong Kong/1205/03|2003-06-28|*","A/Dakar/19/03|2003-06-30|*")
+
+agFill(map1)[ag_2003_table5] <- '#ea5545'
+agFill(map1)[ag_2003_table6] <- '#ef9b20'
+p_map1 <- ggplot(map1) + ggtitle('map 1')
+p_map1
+
+
+#################### MAP 2 ####################
+#### colered by tables
+agSize(map2) <- 5
+agFill(map2) <- 'grey50'
+p_map2 <- ggplot(map2) + ggtitle('map 2')
+p_map2
+
+
+#################### MAP 3 ####################
+#### colered by tables
+agSize(map3) <- 5
+agFill(map3) <- 'grey50'
+p_map3 <- ggplot(map3) + ggtitle('map 3')
+p_map3
+
+
+#################### MAP 4 ####################
+#### colered by tables
+agSize(map4) <- 5
+agFill(map4) <- 'grey50'
+ag_Mar2007_table4 <- agNames(map4) %in% c("A/Hiroshima/33/2006|2006-01-23|E5_2","A/Sendai/F131/2006|2006-08-01|E3_2","A/Algeria/G138/2006|2006-11-05|MDCK1_1","A/Madagascar/2670/2006|2006-11-10|MDCK1_1","A/Greece/624/2006|2006-12-14|MDCK1_1","A/Madagascar/2700/2006|2006-11-14|MDCK1_1","A/Madagascar/2699/2006|2006-11-14|MDCK1_1","A/Umea/7/06|2006-11-15|MDCK1_1","A/Madagascar/2761/2006|2006-11-17|MDCK2_1","A/Algeria/G273/2006|2006-11-22|MDCK1_1",
+	"A/Marseille/1215/06|2006-11-22|Px+P1MDCK_1","A/Bordeaux/1276/06|2006-11-30|P3MDCK_1","A/Paris/395/2007|2006-12-01|MDCKx_1","A/Parma/9/2006|2006-12-01|MDCK1_1","A/Norway/2250/2006|2006-12-01|MDCK1_1","A/Norway/2252/2006|2006-12-04|MDCK1_1","A/Belgium/SP005/07|2006-12-19|LLCMK1, MDCK2_2","A/Belgium/SP007/07|2006-12-25|LLCMK1, MDCK2_2","A/Lyon/1359/06|2006-12-27|P2MDCK_1","A/Belgium/SP003/07|2006-12-31|LLCMK1, MDCK2_1",
+	"A/Lyon/1324/06|2006-12-20|P2MDCK_1","A/Lyon/1312/06|2006-12-20|P2MDCK_1","A/Belgium/SP009/07|2006-01-07|LLCMK1, MDCK2_2")
+ag_Mar2007_table5 <- agNames(map4) %in% c("A/Nepal/921/2006|*|*","A/Belgium/SP009/07|2006-12-07|LLCMK1, MDCK2_2","A/Israel/73/2006|2006-12-24|MDCK2_2","A/Netherlands/363/2006|2006-12-24|MDCK1_1","A/Barcelona/134/2006|2006-12-28|MDCK1_1","A/Parma/4/07|2007-01-01|MDCK1_1","A/Sofia/319/07|2007-01-01|E2_1","A/Stockholm/25/06|2007-01-02|MDCK0_1","A/Switzerland/7567/2007|2007-01-09|MDCKx_2","A/Latvia/345/2007|2007-01-09|MDCK1_2",
+	"A/Bratislava/46/07|2007-01-09|E1_1","A/Denmark/1/2007|2007-01-12|MDCK2_1","A/Berlin/4/07|2007-01-15|MDCKx_1","A/Finland/800/07|2007-01-16|MDCK2_3","A/Thessaloniki/26/07|2007-01-17|MDCK2_1","A/Lisbon/14/2007|2007-01-23|MDCK2_1","A/Lyon/323/2007|2007-01-22|MDCK2_1","A/Serres/77/07|2007-01-25|E1_1","A/Valladolid/8/2007|2007-01-25|MDCK1_2","A/Trieste/29c/2007|2007-02-01|MDCKx_1")
+ag_Mar2006_table4 <- agNames(map4) %in% c("A/Shantou/1219/2004|*|MDCKx","A/Hiroshima/52/2005|*|E3_1","A/Umea/9/2005|2005-11-10|MDCK1_1","A/Madagascar/2102/2005|2005-11-17|MDCK3_1","A/Ireland/12182/05|2005-12-01|MDCK2_3","A/Hong Kong/4920/2005|2005-12-19|MDCK2_3","A/Norway/28/2006|2005-12-20|MDCK1_1","A/Stockholm/1/2006|2005-12-22|MDCK1_1","A/Netherlands/548/2005|2005-12-26|MDCK1_1","A/Denmark/112/2005|2005-12-28|MDCK2_1",
+	"A/Latvia/222/2006|2006-01-04|MDCK1_1","A/Lyon/21/06|2006-01-04|MDCK2_1","A/Finland/634/2006|2006-01-06|MDCK2_1","A/England/4/2006|2006-01-09|MDCK1_2","A/Iceland/2/2006|2006-01-09|MDCK3_1","A/Stockholm/6/2006|2006-01-14|MDCK1_1","A/Norway/143/2006|2006-01-16|MDCK1_1","A/Slovakia/134/2006|2006-02-06|MDCK1_1","A/Latvia/2047/2006|2006-02-14|MDCK1_1")
+ag_Sep2006_table4 <- agNames(map4) %in% c("A/Anhui/1238/2005|*|*","A/St. Petersburg/1/2006|2006-02-06|C1_1","A/St. Petersburg/2/2006|2006-02-06|C1_1","A/St. Petersburg/3/2006|2006-02-06|C2_1","A/St. Petersburg/4/2006|2006-02-21|C1_2","A/Rostov-on-Don/1/2006|2006-01-23|C2_1","A/Rostov-on-Don/2/2006|2006-01-23|C2_1","A/Rostov-on-Don/3/2006|2006-01-30|C2_1","A/Kaliningrad/1/2006|2006-01-30|C3_1","A/Kaliningrad/4/2006|2006-01-31|C3_2",
+	"A/Kaliningrad/20/2006|2006-02-28|C2_2","A/Kaliningrad/24/2006|2006-03-02|C2_2","A/Astrakhan/103/2006|2006-02-08|C2_1","A/Astrakhan/150/2006|2006-03-08|C3_1","A/Astrakhan/172/2006|2006-03-15|C2_1","A/Astrakhan/319/2006|2006-02-22|C2_1","A/Voronezh/1/2006|2006-02-15|C2_1","A/Voronezh/4/2006|2006-02-17|C2_1","A/Voronezh/6/2006|2006-02-02|C2_2","A/Voronezh/10/2006|2006-02-26|C2_1",
+	"A/Voronezh/18/2006|2006-03-02|C2_1","A/Voronezh/58/2006|2006-03-16|C2_1","A/Stavropol/2/2006|2006-03-02|C2_1","A/Stavropol/3/2006|2006-02-27|C2_1","A/Stavropol/5/2006|2006-03-02|C2_1","A/Stavropol/6/2006|2006-02-27|C2_1","A/Moscow/4/2006|2006-02-19|C2_1","A/Moscow/8/2006|2006-02-21|C2_1","A/Moscow/11/2006|2006-02-11|C2_1","A/Moscow/12/2006|2006-02-21|C2_1",
+	"A/Moscow/16/2006|2006-02-26|C2_1","A/Finland/641/2006|2006-02-14|MDCK2_1","A/Finland/682/2006|2006-02-28|MDCK1_1","A/Finland/703/2006|2006-03-08|MDCK1_3","A/Finland/732/2006|2006-03-21|MDCK2_1","A/Finland/744/2006|2006-03-29|MDCK2_1","A/Finland/772/2006|2006-04-07|MDCK2_1")
+ag_Sep2006_table6 <- agNames(map4) %in% c("A/Slovakia/134/2006|*|*","A/Berlin/2/2006|*|*","A/Bayern/4/2006|*|*","A/Lyon/636/2006|*|*","A/Samara/120/2006|2006-05-03|MDCK3_2","A/Samara/123/2006|2006-05-15|MDCK4_2","A/Murmansk/3/2006|2006-04-28|MDCK3_3","A/Moscow/41/2006|2006-03-16|MDCK2_2","A/Moscow/40/2006|2006-03-16|MDCK2_3","A/N/ Novgorod/155/2006|2006-04-07|MDCK3_2",
+	"A/Voronezh/19/2006|2006-03-10|MDCK2_2","A/Voronezh/12/2006|2006-03-01|MDCK2_2","A/St/ Petersburg/37/2006|2006-05-08|MDCK2_1","A/Kaliningrad/44/2006|2006-04-06|MDCK2_3","A/Khabarovsk/49/2006|2006-05-22|MDCK2_2","A/Khabarovsk/10/2006|2006-04-07|MDCK5_2","A/Khabarovsk/29/2006|2006-04-20|MDCK3_3","A/Ryazan/10/2006|2006-04-06|MDCK2_3","A/Ryazan/4/2006|2006-04-06|MDCK2_2","A/Odessa/52/2006|2006-03-23|*",
+	"A/Odessa/62/2006|2006-03-27|*","A/Zagreb/4274/2006|2006-04-01|Ex_2","A/Paris/1889/2006|2006-03-01|MDCKx_1","A/Paris/2030/2006|2006-04-01|MDCKx_1","A/Paris/2109/2006|2006-04-01|MDCKx_1","A/Paris/2208/2006|2006-02-01|MDCKx_1","A/Johannesburg/350/2006|2006-06-09|MDCKx_3","A/Johannesburg/354/2006|2006-06-08|MDCKx_3","A/Johannesburg/185/2006|2006-05-29|MDCKx_3","A/Johannesburg/245/2006|2006-06-02|MDCKx_1",
+	"A/Johannesburg/271/2006|2006-06-04|MDCKx_2","A/Johannesburg/277/2006|2006-06-05|MDCKx_1","A/Johannesburg/339/2006|2006-06-07|MDCKx_1","A/Johannesburg/340/2006|2006-06-01|MDCKx_2","A/Johannesburg/344/2006|2006-06-08|MDCKx_2","A/Hong Kong/201/2006|2006-02-02|MDCK2_2","A/Hong Kong/453/2006|2006-02-22|MDCK2_2")
+
+agFill(map4)[ag_Mar2007_table4] <- '#ea5545'
+agFill(map4)[ag_Mar2007_table5] <- '#ef9b20'
+agFill(map4)[ag_Mar2006_table4] <- '#ede15b'
+agFill(map4)[ag_Sep2006_table4] <- '#87bc45'
+agFill(map4)[ag_Sep2006_table6] <- '#27aeef'
+p_map4 <- ggplot(map4) + ggtitle('map 4')
+p_map4
+
+
+#################### MAP 5 ####################
+#### colered by tables
+agSize(map5) <- 5
+agFill(map5) <- 'grey50'
+p_map5 <- ggplot(map5) + ggtitle('map 5')
+p_map5
+
+
+#################### MAP 6 ####################
+#### colered by tables
+agSize(map6) <- 5
+agFill(map6) <- 'grey50'
+p_map6 <- ggplot(map6) + ggtitle('map 6')
+p_map6
+
+
+#################### MAP 7 ####################
+#### colered by tables
+agSize(map7) <- 5
+agFill(map7) <- 'grey50'
+ag_Sep2008_table4A <- agNames(map7) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3,E3_3","A/Brisbane/10/2007|2007-02-06|E2_3","A/Uruguay/716/2007|2007-06-21|SpfCk1, E3_1","A/Finland/9/2008|2008-01-07|MDCK2_1","A/Paris/2030/2008|2008-02-01|MDCKx_1","A/Lyon/669/08|2008-02-14|MDCK2_1","A/Netherlands/177/2008|2008-02-18|xMDCK2_1","A/Berlin/50/2008|2008-03-11|MDCKx_1","A/Hong Kong/796/2008|2008-03-15|MDCK2_1","A/Khabarovsk/5/2008|2008-04-14|C6_1",
+	"A/Ulan-Ude/2/2008|2008-04-21|C2_1","A/Lyon/CHU/ 19.113/08|2008-05-05|MDCK2_1","A/Iceland/82/2008|2008-05-06|MDCK2_1","A/Johannesburg/15/2008|2008-06-26|MDCKx_1")
+ag_Sep2008_table4B <- agNames(map7) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3, E3_4","A/Trieste/25c/2007|2007-01-01|MDCKx_4","A/Trieste/25E/2007|2007-01-01|MDCKx_2,E2","A/Wisconsin/3/2007|2007-01-21|Ex_6","A/Uruguay/716/2007|2007-06-21|SpfCk1, E3_2","A/Finland/9/2008|2008-01-07|MDCK2_3","A/Hong Kong/1050/08|2008-04-23|MDCK2_1","A/Johannesburg/15/2008|2008-06-26|MDCKx_2","A/Hong Kong/796/08|2008-03-15|MDCK2_1","A/Geneva/8428/09|2008-01-22|MDCK3_1",
+	"A/Lyon/CHU19.113/08|2008-05-05|P2MDCK_1","A/Mauritius/402/2008|2008-07-09|MDCK3","A/Geneva/8417/2008|2008-01-16|MDCK1_1","A/Lyon/762/08|2008-02-26|P2MDCK_1","A/Toulouse/609/08|2008-01-18|P2MDCK_1","A/Finland/149/2008|2008-01-28|MDCK2_1","A/Denmark/183/2008|2008-04-11|MDCK2_1","A/Denmark/185/2008|2008-04-16|MDCK2_1","A/Finland/122/2008|2008-01-25|MDCK1_1","A/Norway/848/2008|2008-04-01|MDCK2_1",
+	"A/Norway/966/2008|2008-04-15|MDCK2_1","A/Norway/1034/2008|2008-04-19|LLC-MK2-1_1","A/Hong Kong/1778/2008|2008-07-23|MDCK2_1","A/Hong Kong/1859/2008|2008-07-25|MDCK2_1","A/Ghana/11/2008|2008-07-15|MDCKx_1","A/Washington/42/2007|2007-12-12|E6/E2_1E","A/Mississippi/4/2008|2008-01-15|E5/E2_1E","A/Perth/201/08|2008-07-15|E4_1E","A/Brisbane/24/08|2008-06-23|E5_1E","A/Wellington/2/08|2008-05-28|E3_1E",
+	"A/Singapore/21/08|2008-05-02|E3_1E","A/Ulaanbaatar/1600/2008|2008-02-13|C2/C2_1","A/Toyama/123/2008|2008-04-03|MDCK1+2_1","A/Saitama/27/2008|2008-05-08|MDCK1+2_1")
+ag_Sep2007_table8 <- agNames(map7) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3","A/Parma/1/2007|2007-01-01|MDCK1_2","A/Sofia/319/2007|2007-01-01|E2_2","A/Serres/77/2007|2007-01-25|E1_1","A/Georgia/25/2007|2007-02-23|MDCK2_2","A/Georgia/59/2007|2007-03-06|MDCK2_2","A/Perth/27/2007|2007-07-05|MDCKx+2_1","A/Brisbane/48/2007|2007-06-26|MDCKx+1_1","A/Philippines/1616/2007|2007-05-28|MDCK4_1","A/Sydney/230/2007|2007-07-04|MDCK2_1",
+	"A/New Caledonia/9/2006|2006-10-24|E7_1","A/Brisbane/4/2007|2007-01-18|E2_1","A/Ulaanbaatar/1106/2007|*|E3_1","A/Santiago/6881/2007|*|C3_1","A/Kobe/9/2007|2007-01-26|MDCK3_1","A/Osaka/29/2007|2007-02-21|MDCK4_1","A/Johannesburg/91/2007|2007-07-01|MDCK_1","A/Hong Kong/1957/2007|2007-03-28|MDCK2_1","A/Borisov/158/2007|2007-03-13|MDCK1_1","A/Stockholm/3/2007|2007-04-16|MDCK0_2",
+	"A/Johannesburg/66/2007|2007-07-03|MDCK_1","A/Johannesburg/92/2007|2007-07-01|MDCK_1","A/Iceland/48/2007|2007-04-05|MDCK2_1","A/Georgia/125/2007|2007-03-26|MDCK2_1")
+
+agFill(map7)[ag_Sep2008_table4A] <- '#ea5545'
+agFill(map7)[ag_Sep2008_table4B] <- '#ef9b20'
+agFill(map7)[ag_Sep2007_table8] <- '#ede15b'
+p_map7 <- ggplot(map7) + ggtitle('map 7')
+p_map7
+
+
+#################### MAP 8 ####################
+#### colered by tables
+agSize(map8) <- 5
+agFill(map8) <- 'grey50'
+ag_Sep2008_table4B <- agNames(map8) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3, E3_4","A/Trieste/25c/2007|2007-01-01|MDCKx_4","A/Trieste/25E/2007|2007-01-01|MDCKx_2,E2","A/Wisconsin/3/2007|2007-01-21|Ex_6","A/Brisbane/10/2007|2007-02-06|E2_1","A/Uruguay/716/2007|2007-06-21|SpfCk1, E3_2","A/Finland/9/2008|2008-01-07|MDCK2_3","A/Hong Kong/1050/08|2008-04-23|MDCK2_1","A/Johannesburg/15/2008|2008-06-26|MDCKx_2","A/Hong Kong/796/08|2008-03-15|MDCK2_1",
+	"A/Geneva/8428/09|2008-01-22|MDCK3_1","A/Lyon/CHU19.113/08|2008-05-05|P2MDCK_1","A/Mauritius/402/2008|2008-07-09|MDCK3","A/Geneva/8417/2008|2008-01-16|MDCK1_1","A/Lyon/762/08|2008-02-26|P2MDCK_1","A/Toulouse/609/08|2008-01-18|P2MDCK_1","A/Finland/149/2008|2008-01-28|MDCK2_1","A/Denmark/183/2008|2008-04-11|MDCK2_1","A/Denmark/185/2008|2008-04-16|MDCK2_1","A/Finland/122/2008|2008-01-25|MDCK1_1",
+	"A/Norway/848/2008|2008-04-01|MDCK2_1","A/Norway/966/2008|2008-04-15|MDCK2_1","A/Norway/1034/2008|2008-04-19|LLC-MK2-1_1","A/Hong Kong/1778/2008|2008-07-23|MDCK2_1","A/Hong Kong/1859/2008|2008-07-25|MDCK2_1","A/Ghana/11/2008|2008-07-15|MDCKx_1","A/Washington/42/2007|2007-12-12|E6/E2_1E","A/Mississippi/4/2008|2008-01-15|E5/E2_1E","A/Perth/201/08|2008-07-15|E4_1E","A/Brisbane/24/08|2008-06-23|E5_1E",
+	"A/Wellington/2/08|2008-05-28|E3_1E","A/Singapore/21/08|2008-05-02|E3_1E","A/Ulaanbaatar/1600/2008|2008-02-13|C2/C2_1","A/Toyama/123/2008|2008-04-03|MDCK1+2_1","A/Saitama/27/2008|2008-05-08|MDCK1+2_1")
+ag_Sep2008_table4A <- agNames(map8) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3,E3_3","A/Brisbane/10/2007|2007-02-06|E2_3","A/Uruguay/716/2007|2007-06-21|SpfCk1, E3_1","A/Finland/9/2008|2008-01-07|MDCK2_1","A/Paris/2030/2008|2008-02-01|MDCKx_1","A/Lyon/669/08|2008-02-14|MDCK2_1","A/Netherlands/177/2008|2008-02-18|xMDCK2_1","A/Berlin/50/2008|2008-03-11|MDCKx_1","A/Hong Kong/796/2008|2008-03-15|MDCK2_1","A/Khabarovsk/5/2008|2008-04-14|C6_1",
+	"A/Ulan-Ude/2/2008|2008-04-21|C2_1","A/Lyon/CHU/ 19.113/08|2008-05-05|MDCK2_1","A/Iceland/82/2008|2008-05-06|MDCK2_1","A/Johannesburg/15/2008|2008-06-26|MDCKx_1")
+ag_Sep2007_table7 <- agNames(map8) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3","A/Parma/1/2007|2007-01-01|MDCK1_2","A/Zagreb/1216/2007|2007-01-01|Ex_1","A/Serres/77/2007|2007-01-25|E1_1","A/Ulaanbaatar/1106/2007|*|E3_1","A/Santiago/6881/2007|*|C3_1","A/Iceland/19/07|2007-02-12|MDCK1_1","A/Georgia/13/2007|2007-02-21|MDCK2_1","A/Georgia/55/2007|2007-03-02|MDCK3_1","A/Rzeszow/2/07|2007-03-02|MDCK_1",
+	"A/Iceland/46/07|2007-03-17|MDCK2_1","A/Georgia/135/2007|2007-04-04|MDCK2_1","A/Iceland/48/07|2007-04-05|MDCK2_1","A/Sweden/4/07|2007-04-16|MDCK2_2","A/Sweden/2/07|2007-04-16|MDCK2_1","A/Stockholm/6/07|2007-04-16|MDCK1_2","A/Stockholm/7/07|2007-04-18|MDCK1_1","A/Stockholm/8/07|2007-04-18|MDCK1_2","A/Cape Town/97/07|2007-07-01| MDCKx_1","A/Johannesburg/46/07|2007-07-01|MDCKx_1",
+	"A/Johannesburg/74/07|2007-07-09|MDCKx_1")
+ag_Sep2007_table6 <- agNames(map8) %in% c("A/California/7/2004|2004-09-16|SpfCk3, E3_3","A/Hong Kong/4443/2005|2006-06-24|MDCK2_6","A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2","A/Bayern/4/2006|2006-03-07|MDCKx_5","A/Berlin/2/2006|2006-02-06|MDCKx_3","A/Parma/1/2007|2006-12-01|MDCK1_2","A/Paris/1716/2007|2007-02-01|MDCKx_1","A/Sofia/671/2007|2007-02-01|MDCK1, E1_3","A/Zagreb/3064/07|2007-02-01|E","A/Norway/414/2007|2007-02-12|MDCK1_1",
+	"A/Kiev/546/07|2007-03-12|MDCKx_1","A/Borisov/175/07|2007-03-13|MDCKx_1","A/Dniprodzerzinsk SES/350/07|2007-03-16|MDCKx_1","A/Belarus/340/2007|2007-03-23|MDCK1_1","A/Latvia/4897/07|2007-04-02|MDCK1_1","A/Ulan-Ude/1/07|2007-04-02|C1_2","A/Norway/787/2007|2007-04-04|MK2, MDCK1_1","A/Mauritius/307/07|2007-04-24|MDCK1_1","A/Mauritius/354/2007|2007-05-15|MDCK2_1","A/St Petersburg/95/2007|2007-05-21|C3_1",
+	"A/Moscow/15/2007|2007-05-21|C3_2","A/Hong Kong/2571/2007|2007-05-28|MDCK2_1","A/Hong Kong/2657/2007|2007-06-08|MDCK2_1")
+
+agFill(map8)[ag_Sep2008_table4B] <- '#ea5545'
+agFill(map8)[ag_Sep2008_table4A] <- '#ef9b20'
+agFill(map8)[ag_Sep2007_table7] <- '#ede15b'
+agFill(map8)[ag_Sep2007_table6] <- '#87bc45'
+p_map8 <- ggplot(map8) + ggtitle('map 8')
+p_map8
+
+
+#################### MAP 9 ####################
+#### colered by tables
+agSize(map9) <- 5
+agFill(map9) <- 'grey50'
+p_map9 <- ggplot(map9) + ggtitle('map 9')
+p_map9
+
+
+#################### MAP 10 ####################
+#### colered by tables
+agSize(map10) <- 5
+agFill(map10) <- 'grey50'
+ag_Sep2008_table4A <- agNames(map10) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3,E3_3","A/Uruguay/716/2007|2007-06-21|SpfCk1, E3_1","A/Paris/2030/2008|2008-02-01|MDCKx_1","A/Lyon/669/08|2008-02-14|MDCK2_1","A/Netherlands/177/2008|2008-02-18|xMDCK2_1","A/Berlin/50/2008|2008-03-11|MDCKx_1","A/Hong Kong/796/2008|2008-03-15|MDCK2_1","A/Khabarovsk/5/2008|2008-04-14|C6_1","A/Denmark/190/2008|2008-04-17|MDCK2_1","A/Ulan-Ude/2/2008|2008-04-21|C2_1",
+	"A/Lyon/CHU/ 19.113/08|2008-05-05|MDCK2_1","A/Iceland/82/2008|2008-05-06|MDCK2_1","A/Johannesburg/15/2008|2008-06-26|MDCKx_1")
+ag_Mar2008_table5 <- agNames(map10) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3","A/Sofia/319/2007|2007-01-01|E2_2","A/Serres/77/2007|2007-01-25|E1_1","A/Uruguay/716/2007|2007-06-21|spfck1, E3_2","A/Kumamoto/30/2007|*|MDCK1+2_1","A/Toyama/119/2007|*|MDCK1+2_1","A/Madagascar/1236/2007|2007-08-06|MDCK2_2","A/Texas/37/2007|2007-10-13|MK1,MDCK3_1","A/Nevada/05/2007|2007-10-05|x,MDCK2_1","A/Taiwan/760/2007|2007-10-04|MDCK5_1",
+	"A/Paris/0259/2007|2008-11-01|MDCKx_1","A/Paris/0358/2007|2008-11-01|MDCKx_1","A/Switzerland/6904/2007|2007-11-14|Cx_1","A/Paris/0653/2007|2007-12-01|MDCKx_1","A/Belgium/SP13/2008|2007-12-04|MDCKx_1","A/Belgium/SP12/2008|2007-12-06|MDCKx_1","A/Hong Kong/4761/2007|2007-12-17|MDCK2_1","A/Lyon/1381/2007|2007-12-18|MDCK2_1","A/Hong Kong/4765/2007|2007-12-22|MDCK2_1","A/Stockholm/2/2008|2008-01-01|MDCK1_1",
+	"A/Novosibirsk/1/2008|2008-02-13| C1_1")
+
+agFill(map10)[ag_Sep2008_table4A] <- '#ea5545'
+agFill(map10)[ag_Mar2008_table5] <- '#ef9b20'
+p_map10 <- ggplot(map10) + ggtitle('map 10')
+p_map10
+
+
+#################### MAP 11 ####################
+#### colered by tables
+agSize(map11) <- 5
+agFill(map11) <- 'grey50'
+p_map11 <- ggplot(map11) + ggtitle('map 11')
+p_map11
+
+
+#################### MAP 12 ####################
+#### colered by tables
+agSize(map12) <- 5
+agFill(map12) <- 'grey50'
+ag_Sep2010_table7B <- agNames(map12) %in% c("A/Uruguay/716/2007|2007-06-21|SpfCk1, E3/E3","A/Hong Kong/1985/2009|2009-04-01|MDCK2/SIAT1","A/Perth/16/2009|2009-07-04|E3/E2","A/Wisconsin/15/2009|2009-07-06|E2/E3","A/Hong Kong/34430/2009|2009-11-22|MDCK2/SIAT2","A/Ghana/FS-271/2010|2010-02-22|MDCK1/SIAT1","A/Ghana/FS-376/2010|2010-03-05|MDCK1/SIAT2","A/Ghana/FS-464/2010|2010-03-15|MDCK1/SIAT1","A/Ghana/FS-467/2010|2010-03-15|MDCK1/SIAT1","A/Stockholm/1/2010|2010-04-29|C1/SIAT1",
+	"A/Stockholm/2/2010|2010-04-30|C1/SIAT1","A/Hong Kong/2097/2010|2010-06-25|MDCK2/SIAT1","A/Hong Kong/2146/2010|2010-07-06|MDCK2/SIAT1")
+ag_Feb2010_table13 <- agNames(map12) %in% c("A/Uruguay/716/2007|2007-06-21|spfck1, E3 E3","A/Finland/9/2008|2008-01-07|MDCK2 Siat2","A/Johannesburg/15/2008|2008-06-25|MDCKx Siat6","A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat7","A/Hong Kong/1985/2009|2009-04-01|MDCKx2 Siat5","A/Perth/16/2009|2009-07-04|E3 E2","A/Wisconsin/15/2009|2009-07-06|E2 E2","A/Hong Kong/26560/2009|2009-09-18|E3 E1","A/Philippines/2191/2009|2009-05-26|E3 E1","A/Gothenburg/3/2009|2009-11-27|C2 Siat1",
+	"A/Cameroon/699/2009|2009-11-20|Cx Siat1","A/Ghana/FS-1551/2009|2009-09-14|Cx Siat1","A/Ghana/FS-1589/2009|2009-09-22|Cx Siat1","A/Ghana/FS-1591/2009|2009-09-22|Cx Siat1","A/Sweden/2/2009|2009-09-01|C1 Siat1","A/Stockholm/89/2009|2009-09-06|C1 Siat1","A/Umeå/4/2009|2009-09-02|C2 Siat1","A/Norway/3789/2009|2009-10-12|MDCK1 Siat1","A/Norway/3790/2009|2009-10-13|MDCK1 Siat1","A/Finland/638/2009|2009-10-20|MDCK3 Siat1",
+	"A/Finland/640/2009|2009-10-26|MDCK3 Siat1","A/Cameroon/677/2009|2009-11-13|Cx Siat1","A/Cameroon/678/2009|2009-11-13|Cx Siat1","A/Cameroon/681/2009|2009-11-13|Cx Siat1","A/Cameroon/701/2009|2009-11-23|Cx Siat1","A/Cameroon/704/2009|2009-11-24|Cx Siat1","A/Stockholm/112/2009|2009-11-28|C1 Siat1","A/Israel/22/2009|2009-11-01|Cx Siat1","A/Israel/23/2009|2009-11-01|Cx Siat1","A/Israel/24/2009|2009-11-01|P2 Siat1",
+	"A/Israel/25/2009|2009-11-01|P2 Siat1","A/Israel/26/2009|2009-11-01|P2 Siat1","A/Israel/27/2009|2009-11-01|Cx Siat1","A/Ghana/FS-2240/2009|2009-11-25|Cx Siat1","A/Nordrhein-Westfalen/1/2010|2010-01-01|Siat1 Siat1","A/Lyon/Cx-R/3120/2009|2009-11-01|p2MDCK Siat1","A/Lyon/3670/2009|2009-11-01|p2MDCK Siat1","A/Lyon/CHU/52.384/09|2009-11-01|p2MDCK Siat1","A/Ghana/FS-2355/2009|2009-12-03|Cx Siat1")
+
+agFill(map12)[ag_Sep2010_table7B] <- '#ea5545'
+agFill(map12)[ag_Feb2010_table13] <- '#ef9b20'
+p_map12 <- ggplot(map12) + ggtitle('map 12')
+p_map12
+
+
+#################### MAP 13 ####################
+#### colered by tables
+agSize(map13) <- 5
+agFill(map13) <- 'grey50'
+ag_Sep2009_table5 <- agNames(map13) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3E3 E3","A/Trieste/25c/2007|2007-01-01|MDCKx Siat4","A/Uruguay/716/2007|2007-06-21|spfck1, E3 E1","A/Johannesburg/15/2008|2008-06-25|MDCKx Siat2","A/Brisbane/24/2008|2008-06-23|E5 E1","A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat2","A/Hong Kong/1985/2009|2009-04-01|MDCKx2 Siat2","A/Perth/15/2009|*|E3 E1","A/Perth/16/2009|*|E3 E1","A/Madagascar/4007/2009|2009-05-26|MDCK1 Siat1",
+	"A/Madagascar/4010/2009|2009-05-28|MDCK1 Siat1","A/Madagascar/4286/2009|2009-06-02|MDCK1 Siat1","A/Ukraine/86/09|2009-03-02|MDCK1 Siat1","A/Odessa/366/09|2009-03-26|MDCK1 Siat1","A/Luxembourg/612/2009|2009-02-19|Siat2","A/Johannesburg/131/2009|2009-05-23|MDCK1 Siat1","A/Johannesburg/161/2009|2009-05-26|MDCK1 Siat1","A/Johannesburg/239//2009|2009-06-02|MDCK1 Siat1","A/Lyon/CHU/20.526/2009|2009-05-14|MDCK2 Siat1","A/Hong Kong/2139/2009|2009-05-16|MDCKx2 Siat1",
+	"A/Hong Kong/2142/2009|2009-05-17|MDCKx2 Siat1","A/Singapore/46/2009|2009-06-05|MDCK 1 Siat1","A/Singapore/47/2009|2009-06-05|MDCK 1 Siat1","A/Grenoble/1144/2009|2009-06-17|MDCK2 Siat1","A/Luxembourg/782/2009|2009-05-08|MDCK1 Siat1","A/Luxembourg/791/2009|2009-05-11|Siat3","A/Singapore/42/2009|2009-05-21|MDCK 1 Siat1","A/Johannesburg/126/2009*|2009-05-21|MDCK2 Siat1")
+ag_Sep2010_table7B <- agNames(map13) %in% c("A/Uruguay/716/2007|2007-06-21|SpfCk1, E3/E3","A/Hong Kong/1985/2009|2009-04-01|MDCK2/SIAT1","A/Perth/16/2009|2009-07-04|E3/E2","A/Wisconsin/15/2009|2009-07-06|E2/E3","A/Hong Kong/34430/2009|2009-11-22|MDCK2/SIAT2","A/Ghana/FS-271/2010|2010-02-22|MDCK1/SIAT1","A/Ghana/FS-376/2010|2010-03-05|MDCK1/SIAT2","A/Ghana/FS-464/2010|2010-03-15|MDCK1/SIAT1","A/Ghana/FS-467/2010|2010-03-15|MDCK1/SIAT1","A/Stockholm/1/2010|2010-04-29|C1/SIAT1",
+	"A/Stockholm/2/2010|2010-04-30|C1/SIAT1","A/Hong Kong/2097/2010|2010-06-25|MDCK2/SIAT1","A/Hong Kong/2146/2010|2010-07-06|MDCK2/SIAT1")
+ag_Feb2010_table13 <- agNames(map13) %in% c("A/Uruguay/716/2007|2007-06-21|spfck1, E3 E3","A/Johannesburg/15/2008|2008-06-25|MDCKx Siat6","A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat7","A/Hong Kong/1985/2009|2009-04-01|MDCKx2 Siat5","A/Perth/16/2009|2009-07-04|E3 E2","A/Wisconsin/15/2009|2009-07-06|E2 E2","A/Hong Kong/26560/2009|2009-09-18|E3 E1","A/Philippines/2191/2009|2009-05-26|E3 E1","A/Gothenburg/3/2009|2009-11-27|C2 Siat1","A/Cameroon/699/2009|2009-11-20|Cx Siat1",
+	"A/Ghana/FS-1551/2009|2009-09-14|Cx Siat1","A/Ghana/FS-1589/2009|2009-09-22|Cx Siat1","A/Ghana/FS-1591/2009|2009-09-22|Cx Siat1","A/Sweden/2/2009|2009-09-01|C1 Siat1","A/Stockholm/89/2009|2009-09-06|C1 Siat1","A/Umeå/4/2009|2009-09-02|C2 Siat1","A/Norway/3789/2009|2009-10-12|MDCK1 Siat1","A/Norway/3790/2009|2009-10-13|MDCK1 Siat1","A/Finland/638/2009|2009-10-20|MDCK3 Siat1","A/Finland/640/2009|2009-10-26|MDCK3 Siat1",
+	"A/Cameroon/677/2009|2009-11-13|Cx Siat1","A/Cameroon/678/2009|2009-11-13|Cx Siat1","A/Cameroon/681/2009|2009-11-13|Cx Siat1","A/Cameroon/701/2009|2009-11-23|Cx Siat1","A/Cameroon/704/2009|2009-11-24|Cx Siat1","A/Stockholm/112/2009|2009-11-28|C1 Siat1","A/Israel/22/2009|2009-11-01|Cx Siat1","A/Israel/23/2009|2009-11-01|Cx Siat1","A/Israel/24/2009|2009-11-01|P2 Siat1","A/Israel/25/2009|2009-11-01|P2 Siat1",
+	"A/Israel/26/2009|2009-11-01|P2 Siat1","A/Israel/27/2009|2009-11-01|Cx Siat1","A/Ghana/FS-2240/2009|2009-11-25|Cx Siat1","A/Nordrhein-Westfalen/1/2010|2010-01-01|Siat1 Siat1","A/Lyon/Cx-R/3120/2009|2009-11-01|p2MDCK Siat1","A/Lyon/3670/2009|2009-11-01|p2MDCK Siat1","A/Lyon/CHU/52.384/09|2009-11-01|p2MDCK Siat1","A/Ghana/FS-2355/2009|2009-12-03|Cx Siat1")
+
+agFill(map13)[ag_Sep2009_table5] <- '#ea5545'
+agFill(map13)[ag_Sep2010_table7B] <- '#ef9b20'
+agFill(map13)[ag_Feb2010_table13] <- '#ede15b'
+p_map13 <- ggplot(map13) + ggtitle('map 13')
+p_map13
+
+
+#################### MAP 14 ####################
+#### colered by tables
+agSize(map14) <- 5
+agFill(map14) <- 'grey50'
+p_map14 <- ggplot(map14) + ggtitle('map 14')
+p_map14
+
+
+#################### MAP 15 ####################
+#### colered by tables
+agSize(map15) <- 5
+agFill(map15) <- 'grey50'
+p_map15 <- ggplot(map15) + ggtitle('map 15')
+p_map15
+
+
+#################### MAP 16 ####################
+#### colered by tables
+agSize(map16) <- 5
+agFill(map16) <- 'grey50'
+ag_Feb2012_table12 <- agNames(map16) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E1","A/Victoria/210/2009|2009-06-02|E2/32","A/Alabama/5/2010|2010-07-13|MK1/M2/SIAT2","A/Perth/10/2010|2010-05-25|E2/E2","A/La Réunion/2055/2011|2011-06-22|MDCK2/SIAT1","A/La Réunion/1956/2011|2011-07-07|MDCK4/SIAT1","A/Paris/1744/2011|2011-10-05|MDCK3/SIAT1","A/Attecoube/GR1103/2011|2011-10-18|SIAT3","A/Lyon CHU/46.334/2011|2011-11-15|MDCK3/SIAT1","A/Korogho/GR1307/2011|2011-11-16|SIAT2",
+	"A/Ghana/FS-11-1981/2011|2011-11-22|SIAT2","A/Parma/171/2011|2011-11-24|MDCK2/SIAT1","A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1","A/Catalonia/S4345/2011|2011-11-28|MDCK0/SIAT1","A/Milano/260/2011|2011-11-30|MDCK1/SIAT1","A/Trieste/58/2011|2011-11-30|MDCK2/SIAT1","A/Milano/256/2011|2011-12-01|MDCK1/MDCK1","A/Paris/2013/2011|2011-12-06|MDCK1/SIAT1","A/Parma/169/2011|2011-12-06|MDCK2/SIAT1","A/Turkey/05/2011|2011-12-07|SIAT1/SIAT1",
+	"A/Marseille/2240/2011|2011-12-08|MDCK2/SIAT1","A/Lorraine/2073/2011|2011-12-08|MDCK1/SIAT1","A/Toulouse/2187/2011|2011-12-09|MDCK2/SIAT1","A/Rheinland-Pfalz/75/2011|2011-12-09|C6/SIAT1","A/Berlin/2/2012|2011-12-09|C2/SIAT1","A/Milano/258/2011|2011-12-09|MDCK1/SIAT1","A/Trieste/59/2011|2011-12-09|MDCK2/SIAT1","A/Israel/32/2011|2011-12-10|C1/SIAT1","A/Norway/2433/2011|2011-12-12|SIAT1/SIAT2","A/Lorraine/2056/2011|2011-12-12|MDCK1/SIAT1",
+	"A/Valladolid/48/2011|2011-12-13|MDCKx/SIAT1","A/Milano/265/2011|2011-12-13|MDCK1/SIAT1","A/Parma/170/2011|2011-12-13|MDCK2/SIAT1","A/Turkey/07/2011|2011-12-13|SIAT2/SIAT1","A/Turkey/08/2011|2011-12-13|SIAT2/SIAT1","A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1","A/Turkey/12/2011|2011-12-14|SIAT2/SIAT1","A/Paris/2097/2011|2011-12-15|MDCK2/SIAT1","A/Turkey/14/2011|2011-12-15|SIAT1/SIAT1","A/Paris/2100/2011|2011-12-16|MDCK2/SIAT1",
+	"A/Valladolid/49/2011|2011-12-16|MDCK1/SIAT1","A/Israel/38/2011|2011-12-18|C2/SIAT1","A/Paris/2114/2011|2011-12-19|MDCK2/SIAT1","A/Ireland/11M92381/2011|2011-12-19|MDCK3/SIAT1","A/Parma/168/2011|2011-12-19|MDCK3/SIAT1","A/Paris/2116/2011|2011-12-20|MDCK2/SIAT1","A/Paris/2133/2011|2011-12-22|MDCK1/SIAT1","A/Ireland/11M92761/2011|2011-12-22|MDCK2/SIAT1","A/Parma/172/2011|2011-12-22|MDCK2/SIAT1","A/Parma/175/2011|2011-12-22|MDCK2/SIAT1",
+	"A/Lyon/2264/2011|2011-12-23|MDCK2/SIAT1","A/Israel/41/2011|2011-12-24|C1/SIAT1","A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1","A/Pays de Loire/2149/2011|2011-12-27|MDCK2/SIAT1","A/Trieste/62/2011|2011-12-27|MDCK2/SIAT1","A/Parma/177/2011|2011-12-27|MDCK1/SIAT1","A/Paris/2154/2011|2011-12-28|MDCK1/SIAT1","A/Paris/7/2012|2011-12-28|MDCK1/SIAT1","A/Salamanca/50/2011|2011-12-29|MDCK1/SIAT1","A/Trieste/63/2011|2011-12-29|MDCK2/SIAT1",
+	"A/Parma/173/2011|2011-12-29|MDCK2/SIAT1","A/Parma/174/2011|2011-12-30|MDCK2/SIAT1","A/Parma/176/2011|2011-12-30|MDCK2/SIAT1","A/Baden-Wurttemberg/2/2012|2012-01-01|C2/SIAT1","A/Lyon/40/2012|2012-01-02|MDCK2/SIAT1","A/Via Real/SU6/2012|2012-01-03|SIAT2","A/Paris/27/2012|2012-01-03|MDCK2/SIAT1","A/Parma/01/2012|2012-01-04|MDCK1/SIAT1","A/Lyon CHU/01.593/2011|2012-01-06|MDCK2/SIAT1","A/Valladolid/1/2012|2012-01-09|MDCK1/SIAT1",
+	"A/Segovia/2/2012|2012-01-09|MDCK1/SIAT1","A/Berlin/3/2012|2012-01-10|C2/SIAT1","A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1","A/Israel/27/2011|*|C2/SIAT1","A/Israel/43/2011|*|Cx/SIAT1","A/Israel/47/2011|*|Cx/SIAT1","A/Israel/50/2011|*|C1/SIAT1")
+ag_Feb2012_table13 <- agNames(map16) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/England/259/2011|2011-11-16|Cx/SIAT1","A/Norway/1789/2011|*|Cx/SIAT1","A/Denmark/87/2011|2011-09-04|SIAT1/SIAT1","A/Jordan/20110030568/2011|2011-09-14|SIAT1","A/Jordan/20110030585/2011|2011-09-23|SIAT2","A/Kobe/241/2011|2011-10-21|MDCK1+2/SIAT1","A/Hiroshima-C/53/2011|2011-10-29|MDCK1+2/SIAT1","A/Jordan/20110030655/2011|2011-10-31|SIAT1",
+	"A/Yopougon/GR1336/2011|2011-11-21|SIAT3","A/Jordan/20110030687/2011|2011-11-22|SIAT1","A/Bursa/108/2011|2011-11-22|C1/SIAT1","A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2","A/Denmark/90/2011|2011-11-28|MDCK1/SIAT1","A/Jordan/20110030713/2011|2011-11-30|SIAT2","A/Jordan/20110030706/2011|2011-12-03|SIAT1","A/Jordan/20110030717/2011|2011-12-03|SIAT2","A/Netherlands/710/2011|2011-12-06|MDCK2/SIAT1","A/Turkey/06/2011|2011-12-08|SIAT2/SIAT2",
+	"A/Turkey/10/2011|2011-12-08|SIAT2/SIAT3","A/Jordan/20110030732/2011|2011-12-08|SIAT1","A/İzmir/176/2011|2011-12-09|C1/SIAT1","A/Turkey/04/2011|2011-12-09|SIAT1/SIAT3","A/Jordan/20110030749/2011|2011-12-11|SIAT1","A/Turkey/26/2011|2011-12-13|SIAT1/SIAT1","A/İzmir/182/2011|2011-12-13|C1/SIAT1","A/Jordan/20110030777/2011|2011-12-15|SIAT1","A/Turkey/18/2011|2011-12-16|SIAT1/SIAT1","A/Norway/99/2012|2011-12-16|LLC-MK2-MDCK1/SIAT1",
+	"A/Turkey/19/2011|2011-12-18|SIAT1/SIAT1","A/İstanbul/202/2011|2011-12-19|C1/SIAT1","A/Antalya/204/2011|2011-12-19|C1/SIAT1","A/Ireland/11M92698/2011|2011-12-20|SIAT2","A/Turkey/21/2011|2011-12-20|SIAT1/SIAT3","A/Turkey/22/2011|2011-12-20|SIAT1/SIAT2","A/Turkey/27/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/30/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/31/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1",
+	"A/Ireland/11M92761/2011_1|2011-12-21|SIAT2","A/Trieste/60/2011|2011-12-21|MDCK2/SIAT2","A/Turkey/23/2011|2011-12-21|SIAT1/SIAT1","A/Turkey/24/2011|2011-12-21|SIAT1/SIAT1","A/Jordan/20110030780/2011|2011-12-21|SIAT1","A/Norway/2448/2011|2011-12-21|SIAT3","A/Ireland/11M92761/2011_2|2011-12-21|SIAT2","A/Ireland/11M92922/2011|2011-12-22|SIAT1/SIAT2","A/Turkey/28/2011|2011-12-22|MDCK1/SIAT1","A/Norway/39/2012|2011-12-22|LLC-MK2-MDCK1/SIAT1",
+	"A/Norway/96/2012|2011-12-22|SIAT2","A/Ireland/11V9451/2011|2011-12-25|MDCK1/SIAT1","A/Norway/38/2012|2011-12-25|SIAT2","A/Switzerland/5776029/2011|2011-12-27|SIAT1","A/Jordan/20110030776/2011|2011-12-27|C1/SIAT1","A/İstanbul/249/2011|2011-12-28|MDCK1/SIAT1","A/Latvia/12-47890p/2011|2011-12-28|MDCK3/SIAT1","A/Netherlands/713/2011|2011-12-29|C1/SIAT1","A/ Bursa/250/2011|2011-12-29|C1/SIAT1","A/İzmir/251/2011|2011-12-29|C1/SIAT1",
+	"A/Norway/3/2012|2012-01-02|MDCK1/SIAT1","A/Norway/75/2012|2012-01-02|MDCK-SIAT1/SIAT1","A/Norway/97/2012|2012-01-02|LLC-MK2-MDCK1/SIAT1","A/Switzerland/5802473/2012|2012-01-03|SIAT2","A/Austria/654044/2012|2012-01-03|C2/SIAT1","A/Ireland/12M90/2012|2012-01-03|SIAT3","A/Lyon/37/2012|2012-01-04|MDCK2/SIAT2","A/Netherlands/001/2012|2012-01-05|MDCK2/SIAT1","A/Norway/73/2012|2012-01-05|SIAT1/SIAT1","A/Switzerland/5834715/2012|2012-01-09|SIAT2",
+	"A/Switzerland/5834718/2012|2012-01-09|SIAT2","A/Switzerland/5834731/2012|2012-01-09|SIAT2","A/Berlin/6/2012|2012-01-09|C3/SIAT1","A/Hamburg/1/2012|2012-01-09|C2/SIAT1","A/Austria/654591/2012|2012-01-09|C1/SIAT1","A/Latvia/1-34462p/2012|2012-01-09|MDCK1/SIAT1","A/Latvia/1-34610/2012|2012-01-09|MDCK1/SIAT1","A/Ireland/12v397/2012|2012-01-10|SIAT3","A/England/12/2012|2012-01-10|SIAT1/SIAT1","A/Norway/114/2012|2012-01-10|MDCK1/SIAT1",
+	"A/Latvia/1-35583/2012|2012-01-10|MDCKx/SIAT1","A/Austria/655242/2012|2012-01-11|C1/SIAT1","A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1","A/Rheinland-Pfalz/1/2012|2012-01-12|C2/SIAT1","A/Switzerland/5834730/2012|2012-01-13|SIAT3","A/Switzerland/5834796/2012|2012-01-13|SIAT3","A/Berlin/4/2012|2012-01-13|C2/SIAT1","A/Baden-Württemberg/3/2012|2012-01-13|C2/SIAT1","A/Latvia/1-37528/2012|2012-01-13|MDCKx/SIAT1","A/England/21/2012|2012-01-16|SIAT1/SIAT1",
+	"A/Berlin/5/2012|2012-01-16|C2/SIAT1","A/Berlin/7/2012|2012-01-16|C2/SIAT1","A/Brandenburg/1/2012|2012-01-16|C2/SIAT1","A/England/20/2012|2012-01-17|SIAT1/SIAT1","A/Berlin/8/2012|2012-01-17|C2/SIAT1","A/Switzerland/5867852/2012|2012-01-20|SIAT3","A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1")
+
+agFill(map16)[ag_Feb2012_table12] <- '#ea5545'
+agFill(map16)[ag_Feb2012_table13] <- '#ef9b20'
+p_map16 <- ggplot(map16) + ggtitle('map 16')
+p_map16
+
+
+#################### MAP 17 ####################
+#### colered by tables
+agSize(map17) <- 5
+agFill(map17) <- 'grey50'
+p_map17 <- ggplot(map17) + ggtitle('map 17')
+p_map17
+
+
+#################### MAP 18 ####################
+#### colered by tables
+agSize(map18) <- 5
+agFill(map18) <- 'grey50'
+p_map18 <- ggplot(map18) + ggtitle('map 18')
+p_map18
+
+
+#################### MAP 19 ####################
+#### colered by tables
+agSize(map19) <- 5
+agFill(map19) <- 'grey50'
+p_map19 <- ggplot(map19) + ggtitle('map 19')
+p_map19
+
+
+#################### MAP 20 ####################
+#### colered by tables
+agSize(map20) <- 5
+agFill(map20) <- 'grey50'
+p_map20 <- ggplot(map20) + ggtitle('map 20')
+p_map20
+
+
+#################### MAP 21 ####################
+#### colered by tables
+agSize(map21) <- 5
+agFill(map21) <- 'grey50'
+ag_Sep2012_table18 <- agNames(map21) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT5","A/Berlin/93/2011|2011-12-07|NVD3/S3","A/Brisbane/1/2012|2012-01-06|E3/E1","A/Dakar/01/2012|2012-01-17|MDCK2/SIAT1","A/Maryland/02/2012|2012-01-18|E5/E1","A/Dakar/02/2012|2012-01-31|MDCK1/SIAT2","A/Lorraine/329/2012|2012-02-06|MDCK2/SIAT3","A/Paris/340/2012|2012-02-06|MDCK2/SIAT3","A/Caen/539/2012|2012-02-07|MDCK2/SIAT3","A/Lorraine/883/2012|2012-03-02|MDCK2/SIAT3",
+	"A/Alsace/889/2012|2012-03-04|MDCK2/SIAT3","A/Ohio/2/2012|2012-03-08|E4/E1","A/Centre/1066/2012|2012-03-12|MDCK2/SIAT3","A/South Australia/30/2012|2012-05-10|E2/E1")
+ag_Sep2012_table17 <- agNames(map21) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Georgia/301/2012|2012-02-21|*","A/Centre/848/2012|2012-03-01|MDCK2/SIAT1","A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1","A/Caen/900/2012|2012-03-01|MDCK2/SIAT1","A/Pays de Loire/882/2012|2012-03-02|MDCK1/SIAT1","A/Paris/919/2012|2012-03-06|MDCK2/SIAT1","A/Centre/929/2012|2012-03-07|MDCK2/SIAT1","A/Paris/972/2012|2012-03-08|MDCK2/SIAT1",
+	"A/Guyane/1296/2012 (A/Guadeloupe/44/2012)|2012-03-08|MDCK2/SIAT1","A/Guyane/1297/2012 (A/Guadeloupe/45/2012)|2012-03-08|MDCK2/SIAT1","A/Madagascar/03243/2012|2012-05-07|SIAT3","A/Madagascar/03233/2012|2012-05-11|MDCK1/SIAT1","A/Madagascar/03281/2012|2012-05-14|SIAT2","A/Madagascar/03294/2012|2012-05-16|MDCK2/SIAT1","A/Madagascar/03396/2012|2012-05-21|MDCK2/SIAT1","A/Madagascar/03401/2012|2012-05-22|MDCK2/SIAT1","A/Madagascar/03408/2012|2012-05-22|MDCK2/SIAT1","A/Ghana/FS0677/2012|2012-05-28|C2/SIAT3",
+	"A/Madagascar/03449/2012|2012-05-29|SIAT3","A/Madagascar/03487/2012|2012-05-31|MDCK2/SIAT1","A/Madagascar/03536/2012|2012-06-04|MDCK1/SIAT1","A/Madagascar/03535/2012|2012-06-06|SIAT2","A/Hong Kong/8117/2012|2012-06-26|MDCK2/SIAT1","A/Hong Kong/8119/2012|2012-06-26|MDCK2/SIAT1","A/Hong Kong/8152/2012|2012-06-26|MDCK2/MDCK1","A/Hong Kong/8150/2012|2012-06-27|MDCK2/SIAT1")
+
+agFill(map21)[ag_Sep2012_table18] <- '#ea5545'
+agFill(map21)[ag_Sep2012_table17] <- '#ef9b20'
+p_map21 <- ggplot(map21) + ggtitle('map 21')
+p_map21
+
+
+#################### MAP 22 ####################
+#### colered by tables
+agSize(map22) <- 5
+agFill(map22) <- 'grey50'
+ag_Sep2012_table17 <- agNames(map22) %in% c("A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT6","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Georgia/301/2012|2012-02-21|*","A/Centre/848/2012|2012-03-01|MDCK2/SIAT1","A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1","A/Caen/900/2012|2012-03-01|MDCK2/SIAT1","A/Pays de Loire/882/2012|2012-03-02|MDCK1/SIAT1","A/Paris/919/2012|2012-03-06|MDCK2/SIAT1",
+	"A/Centre/929/2012|2012-03-07|MDCK2/SIAT1","A/Paris/972/2012|2012-03-08|MDCK2/SIAT1","A/Guyane/1296/2012 (A/Guadeloupe/44/2012)|2012-03-08|MDCK2/SIAT1","A/Guyane/1297/2012 (A/Guadeloupe/45/2012)|2012-03-08|MDCK2/SIAT1","A/Madagascar/03243/2012|2012-05-07|SIAT3","A/Madagascar/03233/2012|2012-05-11|MDCK1/SIAT1","A/Madagascar/03281/2012|2012-05-14|SIAT2","A/Madagascar/03294/2012|2012-05-16|MDCK2/SIAT1","A/Madagascar/03396/2012|2012-05-21|MDCK2/SIAT1","A/Madagascar/03401/2012|2012-05-22|MDCK2/SIAT1",
+	"A/Madagascar/03408/2012|2012-05-22|MDCK2/SIAT1","A/Ghana/FS0677/2012|2012-05-28|C2/SIAT3","A/Madagascar/03449/2012|2012-05-29|SIAT3","A/Madagascar/03487/2012|2012-05-31|MDCK2/SIAT1","A/Madagascar/03536/2012|2012-06-04|MDCK1/SIAT1","A/Madagascar/03535/2012|2012-06-06|SIAT2","A/Hong Kong/8117/2012|2012-06-26|MDCK2/SIAT1","A/Hong Kong/8119/2012|2012-06-26|MDCK2/SIAT1","A/Hong Kong/8152/2012|2012-06-26|MDCK2/MDCK1","A/Hong Kong/8150/2012|2012-06-27|MDCK2/SIAT1")
+ag_Sep2012_table12 <- agNames(map22) %in% c("A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Iowa/19/2010|2010-12-30|E3/E1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Athens/GR112/2012|2012-02-01|SIAT3","A/Karlovy Vary/46/2012|*|MDCK5/SIAT3","A/Decin/42/2012|*|MDCK5/SIAT3","A/Cercany/96/2012|*|MDCK3/SIAT3","A/Praha/98/2012|*|MDCK3/SIAT3","A/Ireland/V1160/2012|2012-02-01|C2/SIAT1","A/Belgrade/449/2012|2012-02-02|C1/SIAT1",
+	"A/Ukraine/38/2012|2012-02-10|C1/SIAT3","A/Ukraine/134/2012|2012-02-25|C1/SIAT3","A/England/354/2012|2012-02-28|SIAT2/SIAT2","A/Ukraine/114/2012|2012-03-02|C1/SIAT3","A/Belgrade/898/2012|2012-03-06|C1/SIAT1","A/Cuprija/1212/2012|2012-03-15|C1/SIAT1","A/Ireland/12V2608/2012|2012-03-22|C1/SIAT1","A/Ireland/12V2628/2012|2012-03-22|C1/SIAT1","A/Ireland/12V2734/2012|2012-03-26|C1/SIAT1","A/Nis/1471/2012|2012-03-26|C1/SIAT1",
+	"A/Nis/1472/2012|2012-03-26|C1/SIAT1","A/Belgrade/1420/2012|2012-03-26|C1/SIAT1","A/Belgrade/1470/2012|2012-03-27|C1/SIAT2","A/Ireland/12V2794/2012|2012-03-28|C1/SIAT1","A/Scotland/1/2012|2012-03-30|SIAT3/SIAT2","A/Belgrade/1545/2012|2012-03-30|C1/SIAT1","A/Beograd/1549/2012|2012-04-02|C1/SIAT1","A/England/509/2012|2012-04-04|SIAT1/SIAT2","A/Beograd/1607/2012|2012-04-04|C1/SIAT1","A/Leskovac/1701/2012|2012-04-05|C1/SIAT1",
+	"A/Belgrade/1741/2012|2012-04-11|C1/SIAT1","A/England/524/2012|2012-04-12|SIAT1/SIAT3","A/Sabac/1930/2012|2012-04-24|C1/SIAT1")
+
+agFill(map22)[ag_Sep2012_table17] <- '#ea5545'
+agFill(map22)[ag_Sep2012_table12] <- '#ef9b20'
+p_map22 <- ggplot(map22) + ggtitle('map 22')
+p_map22
+
+
+#################### MAP 23 ####################
+#### colered by tables
+agSize(map23) <- 5
+agFill(map23) <- 'grey50'
+ag_Feb2012_table9 <- agNames(map23) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E1","A/Victoria/210/2009|2009-06-02|E2/E3","A/Perth/10/2010|2010-05-25|E2/E2","A/Brisbane/299/2011|2011-08-13|E5/E1","A/Stockholm/23/2011|2011-09-05|C1/SIAT1","A/Stockholm/24/2011|2011-09-05|C1/SIAT1","A/Stockholm/26/2011|2011-10-05|C1/SIAT1","A/Norway/2047/2011|2011-10-10|MDCK1/SIAT1","A/Norway/2125/2011|2011-10-26|SIAT1/SIAT1","A/Algeria/G04/2011|2011-10-30|C0/SIAT1",
+	"A/Stockholm/29/2011|2011-10-31|C1/SIAT1","A/Algeria/G05/2011|2011-10-31|C1/SIAT1","A/Norway/2146/2011|2011-11-02|MDCK1/SIAT1","A/Algeria/G10/2011|2011-11-03|C0/SIAT1","A/Algeria/G36/2011|2011-11-13|C0/SIAT1","A/Bayern/87/2011|2011-11-16|MDCK2/SIAT1","A/Stockholm/33/2011|2011-11-19|C2/SIAT1","A/Stockholm/32/2011|2011-11-27|C2/SIAT1","A/Stockholm/34/2011|2011-11-27|C1/SIAT1","A/Netherlands/702/2011|2011-12-02|MDCK4/SIAT1",
+	"A/Berlin/85/2011|2011-12-07|MDCK2/SIAT1","A/Berlin/86/2011|2011-12-09|MDCK2/SIAT1","A/Berlin/87/2011|2011-12-12|MDCK2/SIAT1")
+ag_Sep2012_table10 <- agNames(map23) %in% c("A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Norway/410/2012|2012-02-01|SIAT2/SIAT2","A/Norway/433/2012|2012-02-05|SIAT1/SIAT1","A/Slovenia/274/2012|2012-02-06|P1/SIAT1","A/Norway/479/2012|2012-02-08|MDCK2/SIAT2","A/Norway/596/2012|2012-02-09|SIAT2/SIAT2","A/Norway/564/2012|2012-02-10|SIAT1/SIAT2",
+	"A/Estonia/65266/2012|2012-02-13|MDCK1/SIAT1","A/Norway/528/2012|2012-02-13|SIAT1/SIAT1","A/Norway/531/2012|2012-02-13|SIAT1/SIAT1","A/Slovenia/326/2012|2012-02-13|MDCKx/SIAT2","A/Norway/722/2012|2012-02-15|SIAT1/SIAT2","A/Norway/648/2012|2012-02-15|SIAT1/SIAT1","A/Norway/606/2012|2012-02-20|SIAT1/SIAT1","A/Norway/624/2012|2012-02-20|SIAT1/SIAT1","A/Norway/625/2012|2012-02-20|SIAT2/SIAT2","A/Norway/657/2012|2012-02-22|SIAT2/SIAT2",
+	"A/Norway/708/2012|2012-02-27|MDCK1/SIAT1","A/Estonia/65858/2012|2012-02-28|MDCK1/SIAT2","A/Slovenia/663/2012|2012-03-05|MDCKx/SIAT2","A/Slovenia/646/2012|2012-03-05|MDCKx/SIAT3","A/Estonia/66073/2012|2012-03-06|MDCK2/SIAT1","A/Estonia/66103/2012|2012-03-07|MDCK2/SIAT2","A/Estonia/66234/2012|2012-03-09|MDCK2/SIAT1","A/Estonia/66239/2012|2012-03-09|MDCK2/SIAT2","A/Estonia/66240/2012|2012-03-09|MDCK1/SIAT2","A/Pančevo/1148/2012|2012-03-13|SIAT3",
+	"A/Cuprija/1214/2012|2012-03-16|SIAT3","A/Slovenia/910/2012|2012-03-19|MDCKx/SIAT2","A/Slovenia/913/2012|2012-03-19|MDCKx/SIAT2","A/Sabac/1370/2012|2012-03-20|SIAT3","A/Sabac/1371/2012|2012-03-21|C1/SIAT3","A/Estonia/66788/2012|2012-03-27|MDCK1/SIAT1","A/Estonia/66837/2012|2012-03-28|MDCK1/SIAT1","A/Glasgow/407581/2012|2012-03-30|SIAT2","A/Glasgow/407664/2012|2012-04-03|SIAT2","A/Glasgow/407665/2012|2012-04-03|SIAT2",
+	"A/Estonia/67179/2012|2012-04-09|MDCK1/SIAT3","A/St. Petersburg/20/2012|2012-04-09|C3/SIAT1","A/Novosibirsk/26/2012|2012-04-09|C1/SIAT1","A/St. Petersburg/16/2012|2012-04-09|C2/M1/S1","A/Estonia/67238/2012|2012-04-10|MDCK1/SIAT3","A/Estonia/67221/2012|2012-04-11|MDCK1/SIAT2","A/Ireland/12M28404/2012|2012-04-11|SIAT3","A/St. Petersburg/28/2012|2012-04-19|C2/SIAT1","A/Rostov-on-Don/1/2012|2012-04-19|C1/SIAT1","A/St. Petersburg/29/2012|2012-04-19|C2/SIAT1",
+	"A/Kaliningrad/4/2012|2012-04-19|C1/SIAT1","A/Ekaterinburg/2/2012|2012-04-19|C1/SIAT1","A/Ekaterinburg/4/2012|2012-04-19|C2/SIAT1")
+
+agFill(map23)[ag_Feb2012_table9] <- '#ea5545'
+agFill(map23)[ag_Sep2012_table10] <- '#ef9b20'
+p_map23 <- ggplot(map23) + ggtitle('map 23')
+p_map23
+
+
+#################### MAP 24 ####################
+#### colered by tables
+agSize(map24) <- 5
+agFill(map24) <- 'grey50'
+ag_Sep2013_table7_7 <- agNames(map24) %in% c("A/Athens/112/2012|2012-02-01|SIAT6","A/Texas/50/2012|2012-04-15|E5/E2","A/Moscow/84/2012|2012-12-25|Cx/SIAT1","A/England/119/2013|2013-01-09|MDCK2/SIAT1","A/England/104/2013|2013-01-09|MDCK2/SIAT1","A/Valencia/1S/2013|2013-01-10|SIAT2","A/Serbia/NS-200/2013|2013-01-14|SIAT2","A/Serbia/NS-210/2013|2013-01-18|SIAT3","A/Catalonia/2070282NS/2013|2013-01-22|SIAT2","A/Catalonia/5742S/2013|2013-01-23|SIAT2",
+	"A/Catalonia/2071057NS/2013|2013-01-24|SIAT2","A/England/188/2013|2013-01-29|SIAT1/SIAT1","A/England/256/2013|2013-01-30|MDCK1/SIAT1","A/England/280/2013|2013-01-31|MDCK1/SIAT1","A/Bulgaria/270/2013|2013-02-04|C2/SIAT1","A/Bulgaria/253/2013|2013-02-08|C2/SIAT1","A/England/279/2013|2013-02-09|SIAT1/SIAT1","A/St. Petersburg/4/2013|2013-02-13|C1/SIAT1","A/St. Petersburg/6/2013|2013-02-13|C1/SIAT1","A/Valladolid/39/2013|2013-02-14|SIAT2",
+	"A/England/308/2013|2013-02-15|SIAT1/SIAT1","A/Novosibirsk/77/2012|2013-02-20|C4/SIAT1","A/Astrakhan/2/2013|2013-02-20|C1/SIAT1","A/Astrakhan/5/2013|2013-02-20|C1/SIAT1","A/St. Petersburg/36/2013|2013-02-20|C2/SIAT1","A/Novosibirsk/78/2012|2013-02-20|C4/SIAT1","A/Burgos/96/2013|2013-03-12|SIAT2","A/Valladolid/95/2013|2013-03-14|SIAT2")
+ag_Sep2013_table7_10 <- agNames(map24) %in% c("A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Iceland/27/2012|2012-11-20|MDCK2/SIAT1","A/Odessa/175/2013|2013-01-09|MDCK2/SIAT1","A/Iceland/14/2013|2013-01-10|MDCK1/SIAT1","A/Ukraine/5725/2013|2013-01-21|C2/MDCK1/SIAT1","A/Ukraine/181/2013|2013-01-21|MDCK1/SIAT1","A/Parma/27/2013|2013-01-25|MDCK2/SIAT2","A/Perugia/14/2013|2013-01-27|MDCK2/SIAT2","A/Trieste/12/2013|2013-01-28|SIAT2",
+	"A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1","A/Belgrade/649/2013|2013-02-05|C2/SIAT3","A/Belgrade/650/2013|2013-02-05|C2/SIAT3","A/Belgrade/648/2013|2013-02-05|C2/SIAT2","A/Ukraine/5812/2013|2013-02-17|C2/SIAT2","A/Milano/28/2013|2013-02-19|MDCK1/SIAT3","A/Ukraine/211/2013|2013-02-20|SIAT1/SIAT2","A/Moldova/235/2013|2013-02-21|MDCK2/SIAT3","A/Dnipropetrovsk/257/2013|2013-03-01|MDCK1/SIAT2","A/Ukraine/5906/2013|2013-03-05|C2/SIAT3",
+	"A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2","A/Ukraine/263/2013|2013-03-11|SIAT1/SIAT2","A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/369/2013|2013-03-22|MDCK1/SIAT1","A/Kmelnitsk/477/2013|2013-03-25|MDCK1/SIAT1","A/Ukraine/466/2013|2013-04-18|MDCK1/SIAT2")
+ag_Feb2012_table13 <- agNames(map24) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/England/259/2011|2011-11-16|Cx/SIAT1","A/Norway/1789/2011|*|Cx/SIAT1","A/Denmark/87/2011|2011-09-04|SIAT1/SIAT1","A/Jordan/20110030568/2011|2011-09-14|SIAT1",
+	"A/Jordan/20110030585/2011|2011-09-23|SIAT2","A/Kobe/241/2011|2011-10-21|MDCK1+2/SIAT1","A/Hiroshima-C/53/2011|2011-10-29|MDCK1+2/SIAT1","A/Jordan/20110030655/2011|2011-10-31|SIAT1","A/Yopougon/GR1336/2011|2011-11-21|SIAT3","A/Jordan/20110030687/2011|2011-11-22|SIAT1","A/Bursa/108/2011|2011-11-22|C1/SIAT1","A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2","A/Denmark/90/2011|2011-11-28|MDCK1/SIAT1","A/Jordan/20110030713/2011|2011-11-30|SIAT2",
+	"A/Jordan/20110030706/2011|2011-12-03|SIAT1","A/Jordan/20110030717/2011|2011-12-03|SIAT2","A/Netherlands/710/2011|2011-12-06|MDCK2/SIAT1","A/Turkey/06/2011|2011-12-08|SIAT2/SIAT2","A/Turkey/10/2011|2011-12-08|SIAT2/SIAT3","A/Jordan/20110030732/2011|2011-12-08|SIAT1","A/İzmir/176/2011|2011-12-09|C1/SIAT1","A/Turkey/04/2011|2011-12-09|SIAT1/SIAT3","A/Jordan/20110030749/2011|2011-12-11|SIAT1","A/Turkey/26/2011|2011-12-13|SIAT1/SIAT1",
+	"A/İzmir/182/2011|2011-12-13|C1/SIAT1","A/Milano/268/2011|2011-12-15|MDCK1/SIAT2","A/Jordan/20110030777/2011|2011-12-15|SIAT1","A/Turkey/18/2011|2011-12-16|SIAT1/SIAT1","A/Norway/99/2012|2011-12-16|LLC-MK2-MDCK1/SIAT1","A/Turkey/19/2011|2011-12-18|SIAT1/SIAT1","A/İstanbul/202/2011|2011-12-19|C1/SIAT1","A/Antalya/204/2011|2011-12-19|C1/SIAT1","A/Ireland/11M92698/2011|2011-12-20|SIAT2","A/Turkey/21/2011|2011-12-20|SIAT1/SIAT3",
+	"A/Turkey/22/2011|2011-12-20|SIAT1/SIAT2","A/Turkey/27/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/30/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/31/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1","A/Ireland/11M92761/2011_1|2011-12-21|SIAT2","A/Trieste/60/2011|2011-12-21|MDCK2/SIAT2","A/Turkey/23/2011|2011-12-21|SIAT1/SIAT1","A/Turkey/24/2011|2011-12-21|SIAT1/SIAT1","A/Jordan/20110030780/2011|2011-12-21|SIAT1",
+	"A/Norway/2448/2011|2011-12-21|SIAT3","A/Ireland/11M92761/2011_2|2011-12-21|SIAT2","A/Ireland/11M92922/2011|2011-12-22|SIAT1/SIAT2","A/Turkey/28/2011|2011-12-22|MDCK1/SIAT1","A/Norway/39/2012|2011-12-22|LLC-MK2-MDCK1/SIAT1","A/Norway/96/2012|2011-12-22|SIAT2","A/Ireland/11V9451/2011|2011-12-25|MDCK1/SIAT1","A/Norway/38/2012|2011-12-25|SIAT2","A/Switzerland/5776029/2011|2011-12-27|SIAT1","A/Jordan/20110030776/2011|2011-12-27|C1/SIAT1",
+	"A/İstanbul/249/2011|2011-12-28|MDCK1/SIAT1","A/Latvia/12-47890p/2011|2011-12-28|MDCK3/SIAT1","A/Netherlands/713/2011|2011-12-29|C1/SIAT1","A/ Bursa/250/2011|2011-12-29|C1/SIAT1","A/İzmir/251/2011|2011-12-29|C1/SIAT1","A/Norway/3/2012|2012-01-02|MDCK1/SIAT1","A/Norway/75/2012|2012-01-02|MDCK-SIAT1/SIAT1","A/Norway/97/2012|2012-01-02|LLC-MK2-MDCK1/SIAT1","A/Switzerland/5802473/2012|2012-01-03|SIAT2","A/Austria/654044/2012|2012-01-03|C2/SIAT1",
+	"A/Ireland/12M90/2012|2012-01-03|SIAT3","A/Lyon/37/2012|2012-01-04|MDCK2/SIAT2","A/Netherlands/001/2012|2012-01-05|MDCK2/SIAT1","A/Norway/73/2012|2012-01-05|SIAT1/SIAT1","A/Switzerland/5834715/2012|2012-01-09|SIAT2","A/Switzerland/5834718/2012|2012-01-09|SIAT2","A/Switzerland/5834731/2012|2012-01-09|SIAT2","A/Berlin/6/2012|2012-01-09|C3/SIAT1","A/Hamburg/1/2012|2012-01-09|C2/SIAT1","A/Austria/654591/2012|2012-01-09|C1/SIAT1",
+	"A/Latvia/1-34462p/2012|2012-01-09|MDCK1/SIAT1","A/Latvia/1-34610/2012|2012-01-09|MDCK1/SIAT1","A/Ireland/12v397/2012|2012-01-10|SIAT3","A/England/12/2012|2012-01-10|SIAT1/SIAT1","A/Norway/114/2012|2012-01-10|MDCK1/SIAT1","A/Latvia/1-35583/2012|2012-01-10|MDCKx/SIAT1","A/Austria/655242/2012|2012-01-11|C1/SIAT1","A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1","A/Rheinland-Pfalz/1/2012|2012-01-12|C2/SIAT1","A/Switzerland/5834730/2012|2012-01-13|SIAT3",
+	"A/Switzerland/5834796/2012|2012-01-13|SIAT3","A/Berlin/4/2012|2012-01-13|C2/SIAT1","A/Baden-Württemberg/3/2012|2012-01-13|C2/SIAT1","A/Latvia/1-37528/2012|2012-01-13|MDCKx/SIAT1","A/England/21/2012|2012-01-16|SIAT1/SIAT1","A/Berlin/5/2012|2012-01-16|C2/SIAT1","A/Berlin/7/2012|2012-01-16|C2/SIAT1","A/Brandenburg/1/2012|2012-01-16|C2/SIAT1","A/England/20/2012|2012-01-17|SIAT1/SIAT1","A/Berlin/8/2012|2012-01-17|C2/SIAT1",
+	"A/Switzerland/5867852/2012|2012-01-20|SIAT3","A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1")
+
+agFill(map24)[ag_Sep2013_table7_7] <- '#ea5545'
+agFill(map24)[ag_Sep2013_table7_10] <- '#ef9b20'
+agFill(map24)[ag_Feb2012_table13] <- '#ede15b'
+p_map24 <- ggplot(map24) + ggtitle('map 24')
+p_map24
+
+
+#################### MAP 25 ####################
+#### colered by tables
+agSize(map25) <- 5
+agFill(map25) <- 'grey50'
+ag_Feb2013_table18 <- agNames(map25) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT3","A/Stockholm/18/2011|2011-03-28|SIAT4","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT3","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1",
+	"A/Maryland/02/2012(IVR-166)|2012-01-18|E5/D6/E1","A/Ukraine/5515/2012|2012-03-04|C1/SIAT1","A/Ukraine/5504/2012|2012-04-02|C1/SIAT1","A/Ukraine/5513/2012|2012-04-03|C1/SIAT1","A/Ukraine/5512/2012|2012-04-04|C1/SIAT1","A/Ukraine/5503/2012|2012-04-09|C1/SIAT1","A/Ukraine/5506/2012|2012-04-09|C1/SIAT1","A/Ukraine/5502/2012|2012-04-10|C1/SIAT1","A/Ukraine/5507/2012|2012-04-10|C1/SIAT1","A/Ukraine/5508/2012|2012-04-10|C1/SIAT1",
+	"A/Ukraine/5501/2012|2012-04-12|C1/SIAT1","A/Ukraine/5509/2012|2012-04-13|C1/SIAT1","A/Ukraine/5510/2012|2012-04-16|C1/SIAT1","A/Ukraine/5496/2012|2012-04-19|C1/SIAT2","A/Ukraine/5498/2012|2012-04-19|C1/SIAT2","A/Singapore/22/2012|2012-06-06|E4/E1","A/Ukraine/5511/2012|2012-07-22|C1/SIAT1","A/Sydney/195/2012|2012-08-06|E4/E1","A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2","A/Norway/2102/2012|2012-10-15|SIAT1/SIAT1",
+	"A/Norway/2103/2012|2012-10-22|SIAT1/SIAT1","A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2","A/Acores/SU43/2012|2012-11-06|SIAT2","A/South Carolina/16/2012|2012-11-07|MDCK1/C1/SIAT1","A/Delaware/15/2012|2012-11-12|C2/SIAT1","A/Lyon/2496/2012|2012-11-19|MDCK2/SIAT3","A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1","A/Switzerland/7587197/2012|2012-12-14|SIAT2","A/Ireland/00462/2012|2012-12-20|MDCK1/SIAT1","A/Belgium/S0304/2012|2012-12-21|SIAT2",
+	"A/Belgium/G1010/2012|2012-12-24|SIAT2","A/Belgium/S0325/2012|2012-12-26|SIAT2","A/Lisboa/SU15/2012|2013-01-04|SIAT2","A/Latvia/1-32593/2013|2013-01-06|MDCK1/SIAT1","A/Madeira/MS3/2012|2013-01-07|SIAT2","A/Belgium/G0044 /2013|2013-01-07|SIAT2","A/Latvia/1-37023/2013|2013-01-13|MDCK1/SIAT1")
+ag_Feb2012_table13 <- agNames(map25) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/England/259/2011|2011-11-16|Cx/SIAT1","A/Norway/1789/2011|*|Cx/SIAT1","A/Denmark/87/2011|2011-09-04|SIAT1/SIAT1","A/Jordan/20110030568/2011|2011-09-14|SIAT1",
+	"A/Jordan/20110030585/2011|2011-09-23|SIAT2","A/Kobe/241/2011|2011-10-21|MDCK1+2/SIAT1","A/Hiroshima-C/53/2011|2011-10-29|MDCK1+2/SIAT1","A/Jordan/20110030655/2011|2011-10-31|SIAT1","A/Yopougon/GR1336/2011|2011-11-21|SIAT3","A/Jordan/20110030687/2011|2011-11-22|SIAT1","A/Bursa/108/2011|2011-11-22|C1/SIAT1","A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2","A/Denmark/90/2011|2011-11-28|MDCK1/SIAT1","A/Jordan/20110030713/2011|2011-11-30|SIAT2",
+	"A/Jordan/20110030706/2011|2011-12-03|SIAT1","A/Jordan/20110030717/2011|2011-12-03|SIAT2","A/Netherlands/710/2011|2011-12-06|MDCK2/SIAT1","A/Turkey/06/2011|2011-12-08|SIAT2/SIAT2","A/Turkey/10/2011|2011-12-08|SIAT2/SIAT3","A/Jordan/20110030732/2011|2011-12-08|SIAT1","A/İzmir/176/2011|2011-12-09|C1/SIAT1","A/Turkey/04/2011|2011-12-09|SIAT1/SIAT3","A/Jordan/20110030749/2011|2011-12-11|SIAT1","A/Turkey/26/2011|2011-12-13|SIAT1/SIAT1",
+	"A/İzmir/182/2011|2011-12-13|C1/SIAT1","A/Milano/268/2011|2011-12-15|MDCK1/SIAT2","A/Jordan/20110030777/2011|2011-12-15|SIAT1","A/Turkey/18/2011|2011-12-16|SIAT1/SIAT1","A/Norway/99/2012|2011-12-16|LLC-MK2-MDCK1/SIAT1","A/Turkey/19/2011|2011-12-18|SIAT1/SIAT1","A/İstanbul/202/2011|2011-12-19|C1/SIAT1","A/Antalya/204/2011|2011-12-19|C1/SIAT1","A/Ireland/11M92698/2011|2011-12-20|SIAT2","A/Turkey/21/2011|2011-12-20|SIAT1/SIAT3",
+	"A/Turkey/22/2011|2011-12-20|SIAT1/SIAT2","A/Turkey/27/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/30/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/31/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1","A/Ireland/11M92761/2011_1|2011-12-21|SIAT2","A/Trieste/60/2011|2011-12-21|MDCK2/SIAT2","A/Turkey/23/2011|2011-12-21|SIAT1/SIAT1","A/Turkey/24/2011|2011-12-21|SIAT1/SIAT1","A/Jordan/20110030780/2011|2011-12-21|SIAT1",
+	"A/Norway/2448/2011|2011-12-21|SIAT3","A/Ireland/11M92761/2011_2|2011-12-21|SIAT2","A/Ireland/11M92922/2011|2011-12-22|SIAT1/SIAT2","A/Turkey/28/2011|2011-12-22|MDCK1/SIAT1","A/Norway/39/2012|2011-12-22|LLC-MK2-MDCK1/SIAT1","A/Norway/96/2012|2011-12-22|SIAT2","A/Ireland/11V9451/2011|2011-12-25|MDCK1/SIAT1","A/Norway/38/2012|2011-12-25|SIAT2","A/Switzerland/5776029/2011|2011-12-27|SIAT1","A/Jordan/20110030776/2011|2011-12-27|C1/SIAT1",
+	"A/İstanbul/249/2011|2011-12-28|MDCK1/SIAT1","A/Latvia/12-47890p/2011|2011-12-28|MDCK3/SIAT1","A/Netherlands/713/2011|2011-12-29|C1/SIAT1","A/ Bursa/250/2011|2011-12-29|C1/SIAT1","A/İzmir/251/2011|2011-12-29|C1/SIAT1","A/Norway/3/2012|2012-01-02|MDCK1/SIAT1","A/Norway/75/2012|2012-01-02|MDCK-SIAT1/SIAT1","A/Norway/97/2012|2012-01-02|LLC-MK2-MDCK1/SIAT1","A/Switzerland/5802473/2012|2012-01-03|SIAT2","A/Austria/654044/2012|2012-01-03|C2/SIAT1",
+	"A/Ireland/12M90/2012|2012-01-03|SIAT3","A/Lyon/37/2012|2012-01-04|MDCK2/SIAT2","A/Netherlands/001/2012|2012-01-05|MDCK2/SIAT1","A/Norway/73/2012|2012-01-05|SIAT1/SIAT1","A/Switzerland/5834715/2012|2012-01-09|SIAT2","A/Switzerland/5834718/2012|2012-01-09|SIAT2","A/Switzerland/5834731/2012|2012-01-09|SIAT2","A/Berlin/6/2012|2012-01-09|C3/SIAT1","A/Hamburg/1/2012|2012-01-09|C2/SIAT1","A/Austria/654591/2012|2012-01-09|C1/SIAT1",
+	"A/Latvia/1-34462p/2012|2012-01-09|MDCK1/SIAT1","A/Latvia/1-34610/2012|2012-01-09|MDCK1/SIAT1","A/Ireland/12v397/2012|2012-01-10|SIAT3","A/England/12/2012|2012-01-10|SIAT1/SIAT1","A/Norway/114/2012|2012-01-10|MDCK1/SIAT1","A/Latvia/1-35583/2012|2012-01-10|MDCKx/SIAT1","A/Austria/655242/2012|2012-01-11|C1/SIAT1","A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1","A/Rheinland-Pfalz/1/2012|2012-01-12|C2/SIAT1","A/Switzerland/5834730/2012|2012-01-13|SIAT3",
+	"A/Switzerland/5834796/2012|2012-01-13|SIAT3","A/Berlin/4/2012|2012-01-13|C2/SIAT1","A/Baden-Württemberg/3/2012|2012-01-13|C2/SIAT1","A/Latvia/1-37528/2012|2012-01-13|MDCKx/SIAT1","A/England/21/2012|2012-01-16|SIAT1/SIAT1","A/Berlin/5/2012|2012-01-16|C2/SIAT1","A/Berlin/7/2012|2012-01-16|C2/SIAT1","A/Brandenburg/1/2012|2012-01-16|C2/SIAT1","A/England/20/2012|2012-01-17|SIAT1/SIAT1","A/Berlin/8/2012|2012-01-17|C2/SIAT1",
+	"A/Switzerland/5867852/2012|2012-01-20|SIAT3","A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1")
+
+agFill(map25)[ag_Feb2013_table18] <- '#ea5545'
+agFill(map25)[ag_Feb2012_table13] <- '#ef9b20'
+p_map25 <- ggplot(map25) + ggtitle('map 25')
+p_map25
+
+
+#################### MAP 26 ####################
+#### colered by tables
+agSize(map26) <- 5
+agFill(map26) <- 'grey50'
+ag_Feb2012_table13 <- agNames(map26) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/England/259/2011|2011-11-16|Cx/SIAT1","A/Norway/1789/2011|*|Cx/SIAT1","A/Denmark/87/2011|2011-09-04|SIAT1/SIAT1","A/Jordan/20110030568/2011|2011-09-14|SIAT1",
+	"A/Jordan/20110030585/2011|2011-09-23|SIAT2","A/Kobe/241/2011|2011-10-21|MDCK1+2/SIAT1","A/Hiroshima-C/53/2011|2011-10-29|MDCK1+2/SIAT1","A/Jordan/20110030655/2011|2011-10-31|SIAT1","A/Yopougon/GR1336/2011|2011-11-21|SIAT3","A/Jordan/20110030687/2011|2011-11-22|SIAT1","A/Bursa/108/2011|2011-11-22|C1/SIAT1","A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2","A/Denmark/90/2011|2011-11-28|MDCK1/SIAT1","A/Jordan/20110030713/2011|2011-11-30|SIAT2",
+	"A/Jordan/20110030706/2011|2011-12-03|SIAT1","A/Jordan/20110030717/2011|2011-12-03|SIAT2","A/Netherlands/710/2011|2011-12-06|MDCK2/SIAT1","A/Turkey/06/2011|2011-12-08|SIAT2/SIAT2","A/Turkey/10/2011|2011-12-08|SIAT2/SIAT3","A/Jordan/20110030732/2011|2011-12-08|SIAT1","A/İzmir/176/2011|2011-12-09|C1/SIAT1","A/Turkey/04/2011|2011-12-09|SIAT1/SIAT3","A/Jordan/20110030749/2011|2011-12-11|SIAT1","A/Turkey/26/2011|2011-12-13|SIAT1/SIAT1",
+	"A/İzmir/182/2011|2011-12-13|C1/SIAT1","A/Milano/268/2011|2011-12-15|MDCK1/SIAT2","A/Jordan/20110030777/2011|2011-12-15|SIAT1","A/Turkey/18/2011|2011-12-16|SIAT1/SIAT1","A/Norway/99/2012|2011-12-16|LLC-MK2-MDCK1/SIAT1","A/Turkey/19/2011|2011-12-18|SIAT1/SIAT1","A/İstanbul/202/2011|2011-12-19|C1/SIAT1","A/Antalya/204/2011|2011-12-19|C1/SIAT1","A/Ireland/11M92698/2011|2011-12-20|SIAT2","A/Turkey/21/2011|2011-12-20|SIAT1/SIAT3",
+	"A/Turkey/22/2011|2011-12-20|SIAT1/SIAT2","A/Turkey/27/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/30/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/31/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1","A/Ireland/11M92761/2011_1|2011-12-21|SIAT2","A/Trieste/60/2011|2011-12-21|MDCK2/SIAT2","A/Turkey/23/2011|2011-12-21|SIAT1/SIAT1","A/Turkey/24/2011|2011-12-21|SIAT1/SIAT1","A/Jordan/20110030780/2011|2011-12-21|SIAT1",
+	"A/Norway/2448/2011|2011-12-21|SIAT3","A/Ireland/11M92761/2011_2|2011-12-21|SIAT2","A/Ireland/11M92922/2011|2011-12-22|SIAT1/SIAT2","A/Turkey/28/2011|2011-12-22|MDCK1/SIAT1","A/Norway/39/2012|2011-12-22|LLC-MK2-MDCK1/SIAT1","A/Norway/96/2012|2011-12-22|SIAT2","A/Ireland/11V9451/2011|2011-12-25|MDCK1/SIAT1","A/Norway/38/2012|2011-12-25|SIAT2","A/Switzerland/5776029/2011|2011-12-27|SIAT1","A/Jordan/20110030776/2011|2011-12-27|C1/SIAT1",
+	"A/İstanbul/249/2011|2011-12-28|MDCK1/SIAT1","A/Latvia/12-47890p/2011|2011-12-28|MDCK3/SIAT1","A/Netherlands/713/2011|2011-12-29|C1/SIAT1","A/ Bursa/250/2011|2011-12-29|C1/SIAT1","A/İzmir/251/2011|2011-12-29|C1/SIAT1","A/Norway/3/2012|2012-01-02|MDCK1/SIAT1","A/Norway/75/2012|2012-01-02|MDCK-SIAT1/SIAT1","A/Norway/97/2012|2012-01-02|LLC-MK2-MDCK1/SIAT1","A/Switzerland/5802473/2012|2012-01-03|SIAT2","A/Austria/654044/2012|2012-01-03|C2/SIAT1",
+	"A/Ireland/12M90/2012|2012-01-03|SIAT3","A/Lyon/37/2012|2012-01-04|MDCK2/SIAT2","A/Netherlands/001/2012|2012-01-05|MDCK2/SIAT1","A/Norway/73/2012|2012-01-05|SIAT1/SIAT1","A/Switzerland/5834715/2012|2012-01-09|SIAT2","A/Switzerland/5834718/2012|2012-01-09|SIAT2","A/Switzerland/5834731/2012|2012-01-09|SIAT2","A/Berlin/6/2012|2012-01-09|C3/SIAT1","A/Hamburg/1/2012|2012-01-09|C2/SIAT1","A/Austria/654591/2012|2012-01-09|C1/SIAT1",
+	"A/Latvia/1-34462p/2012|2012-01-09|MDCK1/SIAT1","A/Latvia/1-34610/2012|2012-01-09|MDCK1/SIAT1","A/Ireland/12v397/2012|2012-01-10|SIAT3","A/England/12/2012|2012-01-10|SIAT1/SIAT1","A/Norway/114/2012|2012-01-10|MDCK1/SIAT1","A/Latvia/1-35583/2012|2012-01-10|MDCKx/SIAT1","A/Austria/655242/2012|2012-01-11|C1/SIAT1","A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1","A/Rheinland-Pfalz/1/2012|2012-01-12|C2/SIAT1","A/Switzerland/5834730/2012|2012-01-13|SIAT3",
+	"A/Switzerland/5834796/2012|2012-01-13|SIAT3","A/Berlin/4/2012|2012-01-13|C2/SIAT1","A/Baden-Württemberg/3/2012|2012-01-13|C2/SIAT1","A/Latvia/1-37528/2012|2012-01-13|MDCKx/SIAT1","A/England/21/2012|2012-01-16|SIAT1/SIAT1","A/Berlin/5/2012|2012-01-16|C2/SIAT1","A/Berlin/7/2012|2012-01-16|C2/SIAT1","A/Brandenburg/1/2012|2012-01-16|C2/SIAT1","A/England/20/2012|2012-01-17|SIAT1/SIAT1","A/Berlin/8/2012|2012-01-17|C2/SIAT1",
+	"A/Switzerland/5867852/2012|2012-01-20|SIAT3","A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1")
+ag_Sep2013_table7_16 <- agNames(map26) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C1/SIAT2","A/Stockholm/18/201|2011-03-28|SIAT4","A/Athens/112/2012|2012-02-01|SIAT8","A/Texas/50/2012|2012-04-15|E5/E2","A/Samara/73/2013|2013-03-12|C1/SIAT4","A/New York/39/2012|2012-10-20|C2/SIAT1","A/New York/39/2012|2012-10-20|E4/E1","A/American Samoa/4786/2013|2013-02-22|C2/SIAT1","A/American Samoa/4786/2013|2013-02-22|E4/E1","A/Ireland/M19748/2013|2013-03-04|SIAT2",
+	"A/Lithuania/6934/2013|2013-03-04|SIAT3","A/Ireland/M20427/2013|2013-03-05|SIAT3","A/Ireland/M20189/2013|2013-03-05|SIAT3","A/Lithuania/8003/2013|2013-03-12|SIAT3","A/Lithuania/8115/2013|2013-03-16|SIAT2","A/Ireland/M26695/2013|2013-03-26|SIAT3","A/Ireland/M28426/2013|2013-04-02|SIAT3","A/Ireland/M28390/2013|2013-04-02|SIAT3","A/Ireland/M28859/2013|2013-04-03|SIAT2","A/Yokohama/153/2013|2013-04-12|MDCK3/MDCK1/SIAT1",
+	"A/Chiba-C/39/2013|2013-04-12|MDCK2/MDCK1/SIAT2","A/Osaka/32/2013|2013-05-01|MDCK2/MDCK1/SIAT1","A/Kanagawa/141/2013|2013-05-09|MDCK2/MDCK1/SIAT1")
+ag_Sep2013_table7_11 <- agNames(map26) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Iceland/25/2012|2012-10-17|MDCK1/SIAT3","A/Iceland/25/2012|2012-10-17|SIAT2","A/Iceland/16879/2012|2012-12-31|SIAT3","A/Iceland/02/2013|2013-01-02|MDCKx/SIAT3",
+	"A/Iceland/04/2013|2013-01-04|SIAT2","A/Madeira PT/12/2013|2013-01-07|SIAT4/SIAT1","A/Stockholm/1/2013|2013-01-13|MDCK1/SIAT1","A/Acores PT/11/2013|2013-01-19|SIAT1/SIAT1","A/Stockholm/12/2013|2013-01-21|MDCK0/SIAT1","A/Iceland/29/2013|2013-01-24|MDCK1/SIAT3","A/Stockholm/10/2013|2013-01-30|MDCK1/SIAT1","A/Nitra/360/2013|2013-02-05|MDCK1/SIAT1","A/Stockholm/11/2013|2013-02-09|MDCK1/SIAT1","A/Bratislava/530/2013|2013-02-15|MDCK2/SIAT1",
+	"A/Stockholm/9/2013|2013-02-17|MDCK1/SIAT1","A/Galanta/592/2013|2013-02-21|MDCK1/SIAT1","A/Stockholm/8/2013|2013-02-22|MDCK0/SIAT1","A/Stockholm/7/2013|2013-02-23|MDCK1/SIAT1","A/Kmelnitsk/350/2013|2013-02-25|MDCK2/MDCK1","A/Bratislava/811/2013|2013-03-07|MDCK1/SIAT1","A/Iceland/4311/2013|2013-03-13|SIAT2","A/Bratislava/887/2013|2013-03-14|MDCK1/SIAT1","A/Nove Zamky/897/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/365/2013|2013-03-18|MDCK1/SIAT2",
+	"A/Iceland/56/2013|2013-04-26|SIAT2")
+
+agFill(map26)[ag_Feb2012_table13] <- '#ea5545'
+agFill(map26)[ag_Sep2013_table7_16] <- '#ef9b20'
+agFill(map26)[ag_Sep2013_table7_11] <- '#ede15b'
+p_map26 <- ggplot(map26) + ggtitle('map 26')
+p_map26
+
+
+#################### MAP 27 ####################
+#### colered by tables
+agSize(map27) <- 5
+agFill(map27) <- 'grey50'
+ag_Sep2012_table20 <- agNames(map27) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT6","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/SIAT3","A/Athens/GR112/2012|2012-02-01|SIAT5","A/Ohio/02/2012|2012-03-08|E4/E2/E1","A/South Australia/30/2012|2012-05-10|E2/E1","A/Johannesburg/3224/2012|2012-06-04|SIAT2/SIAT1","A/Johannesburg/5223/2012|2012-06-07|SIAT1/SIAT1",
+	"A/Idaho/20/2012|2012-06-09|MDCK1/C1/SIAT1","A/Victoria/527/2012|2012-06-16|E3/E1","A/Johannesburg/3303/2012|2012-06-18|MDCK2/SIAT1","A/Johannesburg/3345/2012|2012-06-20|SIAT1","A/Johannesburg/5471/2012|2012-06-20|MDCK0/SIAT1","A/Johannesburg/5569/2012|2012-06-21|MDCK2/SIAT1","A/Johannesburg/3557/2012|2012-06-22|MDCK0/SIAT1","A/Johannesburg/3392/2012|2012-06-25|MDCK2/SIAT1","A/Johannesburg/5637/2012|2012-06-28|SIAT0/SIAT1","A/Kagoshima/3/2012|2012-06-28|MDCK2/SIAT1",
+	"A/Johannesburg/3469/2012|2012-06-29|SIAT1","A/Johannesburg/5903/2012|2012-07-03|SIAT0/SIAT1","A/Johannesburg/3495/2012|2012-07-04|MDCK0/SIAT1","A/Victoria/342/2012|2012-07-12|MDCK1/SIAT2")
+ag_Sep2013_table7_12 <- agNames(map27) %in% c("A/Athens/112/2012|2012-02-01|SIAT6","A/Belgium/S0932/2013|2012-12-20|SIAT2","A/Hong Kong/209/2013|2013-01-16|MDCK2/SIAT1","A/Hong Kong/392/2013|2013-01-28|MDCK2/SIAT1","A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1","A/Belgium/G0508/2013|2013-02-04|SIAT2","A/Belgium/G0528/2013|2013-02-04|SIAT2","A/NosyBe/429/2013|2013-02-11|MDCK1/SIAT1","A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1","A/Maevatanana/563/2013|2013-02-25|MDCK1/SIAT1",
+	"A/Hong Kong/1036/2013|2013-02-25|MDCK2/SIAT1","A/Norway/1693/2013|2013-03-06|MDCK2/SIAT1","A/Minsk/1431/2013|2013-03-06|MDCK3/SIAT1","A/Norway/1665/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1683/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1736/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1780/2013|2013-03-09|MDCK1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76614/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76663/2013|2013-03-13|MDCK2/SIAT1",
+	"A/Estonia/76676/2013|2013-03-13|MDCK2/SIAT1","A/Norway/1894/2013|2013-03-17|MDCK1/SIAT1","A/Norway/1940/2013|2013-03-18|MDCK2/SIAT1","A/Belgium/G1034/2013|2013-03-18|SIAT2","A/Norway/1861/2013|2013-03-19|MDCK1/SIAT1","A/Norway/1905/2013|2013-03-24|MDCK2/MDCK1","A/Belgium/G1067/2013|2013-03-25|SIAT2","A/Belgium/G1071/2013|2013-03-26|SIAT2","A/Norway/2010/2013|2013-04-07|MDCK2/SIAT1","A/Norway/2160/2013|2013-04-07|MDCK1/SIAT1",
+	"A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1","A/Belgium/S0923/2013|2013-04-10|SIAT2","A/Belgium/S0930/2013|2013-04-11|SIAT2","A/Norway/2255/2013|2013-04-23|MDCK1/SIAT1")
+ag_Sep2013_table7_9 <- agNames(map27) %in% c("A/Athens/112/2012|2012-02-01|SIAT7","A/Firenze/13/2013|*|MDCK2/SIAT1","A/Pozarevac/6330/2013|2012-12-21|C2/SIAT1","A/Perugia/13/2013|2013-01-28|MDCK1/SIAT1","A/Ukraine/5809/2013|2013-02-13|C2/SIAT1","A/Ukraine/5887/2013|2013-02-13|C2/SIAT1","A/Ukraine/5810/2013|2013-02-17|C2/SIAT1","A/Ukraine/5811/2013|2013-02-17|C2/SIAT1","A/Ukraine/5884/2013|2013-02-19|C2/SIAT1","A/Ukraine/5890/2013|2013-02-20|C2/SIAT1",
+	"A/Moldova/242/2013|2013-02-22|MDCK2/SIAT1","A/Belgrade/1166/2013|2013-02-24|C1/SIAT2","A/Ukraine/5892/2013|2013-02-24|C2/SIAT1","A/Ukraine/5893/2013|2013-02-25|C2/SIAT1","A/Ukraine/5896/2013|2013-03-04|C2/SIAT1","A/Timis/136369/2013|2013-03-04|MDCK3/SIAT1","A/Ukraine/5837/2013|2013-03-06|C2/SIAT1","A/Ukraine/5909/2013|2013-03-06|C2/SIAT1","A/Moldova/326/2013|2013-03-07|MDCK2/SIAT1","A/Ukraine/288/2013|2013-03-13|SIAT1/SIAT1",
+	"A/Leskovac/1653/2013|2013-03-13|C2/SIAT1","A/Leskovac/1655/2013|2013-03-13|C1/SIAT1","A/Ukraine/316/2013|2013-03-20|MDCK1/SIAT1","A/Ukraine/315/2013|2013-03-23|MDCK1/SIAT1","A/Ukraine/5840/2013|2013-03-25|C1/SIAT1")
+
+agFill(map27)[ag_Sep2012_table20] <- '#ea5545'
+agFill(map27)[ag_Sep2013_table7_12] <- '#ef9b20'
+agFill(map27)[ag_Sep2013_table7_9] <- '#ede15b'
+p_map27 <- ggplot(map27) + ggtitle('map 27')
+p_map27
+
+
+#################### MAP 28 ####################
+#### colered by tables
+agSize(map28) <- 5
+agFill(map28) <- 'grey50'
+ag_Sep2012_table20 <- agNames(map28) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT6","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Victoria/361/2011|2011-10-24|E3/E1","A/Athens/GR112/2012|2012-02-01|SIAT5","A/Ohio/02/2012|2012-03-08|E4/E2/E1","A/South Australia/30/2012|2012-05-10|E2/E1","A/Johannesburg/3224/2012|2012-06-04|SIAT2/SIAT1","A/Johannesburg/5223/2012|2012-06-07|SIAT1/SIAT1","A/Idaho/20/2012|2012-06-09|MDCK1/C1/SIAT1",
+	"A/Victoria/527/2012|2012-06-16|E3/E1","A/Johannesburg/3303/2012|2012-06-18|MDCK2/SIAT1","A/Johannesburg/3345/2012|2012-06-20|SIAT1","A/Johannesburg/5471/2012|2012-06-20|MDCK0/SIAT1","A/Johannesburg/5569/2012|2012-06-21|MDCK2/SIAT1","A/Johannesburg/3557/2012|2012-06-22|MDCK0/SIAT1","A/Johannesburg/3392/2012|2012-06-25|MDCK2/SIAT1","A/Johannesburg/5637/2012|2012-06-28|SIAT0/SIAT1","A/Kagoshima/3/2012|2012-06-28|MDCK2/SIAT1","A/Johannesburg/3469/2012|2012-06-29|SIAT1",
+	"A/Johannesburg/5903/2012|2012-07-03|SIAT0/SIAT1","A/Johannesburg/3495/2012|2012-07-04|MDCK0/SIAT1","A/Victoria/342/2012|2012-07-12|MDCK1/SIAT2")
+ag_Feb2013_table18 <- agNames(map28) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT3","A/Athens/112/2012|2012-02-01|SIAT7","A/Maryland/02/2012(IVR-166)|2012-01-18|E5/D6/E1","A/Ukraine/5515/2012|2012-03-04|C1/SIAT1","A/Ukraine/5504/2012|2012-04-02|C1/SIAT1","A/Ukraine/5513/2012|2012-04-03|C1/SIAT1","A/Ukraine/5512/2012|2012-04-04|C1/SIAT1","A/Ukraine/5503/2012|2012-04-09|C1/SIAT1","A/Ukraine/5506/2012|2012-04-09|C1/SIAT1","A/Ukraine/5502/2012|2012-04-10|C1/SIAT1",
+	"A/Ukraine/5507/2012|2012-04-10|C1/SIAT1","A/Ukraine/5508/2012|2012-04-10|C1/SIAT1","A/Ukraine/5501/2012|2012-04-12|C1/SIAT1","A/Ukraine/5509/2012|2012-04-13|C1/SIAT1","A/Ukraine/5510/2012|2012-04-16|C1/SIAT1","A/Ukraine/5496/2012|2012-04-19|C1/SIAT2","A/Ukraine/5498/2012|2012-04-19|C1/SIAT2","A/Singapore/22/2012|2012-06-06|E4/E1","A/Ukraine/5511/2012|2012-07-22|C1/SIAT1","A/Sydney/195/2012|2012-08-06|E4/E1",
+	"A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2","A/Norway/2102/2012|2012-10-15|SIAT1/SIAT1","A/Norway/2103/2012|2012-10-22|SIAT1/SIAT1","A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2","A/Acores/SU43/2012|2012-11-06|SIAT2","A/South Carolina/16/2012|2012-11-07|MDCK1/C1/SIAT1","A/Delaware/15/2012|2012-11-12|C2/SIAT1","A/Lyon/2496/2012|2012-11-19|MDCK2/SIAT3","A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1","A/Switzerland/7587197/2012|2012-12-14|SIAT2",
+	"A/Ireland/00462/2012|2012-12-20|MDCK1/SIAT1","A/Belgium/S0304/2012|2012-12-21|SIAT2","A/Belgium/G1010/2012|2012-12-24|SIAT2","A/Belgium/S0325/2012|2012-12-26|SIAT2","A/Lisboa/SU15/2012|2013-01-04|SIAT2","A/Latvia/1-32593/2013|2013-01-06|MDCK1/SIAT1","A/Madeira/MS3/2012|2013-01-07|SIAT2","A/Belgium/G0044 /2013|2013-01-07|SIAT2","A/Latvia/1-37023/2013|2013-01-13|MDCK1/SIAT1")
+ag_Feb2013_table20 <- agNames(map28) %in% c("A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Athens/112/2012|2012-02-01|SIAT8","A/Galicia/RR9907/2012|2012-03-09|SIAT1/SIAT2","A/Galicia/RR9911/2012|2012-04-18|SIAT2/SIAT2","A/Arges/126697/2012|2012-10-29|MDCK3/SIAT1","A/Algiers/107/2012|2012-11-07|C1/SIAT1","A/Algiers/120/2012|2012-11-17|C1/SIAT1","A/Trieste/65/2012|2012-11-26|Cx/SIAT1","A/Latvia/1-30021/2013|2013-01-01|MDCK1/SIAT3","A/Trieste/01/2013|2013-01-04|Cx/SIAT1",
+	"A/Israel/19/2013|2013-01-15|Cx/SIAT1")
+
+agFill(map28)[ag_Sep2012_table20] <- '#ea5545'
+agFill(map28)[ag_Feb2013_table18] <- '#ef9b20'
+agFill(map28)[ag_Feb2013_table20] <- '#ede15b'
+p_map28 <- ggplot(map28) + ggtitle('map 28')
+p_map28
+
+
+#################### MAP 29 ####################
+#### colered by tables
+agSize(map29) <- 5
+agFill(map29) <- 'grey50'
+ag_Sep2012_table9 <- agNames(map29) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Bulgaria/182/2012|2012-02-02|C3/SIAT1","A/Bulgaria/217/2012|2012-02-09|C3/SIAT1",
+	"A/Bulgaria/218/2012|2012-02-09|C3/SIAT1","A/Slovenia/402/2012|2012-02-20|Mx/SIAT1","A/Slovenia/435/2012|2012-02-20|Mx/SIAT1","A/Slovenia/459/2012|2012-02-20|Mx/SIAT1","A/Bulgaria/280/2012|2012-02-20|C3/SIAT1","A/Bulgaria/311/2012|2012-02-24|C3/SIAT1","A/Bulgaria/312/2012|2012-02-24|C3/SIAT1","A/Bulgaria/313/2012|2012-02-24|C3/SIAT1","A/Bulgaria/314/2012|2012-02-24|C3/SIAT1","A/Slovenia/566/2012|2012-02-27|Mx/SIAT1",
+	"A/Slovenia/599/2012|2012-02-27|Mx/SIAT1","A/St Petersburg/2/2012|2012-02-27|C3/SIAT1","A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1","A/Slovenia/637/2012|2012-03-05|Mx/SIAT1","A/Slovenia/815/2012|2012-03-12|Mx/SIAT1","A/Slovenia/879/2012|2012-03-19|Mx/SIAT1","A/St Petersburg/4/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1","A/Omsk/1/2012|2012-03-25|C1/SIAT1","A/St Petersburg/8/2012|2012-03-25|C2/SIAT1",
+	"A/St Petersburg/10/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Slovenia/1049/2012|2012-04-02|Mx/SIAT1")
+ag_Feb2014_table9_8 <- agNames(map29) %in% c("A/Perth/16/2009|2009-07-04|E3/E3","A/Stockholm/18/2011|2011-03-28|SIAT4","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT6","A/Athens/112/2012|2012-02-01|SIAT4","A/Texas/50/2012|2012-04-15|E5/E2","A/Samara/73/2013|2013-03-12|C1/SIAT2","A/Serbia/NS-210/2013|2013-01-18|E5/E1","A/Hong Kong/146/2013|2013-01-11|E5/E1","NIB-85 (A/Almaty/2958/2013)|2013-01-27|E5/E1","A/Tehran/58191/2013|2013-10-23|MDCK3/SIAT1",
+	"A/Tehran/63139/2013|2013-10-27|MDCK3/SIAT1","A/Tehran/63138/2013|2013-10-27|MDCK3/SIAT1","A/Tehran/63151/2013|2013-10-29|MDCK3/SIAT1","A/Norway/3105/2013|2013-11-11|MDCK2/SIAT1","A/Norway/3265/2013|2013-12-04|MDCK2/SIAT1","A/Norway/3266/2013|2013-12-05|MDCK1/SIAT1","A/Lyon/2959/2013|2013-12-07|MDCK2/SIAT1","A/England/650/2013|2013-12-09|MDCK2/SIAT1","A/Finland/385/2013|2013-12-11|SIAT1/SIAT1","A/Ireland/14M00263/2013|2013-12-13|SIAT3",
+	"A/Slovenia/2527/2013|2013-12-13|SIATx/SIAT1","A/Slovenia/2528/2013|2013-12-14|MDCKx/SIAT1","A/Croatia/2561/2013|2013-12-15|MDCK1/SIAT1","A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1","A/Finland/386/2013|2013-12-16|MDCK2/SIAT1","A/Finland/386/2013|2013-12-16|MDCK1/SIAT1/SIAT1","A/Croatia/2570/2013|2013-12-16|MDCK1/SIAT1","A/Toulon/3038/2013|2013-12-16|MDCK3/SIAT1","A/Lyon/2990/2013|2013-12-16|MDCK2/SIAT1","A/Lyon/3014/2013|2013-12-16|MDCK2/SIAT1",
+	"A/Milano/59/2013|2013-12-17|SIAT1/SIAT1","A/Milano/60/2013|2013-12-17|SIAT1/SIAT1","A/Lyon/3018/2013|2013-12-17|MDCK2/SIAT1","A/Norway/3290/2013|2013-12-17|MDCK1/SIAT1","A/Norway/3303/2013|2013-12-17|MDCK1/SIAT1","A/Norway/3325/2013|2013-12-17|MDCK1/SIAT1","A/Pavia/154/2013|2013-12-18|MDCK1/SIAT1","A/England/651/2013|2013-12-18|SIAT1/SIAT1","A/Lyon-chu/51.726/2013|2013-12-20|MDCK2/SIAT1","A/Kazakhstan/3370/2013|2013-12-24|SIAT3",
+	"A/Norway/3314/2013|2013-12-24|MDCK1/SIAT1","A/Slovenia/2576/2013|2013-12-25|SIATx/SIAT1","A/Belgium/13G1346/2013|2013-12-27|SIAT3","A/Kazakhstan/3344/2013|2013-12-27|SIAT3","A/Croatia/2624/2013|2013-12-29|MDCK1/SIAT1","A/Parma/1/2014|2013-12-30|MDCK2/SIAT1","A/Parma/2/2014|2013-12-30|MDCK2/SIAT1","A/Limoges/3105/2013|2013-12-30|Cx/MDCK1","A/Lisboa/149/2013|2013-12-30|SIAT1/SIAT1","A/Ireland/14M02879/2014|2014-01-02|SIAT3",
+	"A/England/2/2014|2014-01-03|SIAT1/SIAT1","A/England/1/2014|2014-01-03|SIAT1/SIAT1","A/Parma/3/2014|2014-01-04|MDCK2/SIAT1","A/Lisboa/1/2014|2014-01-04|SIAT1/SIAT1","A/Ireland/14M03520/2014|2014-01-06|SIAT3","A/Lisboa/2/2014|2014-01-06|SIAT1/SIAT1","A/Lisboa/3/2014|2014-01-06|SIAT1/SIAT1","A/Romania/157360/2014|2014-01-07|MDCK2/SIAT1","A/Mures/157328/2014|2014-01-07|MDCK2/SIAT1","A/Maramures/157552/2014|2014-01-07|MDCK1/SIAT1",
+	"A/Iasi/157785/2014|2014-01-13|MDCK1/SIAT1","A/Slovenia/108/2014|2014-01-14|SIATx/SIAT1","A/Moldova/7/2014|2014-01-15|SIAT2")
+ag_Sep2013_table7_8 <- agNames(map29) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT3","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Zamora/10/2012|2012-01-19|SIAT3","A/Spain/13831/2012|2012-02-16|SIAT3",
+	"A/Spain/13916/2012|2012-02-17|SIAT3","A/Spain/14701/2012|2012-02-21|SIAT3","A/Spain/14758/2012|2012-02-21|SIAT3","A/Spain/20322/2012|2012-03-10|SIAT3","A/Spain/23634/2012|2012-03-22|SIAT3","A/Zamora/87/2012|2012-04-03|SIAT3","A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1","A/Tulkarem/83/2013|2013-01-08|SIAT3","A/Plzen/22/2013|2013-01-10|MDCK4/SIAT1","A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1",
+	"A/Skopje/DZ K 33/2013|2013-01-21|SIAT3","A/Almaty/2944/2013|2013-01-24|SIAT3","A/Almaty/2946/2013|2013-01-25|SIAT3","A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1","A/Ramallah/84/2013|2013-01-26|SIAT3","A/Almaty/2952/2013|2013-01-27|SIAT3","A/Almaty/2955/2013|2013-01-27|SIAT3","A/Almaty/2956/2013|2013-01-27|SIAT3","A/Almaty/2958/2013|2013-01-27|SIAT3","A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1",
+	"A/Slovenia/549/2013|2013-02-04|MDCK1/SIAT1","A/Slovenia/709/2013|2013-02-12|MDCK1/SIAT1","A/Slovenia/741/2013|2013-02-14|MDCKx/SIAT1","A/Slovenia/760/2013|2013-02-15|MDCKx/SIAT1","A/Spain/18719/2013|2013-03-03|SIAT4","A/St. Petersburg/69/2013|2013-03-12|C2/SIAT1","A/Samara/73/2013|2013-03-12|C1/SIAT1","A/Kaliningrad/1/2013|2013-03-12|C1/SIAT1","A/St. Petersburg/125/2013|2013-03-12|C1/SIAT1","A/St. Petersburg/106/2013|2013-03-12|C1/SIAT1",
+	"A/St. Petersburg/86/2013|2013-03-13|C2/SIAT1","A/Valladolid/98/2013|2013-03-18|SIAT3","A/St. Petersburg/170/2013|2013-03-20|C2/SIAT1","A/Valladolid/118/2013|2013-04-02|SIAT3","A/Novosibirsk/32/2013|2013-04-03|C1/SIAT1")
+
+agFill(map29)[ag_Sep2012_table9] <- '#ea5545'
+agFill(map29)[ag_Feb2014_table9_8] <- '#ef9b20'
+agFill(map29)[ag_Sep2013_table7_8] <- '#ede15b'
+p_map29 <- ggplot(map29) + ggtitle('map 29')
+p_map29
+
+
+#################### MAP 30 ####################
+#### colered by tables
+agSize(map30) <- 5
+agFill(map30) <- 'grey50'
+ag_Sep2012_table9 <- agNames(map30) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Bulgaria/182/2012|2012-02-02|C3/SIAT1","A/Bulgaria/217/2012|2012-02-09|C3/SIAT1",
+	"A/Bulgaria/218/2012|2012-02-09|C3/SIAT1","A/Slovenia/402/2012|2012-02-20|Mx/SIAT1","A/Slovenia/435/2012|2012-02-20|Mx/SIAT1","A/Slovenia/459/2012|2012-02-20|Mx/SIAT1","A/Bulgaria/280/2012|2012-02-20|C3/SIAT1","A/Bulgaria/311/2012|2012-02-24|C3/SIAT1","A/Bulgaria/312/2012|2012-02-24|C3/SIAT1","A/Bulgaria/313/2012|2012-02-24|C3/SIAT1","A/Bulgaria/314/2012|2012-02-24|C3/SIAT1","A/Slovenia/566/2012|2012-02-27|Mx/SIAT1",
+	"A/Slovenia/599/2012|2012-02-27|Mx/SIAT1","A/St Petersburg/2/2012|2012-02-27|C3/SIAT1","A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1","A/Slovenia/637/2012|2012-03-05|Mx/SIAT1","A/Slovenia/815/2012|2012-03-12|Mx/SIAT1","A/Slovenia/879/2012|2012-03-19|Mx/SIAT1","A/St Petersburg/4/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1","A/Omsk/1/2012|2012-03-25|C1/SIAT1","A/St Petersburg/8/2012|2012-03-25|C2/SIAT1",
+	"A/St Petersburg/10/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Slovenia/1049/2012|2012-04-02|Mx/SIAT1")
+ag_Sep2013_table7_7 <- agNames(map30) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Moscow/84/2012|2012-12-25|Cx/SIAT1","A/England/119/2013|2013-01-09|MDCK2/SIAT1","A/England/104/2013|2013-01-09|MDCK2/SIAT1","A/Valencia/1S/2013|2013-01-10|SIAT2","A/Serbia/NS-200/2013|2013-01-14|SIAT2","A/Serbia/NS-210/2013|2013-01-18|SIAT3",
+	"A/Catalonia/2070282NS/2013|2013-01-22|SIAT2","A/Catalonia/5742S/2013|2013-01-23|SIAT2","A/Catalonia/2071057NS/2013|2013-01-24|SIAT2","A/England/188/2013|2013-01-29|SIAT1/SIAT1","A/England/256/2013|2013-01-30|MDCK1/SIAT1","A/England/280/2013|2013-01-31|MDCK1/SIAT1","A/Bulgaria/270/2013|2013-02-04|C2/SIAT1","A/Bulgaria/253/2013|2013-02-08|C2/SIAT1","A/England/279/2013|2013-02-09|SIAT1/SIAT1","A/St. Petersburg/4/2013|2013-02-13|C1/SIAT1",
+	"A/St. Petersburg/6/2013|2013-02-13|C1/SIAT1","A/Valladolid/39/2013|2013-02-14|SIAT2","A/England/308/2013|2013-02-15|SIAT1/SIAT1","A/Novosibirsk/77/2012|2013-02-20|C4/SIAT1","A/Astrakhan/2/2013|2013-02-20|C1/SIAT1","A/Astrakhan/5/2013|2013-02-20|C1/SIAT1","A/St. Petersburg/36/2013|2013-02-20|C2/SIAT1","A/Novosibirsk/78/2012|2013-02-20|C4/SIAT1","A/Burgos/96/2013|2013-03-12|SIAT2","A/Valladolid/95/2013|2013-03-14|SIAT2")
+ag_Feb2014_table9_2 <- agNames(map30) %in% c('A/Alabama/5/2010|2010-07-13|MK1/C1/SIAT2', 'A/Stockholm/18/2011|2011-03-28|SIAT4', 'A/Almaty/2958/2013|2013-01-27|E5', 'A/Serbia/NS-210/2013|2013-01-18|E5', 'A/Hong Kong/146/2013|2013-01-11|E5', 'A/Mauritius/167/2013|2013-03-11|MDCK2/SIAT1', 'A/Mauritius/571/2013|2013-07-03|MDCK2/SIAT1', 'A/Mauritius/610/2013|2013-07-15|MDCK2/SIAT1', 'A/Mauritius/703/2013|2013-08-19|MDCK2/SIAT1')
+ag_Sep2014_table8_10 <- agNames(map30) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT3","A/Athens/112/2012|2012-02-01|SIAT5","A/Texas/50/2012_(6&7)|2012-04-15|E5/E2","A/South Africa/4655/2013|2013-06-25|E7 clone 118-76","A/South Africa/4655/2013|2013-06-25|E7  clone 101-06","A/South Africa/4655/2013|2013-06-25|E7 clone 93-38","A/Tehran/30732/2013|2013-03-22|MDCK3/SIAT1","A/Zambia/13/093/2013|2013-08-28|Cx/SIAT2","A/Zambia/13/262/2013|2013-08-07|Cx/SIAT1","A/Zambia/13/127/2013|2013-08-12|SIAT2",
+	"A/Zambia/13/338/2013|2013-09-13|Cx/SIAT1","A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1","A/Norway/86/2014|2014-01-08|MDCK2/SIAT1","A/Norway/160/2014|2014-01-08|MDCK1/SIAT1","A/Norway/184/2014|2014-01-08|MDCK1/SIAT1","A/Norway/163/2014|2014-01-11|MDCK2/SIAT1","A/Norway/161/2014|2014-01-12|MDCK2/SIAT1","A/Norway/228/2014|2014-01-12|MDCK2/SIAT1","A/Norway/162/2014|2014-01-13|MDCK1/SIAT1","A/Norway/120/2014|2014-01-14|MDCK1/SIAT1",
+	"A/Norway/226/2014|2014-01-14|MDCK1/SIAT1","A/Norway/208/2014|2014-01-16|MDCK1/SIAT1","A/Switzerland/10030276/2014|2014-02-05|SIAT2","A/Dnipro/230/2014|2014-02-28|SIAT2/SIAT3","A/Dnipro/232/2014|2014-03-03|SIAT2/SIAT3","A/Poland/1877/2014|2014-03-03|SIAT2","A/Norway/1003/2014|2014-03-04|SIAT2","A/Georgia/495/2014|2014-03-04|SIAT2","A/Dnipro/233/2014|2014-03-04|SIAT2/SIAT1","A/Norway/1020/2014|2014-03-07|SIAT2",
+	"A/Georgia/542/2014|2014-03-07|SIAT2","A/Georgia/584/2014|2014-03-10|SIAT2","A/Norway/1130/2014|2014-03-11|SIAT2","A/Dnipro/234/2014|2014-03-11|SIAT2/SIAT3","A/Norway/1078/2014|2014-03-16|SIAT2","A/Poland/3464/2014|2014-03-19|SIAT2","A/Switzerland/10261363/2014|2014-03-20|SIAT2","A/Georgia/699/2014|2014-03-26|SIAT2","A/Switzerland/10295858/2014|2014-03-27|SIAT2","A/Switzerland/10295823/2014|2014-03-28|SIAT2",
+	"A/Switzerland/10295759/2014|2014-03-28|SIAT2")
+ag_Sep2014_table8_14 <- agNames(map30) %in% c("A/South Africa/4655/2013|2013-06-25|E7 clone 101-60","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT1","A/Bratislava/111/2014|2014-02-06|MDCK1/SIAT1","A/Ukraine/6103/2014|2014-02-13|C1/SIAT1","A/Ukraine/6054/2014|2014-02-14|C1/SIAT1","A/Ukraine/6052/2014|2014-02-17|C1/SIAT1","A/Ukraine/6101/2014|2014-02-17|C1/SIAT1","A/Ukraine/6102/2014|2014-02-17|C1/SIAT1","A/Ukraine/125/2014|2014-02-19|SIAT2/SIAT1",
+	"A/Ukraine/6053/2014|2014-02-20|C1/SIAT2","A/Odessa/259/2014|2014-02-23|SIAT2/SIAT1","A/Ukraine/6067/2014|2014-02-24|C1/SIAT2","A/Khmelnitsky/243/2014|2014-02-24|SIAT2/SIAT1","A/Sastin/137/2014|2014-02-24|MDCK1/SIAT1","A/Ukraine/6172/2014|2014-02-27|C2/SIAT2","A/Norway/850/2014|2014-02-27|SIAT3","A/England/256/2014|2014-02-27|SIAT1/SIAT1","A/Latvia/03-013033/2014|2014-03-06|MDCK1/SIAT1","A/Latvia/03-018148/2014|2014-03-08|MDCK1/SIAT1",
+	"A/Khmelnitsky/240/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/246/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/248/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/249/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/250/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/244/2014|2014-03-12|SIAT2/SIAT1","A/Latvia/03-026603/2014|2014-03-12|MDCK1/SIAT1","A/Khmelnitsky/245/2014|2014-03-15|SIAT2/SIAT1","A/Khmelnitsky/247/2014|2014-03-15|SIAT2/SIAT1","A/Prievidza/182/2014|2014-03-18|MDCK1/SIAT1",
+	"A/England/400/2014|2014-03-21|SIAT1/SIAT1","A/Ireland/21550/2014|2014-04-04|MDCK2/SIAT1","A/Ireland/22350/2014|2014-04-07|MDCK2/SIAT1","A/Ireland/22359/2014|2014-04-07|MDCK2/SIAT1","A/Ireland/22041/2014|2014-04-08|MDCK1/SIAT1","A/Ireland/22878/2014|2014-04-09|MDCK1/SIAT1","A/Levice/221/2014|2014-04-11|MDCK1/SIAT1","A/Levice/223/2014|2014-04-15|MDCK1/SIAT1")
+
+agFill(map30)[ag_Sep2012_table9] <- '#ea5545'
+agFill(map30)[ag_Sep2013_table7_7] <- '#ef9b20'
+agFill(map30)[ag_Feb2014_table9_2] <- '#ede15b'
+agFill(map30)[ag_Sep2014_table8_10] <- '#87bc45'
+agFill(map30)[ag_Sep2014_table8_14] <- '#27aeef'
+p_map30 <- ggplot(map30) + ggtitle('map 30')
+p_map30
+
+
+#################### MAP 31 ####################
+#### colered by tables
+agSize(map31) <- 5
+agFill(map31) <- 'grey50'
+ag_Sep2012_table15 <- agNames(map31) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Iowa/19/2010|2010-12-30|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Milano/136/2012|2012-02-06|SIAT1/SIAT1","A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1","A/Iceland/10/2012|2012-02-08|MDCK2/SIAT1",
+	"A/Iceland/11/2012|2012-02-08|MDCK3/SIAT1","A/Georgia/161/2012|2012-02-08|SIAT2","A/Iceland/12/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/13/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/14/2012|2012-02-12|MDCK2/SIAT1","A/Iceland/15/2012|2012-02-13|MDCK1/SIAT1","A/Iceland/16/2012|2012-02-13|MDCK2/SIAT1","A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1","A/Parma/139/2012|2012-02-20|MDCK2/SIAT1","A/Georgia/255/2012|2012-02-22|SIAT2",
+	"A/Perugia/21/2012|2012-02-22|MDCK2/SIAT1","A/Iceland/18/2012|2012-02-23|MDCK3/SIAT1","A/Georgia/215/2012|2012-02-23|SIAT2","A/Iceland/19/2012|2012-02-24|MDCK2/SIAT1","A/Iceland/20/2012|2012-02-27|MDCK2/SIAT1","A/Iceland/21/2012|2012-03-02|MDCK2/SIAT1","A/Denmark/38/2012|2012-03-05|SIAT2","A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Georgia/370/2012|2012-03-06|SIAT2","A/Minsk/1574/2012|2012-03-12|MDCK2/SIAT1",
+	"A/Montenegro/158/2012|2012-03-13|SIAT3","A/Gomel/1613/2012|2012-03-14|MDCK2/SIAT1","A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1","A/Montenegro/190/2012|2012-03-16|SIAT2","A/Stockholm/14/2012|2012-03-16|C2/SIAT1","A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1","A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1","A/Georgia/512/2012|2012-03-23|SIAT2","A/Montenegro/269/2012|2012-03-24|SIAT2","A/Montenegro/272/2012|2012-03-24|SIAT2",
+	"A/Iceland/23/2012|2012-03-27|MDCK3/SIAT1","A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1","A/Gomel/1692/2012|2012-03-27|MDCK2/SIAT3","A/Georgia/554/2012|2012-03-27|SIAT2","A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1","A/Montenegro/312/2012|2012-03-29|SIAT2","A/Georgia/579/2012|2012-04-04|SIAT2","A/Iceland/24/2012|2012-04-14|MDCK2/SIAT1","A/Stockholm/19/2012|2012-04-14|C1/SIAT1","A/Stockholm/21/2012|2012-04-21|C2/SIAT1")
+ag_Sep2013_table7_12 <- agNames(map31) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT6","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Belgium/S0932/2013|2012-12-20|SIAT2","A/Hong Kong/209/2013|2013-01-16|MDCK2/SIAT1","A/Hong Kong/392/2013|2013-01-28|MDCK2/SIAT1",
+	"A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1","A/Belgium/G0508/2013|2013-02-04|SIAT2","A/Belgium/G0528/2013|2013-02-04|SIAT2","A/NosyBe/429/2013|2013-02-11|MDCK1/SIAT1","A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1","A/Maevatanana/563/2013|2013-02-25|MDCK1/SIAT1","A/Hong Kong/1036/2013|2013-02-25|MDCK2/SIAT1","A/Norway/1693/2013|2013-03-06|MDCK2/SIAT1","A/Minsk/1431/2013|2013-03-06|MDCK3/SIAT1","A/Norway/1665/2013|2013-03-07|MDCK2/SIAT1",
+	"A/Norway/1683/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1736/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1780/2013|2013-03-09|MDCK1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76614/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76663/2013|2013-03-13|MDCK2/SIAT1","A/Estonia/76676/2013|2013-03-13|MDCK2/SIAT1","A/Norway/1894/2013|2013-03-17|MDCK1/SIAT1","A/Norway/1940/2013|2013-03-18|MDCK2/SIAT1","A/Belgium/G1034/2013|2013-03-18|SIAT2",
+	"A/Norway/1861/2013|2013-03-19|MDCK1/SIAT1","A/Norway/1905/2013|2013-03-24|MDCK2/MDCK1","A/Belgium/G1067/2013|2013-03-25|SIAT2","A/Belgium/G1071/2013|2013-03-26|SIAT2","A/Norway/2010/2013|2013-04-07|MDCK2/SIAT1","A/Norway/2160/2013|2013-04-07|MDCK1/SIAT1","A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1","A/Belgium/S0923/2013|2013-04-10|SIAT2","A/Belgium/S0930/2013|2013-04-11|SIAT2","A/Norway/2255/2013|2013-04-23|MDCK1/SIAT1")
+ag_Feb2014_table9_7 <- agNames(map31) %in% c("A/Stockholm/18/2011|2011-03-28|SIAT4","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT6","A/Athens/112/2012|2012-02-01|SIAT4","A/Kazakhstan/3372/2013|*|SIAT2","A/Kazakhstan/3291/2013|2013-11-12|SIAT2","A/Belguim/13G1319/2013|2013-12-12|SIAT2","A/Kazakhstan/3371/2013|2013-12-15|SIAT2","A/Belguim/13G1334/2013|2013-12-16|SIAT2","A/Moldova/696/2013|2013-12-17|MDCK2/SIAT1","A/Kazakhstan/3281/2013|2013-12-18|SIAT2",
+	"A/Belguim/13G1326/2013|2013-12-19|SIAT2","A/Kazakhstan/3319/2013|2013-12-23|SIAT2","A/Kazakhstan/3318/2013|2013-12-23|SIAT2","A/Belguim/14G0001/2014|2014-01-03|SIAT2")
+ag_Sep2014_table8_14 <- agNames(map31) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT4","A/South Africa/4655/2013|2013-06-25|E7 clone 101-60","A/Stockholm/1/2013|2013-01-13|E6 clone 36-18","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT1","A/Bratislava/111/2014|2014-02-06|MDCK1/SIAT1","A/Ukraine/6103/2014|2014-02-13|C1/SIAT1","A/Ukraine/6054/2014|2014-02-14|C1/SIAT1","A/Ukraine/6052/2014|2014-02-17|C1/SIAT1","A/Ukraine/6101/2014|2014-02-17|C1/SIAT1",
+	"A/Ukraine/6102/2014|2014-02-17|C1/SIAT1","A/Ukraine/125/2014|2014-02-19|SIAT2/SIAT1","A/Ukraine/6053/2014|2014-02-20|C1/SIAT2","A/Odessa/259/2014|2014-02-23|SIAT2/SIAT1","A/Ukraine/6067/2014|2014-02-24|C1/SIAT2","A/Khmelnitsky/243/2014|2014-02-24|SIAT2/SIAT1","A/Sastin/137/2014|2014-02-24|MDCK1/SIAT1","A/Ukraine/6172/2014|2014-02-27|C2/SIAT2","A/Norway/850/2014|2014-02-27|SIAT3","A/England/256/2014|2014-02-27|SIAT1/SIAT1",
+	"A/Latvia/03-013033/2014|2014-03-06|MDCK1/SIAT1","A/Latvia/03-018148/2014|2014-03-08|MDCK1/SIAT1","A/Khmelnitsky/240/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/246/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/248/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/249/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/250/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/244/2014|2014-03-12|SIAT2/SIAT1","A/Latvia/03-026603/2014|2014-03-12|MDCK1/SIAT1","A/Khmelnitsky/245/2014|2014-03-15|SIAT2/SIAT1",
+	"A/Khmelnitsky/247/2014|2014-03-15|SIAT2/SIAT1","A/Prievidza/182/2014|2014-03-18|MDCK1/SIAT1","A/England/400/2014|2014-03-21|SIAT1/SIAT1","A/Ireland/21550/2014|2014-04-04|MDCK2/SIAT1","A/Ireland/22350/2014|2014-04-07|MDCK2/SIAT1","A/Ireland/22359/2014|2014-04-07|MDCK2/SIAT1","A/Ireland/22041/2014|2014-04-08|MDCK1/SIAT1","A/Ireland/22878/2014|2014-04-09|MDCK1/SIAT1","A/Levice/221/2014|2014-04-11|MDCK1/SIAT1","A/Levice/223/2014|2014-04-15|MDCK1/SIAT1")
+
+agFill(map31)[ag_Sep2012_table15] <- '#ea5545'
+agFill(map31)[ag_Sep2013_table7_12] <- '#ef9b20'
+agFill(map31)[ag_Feb2014_table9_7] <- '#ede15b'
+agFill(map31)[ag_Sep2014_table8_14] <- '#87bc45'
+p_map31 <- ggplot(map31) + ggtitle('map 31')
+p_map31
+
+
+#################### MAP 32 ####################
+#### colered by tables
+agSize(map32) <- 5
+agFill(map32) <- 'grey50'
+ag_Sep2012_table15 <- agNames(map32) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Iowa/19/2010|2010-12-30|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Milano/136/2012|2012-02-06|SIAT1/SIAT1","A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1","A/Iceland/10/2012|2012-02-08|MDCK2/SIAT1",
+	"A/Iceland/11/2012|2012-02-08|MDCK3/SIAT1","A/Georgia/161/2012|2012-02-08|SIAT2","A/Iceland/12/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/13/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/14/2012|2012-02-12|MDCK2/SIAT1","A/Iceland/15/2012|2012-02-13|MDCK1/SIAT1","A/Iceland/16/2012|2012-02-13|MDCK2/SIAT1","A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1","A/Parma/139/2012|2012-02-20|MDCK2/SIAT1","A/Georgia/255/2012|2012-02-22|SIAT2",
+	"A/Perugia/21/2012|2012-02-22|MDCK2/SIAT1","A/Iceland/18/2012|2012-02-23|MDCK3/SIAT1","A/Georgia/215/2012|2012-02-23|SIAT2","A/Iceland/19/2012|2012-02-24|MDCK2/SIAT1","A/Iceland/20/2012|2012-02-27|MDCK2/SIAT1","A/Iceland/21/2012|2012-03-02|MDCK2/SIAT1","A/Denmark/38/2012|2012-03-05|SIAT2","A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Georgia/370/2012|2012-03-06|SIAT2","A/Minsk/1574/2012|2012-03-12|MDCK2/SIAT1",
+	"A/Montenegro/158/2012|2012-03-13|SIAT3","A/Gomel/1613/2012|2012-03-14|MDCK2/SIAT1","A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1","A/Montenegro/190/2012|2012-03-16|SIAT2","A/Stockholm/14/2012|2012-03-16|C2/SIAT1","A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1","A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1","A/Georgia/512/2012|2012-03-23|SIAT2","A/Montenegro/269/2012|2012-03-24|SIAT2","A/Montenegro/272/2012|2012-03-24|SIAT2",
+	"A/Iceland/23/2012|2012-03-27|MDCK3/SIAT1","A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1","A/Gomel/1692/2012|2012-03-27|MDCK2/SIAT3","A/Georgia/554/2012|2012-03-27|SIAT2","A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1","A/Montenegro/312/2012|2012-03-29|SIAT2","A/Georgia/579/2012|2012-04-04|SIAT2","A/Iceland/24/2012|2012-04-14|MDCK2/SIAT1","A/Stockholm/19/2012|2012-04-14|C1/SIAT1","A/Stockholm/21/2012|2012-04-21|C2/SIAT1")
+ag_Sep2013_table7_12 <- agNames(map32) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Belgium/S0932/2013|2012-12-20|SIAT2","A/Hong Kong/209/2013|2013-01-16|MDCK2/SIAT1","A/Hong Kong/392/2013|2013-01-28|MDCK2/SIAT1","A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1","A/Belgium/G0508/2013|2013-02-04|SIAT2",
+	"A/Belgium/G0528/2013|2013-02-04|SIAT2","A/NosyBe/429/2013|2013-02-11|MDCK1/SIAT1","A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1","A/Maevatanana/563/2013|2013-02-25|MDCK1/SIAT1","A/Hong Kong/1036/2013|2013-02-25|MDCK2/SIAT1","A/Norway/1693/2013|2013-03-06|MDCK2/SIAT1","A/Minsk/1431/2013|2013-03-06|MDCK3/SIAT1","A/Norway/1665/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1683/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1736/2013|2013-03-07|MDCK2/SIAT1",
+	"A/Norway/1780/2013|2013-03-09|MDCK1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76614/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76663/2013|2013-03-13|MDCK2/SIAT1","A/Estonia/76676/2013|2013-03-13|MDCK2/SIAT1","A/Norway/1894/2013|2013-03-17|MDCK1/SIAT1","A/Norway/1940/2013|2013-03-18|MDCK2/SIAT1","A/Belgium/G1034/2013|2013-03-18|SIAT2","A/Norway/1861/2013|2013-03-19|MDCK1/SIAT1","A/Norway/1905/2013|2013-03-24|MDCK2/MDCK1",
+	"A/Belgium/G1067/2013|2013-03-25|SIAT2","A/Belgium/G1071/2013|2013-03-26|SIAT2","A/Norway/2010/2013|2013-04-07|MDCK2/SIAT1","A/Norway/2160/2013|2013-04-07|MDCK1/SIAT1","A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1","A/Belgium/S0923/2013|2013-04-10|SIAT2","A/Belgium/S0930/2013|2013-04-11|SIAT2","A/Norway/2255/2013|2013-04-23|MDCK1/SIAT1")
+ag_Feb2014_table9_2 <- agNames(map32) %in% c('A/Alabama/5/2010|2010-07-13|MK1/C1/SIAT2', 'A/Victoria/361/2011|2011-10-24|MDCK2/SIAT4', 'A/Almaty/2958/2013|2013-01-27|E5', 'A/Serbia/NS-210/2013|2013-01-18|E5', 'A/Hong Kong/146/2013|2013-01-11|E5', 'A/Mauritius/167/2013|2013-03-11|MDCK2/SIAT1', 'A/Mauritius/571/2013|2013-07-03|MDCK2/SIAT1', 'A/Mauritius/610/2013|2013-07-15|MDCK2/SIAT1', 'A/Mauritius/703/2013|2013-08-19|MDCK2/SIAT1')
+ag_Feb2014_table9_8 <- agNames(map32) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT6","A/Athens/112/2012|2012-02-01|SIAT4","A/Serbia/NS-210/2013|2013-01-18|E5/E1","A/Hong Kong/146/2013|2013-01-11|E5/E1","NIB-85 (A/Almaty/2958/2013)|2013-01-27|E5/E1","A/Tehran/58191/2013|2013-10-23|MDCK3/SIAT1","A/Tehran/63139/2013|2013-10-27|MDCK3/SIAT1","A/Tehran/63138/2013|2013-10-27|MDCK3/SIAT1","A/Tehran/63151/2013|2013-10-29|MDCK3/SIAT1","A/Norway/3105/2013|2013-11-11|MDCK2/SIAT1",
+	"A/Norway/3265/2013|2013-12-04|MDCK2/SIAT1","A/Norway/3266/2013|2013-12-05|MDCK1/SIAT1","A/Lyon/2959/2013|2013-12-07|MDCK2/SIAT1","A/England/650/2013|2013-12-09|MDCK2/SIAT1","A/Finland/385/2013|2013-12-11|SIAT1/SIAT1","A/Ireland/14M00263/2013|2013-12-13|SIAT3","A/Slovenia/2527/2013|2013-12-13|SIATx/SIAT1","A/Slovenia/2528/2013|2013-12-14|MDCKx/SIAT1","A/Croatia/2561/2013|2013-12-15|MDCK1/SIAT1","A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1",
+	"A/Finland/386/2013|2013-12-16|MDCK2/SIAT1","A/Finland/386/2013|2013-12-16|MDCK1/SIAT1/SIAT1","A/Croatia/2570/2013|2013-12-16|MDCK1/SIAT1","A/Toulon/3038/2013|2013-12-16|MDCK3/SIAT1","A/Lyon/2990/2013|2013-12-16|MDCK2/SIAT1","A/Lyon/3014/2013|2013-12-16|MDCK2/SIAT1","A/Milano/59/2013|2013-12-17|SIAT1/SIAT1","A/Milano/60/2013|2013-12-17|SIAT1/SIAT1","A/Lyon/3018/2013|2013-12-17|MDCK2/SIAT1","A/Norway/3290/2013|2013-12-17|MDCK1/SIAT1",
+	"A/Norway/3303/2013|2013-12-17|MDCK1/SIAT1","A/Norway/3325/2013|2013-12-17|MDCK1/SIAT1","A/Pavia/154/2013|2013-12-18|MDCK1/SIAT1","A/England/651/2013|2013-12-18|SIAT1/SIAT1","A/Lyon-chu/51.726/2013|2013-12-20|MDCK2/SIAT1","A/Kazakhstan/3370/2013|2013-12-24|SIAT3","A/Norway/3314/2013|2013-12-24|MDCK1/SIAT1","A/Slovenia/2576/2013|2013-12-25|SIATx/SIAT1","A/Belgium/13G1346/2013|2013-12-27|SIAT3","A/Kazakhstan/3344/2013|2013-12-27|SIAT3",
+	"A/Croatia/2624/2013|2013-12-29|MDCK1/SIAT1","A/Parma/1/2014|2013-12-30|MDCK2/SIAT1","A/Parma/2/2014|2013-12-30|MDCK2/SIAT1","A/Limoges/3105/2013|2013-12-30|Cx/MDCK1","A/Lisboa/149/2013|2013-12-30|SIAT1/SIAT1","A/Ireland/14M02879/2014|2014-01-02|SIAT3","A/England/2/2014|2014-01-03|SIAT1/SIAT1","A/England/1/2014|2014-01-03|SIAT1/SIAT1","A/Parma/3/2014|2014-01-04|MDCK2/SIAT1","A/Lisboa/1/2014|2014-01-04|SIAT1/SIAT1",
+	"A/Ireland/14M03520/2014|2014-01-06|SIAT3","A/Lisboa/2/2014|2014-01-06|SIAT1/SIAT1","A/Lisboa/3/2014|2014-01-06|SIAT1/SIAT1","A/Romania/157360/2014|2014-01-07|MDCK2/SIAT1","A/Mures/157328/2014|2014-01-07|MDCK2/SIAT1","A/Maramures/157552/2014|2014-01-07|MDCK1/SIAT1","A/Iasi/157785/2014|2014-01-13|MDCK1/SIAT1","A/Slovenia/108/2014|2014-01-14|SIATx/SIAT1","A/Moldova/7/2014|2014-01-15|SIAT2")
+
+agFill(map32)[ag_Sep2012_table15] <- '#ea5545'
+agFill(map32)[ag_Sep2013_table7_12] <- '#ef9b20'
+agFill(map32)[ag_Feb2014_table9_2] <- '#ede15b'
+agFill(map32)[ag_Feb2014_table9_8] <- '#87bc45'
+p_map32 <- ggplot(map32) + ggtitle('map 32')
+p_map32
+
+
+#################### MAP 33 ####################
+#### colered by tables
+agSize(map33) <- 5
+agFill(map33) <- 'grey50'
+ag_Sep2012_table15 <- agNames(map33) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Iowa/19/2010|2010-12-30|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Milano/136/2012|2012-02-06|SIAT1/SIAT1","A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1","A/Iceland/10/2012|2012-02-08|MDCK2/SIAT1",
+	"A/Iceland/11/2012|2012-02-08|MDCK3/SIAT1","A/Georgia/161/2012|2012-02-08|SIAT2","A/Iceland/12/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/13/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/14/2012|2012-02-12|MDCK2/SIAT1","A/Iceland/15/2012|2012-02-13|MDCK1/SIAT1","A/Iceland/16/2012|2012-02-13|MDCK2/SIAT1","A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1","A/Parma/139/2012|2012-02-20|MDCK2/SIAT1","A/Georgia/255/2012|2012-02-22|SIAT2",
+	"A/Perugia/21/2012|2012-02-22|MDCK2/SIAT1","A/Iceland/18/2012|2012-02-23|MDCK3/SIAT1","A/Georgia/215/2012|2012-02-23|SIAT2","A/Iceland/19/2012|2012-02-24|MDCK2/SIAT1","A/Iceland/20/2012|2012-02-27|MDCK2/SIAT1","A/Iceland/21/2012|2012-03-02|MDCK2/SIAT1","A/Denmark/38/2012|2012-03-05|SIAT2","A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Georgia/370/2012|2012-03-06|SIAT2","A/Minsk/1574/2012|2012-03-12|MDCK2/SIAT1",
+	"A/Montenegro/158/2012|2012-03-13|SIAT3","A/Gomel/1613/2012|2012-03-14|MDCK2/SIAT1","A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1","A/Montenegro/190/2012|2012-03-16|SIAT2","A/Stockholm/14/2012|2012-03-16|C2/SIAT1","A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1","A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1","A/Georgia/512/2012|2012-03-23|SIAT2","A/Montenegro/269/2012|2012-03-24|SIAT2","A/Montenegro/272/2012|2012-03-24|SIAT2",
+	"A/Iceland/23/2012|2012-03-27|MDCK3/SIAT1","A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1","A/Gomel/1692/2012|2012-03-27|MDCK2/SIAT3","A/Georgia/554/2012|2012-03-27|SIAT2","A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1","A/Montenegro/312/2012|2012-03-29|SIAT2","A/Georgia/579/2012|2012-04-04|SIAT2","A/Iceland/24/2012|2012-04-14|MDCK2/SIAT1","A/Stockholm/19/2012|2012-04-14|C1/SIAT1","A/Stockholm/21/2012|2012-04-21|C2/SIAT1")
+ag_Sep2013_table7_7 <- agNames(map33) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT6","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Moscow/84/2012|2012-12-25|Cx/SIAT1","A/England/119/2013|2013-01-09|MDCK2/SIAT1","A/England/104/2013|2013-01-09|MDCK2/SIAT1","A/Valencia/1S/2013|2013-01-10|SIAT2",
+	"A/Serbia/NS-200/2013|2013-01-14|SIAT2","A/Serbia/NS-210/2013|2013-01-18|SIAT3","A/Catalonia/2070282NS/2013|2013-01-22|SIAT2","A/Catalonia/5742S/2013|2013-01-23|SIAT2","A/Catalonia/2071057NS/2013|2013-01-24|SIAT2","A/England/188/2013|2013-01-29|SIAT1/SIAT1","A/England/256/2013|2013-01-30|MDCK1/SIAT1","A/England/280/2013|2013-01-31|MDCK1/SIAT1","A/Bulgaria/270/2013|2013-02-04|C2/SIAT1","A/Bulgaria/253/2013|2013-02-08|C2/SIAT1",
+	"A/England/279/2013|2013-02-09|SIAT1/SIAT1","A/St. Petersburg/4/2013|2013-02-13|C1/SIAT1","A/St. Petersburg/6/2013|2013-02-13|C1/SIAT1","A/Valladolid/39/2013|2013-02-14|SIAT2","A/England/308/2013|2013-02-15|SIAT1/SIAT1","A/Novosibirsk/77/2012|2013-02-20|C4/SIAT1","A/Astrakhan/2/2013|2013-02-20|C1/SIAT1","A/Astrakhan/5/2013|2013-02-20|C1/SIAT1","A/St. Petersburg/36/2013|2013-02-20|C2/SIAT1","A/Novosibirsk/78/2012|2013-02-20|C4/SIAT1",
+	"A/Burgos/96/2013|2013-03-12|SIAT2","A/Valladolid/95/2013|2013-03-14|SIAT2")
+ag_Feb2014_table9_7 <- agNames(map33) %in% c("A/Kazakhstan/3372/2013|*|SIAT2","A/Kazakhstan/3291/2013|2013-11-12|SIAT2","A/Belguim/13G1319/2013|2013-12-12|SIAT2","A/Kazakhstan/3371/2013|2013-12-15|SIAT2","A/Belguim/13G1334/2013|2013-12-16|SIAT2","A/Moldova/696/2013|2013-12-17|MDCK2/SIAT1","A/Kazakhstan/3281/2013|2013-12-18|SIAT2","A/Belguim/13G1326/2013|2013-12-19|SIAT2","A/Kazakhstan/3319/2013|2013-12-23|SIAT2","A/Kazakhstan/3318/2013|2013-12-23|SIAT2",
+	"A/Belguim/14G0001/2014|2014-01-03|SIAT2")
+ag_Feb2014_table9_8 <- agNames(map33) %in% c("A/Tehran/58191/2013|2013-10-23|MDCK3/SIAT1","A/Tehran/63139/2013|2013-10-27|MDCK3/SIAT1","A/Tehran/63138/2013|2013-10-27|MDCK3/SIAT1","A/Tehran/63151/2013|2013-10-29|MDCK3/SIAT1","A/Norway/3105/2013|2013-11-11|MDCK2/SIAT1","A/Norway/3265/2013|2013-12-04|MDCK2/SIAT1","A/Norway/3266/2013|2013-12-05|MDCK1/SIAT1","A/Lyon/2959/2013|2013-12-07|MDCK2/SIAT1","A/England/650/2013|2013-12-09|MDCK2/SIAT1","A/Finland/385/2013|2013-12-11|SIAT1/SIAT1",
+	"A/Ireland/14M00263/2013|2013-12-13|SIAT3","A/Slovenia/2527/2013|2013-12-13|SIATx/SIAT1","A/Slovenia/2528/2013|2013-12-14|MDCKx/SIAT1","A/Croatia/2561/2013|2013-12-15|MDCK1/SIAT1","A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1","A/Finland/386/2013|2013-12-16|MDCK2/SIAT1","A/Finland/386/2013|2013-12-16|MDCK1/SIAT1/SIAT1","A/Croatia/2570/2013|2013-12-16|MDCK1/SIAT1","A/Toulon/3038/2013|2013-12-16|MDCK3/SIAT1","A/Lyon/2990/2013|2013-12-16|MDCK2/SIAT1",
+	"A/Lyon/3014/2013|2013-12-16|MDCK2/SIAT1","A/Milano/59/2013|2013-12-17|SIAT1/SIAT1","A/Milano/60/2013|2013-12-17|SIAT1/SIAT1","A/Lyon/3018/2013|2013-12-17|MDCK2/SIAT1","A/Norway/3290/2013|2013-12-17|MDCK1/SIAT1","A/Norway/3303/2013|2013-12-17|MDCK1/SIAT1","A/Norway/3325/2013|2013-12-17|MDCK1/SIAT1","A/Pavia/154/2013|2013-12-18|MDCK1/SIAT1","A/England/651/2013|2013-12-18|SIAT1/SIAT1","A/Lyon-chu/51.726/2013|2013-12-20|MDCK2/SIAT1",
+	"A/Kazakhstan/3370/2013|2013-12-24|SIAT3","A/Norway/3314/2013|2013-12-24|MDCK1/SIAT1","A/Slovenia/2576/2013|2013-12-25|SIATx/SIAT1","A/Belgium/13G1346/2013|2013-12-27|SIAT3","A/Kazakhstan/3344/2013|2013-12-27|SIAT3","A/Croatia/2624/2013|2013-12-29|MDCK1/SIAT1","A/Parma/1/2014|2013-12-30|MDCK2/SIAT1","A/Parma/2/2014|2013-12-30|MDCK2/SIAT1","A/Limoges/3105/2013|2013-12-30|Cx/MDCK1","A/Lisboa/149/2013|2013-12-30|SIAT1/SIAT1",
+	"A/Ireland/14M02879/2014|2014-01-02|SIAT3","A/England/2/2014|2014-01-03|SIAT1/SIAT1","A/England/1/2014|2014-01-03|SIAT1/SIAT1","A/Parma/3/2014|2014-01-04|MDCK2/SIAT1","A/Lisboa/1/2014|2014-01-04|SIAT1/SIAT1","A/Ireland/14M03520/2014|2014-01-06|SIAT3","A/Lisboa/2/2014|2014-01-06|SIAT1/SIAT1","A/Lisboa/3/2014|2014-01-06|SIAT1/SIAT1","A/Romania/157360/2014|2014-01-07|MDCK2/SIAT1","A/Mures/157328/2014|2014-01-07|MDCK2/SIAT1",
+	"A/Maramures/157552/2014|2014-01-07|MDCK1/SIAT1","A/Iasi/157785/2014|2014-01-13|MDCK1/SIAT1","A/Slovenia/108/2014|2014-01-14|SIATx/SIAT1","A/Moldova/7/2014|2014-01-15|SIAT2")
+ag_Sep2014_table8_14 <- agNames(map33) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT4","A/South Africa/4655/2013|2013-06-25|E7 clone 101-60","A/Stockholm/1/2013|2013-01-13|E6 clone 36-18","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT1","A/Bratislava/111/2014|2014-02-06|MDCK1/SIAT1","A/Ukraine/6103/2014|2014-02-13|C1/SIAT1","A/Ukraine/6054/2014|2014-02-14|C1/SIAT1","A/Ukraine/6052/2014|2014-02-17|C1/SIAT1","A/Ukraine/6101/2014|2014-02-17|C1/SIAT1",
+	"A/Ukraine/6102/2014|2014-02-17|C1/SIAT1","A/Ukraine/125/2014|2014-02-19|SIAT2/SIAT1","A/Ukraine/6053/2014|2014-02-20|C1/SIAT2","A/Odessa/259/2014|2014-02-23|SIAT2/SIAT1","A/Ukraine/6067/2014|2014-02-24|C1/SIAT2","A/Khmelnitsky/243/2014|2014-02-24|SIAT2/SIAT1","A/Sastin/137/2014|2014-02-24|MDCK1/SIAT1","A/Ukraine/6172/2014|2014-02-27|C2/SIAT2","A/Norway/850/2014|2014-02-27|SIAT3","A/England/256/2014|2014-02-27|SIAT1/SIAT1",
+	"A/Latvia/03-013033/2014|2014-03-06|MDCK1/SIAT1","A/Latvia/03-018148/2014|2014-03-08|MDCK1/SIAT1","A/Khmelnitsky/240/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/246/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/248/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/249/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/250/2014|2014-03-11|SIAT2/SIAT1","A/Khmelnitsky/244/2014|2014-03-12|SIAT2/SIAT1","A/Latvia/03-026603/2014|2014-03-12|MDCK1/SIAT1","A/Khmelnitsky/245/2014|2014-03-15|SIAT2/SIAT1",
+	"A/Khmelnitsky/247/2014|2014-03-15|SIAT2/SIAT1","A/Prievidza/182/2014|2014-03-18|MDCK1/SIAT1","A/England/400/2014|2014-03-21|SIAT1/SIAT1","A/Ireland/21550/2014|2014-04-04|MDCK2/SIAT1","A/Ireland/22350/2014|2014-04-07|MDCK2/SIAT1","A/Ireland/22359/2014|2014-04-07|MDCK2/SIAT1","A/Ireland/22041/2014|2014-04-08|MDCK1/SIAT1","A/Ireland/22878/2014|2014-04-09|MDCK1/SIAT1","A/Levice/221/2014|2014-04-11|MDCK1/SIAT1","A/Levice/223/2014|2014-04-15|MDCK1/SIAT1")
+
+agFill(map33)[ag_Sep2012_table15] <- '#ea5545'
+agFill(map33)[ag_Sep2013_table7_7] <- '#ef9b20'
+agFill(map33)[ag_Feb2014_table9_7] <- '#ede15b'
+agFill(map33)[ag_Feb2014_table9_8] <- '#87bc45'
+agFill(map33)[ag_Sep2014_table8_14] <- '#27aeef'
+p_map33 <- ggplot(map33) + ggtitle('map 33')
+p_map33
+
+
+#################### MAP 34 ####################
+#### colered by tables
+agSize(map34) <- 5
+agFill(map34) <- 'grey50'
+ag_Feb2015_table9_10 <- agNames(map34) %in% c("A/Perth/16/2009|2009-07-04|E3/E2","A/Hong Kong/146/2013|2013-01-11|E3/E3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Hong Kong/5738/2014|2014-04-30|E5/E1 clone 121","A/North Carolina/13/2014|2014-04-15|SIAT2/SIAT1","A/Madagascar/2676/2014|2014-09-23|MDCK2/SIAT1","A/Madagascar/2714/2014|2014-09-23|MDCK2/SIAT1","A/Michigan/15/2014|2014-09-24|MDCK1/SIAT1/SIAT1","A/Madagascar/2735/2014|2014-09-29|MDCK2/SIAT1","A/Madagascar/2739/2014|2014-09-30|MDCK1/SIAT1",
+	"A/Madagascar/2742/2014|2014-09-30|MDCK1/SIAT1","A/Dakar/29/2014|2014-10-02|C2/SIAT1","A/Dakar/30/2014|2014-10-07|C2/SIAT1","A/Dakar/31/2014|2014-10-16|C2/SIAT1","A/Madagascar/3069/2014|2014-10-22|MDCK2/SIAT1","A/Zambia/04-303/2014|2014-11-14|MDCK2/SIAT1","A/Aragón/2102/2014|2014-12-05|SIAT2/SIAT1","A/Latvia/12-030846/2014|2014-12-10|C2/SIAT1","A/Baden-Wurttemberg/86/2014|2014-12-15|C2/SIAT1","A/Niedersachsen/12/2014|2014-12-18|C3/SIAT1",
+	"A/Latvia/12-051160/2014|2014-12-19|C2/SIAT1","A/Bayern/1/2015|2014-12-20|C2/SIAT1","A/Latvia/12-066660/2014|2014-12-28|C2/SIAT1")
+ag_Feb2015_table9_4 <- agNames(map34) %in% c("A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/5738/2014|2014-04-30|E5 clone 121","A/Stockholm/17/2014|2014-07-23|MDCK2/SIAT1","A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1","A/Stockholm/19/2014|2014-09-07|MDCK1/SIAT1","A/Stockholm/20/2014|2014-09-28|MDCK1/SIAT1","A/Belgium/H80/2014|2014-09-29|SIAT1/SIAT1","A/La Rioja/2053/2014|2014-10-08|SIAT1/SIAT1","A/Stockholm/22/2014|2014-10-18|MDCK2/SIAT1",
+	"A/Pais Vasco/1979/2014|2014-10-22|SIAT1/SIAT1","A/Belgium/G589/2014|2014-10-22|SIAT1/SIAT1","A/La Rioja/2051/2014|2014-10-29|MDCKx/SIAT1","A/Sweden/76/2014|2014-11-02|MDCK1/SIAT1","A/Stockholm/26/2014|2014-11-03|MDCK1/SIAT1","A/Aragon/2031/2014|2014-11-07|SIAT1/SIAT1","A/La Rioja/2050/2014|2014-11-15|SIAT1/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1","A/Galicia/2055/2014|2014-11-20|SIAT2/SIAT1","A/Galicia/2054/2014|2014-11-24|SIAT1/SIAT1",
+	"A/Extremadura/2061/2014|2014-11-25|SIAT1/SIAT1","A/Aragon/2062/2014|2014-11-27|SIAT1/SIAT1")
+ag_Sep2014_table8_18 <- agNames(map34) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT4","A/Samara/73/2013|2013-03-12|C1/SIAT2","A/Serbia/NS-210/2013|2013-01-18|E5/E1","A/Hong Kong/146/2013|2013-01-11|E5/E1","A/South Africa/4655/2013|2013-06-25|E7 clone-101-60","A/Stockholm/1/2013|2013-01-13|E7 clone 36-18","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT2","A/Gambia/G0069436/2012|2012-11-08|SIAT2","A/Gambia/G0070336/2012|2012-11-12|SIAT2",
+	"A/Gambia/G0074336/2012|2012-11-17|SIAT2","A/Gambia/G0074836/2012|2012-11-19|SIAT2","A/Finland/428/2014|2014-02-17|MDCK1","A/Finland/428/2014|2014-02-17|SIAT1","A/Serbia/NS-738/2014|2014-03-07|SIAT1","A/Serbia/NS-783/2014|2014-03-20|SIAT1","A/Hong Kong/5320/2014|2014-03-20|SIAT1","A/Finland/437/2014|2014-03-24|MDCK1","A/Finland/437/2014|2014-03-24|SIAT1","A/Finland/438/2014|2014-04-03|MDCK1",
+	"A/Finland/438/2014|2014-04-03|SIAT1","A/Hong Kong/5578/2014|2014-04-04|SIAT1","A/Belgium/14H0034/2014|2014-04-10|SIAT1","A/Belgium/14G0508/2014|2014-04-16|SIAT1","A/Belgium/14G0510/2014|2014-04-16|SIAT1","A/Hong Kong/5695/2014|2014-04-21|SIAT1","A/Finland/439/2014|2014-04-23|MDCK1","A/Finland/439/2014|2014-04-23|SIAT1","A/Finland/440/2014|2014-04-28|MDCK1","A/Finland/440/2014|2014-04-28|SIAT1",
+	"A/Iceland/07150/2014|2014-05-20|SIAT1","A/Iceland/07151/2014|2014-05-20|SIAT1","A/Iceland/08202/2014|2014-06-10|SIAT1")
+
+agFill(map34)[ag_Feb2015_table9_10] <- '#ea5545'
+agFill(map34)[ag_Feb2015_table9_4] <- '#ef9b20'
+agFill(map34)[ag_Sep2014_table8_18] <- '#ede15b'
+p_map34 <- ggplot(map34) + ggtitle('map 34')
+p_map34
+
+
+#################### MAP 35 ####################
+#### colered by tables
+agSize(map35) <- 5
+agFill(map35) <- 'grey50'
+ag_Sep2015_table8_9 <- agNames(map35) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT2","A/Stockholm/31/2014|2014-11-26|MDCK1/SIAT1","A/Stockholm/28/2014|2014-12-02|MDCK1/SIAT1","A/Stockholm/36/2014|2014-12-02|MDCK2/SIAT1","A/Stockholm/30/2014|2014-12-04|MDCK1/SIAT1","A/Stockholm/32/2014|2014-12-09|MDCK1/SIAT1","A/Stockholm/38/2014|2014-12-27|MDCK1/SIAT1","A/Mahajanga/122/2015|2015-01-05|MDCK2/SIAT1",
+	"A/Stockholm/1/2015|2015-01-12|MDCK1/SIAT1","A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1","A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1","A/Stockholm/12/2015|2015-02-10|MDCK1/SIAT1","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Stockholm/18/2015|2015-02-11|MDCK0/SIAT1","A/Stockholm/20/2015|2015-02-24|MDCK0/SIAT1","A/Stockholm/19/2015|2015-02-25|MDCK0/SIAT1","A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3","A/Sweden/16/2015|2015-03-05|MDCK1/SIAT1",
+	"A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2","A/Norway/1800/2015|2015-03-25|SIAT3")
+ag_Feb2015_table9_10 <- agNames(map35) %in% c("A/Perth/16/2009|2009-07-04|E3/E2","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT5","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/North Carolina/13/2014|2014-04-15|SIAT2/SIAT1","A/Madagascar/2676/2014|2014-09-23|MDCK2/SIAT1","A/Madagascar/2714/2014|2014-09-23|MDCK2/SIAT1","A/Michigan/15/2014|2014-09-24|MDCK1/SIAT1/SIAT1","A/Madagascar/2735/2014|2014-09-29|MDCK2/SIAT1",
+	"A/Madagascar/2739/2014|2014-09-30|MDCK1/SIAT1","A/Madagascar/2742/2014|2014-09-30|MDCK1/SIAT1","A/Dakar/29/2014|2014-10-02|C2/SIAT1","A/Dakar/30/2014|2014-10-07|C2/SIAT1","A/Dakar/31/2014|2014-10-16|C2/SIAT1","A/Madagascar/3069/2014|2014-10-22|MDCK2/SIAT1","A/Zambia/04-303/2014|2014-11-14|MDCK2/SIAT1","A/Aragón/2102/2014|2014-12-05|SIAT2/SIAT1","A/Latvia/12-030846/2014|2014-12-10|C2/SIAT1","A/Baden-Wurttemberg/86/2014|2014-12-15|C2/SIAT1",
+	"A/Niedersachsen/12/2014|2014-12-18|C3/SIAT1","A/Latvia/12-051160/2014|2014-12-19|C2/SIAT1","A/Bayern/1/2015|2014-12-20|C2/SIAT1","A/Latvia/12-066660/2014|2014-12-28|C2/SIAT1")
+ag_Sep2014_table8_19 <- agNames(map35) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT4","A/Samara/73/2013|2013-03-12|C1/SIAT2","A/Serbia/NS-210/2013|2013-01-18|E5/E1","A/Hong Kong/146/2013|2013-01-11|E5/E1","A/South Africa/4655/2013|2013-06-25|E7 clone 101-60","A/Stockholm/1/2013|2013-01-13|E7 clone 36-18","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT2","A/Sarajevo/21/2012|2012-03-28|SIAT1","A/Sarajevo/57/2012|2012-04-26|SIAT1",
+	"A/Hong Kong/4801/2014|2014-02-26|MDCK3","A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2","A/Tomsk/6/2014|2014-03-01|MDCK1/SIAT1","A/Hong Kong/5320/2014|2014-03-20|MDCK2","A/Yaroslavl/234/2014|2014-03-21|MDCK1/SIAT1","A/Moscow/206/2014|2014-03-21|MDCK1/SIAT1","A/Vladimir/220/2014|2014-03-26|MDCK1/SIAT1","A/Palau/6759/2014|2014-03-26|C2/SIAT1","A/Belgium/14G0496/2014|2014-04-03|SIAT2","A/Hong Kong/5578/2014|2014-04-04|MDCK2",
+	"A/Mogilev/1273/2014|2014-04-07|MDCK2/SIAT1","A/V. Novgorod/223/2014|2014-04-08|MDCK1/SIAT1","A/Mogilev/1484/2014|2014-04-15|MDCK2/SIAT1","A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK2","A/Glasgow/4165/2014|2014-06-08|SIAT1")
+
+agFill(map35)[ag_Sep2015_table8_9] <- '#ea5545'
+agFill(map35)[ag_Feb2015_table9_10] <- '#ef9b20'
+agFill(map35)[ag_Sep2014_table8_19] <- '#ede15b'
+p_map35 <- ggplot(map35) + ggtitle('map 35')
+p_map35
+
+
+#################### MAP 36 ####################
+#### colered by tables
+agSize(map36) <- 5
+agFill(map36) <- 'grey50'
+ag_Sep2014_table8_19 <- agNames(map36) %in% c("A/South Africa/4655/2013|2013-06-25|E7 clone 101-60","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Sarajevo/21/2012|2012-03-28|SIAT1","A/Sarajevo/57/2012|2012-04-26|SIAT1","A/Hong Kong/4801/2014|2014-02-26|MDCK3","A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2","A/Tomsk/6/2014|2014-03-01|MDCK1/SIAT1","A/Hong Kong/5320/2014|2014-03-20|MDCK2","A/Yaroslavl/234/2014|2014-03-21|MDCK1/SIAT1","A/Moscow/206/2014|2014-03-21|MDCK1/SIAT1",
+	"A/Vladimir/220/2014|2014-03-26|MDCK1/SIAT1","A/Palau/6759/2014|2014-03-26|C2/SIAT1","A/Belgium/14G0496/2014|2014-04-03|SIAT2","A/Hong Kong/5578/2014|2014-04-04|MDCK2","A/Mogilev/1273/2014|2014-04-07|MDCK2/SIAT1","A/V. Novgorod/223/2014|2014-04-08|MDCK1/SIAT1","A/Mogilev/1484/2014|2014-04-15|MDCK2/SIAT1","A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK2","A/Glasgow/4165/2014|2014-06-08|SIAT1")
+ag_Sep2014_table8_18 <- agNames(map36) %in% c("A/South Africa/4655/2013|2013-06-25|E7 clone-101-60","A/Gambia/G0069436/2012|2012-11-08|SIAT2","A/Gambia/G0070336/2012|2012-11-12|SIAT2","A/Gambia/G0074336/2012|2012-11-17|SIAT2","A/Gambia/G0074836/2012|2012-11-19|SIAT2","A/Finland/428/2014|2014-02-17|MDCK1","A/Finland/428/2014|2014-02-17|SIAT1","A/Serbia/NS-738/2014|2014-03-07|SIAT1","A/Serbia/NS-783/2014|2014-03-20|SIAT1","A/Hong Kong/5320/2014|2014-03-20|SIAT1",
+	"A/Finland/437/2014|2014-03-24|MDCK1","A/Finland/437/2014|2014-03-24|SIAT1","A/Finland/438/2014|2014-04-03|MDCK1","A/Finland/438/2014|2014-04-03|SIAT1","A/Hong Kong/5578/2014|2014-04-04|SIAT1","A/Belgium/14H0034/2014|2014-04-10|SIAT1","A/Belgium/14G0508/2014|2014-04-16|SIAT1","A/Belgium/14G0510/2014|2014-04-16|SIAT1","A/Hong Kong/5695/2014|2014-04-21|SIAT1","A/Finland/439/2014|2014-04-23|MDCK1",
+	"A/Finland/439/2014|2014-04-23|SIAT1","A/Finland/440/2014|2014-04-28|MDCK1","A/Finland/440/2014|2014-04-28|SIAT1","A/Iceland/07150/2014|2014-05-20|SIAT1","A/Iceland/07151/2014|2014-05-20|SIAT1","A/Iceland/08202/2014|2014-06-10|SIAT1")
+ag_Sep2014_table8_10 <- agNames(map36) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT3","A/Athens/112/2012|2012-02-01|SIAT5","A/Texas/50/2012_(6&7)|2012-04-15|E5/E2","NIB-85 (A/Almaty/2958/2013)|2013-01-27|E5/E1","A/South Africa/4655/2013|2013-06-25|E7 clone 118-76","A/South Africa/4655/2013|2013-06-25|E7  clone 101-06","A/South Africa/4655/2013|2013-06-25|E7 clone 93-38","A/Stockholm/1/2013|2013-01-13|E6 clone 36-18","A/Tehran/30732/2013|2013-03-22|MDCK3/SIAT1","A/Zambia/13/093/2013|2013-08-28|Cx/SIAT2",
+	"A/Zambia/13/262/2013|2013-08-07|Cx/SIAT1","A/Zambia/13/127/2013|2013-08-12|SIAT2","A/Zambia/13/338/2013|2013-09-13|Cx/SIAT1","A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1","A/Norway/86/2014|2014-01-08|MDCK2/SIAT1","A/Norway/160/2014|2014-01-08|MDCK1/SIAT1","A/Norway/184/2014|2014-01-08|MDCK1/SIAT1","A/Norway/163/2014|2014-01-11|MDCK2/SIAT1","A/Norway/161/2014|2014-01-12|MDCK2/SIAT1","A/Norway/228/2014|2014-01-12|MDCK2/SIAT1",
+	"A/Norway/162/2014|2014-01-13|MDCK1/SIAT1","A/Norway/120/2014|2014-01-14|MDCK1/SIAT1","A/Norway/226/2014|2014-01-14|MDCK1/SIAT1","A/Norway/208/2014|2014-01-16|MDCK1/SIAT1","A/Switzerland/10030276/2014|2014-02-05|SIAT2","A/Dnipro/230/2014|2014-02-28|SIAT2/SIAT3","A/Dnipro/232/2014|2014-03-03|SIAT2/SIAT3","A/Poland/1877/2014|2014-03-03|SIAT2","A/Norway/1003/2014|2014-03-04|SIAT2","A/Georgia/495/2014|2014-03-04|SIAT2",
+	"A/Dnipro/233/2014|2014-03-04|SIAT2/SIAT1","A/Norway/1020/2014|2014-03-07|SIAT2","A/Georgia/542/2014|2014-03-07|SIAT2","A/Georgia/584/2014|2014-03-10|SIAT2","A/Norway/1130/2014|2014-03-11|SIAT2","A/Dnipro/234/2014|2014-03-11|SIAT2/SIAT3","A/Norway/1078/2014|2014-03-16|SIAT2","A/Poland/3464/2014|2014-03-19|SIAT2","A/Switzerland/10261363/2014|2014-03-20|SIAT2","A/Georgia/699/2014|2014-03-26|SIAT2",
+	"A/Switzerland/10295858/2014|2014-03-27|SIAT2","A/Switzerland/10295823/2014|2014-03-28|SIAT2","A/Switzerland/10295759/2014|2014-03-28|SIAT2")
+
+agFill(map36)[ag_Sep2014_table8_19] <- '#ea5545'
+agFill(map36)[ag_Sep2014_table8_18] <- '#ef9b20'
+agFill(map36)[ag_Sep2014_table8_10] <- '#ede15b'
+p_map36 <- ggplot(map36) + ggtitle('map 36')
+p_map36
+
+
+#################### MAP 37 ####################
+#### colered by tables
+agSize(map37) <- 5
+agFill(map37) <- 'grey50'
+ag_Sep2017_table8_13 <- agNames(map37) %in% c("A/Trencin/46/2016|2016-12-01|MDCK1/SIAT1","A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1","A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1","A/Odesa/62/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Khmelnitsky/138/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Dnipro/244/2017|2017-01-02|MDCK1/SIAT1","A/Odesa/66/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/70/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/75/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Khmelnitsky/143/2017|2017-01-06|MDCK/SIAT1/SIAT1",
+	"A/Khmelnitsky/145/2017|2017-01-06|MDCK/SIAT1/SIAT2","A/Odesa/69/2017|2017-01-08|MDCK/SIAT1/SIAT1","A/Odesa/73/2017|2017-01-09|MDCK/SIAT1/SIAT1","A/Odesa/72/2017|2017-01-10|MDCK/SIAT1/SIAT1","A/Khmelnitsky/147/2017|2017-01-11|MDCK/SIAT1/SIAT1","A/Khmelnitsky/148/2017|2017-01-12|MDCK/SIAT1/SIAT1","A/Ukraine/7730/2017|2017-01-12|C1/SIAT1","A/Ukraine/7610/2017|2017-01-12|C1/SIAT1","A/Ukraine/7552/2017|2017-01-16|Cx/SIAT1","A/Ukraine/7767/2017|2017-01-17|C2/SIAT1",
+	"A/Ukraine/7611/2017|2017-01-17|C1/SIAT1","A/Perugia/26/2017|2017-01-20|SIAT3/SIAT2","A/Zaporizza/160/2017|2017-01-21|MDCK/SIAT1/SIAT1","A/Kyiv/84/2017|2017-01-22|SIAT1/SIAT1","A/Khmelnitsky/150/2017|2017-01-26|MDCK/SIAT1/SIAT1","A/Sassari/9/2017|2017-01-30|SIAT1/SIAT1","A/Friuli-Venezia Giulia/59/2017|2017-02-01|SIAT1/SIAT1","A/Perugia/39/2017|2017-02-07|SIAT1/SIAT1","A/Norway/1940/2017|2017-03-20|SIAT1/SIAT1","A/Norway/1934/2017|2017-03-21|SIAT1/SIAT1",
+	"A/Norway/2113/2017|2017-03-30|SIAT1/SIAT1")
+ag_Sep2017_table8_12 <- agNames(map37) %in% c("A/Prievidza/77/2016|2016-12-19|MDCK1/SIAT1","A/Komarno/93/2016|2016-12-20|MDCK1/SIAT1","A/Trnava/97/2016|2016-12-21|MDCKx/SIAT1","A/Trnava/90/2016|2016-12-21|MDCK2/SIAT1","A/Trencin/94/2016|2016-12-22|MDCK1/SIAT1","A/Bratislava/112/2016|2016-12-30|MDCKx/SIAT1","A/Lubica/132/2017|2017-01-03|MDCKx/SIAT1","A/Levice/133/2017|2017-01-04|MDCKx/SIAT1","A/Kosice/182/2017|2017-01-05|MDCKx/SIAT1","A/Povazska Bystrica/151/2017|2017-01-10|MDCKx/SIAT1",
+	"A/Nitra/157/2017|2017-01-11|MDCKx/SIAT1","A/Nove Zamky/184/2017|2017-01-17|MDCKx/SIAT1","A/Piestany/205/2017|2017-01-18|MDCKx/SIAT1","A/Dunajska Streda/232/2017|2017-01-24|MDCKx/SIAT1","A/Slovenia/625/2017|2017-01-25|MDCKx/SIAT1","A/Slovenia/1159/2017|2017-02-15|MDCKx/SIAT1","A/Bratislava/322/2017|2017-02-15|MDCKx/SIAT1","A/Slovenia/1391/2017|2017-03-08|MDCKx/SIAT1","A/Slovenia/1406/2017|2017-03-08|MDCKx/SIAT1")
+ag_Sep2016_table8_6 <- agNames(map37) %in% c("A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Bari/11/2016|2016-01-26|SIAT3/SIAT2","A/Palermo/1/2016|2016-02-01|SIAT3/SIAT2","A/Milano/23/2016|2016-02-01|MDCK1/SIAT2","A/St. Petersburg/210/2016|2016-02-06|MDCK1/SIAT1","A/Odessa/700/2016|2016-02-07|SIAT2/SIAT2","A/Odessa/695/2016|2016-02-13|SIAT2/SIAT2","A/Roma/12/2016|2016-02-15|SIAT2/SIAT2","A/Padova/17/2016|2016-02-15|SIAT3/SIAT2","A/Slovenia/852/2016|2016-02-18|MDCK1/SIAT2",
+	"A/Slovenia/920/2016|2016-02-19|MDCK1/SIAT2","A/Palermo/6/2016|2016-02-22|SIAT2/SIAT2","A/Bratislava/184/2016|2016-02-22|MDCKx/SIAT1","A/Parma/38/2016|2016-02-23|MDCK2/SIAT1","A/Slovenia/972/2016|2016-02-24|MDCK1/SIAT2","A/Friuli-Venezia Giulia/10/2016|2016-02-25|SIAT1/SIAT2","A/Friuli-Venezia Giulia/14/2016|2016-03-01|SIAT1/SIAT2","A/Slovenia/1070/2016|2016-03-01|MDCK1/SIAT2","A/Slovenia/1172/2016|2016-03-09|MDCK1/SIAT2","A/Bolzano/7/2016|2016-03-15|SIAT3/SIAT2",
+	"A/Czech Republic/122/2016|2016-03-21|C2/SIAT1","A/Slovenia/1307/2016|2016-03-21|MDCK1/SIAT1","A/Perugia/23/2016|2016-03-23|SIAT3/SIAT2","A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2","A/Iceland/59/2016|2016-05-08|MDCK1/SIAT1")
+ag_Sep2016_table8_2 <- agNames(map37) %in% c("A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT3","A/Ghana/FS-15-0583/2015|2015-09-25|Cx/SIAT3","A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2","A/Oman/5009/2015|2015-09-29|SIAT2/SIAT2","A/Oman/5011/2015|2015-09-30|SIAT2/SIAT2","A/Oman/5357/2015|2015-10-13|MDCK2/SIAT2","A/Konya/1926/2015|2015-10-15|MDCK1/SIAT1","A/Oman/5422/2015|2015-10-17|SIAT2/SIAT2","A/Oman/5691/2015|2015-10-27|SIAT2/SIAT2","A/Oman/4940/2015|2015-10-28|SIAT2/SIAT2",
+	"A/Italy-FVG/105/2015|2015-11-25|SIAT3/SIAT2","A/Switzerland/15772531/2015|2015-11-28|SIAT1","A/Malatya/5037/2015|2015-12-10|SIAT1/SIAT1","A/Ankara/5082/2015|2015-12-14|SIAT1/SIAT1","A/Ankara/5139/2015|2015-12-22|MDCK1/SIAT1","A/Turkey/TR-25/2016|2016-01-13|SIAT1","A/Turkey/TR-26/2016|2016-01-13|SIAT1","A/Berlin/7/2016|2016-01-18|C2/SIAT1","A/Sachsen/2/2016|2016-01-18|C2/SIAT1","A/Berlin/11/2016|2016-01-25|C2/SIAT1",
+	"A/Jordan/4054/2015|*|SIAT1")
+
+agFill(map37)[ag_Sep2017_table8_13] <- '#ea5545'
+agFill(map37)[ag_Sep2017_table8_12] <- '#ef9b20'
+agFill(map37)[ag_Sep2016_table8_6] <- '#ede15b'
+agFill(map37)[ag_Sep2016_table8_2] <- '#87bc45'
+p_map37 <- ggplot(map37) + ggtitle('map 37')
+p_map37
+
+
+#################### MAP 38 ####################
+#### colered by tables
+agSize(map38) <- 5
+agFill(map38) <- 'grey50'
+ag_Sep2017_table8_13 <- agNames(map38) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1","A/Trencin/46/2016|2016-12-01|MDCK1/SIAT1","A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1","A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1","A/Odesa/62/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Khmelnitsky/138/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Dnipro/244/2017|2017-01-02|MDCK1/SIAT1",
+	"A/Odesa/66/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/70/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/75/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Khmelnitsky/143/2017|2017-01-06|MDCK/SIAT1/SIAT1","A/Khmelnitsky/145/2017|2017-01-06|MDCK/SIAT1/SIAT2","A/Odesa/69/2017|2017-01-08|MDCK/SIAT1/SIAT1","A/Odesa/73/2017|2017-01-09|MDCK/SIAT1/SIAT1","A/Odesa/72/2017|2017-01-10|MDCK/SIAT1/SIAT1","A/Khmelnitsky/147/2017|2017-01-11|MDCK/SIAT1/SIAT1","A/Khmelnitsky/148/2017|2017-01-12|MDCK/SIAT1/SIAT1",
+	"A/Ukraine/7730/2017|2017-01-12|C1/SIAT1","A/Ukraine/7610/2017|2017-01-12|C1/SIAT1","A/Ukraine/7552/2017|2017-01-16|Cx/SIAT1","A/Ukraine/7767/2017|2017-01-17|C2/SIAT1","A/Ukraine/7611/2017|2017-01-17|C1/SIAT1","A/Perugia/26/2017|2017-01-20|SIAT3/SIAT2","A/Zaporizza/160/2017|2017-01-21|MDCK/SIAT1/SIAT1","A/Kyiv/84/2017|2017-01-22|SIAT1/SIAT1","A/Khmelnitsky/150/2017|2017-01-26|MDCK/SIAT1/SIAT1","A/Sassari/9/2017|2017-01-30|SIAT1/SIAT1",
+	"A/Friuli-Venezia Giulia/59/2017|2017-02-01|SIAT1/SIAT1","A/Perugia/39/2017|2017-02-07|SIAT1/SIAT1","A/Norway/1940/2017|2017-03-20|SIAT1/SIAT1","A/Norway/1934/2017|2017-03-21|SIAT1/SIAT1","A/Norway/2113/2017|2017-03-30|SIAT1/SIAT1")
+ag_Feb2016_table9_3 <- agNames(map38) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Hong Kong/146/2013|2013-01-11|E3/E3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/4801/2014|2014-02-26|E6/E1","A/Georgia/532/2015|2015-03-09|SIAT2","A/Serbia/361/2015|2015-01-19|C2/SIAT2","A/Jiangxi-Donghu/1218/2015|2015-02-11|MDCK2/SIAT3/SIAT1","A/Jilin-Yanji/1179/2015|2015-03-03|MDCK1/SIAT2/SIAT1","A/Hubei-Dongbao/1205/2015|2015-04-09|MDCK4/SIAT2/SIAT1",
+	"A/Jiangsu-Qingpu/1660/2015|2015-04-29|E4/E1","A/Liaoning-Baita/1293/2015|2015-05-06|MDCK2/SIAT2/SIAT1","A/Hunan-Wuling/11088/2015|2015-06-15|MDCK2/SIAT2/SIAT1","A/England/333/2015|2015-09-04|MDCK2/SIAT1","A/England/334/2015|2015-09-06|MDCK2/SIAT1","A/England/335/2015|2015-09-29|SIAT1/SIAT1")
+ag_Feb2017_table8_5 <- agNames(map38) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT2","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2","A/Stockholm/41/2016|2016-11-10|MDCK1/SIAT1","A/Stockholm/46/2016|2016-11-16|MDCK1/SIAT1","A/Netherlands/3356/2016|2016-11-24|SIAT2/MDCK1/SIAT1","A/Kyrgyzstan/21/2016|2016-11-29|MDCKx/SIAT1","A/St Petersburg/334/2016|2016-12-02|MDCK1/SIAT2","A/Stockholm/52/2016|2016-12-02|MDCK0/SIAT1",
+	"A/Linkoping/5/2016|2016-12-03|MDCK1/SIAT1","A/Khabarovsk/1/2016|2016-12-06|MDCK2/SIAT2","A/Netherlands/3455/2016|2016-12-10|SIAT2/MDCK1/SIAT1","A/Hungary/192/2016|2016-12-14|MDCK2/SIAT1","A/Netherlands/3768/2016|2016-12-20|SIAT2/MDCK1/SIAT1")
+
+agFill(map38)[ag_Sep2017_table8_13] <- '#ea5545'
+agFill(map38)[ag_Feb2016_table9_3] <- '#ef9b20'
+agFill(map38)[ag_Feb2017_table8_5] <- '#ede15b'
+p_map38 <- ggplot(map38) + ggtitle('map 38')
+p_map38
+
+
+#################### MAP 39 ####################
+#### colered by tables
+agSize(map39) <- 5
+agFill(map39) <- 'grey50'
+ag_Sep2017_table8_16 <- agNames(map39) %in% c("A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1","A/Norway/4849/2016|2016-12-02|E7","A/Greece/4/2017|2017-01-02|E9","A/Norway/3806/2016|2016-06-13|E7/E8","A/Serbia/7921/2017|2016-12-09|C3/SIAT1","A/Serbia/7997/2017|2016-12-12|C3/SIAT1","A/Serbia/8255/2017|2016-12-16|C3/SIAT1","A/Serbia/8283/2017|2016-12-21|C3/SIAT1","A/Serbia/8374/2017|2016-12-21|C3/SIAT1",
+	"A/Serbia/8352/2017|2016-12-22|C3/SIAT1","A/Serbia/8375/2017|2016-12-22|C3/SIAT1","A/Serbia/8411/2017|2016-12-26|C3/SIAT1","A/Serbia/8499/2017|2016-12-27|C2/SIAT1","A/Stockholm/60/2016|2016-12-28|MDCK1/SIAT2","A/Serbia/8501/2017|2016-12-28|C3/SIAT1","A/Serbia/8554/2017|2016-12-30|C1/SIAT1","A/Ukraine/7647/2017|2017-01-04|C1/SIAT2","A/Thuringen/165/2017|2017-01-13|C1/SIAT2","A/Stockholm/11/2017|2017-01-14|MDCK0/SIAT2",
+	"A/England/19/2017|2017-01-31|SIAT1/SIAT1","А/Orenburg/70/2017|2017-02-07|SIAT1/SIAT1","А/Moscow/34/2017|2017-02-07|SIAT1/SIAT1","А/Orenburg/72/2017|2017-02-13|SIAT1/SIAT1","A/Paris/1023/2017|2017-02-16|MDCK1/SIAT1","A/Linkoping/1/2017|2017-02-17|MDCK2/SIAT2","А/Moscow/41/2017|2017-02-18|SIAT1/SIAT1","A/Basse Normandie/1055/2017|2017-02-20|MDCK1/SIAT1","A/Bosnia and Herzegovina/119/2017|2017-02-24|SIAT2","А/Moscow/47/2017|2017-02-25|SIAT1/SIAT1",
+	"A/Paris/1145/2017|2017-03-06|MDCK1/SIAT1","A/Dijon/1176/2017|2017-03-14|MDCK1/SIAT1","A/Niedersachsen/186/2017|2017-03-21|C2/SIAT2","A/St Petersburg/320/2017|2017-03-21|MDCK2/SIAT2","A/Hong Kong/2267/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2277/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2274/2017|2017-05-20|Cx/SIAT1","A/Hong Kong/2273/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2279/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1",
+	"A/Hong Kong/2284/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2291/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2293/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1","A/Hong Kong/3160/2017|2017-07-04|Cx/SIAT1","A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1")
+ag_Sep2017_table8_2 <- agNames(map39) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT5","A/Stockholm/48/2016|*|MDCK1/SIAT1","A/Czech Republic/178/2017|*|MDCKx/SIAT1","A/Sachsen/74/2016|2016-11-07|C1/SIAT1","A/Stockholm/42/2016|2016-11-10|MDCK1/SIAT1","A/Latvia/11-072125/2016|2016-11-28|C2/SIAT1","A/Austria/956928/2016|2016-11-30|C1/SIAT1",
+	"A/Austria/957344/2016|2016-12-04|C1/SIAT1","A/Austria/957860/2016|2016-12-06|C2/SIAT1","A/Latvia/12-020474/2016|2016-12-08|C2/SIAT1","A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1","A/Sweden/153/2016|2016-12-16|MDCK1/SIAT1","A/Sweden/157/2016|2016-12-17|MDCK1/SIAT1","A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1","A/Greece/726/2016|2016-12-19|SIAT1","A/Greece/35/2017|2017-01-10|SIAT2","A/Belarus/1136/2017|2017-01-13|SIAT1",
+	"A/Belarus/1146/2017|2017-01-14|SIAT1","A/Belarus/1147/2017|2017-01-14|SIAT1","A/Belarus/1140/2017|2017-01-15|SIAT1")
+ag_Sep2016_table8_2 <- agNames(map39) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT3","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT3","A/Ghana/FS-15-0583/2015|2015-09-25|Cx/SIAT3","A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2","A/Oman/5009/2015|2015-09-29|SIAT2/SIAT2","A/Oman/5011/2015|2015-09-30|SIAT2/SIAT2","A/Oman/5357/2015|2015-10-13|MDCK2/SIAT2",
+	"A/Konya/1926/2015|2015-10-15|MDCK1/SIAT1","A/Oman/5422/2015|2015-10-17|SIAT2/SIAT2","A/Oman/5691/2015|2015-10-27|SIAT2/SIAT2","A/Oman/4940/2015|2015-10-28|SIAT2/SIAT2","A/Italy-FVG/105/2015|2015-11-25|SIAT3/SIAT2","A/Switzerland/15772531/2015|2015-11-28|SIAT1","A/Malatya/5037/2015|2015-12-10|SIAT1/SIAT1","A/Ankara/5082/2015|2015-12-14|SIAT1/SIAT1","A/Ankara/5139/2015|2015-12-22|MDCK1/SIAT1","A/Turkey/TR-25/2016|2016-01-13|SIAT1",
+	"A/Turkey/TR-26/2016|2016-01-13|SIAT1","A/Berlin/7/2016|2016-01-18|C2/SIAT1","A/Sachsen/2/2016|2016-01-18|C2/SIAT1","A/Berlin/11/2016|2016-01-25|C2/SIAT1","A/Jordan/4054/2015|*|SIAT1")
+
+agFill(map39)[ag_Sep2017_table8_16] <- '#ea5545'
+agFill(map39)[ag_Sep2017_table8_2] <- '#ef9b20'
+agFill(map39)[ag_Sep2016_table8_2] <- '#ede15b'
+p_map39 <- ggplot(map39) + ggtitle('map 39')
+p_map39
+
+
+#################### MAP 40 ####################
+#### colered by tables
+agSize(map40) <- 5
+agFill(map40) <- 'grey50'
+ag_Sep2017_table8_13 <- agNames(map40) %in% c("A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1","A/Trencin/46/2016|2016-12-01|MDCK1/SIAT1","A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1","A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1","A/Odesa/62/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Khmelnitsky/138/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Dnipro/244/2017|2017-01-02|MDCK1/SIAT1","A/Odesa/66/2017|2017-01-05|MDCK/SIAT1/SIAT1",
+	"A/Odesa/70/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/75/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Khmelnitsky/143/2017|2017-01-06|MDCK/SIAT1/SIAT1","A/Khmelnitsky/145/2017|2017-01-06|MDCK/SIAT1/SIAT2","A/Odesa/69/2017|2017-01-08|MDCK/SIAT1/SIAT1","A/Odesa/73/2017|2017-01-09|MDCK/SIAT1/SIAT1","A/Odesa/72/2017|2017-01-10|MDCK/SIAT1/SIAT1","A/Khmelnitsky/147/2017|2017-01-11|MDCK/SIAT1/SIAT1","A/Khmelnitsky/148/2017|2017-01-12|MDCK/SIAT1/SIAT1","A/Ukraine/7730/2017|2017-01-12|C1/SIAT1",
+	"A/Ukraine/7610/2017|2017-01-12|C1/SIAT1","A/Ukraine/7552/2017|2017-01-16|Cx/SIAT1","A/Ukraine/7767/2017|2017-01-17|C2/SIAT1","A/Ukraine/7611/2017|2017-01-17|C1/SIAT1","A/Perugia/26/2017|2017-01-20|SIAT3/SIAT2","A/Zaporizza/160/2017|2017-01-21|MDCK/SIAT1/SIAT1","A/Kyiv/84/2017|2017-01-22|SIAT1/SIAT1","A/Khmelnitsky/150/2017|2017-01-26|MDCK/SIAT1/SIAT1","A/Sassari/9/2017|2017-01-30|SIAT1/SIAT1","A/Friuli-Venezia Giulia/59/2017|2017-02-01|SIAT1/SIAT1",
+	"A/Perugia/39/2017|2017-02-07|SIAT1/SIAT1","A/Norway/1940/2017|2017-03-20|SIAT1/SIAT1","A/Norway/1934/2017|2017-03-21|SIAT1/SIAT1","A/Norway/2113/2017|2017-03-30|SIAT1/SIAT1")
+ag_Sep2017_table8_2 <- agNames(map40) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2","A/Stockholm/48/2016|*|MDCK1/SIAT1","A/Czech Republic/178/2017|*|MDCKx/SIAT1","A/Sachsen/74/2016|2016-11-07|C1/SIAT1","A/Stockholm/42/2016|2016-11-10|MDCK1/SIAT1","A/Latvia/11-072125/2016|2016-11-28|C2/SIAT1","A/Austria/956928/2016|2016-11-30|C1/SIAT1","A/Austria/957344/2016|2016-12-04|C1/SIAT1","A/Austria/957860/2016|2016-12-06|C2/SIAT1",
+	"A/Latvia/12-020474/2016|2016-12-08|C2/SIAT1","A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1","A/Sweden/153/2016|2016-12-16|MDCK1/SIAT1","A/Sweden/157/2016|2016-12-17|MDCK1/SIAT1","A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1","A/Greece/726/2016|2016-12-19|SIAT1","A/Greece/35/2017|2017-01-10|SIAT2","A/Belarus/1136/2017|2017-01-13|SIAT1","A/Belarus/1146/2017|2017-01-14|SIAT1","A/Belarus/1147/2017|2017-01-14|SIAT1",
+	"A/Belarus/1140/2017|2017-01-15|SIAT1")
+ag_Sep2016_table8_2 <- agNames(map40) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT3","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT3","A/Ghana/FS-15-0583/2015|2015-09-25|Cx/SIAT3","A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2","A/Oman/5009/2015|2015-09-29|SIAT2/SIAT2","A/Oman/5011/2015|2015-09-30|SIAT2/SIAT2","A/Oman/5357/2015|2015-10-13|MDCK2/SIAT2",
+	"A/Konya/1926/2015|2015-10-15|MDCK1/SIAT1","A/Oman/5422/2015|2015-10-17|SIAT2/SIAT2","A/Oman/5691/2015|2015-10-27|SIAT2/SIAT2","A/Oman/4940/2015|2015-10-28|SIAT2/SIAT2","A/Italy-FVG/105/2015|2015-11-25|SIAT3/SIAT2","A/Switzerland/15772531/2015|2015-11-28|SIAT1","A/Malatya/5037/2015|2015-12-10|SIAT1/SIAT1","A/Ankara/5082/2015|2015-12-14|SIAT1/SIAT1","A/Ankara/5139/2015|2015-12-22|MDCK1/SIAT1","A/Turkey/TR-25/2016|2016-01-13|SIAT1",
+	"A/Turkey/TR-26/2016|2016-01-13|SIAT1","A/Berlin/7/2016|2016-01-18|C2/SIAT1","A/Sachsen/2/2016|2016-01-18|C2/SIAT1","A/Berlin/11/2016|2016-01-25|C2/SIAT1","A/Jordan/4054/2015|*|SIAT1")
+
+agFill(map40)[ag_Sep2017_table8_13] <- '#ea5545'
+agFill(map40)[ag_Sep2017_table8_2] <- '#ef9b20'
+agFill(map40)[ag_Sep2016_table8_2] <- '#ede15b'
+p_map40 <- ggplot(map40) + ggtitle('map 40')
+p_map40
+
+
+#################### MAP 41 ####################
+#### colered by tables
+agSize(map41) <- 5
+agFill(map41) <- 'grey50'
+ag_Sep2017_table8_13 <- agNames(map41) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1","A/Trencin/46/2016|2016-12-01|MDCK1/SIAT1","A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1","A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1","A/Odesa/62/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Khmelnitsky/138/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Dnipro/244/2017|2017-01-02|MDCK1/SIAT1",
+	"A/Odesa/66/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/70/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/75/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Khmelnitsky/143/2017|2017-01-06|MDCK/SIAT1/SIAT1","A/Khmelnitsky/145/2017|2017-01-06|MDCK/SIAT1/SIAT2","A/Odesa/69/2017|2017-01-08|MDCK/SIAT1/SIAT1","A/Odesa/73/2017|2017-01-09|MDCK/SIAT1/SIAT1","A/Odesa/72/2017|2017-01-10|MDCK/SIAT1/SIAT1","A/Khmelnitsky/147/2017|2017-01-11|MDCK/SIAT1/SIAT1","A/Khmelnitsky/148/2017|2017-01-12|MDCK/SIAT1/SIAT1",
+	"A/Ukraine/7730/2017|2017-01-12|C1/SIAT1","A/Ukraine/7610/2017|2017-01-12|C1/SIAT1","A/Ukraine/7552/2017|2017-01-16|Cx/SIAT1","A/Ukraine/7767/2017|2017-01-17|C2/SIAT1","A/Ukraine/7611/2017|2017-01-17|C1/SIAT1","A/Perugia/26/2017|2017-01-20|SIAT3/SIAT2","A/Zaporizza/160/2017|2017-01-21|MDCK/SIAT1/SIAT1","A/Kyiv/84/2017|2017-01-22|SIAT1/SIAT1","A/Khmelnitsky/150/2017|2017-01-26|MDCK/SIAT1/SIAT1","A/Sassari/9/2017|2017-01-30|SIAT1/SIAT1",
+	"A/Friuli-Venezia Giulia/59/2017|2017-02-01|SIAT1/SIAT1","A/Perugia/39/2017|2017-02-07|SIAT1/SIAT1","A/Norway/1940/2017|2017-03-20|SIAT1/SIAT1","A/Norway/1934/2017|2017-03-21|SIAT1/SIAT1","A/Norway/2113/2017|2017-03-30|SIAT1/SIAT1")
+ag_Sep2017_table8_2 <- agNames(map41) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2","A/Stockholm/48/2016|*|MDCK1/SIAT1","A/Czech Republic/178/2017|*|MDCKx/SIAT1","A/Sachsen/74/2016|2016-11-07|C1/SIAT1","A/Stockholm/42/2016|2016-11-10|MDCK1/SIAT1","A/Latvia/11-072125/2016|2016-11-28|C2/SIAT1","A/Austria/956928/2016|2016-11-30|C1/SIAT1","A/Austria/957344/2016|2016-12-04|C1/SIAT1","A/Austria/957860/2016|2016-12-06|C2/SIAT1",
+	"A/Latvia/12-020474/2016|2016-12-08|C2/SIAT1","A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1","A/Sweden/153/2016|2016-12-16|MDCK1/SIAT1","A/Sweden/157/2016|2016-12-17|MDCK1/SIAT1","A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1","A/Greece/726/2016|2016-12-19|SIAT1","A/Greece/35/2017|2017-01-10|SIAT2","A/Belarus/1136/2017|2017-01-13|SIAT1","A/Belarus/1146/2017|2017-01-14|SIAT1","A/Belarus/1147/2017|2017-01-14|SIAT1",
+	"A/Belarus/1140/2017|2017-01-15|SIAT1")
+ag_Feb2016_table9_3 <- agNames(map41) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT3","A/Hong Kong/146/2013|2013-01-11|E3/E3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/4801/2014|2014-02-26|E6/E1","A/Georgia/532/2015|2015-03-09|SIAT2","A/Serbia/361/2015|2015-01-19|C2/SIAT2","A/Jiangxi-Donghu/1218/2015|2015-02-11|MDCK2/SIAT3/SIAT1","A/Jilin-Yanji/1179/2015|2015-03-03|MDCK1/SIAT2/SIAT1","A/Hubei-Dongbao/1205/2015|2015-04-09|MDCK4/SIAT2/SIAT1",
+	"A/Jiangsu-Qingpu/1660/2015|2015-04-29|E4/E1","A/Liaoning-Baita/1293/2015|2015-05-06|MDCK2/SIAT2/SIAT1","A/Hunan-Wuling/11088/2015|2015-06-15|MDCK2/SIAT2/SIAT1","A/England/333/2015|2015-09-04|MDCK2/SIAT1","A/England/334/2015|2015-09-06|MDCK2/SIAT1","A/England/335/2015|2015-09-29|SIAT1/SIAT1")
+
+agFill(map41)[ag_Sep2017_table8_13] <- '#ea5545'
+agFill(map41)[ag_Sep2017_table8_2] <- '#ef9b20'
+agFill(map41)[ag_Feb2016_table9_3] <- '#ede15b'
+p_map41 <- ggplot(map41) + ggtitle('map 41')
+p_map41
+
+
+#################### MAP 42 ####################
+#### colered by tables
+agSize(map42) <- 5
+agFill(map42) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map42) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT3","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1",
+	"A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1",
+	"A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2017_table8_13 <- agNames(map42) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT5","A/Trencin/46/2016|2016-12-01|MDCK1/SIAT1","A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1","A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1","A/Odesa/62/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Khmelnitsky/138/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Dnipro/244/2017|2017-01-02|MDCK1/SIAT1","A/Odesa/66/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/70/2017|2017-01-05|MDCK/SIAT1/SIAT1",
+	"A/Odesa/75/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Khmelnitsky/143/2017|2017-01-06|MDCK/SIAT1/SIAT1","A/Khmelnitsky/145/2017|2017-01-06|MDCK/SIAT1/SIAT2","A/Odesa/69/2017|2017-01-08|MDCK/SIAT1/SIAT1","A/Odesa/73/2017|2017-01-09|MDCK/SIAT1/SIAT1","A/Odesa/72/2017|2017-01-10|MDCK/SIAT1/SIAT1","A/Khmelnitsky/147/2017|2017-01-11|MDCK/SIAT1/SIAT1","A/Khmelnitsky/148/2017|2017-01-12|MDCK/SIAT1/SIAT1","A/Ukraine/7730/2017|2017-01-12|C1/SIAT1","A/Ukraine/7610/2017|2017-01-12|C1/SIAT1",
+	"A/Ukraine/7552/2017|2017-01-16|Cx/SIAT1","A/Ukraine/7767/2017|2017-01-17|C2/SIAT1","A/Ukraine/7611/2017|2017-01-17|C1/SIAT1","A/Perugia/26/2017|2017-01-20|SIAT3/SIAT2","A/Zaporizza/160/2017|2017-01-21|MDCK/SIAT1/SIAT1","A/Kyiv/84/2017|2017-01-22|SIAT1/SIAT1","A/Khmelnitsky/150/2017|2017-01-26|MDCK/SIAT1/SIAT1","A/Sassari/9/2017|2017-01-30|SIAT1/SIAT1","A/Friuli-Venezia Giulia/59/2017|2017-02-01|SIAT1/SIAT1","A/Perugia/39/2017|2017-02-07|SIAT1/SIAT1",
+	"A/Norway/1940/2017|2017-03-20|SIAT1/SIAT1","A/Norway/1934/2017|2017-03-21|SIAT1/SIAT1","A/Norway/2113/2017|2017-03-30|SIAT1/SIAT1")
+ag_Sep2017_table8_16 <- agNames(map42) %in% c("A/Norway/4849/2016|2016-12-02|E7","A/Greece/4/2017|2017-01-02|E9","A/Norway/3806/2016|2016-06-13|E7/E8","A/Serbia/7921/2017|2016-12-09|C3/SIAT1","A/Serbia/7997/2017|2016-12-12|C3/SIAT1","A/Serbia/8255/2017|2016-12-16|C3/SIAT1","A/Serbia/8283/2017|2016-12-21|C3/SIAT1","A/Serbia/8374/2017|2016-12-21|C3/SIAT1","A/Serbia/8352/2017|2016-12-22|C3/SIAT1","A/Serbia/8375/2017|2016-12-22|C3/SIAT1",
+	"A/Serbia/8411/2017|2016-12-26|C3/SIAT1","A/Serbia/8499/2017|2016-12-27|C2/SIAT1","A/Stockholm/60/2016|2016-12-28|MDCK1/SIAT2","A/Serbia/8501/2017|2016-12-28|C3/SIAT1","A/Serbia/8554/2017|2016-12-30|C1/SIAT1","A/Ukraine/7647/2017|2017-01-04|C1/SIAT2","A/Thuringen/165/2017|2017-01-13|C1/SIAT2","A/Stockholm/11/2017|2017-01-14|MDCK0/SIAT2","A/England/19/2017|2017-01-31|SIAT1/SIAT1","А/Orenburg/70/2017|2017-02-07|SIAT1/SIAT1",
+	"А/Moscow/34/2017|2017-02-07|SIAT1/SIAT1","А/Orenburg/72/2017|2017-02-13|SIAT1/SIAT1","A/Paris/1023/2017|2017-02-16|MDCK1/SIAT1","A/Linkoping/1/2017|2017-02-17|MDCK2/SIAT2","А/Moscow/41/2017|2017-02-18|SIAT1/SIAT1","A/Basse Normandie/1055/2017|2017-02-20|MDCK1/SIAT1","A/Bosnia and Herzegovina/119/2017|2017-02-24|SIAT2","А/Moscow/47/2017|2017-02-25|SIAT1/SIAT1","A/Paris/1145/2017|2017-03-06|MDCK1/SIAT1","A/Dijon/1176/2017|2017-03-14|MDCK1/SIAT1",
+	"A/Niedersachsen/186/2017|2017-03-21|C2/SIAT2","A/St Petersburg/320/2017|2017-03-21|MDCK2/SIAT2","A/Hong Kong/2267/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2277/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2274/2017|2017-05-20|Cx/SIAT1","A/Hong Kong/2273/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2279/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2284/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1",
+	"A/Hong Kong/2291/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2293/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1","A/Hong Kong/3160/2017|2017-07-04|Cx/SIAT1","A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1")
+ag_Feb2018_table8_3 <- agNames(map42) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3', 'A/Mauritius/621/2017|2017-06-24|MDCKx/SIAT1', "A/Cote D'Ivoire/870/2017|2017-06-30|C2/SIAT1", "A/Cote D'Ivoire/960/2017|2017-07-20|C2/SIAT1", "A/Cote D'Ivoire/1040/2017|2017-07-28|C2/SIAT1", "A/Cote D'Ivoire/1045/2017|2017-07-31|C2/SIAT1")
+
+agFill(map42)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map42)[ag_Sep2017_table8_13] <- '#ef9b20'
+agFill(map42)[ag_Sep2017_table8_16] <- '#ede15b'
+agFill(map42)[ag_Feb2018_table8_3] <- '#87bc45'
+p_map42 <- ggplot(map42) + ggtitle('map 42')
+p_map42
+
+
+#################### MAP 43 ####################
+#### colered by tables
+agSize(map43) <- 5
+agFill(map43) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map43) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT3","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1",
+	"A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1",
+	"A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2017_table8_13 <- agNames(map43) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT5","A/Trencin/46/2016|2016-12-01|MDCK1/SIAT1","A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1","A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1","A/Odesa/62/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Khmelnitsky/138/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Dnipro/244/2017|2017-01-02|MDCK1/SIAT1","A/Odesa/66/2017|2017-01-05|MDCK/SIAT1/SIAT1",
+	"A/Odesa/70/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/75/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Khmelnitsky/143/2017|2017-01-06|MDCK/SIAT1/SIAT1","A/Khmelnitsky/145/2017|2017-01-06|MDCK/SIAT1/SIAT2","A/Odesa/69/2017|2017-01-08|MDCK/SIAT1/SIAT1","A/Odesa/73/2017|2017-01-09|MDCK/SIAT1/SIAT1","A/Odesa/72/2017|2017-01-10|MDCK/SIAT1/SIAT1","A/Khmelnitsky/147/2017|2017-01-11|MDCK/SIAT1/SIAT1","A/Khmelnitsky/148/2017|2017-01-12|MDCK/SIAT1/SIAT1","A/Ukraine/7730/2017|2017-01-12|C1/SIAT1",
+	"A/Ukraine/7610/2017|2017-01-12|C1/SIAT1","A/Ukraine/7552/2017|2017-01-16|Cx/SIAT1","A/Ukraine/7767/2017|2017-01-17|C2/SIAT1","A/Ukraine/7611/2017|2017-01-17|C1/SIAT1","A/Perugia/26/2017|2017-01-20|SIAT3/SIAT2","A/Zaporizza/160/2017|2017-01-21|MDCK/SIAT1/SIAT1","A/Kyiv/84/2017|2017-01-22|SIAT1/SIAT1","A/Khmelnitsky/150/2017|2017-01-26|MDCK/SIAT1/SIAT1","A/Sassari/9/2017|2017-01-30|SIAT1/SIAT1","A/Friuli-Venezia Giulia/59/2017|2017-02-01|SIAT1/SIAT1",
+	"A/Perugia/39/2017|2017-02-07|SIAT1/SIAT1","A/Norway/1940/2017|2017-03-20|SIAT1/SIAT1","A/Norway/1934/2017|2017-03-21|SIAT1/SIAT1","A/Norway/2113/2017|2017-03-30|SIAT1/SIAT1")
+ag_Sep2017_table8_16 <- agNames(map43) %in% c("A/Norway/4849/2016|2016-12-02|E7","A/Greece/4/2017|2017-01-02|E9","A/Norway/3806/2016|2016-06-13|E7/E8","A/Serbia/7921/2017|2016-12-09|C3/SIAT1","A/Serbia/7997/2017|2016-12-12|C3/SIAT1","A/Serbia/8255/2017|2016-12-16|C3/SIAT1","A/Serbia/8283/2017|2016-12-21|C3/SIAT1","A/Serbia/8374/2017|2016-12-21|C3/SIAT1","A/Serbia/8352/2017|2016-12-22|C3/SIAT1","A/Serbia/8375/2017|2016-12-22|C3/SIAT1",
+	"A/Serbia/8411/2017|2016-12-26|C3/SIAT1","A/Serbia/8499/2017|2016-12-27|C2/SIAT1","A/Stockholm/60/2016|2016-12-28|MDCK1/SIAT2","A/Serbia/8501/2017|2016-12-28|C3/SIAT1","A/Serbia/8554/2017|2016-12-30|C1/SIAT1","A/Ukraine/7647/2017|2017-01-04|C1/SIAT2","A/Thuringen/165/2017|2017-01-13|C1/SIAT2","A/Stockholm/11/2017|2017-01-14|MDCK0/SIAT2","A/England/19/2017|2017-01-31|SIAT1/SIAT1","А/Orenburg/70/2017|2017-02-07|SIAT1/SIAT1",
+	"А/Moscow/34/2017|2017-02-07|SIAT1/SIAT1","А/Orenburg/72/2017|2017-02-13|SIAT1/SIAT1","A/Paris/1023/2017|2017-02-16|MDCK1/SIAT1","A/Linkoping/1/2017|2017-02-17|MDCK2/SIAT2","А/Moscow/41/2017|2017-02-18|SIAT1/SIAT1","A/Basse Normandie/1055/2017|2017-02-20|MDCK1/SIAT1","A/Bosnia and Herzegovina/119/2017|2017-02-24|SIAT2","А/Moscow/47/2017|2017-02-25|SIAT1/SIAT1","A/Paris/1145/2017|2017-03-06|MDCK1/SIAT1","A/Dijon/1176/2017|2017-03-14|MDCK1/SIAT1",
+	"A/Niedersachsen/186/2017|2017-03-21|C2/SIAT2","A/St Petersburg/320/2017|2017-03-21|MDCK2/SIAT2","A/Hong Kong/2267/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2277/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2274/2017|2017-05-20|Cx/SIAT1","A/Hong Kong/2273/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2279/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2284/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1",
+	"A/Hong Kong/2291/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2293/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1","A/Hong Kong/3160/2017|2017-07-04|Cx/SIAT1","A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1")
+
+agFill(map43)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map43)[ag_Sep2017_table8_13] <- '#ef9b20'
+agFill(map43)[ag_Sep2017_table8_16] <- '#ede15b'
+p_map43 <- ggplot(map43) + ggtitle('map 43')
+p_map43
+
+
+#################### MAP 44 ####################
+#### colered by tables
+agSize(map44) <- 5
+agFill(map44) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map44) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT3","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1",
+	"A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1",
+	"A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2017_table8_13 <- agNames(map44) %in% c("A/Trencin/46/2016|2016-12-01|MDCK1/SIAT1","A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1","A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1","A/Odesa/62/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Khmelnitsky/138/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Dnipro/244/2017|2017-01-02|MDCK1/SIAT1","A/Odesa/66/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/70/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/75/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Khmelnitsky/143/2017|2017-01-06|MDCK/SIAT1/SIAT1",
+	"A/Khmelnitsky/145/2017|2017-01-06|MDCK/SIAT1/SIAT2","A/Odesa/69/2017|2017-01-08|MDCK/SIAT1/SIAT1","A/Odesa/73/2017|2017-01-09|MDCK/SIAT1/SIAT1","A/Odesa/72/2017|2017-01-10|MDCK/SIAT1/SIAT1","A/Khmelnitsky/147/2017|2017-01-11|MDCK/SIAT1/SIAT1","A/Khmelnitsky/148/2017|2017-01-12|MDCK/SIAT1/SIAT1","A/Ukraine/7730/2017|2017-01-12|C1/SIAT1","A/Ukraine/7610/2017|2017-01-12|C1/SIAT1","A/Ukraine/7552/2017|2017-01-16|Cx/SIAT1","A/Ukraine/7767/2017|2017-01-17|C2/SIAT1",
+	"A/Ukraine/7611/2017|2017-01-17|C1/SIAT1","A/Perugia/26/2017|2017-01-20|SIAT3/SIAT2","A/Zaporizza/160/2017|2017-01-21|MDCK/SIAT1/SIAT1","A/Kyiv/84/2017|2017-01-22|SIAT1/SIAT1","A/Khmelnitsky/150/2017|2017-01-26|MDCK/SIAT1/SIAT1","A/Sassari/9/2017|2017-01-30|SIAT1/SIAT1","A/Friuli-Venezia Giulia/59/2017|2017-02-01|SIAT1/SIAT1","A/Perugia/39/2017|2017-02-07|SIAT1/SIAT1","A/Norway/1940/2017|2017-03-20|SIAT1/SIAT1","A/Norway/1934/2017|2017-03-21|SIAT1/SIAT1",
+	"A/Norway/2113/2017|2017-03-30|SIAT1/SIAT1")
+ag_Sep2017_table8_12 <- agNames(map44) %in% c("A/Prievidza/77/2016|2016-12-19|MDCK1/SIAT1","A/Komarno/93/2016|2016-12-20|MDCK1/SIAT1","A/Trnava/97/2016|2016-12-21|MDCKx/SIAT1","A/Trnava/90/2016|2016-12-21|MDCK2/SIAT1","A/Trencin/94/2016|2016-12-22|MDCK1/SIAT1","A/Bratislava/112/2016|2016-12-30|MDCKx/SIAT1","A/Lubica/132/2017|2017-01-03|MDCKx/SIAT1","A/Levice/133/2017|2017-01-04|MDCKx/SIAT1","A/Kosice/182/2017|2017-01-05|MDCKx/SIAT1","A/Povazska Bystrica/151/2017|2017-01-10|MDCKx/SIAT1",
+	"A/Nitra/157/2017|2017-01-11|MDCKx/SIAT1","A/Nove Zamky/184/2017|2017-01-17|MDCKx/SIAT1","A/Piestany/205/2017|2017-01-18|MDCKx/SIAT1","A/Dunajska Streda/232/2017|2017-01-24|MDCKx/SIAT1","A/Slovenia/625/2017|2017-01-25|MDCKx/SIAT1","A/Slovenia/1159/2017|2017-02-15|MDCKx/SIAT1","A/Bratislava/322/2017|2017-02-15|MDCKx/SIAT1","A/Slovenia/1391/2017|2017-03-08|MDCKx/SIAT1","A/Slovenia/1406/2017|2017-03-08|MDCKx/SIAT1")
+ag_Feb2018_table8_3 <- agNames(map44) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3', 'A/Mauritius/621/2017|2017-06-24|MDCKx/SIAT1', "A/Cote D'Ivoire/870/2017|2017-06-30|C2/SIAT1", "A/Cote D'Ivoire/960/2017|2017-07-20|C2/SIAT1", "A/Cote D'Ivoire/1040/2017|2017-07-28|C2/SIAT1", "A/Cote D'Ivoire/1045/2017|2017-07-31|C2/SIAT1")
+
+agFill(map44)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map44)[ag_Sep2017_table8_13] <- '#ef9b20'
+agFill(map44)[ag_Sep2017_table8_12] <- '#ede15b'
+agFill(map44)[ag_Feb2018_table8_3] <- '#87bc45'
+p_map44 <- ggplot(map44) + ggtitle('map 44')
+p_map44
+
+
+#################### MAP 45 ####################
+#### colered by tables
+agSize(map45) <- 5
+agFill(map45) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map45) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT3","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1",
+	"A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1",
+	"A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2017_table8_13 <- agNames(map45) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT5","A/Trencin/46/2016|2016-12-01|MDCK1/SIAT1","A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1","A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1","A/Odesa/62/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Khmelnitsky/138/2017|2017-01-02|MDCK/SIAT1/SIAT1","A/Dnipro/244/2017|2017-01-02|MDCK1/SIAT1","A/Odesa/66/2017|2017-01-05|MDCK/SIAT1/SIAT1",
+	"A/Odesa/70/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Odesa/75/2017|2017-01-05|MDCK/SIAT1/SIAT1","A/Khmelnitsky/143/2017|2017-01-06|MDCK/SIAT1/SIAT1","A/Khmelnitsky/145/2017|2017-01-06|MDCK/SIAT1/SIAT2","A/Odesa/69/2017|2017-01-08|MDCK/SIAT1/SIAT1","A/Odesa/73/2017|2017-01-09|MDCK/SIAT1/SIAT1","A/Odesa/72/2017|2017-01-10|MDCK/SIAT1/SIAT1","A/Khmelnitsky/147/2017|2017-01-11|MDCK/SIAT1/SIAT1","A/Khmelnitsky/148/2017|2017-01-12|MDCK/SIAT1/SIAT1","A/Ukraine/7730/2017|2017-01-12|C1/SIAT1",
+	"A/Ukraine/7610/2017|2017-01-12|C1/SIAT1","A/Ukraine/7552/2017|2017-01-16|Cx/SIAT1","A/Ukraine/7767/2017|2017-01-17|C2/SIAT1","A/Ukraine/7611/2017|2017-01-17|C1/SIAT1","A/Perugia/26/2017|2017-01-20|SIAT3/SIAT2","A/Zaporizza/160/2017|2017-01-21|MDCK/SIAT1/SIAT1","A/Kyiv/84/2017|2017-01-22|SIAT1/SIAT1","A/Khmelnitsky/150/2017|2017-01-26|MDCK/SIAT1/SIAT1","A/Sassari/9/2017|2017-01-30|SIAT1/SIAT1","A/Friuli-Venezia Giulia/59/2017|2017-02-01|SIAT1/SIAT1",
+	"A/Perugia/39/2017|2017-02-07|SIAT1/SIAT1","A/Norway/1940/2017|2017-03-20|SIAT1/SIAT1","A/Norway/1934/2017|2017-03-21|SIAT1/SIAT1","A/Norway/2113/2017|2017-03-30|SIAT1/SIAT1")
+ag_Feb2018_table8_3 <- agNames(map45) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3', 'A/Mauritius/621/2017|2017-06-24|MDCKx/SIAT1', "A/Cote D'Ivoire/870/2017|2017-06-30|C2/SIAT1", "A/Cote D'Ivoire/960/2017|2017-07-20|C2/SIAT1", "A/Cote D'Ivoire/1040/2017|2017-07-28|C2/SIAT1", "A/Cote D'Ivoire/1045/2017|2017-07-31|C2/SIAT1")
+
+agFill(map45)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map45)[ag_Sep2017_table8_13] <- '#ef9b20'
+agFill(map45)[ag_Feb2018_table8_3] <- '#ede15b'
+p_map45 <- ggplot(map45) + ggtitle('map 45')
+p_map45
+
+
+#################### MAP 46 ####################
+#### colered by tables
+agSize(map46) <- 5
+agFill(map46) <- 'grey50'
+ag_Sep2018_table8_5 <- agNames(map46) %in% c("A/Hong-Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1","A/Mauritius/1103/2017|2017-06-12|MDCK1/SIAT1","A/Mauritius/1115/2017|2017-06-12|MDCK2/SIAT3","A/Mauritius/1199/2017|2017-06-14|MDCKx/SIAT1","A/Mauritius/1369/2017|2017-06-17|MDCK1/SIAT2","A/England/551/2018|2018-02-09|MDCK2/SIAT1","A/England/553/2018|2018-02-09|MDCK2/SIAT2","A/England/535/2018|2018-02-21|MDCK1/SIAT1",
+	"A/England/538/2018|2018-02-26|MDCK1/SIAT1","A/England/540/2018|2018-03-07|SIAT1/SIAT1")
+ag_Sep2017_table8_16 <- agNames(map46) %in% c("A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1","A/Norway/4849/2016|2016-12-02|E7","A/Greece/4/2017|2017-01-02|E9","A/Norway/3806/2016|2016-06-13|E7/E8","A/Serbia/7921/2017|2016-12-09|C3/SIAT1","A/Serbia/7997/2017|2016-12-12|C3/SIAT1","A/Serbia/8255/2017|2016-12-16|C3/SIAT1","A/Serbia/8283/2017|2016-12-21|C3/SIAT1","A/Serbia/8374/2017|2016-12-21|C3/SIAT1","A/Serbia/8352/2017|2016-12-22|C3/SIAT1",
+	"A/Serbia/8375/2017|2016-12-22|C3/SIAT1","A/Serbia/8411/2017|2016-12-26|C3/SIAT1","A/Serbia/8499/2017|2016-12-27|C2/SIAT1","A/Stockholm/60/2016|2016-12-28|MDCK1/SIAT2","A/Serbia/8501/2017|2016-12-28|C3/SIAT1","A/Serbia/8554/2017|2016-12-30|C1/SIAT1","A/Ukraine/7647/2017|2017-01-04|C1/SIAT2","A/Thuringen/165/2017|2017-01-13|C1/SIAT2","A/Stockholm/11/2017|2017-01-14|MDCK0/SIAT2","A/England/19/2017|2017-01-31|SIAT1/SIAT1",
+	"А/Orenburg/70/2017|2017-02-07|SIAT1/SIAT1","А/Moscow/34/2017|2017-02-07|SIAT1/SIAT1","А/Orenburg/72/2017|2017-02-13|SIAT1/SIAT1","A/Paris/1023/2017|2017-02-16|MDCK1/SIAT1","A/Linkoping/1/2017|2017-02-17|MDCK2/SIAT2","А/Moscow/41/2017|2017-02-18|SIAT1/SIAT1","A/Basse Normandie/1055/2017|2017-02-20|MDCK1/SIAT1","A/Bosnia and Herzegovina/119/2017|2017-02-24|SIAT2","А/Moscow/47/2017|2017-02-25|SIAT1/SIAT1","A/Paris/1145/2017|2017-03-06|MDCK1/SIAT1",
+	"A/Dijon/1176/2017|2017-03-14|MDCK1/SIAT1","A/Niedersachsen/186/2017|2017-03-21|C2/SIAT2","A/St Petersburg/320/2017|2017-03-21|MDCK2/SIAT2","A/Hong Kong/2267/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2277/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2274/2017|2017-05-20|Cx/SIAT1","A/Hong Kong/2273/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2279/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2284/2017|2017-05-23|Cx/SIAT1",
+	"A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2291/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2293/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1","A/Hong Kong/3160/2017|2017-07-04|Cx/SIAT1","A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1")
+ag_Sep2017_table8_20 <- agNames(map46) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3', 'A/South Africa/R04468/2017|2017-06-13|MDCK1/SIAT1', 'A/South Africa/R04939/2017|2017-06-20|MDCK1/SIAT1', 'A/South Africa/R05728/2017|2017-06-30|MDCK1/SIAT1', 'A/Hong Kong/3115/2017|2017-07-01|Cx/SIAT1')
+
+agFill(map46)[ag_Sep2018_table8_5] <- '#ea5545'
+agFill(map46)[ag_Sep2017_table8_16] <- '#ef9b20'
+agFill(map46)[ag_Sep2017_table8_20] <- '#ede15b'
+p_map46 <- ggplot(map46) + ggtitle('map 46')
+p_map46
+
+
+#################### MAP 47 ####################
+#### colered by tables
+agSize(map47) <- 5
+agFill(map47) <- 'grey50'
+ag_Sep2018_table8_5 <- agNames(map47) %in% c("A/Hong-Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1","A/Mauritius/1103/2017|2017-06-12|MDCK1/SIAT1","A/Mauritius/1115/2017|2017-06-12|MDCK2/SIAT3","A/Mauritius/1199/2017|2017-06-14|MDCKx/SIAT1","A/Mauritius/1369/2017|2017-06-17|MDCK1/SIAT2","A/England/551/2018|2018-02-09|MDCK2/SIAT1","A/England/553/2018|2018-02-09|MDCK2/SIAT2","A/England/535/2018|2018-02-21|MDCK1/SIAT1","A/England/538/2018|2018-02-26|MDCK1/SIAT1",
+	"A/England/540/2018|2018-03-07|SIAT1/SIAT1")
+ag_Feb2018_table8_9 <- agNames(map47) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2","A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3","A/Croatia/3608/2017|2017-12-12|MDCKx/SIAT2","A/Toulon/2533/2017|2017-12-18|MDCK2/SIAT2","A/Novosibirsk/265/2017|2017-12-24|MDCK1/SIAT1","A/Iceland/136/2017|2017-12-27|MDCK1/SIAT1","A/Iceland/03/2018|2018-01-02|MDCK1/SIAT1","A/Ankara/22/2018|2018-01-03|SIAT1/SIAT1",
+	"A/Iceland/08/2018|2018-01-04|MDCK1/SIAT1")
+ag_Sep2017_table8_16 <- agNames(map47) %in% c("A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1","A/Norway/4849/2016|2016-12-02|E7","A/Greece/4/2017|2017-01-02|E9","A/Norway/3806/2016|2016-06-13|E7/E8","A/Serbia/7921/2017|2016-12-09|C3/SIAT1","A/Serbia/7997/2017|2016-12-12|C3/SIAT1","A/Serbia/8255/2017|2016-12-16|C3/SIAT1","A/Serbia/8283/2017|2016-12-21|C3/SIAT1","A/Serbia/8374/2017|2016-12-21|C3/SIAT1","A/Serbia/8352/2017|2016-12-22|C3/SIAT1",
+	"A/Serbia/8375/2017|2016-12-22|C3/SIAT1","A/Serbia/8411/2017|2016-12-26|C3/SIAT1","A/Serbia/8499/2017|2016-12-27|C2/SIAT1","A/Stockholm/60/2016|2016-12-28|MDCK1/SIAT2","A/Serbia/8501/2017|2016-12-28|C3/SIAT1","A/Serbia/8554/2017|2016-12-30|C1/SIAT1","A/Ukraine/7647/2017|2017-01-04|C1/SIAT2","A/Thuringen/165/2017|2017-01-13|C1/SIAT2","A/Stockholm/11/2017|2017-01-14|MDCK0/SIAT2","A/England/19/2017|2017-01-31|SIAT1/SIAT1",
+	"А/Orenburg/70/2017|2017-02-07|SIAT1/SIAT1","А/Moscow/34/2017|2017-02-07|SIAT1/SIAT1","А/Orenburg/72/2017|2017-02-13|SIAT1/SIAT1","A/Paris/1023/2017|2017-02-16|MDCK1/SIAT1","A/Linkoping/1/2017|2017-02-17|MDCK2/SIAT2","А/Moscow/41/2017|2017-02-18|SIAT1/SIAT1","A/Basse Normandie/1055/2017|2017-02-20|MDCK1/SIAT1","A/Bosnia and Herzegovina/119/2017|2017-02-24|SIAT2","А/Moscow/47/2017|2017-02-25|SIAT1/SIAT1","A/Paris/1145/2017|2017-03-06|MDCK1/SIAT1",
+	"A/Dijon/1176/2017|2017-03-14|MDCK1/SIAT1","A/Niedersachsen/186/2017|2017-03-21|C2/SIAT2","A/St Petersburg/320/2017|2017-03-21|MDCK2/SIAT2","A/Hong Kong/2267/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2277/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2274/2017|2017-05-20|Cx/SIAT1","A/Hong Kong/2273/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2279/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2284/2017|2017-05-23|Cx/SIAT1",
+	"A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2291/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2293/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1","A/Hong Kong/3160/2017|2017-07-04|Cx/SIAT1","A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1")
+
+agFill(map47)[ag_Sep2018_table8_5] <- '#ea5545'
+agFill(map47)[ag_Feb2018_table8_9] <- '#ef9b20'
+agFill(map47)[ag_Sep2017_table8_16] <- '#ede15b'
+p_map47 <- ggplot(map47) + ggtitle('map 47')
+p_map47
+
+
+#################### MAP 48 ####################
+#### colered by tables
+agSize(map48) <- 5
+agFill(map48) <- 'grey50'
+ag_Feb2020_table7_11 <- agNames(map48) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2","A/South-Australia/34/2019|2019-02-06|E6/E1","A/Norway/2279/2019|2019-09-25|E4","A/Hong Kong/2671/2019|2019-06-17|E8/E1","A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5","A/England/538/2018|2018-02-26|MDCK1/SIAT4","NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1","A/Kansas/14/2017|2017-12-14|SIAT3/SIAT2","A/Portugal/6/2019|2019-10-22|SIAT1/SIAT1","A/Ireland/95061/2019|2019-11-25|SIAT1",
+	"A/England/195160658/2019|2019-12-10|SIAT1/SIAT1","A/Bayern/115/2019|2019-12-16|C1/SIAT1","A/Portugal/16/2019|2019-12-16|SIAT1/SIAT1","A/England/195200780/2019|2019-12-23|SIAT1/SIAT1","A/Athens.GR/25/2020|2020-01-07|MDCK1/SIAT1","A/Saarland/25/2019|2019-12-16|C2/SIAT1","A/Kyrgzstan/292/2019|2019-12-18|SIAT1","A/Kyrgzstan/291/2019|2019-12-18|SIAT1","A/Kyrgzstan/205/2019|2019-12-18|SIAT1","A/Kyrgzstan/177/2019|2019-12-18|SIAT1",
+	"A/Kyrgzstan/308/2019|2019-12-19|SIAT1","A/Kyrgzstan/118/2019|2019-12-19|SIAT1","A/Ireland/93664/2019|2019-11-22|SIAT3","A/Ireland/95068/2019|2019-11-25|SIAT1","A/England/670/2019|2019-12-09|SIAT1/SIAT1","A/England/652/2019|2019-12-09|SIAT1/SIAT1","A/Hessen/72/2019|2019-12-10|C1/SIAT1","A/Austria/1207674/2019|2019-12-12|SIATx/SIAT1","A/Austria/1208858/2019|2019-12-16|SIATx/SIAT1","A/Austria/1208486/2019|2019-12-16|SIATx/SIAT1",
+	"A/Berlin/62/2019|2019-12-16|C1/SIAT1","A/Austria/1209023/2019|2019-12-17|SIATx/SIAT1","A/Austria/1208875/2019|2019-12-17|SIATx/SIAT1","A/Austria/1209271/2019|2019-12-18|SIATx/SIAT1","A/Austria/1209022/2019|2019-12-18|SIATx/SIAT1","A/Lyon/2358/2019|2019-12-20|MDCK2/SIAT1","A/Netherlands/10282/2019|2019-12-24|MDCK-MIX2/SIAT1","A/Lisboa/118/2019|2019-12-25|SIAT1/SIAT1","A/Netherlands/10286/2019|2019-12-30|MDCK-MIX2/SIAT1","A/Berlin/1/2020|2020-01-03|C1/SIAT1",
+	"A/Bulgaria/021/2020|2020-01-06|SIAT1","A/Thuringen/3/2020|2020-01-06|C1/SIAT1","A/Berlin/2/2020|2020-01-09|C1/SIAT1","A/Bulgaria/062/2020|2020-01-10|SIAT1","A/Bulgaria/061/2020|2020-01-10|SIAT1","A/Bulgaria/090/2020|2020-01-13|SIAT1","A/Greece/60/2020|2020-01-13|SIAT1","A/Estonia/125785/2020|2020-01-13|SIAT1/SIAT1","A/Athens.GR/79/2020|2020-01-14|MDCK1/SIAT1","A/Athens.GR/128/2020|2020-01-16|Cx/SIAT1")
+ag_Sep2019_table8_3 <- agNames(map48) %in% c("A/England/538/2018|2018-02-26|MDCK1/SIAT3","A/Netherlands/10260/2018|2018-02-15|E5/E1","A/Oman/5362/2018|2018-10-24|SIAT1","A/Guangxi-Babu/1913/2018|2018-10-29|MDCK2/SIAT1/SIAT1","A/Oman/5838/2018|2018-11-07|SIAT2","A/Oman/5804/2018|2018-11-07|SIAT2","A/Oman/6018/2018|2018-11-13|SIAT1","A/Oman/6106/2018|2018-11-15|SIAT1","A/Kharkiv/446/2018|2018-11-23|SIAT2/SIAT1","A/Kharkiv/444/2018|2018-11-23|SIAT2/SIAT1",
+	"A/Kyiv/463/2018|2018-11-30|SIAT1/SIAT1","A/Khmelnytskyi/544/2018|2018-12-06|SIAT2/SIAT1","A/Khmelnytskyi/545/2018|2018-12-08|SIAT2/SIAT1","A/Kyiv/487/2018|2018-12-10|SIAT1/SIAT1","A/Kyiv/491/2018|2018-12-13|SIAT2/SIAT1","A/Kyiv/493/2018|2018-12-14|SIAT1/SIAT1","A/Khmelnytskyi/547/2018|2018-12-16|SIAT2/SIAT1","A/Kyiv/510/2018|2018-12-17|SIAT2/SIAT1","A/Luxembourg/341/2019|2019-01-03|SIAT1","A/Luxembourg/1177/2019|2019-01-06|SIAT1",
+	"A/Luxembourg/2293/2019|2019-01-14|SIAT1","A/Macedonia/723/2019|2019-01-28|SIAT1","A/Beijing-Chaoyang/12841/2018|2018-11-26|MDCK1/SIAT1/SIAT1")
+ag_Feb2019_table8_9 <- agNames(map48) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Hong Kong/656/2018|2018-04-07|MDCK1/SIAT3', 'A/Trollhattan/3/2018|2018-12-01|MDCK0/SIAT1', 'A/Paris/2671/2018|2018-12-17|MDCK1/SIAT1', 'A/Bretagne/026/2019|2019-01-02|MDCK1/SIAT1', 'A/Paris/029/2019|2019-01-03|MDCK1/SIAT1')
+ag_Feb2018_table8_9 <- agNames(map48) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3', 'A/Croatia/3608/2017|2017-12-12|MDCKx/SIAT2', 'A/Toulon/2533/2017|2017-12-18|MDCK2/SIAT2', 'A/Novosibirsk/265/2017|2017-12-24|MDCK1/SIAT1', 'A/Iceland/136/2017|2017-12-27|MDCK1/SIAT1', 'A/Iceland/03/2018|2018-01-02|MDCK1/SIAT1', 'A/Ankara/22/2018|2018-01-03|SIAT1/SIAT1', 'A/Iceland/08/2018|2018-01-04|MDCK1/SIAT1')
+ag_Feb2017_table8_5 <- agNames(map48) %in% c("A/Texas/50/2012|2012-04-15|E5/E2","A/Samara/73/2013|2013-03-12|C1/SIAT2","A/Stockholm/6/2014|2014-02-06|E4/E1","A/Switzerland/9715293/2013|2013-12-06|E4/E1","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT3","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT5","A/Stockholm/41/2016|2016-11-10|MDCK1/SIAT1","A/Stockholm/46/2016|2016-11-16|MDCK1/SIAT1",
+	"A/Netherlands/3356/2016|2016-11-24|SIAT2/MDCK1/SIAT1","A/Kyrgyzstan/21/2016|2016-11-29|MDCKx/SIAT1","A/St Petersburg/334/2016|2016-12-02|MDCK1/SIAT2","A/Stockholm/52/2016|2016-12-02|MDCK0/SIAT1","A/Linkoping/5/2016|2016-12-03|MDCK1/SIAT1","A/Khabarovsk/1/2016|2016-12-06|MDCK2/SIAT2","A/Netherlands/3455/2016|2016-12-10|SIAT2/MDCK1/SIAT1","A/Hungary/192/2016|2016-12-14|MDCK2/SIAT1","A/Netherlands/3768/2016|2016-12-20|SIAT2/MDCK1/SIAT1")
+ag_Sep2017_table21 <- agNames(map48) %in% c("A/Hong_Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Hong_Kong/4801/2014|2014-02-26|MDCK4/MDCK3","A/Hong_Kong/4801/2014|2014-02-26|E6/E2","A/Norway/3806/2016|2016-06-13|E9","NIB-103_(A/Norway/3806/2016)|2016-06-13|Ex","A/Antananarivo/1067/2016|2016-04-05|E5/E1","A/South_Australia/54/2016|2016-07-12|E4/E1","A/Singapore/TT1374/2016|2016-12-01|E6/E1","A/Guizhou-Qingzhen/1968/2016|2016-12-06|C2/SIAT2/SIAT1","A/Singapore/GP2646/2016|2016-12-08|E6/E1",
+	"A/Brisbane/321/2016|2016-12-19|E6/E1","A/Bosnia_&_Herzegovina/18294/2017|2017-02-01|SIAT1","A/Sydney/52/2017|2017-03-06|E5/E1","A/Brisbane/29/2017|2017-03-08|E4/E1","A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1","A/Shanghai-Pudongxin/1987/2017|2017-06-13|C2/SIAT1/SIAT1","A/Ghana/1841/2017|2017-06-24|SIAT1","A/Ghana/1797/2017|2017-06-27|MDCK1","A/Ghana/1782/2017|2017-06-28|SIAT1","A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1",
+	"A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1","A/Hong_Kong/3861/2017|2017-07-14|Cx/SIAT1","A/Hong_Kong/3819/2017|2017-07-15|Cx/SIAT1","A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3946/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1","A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1","A/Hong_Kong/3824/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3854/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3860/2017|2017-07-21|Cx/SIAT1",
+	"A/Hong_Kong/3928/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4103/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4082/2017|2017-07-22|Cx/SIAT1","A/Hong_Kong/3855/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/4104/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3853/2017|2017-07-24|Cx/SIAT1","A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1","A/Hong_Kong/4108/2017|2017-07-25|Cx/SIAT1","A/Hong_Kong/3978/2017|2017-07-28|Cx/SIAT1",
+	"A/Hong_Kong/4018/2017|2017-07-28|Cx/SIAT1","A/Hong_Kong/4212/2017|2017-07-31|Cx/SIAT1")
+ag_Sep2017_table8_16 <- agNames(map48) %in% c("A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1","A/Norway/4849/2016|2016-12-02|E7","A/Greece/4/2017|2017-01-02|E9","A/Norway/3806/2016|2016-06-13|E7/E8","A/Serbia/7921/2017|2016-12-09|C3/SIAT1","A/Serbia/7997/2017|2016-12-12|C3/SIAT1","A/Serbia/8255/2017|2016-12-16|C3/SIAT1","A/Serbia/8283/2017|2016-12-21|C3/SIAT1","A/Serbia/8374/2017|2016-12-21|C3/SIAT1","A/Serbia/8352/2017|2016-12-22|C3/SIAT1",
+	"A/Serbia/8375/2017|2016-12-22|C3/SIAT1","A/Serbia/8411/2017|2016-12-26|C3/SIAT1","A/Serbia/8499/2017|2016-12-27|C2/SIAT1","A/Stockholm/60/2016|2016-12-28|MDCK1/SIAT2","A/Serbia/8501/2017|2016-12-28|C3/SIAT1","A/Serbia/8554/2017|2016-12-30|C1/SIAT1","A/Ukraine/7647/2017|2017-01-04|C1/SIAT2","A/Thuringen/165/2017|2017-01-13|C1/SIAT2","A/Stockholm/11/2017|2017-01-14|MDCK0/SIAT2","A/England/19/2017|2017-01-31|SIAT1/SIAT1",
+	"А/Orenburg/70/2017|2017-02-07|SIAT1/SIAT1","А/Moscow/34/2017|2017-02-07|SIAT1/SIAT1","А/Orenburg/72/2017|2017-02-13|SIAT1/SIAT1","A/Paris/1023/2017|2017-02-16|MDCK1/SIAT1","A/Linkoping/1/2017|2017-02-17|MDCK2/SIAT2","А/Moscow/41/2017|2017-02-18|SIAT1/SIAT1","A/Basse Normandie/1055/2017|2017-02-20|MDCK1/SIAT1","A/Bosnia and Herzegovina/119/2017|2017-02-24|SIAT2","А/Moscow/47/2017|2017-02-25|SIAT1/SIAT1","A/Paris/1145/2017|2017-03-06|MDCK1/SIAT1",
+	"A/Dijon/1176/2017|2017-03-14|MDCK1/SIAT1","A/Niedersachsen/186/2017|2017-03-21|C2/SIAT2","A/St Petersburg/320/2017|2017-03-21|MDCK2/SIAT2","A/Hong Kong/2267/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2277/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2274/2017|2017-05-20|Cx/SIAT1","A/Hong Kong/2273/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2279/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2284/2017|2017-05-23|Cx/SIAT1",
+	"A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2291/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2293/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1","A/Hong Kong/3160/2017|2017-07-04|Cx/SIAT1","A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1")
+
+agFill(map48)[ag_Feb2020_table7_11] <- '#ea5545'
+agFill(map48)[ag_Sep2019_table8_3] <- '#ef9b20'
+agFill(map48)[ag_Feb2019_table8_9] <- '#ede15b'
+agFill(map48)[ag_Feb2018_table8_9] <- '#87bc45'
+agFill(map48)[ag_Feb2017_table8_5] <- '#27aeef'
+agFill(map48)[ag_Sep2017_table21] <- '#b33dc6'
+agFill(map48)[ag_Sep2017_table8_16] <- '#4e00ff'
+p_map48 <- ggplot(map48) + ggtitle('map 48')
+p_map48
+
+
+#################### MAP 49 ####################
+#### colered by tables
+agSize(map49) <- 5
+agFill(map49) <- 'grey50'
+ag_Feb2021_table7_2 <- agNames(map49) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4","A/Hong Kong/45/2019|2018-12-24|SIAT5","A/Hong Kong/703/2020|2020-03-07|MDCK1/SIAT1","A/Hong Kong/709/2020|2020-03-15|MDCK1/SIAT1","A/Tunisia/3442/2020|2020-03-06|SIAT1","A/Tunisia/3085/2020|2020-03-04|SIAT1","A/Tunisia/3666/2020|2020-03-11|SIAT5","A/Hong Kong/711/2020|2020-03-20|MDCK1/SIAT1",
+	"A/Hong Kong/701/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1","A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/705/2020|2020-03-12|MDCK1/SIAT1","A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Cambodia/925256/2020|2020-09-25|SIAT1")
+ag_Sep2019_table8_1 <- agNames(map49) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Netherlands/10260/2018|2018-02-15|E5/E1","A/Abu Dhabi/240/2018|2018-01-01|E6/E1","A/Parma/177/2018|2018-11-20|SIAT2/SIAT2","A/Parma/180/2018|2018-11-21|SIAT1/SIAT2","A/Parma/179/2018|2018-11-22|SIAT1/SIAT1","A/Parma/174/2018|2018-11-22|SIAT1/SIAT1","A/England/630/2018|2018-11-23|SIAT1/SIAT1","A/Hong Kong/2946/2018|2018-11-27|MDCK1/SIAT1",
+	"A/England/646/2018|2018-11-28|SIAT2/SIAT1","A/Constanta/239165/2018|2018-12-07|SIAT1/SIAT2","A/England/754/2018|2018-12-13|MDCK1/SIAT1","A/Centre/013/2019|2019-01-02|SIAT1","A/Pays de Loire/040/2019|2019-01-04|SIAT1","A/Nord Pas de Calais/054/2019|2019-01-07|SIAT1","A/England/3/2019|2019-01-07|MDCK1/SIAT1","A/Paris/105/2019|2019-01-08|SIAT1","A/Iasi/239836/2019|2019-01-09|SIAT1","A/Palermo/327/2018|2018-11-28|SIAT3/SIAT1",
+	"A/Ghana/758/2018|2018-10-29|SIAT1","A/Nord Pas de Calais/2726/2018|2018-12-26|SIAT1","A/Bourgogne/074/2019|2019-01-02|SIAT1","A/Haute Normandie/085/2019|2019-01-07|SIAT1")
+ag_Sep2020_table7_2 <- agNames(map49) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2","A/South Australia/34/2019|2019-02-06|E6/E1","A/Hong Kong/2671/2019|2019-06-17|E8/E1","A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5","A/Catalonia/11962S/2019|2019-11-27|P0/SIAT1","A/Czech Republic/1633/2019|2019-11-19|P3/SIAT1","A/Catalonia/11960S/2019|2019-11-27|P0/SIAT1","A/Czech Republic/1670/2019|2019-11-28|P3/SIAT1","A/Lithuania/MB41285/2019|2019-12-09|SIAT2/SIAT1","A/Lithuania/MB40700/2019|2019-12-09|SIAT2/SIAT1",
+	"A/Lithuania/MB41882/2019|2019-12-18|SIAT1/SIAT1","A/Mauritius/I-34/2020|2020-01-05|MDCK1/SIAT1","A/Mauritius/I-2000/2019|2019-07-18|MDCK2/SIAT1","A/Mauritius/I-3006/2019|2019-11-21|MDCK1/SIAT1","A/Friuli Venezia Giulia/233/2019|2019-11-28|SIAT2/SIAT1","A/Mauritius/I-19/2020|2020-01-02|MDCK1/SIAT1","A/Lithuania/MB41185/2019|2019-12-11|SIAT1/SIAT1","A/Lithuania/MB41235/2019|2019-12-13|SIAT2/SIAT1")
+ag_Sep2019_table8_18 <- agNames(map49) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT5","A/England/fmhwY2NxZm9pZg/2018|2018-12-19|SIAT3/SIAT1","A/England/138/2019|2019-01-28|SIAT3/SIAT1","A/Bosnia and Herzegovia/119G/2019|2019-01-17|SIAT1/SIAT1","A/England/93/2019|2019-01-31|MDCK2/SIAT1/SIAT1","A/England/95/2019|2019-02-04|SIAT3/SIAT1","A/Sydney/53/2019|2019-03-08|E3/E1","A/New Caledonia/59/2019|2019-04-02|E3/E1","A/St. Petersburg/1092V/2019|2019-05-05|MDCK1/SIAT1",
+	"A/England/99/2019|2019-02-07|MDCK2/SIAT1/SIAT1","A/England/102/2019|2019-02-12|SIAT2/SIAT1","A/Sakha/3014V/2019|2019-04-16|MDCK1/SIAT1","A/Tomsk/5645V/2019|2019-04-20|MDCK1/SIAT1","A/Omsk/1008V/2019|2019-04-23|MDCK1/SIAT1","A/England/eWlsYW9mYWxlaQ/2019|2019-02-08|MDCK1/SIAT1/SIAT1","A/England/154/2019|2019-02-07|SIAT2/SIAT1","A/England/185/2019|2019-02-08|SIAT2/SIAT1","A/England/155/2019|2019-02-08|SIAT2/SIAT1","A/England/157/2019|2019-02-25|SIAT2/SIAT1",
+	"A/England/156/2019|2019-02-26|SIAT2/SIAT1","A/England/222/2019|2019-02-20|SIAT1/SIAT1")
+
+agFill(map49)[ag_Feb2021_table7_2] <- '#ea5545'
+agFill(map49)[ag_Sep2019_table8_1] <- '#ef9b20'
+agFill(map49)[ag_Sep2020_table7_2] <- '#ede15b'
+agFill(map49)[ag_Sep2019_table8_18] <- '#87bc45'
+p_map49 <- ggplot(map49) + ggtitle('map 49')
+p_map49
+
+
+#################### MAP 50 ####################
+#### colered by tables
+agSize(map50) <- 5
+agFill(map50) <- 'grey50'
+ag_Feb2021_table7_2 <- agNames(map50) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4","A/Hong Kong/45/2019|2018-12-24|SIAT5","A/Hong Kong/703/2020|2020-03-07|MDCK1/SIAT1","A/Hong Kong/709/2020|2020-03-15|MDCK1/SIAT1","A/Tunisia/3442/2020|2020-03-06|SIAT1","A/Tunisia/3085/2020|2020-03-04|SIAT1","A/Tunisia/3666/2020|2020-03-11|SIAT5",
+	"A/Hong Kong/711/2020|2020-03-20|MDCK1/SIAT1","A/Hong Kong/701/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1","A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/705/2020|2020-03-12|MDCK1/SIAT1","A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Cambodia/925256/2020|2020-09-25|SIAT1")
+ag_Sep2019_table8_14 <- agNames(map50) %in% c("A/Norway/3275/2018|2018-10-04|E6(Am3Al3)","A/Mauritania/200-2018/2018|2018-11-05|SIAT1","A/Mauritania/08-2019/2019|2019-01-02|SIAT1","A/Mauritania/09-2019/2019|2019-01-03|SIAT1","A/Mauritania/15-2019/2019|2019-01-07|SIAT1","A/Mauritania/10-2019/2019|2019-01-08|SIAT1","A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1","A/West Kazakhstan/461/2019|2019-02-27|MDCKx/SIAT1","A/West Kazakhstan/462/2019|2019-03-01|MDCKx/SIAT1","A/West Kazakhstan/463/2019|2019-03-05|MDCKx/SIAT1",
+	"A/Finland/105/2019|2019-04-09|SIAT1/SIAT1","A/North Kazakhstan/363/2019|2019-02-13|MDCKx/SIAT1","A/Finland/92/2019|2019-03-06|SIAT1/SIAT1","A/Georgia/658/2019|2019-03-13|SIAT2","A/Finland/99/2019|2019-03-26|SIAT1/SIAT1","A/Finland/104/2019|2019-04-03|SIAT1/SIAT1","A/Finland/114/2019|2019-04-30|SIAT1/SIAT1")
+ag_Sep2020_table7_1 <- agNames(map50) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2","A/South Australia/34/2019|2019-02-06|E6/E1","A/Hong Kong/2671/2019|2019-06-17|E8/E1","A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5","A/Netherlands/01624/2019|2019-11-27|hCK1/SIAT1","A/Netherlands/10267/2019|2019-12-02|MDCK-MIX2/SIAT1","A/Netherlands/01672/2019|2019-12-04|hCK1/SIAT1","A/Netherlands/10268/2019|2019-12-10|MDCK-MIX3/SIAT1","A/Netherlands/10273/2019|2019-12-16|MDCK-MIX2/SIAT1","A/Netherlands/10279/2019|2019-12-20|MDCK-MIX2/SIAT1",
+	"A/Lithuania/MB42123/2019|2019-12-20|SIAT1/SIAT1")
+ag_Feb2019_table8_11 <- agNames(map50) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Netherlands/10260/2018|2018-02-15|E5","A/Switzerland/293/2018|2018-11-01|MDCK1/SIAT3","A/Nizhny Novgorod/14645V/2018|2018-11-20|MDCK1/SIAT2","A/Hungary/5/2019|2018-12-19|Cx/SIAT1","A/Hungary/28/2019|2019-01-03|Cx/SIAT1","A/Hungary/26/2019|2019-01-07|Cx/SIAT1","A/Netherlands/10002/2019|2019-01-07|MDCK-MIX2/SIAT1","A/Armenia/91/2019|2019-01-14|SIAT1",
+	"A/Neth/10006/2019|2019-01-14|MDCK-MIX2/SIAT1","A/Albania/9142/2019|2019-01-19|SIAT1")
+
+agFill(map50)[ag_Feb2021_table7_2] <- '#ea5545'
+agFill(map50)[ag_Sep2019_table8_14] <- '#ef9b20'
+agFill(map50)[ag_Sep2020_table7_1] <- '#ede15b'
+agFill(map50)[ag_Feb2019_table8_11] <- '#87bc45'
+p_map50 <- ggplot(map50) + ggtitle('map 50')
+p_map50
+
+
+#################### MAP 51 ####################
+#### colered by tables
+agSize(map51) <- 5
+agFill(map51) <- 'grey50'
+ag_Sep2020_table7_7 <- agNames(map51) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2","A/South Australia/34/2019|2019-02-06|E6/E1","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4","A/England/538/2018|2018-02-26|MDCK1/SIAT4","A/Finland/171/2020|2020-01-02|SIAT1/SIAT1","A/Finland/180/2020|2020-01-14|SIAT1/SIAT1","A/Finland/181/2020|2020-02-01|SIAT1/SIAT1","A/Denmark/1090/2020|2020-02-13|SIAT2/SIAT1","A/Denmark/1138/2020|2020-02-18|SIAT2/SIAT1",
+	"A/Finland/183/2020|2020-03-02|SIAT1/SIAT1","A/Finland/184/2020|2020-03-16|SIAT1/SIAT1","A/Denmark/1262/2020|2020-02-17|SIAT3/SIAT1","A/Kyrgyzstan Bishkek/65/2020|2020-02-02|MDCKx/SIAT1","A/Kyrgyzstan Bishkek/63/2020|2020-02-03|MDCKx/SIAT1","A/Denmark/1295/2020|2020-02-18|SIAT3/SIAT1")
+ag_Sep2019_table8_19 <- agNames(map51) %in% c("A/Christchurch/515/2019|2019-04-03|E3/E1","A/Hong Kong/674/2018|2018-04-10|E6","A/Ghana/1041/2019|2019-01-04|Cx/SIAT1","A/Dakar/02/2019|2019-01-21|C1/SIAT2","A/Dakar/01/2019|2019-01-21|C1/SIAT2","A/Dakar/03/2019|2019-01-29|C1/SIAT2","A/Armenia/501/2019|2019-02-07|SIAT2","A/Armenia/941/2019|2019-05-21|SIAT2","A/Oman/4262/2019|2019-06-25|SIAT1/SIAT1","A/Bosnia and Herzegovina/84219/2019|2019-04-09|SIAT1",
+	"A/Bosnia and Herzegovina/87911/2019|2019-04-11|SIAT1","A/Oman/4518/2019|2019-07-18|SIAT1","A/Garoua/19V-1937/2019|2019-03-22|CS","A/Ireland/22716/2019|2019-02-26|SIAT1","A/Oman/4471/2019|2019-07-11|SIAT1","A/Ireland/23414/2019|2019-02-26|SIAT1/SIAT1","A/Ireland/26826/2019|2019-03-13|SIAT3/SAIT1","A/Ireland/26207/2019|2019-03-13|SIAT1/SIAT1","A/Ireland/28223/2019|2019-03-19|SIAT2/SIAT1","A/Ireland/28663/2019|2019-03-20|SIAT2/SIAT1",
+	"A/Dakar/11/2019|2019-03-21|C1/SIAT1","A/Ireland/29431/2019|2019-03-21|SIAT2/SIAT1","A/Ireland/30256/2019|2019-03-26|SIAT3/SIAT3","A/Dakar/13/2019|2019-03-27|C1/SIAT1","A/Dakar/12/2019|2019-03-27|C1/SIAT2","A/Ireland/32103/2019|2019-04-02|SIAT3/SIAT1","A/Ghana/1050/2019|2019-04-04|Cx/SIAT1","A/Ghana/154/2019|2019-04-04|Cx/SIAT1","A/Dakar/08/2019|2019-04-23|C1/SIAT1","A/Norway/2032/2019|2019-05-14|SIAT1/SIAT1",
+	"A/Dakar/10/2019|2019-05-24|C1/SIAT1","A/Norway/2099/2019|2019-05-24|SIAT1/SIAT1","A/Ghana/312/2019|2019-06-06|SIAT3","A/Norway/2155/2019|2019-06-18|SIAT1/SIAT1","A/Norway/2224/2019|2019-07-31|SIAT1/SIAT1","A/Norway/2220/2019|2019-08-05|SIAT1/SIAT1")
+ag_Sep2019_table8_18 <- agNames(map51) %in% c("A/England/fmhwY2NxZm9pZg/2018|2018-12-19|SIAT3/SIAT1","A/England/138/2019|2019-01-28|SIAT3/SIAT1","A/Bosnia and Herzegovia/119G/2019|2019-01-17|SIAT1/SIAT1","A/England/93/2019|2019-01-31|MDCK2/SIAT1/SIAT1","A/England/95/2019|2019-02-04|SIAT3/SIAT1","A/Sydney/53/2019|2019-03-08|E3/E1","A/New Caledonia/59/2019|2019-04-02|E3/E1","A/St. Petersburg/1092V/2019|2019-05-05|MDCK1/SIAT1","A/England/99/2019|2019-02-07|MDCK2/SIAT1/SIAT1","A/England/102/2019|2019-02-12|SIAT2/SIAT1",
+	"A/Sakha/3014V/2019|2019-04-16|MDCK1/SIAT1","A/Tomsk/5645V/2019|2019-04-20|MDCK1/SIAT1","A/Omsk/1008V/2019|2019-04-23|MDCK1/SIAT1","A/England/eWlsYW9mYWxlaQ/2019|2019-02-08|MDCK1/SIAT1/SIAT1","A/England/154/2019|2019-02-07|SIAT2/SIAT1","A/England/185/2019|2019-02-08|SIAT2/SIAT1","A/England/155/2019|2019-02-08|SIAT2/SIAT1","A/England/157/2019|2019-02-25|SIAT2/SIAT1","A/England/156/2019|2019-02-26|SIAT2/SIAT1","A/England/222/2019|2019-02-20|SIAT1/SIAT1")
+ag_Sep2019_table8_16 <- agNames(map51) %in% c("A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/South Africa/R03804/2019|2019-04-12|MDCK1/SIAT1","A/South Africa/R03985/2019|2019-04-16|MDCK2/SIAT1","A/South Africa/R05118/2019|2019-05-13|MDCK2/SIAT1","A/South Africa/R05114/2019|2019-05-13|MDCK2/SIAT1","A/South Africa/R05652/2019|2019-05-21|MDCK2/SIAT1","A/South Africa/R05636/2019|2019-05-22|MDCK2/SIAT1","A/Iceland/12621/2019|2019-06-15|SIAT1","A/Hong Kong/2672/2019|2019-06-17|MDCK1/SIAT1","A/Hong Kong/2673/2019|2019-06-18|MDCK1/SIAT1",
+	"A/Jordan/30076/2019|2019-03-02|SIAT2","A/Iceland/4/2019|2019-03-04|MDCK1/SIAT1","A/South Africa/R05176/2019|2019-05-14|MDCK2/SIAT1","A/Iceland/71/2019|2019-05-19|MDCK1/SIAT1","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1","A/Hong Kong/2670/2019|2019-06-17|MDCK1/SIAT1","A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1","A/Hong Kong/2675/2019|2019-06-18|MDCK1/SIAT1","A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1","A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1",
+	"A/Iceland/59/2019|2019-04-15|MDCK1/SIAT1","A/Jordan/30121/2019|2019-04-17|SIAT1","A/South Africa/R05121/2019|2019-05-14|MDCK1/SIAT1","A/South Africa/R05619/2019|2019-05-20|MDCK2/SIAT1","A/South Africa/R06404/2019|2019-06-04|SV/SIAT1","A/South Africa/R06917/2019|2019-06-10|MDCK1/SIAT1","A/South Africa/R06867/2019|2019-06-10|MDCK1/SIAT1","A/Iceland/23/2019|2019-03-18|MDCK1/SIAT1")
+
+agFill(map51)[ag_Sep2020_table7_7] <- '#ea5545'
+agFill(map51)[ag_Sep2019_table8_19] <- '#ef9b20'
+agFill(map51)[ag_Sep2019_table8_18] <- '#ede15b'
+agFill(map51)[ag_Sep2019_table8_16] <- '#87bc45'
+p_map51 <- ggplot(map51) + ggtitle('map 51')
+p_map51
+
+
+#################### MAP 52 ####################
+#### colered by tables
+agSize(map52) <- 5
+agFill(map52) <- 'grey50'
+ag_Feb2021_table7_2 <- agNames(map52) %in% c("A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E2","A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Hong Kong/45/2019|2018-12-24|SIAT5","A/England/538/2018|2018-02-26|MDCK1/SIAT4","A/Hong Kong/703/2020|2020-03-07|MDCK1/SIAT1","A/Hong Kong/709/2020|2020-03-15|MDCK1/SIAT1","A/Tunisia/3442/2020|2020-03-06|SIAT1","A/Tunisia/3085/2020|2020-03-04|SIAT1","A/Tunisia/3666/2020|2020-03-11|SIAT5",
+	"A/Hong Kong/711/2020|2020-03-20|MDCK1/SIAT1","A/Hong Kong/701/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1","A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/705/2020|2020-03-12|MDCK1/SIAT1","A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Cambodia/925256/2020|2020-09-25|SIAT1")
+ag_Sep2021_table7_4 <- agNames(map52) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/California/55/2020|2020-10-12|SIAT2', 'A/Cameroon/16996/2020|2020-12-15|SIAT3')
+ag_Feb2022_table9_1 <- agNames(map52) %in% c("A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Darwin/9/2021|2021-04-17|E3/E2","A/Stockholm/5/2021|2021-04-16|S0/S3","A/Michigan/173/2020|2020-11-19|SIAT2/SIAT1","A/Togo/771/2020|2020-10-16|SIAT4/SIAT1","A/Qatar/16-VI-21-3809350/2021|2021-08-03|SIAT2","A/Qatar/16-VI-21-3801619/2021|2021-08-03|SIAT1","A/Delaware/01/2021|2021-04-16|SIAT2/SIAT1","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Qatar/16-VI-21-3673175/2021|2021-07-27|SIAT0",
+	"A/Qatar/16-VI-21-3738537/2021|2021-07-30|SIAT2","A/Qatar/16-VI-21-3744895/2021|2021-07-31|SIAT1","A/Qatar/24-VI-21-3752470/2021|2021-08-01|SIAT1","A/Qatar/16-VI-21-3820344/2021|2021-08-02|SIAT1","A/Qatar/16-VI-21-3782139/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3778452/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3773931/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3798042/2021|2021-08-03|SIAT1","A/Qatar/10-VI-21-3813895/2021|2021-08-04|SIAT1","A/Qatar/10-VI-21-3843467/2021|2021-08-05|SIAT1",
+	"A/Qatar/24-VI-21-3868954/2021|2021-08-06|SIAT1","A/Qatar/10-VI-21-3886441/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-3912649/2021|2021-08-08|SIAT1","A/Qatar/10-VI-21-3904627/2021|2021-08-08|SIAT2","A/Qatar/24-VI-21-3942034/2021|2021-08-09|SIAT1","A/Qatar/24-VI-21-3929575/2021|2021-08-09|SIAT2","A/Qatar/47-VI-21-3971441/2021|2021-08-10|SIAT1","A/Qatar/47-VI-21-3968065/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3962572/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3950368/2021|2021-08-10|SIAT1",
+	"A/Qatar/47-VI-21-3995023/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3985321/2021|2021-08-11|SIAT2","A/Qatar/24-VI-21-3980766/2021|2021-08-11|SIAT2","A/Qatar/16-VI-21-3994833/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3994707/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3999123/2021|2021-08-12|SIAT1","A/Qatar/24-VI-21-4041206/2021|2021-08-13|SIAT1","A/Qatar/24-VI-21-4031255/2021|2021-08-13|SIAT2","A/Qatar/16-VI-21-4035811/2021|2021-08-13|SIAT1","A/Qatar/16-VI-21-4035218/2021|2021-08-13|SIAT1",
+	"A/Qatar/39-VI-21-4147440/2021|2021-08-17|SIAT1","A/Qatar/39-VI-21-4154225/2021|2021-08-17|SIAT1")
+
+agFill(map52)[ag_Feb2021_table7_2] <- '#ea5545'
+agFill(map52)[ag_Sep2021_table7_4] <- '#ef9b20'
+agFill(map52)[ag_Feb2022_table9_1] <- '#ede15b'
+p_map52 <- ggplot(map52) + ggtitle('map 52')
+p_map52
+
+
+#################### MAP 53 ####################
+#### colered by tables
+agSize(map53) <- 5
+agFill(map53) <- 'grey50'
+ag_Feb2021_table7_2 <- agNames(map53) %in% c("A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E2","A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/45/2019|2018-12-24|SIAT5","A/England/538/2018|2018-02-26|MDCK1/SIAT4","A/Hong Kong/703/2020|2020-03-07|MDCK1/SIAT1","A/Hong Kong/709/2020|2020-03-15|MDCK1/SIAT1","A/Tunisia/3442/2020|2020-03-06|SIAT1","A/Tunisia/3085/2020|2020-03-04|SIAT1","A/Tunisia/3666/2020|2020-03-11|SIAT5","A/Hong Kong/711/2020|2020-03-20|MDCK1/SIAT1",
+	"A/Hong Kong/701/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1","A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/705/2020|2020-03-12|MDCK1/SIAT1","A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Cambodia/925256/2020|2020-09-25|SIAT1")
+ag_Sep2021_table7_7 <- agNames(map53) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'A/Stockholm/2/2021|2021-01-23|SIAT0/SIAT1', 'A/Stockholm/3/2021|2021-02-19|SIAT0/SIAT1', 'A/Stockholm/4/2021|2021-03-11|SIAT0/SIAT1', 'A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT1', 'A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1')
+ag_Feb2022_table9_1 <- agNames(map53) %in% c("A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Darwin/9/2021|2021-04-17|E3/E2","A/Stockholm/5/2021|2021-04-16|S0/S3","A/Michigan/173/2020|2020-11-19|SIAT2/SIAT1","A/Togo/771/2020|2020-10-16|SIAT4/SIAT1","A/Qatar/16-VI-21-3809350/2021|2021-08-03|SIAT2","A/Qatar/16-VI-21-3801619/2021|2021-08-03|SIAT1","A/Delaware/01/2021|2021-04-16|SIAT2/SIAT1","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Qatar/16-VI-21-3673175/2021|2021-07-27|SIAT0",
+	"A/Qatar/16-VI-21-3738537/2021|2021-07-30|SIAT2","A/Qatar/16-VI-21-3744895/2021|2021-07-31|SIAT1","A/Qatar/24-VI-21-3752470/2021|2021-08-01|SIAT1","A/Qatar/16-VI-21-3820344/2021|2021-08-02|SIAT1","A/Qatar/16-VI-21-3782139/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3778452/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3773931/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3798042/2021|2021-08-03|SIAT1","A/Qatar/10-VI-21-3813895/2021|2021-08-04|SIAT1","A/Qatar/10-VI-21-3843467/2021|2021-08-05|SIAT1",
+	"A/Qatar/24-VI-21-3868954/2021|2021-08-06|SIAT1","A/Qatar/10-VI-21-3886441/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-3912649/2021|2021-08-08|SIAT1","A/Qatar/10-VI-21-3904627/2021|2021-08-08|SIAT2","A/Qatar/24-VI-21-3942034/2021|2021-08-09|SIAT1","A/Qatar/24-VI-21-3929575/2021|2021-08-09|SIAT2","A/Qatar/47-VI-21-3971441/2021|2021-08-10|SIAT1","A/Qatar/47-VI-21-3968065/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3962572/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3950368/2021|2021-08-10|SIAT1",
+	"A/Qatar/47-VI-21-3995023/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3985321/2021|2021-08-11|SIAT2","A/Qatar/24-VI-21-3980766/2021|2021-08-11|SIAT2","A/Qatar/16-VI-21-3994833/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3994707/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3999123/2021|2021-08-12|SIAT1","A/Qatar/24-VI-21-4041206/2021|2021-08-13|SIAT1","A/Qatar/24-VI-21-4031255/2021|2021-08-13|SIAT2","A/Qatar/16-VI-21-4035811/2021|2021-08-13|SIAT1","A/Qatar/16-VI-21-4035218/2021|2021-08-13|SIAT1",
+	"A/Qatar/39-VI-21-4147440/2021|2021-08-17|SIAT1","A/Qatar/39-VI-21-4154225/2021|2021-08-17|SIAT1")
+
+agFill(map53)[ag_Feb2021_table7_2] <- '#ea5545'
+agFill(map53)[ag_Sep2021_table7_7] <- '#ef9b20'
+agFill(map53)[ag_Feb2022_table9_1] <- '#ede15b'
+p_map53 <- ggplot(map53) + ggtitle('map 53')
+p_map53
+
+
+#################### MAP 54 ####################
+#### colered by tables
+agSize(map54) <- 5
+agFill(map54) <- 'grey50'
+ag_Feb2021_table7_2 <- agNames(map54) %in% c("A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E2","A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/45/2019|2018-12-24|SIAT5","A/England/538/2018|2018-02-26|MDCK1/SIAT4","A/Hong Kong/703/2020|2020-03-07|MDCK1/SIAT1","A/Hong Kong/709/2020|2020-03-15|MDCK1/SIAT1","A/Tunisia/3442/2020|2020-03-06|SIAT1","A/Tunisia/3085/2020|2020-03-04|SIAT1","A/Tunisia/3666/2020|2020-03-11|SIAT5","A/Hong Kong/711/2020|2020-03-20|MDCK1/SIAT1",
+	"A/Hong Kong/701/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1","A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/705/2020|2020-03-12|MDCK1/SIAT1","A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Cambodia/925256/2020|2020-09-25|SIAT1")
+ag_Sep2021_table7_7 <- agNames(map54) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT5', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'A/Stockholm/2/2021|2021-01-23|SIAT0/SIAT1', 'A/Stockholm/3/2021|2021-02-19|SIAT0/SIAT1', 'A/Stockholm/4/2021|2021-03-11|SIAT0/SIAT1', 'A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT1', 'A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1')
+ag_Sep2022_table10_6 <- agNames(map54) %in% c("A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT2","A/Darwin/9/2021|2021-04-17|E3/E2","A/Netherlands/10018/2021|*|MDCK-MIX2/SIAT1","A/Netherlands/10011/2021|2021-09-20|MDCK-MIX2/SIAT1","A/Netherlands/10012/2021|2021-09-30|MDCK-MIX1/SIAT1","A/Bremen/1/2021|2021-10-11|P1/SIAT2","A/Netherlands/10062/2021|2021-10-21|MDCK-MIX2/SIAT1","A/Netherlands/10057/2021|2021-10-22|MDCK-MIX2/SIAT2",
+	"A/Netherlands/10063/2021|2021-10-23|MDCK-MIX2/SIAT1","A/Berlin/2/2021|2021-10-25|P1/SIAT1","A/Schleswig-Holstein/1/2021|2021-11-15|P1/SIAT1","A/Berlin/3/2021|2021-11-16|P1/SIAT1","A/Hessen/1/2021|2021-11-22|P1/SIAT1","A/Baden-Wurttemberg/1/2021|2021-11-26|P1/SIAT1","A/Slovenia/19583/2021|2021-11-27|MDCKx/SIAT1","A/Kyiv/393/2021|2021-12-13|SIAT1","A/Rheinland-Pfalz/1/2021|2021-12-16|P1/SIAT1","A/Slovenia/679/2022|2021-12-30|MDCKx/SIAT1",
+	"A/Slovenia/1054/2022|2022-01-05|MDCKx/SIAT1","A/Eph Blida/97875/2021|2021-12-21|SIAT1","A/Slovenia/8821/2022|2022-02-02|SIAT1/SIAT1","A/Slovenia/8830/2022|2022-02-03|MDCK1/SIAT1","A/Slovenia/8828/2022|2022-02-03|SIAT1/SIAT1","A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT1","A/Slovenia/8723/2022|2022-02-11|MDCK1/SIAT1","A/Slovenia/8799/2022|2022-02-15|SIAT1/SIAT1","A/Slovenia/9091/2022|2022-02-22|MDCKx/SIAT1","A/Slovenia/9090/2022|2022-02-22|MDCKx/SIAT1",
+	"A/Slovenia/9146/2022|2022-02-23|SIAT1/SIAT1","A/Slovenia/9216/2022|2022-02-24|MDCKx/SIAT1","A/Slovenia/9318/2022|2022-03-02|SIATx/SIAT1","A/Slovenia/9356/2022|2022-03-03|SIATx/SIAT1","A/Slovenia/8965/2022|2022-02-21|MDCK1/SIAT3","A/Slovenia/9302/2022|2022-02-28|MDCKx/SIAT1")
+ag_Sep2022_table10_20 <- agNames(map54) %in% c("A/Cambodia/925256/2020|2020-09-25|SIAT5","A/Stockholm/5/2021|2021-04-16|S0/S3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Darwin/9/2021|2021-04-17|E3/E4","A/Saudi Arabia/22-28/2021|2021-11-04|SIAT1","A/Saudi Arabia/22-35/2021|2021-11-15|SIAT1","A/Saudi-Arabia/6/2021|2021-12-05|SIAT1","A/Saudi Arabia/22-21/2021|2021-12-05|SIAT1","A/Saudi Arabia/5/2021|2021-12-08|SIAT1","A/Saudi Arabia/22-23/2021|2021-12-13|SIAT1",
+	"A/Saudi Arabia/11/2021|2021-12-15|SIAT1","A/Saudi Arabia/18/2021|2021-12-20|SIAT1","A/Saudi Arabia/17/2021|2021-12-21|SIAT1","A/Slovenia/9449/2022|2022-03-08|SIATx/SIAT1","A/Slovenia/9450/2022|2022-03-08|MDCKx/SIAT1","A/Slovenia/9454/2022|2022-03-08|SIAT1/SIAT1","A/Slovenia/9456/2022|2022-03-08|SIATx/SIAT2","A/Slovenia/9448/2022|2022-03-09|MDCKx/SIAT1","A/Slovenia/9558/2022|2022-03-10|SIAT1/SIAT1","A/Slovenia/9565/2022|2022-03-11|SIAT1/SIAT1",
+	"A/Slovenia/9560/2022|2022-03-14|SIAT1/SIAT1","A/Slovenia/9599/2022|2022-03-15|MDCK1/SIAT1","A/Slovenia/9614/2022|2022-03-17|MDCKx/SIAT1","A/Slovenia/9623/2022|2022-03-17|MDCKx/SIAT1","A/Slovenia/9624/2022|2022-03-17|MDCKx/SIAT1","A/Slovenia/9626/2022|2022-03-17|SIATx/SIAT1","A/Slovenia/9633/2022|2022-03-21|MDCK1/SIAT1","A/Slovenia/9644/2022|2022-03-21|MDCKx/SIAT1","A/Slovenia/9641/2022|2022-03-22|MDCKx/SIAT2","A/Slovenia/9670/2022|2022-03-22|MDCKx/SIAT1",
+	"A/Slovenia/9659/2022|2022-03-23|SIAT1/SIAT1","A/Slovenia/9668/2022|2022-03-23|SIATx/SIAT1","A/Slovenia/9706/2022|2022-03-23|SIATx/SIAT2","A/Slovenia/9707/2022|2022-03-23|MDCKx/SIAT1","A/Slovenia/9671/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9676/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9705/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9708/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9726/2022|2022-03-25|SIATx/SIAT2","A/Slovenia/9728/2022|2022-03-25|MDCKx/SIAT1",
+	"A/Slovenia/9736/2022|2022-03-28|SIATx/SIAT2","A/Slovenia/9737/2022|2022-03-28|MDCKx/SIAT1","A/Slovenia/9739/2022|2022-03-29|SIAT1/SIAT1","A/Spain/1127/2022|2022-05-03|SIAT1","A/Spain/1097/2022|2022-05-03|SIAT1","A/Spain/1126/2022|2022-05-04|SIAT1","A/Spain/1105/2022|2022-05-04|SIAT1","A/Spain/1100/2022|2022-05-04|SIAT1","A/Spain/1099/2022|2022-05-04|SIAT1","A/Spain/1098/2022|2022-05-04|SIAT1",
+	"A/Spain/1091/2022|2022-05-04|SIAT1","A/Spain/1109/2022|2022-05-05|SIAT1","A/Spain/1108/2022|2022-05-05|SIAT1","A/Slovenia/9362/2022|2022-03-04|MDCK1/SIAT1","A/Slovenia/9528/2022|2022-03-08|SIATx/SIAT1","A/Slovenia/9562/2022|2022-03-14|SIAT1/SIAT1","A/Slovenia/9579/2022|2022-03-15|SIAT1/SIAT1","A/Slovenia/9675/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9740/2022|2022-03-29|SIATx/SIAT1","A/Spain/1059/2022|2022-04-22|SIAT1")
+
+agFill(map54)[ag_Feb2021_table7_2] <- '#ea5545'
+agFill(map54)[ag_Sep2021_table7_7] <- '#ef9b20'
+agFill(map54)[ag_Sep2022_table10_6] <- '#ede15b'
+agFill(map54)[ag_Sep2022_table10_20] <- '#87bc45'
+p_map54 <- ggplot(map54) + ggtitle('map 54')
+p_map54
+
+
+#################### MAP 55 ####################
+#### colered by tables
+agSize(map55) <- 5
+agFill(map55) <- 'grey50'
+ag_Feb2021_table7_2 <- agNames(map55) %in% c("A/Hong Kong/45/2019|2018-12-24|SIAT5","A/England/538/2018|2018-02-26|MDCK1/SIAT4","A/Hong Kong/703/2020|2020-03-07|MDCK1/SIAT1","A/Hong Kong/709/2020|2020-03-15|MDCK1/SIAT1","A/Tunisia/3442/2020|2020-03-06|SIAT1","A/Tunisia/3085/2020|2020-03-04|SIAT1","A/Tunisia/3666/2020|2020-03-11|SIAT5","A/Hong Kong/711/2020|2020-03-20|MDCK1/SIAT1","A/Hong Kong/701/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1",
+	"A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/705/2020|2020-03-12|MDCK1/SIAT1","A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Cambodia/925256/2020|2020-09-25|SIAT1")
+ag_Sep2021_table7_7 <- agNames(map55) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT5', 'A/Stockholm/2/2021|2021-01-23|SIAT0/SIAT1', 'A/Stockholm/3/2021|2021-02-19|SIAT0/SIAT1', 'A/Stockholm/4/2021|2021-03-11|SIAT0/SIAT1', 'A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT1', 'A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1')
+ag_Sep2021_table7_1 <- agNames(map55) %in% c("A/Hong Kong/2671/2019|2019-06-17|E8/E3","A/Finland/183/2020|2020-03-02|MDCK1/SIAT2","A/Finland/183/2020|2020-03-02|E6","A/Tasmania/503/2020|2020-02-16|E5/E1","A/Tasmania/503/2020|2020-02-16|E5/E2","IVR-122 (A/Tasmania/503/2020)|2020-02-16|E5/D6/E1","A/Cambodia/925256/2020|2020-03-02|SIAT3","A/Cambodia/e0826360/2020|2020-07-18|E5/E1","A/Saitama/92/2020|2020-03-04|MDCK1/Hck2/SIAT1","A/Bangladesh/1006/2020|2020-08-26|S3/SIAT1",
+	"A/Dakar/10B/2020|2020-10-16|C1/MDCK3","A/Dakar/03/2020|2020-10-18|C1/SIAT1","A/Dakar/02/2020|2020-10-21|C1/SIAT1","A/Dakar/01/2020|2020-11-02|C1/SIAT1")
+ag_Sep2022_table10_6 <- agNames(map55) %in% c("A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT2","A/Darwin/9/2021|2021-04-17|E3/E2","A/Netherlands/10018/2021|*|MDCK-MIX2/SIAT1","A/Netherlands/10011/2021|2021-09-20|MDCK-MIX2/SIAT1","A/Netherlands/10012/2021|2021-09-30|MDCK-MIX1/SIAT1","A/Bremen/1/2021|2021-10-11|P1/SIAT2","A/Netherlands/10062/2021|2021-10-21|MDCK-MIX2/SIAT1","A/Netherlands/10057/2021|2021-10-22|MDCK-MIX2/SIAT2",
+	"A/Netherlands/10063/2021|2021-10-23|MDCK-MIX2/SIAT1","A/Berlin/2/2021|2021-10-25|P1/SIAT1","A/Schleswig-Holstein/1/2021|2021-11-15|P1/SIAT1","A/Berlin/3/2021|2021-11-16|P1/SIAT1","A/Hessen/1/2021|2021-11-22|P1/SIAT1","A/Baden-Wurttemberg/1/2021|2021-11-26|P1/SIAT1","A/Slovenia/19583/2021|2021-11-27|MDCKx/SIAT1","A/Kyiv/393/2021|2021-12-13|SIAT1","A/Rheinland-Pfalz/1/2021|2021-12-16|P1/SIAT1","A/Slovenia/679/2022|2021-12-30|MDCKx/SIAT1",
+	"A/Slovenia/1054/2022|2022-01-05|MDCKx/SIAT1","A/Eph Blida/97875/2021|2021-12-21|SIAT1","A/Slovenia/8821/2022|2022-02-02|SIAT1/SIAT1","A/Slovenia/8830/2022|2022-02-03|MDCK1/SIAT1","A/Slovenia/8828/2022|2022-02-03|SIAT1/SIAT1","A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT1","A/Slovenia/8723/2022|2022-02-11|MDCK1/SIAT1","A/Slovenia/8799/2022|2022-02-15|SIAT1/SIAT1","A/Slovenia/9091/2022|2022-02-22|MDCKx/SIAT1","A/Slovenia/9090/2022|2022-02-22|MDCKx/SIAT1",
+	"A/Slovenia/9146/2022|2022-02-23|SIAT1/SIAT1","A/Slovenia/9216/2022|2022-02-24|MDCKx/SIAT1","A/Slovenia/9318/2022|2022-03-02|SIATx/SIAT1","A/Slovenia/9356/2022|2022-03-03|SIATx/SIAT1","A/Slovenia/8965/2022|2022-02-21|MDCK1/SIAT3","A/Slovenia/9302/2022|2022-02-28|MDCKx/SIAT1")
+ag_Sep2022_table10_20 <- agNames(map55) %in% c("A/Cambodia/925256/2020|2020-09-25|SIAT5","A/Stockholm/5/2021|2021-04-16|S0/S3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Darwin/9/2021|2021-04-17|E3/E4","A/Saudi Arabia/22-28/2021|2021-11-04|SIAT1","A/Saudi Arabia/22-35/2021|2021-11-15|SIAT1","A/Saudi-Arabia/6/2021|2021-12-05|SIAT1","A/Saudi Arabia/22-21/2021|2021-12-05|SIAT1","A/Saudi Arabia/5/2021|2021-12-08|SIAT1","A/Saudi Arabia/22-23/2021|2021-12-13|SIAT1",
+	"A/Saudi Arabia/11/2021|2021-12-15|SIAT1","A/Saudi Arabia/18/2021|2021-12-20|SIAT1","A/Saudi Arabia/17/2021|2021-12-21|SIAT1","A/Slovenia/9449/2022|2022-03-08|SIATx/SIAT1","A/Slovenia/9450/2022|2022-03-08|MDCKx/SIAT1","A/Slovenia/9454/2022|2022-03-08|SIAT1/SIAT1","A/Slovenia/9456/2022|2022-03-08|SIATx/SIAT2","A/Slovenia/9448/2022|2022-03-09|MDCKx/SIAT1","A/Slovenia/9558/2022|2022-03-10|SIAT1/SIAT1","A/Slovenia/9565/2022|2022-03-11|SIAT1/SIAT1",
+	"A/Slovenia/9560/2022|2022-03-14|SIAT1/SIAT1","A/Slovenia/9599/2022|2022-03-15|MDCK1/SIAT1","A/Slovenia/9614/2022|2022-03-17|MDCKx/SIAT1","A/Slovenia/9623/2022|2022-03-17|MDCKx/SIAT1","A/Slovenia/9624/2022|2022-03-17|MDCKx/SIAT1","A/Slovenia/9626/2022|2022-03-17|SIATx/SIAT1","A/Slovenia/9633/2022|2022-03-21|MDCK1/SIAT1","A/Slovenia/9644/2022|2022-03-21|MDCKx/SIAT1","A/Slovenia/9641/2022|2022-03-22|MDCKx/SIAT2","A/Slovenia/9670/2022|2022-03-22|MDCKx/SIAT1",
+	"A/Slovenia/9659/2022|2022-03-23|SIAT1/SIAT1","A/Slovenia/9668/2022|2022-03-23|SIATx/SIAT1","A/Slovenia/9706/2022|2022-03-23|SIATx/SIAT2","A/Slovenia/9707/2022|2022-03-23|MDCKx/SIAT1","A/Slovenia/9671/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9676/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9705/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9708/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9726/2022|2022-03-25|SIATx/SIAT2","A/Slovenia/9728/2022|2022-03-25|MDCKx/SIAT1",
+	"A/Slovenia/9736/2022|2022-03-28|SIATx/SIAT2","A/Slovenia/9737/2022|2022-03-28|MDCKx/SIAT1","A/Slovenia/9739/2022|2022-03-29|SIAT1/SIAT1","A/Spain/1127/2022|2022-05-03|SIAT1","A/Spain/1097/2022|2022-05-03|SIAT1","A/Spain/1126/2022|2022-05-04|SIAT1","A/Spain/1105/2022|2022-05-04|SIAT1","A/Spain/1100/2022|2022-05-04|SIAT1","A/Spain/1099/2022|2022-05-04|SIAT1","A/Spain/1098/2022|2022-05-04|SIAT1",
+	"A/Spain/1091/2022|2022-05-04|SIAT1","A/Spain/1109/2022|2022-05-05|SIAT1","A/Spain/1108/2022|2022-05-05|SIAT1","A/Slovenia/9362/2022|2022-03-04|MDCK1/SIAT1","A/Slovenia/9528/2022|2022-03-08|SIATx/SIAT1","A/Slovenia/9562/2022|2022-03-14|SIAT1/SIAT1","A/Slovenia/9579/2022|2022-03-15|SIAT1/SIAT1","A/Slovenia/9675/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9740/2022|2022-03-29|SIATx/SIAT1","A/Spain/1059/2022|2022-04-22|SIAT1")
+ag_Sep2019_table8_16 <- agNames(map55) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Switzerland/8060/2017|2017-12-12|E7/E1","A/South Africa/R03804/2019|2019-04-12|MDCK1/SIAT1","A/South Africa/R03985/2019|2019-04-16|MDCK2/SIAT1","A/South Africa/R05118/2019|2019-05-13|MDCK2/SIAT1","A/South Africa/R05114/2019|2019-05-13|MDCK2/SIAT1","A/South Africa/R05652/2019|2019-05-21|MDCK2/SIAT1","A/South Africa/R05636/2019|2019-05-22|MDCK2/SIAT1","A/Iceland/12621/2019|2019-06-15|SIAT1",
+	"A/Hong Kong/2672/2019|2019-06-17|MDCK1/SIAT1","A/Hong Kong/2673/2019|2019-06-18|MDCK1/SIAT1","A/Jordan/30076/2019|2019-03-02|SIAT2","A/Iceland/4/2019|2019-03-04|MDCK1/SIAT1","A/South Africa/R05176/2019|2019-05-14|MDCK2/SIAT1","A/Iceland/71/2019|2019-05-19|MDCK1/SIAT1","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1","A/Hong Kong/2670/2019|2019-06-17|MDCK1/SIAT1","A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1","A/Hong Kong/2675/2019|2019-06-18|MDCK1/SIAT1",
+	"A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1","A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1","A/Iceland/59/2019|2019-04-15|MDCK1/SIAT1","A/Jordan/30121/2019|2019-04-17|SIAT1","A/South Africa/R05121/2019|2019-05-14|MDCK1/SIAT1","A/South Africa/R05619/2019|2019-05-20|MDCK2/SIAT1","A/South Africa/R06404/2019|2019-06-04|SV/SIAT1","A/South Africa/R06917/2019|2019-06-10|MDCK1/SIAT1","A/South Africa/R06867/2019|2019-06-10|MDCK1/SIAT1","A/Iceland/23/2019|2019-03-18|MDCK1/SIAT1")
+
+agFill(map55)[ag_Feb2021_table7_2] <- '#ea5545'
+agFill(map55)[ag_Sep2021_table7_7] <- '#ef9b20'
+agFill(map55)[ag_Sep2021_table7_1] <- '#ede15b'
+agFill(map55)[ag_Sep2022_table10_6] <- '#87bc45'
+agFill(map55)[ag_Sep2022_table10_20] <- '#27aeef'
+agFill(map55)[ag_Sep2019_table8_16] <- '#b33dc6'
+p_map55 <- ggplot(map55) + ggtitle('map 55')
+p_map55
+
+
+#################### MAP 56 ####################
+#### colered by tables
+agSize(map56) <- 5
+agFill(map56) <- 'grey50'
+ag_Sep2021_table7_6 <- agNames(map56) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/California/55/2020|2020-10-12|SIAT2/SIAT1', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1', 'A/Darwin/6/2021|2021-03-16|E4/E1', 'A/Darwin/9/2021|2021-04-17|E3/E1')
+ag_Feb2022_table9_1 <- agNames(map56) %in% c("A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Michigan/173/2020|2020-11-19|SIAT2/SIAT1","A/Togo/771/2020|2020-10-16|SIAT4/SIAT1","A/Qatar/16-VI-21-3809350/2021|2021-08-03|SIAT2","A/Qatar/16-VI-21-3801619/2021|2021-08-03|SIAT1","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Qatar/16-VI-21-3673175/2021|2021-07-27|SIAT0","A/Qatar/16-VI-21-3738537/2021|2021-07-30|SIAT2","A/Qatar/16-VI-21-3744895/2021|2021-07-31|SIAT1","A/Qatar/24-VI-21-3752470/2021|2021-08-01|SIAT1",
+	"A/Qatar/16-VI-21-3820344/2021|2021-08-02|SIAT1","A/Qatar/16-VI-21-3782139/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3778452/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3773931/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3798042/2021|2021-08-03|SIAT1","A/Qatar/10-VI-21-3813895/2021|2021-08-04|SIAT1","A/Qatar/10-VI-21-3843467/2021|2021-08-05|SIAT1","A/Qatar/24-VI-21-3868954/2021|2021-08-06|SIAT1","A/Qatar/10-VI-21-3886441/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-3912649/2021|2021-08-08|SIAT1",
+	"A/Qatar/10-VI-21-3904627/2021|2021-08-08|SIAT2","A/Qatar/24-VI-21-3942034/2021|2021-08-09|SIAT1","A/Qatar/24-VI-21-3929575/2021|2021-08-09|SIAT2","A/Qatar/47-VI-21-3971441/2021|2021-08-10|SIAT1","A/Qatar/47-VI-21-3968065/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3962572/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3950368/2021|2021-08-10|SIAT1","A/Qatar/47-VI-21-3995023/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3985321/2021|2021-08-11|SIAT2","A/Qatar/24-VI-21-3980766/2021|2021-08-11|SIAT2",
+	"A/Qatar/16-VI-21-3994833/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3994707/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3999123/2021|2021-08-12|SIAT1","A/Qatar/24-VI-21-4041206/2021|2021-08-13|SIAT1","A/Qatar/24-VI-21-4031255/2021|2021-08-13|SIAT2","A/Qatar/16-VI-21-4035811/2021|2021-08-13|SIAT1","A/Qatar/16-VI-21-4035218/2021|2021-08-13|SIAT1","A/Qatar/39-VI-21-4147440/2021|2021-08-17|SIAT1","A/Qatar/39-VI-21-4154225/2021|2021-08-17|SIAT1")
+ag_Feb2022_table9_10 <- agNames(map56) %in% c("A/Wisconsin/02/2021|2021-01-23|SIAT3/SIAT1","A/Nepal/21FL2608/2021|2021-08-10|Hck3/SIAT1","A/Nepal/21FL2699/2021|2021-08-11|Hck3/SIAT1","A/Alaska/01/2021|2021-08-20|SIAT1/SIAT1","A/Belgium/H0007/2021|2021-08-06|P1/SIAT1","A/Belgium/H0006/2021|2021-09-04|P1/SIAT1","A/Yaroslavl/6/2021|2021-10-25|SIAT2/SIAT1","A/Vladivostok/1/2021|2021-10-31|MDCK1/SIAT1/SIAT1","A/Vladimir/9/2021|2021-11-01|SIAT3/SIAT1","A/Vladivostok/2/2021|2021-11-01|MDCK1/SIAT1/SIAT1",
+	"A/Yaroslavl/24/2021|2021-11-08|SIAT3/SIAT1","A/Yaroslavl/19/2021|2021-11-08|SIAT2/SIAT1","A/Uglich/22/2021|2021-11-12|SIAT2/SIAT1","A/Belgium/H0010/2021|2021-11-15|P1/SIAT1","A/Vladivostok/11/2021|2021-11-16|MDCK1/SIAT1/SIAT1","A/Yaroslavl/32/2021|2021-11-18|SIAT2/SIAT1","A/Belgium/G0127/2021|2021-11-22|P1/SIAT1","A/Vladivostok/12/2021|2021-11-23|MDCK1/SIAT1/SIAT1","A/Velikiy Novgorod/46/2021|2021-11-24|SIAT2/SIAT1","A/Orenburg/44/2021|2021-11-24|SIAT3/SIAT1",
+	"A/Vladivostok/14/2021|2021-11-26|MDCK1/SIAT1/SIAT1","A/Vladimir/40/2021|2021-11-29|SIAT2/SIAT1","A/Orenburg/41/2021|2021-11-30|SIAT2/SIAT1","A/Moscow/38/2021|2021-11-30|SIAT2/SIAT1","A/Orenburg/45/2021|2021-12-01|SIAT3/SIAT1","A/Moscow/43/2021|2021-12-06|SIAT2/SIAT1","A/Velikiy Novgorod/49/2021|2021-12-08|SIAT2/SIAT1","A/Mahajanga/13255/2021|2021-12-09|SIAT2","A/Spain/89/2021|2021-12-22|SIAT1","A/Spain/87/2021|2021-12-23|SIAT1",
+	"A/Spain/84/2021|2021-12-25|SIAT1","A/Spain/83/2021|2021-12-26|SIAT1","A/Spain/82/2021|2021-12-27|SIAT1","A/Spain/81/2021|2021-12-28|SIAT1","A/Lebanon/8515/2021|2021-12-29|SIAT1","A/Lebanon/8510/2021|2021-12-29|SIAT1","A/Lebanon/8505/2021|2021-12-29|SIAT1","A/Lebanon/8500/2021|2021-12-29|SIAT1","A/Lebanon/8497/2021|2021-12-29|SIAT1","A/Estonia/168139/2022|2022-01-03|SIAT1/SIAT1",
+	"A/Armenia/19/2022|2022-01-05|SIAT2","A/Estonia/168142/2022|2022-01-05|SIAT1/SIAT1","A/Estonia/168141/2022|2022-01-05|SIAT1/SIAT1","A/Estonia/168131/2022|2022-01-06|MDCKx/SIAT1")
+ag_Sep2022_table10_18 <- agNames(map56) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT4","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Darwin/9/2021|2021-04-17|E3/E4","A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1","A/Netherlands/10025/2022|2022-01-17|MDCK-MIX2/SIAT1","A/Dakar/01/2022|2022-01-03|SIAT2","A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2","A/Romania/516033/2022|2022-04-07|SIAT1/SIAT1","A/Romania/516038/2022|2022-04-13|SIAT0/SIAT1","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1",
+	"A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515290/2022|2022-04-15|SIAT1/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Romania/515894/2022|2022-04-18|SIAT1/SIAT1","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516041/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516036/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516032/2022|2022-04-19|SIAT1/SIAT1","A/Romania/518145/2022|2022-04-21|SIAT1/SIAT1",
+	"A/Bolzano/22/2022|2022-04-22|SIAT3/SIAT2","A/Poland/76/2022|2022-04-24|SIAT2","A/Poland/75/2022|2022-04-24|SIAT1","A/Romania/516351/2022|2022-04-24|SIAT1/SIAT1","A/Romania/516348/2022|2022-04-24|SIAT1/SIAT1","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Poland/78/2022|2022-04-26|SIAT1",
+	"A/Poland/77/2022|2022-04-26|SIAT1","A/Romania/516540/2022|2022-04-26|SIAT1/SIAT1","A/Romania/518135/2022|2022-04-27|SIAT1/SIAT1","A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Poland/96/2022|2022-05-08|SIAT1","A/Poland/98/2022|2022-05-09|SIAT1","A/Poland/99/2022|2022-05-10|SIAT1","A/Poland/101/2022|2022-05-15|SIAT1",
+	"A/Romania/521767/2022|2022-06-16|SIAT1","A/Parma/5/2022|2022-02-21|SIAT4/SIAT2","A/Romania/518147/2022|2022-04-21|SIAT1/SIAT1","A/Poland/97/2022|2022-05-09|SIAT1","A/Poland/100/2022|2022-05-13|SIAT1","A/FVG-Trieste/28/2022|2022-03-01|SIAT4/SIAT2","A/Bolzano/4/2022|2022-03-04|SIAT3/SIAT2","A/Romania/515331/2022|2022-04-13|SIAT1/SIAT1","A/Romania/515280/2022|2022-04-15|SIAT1/SIAT1","A/FVG-Trieste/391/2022|2022-04-28|SIAT3/SIAT2",
+	"A/Romania/516980/2022|2022-04-30|SIAT1/SIAT2","A/Romania/517370/2022|2022-05-03|SIAT1/SIAT2","A/Togo/1122/2022|2022-05-04|SIAT1","A/Togo/1126/2022|2022-05-05|SIAT1","A/Togo/1132/2022|2022-05-06|SIAT1","A/Togo/1129/2022|2022-05-06|SIAT1","A/Romania/518142/2022|2022-05-09|SIAT1","A/Togo/1153/2022|2022-05-11|SIAT1","A/Togo/1165/2022|2022-05-13|SIAT1","A/Togo/1184/2022|2022-05-18|SIAT1",
+	"A/Togo/1063/2022|2022-05-25|SIAT1","A/Dakar/14/2022|2022-06-08|SIAT2","A/Netherlands/10253/2022|2022-03-06|MDCK-MIX2/SIAT1","A/Netherlands/10182/2022|2022-03-10|MDCK-MIX2/SIAT1","A/Netherlands/10595/2022|2022-03-23|MDCK-MIX2/SIAT1","A/Milano/60/2022|2022-03-23|SIAT3/SIAT2","A/Romania/521422/2022|2022-06-18|SIAT1")
+
+agFill(map56)[ag_Sep2021_table7_6] <- '#ea5545'
+agFill(map56)[ag_Feb2022_table9_1] <- '#ef9b20'
+agFill(map56)[ag_Feb2022_table9_10] <- '#ede15b'
+agFill(map56)[ag_Sep2022_table10_18] <- '#87bc45'
+p_map56 <- ggplot(map56) + ggtitle('map 56')
+p_map56
+
+
+#################### MAP 57 ####################
+#### colered by tables
+agSize(map57) <- 5
+agFill(map57) <- 'grey50'
+ag_Sep2021_table7_6 <- agNames(map57) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/California/55/2020|2020-10-12|SIAT2/SIAT1', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1', 'A/Darwin/6/2021|2021-03-16|E4/E1', 'A/Darwin/9/2021|2021-04-17|E3/E1')
+ag_Feb2022_table9_1 <- agNames(map57) %in% c("A/Michigan/173/2020|2020-11-19|SIAT2/SIAT1","A/Togo/771/2020|2020-10-16|SIAT4/SIAT1","A/Qatar/16-VI-21-3809350/2021|2021-08-03|SIAT2","A/Qatar/16-VI-21-3801619/2021|2021-08-03|SIAT1","A/Delaware/01/2021|2021-04-16|SIAT2/SIAT1","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Qatar/16-VI-21-3673175/2021|2021-07-27|SIAT0","A/Qatar/16-VI-21-3738537/2021|2021-07-30|SIAT2","A/Qatar/16-VI-21-3744895/2021|2021-07-31|SIAT1","A/Qatar/24-VI-21-3752470/2021|2021-08-01|SIAT1",
+	"A/Qatar/16-VI-21-3820344/2021|2021-08-02|SIAT1","A/Qatar/16-VI-21-3782139/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3778452/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3773931/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3798042/2021|2021-08-03|SIAT1","A/Qatar/10-VI-21-3813895/2021|2021-08-04|SIAT1","A/Qatar/10-VI-21-3843467/2021|2021-08-05|SIAT1","A/Qatar/24-VI-21-3868954/2021|2021-08-06|SIAT1","A/Qatar/10-VI-21-3886441/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-3912649/2021|2021-08-08|SIAT1",
+	"A/Qatar/10-VI-21-3904627/2021|2021-08-08|SIAT2","A/Qatar/24-VI-21-3942034/2021|2021-08-09|SIAT1","A/Qatar/24-VI-21-3929575/2021|2021-08-09|SIAT2","A/Qatar/47-VI-21-3971441/2021|2021-08-10|SIAT1","A/Qatar/47-VI-21-3968065/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3962572/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3950368/2021|2021-08-10|SIAT1","A/Qatar/47-VI-21-3995023/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3985321/2021|2021-08-11|SIAT2","A/Qatar/24-VI-21-3980766/2021|2021-08-11|SIAT2",
+	"A/Qatar/16-VI-21-3994833/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3994707/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3999123/2021|2021-08-12|SIAT1","A/Qatar/24-VI-21-4041206/2021|2021-08-13|SIAT1","A/Qatar/24-VI-21-4031255/2021|2021-08-13|SIAT2","A/Qatar/16-VI-21-4035811/2021|2021-08-13|SIAT1","A/Qatar/16-VI-21-4035218/2021|2021-08-13|SIAT1","A/Qatar/39-VI-21-4147440/2021|2021-08-17|SIAT1","A/Qatar/39-VI-21-4154225/2021|2021-08-17|SIAT1")
+ag_Feb2022_table9_2 <- agNames(map57) %in% c("A/Baabda/5555/2021|2021-09-01|SIAT1","A/Beirut/5518/2021|2021-09-01|SIAT1","A/Beirut/5517/2021|2021-09-01|SIAT1","A/Beirut/5509/2021|2021-09-01|SIAT0","A/Tripoli/5651/2021|2021-09-07|SIAT1","A/Tripoli/5646/2021|2021-09-07|SIAT1","A/Tripoli/5644/2021|2021-09-07|SIAT1","A/Tripoli/5638/2021|2021-09-07|SIAT1","A/Arsal/5773/2021|2021-09-13|SIAT1","A/Arsal/5772/2021|2021-09-13|SIAT1",
+	"A/Arsal/5768/2021|2021-09-13|SIAT1","A/Arsal/5767/2021|2021-09-13|SIAT1","A/Beirut/5788/2021|2021-09-14|SIAT1","A/Tripoli/5937/2021|2021-09-21|SIAT1","A/Tripoli/5927/2021|2021-09-21|SIAT1","A/Saida/5915/2021|2021-09-21|SIAT1","A/Tripoli/6100/2021|2021-09-30|SIAT1","A/Tripoli/6112/2021|2021-09-30|SIAT1")
+ag_Sep2022_table10_18 <- agNames(map57) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT4","A/Cambodia/925256/2020|2020-09-25|SIAT5","A/Bangladesh/4005/2020|2020-10-04|SIAT3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Darwin/9/2021|2021-04-17|E3/E4","A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1","A/Netherlands/10025/2022|2022-01-17|MDCK-MIX2/SIAT1","A/Dakar/01/2022|2022-01-03|SIAT2","A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2","A/Romania/516033/2022|2022-04-07|SIAT1/SIAT1",
+	"A/Romania/516038/2022|2022-04-13|SIAT0/SIAT1","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515290/2022|2022-04-15|SIAT1/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Romania/515894/2022|2022-04-18|SIAT1/SIAT1","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516041/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516036/2022|2022-04-19|SIAT1/SIAT1",
+	"A/Romania/516032/2022|2022-04-19|SIAT1/SIAT1","A/Romania/518145/2022|2022-04-21|SIAT1/SIAT1","A/Bolzano/22/2022|2022-04-22|SIAT3/SIAT2","A/Poland/76/2022|2022-04-24|SIAT2","A/Poland/75/2022|2022-04-24|SIAT1","A/Romania/516351/2022|2022-04-24|SIAT1/SIAT1","A/Romania/516348/2022|2022-04-24|SIAT1/SIAT1","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1",
+	"A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Poland/78/2022|2022-04-26|SIAT1","A/Poland/77/2022|2022-04-26|SIAT1","A/Romania/516540/2022|2022-04-26|SIAT1/SIAT1","A/Romania/518135/2022|2022-04-27|SIAT1/SIAT1","A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Poland/96/2022|2022-05-08|SIAT1","A/Poland/98/2022|2022-05-09|SIAT1",
+	"A/Poland/99/2022|2022-05-10|SIAT1","A/Poland/101/2022|2022-05-15|SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1","A/Parma/5/2022|2022-02-21|SIAT4/SIAT2","A/Romania/518147/2022|2022-04-21|SIAT1/SIAT1","A/Poland/97/2022|2022-05-09|SIAT1","A/Poland/100/2022|2022-05-13|SIAT1","A/FVG-Trieste/28/2022|2022-03-01|SIAT4/SIAT2","A/Bolzano/4/2022|2022-03-04|SIAT3/SIAT2","A/Romania/515331/2022|2022-04-13|SIAT1/SIAT1",
+	"A/Romania/515280/2022|2022-04-15|SIAT1/SIAT1","A/FVG-Trieste/391/2022|2022-04-28|SIAT3/SIAT2","A/Romania/516980/2022|2022-04-30|SIAT1/SIAT2","A/Romania/517370/2022|2022-05-03|SIAT1/SIAT2","A/Togo/1122/2022|2022-05-04|SIAT1","A/Togo/1126/2022|2022-05-05|SIAT1","A/Togo/1132/2022|2022-05-06|SIAT1","A/Togo/1129/2022|2022-05-06|SIAT1","A/Romania/518142/2022|2022-05-09|SIAT1","A/Togo/1153/2022|2022-05-11|SIAT1",
+	"A/Togo/1165/2022|2022-05-13|SIAT1","A/Togo/1184/2022|2022-05-18|SIAT1","A/Togo/1063/2022|2022-05-25|SIAT1","A/Dakar/14/2022|2022-06-08|SIAT2","A/Netherlands/10253/2022|2022-03-06|MDCK-MIX2/SIAT1","A/Netherlands/10182/2022|2022-03-10|MDCK-MIX2/SIAT1","A/Netherlands/10595/2022|2022-03-23|MDCK-MIX2/SIAT1","A/Milano/60/2022|2022-03-23|SIAT3/SIAT2","A/Romania/521422/2022|2022-06-18|SIAT1")
+
+agFill(map57)[ag_Sep2021_table7_6] <- '#ea5545'
+agFill(map57)[ag_Feb2022_table9_1] <- '#ef9b20'
+agFill(map57)[ag_Feb2022_table9_2] <- '#ede15b'
+agFill(map57)[ag_Sep2022_table10_18] <- '#87bc45'
+p_map57 <- ggplot(map57) + ggtitle('map 57')
+p_map57
+
+
+#################### MAP 58 ####################
+#### colered by tables
+agSize(map58) <- 5
+agFill(map58) <- 'grey50'
+ag_Sep2021_table7_6 <- agNames(map58) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/California/55/2020|2020-10-12|SIAT2/SIAT1', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1', 'A/Darwin/6/2021|2021-03-16|E4/E1', 'A/Darwin/9/2021|2021-04-17|E3/E1')
+ag_Sep2022_table10_20 <- agNames(map58) %in% c("A/Saudi Arabia/22-28/2021|2021-11-04|SIAT1","A/Saudi Arabia/22-35/2021|2021-11-15|SIAT1","A/Saudi-Arabia/6/2021|2021-12-05|SIAT1","A/Saudi Arabia/22-21/2021|2021-12-05|SIAT1","A/Saudi Arabia/5/2021|2021-12-08|SIAT1","A/Saudi Arabia/22-23/2021|2021-12-13|SIAT1","A/Saudi Arabia/11/2021|2021-12-15|SIAT1","A/Saudi Arabia/18/2021|2021-12-20|SIAT1","A/Saudi Arabia/17/2021|2021-12-21|SIAT1","A/Slovenia/9449/2022|2022-03-08|SIATx/SIAT1",
+	"A/Slovenia/9450/2022|2022-03-08|MDCKx/SIAT1","A/Slovenia/9454/2022|2022-03-08|SIAT1/SIAT1","A/Slovenia/9456/2022|2022-03-08|SIATx/SIAT2","A/Slovenia/9448/2022|2022-03-09|MDCKx/SIAT1","A/Slovenia/9558/2022|2022-03-10|SIAT1/SIAT1","A/Slovenia/9565/2022|2022-03-11|SIAT1/SIAT1","A/Slovenia/9560/2022|2022-03-14|SIAT1/SIAT1","A/Slovenia/9599/2022|2022-03-15|MDCK1/SIAT1","A/Slovenia/9614/2022|2022-03-17|MDCKx/SIAT1","A/Slovenia/9623/2022|2022-03-17|MDCKx/SIAT1",
+	"A/Slovenia/9624/2022|2022-03-17|MDCKx/SIAT1","A/Slovenia/9626/2022|2022-03-17|SIATx/SIAT1","A/Slovenia/9633/2022|2022-03-21|MDCK1/SIAT1","A/Slovenia/9644/2022|2022-03-21|MDCKx/SIAT1","A/Slovenia/9641/2022|2022-03-22|MDCKx/SIAT2","A/Slovenia/9670/2022|2022-03-22|MDCKx/SIAT1","A/Slovenia/9659/2022|2022-03-23|SIAT1/SIAT1","A/Slovenia/9668/2022|2022-03-23|SIATx/SIAT1","A/Slovenia/9706/2022|2022-03-23|SIATx/SIAT2","A/Slovenia/9707/2022|2022-03-23|MDCKx/SIAT1",
+	"A/Slovenia/9671/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9676/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9705/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9708/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9726/2022|2022-03-25|SIATx/SIAT2","A/Slovenia/9728/2022|2022-03-25|MDCKx/SIAT1","A/Slovenia/9736/2022|2022-03-28|SIATx/SIAT2","A/Slovenia/9737/2022|2022-03-28|MDCKx/SIAT1","A/Slovenia/9739/2022|2022-03-29|SIAT1/SIAT1","A/Spain/1127/2022|2022-05-03|SIAT1",
+	"A/Spain/1097/2022|2022-05-03|SIAT1","A/Spain/1126/2022|2022-05-04|SIAT1","A/Spain/1105/2022|2022-05-04|SIAT1","A/Spain/1100/2022|2022-05-04|SIAT1","A/Spain/1099/2022|2022-05-04|SIAT1","A/Spain/1098/2022|2022-05-04|SIAT1","A/Spain/1091/2022|2022-05-04|SIAT1","A/Spain/1109/2022|2022-05-05|SIAT1","A/Spain/1108/2022|2022-05-05|SIAT1","A/Slovenia/9362/2022|2022-03-04|MDCK1/SIAT1",
+	"A/Slovenia/9528/2022|2022-03-08|SIATx/SIAT1","A/Slovenia/9562/2022|2022-03-14|SIAT1/SIAT1","A/Slovenia/9579/2022|2022-03-15|SIAT1/SIAT1","A/Slovenia/9675/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9740/2022|2022-03-29|SIATx/SIAT1","A/Spain/1059/2022|2022-04-22|SIAT1")
+ag_Feb2022_table9_1 <- agNames(map58) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT5","A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Darwin/9/2021|2021-04-17|E3/E2","A/Michigan/173/2020|2020-11-19|SIAT2/SIAT1","A/Togo/771/2020|2020-10-16|SIAT4/SIAT1","A/Qatar/16-VI-21-3809350/2021|2021-08-03|SIAT2","A/Qatar/16-VI-21-3801619/2021|2021-08-03|SIAT1","A/Delaware/01/2021|2021-04-16|SIAT2/SIAT1","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Qatar/16-VI-21-3673175/2021|2021-07-27|SIAT0",
+	"A/Qatar/16-VI-21-3738537/2021|2021-07-30|SIAT2","A/Qatar/16-VI-21-3744895/2021|2021-07-31|SIAT1","A/Qatar/24-VI-21-3752470/2021|2021-08-01|SIAT1","A/Qatar/16-VI-21-3820344/2021|2021-08-02|SIAT1","A/Qatar/16-VI-21-3782139/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3778452/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3773931/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3798042/2021|2021-08-03|SIAT1","A/Qatar/10-VI-21-3813895/2021|2021-08-04|SIAT1","A/Qatar/10-VI-21-3843467/2021|2021-08-05|SIAT1",
+	"A/Qatar/24-VI-21-3868954/2021|2021-08-06|SIAT1","A/Qatar/10-VI-21-3886441/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-3912649/2021|2021-08-08|SIAT1","A/Qatar/10-VI-21-3904627/2021|2021-08-08|SIAT2","A/Qatar/24-VI-21-3942034/2021|2021-08-09|SIAT1","A/Qatar/24-VI-21-3929575/2021|2021-08-09|SIAT2","A/Qatar/47-VI-21-3971441/2021|2021-08-10|SIAT1","A/Qatar/47-VI-21-3968065/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3962572/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3950368/2021|2021-08-10|SIAT1",
+	"A/Qatar/47-VI-21-3995023/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3985321/2021|2021-08-11|SIAT2","A/Qatar/24-VI-21-3980766/2021|2021-08-11|SIAT2","A/Qatar/16-VI-21-3994833/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3994707/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3999123/2021|2021-08-12|SIAT1","A/Qatar/24-VI-21-4041206/2021|2021-08-13|SIAT1","A/Qatar/24-VI-21-4031255/2021|2021-08-13|SIAT2","A/Qatar/16-VI-21-4035811/2021|2021-08-13|SIAT1","A/Qatar/16-VI-21-4035218/2021|2021-08-13|SIAT1",
+	"A/Qatar/39-VI-21-4147440/2021|2021-08-17|SIAT1","A/Qatar/39-VI-21-4154225/2021|2021-08-17|SIAT1")
+ag_Sep2022_table10_18 <- agNames(map58) %in% c("A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1","A/Netherlands/10025/2022|2022-01-17|MDCK-MIX2/SIAT1","A/Dakar/01/2022|2022-01-03|SIAT2","A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2","A/Romania/516033/2022|2022-04-07|SIAT1/SIAT1","A/Romania/516038/2022|2022-04-13|SIAT0/SIAT1","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515290/2022|2022-04-15|SIAT1/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1",
+	"A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Romania/515894/2022|2022-04-18|SIAT1/SIAT1","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516041/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516036/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516032/2022|2022-04-19|SIAT1/SIAT1","A/Romania/518145/2022|2022-04-21|SIAT1/SIAT1","A/Bolzano/22/2022|2022-04-22|SIAT3/SIAT2","A/Poland/76/2022|2022-04-24|SIAT2","A/Poland/75/2022|2022-04-24|SIAT1",
+	"A/Romania/516351/2022|2022-04-24|SIAT1/SIAT1","A/Romania/516348/2022|2022-04-24|SIAT1/SIAT1","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Poland/78/2022|2022-04-26|SIAT1","A/Poland/77/2022|2022-04-26|SIAT1","A/Romania/516540/2022|2022-04-26|SIAT1/SIAT1","A/Romania/518135/2022|2022-04-27|SIAT1/SIAT1",
+	"A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Poland/96/2022|2022-05-08|SIAT1","A/Poland/98/2022|2022-05-09|SIAT1","A/Poland/99/2022|2022-05-10|SIAT1","A/Poland/101/2022|2022-05-15|SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1","A/Parma/5/2022|2022-02-21|SIAT4/SIAT2","A/Romania/518147/2022|2022-04-21|SIAT1/SIAT1",
+	"A/Poland/97/2022|2022-05-09|SIAT1","A/Poland/100/2022|2022-05-13|SIAT1","A/FVG-Trieste/28/2022|2022-03-01|SIAT4/SIAT2","A/Bolzano/4/2022|2022-03-04|SIAT3/SIAT2","A/Romania/515331/2022|2022-04-13|SIAT1/SIAT1","A/Romania/515280/2022|2022-04-15|SIAT1/SIAT1","A/FVG-Trieste/391/2022|2022-04-28|SIAT3/SIAT2","A/Romania/516980/2022|2022-04-30|SIAT1/SIAT2","A/Romania/517370/2022|2022-05-03|SIAT1/SIAT2","A/Togo/1122/2022|2022-05-04|SIAT1",
+	"A/Togo/1126/2022|2022-05-05|SIAT1","A/Togo/1132/2022|2022-05-06|SIAT1","A/Togo/1129/2022|2022-05-06|SIAT1","A/Romania/518142/2022|2022-05-09|SIAT1","A/Togo/1153/2022|2022-05-11|SIAT1","A/Togo/1165/2022|2022-05-13|SIAT1","A/Togo/1184/2022|2022-05-18|SIAT1","A/Togo/1063/2022|2022-05-25|SIAT1","A/Dakar/14/2022|2022-06-08|SIAT2","A/Netherlands/10253/2022|2022-03-06|MDCK-MIX2/SIAT1",
+	"A/Netherlands/10182/2022|2022-03-10|MDCK-MIX2/SIAT1","A/Netherlands/10595/2022|2022-03-23|MDCK-MIX2/SIAT1","A/Milano/60/2022|2022-03-23|SIAT3/SIAT2","A/Romania/521422/2022|2022-06-18|SIAT1")
+
+agFill(map58)[ag_Sep2021_table7_6] <- '#ea5545'
+agFill(map58)[ag_Sep2022_table10_20] <- '#ef9b20'
+agFill(map58)[ag_Feb2022_table9_1] <- '#ede15b'
+agFill(map58)[ag_Sep2022_table10_18] <- '#87bc45'
+p_map58 <- ggplot(map58) + ggtitle('map 58')
+p_map58
+
+
+#################### MAP 59 ####################
+#### colered by tables
+agSize(map59) <- 5
+agFill(map59) <- 'grey50'
+ag_Feb2023_tableH3_10 <- agNames(map59) %in% c("A/Cambodia/e0826360/2020|2020-07-16|E5/E3","A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT3","A/Norway/24873/2021|2021-10-24|SIAT3","A/Poland/97/2022|2022-05-09|SIAT2","A/Dakar/27/2022|2022-06-28|P1/SIAT1","A/Argentina/3155/2022|2022-08-31|SIAT2","A/Argentina/3151/2022|2022-09-05|SIAT1","A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1","A/Switzerland/18284/2022|2022-10-06|SIAT2/SIAT1","A/Burgos/257/2022|2022-10-13|SIAT1",
+	"A/Soria/213/2022|2022-10-13|SIAT1","A/Salamanca/198/2022|2022-10-13|SIAT1","A/Salamanca/196/2022|2022-10-13|SIAT1","A/Switzerland/18694/2022|2022-11-18|MDCK1/SIAT1","A/Palencia/118/2022|2022-10-13|SIAT1","A/Switzerland/39985/2022|2022-11-21|MDCK1/SIAT1","A/Switzerland/07426/2022|2022-11-17|SIAT1/SIAT1","A/Ireland/73304/2022|2022-11-23|SIAT1","A/Ireland/74535/2022|2022-11-28|SIAT2","A/Lithuania/48774/2022|2022-11-24|SIAT1",
+	"A/Burgos/82/2022|2022-10-13|SIAT1","A/Hong Kong/34/2022|2022-11-26|MDCK1/SIAT1","A/Switzerland/54601/2022|2022-11-01|MDCK1/SIAT1","A/Ireland/74250/2022|2022-11-27|SIAT2","A/Ireland/74511/2022|2022-11-29|SIAT2","A/Switzerland/76550/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/01284/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/89053/2022|2022-12-06|SIAT1/SIAT1","A/Switzerland/12082/2022|2022-12-08|SIAT1/SIAT1","A/Georgia/2369/2022|2022-11-24|SIAT1",
+	"A/Georgia/8/2022|*|SIAT1","A/Georgia/4/2022|*|SIAT1","A/Argentina/3486/2022|2022-10-01|SIAT1","A/Argentina/3498/2022|2022-09-29|SIAT1","A/Argentina/3485/2022|2022-10-01|SIAT1","A/Hong Kong/19/2022|2022-11-09|MDCK1/SIAT1","A/Hong Kong/22/2022|2022-11-13|MDCK1/SIAT1","A/Hong Kong/24/2022|2022-11-15|MDCK1/SIAT1","A/Hong Kong/28/2022|2022-11-16|MDCK1/SIAT1","A/Hong Kong/30/2022|2022-11-20|MDCK1/SIAT1",
+	"A/Hong Kong/38/2022|2022-12-04|MDCK1/SIAT1","A/Hong Kong/26/2022|2022-11-16|MDCK1/SIAT1","A/Switzerland/52849/2022|2022-11-11|SIAT1/SIAT1","A/Switzerland/86247/2022|2022-11-14|MDCK1/SIAT1","A/Switzerland/85876/2022|2022-11-14|MDCK1/SIAT1","A/Hong Kong/15/2022|2022-10-04|MDCK1/SIAT1","A/Hong Kong/17/2022|2022-10-24|MDCK1/SIAT1","A/Hong Kong/32/2022|2022-11-25|MDCK1/SIAT1")
+ag_Sep2023_tableH3_12 <- agNames(map59) %in% c("A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT4","A/Darwin/9/2021|2021-04-17|E3/E2","A/Norway/24873/2021|2021-10-24|SIAT4","A/Poland/97/2022|2022-05-09|SIAT3","A/Lille/50053/2022|2022-09-06|MDCK1/SIAT5","A/SaudiArabia/1404/2022|2022-10-05|SIAT1","A/Catalonia/3505472NS/2022|2022-09-25|SIAT1","A/Greece/370/2022|2022-11-07|SIAT1","A/Catalonia/2262797NS/2022|2022-12-01|SIAT1","A/Netherlands/12136/2022|2022-12-29|MDCK-MIX2/SIAT1",
+	"A/Estonia/172629/2023|2023-01-02|SIAT2","A/Greece/ILI_236/2023|2023-01-02|SIAT1","A/Greece/ILI_237/2023|2023-01-03|SIAT1","A/Greece/15/2023|2023-01-09|SIAT1","A/Armenia/167/2023|2023-01-11|SIAT1","A/Netherlands/10142/2023|2023-01-12|MDCK-MIX2/SIAT1","A/Netherlands/10226/2023|2023-01-29|MDCK-MIX2/SIAT1","A/Netherlands/10228/2023|2023-01-30|MDCK-MIX2/SIAT1","A/Ireland/9047/2023|2023-02-04|SIAT1","A/Ireland/9830/2023|2023-02-08|SIAT1",
+	"A/Netherlands/10277/2023|2023-02-09|MDCK-MIX2/SIAT1","A/Ireland/21983/2023|2023-04-02|SIAT1","A/Greece/267/2022|2022-10-17|SIAT1","A/Blida/42154/2022|2022-11-07|SIAT2","A/SaudiArabia/2439/2022|2022-11-14|SIAT1","A/Boumerdes/44092/2022|2022-12-07|SIAT1","A/Netherlands/11905/2022|2022-12-13|MDCK-MIX2/SIAT1","A/Catalonia/3512677NS/2022|2022-12-19|SIAT1","A/Bouira/44511/2022|2022-12-20|SIAT1","A/Netherlands/10160/2023|2023-01-22|MDCK-MIX2/SIAT1",
+	"A/Netherlands/10132/2023|2023-01-16|MDCK-MIX2/SIAT1","A/SaudiArabia/556/2022|2022-06-25|SIAT1","A/Catalonia/2232752NS/2022|2022-10-07|SIAT1","A/Catalonia/3506449NS/2022|2022-10-10|SIAT1","A/Greece/386/2022|2022-11-07|SIAT1","A/Greece/416/2022|2022-11-16|SIAT1","A/Greece/415/2022|2022-11-16|SIAT1","A/Catalonia/3514090NS/2022|2022-12-30|SIAT1","A/Greece/ILI_113/2023|2023-01-02|SIAT1","A/Greece/ILI_196/2023|2023-01-03|SIAT1",
+	"A/Greece/ILI_249/2023|2023-01-04|SIAT1","A/Greece/ILI_433/2023|2023-01-10|SIAT1","A/Netherlands/10162/2023|2023-01-23|MDCK-MIX2/SIAT1","A/Ireland/8169/2023|2023-02-01|SIAT1","A/Netherlands/10192/2023|2023-02-01|MDCK-MIX2/SIAT1","A/Ireland/9468/2023|2023-02-07|SIAT2","A/Netherlands/10290/2023|2023-02-14|MDCK-MIX2/SIAT1","A/Ireland/8661/2023|2023-02-02|SIAT2","A/Ireland/9045/2023|2023-02-04|SIAT1")
+ag_Sep2022_table10_20 <- agNames(map59) %in% c("A/Saudi Arabia/22-28/2021|2021-11-04|SIAT1","A/Saudi Arabia/22-35/2021|2021-11-15|SIAT1","A/Saudi-Arabia/6/2021|2021-12-05|SIAT1","A/Saudi Arabia/22-21/2021|2021-12-05|SIAT1","A/Saudi Arabia/5/2021|2021-12-08|SIAT1","A/Saudi Arabia/22-23/2021|2021-12-13|SIAT1","A/Saudi Arabia/11/2021|2021-12-15|SIAT1","A/Saudi Arabia/18/2021|2021-12-20|SIAT1","A/Saudi Arabia/17/2021|2021-12-21|SIAT1","A/Slovenia/9449/2022|2022-03-08|SIATx/SIAT1",
+	"A/Slovenia/9450/2022|2022-03-08|MDCKx/SIAT1","A/Slovenia/9454/2022|2022-03-08|SIAT1/SIAT1","A/Slovenia/9456/2022|2022-03-08|SIATx/SIAT2","A/Slovenia/9448/2022|2022-03-09|MDCKx/SIAT1","A/Slovenia/9558/2022|2022-03-10|SIAT1/SIAT1","A/Slovenia/9565/2022|2022-03-11|SIAT1/SIAT1","A/Slovenia/9560/2022|2022-03-14|SIAT1/SIAT1","A/Slovenia/9599/2022|2022-03-15|MDCK1/SIAT1","A/Slovenia/9614/2022|2022-03-17|MDCKx/SIAT1","A/Slovenia/9623/2022|2022-03-17|MDCKx/SIAT1",
+	"A/Slovenia/9624/2022|2022-03-17|MDCKx/SIAT1","A/Slovenia/9626/2022|2022-03-17|SIATx/SIAT1","A/Slovenia/9633/2022|2022-03-21|MDCK1/SIAT1","A/Slovenia/9644/2022|2022-03-21|MDCKx/SIAT1","A/Slovenia/9641/2022|2022-03-22|MDCKx/SIAT2","A/Slovenia/9670/2022|2022-03-22|MDCKx/SIAT1","A/Slovenia/9659/2022|2022-03-23|SIAT1/SIAT1","A/Slovenia/9668/2022|2022-03-23|SIATx/SIAT1","A/Slovenia/9706/2022|2022-03-23|SIATx/SIAT2","A/Slovenia/9707/2022|2022-03-23|MDCKx/SIAT1",
+	"A/Slovenia/9671/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9676/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9705/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9708/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9726/2022|2022-03-25|SIATx/SIAT2","A/Slovenia/9728/2022|2022-03-25|MDCKx/SIAT1","A/Slovenia/9736/2022|2022-03-28|SIATx/SIAT2","A/Slovenia/9737/2022|2022-03-28|MDCKx/SIAT1","A/Slovenia/9739/2022|2022-03-29|SIAT1/SIAT1","A/Spain/1127/2022|2022-05-03|SIAT1",
+	"A/Spain/1097/2022|2022-05-03|SIAT1","A/Spain/1126/2022|2022-05-04|SIAT1","A/Spain/1105/2022|2022-05-04|SIAT1","A/Spain/1100/2022|2022-05-04|SIAT1","A/Spain/1099/2022|2022-05-04|SIAT1","A/Spain/1098/2022|2022-05-04|SIAT1","A/Spain/1091/2022|2022-05-04|SIAT1","A/Spain/1109/2022|2022-05-05|SIAT1","A/Spain/1108/2022|2022-05-05|SIAT1","A/Slovenia/9362/2022|2022-03-04|MDCK1/SIAT1",
+	"A/Slovenia/9528/2022|2022-03-08|SIATx/SIAT1","A/Slovenia/9562/2022|2022-03-14|SIAT1/SIAT1","A/Slovenia/9579/2022|2022-03-15|SIAT1/SIAT1","A/Slovenia/9675/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9740/2022|2022-03-29|SIATx/SIAT1","A/Spain/1059/2022|2022-04-22|SIAT1")
+ag_Sep2022_table10_12 <- agNames(map59) %in% c("A/Norway/24873/2021|2021-10-24|SIAT2","A/Norway/24873/2021|2021-10-24|E4 (Am2Al2)","A/Norway/29511/2021|2021-11-25|E4 (Am2Al2)","A/Bulgaria/193/2022|2022-01-16|SIAT2/SIAT1","A/Bulgaria/142/2022|2022-01-16|SIAT2/SIAT1","A/Bulgaria/104/2022|2022-01-16|SIAT2/SIAT1","A/Bulgaria/75/2022|2022-01-16|SIAT2/SIAT1","A/Bulgaria/404/2022|2022-01-18|SIAT2/SIAT1","A/Bulgaria/648/2022|2022-01-30|SIAT2/SIAT1","A/Bulgaria/646/2022|2022-01-30|SIAT2/SIAT1",
+	"A/Bulgaria/644/2022|2022-01-30|SIAT2/SIAT1","A/Bulgaria/1057/2022|2022-02-11|SIAT2/SIAT1","A/Bulgaria/1127/2022|2022-02-16|SIAT2/SIAT1","A/Bulgaria/1195/2022|2022-02-21|SIAT2/SIAT1","A/Bulgaria/1273/2022|2022-02-25|SIAT2/SIAT1","A/Bulgaria/1473/2022|2022-03-10|SIAT2/SIAT1","A/Bulgaria/1616/2022|2022-03-17|SIAT2/SIAT1","A/Bulgaria/1611/2022|2022-03-17|SIAT2/SIAT1","A/Bulgaria/1537/2022|2022-03-18|SIAT2/SIAT1","A/Bulgaria/1536/2022|2022-03-18|SIAT2/SIAT1",
+	"A/Bulgaria/1582/2022|2022-03-21|SIAT2/SIAT1","A/Bulgaria/1581/2022|2022-03-21|SIAT2/SIAT1","A/Bulgaria/1579/2022|2022-03-21|SIAT2/SIAT1","A/Bulgaria/1588/2022|2022-03-22|SIAT2/SIAT1","A/Bulgaria/1666/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1665/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1660/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1659/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1646/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1763/2022|2022-03-28|SIAT2/SIAT1",
+	"A/Bulgaria/1726/2022|2022-03-28|SIAT2/SIAT1","A/Bulgaria/1813/2022|2022-04-04|SIAT2/SIAT1","A/Bulgaria/1827/2022|2022-04-07|SIAT2/SIAT1","A/Slovenia/9891/2022|2022-04-11|MDCKx/SIAT1","A/Slovenia/9967/2022|2022-04-20|MDCKx/SIAT1","A/Slovenia/10081/2022|2022-04-21|MDCKx/SIAT1","A/Slovenia/9905/2022|2022-04-12|MDCKx/SIAT1")
+
+agFill(map59)[ag_Feb2023_tableH3_10] <- '#ea5545'
+agFill(map59)[ag_Sep2023_tableH3_12] <- '#ef9b20'
+agFill(map59)[ag_Sep2022_table10_20] <- '#ede15b'
+agFill(map59)[ag_Sep2022_table10_12] <- '#87bc45'
+p_map59 <- ggplot(map59) + ggtitle('map 59')
+p_map59
+
+
+#################### MAP 60 ####################
+#### colered by tables
+agSize(map60) <- 5
+agFill(map60) <- 'grey50'
+ag_Feb2023_tableH3_10 <- agNames(map60) %in% c("A/Dakar/27/2022|2022-06-28|P1/SIAT1","A/Argentina/3155/2022|2022-08-31|SIAT2","A/Argentina/3151/2022|2022-09-05|SIAT1","A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1","A/Switzerland/18284/2022|2022-10-06|SIAT2/SIAT1","A/Burgos/257/2022|2022-10-13|SIAT1","A/Soria/213/2022|2022-10-13|SIAT1","A/Salamanca/198/2022|2022-10-13|SIAT1","A/Salamanca/196/2022|2022-10-13|SIAT1","A/Switzerland/18694/2022|2022-11-18|MDCK1/SIAT1",
+	"A/Palencia/118/2022|2022-10-13|SIAT1","A/Switzerland/39985/2022|2022-11-21|MDCK1/SIAT1","A/Switzerland/07426/2022|2022-11-17|SIAT1/SIAT1","A/Ireland/73304/2022|2022-11-23|SIAT1","A/Ireland/74535/2022|2022-11-28|SIAT2","A/Lithuania/48774/2022|2022-11-24|SIAT1","A/Burgos/82/2022|2022-10-13|SIAT1","A/Hong Kong/34/2022|2022-11-26|MDCK1/SIAT1","A/Switzerland/54601/2022|2022-11-01|MDCK1/SIAT1","A/Ireland/74250/2022|2022-11-27|SIAT2",
+	"A/Ireland/74511/2022|2022-11-29|SIAT2","A/Switzerland/76550/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/01284/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/89053/2022|2022-12-06|SIAT1/SIAT1","A/Switzerland/12082/2022|2022-12-08|SIAT1/SIAT1","A/Georgia/2369/2022|2022-11-24|SIAT1","A/Georgia/8/2022|*|SIAT1","A/Georgia/4/2022|*|SIAT1","A/Argentina/3486/2022|2022-10-01|SIAT1","A/Argentina/3498/2022|2022-09-29|SIAT1",
+	"A/Argentina/3485/2022|2022-10-01|SIAT1","A/Hong Kong/19/2022|2022-11-09|MDCK1/SIAT1","A/Hong Kong/22/2022|2022-11-13|MDCK1/SIAT1","A/Hong Kong/24/2022|2022-11-15|MDCK1/SIAT1","A/Hong Kong/28/2022|2022-11-16|MDCK1/SIAT1","A/Hong Kong/30/2022|2022-11-20|MDCK1/SIAT1","A/Hong Kong/38/2022|2022-12-04|MDCK1/SIAT1","A/Hong Kong/26/2022|2022-11-16|MDCK1/SIAT1","A/Switzerland/52849/2022|2022-11-11|SIAT1/SIAT1","A/Switzerland/86247/2022|2022-11-14|MDCK1/SIAT1",
+	"A/Switzerland/85876/2022|2022-11-14|MDCK1/SIAT1","A/Hong Kong/15/2022|2022-10-04|MDCK1/SIAT1","A/Hong Kong/17/2022|2022-10-24|MDCK1/SIAT1","A/Hong Kong/32/2022|2022-11-25|MDCK1/SIAT1")
+ag_Sep2023_tableH3_12 <- agNames(map60) %in% c("A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT4","A/Norway/24873/2021|2021-10-24|SIAT4","A/Poland/97/2022|2022-05-09|SIAT3","A/Lille/50053/2022|2022-09-06|MDCK1/SIAT5","A/SaudiArabia/1404/2022|2022-10-05|SIAT1","A/Catalonia/3505472NS/2022|2022-09-25|SIAT1","A/Greece/370/2022|2022-11-07|SIAT1","A/Catalonia/2262797NS/2022|2022-12-01|SIAT1","A/Netherlands/12136/2022|2022-12-29|MDCK-MIX2/SIAT1","A/Estonia/172629/2023|2023-01-02|SIAT2",
+	"A/Greece/ILI_236/2023|2023-01-02|SIAT1","A/Greece/ILI_237/2023|2023-01-03|SIAT1","A/Greece/15/2023|2023-01-09|SIAT1","A/Armenia/167/2023|2023-01-11|SIAT1","A/Netherlands/10142/2023|2023-01-12|MDCK-MIX2/SIAT1","A/Netherlands/10226/2023|2023-01-29|MDCK-MIX2/SIAT1","A/Netherlands/10228/2023|2023-01-30|MDCK-MIX2/SIAT1","A/Ireland/9047/2023|2023-02-04|SIAT1","A/Ireland/9830/2023|2023-02-08|SIAT1","A/Netherlands/10277/2023|2023-02-09|MDCK-MIX2/SIAT1",
+	"A/Ireland/21983/2023|2023-04-02|SIAT1","A/Greece/267/2022|2022-10-17|SIAT1","A/Blida/42154/2022|2022-11-07|SIAT2","A/SaudiArabia/2439/2022|2022-11-14|SIAT1","A/Boumerdes/44092/2022|2022-12-07|SIAT1","A/Netherlands/11905/2022|2022-12-13|MDCK-MIX2/SIAT1","A/Catalonia/3512677NS/2022|2022-12-19|SIAT1","A/Bouira/44511/2022|2022-12-20|SIAT1","A/Netherlands/10160/2023|2023-01-22|MDCK-MIX2/SIAT1","A/Netherlands/10132/2023|2023-01-16|MDCK-MIX2/SIAT1",
+	"A/SaudiArabia/556/2022|2022-06-25|SIAT1","A/Catalonia/2232752NS/2022|2022-10-07|SIAT1","A/Catalonia/3506449NS/2022|2022-10-10|SIAT1","A/Greece/386/2022|2022-11-07|SIAT1","A/Greece/416/2022|2022-11-16|SIAT1","A/Greece/415/2022|2022-11-16|SIAT1","A/Catalonia/3514090NS/2022|2022-12-30|SIAT1","A/Greece/ILI_113/2023|2023-01-02|SIAT1","A/Greece/ILI_196/2023|2023-01-03|SIAT1","A/Greece/ILI_249/2023|2023-01-04|SIAT1",
+	"A/Greece/ILI_433/2023|2023-01-10|SIAT1","A/Netherlands/10162/2023|2023-01-23|MDCK-MIX2/SIAT1","A/Ireland/8169/2023|2023-02-01|SIAT1","A/Netherlands/10192/2023|2023-02-01|MDCK-MIX2/SIAT1","A/Ireland/9468/2023|2023-02-07|SIAT2","A/Netherlands/10290/2023|2023-02-14|MDCK-MIX2/SIAT1","A/Ireland/8661/2023|2023-02-02|SIAT2","A/Ireland/9045/2023|2023-02-04|SIAT1")
+ag_Sep2023_tableH3_1 <- agNames(map60) %in% c("A/Lille/50053/2022|2022-09-06|MDCK1/SIAT3","A/Albania/290586/2023|2023-01-05|SIAT1","A/Valladolid/24/2022|2022-10-06|SIAT1/SIAT1","A/Valladolid/22/2022|2022-10-06|SIAT1/SIAT1","A/Castilla La Mancha/3894/2022|2022-10-09|SIAT1","A/Valladolid/27/2022|2022-10-11|SIAT1/SIAT1","A/Valladolid/11/2022|2022-10-12|SIAT1/SIAT1","A/Burgos/29/2022|2022-11-01|SIAT1/SIAT1","A/Salamanca/33/2022|2022-11-02|SIAT1/SIAT1","A/Burgos/28/2022|2022-11-02|SIAT1/SIAT1",
+	"A/Ceuta/4232/2022|2022-11-08|SIAT1","A/Bretagne/55452/2022|2022-11-14|SIAT1","A/Avila/53/2022|2022-12-29|SIAT1/SIAT1","A/Bulgaria/509/2023|2023-01-16|SIAT1","A/Castilla La Mancha/4215/2022|2022-10-28|SIAT1","A/Castilla La Mancha/4128/2022|2022-10-21|SIAT1","A/Valladolid/31/2022|2022-10-09|SIAT1/SIAT1","A/Albania/290567/2023|2023-01-05|SIAT1","A/Bulgaria/664/2023|2023-01-12|SIAT1","A/Mauritius/P61639/2022|2022-12-14|MDCKx/SIAT1",
+	"A/Castilla La Mancha/3901/2022|2022-10-07|SIAT1","A/Palencia/30/2022|2022-10-25|SIAT1/SIAT1","A/Salamanca/34/2022|2022-11-02|SIAT1/SIAT1","A/Burgos/4/2023|2023-01-08|SIAT1/SIAT1","A/Valladolid/19/2022|2022-10-05|SIAT1/SIAT1","A/Valladolid/32/2022|2022-10-10|SIAT1/SIAT1","A/Valladolid/12/2022|2022-10-13|SIAT1/SIAT1","A/Burgos/5/2023|2023-01-07|SIAT1/SIAT1","A/Valladolid/21/2022|2022-10-07|SIAT1/SIAT1","A/Aragon/4051/2022|2022-10-18|SIAT1",
+	"A/Bretagne/55892/2022|2022-11-17|SIAT1","A/Albania/290580/2023|2023-01-05|SIAT1","A/Valladolid/15/2023|2023-01-05|SIAT1/SIAT1","A/Albania/290638/2023|2023-01-06|SIAT1","A/Burgos/8/2023|2023-01-09|SIAT1/SIAT1","A/Castilla La Mancha/4044/2022|2022-10-12|SIAT1","A/Albania/290633/2023|2023-01-06|SIAT2","A/Segovia/233/2022|2022-10-08|SIAT1","A/Navarra/4220/2022|2022-11-09|SIAT1","A/Brandenburg/15/2022|2022-10-17|Ex/E2",
+	"A/Valladolid/17/2023|2023-01-16|SIAT1/SIAT1","A/Mauritius/P08894/2023|2023-01-08|MDCKx/SIAT1")
+ag_Sep2022_table10_25 <- agNames(map60) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT4","A/Bangladesh/4005/2020|2020-10-04|SIAT3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT2","A/Slovenia/8720/2022|2022-02-10|E3(Am1Al2)","A/Croatia/66213/2022|2022-03-23|SIAT1","A/Croatia/70723/2022|2022-04-06|SIAT1","A/Croatia/70708/2022|2022-04-06|SIAT1","A/Croatia/70697/2022|2022-04-06|SIAT2","A/Croatia/70654/2022|2022-04-06|SIAT2","A/Croatia/70648/2022|2022-04-06|SIAT2",
+	"A/Croatia/70645/2022|2022-04-06|SIAT2","A/Sarajevo/186G/2022|2022-04-09|SIAT1","A/Qatar/10-VI-22-1463000/2022|2022-04-17|SIAT2","A/Sarajevo/189G/2022|2022-04-18|SIAT1","A/Croatia/77372/2022|2022-05-07|SIAT1","A/Croatia/79486/2022|2022-05-17|SIAT1","A/Portugal/210209/2022|2022-02-09|SIAT1/SIAT3","A/Portugal/210207/2022|2022-02-10|SIAT2/SIAT3","A/Hong Kong/3/2022|2022-06-13|MDCK1/SIAT3","A/Hong Kong/5/2022|2022-06-20|MDCK1/SIAT3",
+	"A/Hong Kong/8/2022|2022-06-21|MDCK1/SIAT3","A/Ile de France/08440/2022|2022-02-01|SIAT3","A/Pays de Loire/13561/2022|2022-02-24|SIAT2","A/Qatar/15-VI-22-1438736/2022|2022-04-10|SIAT3")
+ag_Sep2021_table7_7 <- agNames(map60) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Denmark/3264/2019|2019-10-25|SIAT5","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Bangladesh/4005/2020|2020-10-04|SIAT2","A/England/538/2018|2018-02-26|MDCK1/SIAT3","NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1","A/Stockholm/2/2021|2021-01-23|SIAT0/SIAT1","A/Stockholm/3/2021|2021-02-19|SIAT0/SIAT1","A/Stockholm/4/2021|2021-03-11|SIAT0/SIAT1",
+	"A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT1","A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1")
+
+agFill(map60)[ag_Feb2023_tableH3_10] <- '#ea5545'
+agFill(map60)[ag_Sep2023_tableH3_12] <- '#ef9b20'
+agFill(map60)[ag_Sep2023_tableH3_1] <- '#ede15b'
+agFill(map60)[ag_Sep2022_table10_25] <- '#87bc45'
+agFill(map60)[ag_Sep2021_table7_7] <- '#27aeef'
+p_map60 <- ggplot(map60) + ggtitle('map 60')
+p_map60
+
+
+#################### MAP 61 ####################
+#### colered by tables
+agSize(map61) <- 5
+agFill(map61) <- 'grey50'
+ag_Feb2023_tableH3_10 <- agNames(map61) %in% c("A/Cambodia/e0826360/2020|2020-07-16|E5/E3","A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT3","A/Norway/24873/2021|2021-10-24|SIAT3","A/Poland/97/2022|2022-05-09|SIAT2","A/Dakar/27/2022|2022-06-28|P1/SIAT1","A/Argentina/3155/2022|2022-08-31|SIAT2","A/Argentina/3151/2022|2022-09-05|SIAT1","A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1","A/Switzerland/18284/2022|2022-10-06|SIAT2/SIAT1","A/Burgos/257/2022|2022-10-13|SIAT1",
+	"A/Soria/213/2022|2022-10-13|SIAT1","A/Salamanca/198/2022|2022-10-13|SIAT1","A/Salamanca/196/2022|2022-10-13|SIAT1","A/Switzerland/18694/2022|2022-11-18|MDCK1/SIAT1","A/Palencia/118/2022|2022-10-13|SIAT1","A/Switzerland/39985/2022|2022-11-21|MDCK1/SIAT1","A/Switzerland/07426/2022|2022-11-17|SIAT1/SIAT1","A/Ireland/73304/2022|2022-11-23|SIAT1","A/Ireland/74535/2022|2022-11-28|SIAT2","A/Lithuania/48774/2022|2022-11-24|SIAT1",
+	"A/Burgos/82/2022|2022-10-13|SIAT1","A/Hong Kong/34/2022|2022-11-26|MDCK1/SIAT1","A/Switzerland/54601/2022|2022-11-01|MDCK1/SIAT1","A/Ireland/74250/2022|2022-11-27|SIAT2","A/Ireland/74511/2022|2022-11-29|SIAT2","A/Switzerland/76550/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/01284/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/89053/2022|2022-12-06|SIAT1/SIAT1","A/Switzerland/12082/2022|2022-12-08|SIAT1/SIAT1","A/Georgia/2369/2022|2022-11-24|SIAT1",
+	"A/Georgia/8/2022|*|SIAT1","A/Georgia/4/2022|*|SIAT1","A/Argentina/3486/2022|2022-10-01|SIAT1","A/Argentina/3498/2022|2022-09-29|SIAT1","A/Argentina/3485/2022|2022-10-01|SIAT1","A/Hong Kong/19/2022|2022-11-09|MDCK1/SIAT1","A/Hong Kong/22/2022|2022-11-13|MDCK1/SIAT1","A/Hong Kong/24/2022|2022-11-15|MDCK1/SIAT1","A/Hong Kong/28/2022|2022-11-16|MDCK1/SIAT1","A/Hong Kong/30/2022|2022-11-20|MDCK1/SIAT1",
+	"A/Hong Kong/38/2022|2022-12-04|MDCK1/SIAT1","A/Hong Kong/26/2022|2022-11-16|MDCK1/SIAT1","A/Switzerland/52849/2022|2022-11-11|SIAT1/SIAT1","A/Switzerland/86247/2022|2022-11-14|MDCK1/SIAT1","A/Switzerland/85876/2022|2022-11-14|MDCK1/SIAT1","A/Hong Kong/15/2022|2022-10-04|MDCK1/SIAT1","A/Hong Kong/17/2022|2022-10-24|MDCK1/SIAT1","A/Hong Kong/32/2022|2022-11-25|MDCK1/SIAT1")
+ag_Sep2023_tableH3_12 <- agNames(map61) %in% c("A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT4","A/Norway/24873/2021|2021-10-24|SIAT4","A/Poland/97/2022|2022-05-09|SIAT3","A/Lille/50053/2022|2022-09-06|MDCK1/SIAT5","A/SaudiArabia/1404/2022|2022-10-05|SIAT1","A/Catalonia/3505472NS/2022|2022-09-25|SIAT1","A/Greece/370/2022|2022-11-07|SIAT1","A/Catalonia/2262797NS/2022|2022-12-01|SIAT1","A/Netherlands/12136/2022|2022-12-29|MDCK-MIX2/SIAT1","A/Estonia/172629/2023|2023-01-02|SIAT2",
+	"A/Greece/ILI_236/2023|2023-01-02|SIAT1","A/Greece/ILI_237/2023|2023-01-03|SIAT1","A/Greece/15/2023|2023-01-09|SIAT1","A/Armenia/167/2023|2023-01-11|SIAT1","A/Netherlands/10142/2023|2023-01-12|MDCK-MIX2/SIAT1","A/Netherlands/10226/2023|2023-01-29|MDCK-MIX2/SIAT1","A/Netherlands/10228/2023|2023-01-30|MDCK-MIX2/SIAT1","A/Ireland/9047/2023|2023-02-04|SIAT1","A/Ireland/9830/2023|2023-02-08|SIAT1","A/Netherlands/10277/2023|2023-02-09|MDCK-MIX2/SIAT1",
+	"A/Ireland/21983/2023|2023-04-02|SIAT1","A/Greece/267/2022|2022-10-17|SIAT1","A/Blida/42154/2022|2022-11-07|SIAT2","A/SaudiArabia/2439/2022|2022-11-14|SIAT1","A/Boumerdes/44092/2022|2022-12-07|SIAT1","A/Netherlands/11905/2022|2022-12-13|MDCK-MIX2/SIAT1","A/Catalonia/3512677NS/2022|2022-12-19|SIAT1","A/Bouira/44511/2022|2022-12-20|SIAT1","A/Netherlands/10160/2023|2023-01-22|MDCK-MIX2/SIAT1","A/Netherlands/10132/2023|2023-01-16|MDCK-MIX2/SIAT1",
+	"A/SaudiArabia/556/2022|2022-06-25|SIAT1","A/Catalonia/2232752NS/2022|2022-10-07|SIAT1","A/Catalonia/3506449NS/2022|2022-10-10|SIAT1","A/Greece/386/2022|2022-11-07|SIAT1","A/Greece/416/2022|2022-11-16|SIAT1","A/Greece/415/2022|2022-11-16|SIAT1","A/Catalonia/3514090NS/2022|2022-12-30|SIAT1","A/Greece/ILI_113/2023|2023-01-02|SIAT1","A/Greece/ILI_196/2023|2023-01-03|SIAT1","A/Greece/ILI_249/2023|2023-01-04|SIAT1",
+	"A/Greece/ILI_433/2023|2023-01-10|SIAT1","A/Netherlands/10162/2023|2023-01-23|MDCK-MIX2/SIAT1","A/Ireland/8169/2023|2023-02-01|SIAT1","A/Netherlands/10192/2023|2023-02-01|MDCK-MIX2/SIAT1","A/Ireland/9468/2023|2023-02-07|SIAT2","A/Netherlands/10290/2023|2023-02-14|MDCK-MIX2/SIAT1","A/Ireland/8661/2023|2023-02-02|SIAT2","A/Ireland/9045/2023|2023-02-04|SIAT1")
+ag_Sep2022_table10_12 <- agNames(map61) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT4","A/Bangladesh/4005/2020|2020-10-04|SIAT3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Norway/24873/2021|2021-10-24|SIAT2","A/Norway/24873/2021|2021-10-24|E4 (Am2Al2)","A/Norway/29511/2021|2021-11-25|E4 (Am2Al2)","A/Bulgaria/193/2022|2022-01-16|SIAT2/SIAT1","A/Bulgaria/142/2022|2022-01-16|SIAT2/SIAT1","A/Bulgaria/104/2022|2022-01-16|SIAT2/SIAT1","A/Bulgaria/75/2022|2022-01-16|SIAT2/SIAT1",
+	"A/Bulgaria/404/2022|2022-01-18|SIAT2/SIAT1","A/Bulgaria/648/2022|2022-01-30|SIAT2/SIAT1","A/Bulgaria/646/2022|2022-01-30|SIAT2/SIAT1","A/Bulgaria/644/2022|2022-01-30|SIAT2/SIAT1","A/Bulgaria/1057/2022|2022-02-11|SIAT2/SIAT1","A/Bulgaria/1127/2022|2022-02-16|SIAT2/SIAT1","A/Bulgaria/1195/2022|2022-02-21|SIAT2/SIAT1","A/Bulgaria/1273/2022|2022-02-25|SIAT2/SIAT1","A/Bulgaria/1473/2022|2022-03-10|SIAT2/SIAT1","A/Bulgaria/1616/2022|2022-03-17|SIAT2/SIAT1",
+	"A/Bulgaria/1611/2022|2022-03-17|SIAT2/SIAT1","A/Bulgaria/1537/2022|2022-03-18|SIAT2/SIAT1","A/Bulgaria/1536/2022|2022-03-18|SIAT2/SIAT1","A/Bulgaria/1582/2022|2022-03-21|SIAT2/SIAT1","A/Bulgaria/1581/2022|2022-03-21|SIAT2/SIAT1","A/Bulgaria/1579/2022|2022-03-21|SIAT2/SIAT1","A/Bulgaria/1588/2022|2022-03-22|SIAT2/SIAT1","A/Bulgaria/1666/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1665/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1660/2022|2022-03-23|SIAT2/SIAT1",
+	"A/Bulgaria/1659/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1646/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1763/2022|2022-03-28|SIAT2/SIAT1","A/Bulgaria/1726/2022|2022-03-28|SIAT2/SIAT1","A/Bulgaria/1813/2022|2022-04-04|SIAT2/SIAT1","A/Bulgaria/1827/2022|2022-04-07|SIAT2/SIAT1","A/Slovenia/9891/2022|2022-04-11|MDCKx/SIAT1","A/Slovenia/9967/2022|2022-04-20|MDCKx/SIAT1","A/Slovenia/10081/2022|2022-04-21|MDCKx/SIAT1","A/Slovenia/9905/2022|2022-04-12|MDCKx/SIAT1")
+ag_Feb2022_table9_1 <- agNames(map61) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT5","A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Bangladesh/4005/2020|2020-10-04|SIAT2","A/Michigan/173/2020|2020-11-19|SIAT2/SIAT1","A/Togo/771/2020|2020-10-16|SIAT4/SIAT1","A/Qatar/16-VI-21-3809350/2021|2021-08-03|SIAT2","A/Qatar/16-VI-21-3801619/2021|2021-08-03|SIAT1","A/Delaware/01/2021|2021-04-16|SIAT2/SIAT1","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Qatar/16-VI-21-3673175/2021|2021-07-27|SIAT0",
+	"A/Qatar/16-VI-21-3738537/2021|2021-07-30|SIAT2","A/Qatar/16-VI-21-3744895/2021|2021-07-31|SIAT1","A/Qatar/24-VI-21-3752470/2021|2021-08-01|SIAT1","A/Qatar/16-VI-21-3820344/2021|2021-08-02|SIAT1","A/Qatar/16-VI-21-3782139/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3778452/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3773931/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3798042/2021|2021-08-03|SIAT1","A/Qatar/10-VI-21-3813895/2021|2021-08-04|SIAT1","A/Qatar/10-VI-21-3843467/2021|2021-08-05|SIAT1",
+	"A/Qatar/24-VI-21-3868954/2021|2021-08-06|SIAT1","A/Qatar/10-VI-21-3886441/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-3912649/2021|2021-08-08|SIAT1","A/Qatar/10-VI-21-3904627/2021|2021-08-08|SIAT2","A/Qatar/24-VI-21-3942034/2021|2021-08-09|SIAT1","A/Qatar/24-VI-21-3929575/2021|2021-08-09|SIAT2","A/Qatar/47-VI-21-3971441/2021|2021-08-10|SIAT1","A/Qatar/47-VI-21-3968065/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3962572/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3950368/2021|2021-08-10|SIAT1",
+	"A/Qatar/47-VI-21-3995023/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3985321/2021|2021-08-11|SIAT2","A/Qatar/24-VI-21-3980766/2021|2021-08-11|SIAT2","A/Qatar/16-VI-21-3994833/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3994707/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3999123/2021|2021-08-12|SIAT1","A/Qatar/24-VI-21-4041206/2021|2021-08-13|SIAT1","A/Qatar/24-VI-21-4031255/2021|2021-08-13|SIAT2","A/Qatar/16-VI-21-4035811/2021|2021-08-13|SIAT1","A/Qatar/16-VI-21-4035218/2021|2021-08-13|SIAT1",
+	"A/Qatar/39-VI-21-4147440/2021|2021-08-17|SIAT1","A/Qatar/39-VI-21-4154225/2021|2021-08-17|SIAT1")
+
+agFill(map61)[ag_Feb2023_tableH3_10] <- '#ea5545'
+agFill(map61)[ag_Sep2023_tableH3_12] <- '#ef9b20'
+agFill(map61)[ag_Sep2022_table10_12] <- '#ede15b'
+agFill(map61)[ag_Feb2022_table9_1] <- '#87bc45'
+p_map61 <- ggplot(map61) + ggtitle('map 61')
+p_map61
+
+
+#################### MAP 62 ####################
+#### colered by tables
+agSize(map62) <- 5
+agFill(map62) <- 'grey50'
+ag_Feb2023_tableH3_10 <- agNames(map62) %in% c("A/Cambodia/e0826360/2020|2020-07-16|E5/E3","A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT3","A/Norway/24873/2021|2021-10-24|SIAT3","A/Poland/97/2022|2022-05-09|SIAT2","A/Dakar/27/2022|2022-06-28|P1/SIAT1","A/Argentina/3155/2022|2022-08-31|SIAT2","A/Argentina/3151/2022|2022-09-05|SIAT1","A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1","A/Switzerland/18284/2022|2022-10-06|SIAT2/SIAT1","A/Burgos/257/2022|2022-10-13|SIAT1",
+	"A/Soria/213/2022|2022-10-13|SIAT1","A/Salamanca/198/2022|2022-10-13|SIAT1","A/Salamanca/196/2022|2022-10-13|SIAT1","A/Switzerland/18694/2022|2022-11-18|MDCK1/SIAT1","A/Palencia/118/2022|2022-10-13|SIAT1","A/Switzerland/39985/2022|2022-11-21|MDCK1/SIAT1","A/Switzerland/07426/2022|2022-11-17|SIAT1/SIAT1","A/Ireland/73304/2022|2022-11-23|SIAT1","A/Ireland/74535/2022|2022-11-28|SIAT2","A/Lithuania/48774/2022|2022-11-24|SIAT1",
+	"A/Burgos/82/2022|2022-10-13|SIAT1","A/Hong Kong/34/2022|2022-11-26|MDCK1/SIAT1","A/Switzerland/54601/2022|2022-11-01|MDCK1/SIAT1","A/Ireland/74250/2022|2022-11-27|SIAT2","A/Ireland/74511/2022|2022-11-29|SIAT2","A/Switzerland/76550/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/01284/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/89053/2022|2022-12-06|SIAT1/SIAT1","A/Switzerland/12082/2022|2022-12-08|SIAT1/SIAT1","A/Georgia/2369/2022|2022-11-24|SIAT1",
+	"A/Georgia/8/2022|*|SIAT1","A/Georgia/4/2022|*|SIAT1","A/Argentina/3486/2022|2022-10-01|SIAT1","A/Argentina/3498/2022|2022-09-29|SIAT1","A/Argentina/3485/2022|2022-10-01|SIAT1","A/Hong Kong/19/2022|2022-11-09|MDCK1/SIAT1","A/Hong Kong/22/2022|2022-11-13|MDCK1/SIAT1","A/Hong Kong/24/2022|2022-11-15|MDCK1/SIAT1","A/Hong Kong/28/2022|2022-11-16|MDCK1/SIAT1","A/Hong Kong/30/2022|2022-11-20|MDCK1/SIAT1",
+	"A/Hong Kong/38/2022|2022-12-04|MDCK1/SIAT1","A/Hong Kong/26/2022|2022-11-16|MDCK1/SIAT1","A/Switzerland/52849/2022|2022-11-11|SIAT1/SIAT1","A/Switzerland/86247/2022|2022-11-14|MDCK1/SIAT1","A/Switzerland/85876/2022|2022-11-14|MDCK1/SIAT1","A/Hong Kong/15/2022|2022-10-04|MDCK1/SIAT1","A/Hong Kong/17/2022|2022-10-24|MDCK1/SIAT1","A/Hong Kong/32/2022|2022-11-25|MDCK1/SIAT1")
+ag_Sep2023_tableH3_12 <- agNames(map62) %in% c("A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT4","A/Norway/24873/2021|2021-10-24|SIAT4","A/Poland/97/2022|2022-05-09|SIAT3","A/Lille/50053/2022|2022-09-06|MDCK1/SIAT5","A/SaudiArabia/1404/2022|2022-10-05|SIAT1","A/Catalonia/3505472NS/2022|2022-09-25|SIAT1","A/Greece/370/2022|2022-11-07|SIAT1","A/Catalonia/2262797NS/2022|2022-12-01|SIAT1","A/Netherlands/12136/2022|2022-12-29|MDCK-MIX2/SIAT1","A/Estonia/172629/2023|2023-01-02|SIAT2",
+	"A/Greece/ILI_236/2023|2023-01-02|SIAT1","A/Greece/ILI_237/2023|2023-01-03|SIAT1","A/Greece/15/2023|2023-01-09|SIAT1","A/Armenia/167/2023|2023-01-11|SIAT1","A/Netherlands/10142/2023|2023-01-12|MDCK-MIX2/SIAT1","A/Netherlands/10226/2023|2023-01-29|MDCK-MIX2/SIAT1","A/Netherlands/10228/2023|2023-01-30|MDCK-MIX2/SIAT1","A/Ireland/9047/2023|2023-02-04|SIAT1","A/Ireland/9830/2023|2023-02-08|SIAT1","A/Netherlands/10277/2023|2023-02-09|MDCK-MIX2/SIAT1",
+	"A/Ireland/21983/2023|2023-04-02|SIAT1","A/Greece/267/2022|2022-10-17|SIAT1","A/Blida/42154/2022|2022-11-07|SIAT2","A/SaudiArabia/2439/2022|2022-11-14|SIAT1","A/Boumerdes/44092/2022|2022-12-07|SIAT1","A/Netherlands/11905/2022|2022-12-13|MDCK-MIX2/SIAT1","A/Catalonia/3512677NS/2022|2022-12-19|SIAT1","A/Bouira/44511/2022|2022-12-20|SIAT1","A/Netherlands/10160/2023|2023-01-22|MDCK-MIX2/SIAT1","A/Netherlands/10132/2023|2023-01-16|MDCK-MIX2/SIAT1",
+	"A/SaudiArabia/556/2022|2022-06-25|SIAT1","A/Catalonia/2232752NS/2022|2022-10-07|SIAT1","A/Catalonia/3506449NS/2022|2022-10-10|SIAT1","A/Greece/386/2022|2022-11-07|SIAT1","A/Greece/416/2022|2022-11-16|SIAT1","A/Greece/415/2022|2022-11-16|SIAT1","A/Catalonia/3514090NS/2022|2022-12-30|SIAT1","A/Greece/ILI_113/2023|2023-01-02|SIAT1","A/Greece/ILI_196/2023|2023-01-03|SIAT1","A/Greece/ILI_249/2023|2023-01-04|SIAT1",
+	"A/Greece/ILI_433/2023|2023-01-10|SIAT1","A/Netherlands/10162/2023|2023-01-23|MDCK-MIX2/SIAT1","A/Ireland/8169/2023|2023-02-01|SIAT1","A/Netherlands/10192/2023|2023-02-01|MDCK-MIX2/SIAT1","A/Ireland/9468/2023|2023-02-07|SIAT2","A/Netherlands/10290/2023|2023-02-14|MDCK-MIX2/SIAT1","A/Ireland/8661/2023|2023-02-02|SIAT2","A/Ireland/9045/2023|2023-02-04|SIAT1")
+ag_Sep2022_table10_12 <- agNames(map62) %in% c("A/Bangladesh/4005/2020|2020-10-04|SIAT3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Norway/24873/2021|2021-10-24|SIAT2","A/Norway/24873/2021|2021-10-24|E4 (Am2Al2)","A/Norway/29511/2021|2021-11-25|E4 (Am2Al2)","A/Bulgaria/193/2022|2022-01-16|SIAT2/SIAT1","A/Bulgaria/142/2022|2022-01-16|SIAT2/SIAT1","A/Bulgaria/104/2022|2022-01-16|SIAT2/SIAT1","A/Bulgaria/75/2022|2022-01-16|SIAT2/SIAT1","A/Bulgaria/404/2022|2022-01-18|SIAT2/SIAT1",
+	"A/Bulgaria/648/2022|2022-01-30|SIAT2/SIAT1","A/Bulgaria/646/2022|2022-01-30|SIAT2/SIAT1","A/Bulgaria/644/2022|2022-01-30|SIAT2/SIAT1","A/Bulgaria/1057/2022|2022-02-11|SIAT2/SIAT1","A/Bulgaria/1127/2022|2022-02-16|SIAT2/SIAT1","A/Bulgaria/1195/2022|2022-02-21|SIAT2/SIAT1","A/Bulgaria/1273/2022|2022-02-25|SIAT2/SIAT1","A/Bulgaria/1473/2022|2022-03-10|SIAT2/SIAT1","A/Bulgaria/1616/2022|2022-03-17|SIAT2/SIAT1","A/Bulgaria/1611/2022|2022-03-17|SIAT2/SIAT1",
+	"A/Bulgaria/1537/2022|2022-03-18|SIAT2/SIAT1","A/Bulgaria/1536/2022|2022-03-18|SIAT2/SIAT1","A/Bulgaria/1582/2022|2022-03-21|SIAT2/SIAT1","A/Bulgaria/1581/2022|2022-03-21|SIAT2/SIAT1","A/Bulgaria/1579/2022|2022-03-21|SIAT2/SIAT1","A/Bulgaria/1588/2022|2022-03-22|SIAT2/SIAT1","A/Bulgaria/1666/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1665/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1660/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1659/2022|2022-03-23|SIAT2/SIAT1",
+	"A/Bulgaria/1646/2022|2022-03-23|SIAT2/SIAT1","A/Bulgaria/1763/2022|2022-03-28|SIAT2/SIAT1","A/Bulgaria/1726/2022|2022-03-28|SIAT2/SIAT1","A/Bulgaria/1813/2022|2022-04-04|SIAT2/SIAT1","A/Bulgaria/1827/2022|2022-04-07|SIAT2/SIAT1","A/Slovenia/9891/2022|2022-04-11|MDCKx/SIAT1","A/Slovenia/9967/2022|2022-04-20|MDCKx/SIAT1","A/Slovenia/10081/2022|2022-04-21|MDCKx/SIAT1","A/Slovenia/9905/2022|2022-04-12|MDCKx/SIAT1")
+ag_Sep2022_table10_10 <- agNames(map62) %in% c("A/Bangladesh/4005/2020|2020-10-04|SIAT5","A/England/214191723/2021|2021-10-12|MDCK1/SIAT2","A/Catalonia/800505/2021|2021-10-25|C0/SIAT1","A/Catalonia/3551005/2021|2021-12-07|C0/SIAT1","A/Thuringen/2/2022|2022-01-04|C2SIAT1","A/Catalonia/3556026/2022|2022-01-06|C0/SIAT1","A/Berlin/5/2022|2022-01-10|C1/SIAT1","A/Catalonia/13522/2022|2022-01-17|C0/SIAT1","A/Catalonia/13520/2022|2022-01-17|C0/SIAT1","A/Baden-Wurttemberg/8/2022|2022-01-24|C1/SIAT1",
+	"A/Sachsen/1/2022|2022-01-24|C1/SIAT1","A/Hessen/4/2022|2022-01-24|C1/SIAT1","A/Berlin/10/2022|2022-01-31|C1/SIAT1","A/Bremen/1/2022|2022-01-31|C1/SIAT1","A/Hessen/6/2022|2022-01-31|C1/SIAT1","A/Bayern/4/2022|2022-02-02|C1/SIAT1","A/Niedersachsen/8/2022|2022-02-11|C1/SIAT1","A/Thuringen/4/2022|2022-02-14|C1/SIAT1","A/Catalonia/13756/2022|2022-02-16|C0/SIAT1","A/Catalonia/13755/2022|2022-02-16|C0/SIAT1",
+	"A/Bayern/7/2022|2022-02-24|C1/SIAT1","A/Rheinland-Pfalz/1/2022|2022-02-25|C1/SIAT1","A/Thuringen/6/2022|2022-02-28|C1/SIAT1","A/Denmark/267/2022|2022-02-28|SIAT2/SIAT1","A/Catalonia/2081558/2022|2022-03-01|C0/SIAT1","A/Denmark/294/2022|2022-03-01|SIAT2/SIAT1","A/Denmark/333/2022|2022-03-02|SIAT2/SIAT1","A/Denmark/320/2022|2022-03-02|SIAT2/SIAT2","A/Denmark/335/2022|2022-03-03|SIAT2/SIAT1","A/Thuringen/7/2022|2022-03-06|C1/SIAT1",
+	"A/Bremen/4/2022|2022-03-07|C2/SIAT2","A/Denmark/499/2022|2022-03-07|SIAT2/SIAT1","A/Catalonia/3565654/2022|2022-03-08|C0/SIAT1","A/Denmark/558/2022|2022-03-09|SIAT2/SIAT1","A/Nordrhein-Westfalen/2/2022|2022-03-10|C1/SIAT1","A/Denmark/1098/2022|2022-03-10|SIAT2/SIAT1","A/Denmark/602/2022|2022-03-10|SIAT2/SIAT1","A/Denmark/612/2022|2022-03-11|SIAT2/SIAT1","A/Denmark/922/2022|2022-03-16|SIAT2/SIAT1","A/Denmark/1253/2022|2022-03-18|SIAT2/SIAT1",
+	"A/Denmark/2031/2022|2022-04-05|SIAT2/SIAT1","A/Denmark/1836/2022|2022-04-05|SIAT2/SIAT1","A/Baden-Wurttemberg/5/2022|2022-02-04|C1/SIAT1","A/Hessen/8/2022|2022-02-07|C1/SIAT1","A/Bremen/2/2022|2022-02-18|C1/SIAT1","A/Sachsen/2/2022|2022-03-14|C1/SIAT1","A/Baden-Wurttemberg/6/2022|2022-02-08|C1/SIAT1","A/Catalonia/13731/2022|2022-02-09|C0/SIAT1","A/Catalonia/13738/2022|2022-02-10|C0/SIAT1","A/Catalonia/13737/2022|2022-02-10|C0/SIAT1",
+	"A/Catalonia/13758/2022|2022-02-16|C0/SIAT1","A/Catalonia/2076976/2022|2022-02-23|C0/SIAT1","A/Catalonia/13775/2022|2022-02-23|C0/SIAT1","A/Catalonia/13766/2022|2022-02-23|C0/SIAT1","A/Thuringen/3/2022|2022-02-01|C1/SIAT1","A/Catalonia/13692/2022|2022-02-02|C0/SIAT1")
+ag_Feb2022_table9_1 <- agNames(map62) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT5","A/Bangladesh/4005/2020|2020-10-04|SIAT2","A/Michigan/173/2020|2020-11-19|SIAT2/SIAT1","A/Togo/771/2020|2020-10-16|SIAT4/SIAT1","A/Qatar/16-VI-21-3809350/2021|2021-08-03|SIAT2","A/Qatar/16-VI-21-3801619/2021|2021-08-03|SIAT1","A/Delaware/01/2021|2021-04-16|SIAT2/SIAT1","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Qatar/16-VI-21-3673175/2021|2021-07-27|SIAT0","A/Qatar/16-VI-21-3738537/2021|2021-07-30|SIAT2",
+	"A/Qatar/16-VI-21-3744895/2021|2021-07-31|SIAT1","A/Qatar/24-VI-21-3752470/2021|2021-08-01|SIAT1","A/Qatar/16-VI-21-3820344/2021|2021-08-02|SIAT1","A/Qatar/16-VI-21-3782139/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3778452/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3773931/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3798042/2021|2021-08-03|SIAT1","A/Qatar/10-VI-21-3813895/2021|2021-08-04|SIAT1","A/Qatar/10-VI-21-3843467/2021|2021-08-05|SIAT1","A/Qatar/24-VI-21-3868954/2021|2021-08-06|SIAT1",
+	"A/Qatar/10-VI-21-3886441/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-3912649/2021|2021-08-08|SIAT1","A/Qatar/10-VI-21-3904627/2021|2021-08-08|SIAT2","A/Qatar/24-VI-21-3942034/2021|2021-08-09|SIAT1","A/Qatar/24-VI-21-3929575/2021|2021-08-09|SIAT2","A/Qatar/47-VI-21-3971441/2021|2021-08-10|SIAT1","A/Qatar/47-VI-21-3968065/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3962572/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3950368/2021|2021-08-10|SIAT1","A/Qatar/47-VI-21-3995023/2021|2021-08-11|SIAT1",
+	"A/Qatar/24-VI-21-3985321/2021|2021-08-11|SIAT2","A/Qatar/24-VI-21-3980766/2021|2021-08-11|SIAT2","A/Qatar/16-VI-21-3994833/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3994707/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3999123/2021|2021-08-12|SIAT1","A/Qatar/24-VI-21-4041206/2021|2021-08-13|SIAT1","A/Qatar/24-VI-21-4031255/2021|2021-08-13|SIAT2","A/Qatar/16-VI-21-4035811/2021|2021-08-13|SIAT1","A/Qatar/16-VI-21-4035218/2021|2021-08-13|SIAT1","A/Qatar/39-VI-21-4147440/2021|2021-08-17|SIAT1",
+	"A/Qatar/39-VI-21-4154225/2021|2021-08-17|SIAT1")
+
+agFill(map62)[ag_Feb2023_tableH3_10] <- '#ea5545'
+agFill(map62)[ag_Sep2023_tableH3_12] <- '#ef9b20'
+agFill(map62)[ag_Sep2022_table10_12] <- '#ede15b'
+agFill(map62)[ag_Sep2022_table10_10] <- '#87bc45'
+agFill(map62)[ag_Feb2022_table9_1] <- '#27aeef'
+p_map62 <- ggplot(map62) + ggtitle('map 62')
+p_map62
+
+
+#################### MAP 63 ####################
+#### colered by tables
+agSize(map63) <- 5
+agFill(map63) <- 'grey50'
+ag_2004_table5 <- agNames(map63) %in% c("A/Christchurch/28/03|*|*","A/Paris/637/03|2003-11-01|*","A/Samara/30/04|2004-02-03|*","A/Turkey/405/04|2004-03-03|*","A/Denmark/17/03|2003-09-01|*","A/Ireland/10108/03|2003-09-16|*","A/Israel/21/03|2003-10-09|*","A/Morocco/50/04|2003-10-18|*","A/Belgium/G24/04|2003-10-23|*","A/England/420/03|2003-10-30|*",
+	"A/Geneva/5361/03|2003-11-07|*","A/Lisbon/17/03|2003-11-16|*","A/Netherlands/327/03|2003-11-19|*","A/Barcelona/37/03|2003-11-24|*","A/Finland/324/03|2003-11-28|*","A/Paris/861/04|2003-12-01|*","A/Khaborovsk/34/03|2003-12-01|*","A/Prague/316/03|2003-12-01|*","A/Bucharest/194/03|2003-12-02|*","A/Lyon/2209/03|2003-12-02|*",
+	"A/Oslo/487/03|2003-12-04|*","A/Sachsen/366/03|2003-12-11|*","A/Algeria/303/03|2003-12-14|*","A/Belgrade/7103/03|2003-12-15|*","A/Stockholm/1/04|2003-12-17|*","A/Slovenia/1410/03|2003-12-18|*","A/Austria/134419/03|2003-12-29|*","A/Madrid/G1418/03|2003-01-06|*","A/Wellington/1/2004|2004-01-26|*","A/Latvia/1297/04|2004-01-28|*",
+	"A/Hong Kong/439/04|2004-02-24|*","A/Trieste/19/04|2004-02-16|*","A/Iceland/6/04|2004-02-18|*","A/Madagascar/71824/04|2004-02-18|*","A/Morocco/467/04|2004-02-17|*","A/Parma/61/04|2004-03-01|*","A/Slovakia/608/03|2004-03-03|*","A/Shantou/575/04|2004-04-14|*","A/Dakar/15/04|2004-06-09|*","A/Johannesburg/21/04|2004-06-28|*",
+	"A/Shantou/1219/04|2004-08-10|*")
+ag_2003_table6 <- agNames(map63) %in% c("A/New York/55/01|*|*","A/Finland/170/03|*|*","A/Austria/77956/03|*|*","A/Belgrade/1285/03|2003-02-24|*","A/Goteborg/1/03|2003-03-05|*","A/Hannover/154/03|2003-03-07|*","A/Albania/20/03|2003-03-14|*","A/Montpellier/1279/03|2003-03-27|*","A/Geneva/4841/03|2003-04-02|*","A/Lyon/1331/03|2003-05-05|*",
+	"A/Netherlands/222/03|*|*","A/Shanghai/369/03|*|*","A/Oslo/2221/03|2003-02-01|*","A/Singapore/55/03|2003-02-10|*","A/Stockholm/9/03|2003-03-17|*","A/Indonesia/22/03|2003-03-25|*","A/Geneva/4620/03|2003-03-26|*","A/Lyon/1158/03|2003-03-31|*","A/Auckland/6/03|2003-05-16|*","A/Poitiers/1375/03|2003-05-22|*",
+	"A/Johannesburg/36/03|2003-06-01|*","A/Madagascar/70074/03|2003-06-13|*","A/Israel/3'/03|2003-06-19|*","A/Hong Kong/1205/03|2003-06-28|*","A/Dakar/19/03|2003-06-30|*")
+
+agFill(map63)[ag_2004_table5] <- '#ea5545'
+agFill(map63)[ag_2003_table6] <- '#ef9b20'
+p_map63 <- ggplot(map63) + ggtitle('map 63')
+p_map63
+
+
+#################### MAP 64 ####################
+#### colered by tables
+agSize(map64) <- 5
+agFill(map64) <- 'grey50'
+p_map64 <- ggplot(map64) + ggtitle('map 64')
+p_map64
+
+
+#################### MAP 65 ####################
+#### colered by tables
+agSize(map65) <- 5
+agFill(map65) <- 'grey50'
+ag_Sep2006_table3 <- agNames(map65) %in% c("A/Panama/2007/1999|*|Ex","A/Shantou/1219/2004|*|MDCKx","A/Annecy/1138/2005|*|*","A/Anhui/1238/2005|*|*","A/Switzerland/7016/2006|2006-03-21|MDCKx_1","A/Switzerland/7161/2006|2006-03-24|MDCKx_1","A/Bayern/3/2006|2006-02-24|MDCKx_1","A/Berlin/5/2006|2006-03-06|MDCKx_1","A/Bayern/4/2006|2006-03-07|MDCKx_1","A/Baden-Wurttemberg/10/2006|2006-02-28|MDCKx_1",
+	"A/Baden-Wurttemberg/12/2006|2006-03-03|MDCKx_1","A/Baden-Wurttemberg/11/2006|2006-03-02|MDCKx_1","A/Berlin/8/2006|2006-03-07|MDCKx_1","A/Rheinland-Pfalz/2/2006|2006-03-01|MDCKx_1","A/Berlin/11/2006|2006-03-13|MDCKx_1","A/Baden-Wurttemberg/14/2006|2006-03-13|MDCKx_1","A/Berlin/12/2006|2006-03-13|MDCKx_1","A/Latvia/3876/2006|2006-03-24|MDCK1_1","A/Latvia/4122/2006|2006-03-29|MDCK1_1","A/Latvia/4898/2006|2006-04-23|MDCK1_1",
+	"A/Parma/1/2006|2006-01-01|MDCK1_1","A/Parma/2/2006|2006-01-01|MDCK2_1","A/Parma/5/2006|2006-03-01|MDCK1_1","A/Lyon/CHU/3.513/2006|2006-01-20|MDCK2_2","A/Lyon/CHU/13.207/2006|2006-03-28|MDCK2_2","A/Lyon/320/2006|2006-02-04|MDCK2_2","A/Lyon/636/2006|2006-02-27|MDCK2_2","A/Lyon/768/2006|2006-03-17|MDCK2_1","A/Greece/94/2006|2006-02-28|MDCK2_1")
+ag_Sep2006_table6 <- agNames(map65) %in% c("A/Slovakia/134/2006|*|*","A/Berlin/2/2006|*|*","A/Bayern/4/2006|*|*","A/Lyon/636/2006|*|*","A/Samara/120/2006|2006-05-03|MDCK3_2","A/Samara/123/2006|2006-05-15|MDCK4_2","A/Murmansk/3/2006|2006-04-28|MDCK3_3","A/Moscow/41/2006|2006-03-16|MDCK2_2","A/Moscow/40/2006|2006-03-16|MDCK2_3","A/N/ Novgorod/155/2006|2006-04-07|MDCK3_2",
+	"A/Voronezh/19/2006|2006-03-10|MDCK2_2","A/Voronezh/12/2006|2006-03-01|MDCK2_2","A/St/ Petersburg/37/2006|2006-05-08|MDCK2_1","A/Kaliningrad/44/2006|2006-04-06|MDCK2_3","A/Khabarovsk/49/2006|2006-05-22|MDCK2_2","A/Khabarovsk/10/2006|2006-04-07|MDCK5_2","A/Khabarovsk/29/2006|2006-04-20|MDCK3_3","A/Ryazan/10/2006|2006-04-06|MDCK2_3","A/Ryazan/4/2006|2006-04-06|MDCK2_2","A/Odessa/52/2006|2006-03-23|*",
+	"A/Odessa/62/2006|2006-03-27|*","A/Zagreb/4274/2006|2006-04-01|Ex_2","A/Paris/1889/2006|2006-03-01|MDCKx_1","A/Paris/2030/2006|2006-04-01|MDCKx_1","A/Paris/2109/2006|2006-04-01|MDCKx_1","A/Paris/2208/2006|2006-02-01|MDCKx_1","A/Johannesburg/350/2006|2006-06-09|MDCKx_3","A/Johannesburg/354/2006|2006-06-08|MDCKx_3","A/Johannesburg/185/2006|2006-05-29|MDCKx_3","A/Johannesburg/245/2006|2006-06-02|MDCKx_1",
+	"A/Johannesburg/271/2006|2006-06-04|MDCKx_2","A/Johannesburg/277/2006|2006-06-05|MDCKx_1","A/Johannesburg/339/2006|2006-06-07|MDCKx_1","A/Johannesburg/340/2006|2006-06-01|MDCKx_2","A/Johannesburg/344/2006|2006-06-08|MDCKx_2","A/Hong Kong/201/2006|2006-02-02|MDCK2_2","A/Hong Kong/453/2006|2006-02-22|MDCK2_2")
+
+agFill(map65)[ag_Sep2006_table3] <- '#ea5545'
+agFill(map65)[ag_Sep2006_table6] <- '#ef9b20'
+p_map65 <- ggplot(map65) + ggtitle('map 65')
+p_map65
+
+
+#################### MAP 66 ####################
+#### colered by tables
+agSize(map66) <- 5
+agFill(map66) <- 'grey50'
+ag_Sep2006_table5 <- agNames(map66) %in% c("A/Berlin/38/2006|*|MDCKx_3","A/Berlin/37/2006|2006-04-11|MDCKx_1","A/Baden-Wurttemberg/44/2006|2006-03-22|MDCKx_1","A/Berlin/23/2006|2006-04-25|MDCKx_3","A/Bayern/23/2006|2006-04-20|MDCKx_3","A/Baden-Wurttemberg/35/2006|2006-03-28|MDCKx_1","A/Baden-Wurttemberg/34/2006|2006-03-27|MDCKx_1","A/Baden-Wurttemberg/31/2006|2006-03-22|MDCKx_3","A/Bayern/21/2006|2006-03-20|MDCKx_1","A/Bayern/20/2006|2006-03-16|MDCKx_3",
+	"A/Bayern/19/2006|2006-03-13|MDCKx_1","A/Baden-Wurttemberg/28/2006|2006-02-10|MDCKx_1","A/Hamburg/1/2006|2006-04-06|MDCKx_1","A/Berlin/32/2006|2006-04-11|MDCKx_1","A/Bayern/18/2006|2006-04-12|MDCKx_1","A/Thuringen/13/2006|2006-03-25|MDCKx_1","A/Brandenburg/4/2006|2006-04-10|MDCKx_1","A/Mecklenburg-Vorpo./4/2006|2006-04-05|MDCKx_3","A/Mecklenburg-Vorpo./3/2006|2006-04-04|MDCKx_1","A/Berlin/36/2006|2006-04-12|MDCKx_1",
+	"A/Pol/Waw/2/2006|2006-03-31|MDCKx_1","A/Pol/Bydgoszcz/1/2006|2006-04-03|MDCKx_1","A/Latvia/5173/2006|2006-04-28|MDCK1_3","A/Latvia/5653/2006|2006-05-11|MDCK1_3")
+ag_Sep2006_table3 <- agNames(map66) %in% c("A/Shantou/1219/2004|*|MDCKx","A/Anhui/1238/2005|*|*","A/Switzerland/7016/2006|2006-03-21|MDCKx_1","A/Switzerland/7161/2006|2006-03-24|MDCKx_1","A/Bayern/3/2006|2006-02-24|MDCKx_1","A/Berlin/5/2006|2006-03-06|MDCKx_1","A/Bayern/4/2006|2006-03-07|MDCKx_1","A/Baden-Wurttemberg/10/2006|2006-02-28|MDCKx_1","A/Baden-Wurttemberg/12/2006|2006-03-03|MDCKx_1","A/Baden-Wurttemberg/11/2006|2006-03-02|MDCKx_1",
+	"A/Berlin/8/2006|2006-03-07|MDCKx_1","A/Rheinland-Pfalz/2/2006|2006-03-01|MDCKx_1","A/Berlin/11/2006|2006-03-13|MDCKx_1","A/Baden-Wurttemberg/14/2006|2006-03-13|MDCKx_1","A/Berlin/12/2006|2006-03-13|MDCKx_1","A/Latvia/3876/2006|2006-03-24|MDCK1_1","A/Latvia/4122/2006|2006-03-29|MDCK1_1","A/Latvia/4898/2006|2006-04-23|MDCK1_1","A/Parma/1/2006|2006-01-01|MDCK1_1","A/Parma/2/2006|2006-01-01|MDCK2_1",
+	"A/Parma/5/2006|2006-03-01|MDCK1_1","A/Lyon/CHU/3.513/2006|2006-01-20|MDCK2_2","A/Lyon/CHU/13.207/2006|2006-03-28|MDCK2_2","A/Lyon/320/2006|2006-02-04|MDCK2_2","A/Lyon/636/2006|2006-02-27|MDCK2_2","A/Lyon/768/2006|2006-03-17|MDCK2_1","A/Greece/94/2006|2006-02-28|MDCK2_1")
+
+agFill(map66)[ag_Sep2006_table5] <- '#ea5545'
+agFill(map66)[ag_Sep2006_table3] <- '#ef9b20'
+p_map66 <- ggplot(map66) + ggtitle('map 66')
+p_map66
+
+
+#################### MAP 67 ####################
+#### colered by tables
+agSize(map67) <- 5
+agFill(map67) <- 'grey50'
+ag_Mar2007_table4 <- agNames(map67) %in% c("A/California/7/2004|2004-09-16|SpfCk3, E3_3","A/Hong Kong/4443/2005|2006-06-24|MDCK2_6","A/Hiroshima/52/2005|2006-11-25|E3_3","A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2","A/Slovakia/134/2006|2006-02-06|MDCK1_3","A/Berlin/2/2006|2006-02-06|MDCKx_3","A/Lyon/636/2006|2006-02-15|MDCK2_4","A/Hiroshima/33/2006|2006-01-23|E5_2","A/Sendai/F131/2006|2006-08-01|E3_2","A/Algeria/G138/2006|2006-11-05|MDCK1_1",
+	"A/Madagascar/2670/2006|2006-11-10|MDCK1_1","A/Greece/624/2006|2006-12-14|MDCK1_1","A/Madagascar/2700/2006|2006-11-14|MDCK1_1","A/Madagascar/2699/2006|2006-11-14|MDCK1_1","A/Umea/7/06|2006-11-15|MDCK1_1","A/Madagascar/2761/2006|2006-11-17|MDCK2_1","A/Algeria/G273/2006|2006-11-22|MDCK1_1","A/Marseille/1215/06|2006-11-22|Px+P1MDCK_1","A/Bordeaux/1276/06|2006-11-30|P3MDCK_1","A/Paris/395/2007|2006-12-01|MDCKx_1",
+	"A/Parma/9/2006|2006-12-01|MDCK1_1","A/Norway/2250/2006|2006-12-01|MDCK1_1","A/Norway/2253/2006|2006-12-04|MDCK1_1","A/Norway/2252/2006|2006-12-04|MDCK1_1","A/Switzerland/6936/2006|2006-12-04|MDCKx_2","A/Egypt/99/2006|2006-12-06|E2_1","A/Belgium/SP005/07|2006-12-19|LLCMK1, MDCK2_2","A/Belgium/SP007/07|2006-12-25|LLCMK1, MDCK2_2","A/Lyon/1359/06|2006-12-27|P2MDCK_1","A/Belgium/SP003/07|2006-12-31|LLCMK1, MDCK2_1",
+	"A/Lyon/1324/06|2006-12-20|P2MDCK_1","A/Lyon/1312/06|2006-12-20|P2MDCK_1","A/Belgium/SP009/07|2006-01-07|LLCMK1, MDCK2_2")
+ag_Sep2006_table6 <- agNames(map67) %in% c("A/Wyoming/3/2003|*|Ex","A/California/7/2004|*|SpfCk3, E3","A/New York/55/2004|*|*","A/Hong Kong/4443/2005|*|*","A/Hiroshima/52/2005|*|*","A/Wisconsin/67/2005|*|*","A/Slovakia/134/2006|*|*","A/Berlin/2/2006|*|*","A/Bayern/4/2006|*|*","A/Lyon/636/2006|*|*",
+	"A/Samara/120/2006|2006-05-03|MDCK3_2","A/Samara/123/2006|2006-05-15|MDCK4_2","A/Murmansk/3/2006|2006-04-28|MDCK3_3","A/Moscow/41/2006|2006-03-16|MDCK2_2","A/Moscow/40/2006|2006-03-16|MDCK2_3","A/N/ Novgorod/155/2006|2006-04-07|MDCK3_2","A/Voronezh/19/2006|2006-03-10|MDCK2_2","A/Voronezh/12/2006|2006-03-01|MDCK2_2","A/St/ Petersburg/37/2006|2006-05-08|MDCK2_1","A/Kaliningrad/44/2006|2006-04-06|MDCK2_3",
+	"A/Khabarovsk/49/2006|2006-05-22|MDCK2_2","A/Khabarovsk/10/2006|2006-04-07|MDCK5_2","A/Khabarovsk/29/2006|2006-04-20|MDCK3_3","A/Ryazan/10/2006|2006-04-06|MDCK2_3","A/Ryazan/4/2006|2006-04-06|MDCK2_2","A/Odessa/52/2006|2006-03-23|*","A/Odessa/62/2006|2006-03-27|*","A/Zagreb/4274/2006|2006-04-01|Ex_2","A/Paris/1889/2006|2006-03-01|MDCKx_1","A/Paris/2030/2006|2006-04-01|MDCKx_1",
+	"A/Paris/2109/2006|2006-04-01|MDCKx_1","A/Paris/2208/2006|2006-02-01|MDCKx_1","A/Johannesburg/350/2006|2006-06-09|MDCKx_3","A/Johannesburg/354/2006|2006-06-08|MDCKx_3","A/Johannesburg/185/2006|2006-05-29|MDCKx_3","A/Johannesburg/245/2006|2006-06-02|MDCKx_1","A/Johannesburg/271/2006|2006-06-04|MDCKx_2","A/Johannesburg/277/2006|2006-06-05|MDCKx_1","A/Johannesburg/339/2006|2006-06-07|MDCKx_1","A/Johannesburg/340/2006|2006-06-01|MDCKx_2",
+	"A/Johannesburg/344/2006|2006-06-08|MDCKx_2","A/Hong Kong/201/2006|2006-02-02|MDCK2_2","A/Hong Kong/453/2006|2006-02-22|MDCK2_2")
+
+agFill(map67)[ag_Mar2007_table4] <- '#ea5545'
+agFill(map67)[ag_Sep2006_table6] <- '#ef9b20'
+p_map67 <- ggplot(map67) + ggtitle('map 67')
+p_map67
+
+
+#################### MAP 68 ####################
+#### colered by tables
+agSize(map68) <- 5
+agFill(map68) <- 'grey50'
+ag_Mar2007_table4 <- agNames(map68) %in% c("A/Hiroshima/52/2005|2006-11-25|E3_3","A/Slovakia/134/2006|2006-02-06|MDCK1_3","A/Lyon/636/2006|2006-02-15|MDCK2_4","A/Hiroshima/33/2006|2006-01-23|E5_2","A/Sendai/F131/2006|2006-08-01|E3_2","A/Algeria/G138/2006|2006-11-05|MDCK1_1","A/Madagascar/2670/2006|2006-11-10|MDCK1_1","A/Greece/624/2006|2006-12-14|MDCK1_1","A/Madagascar/2700/2006|2006-11-14|MDCK1_1","A/Madagascar/2699/2006|2006-11-14|MDCK1_1",
+	"A/Umea/7/06|2006-11-15|MDCK1_1","A/Madagascar/2761/2006|2006-11-17|MDCK2_1","A/Algeria/G273/2006|2006-11-22|MDCK1_1","A/Marseille/1215/06|2006-11-22|Px+P1MDCK_1","A/Bordeaux/1276/06|2006-11-30|P3MDCK_1","A/Paris/395/2007|2006-12-01|MDCKx_1","A/Parma/9/2006|2006-12-01|MDCK1_1","A/Norway/2250/2006|2006-12-01|MDCK1_1","A/Norway/2253/2006|2006-12-04|MDCK1_1","A/Norway/2252/2006|2006-12-04|MDCK1_1",
+	"A/Switzerland/6936/2006|2006-12-04|MDCKx_2","A/Egypt/99/2006|2006-12-06|E2_1","A/Belgium/SP005/07|2006-12-19|LLCMK1, MDCK2_2","A/Belgium/SP007/07|2006-12-25|LLCMK1, MDCK2_2","A/Lyon/1359/06|2006-12-27|P2MDCK_1","A/Belgium/SP003/07|2006-12-31|LLCMK1, MDCK2_1","A/Lyon/1324/06|2006-12-20|P2MDCK_1","A/Lyon/1312/06|2006-12-20|P2MDCK_1","A/Belgium/SP009/07|2006-01-07|LLCMK1, MDCK2_2")
+ag_Sep2006_table6 <- agNames(map68) %in% c("A/Wyoming/3/2003|*|Ex","A/California/7/2004|*|SpfCk3, E3","A/New York/55/2004|*|*","A/Hong Kong/4443/2005|*|*","A/Hiroshima/52/2005|*|*","A/Wisconsin/67/2005|*|*","A/Slovakia/134/2006|*|*","A/Berlin/2/2006|*|*","A/Bayern/4/2006|*|*","A/Lyon/636/2006|*|*",
+	"A/Samara/120/2006|2006-05-03|MDCK3_2","A/Samara/123/2006|2006-05-15|MDCK4_2","A/Murmansk/3/2006|2006-04-28|MDCK3_3","A/Moscow/41/2006|2006-03-16|MDCK2_2","A/Moscow/40/2006|2006-03-16|MDCK2_3","A/N/ Novgorod/155/2006|2006-04-07|MDCK3_2","A/Voronezh/19/2006|2006-03-10|MDCK2_2","A/Voronezh/12/2006|2006-03-01|MDCK2_2","A/St/ Petersburg/37/2006|2006-05-08|MDCK2_1","A/Kaliningrad/44/2006|2006-04-06|MDCK2_3",
+	"A/Khabarovsk/49/2006|2006-05-22|MDCK2_2","A/Khabarovsk/10/2006|2006-04-07|MDCK5_2","A/Khabarovsk/29/2006|2006-04-20|MDCK3_3","A/Ryazan/10/2006|2006-04-06|MDCK2_3","A/Ryazan/4/2006|2006-04-06|MDCK2_2","A/Odessa/52/2006|2006-03-23|*","A/Odessa/62/2006|2006-03-27|*","A/Zagreb/4274/2006|2006-04-01|Ex_2","A/Paris/1889/2006|2006-03-01|MDCKx_1","A/Paris/2030/2006|2006-04-01|MDCKx_1",
+	"A/Paris/2109/2006|2006-04-01|MDCKx_1","A/Paris/2208/2006|2006-02-01|MDCKx_1","A/Johannesburg/350/2006|2006-06-09|MDCKx_3","A/Johannesburg/354/2006|2006-06-08|MDCKx_3","A/Johannesburg/185/2006|2006-05-29|MDCKx_3","A/Johannesburg/245/2006|2006-06-02|MDCKx_1","A/Johannesburg/271/2006|2006-06-04|MDCKx_2","A/Johannesburg/277/2006|2006-06-05|MDCKx_1","A/Johannesburg/339/2006|2006-06-07|MDCKx_1","A/Johannesburg/340/2006|2006-06-01|MDCKx_2",
+	"A/Johannesburg/344/2006|2006-06-08|MDCKx_2","A/Hong Kong/201/2006|2006-02-02|MDCK2_2","A/Hong Kong/453/2006|2006-02-22|MDCK2_2")
+ag_Sep2007_table6 <- agNames(map68) %in% c("A/Bayern/4/2006|2006-03-07|MDCKx_5","A/Nepal/921/2006|2006-07-11|E2_2","A/Santiago/7981/2006|2006-07-06|E5_1","A/Parma/1/2007|2006-12-01|MDCK1_2","A/Trieste/25c/2007|2007-01-01|MDCKx_2","A/Sofia/319/2007|2007-01-01|E2_2","A/Paris/1716/2007|2007-02-01|MDCKx_1","A/Sofia/671/2007|2007-02-01|MDCK1, E1_3","A/Zagreb/3064/07|2007-02-01|E","A/Norway/414/2007|2007-02-12|MDCK1_1",
+	"A/Kiev/546/07|2007-03-12|MDCKx_1","A/Borisov/175/07|2007-03-13|MDCKx_1","A/Dniprodzerzinsk SES/350/07|2007-03-16|MDCKx_1","A/Belarus/340/2007|2007-03-23|MDCK1_1","A/Latvia/4897/07|2007-04-02|MDCK1_1","A/Ulan-Ude/1/07|2007-04-02|C1_2","A/Norway/787/2007|2007-04-04|MK2, MDCK1_1","A/Mauritius/307/07|2007-04-24|MDCK1_1","A/Mauritius/354/2007|2007-05-15|MDCK2_1","A/St Petersburg/95/2007|2007-05-21|C3_1",
+	"A/Moscow/15/2007|2007-05-21|C3_2","A/Hong Kong/2571/2007|2007-05-28|MDCK2_1","A/Hong Kong/2657/2007|2007-06-08|MDCK2_1")
+
+agFill(map68)[ag_Mar2007_table4] <- '#ea5545'
+agFill(map68)[ag_Sep2006_table6] <- '#ef9b20'
+agFill(map68)[ag_Sep2007_table6] <- '#ede15b'
+p_map68 <- ggplot(map68) + ggtitle('map 68')
+p_map68
+
+
+#################### MAP 69 ####################
+#### colered by tables
+agSize(map69) <- 5
+agFill(map69) <- 'grey50'
+ag_Sep2007_table5 <- agNames(map69) %in% c("A/Hiroshima/52/2005|2006-11-25|E3_3","A/Slovakia/134/2006|2006-02-06|MDCK1_3","A/Lyon/636/2006|2006-02-15|MDCK2_4","A/Bratislava/46/07|2007-01-09|E1_1","A/Semily/55/2007|2007-02-01|MDCK3, E2_1","A/Prague/59/2007|2007-02-01|MDCK4_2","A/Algeria/453/06|2007-02-01|MDCKx_2","A/Firenze/14/2007|2007-02-01|MDCK2_2","A/Vienna/338428/07|2007-02-05|MDCK1_2","A/Berlin/20/07|2007-02-09|MDCKx_2",
+	"A/Lisbon/59/07|2007-02-09|MDCKx_2","A/Zamora/35/07|2007-02-09|MDCK1_2","A/Eng/233/07|2007-02-20|MDCKx_1","A/Valladolid/49/07|2007-02-26|MDCK1_2","A/Sachsen/8/07|2007-03-06|MDCKx_2","A/Astrakhan/60/07|2007-04-02|C1_1","A/Voronezh/7/07|2007-04-02|C1_2","A/Tula/11/07|2007-04-09|C1_1","A/Khabarovsk/528/07|2007-04-09|C1_1")
+ag_Sep2007_table6 <- agNames(map69) %in% c("A/Parma/1/2007|2006-12-01|MDCK1_2","A/Paris/1716/2007|2007-02-01|MDCKx_1","A/Sofia/671/2007|2007-02-01|MDCK1, E1_3","A/Zagreb/3064/07|2007-02-01|E","A/Norway/414/2007|2007-02-12|MDCK1_1","A/Kiev/546/07|2007-03-12|MDCKx_1","A/Borisov/175/07|2007-03-13|MDCKx_1","A/Dniprodzerzinsk SES/350/07|2007-03-16|MDCKx_1","A/Belarus/340/2007|2007-03-23|MDCK1_1","A/Latvia/4897/07|2007-04-02|MDCK1_1",
+	"A/Norway/787/2007|2007-04-04|MK2, MDCK1_1","A/Mauritius/307/07|2007-04-24|MDCK1_1","A/Mauritius/354/2007|2007-05-15|MDCK2_1","A/St Petersburg/95/2007|2007-05-21|C3_1","A/Moscow/15/2007|2007-05-21|C3_2","A/Hong Kong/2571/2007|2007-05-28|MDCK2_1","A/Hong Kong/2657/2007|2007-06-08|MDCK2_1")
+ag_Sep2007_table8 <- agNames(map69) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3","A/Parma/1/2007|2007-01-01|MDCK1_2","A/Serres/77/2007|2007-01-25|E1_1","A/Prague/3/2007|2007-02-01|MDCK3, E4_2","A/Trieste/25E/2007|2007-01-01|MDCKx_2,E1","A/Wisconsin/3/2007|2007-01-21|Ex_2","A/Henan/Jinshui/147/2007|*|E3_1","A/Georgia/25/2007|2007-02-23|MDCK2_2","A/Georgia/59/2007|2007-03-06|MDCK2_2","A/Perth/27/2007|2007-07-05|MDCKx+2_1",
+	"A/Brisbane/48/2007|2007-06-26|MDCKx+1_1","A/Philippines/1616/2007|2007-05-28|MDCK4_1","A/Sydney/230/2007|2007-07-04|MDCK2_1","A/Brisbane/10/2007|2007-02-06|E2_1","A/New Caledonia/9/2006|2006-10-24|E7_1","A/Brisbane/4/2007|2007-01-18|E2_1","A/Ulaanbaatar/1106/2007|*|E3_1","A/Santiago/6881/2007|*|C3_1","A/Kobe/9/2007|2007-01-26|MDCK3_1","A/Osaka/29/2007|2007-02-21|MDCK4_1",
+	"A/Johannesburg/91/2007|2007-07-01|MDCK_1","A/Hong Kong/1957/2007|2007-03-28|MDCK2_1","A/Borisov/158/2007|2007-03-13|MDCK1_1","A/Stockholm/3/2007|2007-04-16|MDCK0_2","A/Johannesburg/66/2007|2007-07-03|MDCK_1","A/Johannesburg/92/2007|2007-07-01|MDCK_1","A/Iceland/48/2007|2007-04-05|MDCK2_1","A/Georgia/125/2007|2007-03-26|MDCK2_1")
+
+agFill(map69)[ag_Sep2007_table5] <- '#ea5545'
+agFill(map69)[ag_Sep2007_table6] <- '#ef9b20'
+agFill(map69)[ag_Sep2007_table8] <- '#ede15b'
+p_map69 <- ggplot(map69) + ggtitle('map 69')
+p_map69
+
+
+#################### MAP 70 ####################
+#### colered by tables
+agSize(map70) <- 5
+agFill(map70) <- 'grey50'
+ag_Sep2007_table5 <- agNames(map70) %in% c("A/Bratislava/46/07|2007-01-09|E1_1","A/Semily/55/2007|2007-02-01|MDCK3, E2_1","A/Prague/59/2007|2007-02-01|MDCK4_2","A/Algeria/453/06|2007-02-01|MDCKx_2","A/Firenze/14/2007|2007-02-01|MDCK2_2","A/Vienna/338428/07|2007-02-05|MDCK1_2","A/Berlin/20/07|2007-02-09|MDCKx_2","A/Lisbon/59/07|2007-02-09|MDCKx_2","A/Zamora/35/07|2007-02-09|MDCK1_2","A/Eng/233/07|2007-02-20|MDCKx_1",
+	"A/Valladolid/49/07|2007-02-26|MDCK1_2","A/Sachsen/8/07|2007-03-06|MDCKx_2","A/Astrakhan/60/07|2007-04-02|C1_1","A/Voronezh/7/07|2007-04-02|C1_2","A/Tula/11/07|2007-04-09|C1_1","A/Khabarovsk/528/07|2007-04-09|C1_1")
+ag_Sep2007_table6 <- agNames(map70) %in% c("A/Parma/1/2007|2006-12-01|MDCK1_2","A/Paris/1716/2007|2007-02-01|MDCKx_1","A/Sofia/671/2007|2007-02-01|MDCK1, E1_3","A/Zagreb/3064/07|2007-02-01|E","A/Norway/414/2007|2007-02-12|MDCK1_1","A/Kiev/546/07|2007-03-12|MDCKx_1","A/Borisov/175/07|2007-03-13|MDCKx_1","A/Dniprodzerzinsk SES/350/07|2007-03-16|MDCKx_1","A/Belarus/340/2007|2007-03-23|MDCK1_1","A/Latvia/4897/07|2007-04-02|MDCK1_1",
+	"A/Norway/787/2007|2007-04-04|MK2, MDCK1_1","A/Mauritius/307/07|2007-04-24|MDCK1_1","A/Mauritius/354/2007|2007-05-15|MDCK2_1","A/St Petersburg/95/2007|2007-05-21|C3_1","A/Moscow/15/2007|2007-05-21|C3_2","A/Hong Kong/2571/2007|2007-05-28|MDCK2_1","A/Hong Kong/2657/2007|2007-06-08|MDCK2_1")
+ag_Sep2007_table8 <- agNames(map70) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3","A/Parma/1/2007|2007-01-01|MDCK1_2","A/Serres/77/2007|2007-01-25|E1_1","A/Prague/3/2007|2007-02-01|MDCK3, E4_2","A/Trieste/25E/2007|2007-01-01|MDCKx_2,E1","A/Wisconsin/3/2007|2007-01-21|Ex_2","A/Henan/Jinshui/147/2007|*|E3_1","A/Georgia/25/2007|2007-02-23|MDCK2_2","A/Georgia/59/2007|2007-03-06|MDCK2_2","A/Perth/27/2007|2007-07-05|MDCKx+2_1",
+	"A/Brisbane/48/2007|2007-06-26|MDCKx+1_1","A/Philippines/1616/2007|2007-05-28|MDCK4_1","A/Sydney/230/2007|2007-07-04|MDCK2_1","A/Brisbane/10/2007|2007-02-06|E2_1","A/New Caledonia/9/2006|2006-10-24|E7_1","A/Brisbane/4/2007|2007-01-18|E2_1","A/Ulaanbaatar/1106/2007|*|E3_1","A/Santiago/6881/2007|*|C3_1","A/Kobe/9/2007|2007-01-26|MDCK3_1","A/Osaka/29/2007|2007-02-21|MDCK4_1",
+	"A/Johannesburg/91/2007|2007-07-01|MDCK_1","A/Hong Kong/1957/2007|2007-03-28|MDCK2_1","A/Borisov/158/2007|2007-03-13|MDCK1_1","A/Stockholm/3/2007|2007-04-16|MDCK0_2","A/Johannesburg/66/2007|2007-07-03|MDCK_1","A/Johannesburg/92/2007|2007-07-01|MDCK_1","A/Iceland/48/2007|2007-04-05|MDCK2_1","A/Georgia/125/2007|2007-03-26|MDCK2_1")
+ag_Mar2007_table4 <- agNames(map70) %in% c("A/Hiroshima/33/2006|2006-01-23|E5_2","A/Sendai/F131/2006|2006-08-01|E3_2","A/Algeria/G138/2006|2006-11-05|MDCK1_1","A/Madagascar/2670/2006|2006-11-10|MDCK1_1","A/Greece/624/2006|2006-12-14|MDCK1_1","A/Madagascar/2700/2006|2006-11-14|MDCK1_1","A/Madagascar/2699/2006|2006-11-14|MDCK1_1","A/Umea/7/06|2006-11-15|MDCK1_1","A/Madagascar/2761/2006|2006-11-17|MDCK2_1","A/Algeria/G273/2006|2006-11-22|MDCK1_1",
+	"A/Marseille/1215/06|2006-11-22|Px+P1MDCK_1","A/Bordeaux/1276/06|2006-11-30|P3MDCK_1","A/Paris/395/2007|2006-12-01|MDCKx_1","A/Parma/9/2006|2006-12-01|MDCK1_1","A/Norway/2250/2006|2006-12-01|MDCK1_1","A/Norway/2253/2006|2006-12-04|MDCK1_1","A/Norway/2252/2006|2006-12-04|MDCK1_1","A/Switzerland/6936/2006|2006-12-04|MDCKx_2","A/Egypt/99/2006|2006-12-06|E2_1","A/Belgium/SP005/07|2006-12-19|LLCMK1, MDCK2_2",
+	"A/Belgium/SP007/07|2006-12-25|LLCMK1, MDCK2_2","A/Lyon/1359/06|2006-12-27|P2MDCK_1","A/Belgium/SP003/07|2006-12-31|LLCMK1, MDCK2_1","A/Lyon/1324/06|2006-12-20|P2MDCK_1","A/Lyon/1312/06|2006-12-20|P2MDCK_1","A/Belgium/SP009/07|2006-01-07|LLCMK1, MDCK2_2")
+ag_Sep2006_table6 <- agNames(map70) %in% c("A/Wyoming/3/2003|*|Ex","A/California/7/2004|*|SpfCk3, E3","A/New York/55/2004|*|*","A/Hong Kong/4443/2005|*|*","A/Hiroshima/52/2005|*|*","A/Wisconsin/67/2005|*|*","A/Slovakia/134/2006|*|*","A/Berlin/2/2006|*|*","A/Bayern/4/2006|*|*","A/Lyon/636/2006|*|*",
+	"A/Samara/120/2006|2006-05-03|MDCK3_2","A/Samara/123/2006|2006-05-15|MDCK4_2","A/Murmansk/3/2006|2006-04-28|MDCK3_3","A/Moscow/41/2006|2006-03-16|MDCK2_2","A/Moscow/40/2006|2006-03-16|MDCK2_3","A/N/ Novgorod/155/2006|2006-04-07|MDCK3_2","A/Voronezh/19/2006|2006-03-10|MDCK2_2","A/Voronezh/12/2006|2006-03-01|MDCK2_2","A/St/ Petersburg/37/2006|2006-05-08|MDCK2_1","A/Kaliningrad/44/2006|2006-04-06|MDCK2_3",
+	"A/Khabarovsk/49/2006|2006-05-22|MDCK2_2","A/Khabarovsk/10/2006|2006-04-07|MDCK5_2","A/Khabarovsk/29/2006|2006-04-20|MDCK3_3","A/Ryazan/10/2006|2006-04-06|MDCK2_3","A/Ryazan/4/2006|2006-04-06|MDCK2_2","A/Odessa/52/2006|2006-03-23|*","A/Odessa/62/2006|2006-03-27|*","A/Zagreb/4274/2006|2006-04-01|Ex_2","A/Paris/1889/2006|2006-03-01|MDCKx_1","A/Paris/2030/2006|2006-04-01|MDCKx_1",
+	"A/Paris/2109/2006|2006-04-01|MDCKx_1","A/Paris/2208/2006|2006-02-01|MDCKx_1","A/Johannesburg/350/2006|2006-06-09|MDCKx_3","A/Johannesburg/354/2006|2006-06-08|MDCKx_3","A/Johannesburg/185/2006|2006-05-29|MDCKx_3","A/Johannesburg/245/2006|2006-06-02|MDCKx_1","A/Johannesburg/271/2006|2006-06-04|MDCKx_2","A/Johannesburg/277/2006|2006-06-05|MDCKx_1","A/Johannesburg/339/2006|2006-06-07|MDCKx_1","A/Johannesburg/340/2006|2006-06-01|MDCKx_2",
+	"A/Johannesburg/344/2006|2006-06-08|MDCKx_2","A/Hong Kong/201/2006|2006-02-02|MDCK2_2","A/Hong Kong/453/2006|2006-02-22|MDCK2_2")
+
+agFill(map70)[ag_Sep2007_table5] <- '#ea5545'
+agFill(map70)[ag_Sep2007_table6] <- '#ef9b20'
+agFill(map70)[ag_Sep2007_table8] <- '#ede15b'
+agFill(map70)[ag_Mar2007_table4] <- '#87bc45'
+agFill(map70)[ag_Sep2006_table6] <- '#27aeef'
+p_map70 <- ggplot(map70) + ggtitle('map 70')
+p_map70
+
+
+#################### MAP 71 ####################
+#### colered by tables
+agSize(map71) <- 5
+agFill(map71) <- 'grey50'
+ag_Sep2008_table4A <- agNames(map71) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3,E3_3","A/Brisbane/10/2007|2007-02-06|E2_3","A/Uruguay/716/2007|2007-06-21|SpfCk1, E3_1","A/Finland/9/2008|2008-01-07|MDCK2_1","A/Paris/2030/2008|2008-02-01|MDCKx_1","A/Lyon/669/08|2008-02-14|MDCK2_1","A/Netherlands/177/2008|2008-02-18|xMDCK2_1","A/Berlin/50/2008|2008-03-11|MDCKx_1","A/Hong Kong/796/2008|2008-03-15|MDCK2_1","A/Khabarovsk/5/2008|2008-04-14|C6_1",
+	"A/Ulan-Ude/2/2008|2008-04-21|C2_1","A/Lyon/CHU/ 19.113/08|2008-05-05|MDCK2_1","A/Iceland/82/2008|2008-05-06|MDCK2_1","A/Johannesburg/15/2008|2008-06-26|MDCKx_1")
+ag_Sep2007_table8 <- agNames(map71) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3","A/Parma/1/2007|2007-01-01|MDCK1_2","A/Sofia/319/2007|2007-01-01|E2_2","A/Serres/77/2007|2007-01-25|E1_1","A/Georgia/25/2007|2007-02-23|MDCK2_2","A/Georgia/59/2007|2007-03-06|MDCK2_2","A/Perth/27/2007|2007-07-05|MDCKx+2_1","A/Brisbane/48/2007|2007-06-26|MDCKx+1_1","A/Philippines/1616/2007|2007-05-28|MDCK4_1","A/Sydney/230/2007|2007-07-04|MDCK2_1",
+	"A/New Caledonia/9/2006|2006-10-24|E7_1","A/Brisbane/4/2007|2007-01-18|E2_1","A/Ulaanbaatar/1106/2007|*|E3_1","A/Santiago/6881/2007|*|C3_1","A/Kobe/9/2007|2007-01-26|MDCK3_1","A/Osaka/29/2007|2007-02-21|MDCK4_1","A/Johannesburg/91/2007|2007-07-01|MDCK_1","A/Hong Kong/1957/2007|2007-03-28|MDCK2_1","A/Borisov/158/2007|2007-03-13|MDCK1_1","A/Stockholm/3/2007|2007-04-16|MDCK0_2",
+	"A/Johannesburg/66/2007|2007-07-03|MDCK_1","A/Johannesburg/92/2007|2007-07-01|MDCK_1","A/Iceland/48/2007|2007-04-05|MDCK2_1","A/Georgia/125/2007|2007-03-26|MDCK2_1")
+ag_Sep2008_table4B <- agNames(map71) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3, E3_4","A/Trieste/25c/2007|2007-01-01|MDCKx_4","A/Trieste/25E/2007|2007-01-01|MDCKx_2,E2","A/Wisconsin/3/2007|2007-01-21|Ex_6","A/Uruguay/716/2007|2007-06-21|SpfCk1, E3_2","A/Finland/9/2008|2008-01-07|MDCK2_3","A/Hong Kong/1050/08|2008-04-23|MDCK2_1","A/Johannesburg/15/2008|2008-06-26|MDCKx_2","A/Hong Kong/796/08|2008-03-15|MDCK2_1","A/Geneva/8428/09|2008-01-22|MDCK3_1",
+	"A/Lyon/CHU19.113/08|2008-05-05|P2MDCK_1","A/Mauritius/402/2008|2008-07-09|MDCK3","A/Geneva/8417/2008|2008-01-16|MDCK1_1","A/Lyon/762/08|2008-02-26|P2MDCK_1","A/Toulouse/609/08|2008-01-18|P2MDCK_1","A/Finland/149/2008|2008-01-28|MDCK2_1","A/Denmark/183/2008|2008-04-11|MDCK2_1","A/Denmark/185/2008|2008-04-16|MDCK2_1","A/Finland/122/2008|2008-01-25|MDCK1_1","A/Norway/848/2008|2008-04-01|MDCK2_1",
+	"A/Norway/966/2008|2008-04-15|MDCK2_1","A/Norway/1034/2008|2008-04-19|LLC-MK2-1_1","A/Hong Kong/1778/2008|2008-07-23|MDCK2_1","A/Hong Kong/1859/2008|2008-07-25|MDCK2_1","A/Ghana/11/2008|2008-07-15|MDCKx_1","A/Washington/42/2007|2007-12-12|E6/E2_1E","A/Mississippi/4/2008|2008-01-15|E5/E2_1E","A/Perth/201/08|2008-07-15|E4_1E","A/Brisbane/24/08|2008-06-23|E5_1E","A/Wellington/2/08|2008-05-28|E3_1E",
+	"A/Singapore/21/08|2008-05-02|E3_1E","A/Ulaanbaatar/1600/2008|2008-02-13|C2/C2_1","A/Toyama/123/2008|2008-04-03|MDCK1+2_1","A/Saitama/27/2008|2008-05-08|MDCK1+2_1")
+
+agFill(map71)[ag_Sep2008_table4A] <- '#ea5545'
+agFill(map71)[ag_Sep2007_table8] <- '#ef9b20'
+agFill(map71)[ag_Sep2008_table4B] <- '#ede15b'
+p_map71 <- ggplot(map71) + ggtitle('map 71')
+p_map71
+
+
+#################### MAP 72 ####################
+#### colered by tables
+agSize(map72) <- 5
+agFill(map72) <- 'grey50'
+ag_Sep2008_table4A <- agNames(map72) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3,E3_3","A/Brisbane/10/2007|2007-02-06|E2_3","A/Uruguay/716/2007|2007-06-21|SpfCk1, E3_1","A/Finland/9/2008|2008-01-07|MDCK2_1","A/Paris/2030/2008|2008-02-01|MDCKx_1","A/Lyon/669/08|2008-02-14|MDCK2_1","A/Netherlands/177/2008|2008-02-18|xMDCK2_1","A/Berlin/50/2008|2008-03-11|MDCKx_1","A/Hong Kong/796/2008|2008-03-15|MDCK2_1","A/Khabarovsk/5/2008|2008-04-14|C6_1",
+	"A/Denmark/190/2008|2008-04-17|MDCK2_1","A/Ulan-Ude/2/2008|2008-04-21|C2_1","A/Lyon/CHU/ 19.113/08|2008-05-05|MDCK2_1","A/Iceland/82/2008|2008-05-06|MDCK2_1","A/Johannesburg/15/2008|2008-06-26|MDCKx_1")
+ag_Sep2007_table8 <- agNames(map72) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3","A/Parma/1/2007|2007-01-01|MDCK1_2","A/Sofia/319/2007|2007-01-01|E2_2","A/Serres/77/2007|2007-01-25|E1_1","A/Georgia/25/2007|2007-02-23|MDCK2_2","A/Georgia/59/2007|2007-03-06|MDCK2_2","A/Perth/27/2007|2007-07-05|MDCKx+2_1","A/Brisbane/48/2007|2007-06-26|MDCKx+1_1","A/Philippines/1616/2007|2007-05-28|MDCK4_1","A/Sydney/230/2007|2007-07-04|MDCK2_1",
+	"A/Brisbane/10/2007|2007-02-06|E2_1","A/New Caledonia/9/2006|2006-10-24|E7_1","A/Brisbane/4/2007|2007-01-18|E2_1","A/Ulaanbaatar/1106/2007|*|E3_1","A/Santiago/6881/2007|*|C3_1","A/Kobe/9/2007|2007-01-26|MDCK3_1","A/Osaka/29/2007|2007-02-21|MDCK4_1","A/Johannesburg/91/2007|2007-07-01|MDCK_1","A/Hong Kong/1957/2007|2007-03-28|MDCK2_1","A/Borisov/158/2007|2007-03-13|MDCK1_1",
+	"A/Stockholm/3/2007|2007-04-16|MDCK0_2","A/Johannesburg/66/2007|2007-07-03|MDCK_1","A/Johannesburg/92/2007|2007-07-01|MDCK_1","A/Iceland/48/2007|2007-04-05|MDCK2_1","A/Georgia/125/2007|2007-03-26|MDCK2_1")
+
+agFill(map72)[ag_Sep2008_table4A] <- '#ea5545'
+agFill(map72)[ag_Sep2007_table8] <- '#ef9b20'
+p_map72 <- ggplot(map72) + ggtitle('map 72')
+p_map72
+
+
+#################### MAP 73 ####################
+#### colered by tables
+agSize(map73) <- 5
+agFill(map73) <- 'grey50'
+p_map73 <- ggplot(map73) + ggtitle('map 73')
+p_map73
+
+
+#################### MAP 74 ####################
+#### colered by tables
+agSize(map74) <- 5
+agFill(map74) <- 'grey50'
+ag_Sep2013_table7_12 <- agNames(map74) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT6","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Belgium/S0932/2013|2012-12-20|SIAT2",
+	"A/Hong Kong/209/2013|2013-01-16|MDCK2/SIAT1","A/Hong Kong/392/2013|2013-01-28|MDCK2/SIAT1","A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1","A/Belgium/G0508/2013|2013-02-04|SIAT2","A/Belgium/G0528/2013|2013-02-04|SIAT2","A/NosyBe/429/2013|2013-02-11|MDCK1/SIAT1","A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1","A/Maevatanana/563/2013|2013-02-25|MDCK1/SIAT1","A/Hong Kong/1036/2013|2013-02-25|MDCK2/SIAT1","A/Norway/1693/2013|2013-03-06|MDCK2/SIAT1",
+	"A/Minsk/1431/2013|2013-03-06|MDCK3/SIAT1","A/Norway/1665/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1683/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1736/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1780/2013|2013-03-09|MDCK1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76614/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76663/2013|2013-03-13|MDCK2/SIAT1","A/Estonia/76676/2013|2013-03-13|MDCK2/SIAT1","A/Norway/1894/2013|2013-03-17|MDCK1/SIAT1",
+	"A/Norway/1940/2013|2013-03-18|MDCK2/SIAT1","A/Belgium/G1034/2013|2013-03-18|SIAT2","A/Norway/1861/2013|2013-03-19|MDCK1/SIAT1","A/Norway/1905/2013|2013-03-24|MDCK2/MDCK1","A/Belgium/G1067/2013|2013-03-25|SIAT2","A/Belgium/G1071/2013|2013-03-26|SIAT2","A/Norway/2010/2013|2013-04-07|MDCK2/SIAT1","A/Norway/2160/2013|2013-04-07|MDCK1/SIAT1","A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1","A/Belgium/S0923/2013|2013-04-10|SIAT2",
+	"A/Belgium/S0930/2013|2013-04-11|SIAT2","A/Norway/2255/2013|2013-04-23|MDCK1/SIAT1")
+ag_Sep2012_table9 <- agNames(map74) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Bulgaria/182/2012|2012-02-02|C3/SIAT1","A/Bulgaria/217/2012|2012-02-09|C3/SIAT1",
+	"A/Bulgaria/218/2012|2012-02-09|C3/SIAT1","A/Slovenia/402/2012|2012-02-20|Mx/SIAT1","A/Slovenia/435/2012|2012-02-20|Mx/SIAT1","A/Slovenia/459/2012|2012-02-20|Mx/SIAT1","A/Bulgaria/280/2012|2012-02-20|C3/SIAT1","A/Bulgaria/311/2012|2012-02-24|C3/SIAT1","A/Bulgaria/312/2012|2012-02-24|C3/SIAT1","A/Bulgaria/313/2012|2012-02-24|C3/SIAT1","A/Bulgaria/314/2012|2012-02-24|C3/SIAT1","A/Slovenia/566/2012|2012-02-27|Mx/SIAT1",
+	"A/Slovenia/599/2012|2012-02-27|Mx/SIAT1","A/St Petersburg/2/2012|2012-02-27|C3/SIAT1","A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1","A/Slovenia/637/2012|2012-03-05|Mx/SIAT1","A/Slovenia/815/2012|2012-03-12|Mx/SIAT1","A/Slovenia/879/2012|2012-03-19|Mx/SIAT1","A/St Petersburg/4/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1","A/Omsk/1/2012|2012-03-25|C1/SIAT1","A/St Petersburg/8/2012|2012-03-25|C2/SIAT1",
+	"A/St Petersburg/10/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Slovenia/1049/2012|2012-04-02|Mx/SIAT1")
+
+agFill(map74)[ag_Sep2013_table7_12] <- '#ea5545'
+agFill(map74)[ag_Sep2012_table9] <- '#ef9b20'
+p_map74 <- ggplot(map74) + ggtitle('map 74')
+p_map74
+
+
+#################### MAP 75 ####################
+#### colered by tables
+agSize(map75) <- 5
+agFill(map75) <- 'grey50'
+ag_Sep2013_table7_12 <- agNames(map75) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT6","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Belgium/S0932/2013|2012-12-20|SIAT2",
+	"A/Hong Kong/209/2013|2013-01-16|MDCK2/SIAT1","A/Hong Kong/392/2013|2013-01-28|MDCK2/SIAT1","A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1","A/Belgium/G0508/2013|2013-02-04|SIAT2","A/Belgium/G0528/2013|2013-02-04|SIAT2","A/NosyBe/429/2013|2013-02-11|MDCK1/SIAT1","A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1","A/Maevatanana/563/2013|2013-02-25|MDCK1/SIAT1","A/Hong Kong/1036/2013|2013-02-25|MDCK2/SIAT1","A/Norway/1693/2013|2013-03-06|MDCK2/SIAT1",
+	"A/Minsk/1431/2013|2013-03-06|MDCK3/SIAT1","A/Norway/1665/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1683/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1736/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1780/2013|2013-03-09|MDCK1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76614/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76663/2013|2013-03-13|MDCK2/SIAT1","A/Estonia/76676/2013|2013-03-13|MDCK2/SIAT1","A/Norway/1894/2013|2013-03-17|MDCK1/SIAT1",
+	"A/Norway/1940/2013|2013-03-18|MDCK2/SIAT1","A/Belgium/G1034/2013|2013-03-18|SIAT2","A/Norway/1861/2013|2013-03-19|MDCK1/SIAT1","A/Norway/1905/2013|2013-03-24|MDCK2/MDCK1","A/Belgium/G1067/2013|2013-03-25|SIAT2","A/Belgium/G1071/2013|2013-03-26|SIAT2","A/Norway/2010/2013|2013-04-07|MDCK2/SIAT1","A/Norway/2160/2013|2013-04-07|MDCK1/SIAT1","A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1","A/Belgium/S0923/2013|2013-04-10|SIAT2",
+	"A/Belgium/S0930/2013|2013-04-11|SIAT2","A/Norway/2255/2013|2013-04-23|MDCK1/SIAT1")
+ag_Sep2012_table10 <- agNames(map75) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Norway/410/2012|2012-02-01|SIAT2/SIAT2","A/Norway/433/2012|2012-02-05|SIAT1/SIAT1",
+	"A/Slovenia/274/2012|2012-02-06|P1/SIAT1","A/Norway/479/2012|2012-02-08|MDCK2/SIAT2","A/Norway/596/2012|2012-02-09|SIAT2/SIAT2","A/Norway/564/2012|2012-02-10|SIAT1/SIAT2","A/Estonia/65266/2012|2012-02-13|MDCK1/SIAT1","A/Norway/528/2012|2012-02-13|SIAT1/SIAT1","A/Norway/531/2012|2012-02-13|SIAT1/SIAT1","A/Slovenia/326/2012|2012-02-13|MDCKx/SIAT2","A/Norway/722/2012|2012-02-15|SIAT1/SIAT2","A/Norway/648/2012|2012-02-15|SIAT1/SIAT1",
+	"A/Norway/606/2012|2012-02-20|SIAT1/SIAT1","A/Norway/624/2012|2012-02-20|SIAT1/SIAT1","A/Norway/625/2012|2012-02-20|SIAT2/SIAT2","A/Norway/657/2012|2012-02-22|SIAT2/SIAT2","A/Norway/708/2012|2012-02-27|MDCK1/SIAT1","A/Estonia/65858/2012|2012-02-28|MDCK1/SIAT2","A/Slovenia/663/2012|2012-03-05|MDCKx/SIAT2","A/Slovenia/646/2012|2012-03-05|MDCKx/SIAT3","A/Estonia/66073/2012|2012-03-06|MDCK2/SIAT1","A/Estonia/66103/2012|2012-03-07|MDCK2/SIAT2",
+	"A/Estonia/66234/2012|2012-03-09|MDCK2/SIAT1","A/Estonia/66239/2012|2012-03-09|MDCK2/SIAT2","A/Estonia/66240/2012|2012-03-09|MDCK1/SIAT2","A/Pančevo/1148/2012|2012-03-13|SIAT3","A/Cuprija/1214/2012|2012-03-16|SIAT3","A/Slovenia/910/2012|2012-03-19|MDCKx/SIAT2","A/Slovenia/913/2012|2012-03-19|MDCKx/SIAT2","A/Sabac/1370/2012|2012-03-20|SIAT3","A/Sabac/1371/2012|2012-03-21|C1/SIAT3","A/Estonia/66788/2012|2012-03-27|MDCK1/SIAT1",
+	"A/Estonia/66837/2012|2012-03-28|MDCK1/SIAT1","A/Glasgow/407581/2012|2012-03-30|SIAT2","A/Glasgow/407664/2012|2012-04-03|SIAT2","A/Glasgow/407665/2012|2012-04-03|SIAT2","A/Estonia/67179/2012|2012-04-09|MDCK1/SIAT3","A/St. Petersburg/20/2012|2012-04-09|C3/SIAT1","A/Novosibirsk/26/2012|2012-04-09|C1/SIAT1","A/St. Petersburg/16/2012|2012-04-09|C2/M1/S1","A/Estonia/67238/2012|2012-04-10|MDCK1/SIAT3","A/Estonia/67221/2012|2012-04-11|MDCK1/SIAT2",
+	"A/Ireland/12M28404/2012|2012-04-11|SIAT3","A/St. Petersburg/28/2012|2012-04-19|C2/SIAT1","A/Rostov-on-Don/1/2012|2012-04-19|C1/SIAT1","A/St. Petersburg/29/2012|2012-04-19|C2/SIAT1","A/Kaliningrad/4/2012|2012-04-19|C1/SIAT1","A/Ekaterinburg/2/2012|2012-04-19|C1/SIAT1","A/Ekaterinburg/4/2012|2012-04-19|C2/SIAT1")
+
+agFill(map75)[ag_Sep2013_table7_12] <- '#ea5545'
+agFill(map75)[ag_Sep2012_table10] <- '#ef9b20'
+p_map75 <- ggplot(map75) + ggtitle('map 75')
+p_map75
+
+
+#################### MAP 76 ####################
+#### colered by tables
+agSize(map76) <- 5
+agFill(map76) <- 'grey50'
+ag_Sep2013_table7_12 <- agNames(map76) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT6","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1",
+	"A/Belgium/S0932/2013|2012-12-20|SIAT2","A/Hong Kong/209/2013|2013-01-16|MDCK2/SIAT1","A/Hong Kong/392/2013|2013-01-28|MDCK2/SIAT1","A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1","A/Belgium/G0508/2013|2013-02-04|SIAT2","A/Belgium/G0528/2013|2013-02-04|SIAT2","A/NosyBe/429/2013|2013-02-11|MDCK1/SIAT1","A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1","A/Maevatanana/563/2013|2013-02-25|MDCK1/SIAT1","A/Hong Kong/1036/2013|2013-02-25|MDCK2/SIAT1",
+	"A/Norway/1693/2013|2013-03-06|MDCK2/SIAT1","A/Minsk/1431/2013|2013-03-06|MDCK3/SIAT1","A/Norway/1665/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1683/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1736/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1780/2013|2013-03-09|MDCK1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76614/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76663/2013|2013-03-13|MDCK2/SIAT1","A/Estonia/76676/2013|2013-03-13|MDCK2/SIAT1",
+	"A/Norway/1894/2013|2013-03-17|MDCK1/SIAT1","A/Norway/1940/2013|2013-03-18|MDCK2/SIAT1","A/Belgium/G1034/2013|2013-03-18|SIAT2","A/Norway/1861/2013|2013-03-19|MDCK1/SIAT1","A/Norway/1905/2013|2013-03-24|MDCK2/MDCK1","A/Belgium/G1067/2013|2013-03-25|SIAT2","A/Belgium/G1071/2013|2013-03-26|SIAT2","A/Norway/2010/2013|2013-04-07|MDCK2/SIAT1","A/Norway/2160/2013|2013-04-07|MDCK1/SIAT1","A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1",
+	"A/Belgium/S0923/2013|2013-04-10|SIAT2","A/Belgium/S0930/2013|2013-04-11|SIAT2","A/Norway/2255/2013|2013-04-23|MDCK1/SIAT1")
+ag_Feb2012_table12 <- agNames(map76) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E1","A/Victoria/208/2009|2009-06-02|E3/E1","A/Victoria/210/2009|2009-06-02|E2/32","A/Alabama/5/2010|2010-07-13|MK1/M2/SIAT2","A/Perth/10/2010|2010-05-25|E2/E2","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/La Réunion/2055/2011|2011-06-22|MDCK2/SIAT1","A/La Réunion/1956/2011|2011-07-07|MDCK4/SIAT1",
+	"A/Paris/1744/2011|2011-10-05|MDCK3/SIAT1","A/Attecoube/GR1103/2011|2011-10-18|SIAT3","A/Lyon CHU/46.334/2011|2011-11-15|MDCK3/SIAT1","A/Korogho/GR1307/2011|2011-11-16|SIAT2","A/Ghana/FS-11-1981/2011|2011-11-22|SIAT2","A/Parma/171/2011|2011-11-24|MDCK2/SIAT1","A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1","A/Catalonia/S4345/2011|2011-11-28|MDCK0/SIAT1","A/Milano/260/2011|2011-11-30|MDCK1/SIAT1","A/Trieste/58/2011|2011-11-30|MDCK2/SIAT1",
+	"A/Milano/256/2011|2011-12-01|MDCK1/MDCK1","A/Paris/2013/2011|2011-12-06|MDCK1/SIAT1","A/Parma/169/2011|2011-12-06|MDCK2/SIAT1","A/Turkey/05/2011|2011-12-07|SIAT1/SIAT1","A/Marseille/2240/2011|2011-12-08|MDCK2/SIAT1","A/Lorraine/2073/2011|2011-12-08|MDCK1/SIAT1","A/Toulouse/2187/2011|2011-12-09|MDCK2/SIAT1","A/Rheinland-Pfalz/75/2011|2011-12-09|C6/SIAT1","A/Berlin/2/2012|2011-12-09|C2/SIAT1","A/Milano/258/2011|2011-12-09|MDCK1/SIAT1",
+	"A/Trieste/59/2011|2011-12-09|MDCK2/SIAT1","A/Israel/32/2011|2011-12-10|C1/SIAT1","A/Norway/2433/2011|2011-12-12|SIAT1/SIAT2","A/Lorraine/2056/2011|2011-12-12|MDCK1/SIAT1","A/Valladolid/48/2011|2011-12-13|MDCKx/SIAT1","A/Milano/265/2011|2011-12-13|MDCK1/SIAT1","A/Parma/170/2011|2011-12-13|MDCK2/SIAT1","A/Turkey/07/2011|2011-12-13|SIAT2/SIAT1","A/Turkey/08/2011|2011-12-13|SIAT2/SIAT1","A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1",
+	"A/Turkey/12/2011|2011-12-14|SIAT2/SIAT1","A/Paris/2097/2011|2011-12-15|MDCK2/SIAT1","A/Milano/268/2011|2011-12-15|MDCK1/SIAT2","A/Turkey/14/2011|2011-12-15|SIAT1/SIAT1","A/Paris/2100/2011|2011-12-16|MDCK2/SIAT1","A/Valladolid/49/2011|2011-12-16|MDCK1/SIAT1","A/Israel/38/2011|2011-12-18|C2/SIAT1","A/Paris/2114/2011|2011-12-19|MDCK2/SIAT1","A/Ireland/11M92381/2011|2011-12-19|MDCK3/SIAT1","A/Parma/168/2011|2011-12-19|MDCK3/SIAT1",
+	"A/Paris/2116/2011|2011-12-20|MDCK2/SIAT1","A/Paris/2133/2011|2011-12-22|MDCK1/SIAT1","A/Ireland/11M92761/2011|2011-12-22|MDCK2/SIAT1","A/Parma/172/2011|2011-12-22|MDCK2/SIAT1","A/Parma/175/2011|2011-12-22|MDCK2/SIAT1","A/Lyon/2264/2011|2011-12-23|MDCK2/SIAT1","A/Israel/41/2011|2011-12-24|C1/SIAT1","A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1","A/Pays de Loire/2149/2011|2011-12-27|MDCK2/SIAT1","A/Trieste/62/2011|2011-12-27|MDCK2/SIAT1",
+	"A/Parma/177/2011|2011-12-27|MDCK1/SIAT1","A/Paris/2154/2011|2011-12-28|MDCK1/SIAT1","A/Paris/7/2012|2011-12-28|MDCK1/SIAT1","A/Salamanca/50/2011|2011-12-29|MDCK1/SIAT1","A/Trieste/63/2011|2011-12-29|MDCK2/SIAT1","A/Parma/173/2011|2011-12-29|MDCK2/SIAT1","A/Parma/174/2011|2011-12-30|MDCK2/SIAT1","A/Parma/176/2011|2011-12-30|MDCK2/SIAT1","A/Baden-Wurttemberg/2/2012|2012-01-01|C2/SIAT1","A/Lyon/40/2012|2012-01-02|MDCK2/SIAT1",
+	"A/Via Real/SU6/2012|2012-01-03|SIAT2","A/Paris/27/2012|2012-01-03|MDCK2/SIAT1","A/Parma/01/2012|2012-01-04|MDCK1/SIAT1","A/Lyon CHU/01.593/2011|2012-01-06|MDCK2/SIAT1","A/Valladolid/1/2012|2012-01-09|MDCK1/SIAT1","A/Segovia/2/2012|2012-01-09|MDCK1/SIAT1","A/Berlin/3/2012|2012-01-10|C2/SIAT1","A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1","A/Israel/27/2011|*|C2/SIAT1","A/Israel/43/2011|*|Cx/SIAT1",
+	"A/Israel/47/2011|*|Cx/SIAT1","A/Israel/50/2011|*|C1/SIAT1")
+
+agFill(map76)[ag_Sep2013_table7_12] <- '#ea5545'
+agFill(map76)[ag_Feb2012_table12] <- '#ef9b20'
+p_map76 <- ggplot(map76) + ggtitle('map 76')
+p_map76
+
+
+#################### MAP 77 ####################
+#### colered by tables
+agSize(map77) <- 5
+agFill(map77) <- 'grey50'
+ag_Sep2013_table7_12 <- agNames(map77) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Athens/112/2012|2012-02-01|SIAT6","A/Belgium/S0932/2013|2012-12-20|SIAT2","A/Hong Kong/209/2013|2013-01-16|MDCK2/SIAT1","A/Hong Kong/392/2013|2013-01-28|MDCK2/SIAT1","A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1","A/Belgium/G0508/2013|2013-02-04|SIAT2","A/Belgium/G0528/2013|2013-02-04|SIAT2",
+	"A/NosyBe/429/2013|2013-02-11|MDCK1/SIAT1","A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1","A/Maevatanana/563/2013|2013-02-25|MDCK1/SIAT1","A/Hong Kong/1036/2013|2013-02-25|MDCK2/SIAT1","A/Norway/1693/2013|2013-03-06|MDCK2/SIAT1","A/Minsk/1431/2013|2013-03-06|MDCK3/SIAT1","A/Norway/1665/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1683/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1736/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1780/2013|2013-03-09|MDCK1/SIAT1",
+	"A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76614/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76663/2013|2013-03-13|MDCK2/SIAT1","A/Estonia/76676/2013|2013-03-13|MDCK2/SIAT1","A/Norway/1894/2013|2013-03-17|MDCK1/SIAT1","A/Norway/1940/2013|2013-03-18|MDCK2/SIAT1","A/Belgium/G1034/2013|2013-03-18|SIAT2","A/Norway/1861/2013|2013-03-19|MDCK1/SIAT1","A/Norway/1905/2013|2013-03-24|MDCK2/MDCK1","A/Belgium/G1067/2013|2013-03-25|SIAT2",
+	"A/Belgium/G1071/2013|2013-03-26|SIAT2","A/Norway/2010/2013|2013-04-07|MDCK2/SIAT1","A/Norway/2160/2013|2013-04-07|MDCK1/SIAT1","A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1","A/Belgium/S0923/2013|2013-04-10|SIAT2","A/Belgium/S0930/2013|2013-04-11|SIAT2","A/Norway/2255/2013|2013-04-23|MDCK1/SIAT1")
+ag_Feb2013_table13 <- agNames(map77) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT5","A/Berlin/93/2011|2011-12-07|NVD3/SIAT5","A/Athens/112/2012|2012-02-01|SIAT8","A/Stockholm/12-16700/2012|*|MDCK2/SIAT1","A/Stockholm/30/2012|2012-07-12|MDCK1/SIAT1","A/Stockholm/29/2012|2012-07-27|MDCK1/SIAT1","A/Denmark/68/2012|2012-09-25|Cx/SIAT1","A/Denmark/67/2012|2012-09-27|MDCK3/SIAT1","A/Stockholm/31/2012|2012-10-17|MDCK2/SIAT1",
+	"A/England/575/2012|2012-10-23|SIAT1/SIAT1","A/Mecklenburg Vorpommern/4/2012|2012-10-30|C2/SIAT2","A/England/587/2012|2012-10-31|SIAT1/SIAT1","A/England/586/2012|2012-11-02|SIAT1/SIAT1","A/Niedersachsen/29/2012|2012-11-05|C1/SIAT1","A/Stockholm/38/2012|2012-11-05|MDCK1/SIAT1","A/Denmark/71/2012|2012-11-08|MDCK4/SIAT1","A/Stockholm/39/2012|2012-11-08|MDCK1/SIAT1","A/England/593/2012|2012-11-12|SIAT1/SIAT1","A/Stockholm/40/2012|2012-11-14|MDCK1/SIAT1",
+	"A/Stockholm/37/2012|2012-11-15|MDCK0/SIAT1","A/Stockholm/36/2012|2012-11-16|MDCK1/SIAT1","A/Denmark/78/2012|2012-12-05|MDCK2/SIAT1")
+
+agFill(map77)[ag_Sep2013_table7_12] <- '#ea5545'
+agFill(map77)[ag_Feb2013_table13] <- '#ef9b20'
+p_map77 <- ggplot(map77) + ggtitle('map 77')
+p_map77
+
+
+#################### MAP 78 ####################
+#### colered by tables
+agSize(map78) <- 5
+agFill(map78) <- 'grey50'
+ag_Sep2013_table7_12 <- agNames(map78) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Iowa/19/2010|2010-12-30|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT6","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Belgium/S0932/2013|2012-12-20|SIAT2","A/Hong Kong/209/2013|2013-01-16|MDCK2/SIAT1",
+	"A/Hong Kong/392/2013|2013-01-28|MDCK2/SIAT1","A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1","A/Belgium/G0508/2013|2013-02-04|SIAT2","A/Belgium/G0528/2013|2013-02-04|SIAT2","A/NosyBe/429/2013|2013-02-11|MDCK1/SIAT1","A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1","A/Maevatanana/563/2013|2013-02-25|MDCK1/SIAT1","A/Hong Kong/1036/2013|2013-02-25|MDCK2/SIAT1","A/Norway/1693/2013|2013-03-06|MDCK2/SIAT1","A/Minsk/1431/2013|2013-03-06|MDCK3/SIAT1",
+	"A/Norway/1665/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1683/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1736/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1780/2013|2013-03-09|MDCK1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76614/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76663/2013|2013-03-13|MDCK2/SIAT1","A/Estonia/76676/2013|2013-03-13|MDCK2/SIAT1","A/Norway/1894/2013|2013-03-17|MDCK1/SIAT1","A/Norway/1940/2013|2013-03-18|MDCK2/SIAT1",
+	"A/Belgium/G1034/2013|2013-03-18|SIAT2","A/Norway/1861/2013|2013-03-19|MDCK1/SIAT1","A/Norway/1905/2013|2013-03-24|MDCK2/MDCK1","A/Belgium/G1067/2013|2013-03-25|SIAT2","A/Belgium/G1071/2013|2013-03-26|SIAT2","A/Norway/2010/2013|2013-04-07|MDCK2/SIAT1","A/Norway/2160/2013|2013-04-07|MDCK1/SIAT1","A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1","A/Belgium/S0923/2013|2013-04-10|SIAT2","A/Belgium/S0930/2013|2013-04-11|SIAT2",
+	"A/Norway/2255/2013|2013-04-23|MDCK1/SIAT1")
+ag_Sep2012_table15 <- agNames(map78) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Iowa/19/2010|2010-12-30|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Milano/136/2012|2012-02-06|SIAT1/SIAT1","A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1","A/Iceland/10/2012|2012-02-08|MDCK2/SIAT1",
+	"A/Iceland/11/2012|2012-02-08|MDCK3/SIAT1","A/Georgia/161/2012|2012-02-08|SIAT2","A/Iceland/12/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/13/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/14/2012|2012-02-12|MDCK2/SIAT1","A/Iceland/15/2012|2012-02-13|MDCK1/SIAT1","A/Iceland/16/2012|2012-02-13|MDCK2/SIAT1","A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1","A/Parma/139/2012|2012-02-20|MDCK2/SIAT1","A/Georgia/255/2012|2012-02-22|SIAT2",
+	"A/Perugia/21/2012|2012-02-22|MDCK2/SIAT1","A/Iceland/18/2012|2012-02-23|MDCK3/SIAT1","A/Georgia/215/2012|2012-02-23|SIAT2","A/Iceland/19/2012|2012-02-24|MDCK2/SIAT1","A/Iceland/20/2012|2012-02-27|MDCK2/SIAT1","A/Iceland/21/2012|2012-03-02|MDCK2/SIAT1","A/Denmark/38/2012|2012-03-05|SIAT2","A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Georgia/370/2012|2012-03-06|SIAT2","A/Minsk/1574/2012|2012-03-12|MDCK2/SIAT1",
+	"A/Montenegro/158/2012|2012-03-13|SIAT3","A/Gomel/1613/2012|2012-03-14|MDCK2/SIAT1","A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1","A/Montenegro/190/2012|2012-03-16|SIAT2","A/Stockholm/14/2012|2012-03-16|C2/SIAT1","A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1","A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1","A/Georgia/512/2012|2012-03-23|SIAT2","A/Montenegro/269/2012|2012-03-24|SIAT2","A/Montenegro/272/2012|2012-03-24|SIAT2",
+	"A/Iceland/23/2012|2012-03-27|MDCK3/SIAT1","A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1","A/Gomel/1692/2012|2012-03-27|MDCK2/SIAT3","A/Georgia/554/2012|2012-03-27|SIAT2","A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1","A/Montenegro/312/2012|2012-03-29|SIAT2","A/Georgia/579/2012|2012-04-04|SIAT2","A/Iceland/24/2012|2012-04-14|MDCK2/SIAT1","A/Stockholm/19/2012|2012-04-14|C1/SIAT1","A/Stockholm/21/2012|2012-04-21|C2/SIAT1")
+
+agFill(map78)[ag_Sep2013_table7_12] <- '#ea5545'
+agFill(map78)[ag_Sep2012_table15] <- '#ef9b20'
+p_map78 <- ggplot(map78) + ggtitle('map 78')
+p_map78
+
+
+#################### MAP 79 ####################
+#### colered by tables
+agSize(map79) <- 5
+agFill(map79) <- 'grey50'
+ag_Feb2012_table13 <- agNames(map79) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/England/259/2011|2011-11-16|Cx/SIAT1","A/Norway/1789/2011|*|Cx/SIAT1","A/Denmark/87/2011|2011-09-04|SIAT1/SIAT1","A/Jordan/20110030568/2011|2011-09-14|SIAT1","A/Jordan/20110030585/2011|2011-09-23|SIAT2",
+	"A/Kobe/241/2011|2011-10-21|MDCK1+2/SIAT1","A/Hiroshima-C/53/2011|2011-10-29|MDCK1+2/SIAT1","A/Jordan/20110030655/2011|2011-10-31|SIAT1","A/Yopougon/GR1336/2011|2011-11-21|SIAT3","A/Jordan/20110030687/2011|2011-11-22|SIAT1","A/Bursa/108/2011|2011-11-22|C1/SIAT1","A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2","A/Denmark/90/2011|2011-11-28|MDCK1/SIAT1","A/Jordan/20110030713/2011|2011-11-30|SIAT2","A/Jordan/20110030706/2011|2011-12-03|SIAT1",
+	"A/Jordan/20110030717/2011|2011-12-03|SIAT2","A/Netherlands/710/2011|2011-12-06|MDCK2/SIAT1","A/Turkey/06/2011|2011-12-08|SIAT2/SIAT2","A/Turkey/10/2011|2011-12-08|SIAT2/SIAT3","A/Jordan/20110030732/2011|2011-12-08|SIAT1","A/İzmir/176/2011|2011-12-09|C1/SIAT1","A/Turkey/04/2011|2011-12-09|SIAT1/SIAT3","A/Jordan/20110030749/2011|2011-12-11|SIAT1","A/Turkey/26/2011|2011-12-13|SIAT1/SIAT1","A/İzmir/182/2011|2011-12-13|C1/SIAT1",
+	"A/Milano/268/2011|2011-12-15|MDCK1/SIAT2","A/Jordan/20110030777/2011|2011-12-15|SIAT1","A/Turkey/18/2011|2011-12-16|SIAT1/SIAT1","A/Norway/99/2012|2011-12-16|LLC-MK2-MDCK1/SIAT1","A/Turkey/19/2011|2011-12-18|SIAT1/SIAT1","A/İstanbul/202/2011|2011-12-19|C1/SIAT1","A/Antalya/204/2011|2011-12-19|C1/SIAT1","A/Ireland/11M92698/2011|2011-12-20|SIAT2","A/Turkey/21/2011|2011-12-20|SIAT1/SIAT3","A/Turkey/22/2011|2011-12-20|SIAT1/SIAT2",
+	"A/Turkey/27/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/30/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/31/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1","A/Ireland/11M92761/2011_1|2011-12-21|SIAT2","A/Trieste/60/2011|2011-12-21|MDCK2/SIAT2","A/Turkey/23/2011|2011-12-21|SIAT1/SIAT1","A/Turkey/24/2011|2011-12-21|SIAT1/SIAT1","A/Jordan/20110030780/2011|2011-12-21|SIAT1","A/Norway/2448/2011|2011-12-21|SIAT3",
+	"A/Ireland/11M92761/2011_2|2011-12-21|SIAT2","A/Ireland/11M92922/2011|2011-12-22|SIAT1/SIAT2","A/Turkey/28/2011|2011-12-22|MDCK1/SIAT1","A/Norway/39/2012|2011-12-22|LLC-MK2-MDCK1/SIAT1","A/Norway/96/2012|2011-12-22|SIAT2","A/Ireland/11V9451/2011|2011-12-25|MDCK1/SIAT1","A/Norway/38/2012|2011-12-25|SIAT2","A/Switzerland/5776029/2011|2011-12-27|SIAT1","A/Jordan/20110030776/2011|2011-12-27|C1/SIAT1","A/İstanbul/249/2011|2011-12-28|MDCK1/SIAT1",
+	"A/Latvia/12-47890p/2011|2011-12-28|MDCK3/SIAT1","A/Netherlands/713/2011|2011-12-29|C1/SIAT1","A/ Bursa/250/2011|2011-12-29|C1/SIAT1","A/İzmir/251/2011|2011-12-29|C1/SIAT1","A/Norway/3/2012|2012-01-02|MDCK1/SIAT1","A/Norway/75/2012|2012-01-02|MDCK-SIAT1/SIAT1","A/Norway/97/2012|2012-01-02|LLC-MK2-MDCK1/SIAT1","A/Switzerland/5802473/2012|2012-01-03|SIAT2","A/Austria/654044/2012|2012-01-03|C2/SIAT1","A/Ireland/12M90/2012|2012-01-03|SIAT3",
+	"A/Lyon/37/2012|2012-01-04|MDCK2/SIAT2","A/Netherlands/001/2012|2012-01-05|MDCK2/SIAT1","A/Norway/73/2012|2012-01-05|SIAT1/SIAT1","A/Switzerland/5834715/2012|2012-01-09|SIAT2","A/Switzerland/5834718/2012|2012-01-09|SIAT2","A/Switzerland/5834731/2012|2012-01-09|SIAT2","A/Berlin/6/2012|2012-01-09|C3/SIAT1","A/Hamburg/1/2012|2012-01-09|C2/SIAT1","A/Austria/654591/2012|2012-01-09|C1/SIAT1","A/Latvia/1-34462p/2012|2012-01-09|MDCK1/SIAT1",
+	"A/Latvia/1-34610/2012|2012-01-09|MDCK1/SIAT1","A/Ireland/12v397/2012|2012-01-10|SIAT3","A/England/12/2012|2012-01-10|SIAT1/SIAT1","A/Norway/114/2012|2012-01-10|MDCK1/SIAT1","A/Latvia/1-35583/2012|2012-01-10|MDCKx/SIAT1","A/Austria/655242/2012|2012-01-11|C1/SIAT1","A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1","A/Rheinland-Pfalz/1/2012|2012-01-12|C2/SIAT1","A/Switzerland/5834730/2012|2012-01-13|SIAT3","A/Switzerland/5834796/2012|2012-01-13|SIAT3",
+	"A/Berlin/4/2012|2012-01-13|C2/SIAT1","A/Baden-Württemberg/3/2012|2012-01-13|C2/SIAT1","A/Latvia/1-37528/2012|2012-01-13|MDCKx/SIAT1","A/England/21/2012|2012-01-16|SIAT1/SIAT1","A/Berlin/5/2012|2012-01-16|C2/SIAT1","A/Berlin/7/2012|2012-01-16|C2/SIAT1","A/Brandenburg/1/2012|2012-01-16|C2/SIAT1","A/England/20/2012|2012-01-17|SIAT1/SIAT1","A/Berlin/8/2012|2012-01-17|C2/SIAT1","A/Switzerland/5867852/2012|2012-01-20|SIAT3",
+	"A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1")
+ag_Feb2013_table18 <- agNames(map79) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT3","A/Stockholm/18/2011|2011-03-28|SIAT4","A/Berlin/93/2011|2011-12-07|NVD3/SIAT3","A/Athens/112/2012|2012-02-01|SIAT7","A/Maryland/02/2012(IVR-166)|2012-01-18|E5/D6/E1","A/Ukraine/5515/2012|2012-03-04|C1/SIAT1","A/Ukraine/5504/2012|2012-04-02|C1/SIAT1","A/Ukraine/5513/2012|2012-04-03|C1/SIAT1","A/Ukraine/5512/2012|2012-04-04|C1/SIAT1",
+	"A/Ukraine/5503/2012|2012-04-09|C1/SIAT1","A/Ukraine/5506/2012|2012-04-09|C1/SIAT1","A/Ukraine/5502/2012|2012-04-10|C1/SIAT1","A/Ukraine/5507/2012|2012-04-10|C1/SIAT1","A/Ukraine/5508/2012|2012-04-10|C1/SIAT1","A/Ukraine/5501/2012|2012-04-12|C1/SIAT1","A/Ukraine/5509/2012|2012-04-13|C1/SIAT1","A/Ukraine/5510/2012|2012-04-16|C1/SIAT1","A/Ukraine/5496/2012|2012-04-19|C1/SIAT2","A/Ukraine/5498/2012|2012-04-19|C1/SIAT2",
+	"A/Singapore/22/2012|2012-06-06|E4/E1","A/Ukraine/5511/2012|2012-07-22|C1/SIAT1","A/Sydney/195/2012|2012-08-06|E4/E1","A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2","A/Norway/2102/2012|2012-10-15|SIAT1/SIAT1","A/Norway/2103/2012|2012-10-22|SIAT1/SIAT1","A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2","A/Acores/SU43/2012|2012-11-06|SIAT2","A/South Carolina/16/2012|2012-11-07|MDCK1/C1/SIAT1","A/Delaware/15/2012|2012-11-12|C2/SIAT1",
+	"A/Lyon/2496/2012|2012-11-19|MDCK2/SIAT3","A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1","A/Switzerland/7587197/2012|2012-12-14|SIAT2","A/Ireland/00462/2012|2012-12-20|MDCK1/SIAT1","A/Belgium/S0304/2012|2012-12-21|SIAT2","A/Belgium/G1010/2012|2012-12-24|SIAT2","A/Belgium/S0325/2012|2012-12-26|SIAT2","A/Lisboa/SU15/2012|2013-01-04|SIAT2","A/Latvia/1-32593/2013|2013-01-06|MDCK1/SIAT1","A/Madeira/MS3/2012|2013-01-07|SIAT2",
+	"A/Belgium/G0044 /2013|2013-01-07|SIAT2","A/Latvia/1-37023/2013|2013-01-13|MDCK1/SIAT1")
+ag_Feb2013_table13 <- agNames(map79) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT2","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT5","A/Berlin/93/2011|2011-12-07|NVD3/SIAT5","A/Athens/112/2012|2012-02-01|SIAT8","A/Stockholm/12-16700/2012|*|MDCK2/SIAT1","A/Stockholm/30/2012|2012-07-12|MDCK1/SIAT1","A/Stockholm/29/2012|2012-07-27|MDCK1/SIAT1","A/Denmark/68/2012|2012-09-25|Cx/SIAT1","A/Denmark/67/2012|2012-09-27|MDCK3/SIAT1","A/Stockholm/31/2012|2012-10-17|MDCK2/SIAT1",
+	"A/England/575/2012|2012-10-23|SIAT1/SIAT1","A/Mecklenburg Vorpommern/4/2012|2012-10-30|C2/SIAT2","A/England/587/2012|2012-10-31|SIAT1/SIAT1","A/England/586/2012|2012-11-02|SIAT1/SIAT1","A/Niedersachsen/29/2012|2012-11-05|C1/SIAT1","A/Stockholm/38/2012|2012-11-05|MDCK1/SIAT1","A/Denmark/71/2012|2012-11-08|MDCK4/SIAT1","A/Stockholm/39/2012|2012-11-08|MDCK1/SIAT1","A/England/593/2012|2012-11-12|SIAT1/SIAT1","A/Stockholm/40/2012|2012-11-14|MDCK1/SIAT1",
+	"A/Stockholm/37/2012|2012-11-15|MDCK0/SIAT1","A/Stockholm/36/2012|2012-11-16|MDCK1/SIAT1","A/Denmark/78/2012|2012-12-05|MDCK2/SIAT1")
+
+agFill(map79)[ag_Feb2012_table13] <- '#ea5545'
+agFill(map79)[ag_Feb2013_table18] <- '#ef9b20'
+agFill(map79)[ag_Feb2013_table13] <- '#ede15b'
+p_map79 <- ggplot(map79) + ggtitle('map 79')
+p_map79
+
+
+#################### MAP 80 ####################
+#### colered by tables
+agSize(map80) <- 5
+agFill(map80) <- 'grey50'
+ag_Feb2012_table8 <- agNames(map80) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E1","A/Perth/16/2009|2009-07-04|E3/E1","A/Victoria/210/2009|2009-06-02|E2/E3","A/Alabama/5/2010|2010-07-13|MK2/M2/SIAT5","A/Perth/10/2010|2010-05-25|E2/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK3","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT2","A/Iowa/19/2010|2010-12-30|E3/E1","A/England/253/2011|2011-09-11|SIAT1/SIAT1","A/England/257/2011|2011-10-10|SIAT1/SIAT1",
+	"A/England/256/2011|2011-10-12|SIAT1/SIAT1","A/England/255/2011|2011-10-14|SIAT1/SIAT1","A/Bratislava/31/2011|2011-11-03|SIAT2","A/Bratislava/31/2011|2011-11-03|MDCK2/SIAT1","A/England/258/2011|2011-11-07|SIAT1/SIAT1","A/Tunisia/15685/2011|2011-11-09|SIAT2","A/England/259/2011|2011-11-16|SIAT1/SIAT1","A/Finland/190/2011|2011-11-25|SIAT3/SIAT3")
+ag_Feb2013_table18 <- agNames(map80) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT3","A/Stockholm/18/2011|2011-03-28|SIAT4","A/Berlin/93/2011|2011-12-07|NVD3/SIAT3","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Maryland/02/2012(IVR-166)|2012-01-18|E5/D6/E1","A/Ukraine/5515/2012|2012-03-04|C1/SIAT1","A/Ukraine/5504/2012|2012-04-02|C1/SIAT1","A/Ukraine/5513/2012|2012-04-03|C1/SIAT1",
+	"A/Ukraine/5512/2012|2012-04-04|C1/SIAT1","A/Ukraine/5503/2012|2012-04-09|C1/SIAT1","A/Ukraine/5506/2012|2012-04-09|C1/SIAT1","A/Ukraine/5502/2012|2012-04-10|C1/SIAT1","A/Ukraine/5507/2012|2012-04-10|C1/SIAT1","A/Ukraine/5508/2012|2012-04-10|C1/SIAT1","A/Ukraine/5501/2012|2012-04-12|C1/SIAT1","A/Ukraine/5509/2012|2012-04-13|C1/SIAT1","A/Ukraine/5510/2012|2012-04-16|C1/SIAT1","A/Ukraine/5496/2012|2012-04-19|C1/SIAT2",
+	"A/Ukraine/5498/2012|2012-04-19|C1/SIAT2","A/Singapore/22/2012|2012-06-06|E4/E1","A/Ukraine/5511/2012|2012-07-22|C1/SIAT1","A/Sydney/195/2012|2012-08-06|E4/E1","A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2","A/Norway/2102/2012|2012-10-15|SIAT1/SIAT1","A/Norway/2103/2012|2012-10-22|SIAT1/SIAT1","A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2","A/Acores/SU43/2012|2012-11-06|SIAT2","A/South Carolina/16/2012|2012-11-07|MDCK1/C1/SIAT1",
+	"A/Delaware/15/2012|2012-11-12|C2/SIAT1","A/Lyon/2496/2012|2012-11-19|MDCK2/SIAT3","A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1","A/Switzerland/7587197/2012|2012-12-14|SIAT2","A/Ireland/00462/2012|2012-12-20|MDCK1/SIAT1","A/Belgium/S0304/2012|2012-12-21|SIAT2","A/Belgium/G1010/2012|2012-12-24|SIAT2","A/Belgium/S0325/2012|2012-12-26|SIAT2","A/Lisboa/SU15/2012|2013-01-04|SIAT2","A/Latvia/1-32593/2013|2013-01-06|MDCK1/SIAT1",
+	"A/Madeira/MS3/2012|2013-01-07|SIAT2","A/Belgium/G0044 /2013|2013-01-07|SIAT2","A/Latvia/1-37023/2013|2013-01-13|MDCK1/SIAT1")
+ag_Sep2013_table7_16 <- agNames(map80) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C1/SIAT2","A/Stockholm/18/201|2011-03-28|SIAT4","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Athens/112/2012|2012-02-01|SIAT8","A/Texas/50/2012|2012-04-15|E5/E2","A/Samara/73/2013|2013-03-12|C1/SIAT4","A/New York/39/2012|2012-10-20|C2/SIAT1","A/New York/39/2012|2012-10-20|E4/E1","A/American Samoa/4786/2013|2013-02-22|C2/SIAT1","A/American Samoa/4786/2013|2013-02-22|E4/E1",
+	"A/Ireland/M19748/2013|2013-03-04|SIAT2","A/Lithuania/6934/2013|2013-03-04|SIAT3","A/Ireland/M20427/2013|2013-03-05|SIAT3","A/Ireland/M20189/2013|2013-03-05|SIAT3","A/Lithuania/8003/2013|2013-03-12|SIAT3","A/Lithuania/8115/2013|2013-03-16|SIAT2","A/Ireland/M26695/2013|2013-03-26|SIAT3","A/Ireland/M28426/2013|2013-04-02|SIAT3","A/Ireland/M28390/2013|2013-04-02|SIAT3","A/Ireland/M28859/2013|2013-04-03|SIAT2",
+	"A/Yokohama/153/2013|2013-04-12|MDCK3/MDCK1/SIAT1","A/Chiba-C/39/2013|2013-04-12|MDCK2/MDCK1/SIAT2","A/Osaka/32/2013|2013-05-01|MDCK2/MDCK1/SIAT1","A/Kanagawa/141/2013|2013-05-09|MDCK2/MDCK1/SIAT1")
+
+agFill(map80)[ag_Feb2012_table8] <- '#ea5545'
+agFill(map80)[ag_Feb2013_table18] <- '#ef9b20'
+agFill(map80)[ag_Sep2013_table7_16] <- '#ede15b'
+p_map80 <- ggplot(map80) + ggtitle('map 80')
+p_map80
+
+
+#################### MAP 81 ####################
+#### colered by tables
+agSize(map81) <- 5
+agFill(map81) <- 'grey50'
+ag_Sep2012_table18 <- agNames(map81) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT5","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT6","A/Berlin/93/2011|2011-12-07|NVD3/S3","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Brisbane/1/2012|2012-01-06|E3/E1","A/Dakar/01/2012|2012-01-17|MDCK2/SIAT1","A/Maryland/02/2012|2012-01-18|E5/E1","A/Dakar/02/2012|2012-01-31|MDCK1/SIAT2",
+	"A/Lorraine/329/2012|2012-02-06|MDCK2/SIAT3","A/Paris/340/2012|2012-02-06|MDCK2/SIAT3","A/Caen/539/2012|2012-02-07|MDCK2/SIAT3","A/Lorraine/883/2012|2012-03-02|MDCK2/SIAT3","A/Alsace/889/2012|2012-03-04|MDCK2/SIAT3","A/Ohio/2/2012|2012-03-08|E4/E1","A/Centre/1066/2012|2012-03-12|MDCK2/SIAT3","A/South Australia/30/2012|2012-05-10|E2/E1")
+ag_Sep2013_table7_7 <- agNames(map81) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT6","A/Texas/50/2012|2012-04-15|E5/E2","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Moscow/84/2012|2012-12-25|Cx/SIAT1","A/England/119/2013|2013-01-09|MDCK2/SIAT1","A/England/104/2013|2013-01-09|MDCK2/SIAT1",
+	"A/Valencia/1S/2013|2013-01-10|SIAT2","A/Serbia/NS-200/2013|2013-01-14|SIAT2","A/Serbia/NS-210/2013|2013-01-18|SIAT3","A/Catalonia/2070282NS/2013|2013-01-22|SIAT2","A/Catalonia/5742S/2013|2013-01-23|SIAT2","A/Catalonia/2071057NS/2013|2013-01-24|SIAT2","A/England/188/2013|2013-01-29|SIAT1/SIAT1","A/England/256/2013|2013-01-30|MDCK1/SIAT1","A/England/280/2013|2013-01-31|MDCK1/SIAT1","A/Bulgaria/270/2013|2013-02-04|C2/SIAT1",
+	"A/Bulgaria/253/2013|2013-02-08|C2/SIAT1","A/England/279/2013|2013-02-09|SIAT1/SIAT1","A/St. Petersburg/4/2013|2013-02-13|C1/SIAT1","A/St. Petersburg/6/2013|2013-02-13|C1/SIAT1","A/Valladolid/39/2013|2013-02-14|SIAT2","A/England/308/2013|2013-02-15|SIAT1/SIAT1","A/Novosibirsk/77/2012|2013-02-20|C4/SIAT1","A/Astrakhan/2/2013|2013-02-20|C1/SIAT1","A/Astrakhan/5/2013|2013-02-20|C1/SIAT1","A/St. Petersburg/36/2013|2013-02-20|C2/SIAT1",
+	"A/Novosibirsk/78/2012|2013-02-20|C4/SIAT1","A/Burgos/96/2013|2013-03-12|SIAT2","A/Valladolid/95/2013|2013-03-14|SIAT2")
+
+agFill(map81)[ag_Sep2012_table18] <- '#ea5545'
+agFill(map81)[ag_Sep2013_table7_7] <- '#ef9b20'
+p_map81 <- ggplot(map81) + ggtitle('map 81')
+p_map81
+
+
+#################### MAP 82 ####################
+#### colered by tables
+agSize(map82) <- 5
+agFill(map82) <- 'grey50'
+ag_Sep2013_table7_8 <- agNames(map82) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT3","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Zamora/10/2012|2012-01-19|SIAT3","A/Spain/13831/2012|2012-02-16|SIAT3","A/Spain/13916/2012|2012-02-17|SIAT3",
+	"A/Spain/14701/2012|2012-02-21|SIAT3","A/Spain/14758/2012|2012-02-21|SIAT3","A/Spain/20322/2012|2012-03-10|SIAT3","A/Spain/23634/2012|2012-03-22|SIAT3","A/Zamora/87/2012|2012-04-03|SIAT3","A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1","A/Tulkarem/83/2013|2013-01-08|SIAT3","A/Plzen/22/2013|2013-01-10|MDCK4/SIAT1","A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1","A/Skopje/DZ K 33/2013|2013-01-21|SIAT3",
+	"A/Almaty/2944/2013|2013-01-24|SIAT3","A/Almaty/2946/2013|2013-01-25|SIAT3","A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1","A/Ramallah/84/2013|2013-01-26|SIAT3","A/Almaty/2952/2013|2013-01-27|SIAT3","A/Almaty/2955/2013|2013-01-27|SIAT3","A/Almaty/2956/2013|2013-01-27|SIAT3","A/Almaty/2958/2013|2013-01-27|SIAT3","A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1","A/Slovenia/549/2013|2013-02-04|MDCK1/SIAT1",
+	"A/Slovenia/709/2013|2013-02-12|MDCK1/SIAT1","A/Slovenia/741/2013|2013-02-14|MDCKx/SIAT1","A/Slovenia/760/2013|2013-02-15|MDCKx/SIAT1","A/Spain/18719/2013|2013-03-03|SIAT4","A/St. Petersburg/69/2013|2013-03-12|C2/SIAT1","A/Samara/73/2013|2013-03-12|C1/SIAT1","A/Kaliningrad/1/2013|2013-03-12|C1/SIAT1","A/St. Petersburg/125/2013|2013-03-12|C1/SIAT1","A/St. Petersburg/106/2013|2013-03-12|C1/SIAT1","A/St. Petersburg/86/2013|2013-03-13|C2/SIAT1",
+	"A/Valladolid/98/2013|2013-03-18|SIAT3","A/St. Petersburg/170/2013|2013-03-20|C2/SIAT1","A/Valladolid/118/2013|2013-04-02|SIAT3","A/Novosibirsk/32/2013|2013-04-03|C1/SIAT1")
+ag_Sep2012_table17 <- agNames(map82) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT6","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Georgia/301/2012|2012-02-21|*","A/Centre/848/2012|2012-03-01|MDCK2/SIAT1","A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1","A/Caen/900/2012|2012-03-01|MDCK2/SIAT1",
+	"A/Pays de Loire/882/2012|2012-03-02|MDCK1/SIAT1","A/Paris/919/2012|2012-03-06|MDCK2/SIAT1","A/Centre/929/2012|2012-03-07|MDCK2/SIAT1","A/Paris/972/2012|2012-03-08|MDCK2/SIAT1","A/Guyane/1296/2012 (A/Guadeloupe/44/2012)|2012-03-08|MDCK2/SIAT1","A/Guyane/1297/2012 (A/Guadeloupe/45/2012)|2012-03-08|MDCK2/SIAT1","A/Madagascar/03243/2012|2012-05-07|SIAT3","A/Madagascar/03233/2012|2012-05-11|MDCK1/SIAT1","A/Madagascar/03281/2012|2012-05-14|SIAT2","A/Madagascar/03294/2012|2012-05-16|MDCK2/SIAT1",
+	"A/Madagascar/03396/2012|2012-05-21|MDCK2/SIAT1","A/Madagascar/03401/2012|2012-05-22|MDCK2/SIAT1","A/Madagascar/03408/2012|2012-05-22|MDCK2/SIAT1","A/Ghana/FS0677/2012|2012-05-28|C2/SIAT3","A/Madagascar/03449/2012|2012-05-29|SIAT3","A/Madagascar/03487/2012|2012-05-31|MDCK2/SIAT1","A/Madagascar/03536/2012|2012-06-04|MDCK1/SIAT1","A/Madagascar/03535/2012|2012-06-06|SIAT2","A/Hong Kong/8117/2012|2012-06-26|MDCK2/SIAT1","A/Hong Kong/8119/2012|2012-06-26|MDCK2/SIAT1",
+	"A/Hong Kong/8152/2012|2012-06-26|MDCK2/MDCK1","A/Hong Kong/8150/2012|2012-06-27|MDCK2/SIAT1")
+
+agFill(map82)[ag_Sep2013_table7_8] <- '#ea5545'
+agFill(map82)[ag_Sep2012_table17] <- '#ef9b20'
+p_map82 <- ggplot(map82) + ggtitle('map 82')
+p_map82
+
+
+#################### MAP 83 ####################
+#### colered by tables
+agSize(map83) <- 5
+agFill(map83) <- 'grey50'
+ag_Sep2013_table7_3 <- agNames(map83) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT4","A/Berlin/93/2011|2011-12-07|NVD3/SIAT3","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Moramanga/3423/2012|2012-05-24|MDCK2/SIAT1","A/Antananarivo/3487/2012|2012-05-31|MDCK2/SIAT1","A/Mahajanga/3628/2012|2012-06-01|MDCK1/SIAT1","A/Tsiroanomandidy/3540/2012|2012-06-04|MDCK2/SIAT1",
+	"A/Tsiroanomandidy/3542/2012|2012-06-04|MDCK1/SIAT1","A/Antananarivo/3575/2012|2012-06-11|MDCK2/SIAT1","A/Antananarivo/3669/2012|2012-06-13|MDCK1/SIAT1","A/Antananarivo/3635/2012|2012-06-14|MDCK1/SIAT1","A/Cameroon/12V-4611/2012|2012-10-09|MDCK1/SIAT4","A/Cameroon/12V-5054/2012|2012-10-11|MDCK1/SIAT2","A/Cameroon/12V-5056/2012|2012-10-15|MDCK1/SIAT2","A/Cameroon/12V-4995/2012|2012-10-17|MDCK1/SIAT1","A/Cameroon/12V-4989/2012|2012-10-19|MDCK1/SIAT1","A/Cameroon/12V-4990/2012|2012-10-20|MDCK1/SIAT1",
+	"A/Cameroon/12V-4996/2012|2012-10-22|MDCK1/SIAT1","A/Cameroon/12V-4982/2012|2012-10-24|MDCK1/SIAT1","A/Cameroon/12V-5131/2012|2012-10-25|MDCK1/SIAT1","A/Cameroon/12V-5140/2012|2012-10-25|MDCK1/SIAT1","A/Cameroon/12V-5143/2012|2012-10-29|MDCK1/SIAT1","A/Cameroon/12V-5144/2012|2012-10-29|MDCK1/SIAT1","A/Cameroon/12V-5135/2012|2012-10-30|MDCK1/SIAT1","A/Cameroon/12V-5136/2012|2012-10-31|MDCK1/SIAT1","A/Cameroon/12V-5330/2012|2012-11-01|MDCK1/SIAT1","A/Cameroon/12V-5335/2012|2012-11-05|MDCK1/SIAT1",
+	"A/Cameroon/12V-5334/2012|2012-11-05|MDCK1/SIAT1","A/Cameroon/12V-5496/2012|2012-11-06|MDCK1/SIAT1","A/Cameroon/12V-5502/2012|2012-11-08|MDCK1/SIAT1","A/Cameroon/12V-5507/2012|2012-11-08|MDCK1/SIAT1","A/Cameroon/12V-5498/2012|2012-11-08|MDCK1/SIAT1","A/Glasgow/RVL2/2012|2012-12-19|SIAT3","A/Switzerland/7628499/2012|2012-12-21|SIAT5","A/Glasgow/RVL6/2012|2012-12-21|SIAT4","A/Glasgow/RVL7/2012|2012-12-21|SIAT3","A/Glasgow/RVL8/2012|2012-12-21|SIAT4",
+	"A/Ireland/00367/2013|2013-01-02|SIAT4","A/Malta/MV720824/2013|2013-01-15|MDCK3")
+ag_Sep2012_table9 <- agNames(map83) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Bulgaria/182/2012|2012-02-02|C3/SIAT1","A/Bulgaria/217/2012|2012-02-09|C3/SIAT1",
+	"A/Bulgaria/218/2012|2012-02-09|C3/SIAT1","A/Slovenia/402/2012|2012-02-20|Mx/SIAT1","A/Slovenia/435/2012|2012-02-20|Mx/SIAT1","A/Slovenia/459/2012|2012-02-20|Mx/SIAT1","A/Bulgaria/280/2012|2012-02-20|C3/SIAT1","A/Bulgaria/311/2012|2012-02-24|C3/SIAT1","A/Bulgaria/312/2012|2012-02-24|C3/SIAT1","A/Bulgaria/313/2012|2012-02-24|C3/SIAT1","A/Bulgaria/314/2012|2012-02-24|C3/SIAT1","A/Slovenia/566/2012|2012-02-27|Mx/SIAT1",
+	"A/Slovenia/599/2012|2012-02-27|Mx/SIAT1","A/St Petersburg/2/2012|2012-02-27|C3/SIAT1","A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1","A/Slovenia/637/2012|2012-03-05|Mx/SIAT1","A/Slovenia/815/2012|2012-03-12|Mx/SIAT1","A/Slovenia/879/2012|2012-03-19|Mx/SIAT1","A/St Petersburg/4/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1","A/Omsk/1/2012|2012-03-25|C1/SIAT1","A/St Petersburg/8/2012|2012-03-25|C2/SIAT1",
+	"A/St Petersburg/10/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Slovenia/1049/2012|2012-04-02|Mx/SIAT1")
+ag_Sep2013_table7_16 <- agNames(map83) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C1/SIAT2","A/Stockholm/18/201|2011-03-28|SIAT4","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Athens/112/2012|2012-02-01|SIAT8","A/Texas/50/2012|2012-04-15|E5/E2","A/Samara/73/2013|2013-03-12|C1/SIAT4","A/New York/39/2012|2012-10-20|C2/SIAT1","A/New York/39/2012|2012-10-20|E4/E1","A/American Samoa/4786/2013|2013-02-22|C2/SIAT1","A/American Samoa/4786/2013|2013-02-22|E4/E1",
+	"A/Ireland/M19748/2013|2013-03-04|SIAT2","A/Lithuania/6934/2013|2013-03-04|SIAT3","A/Ireland/M20427/2013|2013-03-05|SIAT3","A/Ireland/M20189/2013|2013-03-05|SIAT3","A/Lithuania/8003/2013|2013-03-12|SIAT3","A/Lithuania/8115/2013|2013-03-16|SIAT2","A/Ireland/M26695/2013|2013-03-26|SIAT3","A/Ireland/M28426/2013|2013-04-02|SIAT3","A/Ireland/M28390/2013|2013-04-02|SIAT3","A/Ireland/M28859/2013|2013-04-03|SIAT2",
+	"A/Yokohama/153/2013|2013-04-12|MDCK3/MDCK1/SIAT1","A/Chiba-C/39/2013|2013-04-12|MDCK2/MDCK1/SIAT2","A/Osaka/32/2013|2013-05-01|MDCK2/MDCK1/SIAT1","A/Kanagawa/141/2013|2013-05-09|MDCK2/MDCK1/SIAT1")
+
+agFill(map83)[ag_Sep2013_table7_3] <- '#ea5545'
+agFill(map83)[ag_Sep2012_table9] <- '#ef9b20'
+agFill(map83)[ag_Sep2013_table7_16] <- '#ede15b'
+p_map83 <- ggplot(map83) + ggtitle('map 83')
+p_map83
+
+
+#################### MAP 84 ####################
+#### colered by tables
+agSize(map84) <- 5
+agFill(map84) <- 'grey50'
+ag_Sep2012_table9 <- agNames(map84) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Bulgaria/182/2012|2012-02-02|C3/SIAT1","A/Bulgaria/217/2012|2012-02-09|C3/SIAT1",
+	"A/Bulgaria/218/2012|2012-02-09|C3/SIAT1","A/Slovenia/402/2012|2012-02-20|Mx/SIAT1","A/Slovenia/435/2012|2012-02-20|Mx/SIAT1","A/Slovenia/459/2012|2012-02-20|Mx/SIAT1","A/Bulgaria/280/2012|2012-02-20|C3/SIAT1","A/Bulgaria/311/2012|2012-02-24|C3/SIAT1","A/Bulgaria/312/2012|2012-02-24|C3/SIAT1","A/Bulgaria/313/2012|2012-02-24|C3/SIAT1","A/Bulgaria/314/2012|2012-02-24|C3/SIAT1","A/Slovenia/566/2012|2012-02-27|Mx/SIAT1",
+	"A/Slovenia/599/2012|2012-02-27|Mx/SIAT1","A/St Petersburg/2/2012|2012-02-27|C3/SIAT1","A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1","A/Slovenia/637/2012|2012-03-05|Mx/SIAT1","A/Slovenia/815/2012|2012-03-12|Mx/SIAT1","A/Slovenia/879/2012|2012-03-19|Mx/SIAT1","A/St Petersburg/4/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1","A/Omsk/1/2012|2012-03-25|C1/SIAT1","A/St Petersburg/8/2012|2012-03-25|C2/SIAT1",
+	"A/St Petersburg/10/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Slovenia/1049/2012|2012-04-02|Mx/SIAT1")
+ag_Sep2013_table7_9 <- agNames(map84) %in% c("A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Firenze/13/2013|*|MDCK2/SIAT1","A/Pozarevac/6330/2013|2012-12-21|C2/SIAT1","A/Perugia/13/2013|2013-01-28|MDCK1/SIAT1","A/Ukraine/5809/2013|2013-02-13|C2/SIAT1","A/Ukraine/5887/2013|2013-02-13|C2/SIAT1","A/Ukraine/5810/2013|2013-02-17|C2/SIAT1","A/Ukraine/5811/2013|2013-02-17|C2/SIAT1","A/Ukraine/5884/2013|2013-02-19|C2/SIAT1",
+	"A/Ukraine/5890/2013|2013-02-20|C2/SIAT1","A/Moldova/242/2013|2013-02-22|MDCK2/SIAT1","A/Belgrade/1166/2013|2013-02-24|C1/SIAT2","A/Ukraine/5892/2013|2013-02-24|C2/SIAT1","A/Ukraine/5893/2013|2013-02-25|C2/SIAT1","A/Ukraine/5896/2013|2013-03-04|C2/SIAT1","A/Timis/136369/2013|2013-03-04|MDCK3/SIAT1","A/Ukraine/5837/2013|2013-03-06|C2/SIAT1","A/Ukraine/5909/2013|2013-03-06|C2/SIAT1","A/Moldova/326/2013|2013-03-07|MDCK2/SIAT1",
+	"A/Ukraine/288/2013|2013-03-13|SIAT1/SIAT1","A/Leskovac/1653/2013|2013-03-13|C2/SIAT1","A/Leskovac/1655/2013|2013-03-13|C1/SIAT1","A/Ukraine/316/2013|2013-03-20|MDCK1/SIAT1","A/Ukraine/315/2013|2013-03-23|MDCK1/SIAT1","A/Ukraine/5840/2013|2013-03-25|C1/SIAT1")
+ag_Sep2013_table7_7 <- agNames(map84) %in% c("A/Athens/112/2012|2012-02-01|SIAT6","A/Texas/50/2012|2012-04-15|E5/E2","A/Moscow/84/2012|2012-12-25|Cx/SIAT1","A/England/119/2013|2013-01-09|MDCK2/SIAT1","A/England/104/2013|2013-01-09|MDCK2/SIAT1","A/Valencia/1S/2013|2013-01-10|SIAT2","A/Serbia/NS-200/2013|2013-01-14|SIAT2","A/Serbia/NS-210/2013|2013-01-18|SIAT3","A/Catalonia/2070282NS/2013|2013-01-22|SIAT2","A/Catalonia/5742S/2013|2013-01-23|SIAT2",
+	"A/Catalonia/2071057NS/2013|2013-01-24|SIAT2","A/England/188/2013|2013-01-29|SIAT1/SIAT1","A/England/256/2013|2013-01-30|MDCK1/SIAT1","A/England/280/2013|2013-01-31|MDCK1/SIAT1","A/Bulgaria/270/2013|2013-02-04|C2/SIAT1","A/Bulgaria/253/2013|2013-02-08|C2/SIAT1","A/England/279/2013|2013-02-09|SIAT1/SIAT1","A/St. Petersburg/4/2013|2013-02-13|C1/SIAT1","A/St. Petersburg/6/2013|2013-02-13|C1/SIAT1","A/Valladolid/39/2013|2013-02-14|SIAT2",
+	"A/England/308/2013|2013-02-15|SIAT1/SIAT1","A/Novosibirsk/77/2012|2013-02-20|C4/SIAT1","A/Astrakhan/2/2013|2013-02-20|C1/SIAT1","A/Astrakhan/5/2013|2013-02-20|C1/SIAT1","A/St. Petersburg/36/2013|2013-02-20|C2/SIAT1","A/Novosibirsk/78/2012|2013-02-20|C4/SIAT1","A/Burgos/96/2013|2013-03-12|SIAT2","A/Valladolid/95/2013|2013-03-14|SIAT2")
+
+agFill(map84)[ag_Sep2012_table9] <- '#ea5545'
+agFill(map84)[ag_Sep2013_table7_9] <- '#ef9b20'
+agFill(map84)[ag_Sep2013_table7_7] <- '#ede15b'
+p_map84 <- ggplot(map84) + ggtitle('map 84')
+p_map84
+
+
+#################### MAP 85 ####################
+#### colered by tables
+agSize(map85) <- 5
+agFill(map85) <- 'grey50'
+ag_Sep2012_table9 <- agNames(map85) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Bulgaria/182/2012|2012-02-02|C3/SIAT1","A/Bulgaria/217/2012|2012-02-09|C3/SIAT1",
+	"A/Bulgaria/218/2012|2012-02-09|C3/SIAT1","A/Slovenia/402/2012|2012-02-20|Mx/SIAT1","A/Slovenia/435/2012|2012-02-20|Mx/SIAT1","A/Slovenia/459/2012|2012-02-20|Mx/SIAT1","A/Bulgaria/280/2012|2012-02-20|C3/SIAT1","A/Bulgaria/311/2012|2012-02-24|C3/SIAT1","A/Bulgaria/312/2012|2012-02-24|C3/SIAT1","A/Bulgaria/313/2012|2012-02-24|C3/SIAT1","A/Bulgaria/314/2012|2012-02-24|C3/SIAT1","A/Slovenia/566/2012|2012-02-27|Mx/SIAT1",
+	"A/Slovenia/599/2012|2012-02-27|Mx/SIAT1","A/St Petersburg/2/2012|2012-02-27|C3/SIAT1","A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1","A/Slovenia/637/2012|2012-03-05|Mx/SIAT1","A/Slovenia/815/2012|2012-03-12|Mx/SIAT1","A/Slovenia/879/2012|2012-03-19|Mx/SIAT1","A/St Petersburg/4/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1","A/Omsk/1/2012|2012-03-25|C1/SIAT1","A/St Petersburg/8/2012|2012-03-25|C2/SIAT1",
+	"A/St Petersburg/10/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Slovenia/1049/2012|2012-04-02|Mx/SIAT1")
+ag_Sep2013_table7_12 <- agNames(map85) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT6","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Belgium/S0932/2013|2012-12-20|SIAT2",
+	"A/Hong Kong/209/2013|2013-01-16|MDCK2/SIAT1","A/Hong Kong/392/2013|2013-01-28|MDCK2/SIAT1","A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1","A/Belgium/G0508/2013|2013-02-04|SIAT2","A/Belgium/G0528/2013|2013-02-04|SIAT2","A/NosyBe/429/2013|2013-02-11|MDCK1/SIAT1","A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1","A/Maevatanana/563/2013|2013-02-25|MDCK1/SIAT1","A/Hong Kong/1036/2013|2013-02-25|MDCK2/SIAT1","A/Norway/1693/2013|2013-03-06|MDCK2/SIAT1",
+	"A/Minsk/1431/2013|2013-03-06|MDCK3/SIAT1","A/Norway/1665/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1683/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1736/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1780/2013|2013-03-09|MDCK1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76614/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76663/2013|2013-03-13|MDCK2/SIAT1","A/Estonia/76676/2013|2013-03-13|MDCK2/SIAT1","A/Norway/1894/2013|2013-03-17|MDCK1/SIAT1",
+	"A/Norway/1940/2013|2013-03-18|MDCK2/SIAT1","A/Belgium/G1034/2013|2013-03-18|SIAT2","A/Norway/1861/2013|2013-03-19|MDCK1/SIAT1","A/Norway/1905/2013|2013-03-24|MDCK2/MDCK1","A/Belgium/G1067/2013|2013-03-25|SIAT2","A/Belgium/G1071/2013|2013-03-26|SIAT2","A/Norway/2010/2013|2013-04-07|MDCK2/SIAT1","A/Norway/2160/2013|2013-04-07|MDCK1/SIAT1","A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1","A/Belgium/S0923/2013|2013-04-10|SIAT2",
+	"A/Belgium/S0930/2013|2013-04-11|SIAT2","A/Norway/2255/2013|2013-04-23|MDCK1/SIAT1")
+
+agFill(map85)[ag_Sep2012_table9] <- '#ea5545'
+agFill(map85)[ag_Sep2013_table7_12] <- '#ef9b20'
+p_map85 <- ggplot(map85) + ggtitle('map 85')
+p_map85
+
+
+#################### MAP 86 ####################
+#### colered by tables
+agSize(map86) <- 5
+agFill(map86) <- 'grey50'
+ag_Sep2012_table15 <- agNames(map86) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT2","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Iowa/19/2010|2010-12-30|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Milano/136/2012|2012-02-06|SIAT1/SIAT1","A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1",
+	"A/Iceland/10/2012|2012-02-08|MDCK2/SIAT1","A/Iceland/11/2012|2012-02-08|MDCK3/SIAT1","A/Georgia/161/2012|2012-02-08|SIAT2","A/Iceland/12/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/13/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/14/2012|2012-02-12|MDCK2/SIAT1","A/Iceland/15/2012|2012-02-13|MDCK1/SIAT1","A/Iceland/16/2012|2012-02-13|MDCK2/SIAT1","A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1","A/Parma/139/2012|2012-02-20|MDCK2/SIAT1",
+	"A/Georgia/255/2012|2012-02-22|SIAT2","A/Perugia/21/2012|2012-02-22|MDCK2/SIAT1","A/Iceland/18/2012|2012-02-23|MDCK3/SIAT1","A/Georgia/215/2012|2012-02-23|SIAT2","A/Iceland/19/2012|2012-02-24|MDCK2/SIAT1","A/Iceland/20/2012|2012-02-27|MDCK2/SIAT1","A/Iceland/21/2012|2012-03-02|MDCK2/SIAT1","A/Denmark/38/2012|2012-03-05|SIAT2","A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Georgia/370/2012|2012-03-06|SIAT2",
+	"A/Minsk/1574/2012|2012-03-12|MDCK2/SIAT1","A/Montenegro/158/2012|2012-03-13|SIAT3","A/Gomel/1613/2012|2012-03-14|MDCK2/SIAT1","A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1","A/Montenegro/190/2012|2012-03-16|SIAT2","A/Stockholm/14/2012|2012-03-16|C2/SIAT1","A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1","A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1","A/Georgia/512/2012|2012-03-23|SIAT2","A/Montenegro/269/2012|2012-03-24|SIAT2",
+	"A/Montenegro/272/2012|2012-03-24|SIAT2","A/Iceland/23/2012|2012-03-27|MDCK3/SIAT1","A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1","A/Gomel/1692/2012|2012-03-27|MDCK2/SIAT3","A/Georgia/554/2012|2012-03-27|SIAT2","A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1","A/Montenegro/312/2012|2012-03-29|SIAT2","A/Georgia/579/2012|2012-04-04|SIAT2","A/Iceland/24/2012|2012-04-14|MDCK2/SIAT1","A/Stockholm/19/2012|2012-04-14|C1/SIAT1",
+	"A/Stockholm/21/2012|2012-04-21|C2/SIAT1")
+ag_Feb2013_table18 <- agNames(map86) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT3","A/Stockholm/18/2011|2011-03-28|SIAT4","A/Iowa/19/2010|2010-12-30|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT3","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Maryland/02/2012(IVR-166)|2012-01-18|E5/D6/E1",
+	"A/Ukraine/5515/2012|2012-03-04|C1/SIAT1","A/Ukraine/5504/2012|2012-04-02|C1/SIAT1","A/Ukraine/5513/2012|2012-04-03|C1/SIAT1","A/Ukraine/5512/2012|2012-04-04|C1/SIAT1","A/Ukraine/5503/2012|2012-04-09|C1/SIAT1","A/Ukraine/5506/2012|2012-04-09|C1/SIAT1","A/Ukraine/5502/2012|2012-04-10|C1/SIAT1","A/Ukraine/5507/2012|2012-04-10|C1/SIAT1","A/Ukraine/5508/2012|2012-04-10|C1/SIAT1","A/Ukraine/5501/2012|2012-04-12|C1/SIAT1",
+	"A/Ukraine/5509/2012|2012-04-13|C1/SIAT1","A/Ukraine/5510/2012|2012-04-16|C1/SIAT1","A/Ukraine/5496/2012|2012-04-19|C1/SIAT2","A/Ukraine/5498/2012|2012-04-19|C1/SIAT2","A/Singapore/22/2012|2012-06-06|E4/E1","A/Ukraine/5511/2012|2012-07-22|C1/SIAT1","A/Sydney/195/2012|2012-08-06|E4/E1","A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2","A/Norway/2102/2012|2012-10-15|SIAT1/SIAT1","A/Norway/2103/2012|2012-10-22|SIAT1/SIAT1",
+	"A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2","A/Acores/SU43/2012|2012-11-06|SIAT2","A/South Carolina/16/2012|2012-11-07|MDCK1/C1/SIAT1","A/Delaware/15/2012|2012-11-12|C2/SIAT1","A/Lyon/2496/2012|2012-11-19|MDCK2/SIAT3","A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1","A/Switzerland/7587197/2012|2012-12-14|SIAT2","A/Ireland/00462/2012|2012-12-20|MDCK1/SIAT1","A/Belgium/S0304/2012|2012-12-21|SIAT2","A/Belgium/G1010/2012|2012-12-24|SIAT2",
+	"A/Belgium/S0325/2012|2012-12-26|SIAT2","A/Lisboa/SU15/2012|2013-01-04|SIAT2","A/Latvia/1-32593/2013|2013-01-06|MDCK1/SIAT1","A/Madeira/MS3/2012|2013-01-07|SIAT2","A/Belgium/G0044 /2013|2013-01-07|SIAT2","A/Latvia/1-37023/2013|2013-01-13|MDCK1/SIAT1")
+
+agFill(map86)[ag_Sep2012_table15] <- '#ea5545'
+agFill(map86)[ag_Feb2013_table18] <- '#ef9b20'
+p_map86 <- ggplot(map86) + ggtitle('map 86')
+p_map86
+
+
+#################### MAP 87 ####################
+#### colered by tables
+agSize(map87) <- 5
+agFill(map87) <- 'grey50'
+ag_Sep2012_table9 <- agNames(map87) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Bulgaria/182/2012|2012-02-02|C3/SIAT1","A/Bulgaria/217/2012|2012-02-09|C3/SIAT1",
+	"A/Bulgaria/218/2012|2012-02-09|C3/SIAT1","A/Slovenia/402/2012|2012-02-20|Mx/SIAT1","A/Slovenia/435/2012|2012-02-20|Mx/SIAT1","A/Slovenia/459/2012|2012-02-20|Mx/SIAT1","A/Bulgaria/280/2012|2012-02-20|C3/SIAT1","A/Bulgaria/311/2012|2012-02-24|C3/SIAT1","A/Bulgaria/312/2012|2012-02-24|C3/SIAT1","A/Bulgaria/313/2012|2012-02-24|C3/SIAT1","A/Bulgaria/314/2012|2012-02-24|C3/SIAT1","A/Slovenia/566/2012|2012-02-27|Mx/SIAT1",
+	"A/Slovenia/599/2012|2012-02-27|Mx/SIAT1","A/St Petersburg/2/2012|2012-02-27|C3/SIAT1","A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1","A/Slovenia/637/2012|2012-03-05|Mx/SIAT1","A/Slovenia/815/2012|2012-03-12|Mx/SIAT1","A/Slovenia/879/2012|2012-03-19|Mx/SIAT1","A/St Petersburg/4/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1","A/Omsk/1/2012|2012-03-25|C1/SIAT1","A/St Petersburg/8/2012|2012-03-25|C2/SIAT1",
+	"A/St Petersburg/10/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Slovenia/1049/2012|2012-04-02|Mx/SIAT1")
+ag_Feb2014_table9_7 <- agNames(map87) %in% c("A/Perth/16/2009|2009-07-04|E3/E3","A/Stockholm/18/2011|2011-03-28|SIAT4","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT6","A/Athens/112/2012|2012-02-01|SIAT4","A/Texas/50/2012|2012-04-15|E5/E2","A/Samara/73/2013|2013-03-12|C1/SIAT2","A/Serbia/NS-210/2013|2013-01-18|E5/E1","A/Hong Kong/146/2013|2013-01-11|E5/E1","NIB-85 (A/Almaty/2958/2013)|2013-01-27|E5/E1","A/Kazakhstan/3372/2013|*|SIAT2",
+	"A/Kazakhstan/3291/2013|2013-11-12|SIAT2","A/Belguim/13G1319/2013|2013-12-12|SIAT2","A/Kazakhstan/3371/2013|2013-12-15|SIAT2","A/Belguim/13G1334/2013|2013-12-16|SIAT2","A/Moldova/696/2013|2013-12-17|MDCK2/SIAT1","A/Kazakhstan/3281/2013|2013-12-18|SIAT2","A/Belguim/13G1326/2013|2013-12-19|SIAT2","A/Kazakhstan/3319/2013|2013-12-23|SIAT2","A/Kazakhstan/3318/2013|2013-12-23|SIAT2","A/Belguim/14G0001/2014|2014-01-03|SIAT2")
+ag_Sep2013_table7_10 <- agNames(map87) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Iceland/27/2012|2012-11-20|MDCK2/SIAT1","A/Odessa/175/2013|2013-01-09|MDCK2/SIAT1",
+	"A/Iceland/14/2013|2013-01-10|MDCK1/SIAT1","A/Ukraine/5725/2013|2013-01-21|C2/MDCK1/SIAT1","A/Ukraine/181/2013|2013-01-21|MDCK1/SIAT1","A/Parma/27/2013|2013-01-25|MDCK2/SIAT2","A/Perugia/14/2013|2013-01-27|MDCK2/SIAT2","A/Trieste/12/2013|2013-01-28|SIAT2","A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1","A/Belgrade/649/2013|2013-02-05|C2/SIAT3","A/Belgrade/650/2013|2013-02-05|C2/SIAT3","A/Belgrade/648/2013|2013-02-05|C2/SIAT2",
+	"A/Ukraine/5812/2013|2013-02-17|C2/SIAT2","A/Milano/28/2013|2013-02-19|MDCK1/SIAT3","A/Ukraine/211/2013|2013-02-20|SIAT1/SIAT2","A/Moldova/235/2013|2013-02-21|MDCK2/SIAT3","A/Dnipropetrovsk/257/2013|2013-03-01|MDCK1/SIAT2","A/Ukraine/5906/2013|2013-03-05|C2/SIAT3","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2","A/Ukraine/263/2013|2013-03-11|SIAT1/SIAT2","A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1",
+	"A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/369/2013|2013-03-22|MDCK1/SIAT1","A/Kmelnitsk/477/2013|2013-03-25|MDCK1/SIAT1","A/Ukraine/466/2013|2013-04-18|MDCK1/SIAT2")
+
+agFill(map87)[ag_Sep2012_table9] <- '#ea5545'
+agFill(map87)[ag_Feb2014_table9_7] <- '#ef9b20'
+agFill(map87)[ag_Sep2013_table7_10] <- '#ede15b'
+p_map87 <- ggplot(map87) + ggtitle('map 87')
+p_map87
+
+
+#################### MAP 88 ####################
+#### colered by tables
+agSize(map88) <- 5
+agFill(map88) <- 'grey50'
+ag_Sep2012_table15 <- agNames(map88) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Iowa/19/2010|2010-12-30|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Milano/136/2012|2012-02-06|SIAT1/SIAT1","A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1","A/Iceland/10/2012|2012-02-08|MDCK2/SIAT1",
+	"A/Iceland/11/2012|2012-02-08|MDCK3/SIAT1","A/Georgia/161/2012|2012-02-08|SIAT2","A/Iceland/12/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/13/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/14/2012|2012-02-12|MDCK2/SIAT1","A/Iceland/15/2012|2012-02-13|MDCK1/SIAT1","A/Iceland/16/2012|2012-02-13|MDCK2/SIAT1","A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1","A/Parma/139/2012|2012-02-20|MDCK2/SIAT1","A/Georgia/255/2012|2012-02-22|SIAT2",
+	"A/Perugia/21/2012|2012-02-22|MDCK2/SIAT1","A/Iceland/18/2012|2012-02-23|MDCK3/SIAT1","A/Georgia/215/2012|2012-02-23|SIAT2","A/Iceland/19/2012|2012-02-24|MDCK2/SIAT1","A/Iceland/20/2012|2012-02-27|MDCK2/SIAT1","A/Iceland/21/2012|2012-03-02|MDCK2/SIAT1","A/Denmark/38/2012|2012-03-05|SIAT2","A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Georgia/370/2012|2012-03-06|SIAT2","A/Minsk/1574/2012|2012-03-12|MDCK2/SIAT1",
+	"A/Montenegro/158/2012|2012-03-13|SIAT3","A/Gomel/1613/2012|2012-03-14|MDCK2/SIAT1","A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1","A/Montenegro/190/2012|2012-03-16|SIAT2","A/Stockholm/14/2012|2012-03-16|C2/SIAT1","A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1","A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1","A/Georgia/512/2012|2012-03-23|SIAT2","A/Montenegro/269/2012|2012-03-24|SIAT2","A/Montenegro/272/2012|2012-03-24|SIAT2",
+	"A/Iceland/23/2012|2012-03-27|MDCK3/SIAT1","A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1","A/Gomel/1692/2012|2012-03-27|MDCK2/SIAT3","A/Georgia/554/2012|2012-03-27|SIAT2","A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1","A/Montenegro/312/2012|2012-03-29|SIAT2","A/Georgia/579/2012|2012-04-04|SIAT2","A/Iceland/24/2012|2012-04-14|MDCK2/SIAT1","A/Stockholm/19/2012|2012-04-14|C1/SIAT1","A/Stockholm/21/2012|2012-04-21|C2/SIAT1")
+ag_Sep2013_table7_10 <- agNames(map88) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Iceland/27/2012|2012-11-20|MDCK2/SIAT1","A/Odessa/175/2013|2013-01-09|MDCK2/SIAT1","A/Iceland/14/2013|2013-01-10|MDCK1/SIAT1",
+	"A/Ukraine/5725/2013|2013-01-21|C2/MDCK1/SIAT1","A/Ukraine/181/2013|2013-01-21|MDCK1/SIAT1","A/Parma/27/2013|2013-01-25|MDCK2/SIAT2","A/Perugia/14/2013|2013-01-27|MDCK2/SIAT2","A/Trieste/12/2013|2013-01-28|SIAT2","A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1","A/Belgrade/649/2013|2013-02-05|C2/SIAT3","A/Belgrade/650/2013|2013-02-05|C2/SIAT3","A/Belgrade/648/2013|2013-02-05|C2/SIAT2","A/Ukraine/5812/2013|2013-02-17|C2/SIAT2",
+	"A/Milano/28/2013|2013-02-19|MDCK1/SIAT3","A/Ukraine/211/2013|2013-02-20|SIAT1/SIAT2","A/Moldova/235/2013|2013-02-21|MDCK2/SIAT3","A/Dnipropetrovsk/257/2013|2013-03-01|MDCK1/SIAT2","A/Ukraine/5906/2013|2013-03-05|C2/SIAT3","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2","A/Ukraine/263/2013|2013-03-11|SIAT1/SIAT2","A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1",
+	"A/Dnipropetrovsk/369/2013|2013-03-22|MDCK1/SIAT1","A/Kmelnitsk/477/2013|2013-03-25|MDCK1/SIAT1","A/Ukraine/466/2013|2013-04-18|MDCK1/SIAT2")
+ag_Feb2014_table9_7 <- agNames(map88) %in% c("A/Perth/16/2009|2009-07-04|E3/E3","A/Stockholm/18/2011|2011-03-28|SIAT4","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT6","A/Athens/112/2012|2012-02-01|SIAT4","A/Texas/50/2012|2012-04-15|E5/E2","A/Samara/73/2013|2013-03-12|C1/SIAT2","A/Serbia/NS-210/2013|2013-01-18|E5/E1","A/Hong Kong/146/2013|2013-01-11|E5/E1","NIB-85 (A/Almaty/2958/2013)|2013-01-27|E5/E1","A/Kazakhstan/3372/2013|*|SIAT2",
+	"A/Kazakhstan/3291/2013|2013-11-12|SIAT2","A/Belguim/13G1319/2013|2013-12-12|SIAT2","A/Kazakhstan/3371/2013|2013-12-15|SIAT2","A/Belguim/13G1334/2013|2013-12-16|SIAT2","A/Moldova/696/2013|2013-12-17|MDCK2/SIAT1","A/Kazakhstan/3281/2013|2013-12-18|SIAT2","A/Belguim/13G1326/2013|2013-12-19|SIAT2","A/Kazakhstan/3319/2013|2013-12-23|SIAT2","A/Kazakhstan/3318/2013|2013-12-23|SIAT2","A/Belguim/14G0001/2014|2014-01-03|SIAT2")
+
+agFill(map88)[ag_Sep2012_table15] <- '#ea5545'
+agFill(map88)[ag_Sep2013_table7_10] <- '#ef9b20'
+agFill(map88)[ag_Feb2014_table9_7] <- '#ede15b'
+p_map88 <- ggplot(map88) + ggtitle('map 88')
+p_map88
+
+
+#################### MAP 89 ####################
+#### colered by tables
+agSize(map89) <- 5
+agFill(map89) <- 'grey50'
+ag_Sep2012_table15 <- agNames(map89) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Iowa/19/2010|2010-12-30|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Milano/136/2012|2012-02-06|SIAT1/SIAT1","A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1","A/Iceland/10/2012|2012-02-08|MDCK2/SIAT1",
+	"A/Iceland/11/2012|2012-02-08|MDCK3/SIAT1","A/Georgia/161/2012|2012-02-08|SIAT2","A/Iceland/12/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/13/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/14/2012|2012-02-12|MDCK2/SIAT1","A/Iceland/15/2012|2012-02-13|MDCK1/SIAT1","A/Iceland/16/2012|2012-02-13|MDCK2/SIAT1","A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1","A/Parma/139/2012|2012-02-20|MDCK2/SIAT1","A/Georgia/255/2012|2012-02-22|SIAT2",
+	"A/Perugia/21/2012|2012-02-22|MDCK2/SIAT1","A/Iceland/18/2012|2012-02-23|MDCK3/SIAT1","A/Georgia/215/2012|2012-02-23|SIAT2","A/Iceland/19/2012|2012-02-24|MDCK2/SIAT1","A/Iceland/20/2012|2012-02-27|MDCK2/SIAT1","A/Iceland/21/2012|2012-03-02|MDCK2/SIAT1","A/Denmark/38/2012|2012-03-05|SIAT2","A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Georgia/370/2012|2012-03-06|SIAT2","A/Minsk/1574/2012|2012-03-12|MDCK2/SIAT1",
+	"A/Montenegro/158/2012|2012-03-13|SIAT3","A/Gomel/1613/2012|2012-03-14|MDCK2/SIAT1","A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1","A/Montenegro/190/2012|2012-03-16|SIAT2","A/Stockholm/14/2012|2012-03-16|C2/SIAT1","A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1","A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1","A/Georgia/512/2012|2012-03-23|SIAT2","A/Montenegro/269/2012|2012-03-24|SIAT2","A/Montenegro/272/2012|2012-03-24|SIAT2",
+	"A/Iceland/23/2012|2012-03-27|MDCK3/SIAT1","A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1","A/Gomel/1692/2012|2012-03-27|MDCK2/SIAT3","A/Georgia/554/2012|2012-03-27|SIAT2","A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1","A/Montenegro/312/2012|2012-03-29|SIAT2","A/Georgia/579/2012|2012-04-04|SIAT2","A/Iceland/24/2012|2012-04-14|MDCK2/SIAT1","A/Stockholm/19/2012|2012-04-14|C1/SIAT1","A/Stockholm/21/2012|2012-04-21|C2/SIAT1")
+ag_Sep2013_table7_7 <- agNames(map89) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT6","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Moscow/84/2012|2012-12-25|Cx/SIAT1","A/England/119/2013|2013-01-09|MDCK2/SIAT1","A/England/104/2013|2013-01-09|MDCK2/SIAT1","A/Valencia/1S/2013|2013-01-10|SIAT2",
+	"A/Serbia/NS-200/2013|2013-01-14|SIAT2","A/Serbia/NS-210/2013|2013-01-18|SIAT3","A/Catalonia/2070282NS/2013|2013-01-22|SIAT2","A/Catalonia/5742S/2013|2013-01-23|SIAT2","A/Catalonia/2071057NS/2013|2013-01-24|SIAT2","A/England/188/2013|2013-01-29|SIAT1/SIAT1","A/England/256/2013|2013-01-30|MDCK1/SIAT1","A/England/280/2013|2013-01-31|MDCK1/SIAT1","A/Bulgaria/270/2013|2013-02-04|C2/SIAT1","A/Bulgaria/253/2013|2013-02-08|C2/SIAT1",
+	"A/England/279/2013|2013-02-09|SIAT1/SIAT1","A/St. Petersburg/4/2013|2013-02-13|C1/SIAT1","A/St. Petersburg/6/2013|2013-02-13|C1/SIAT1","A/Valladolid/39/2013|2013-02-14|SIAT2","A/England/308/2013|2013-02-15|SIAT1/SIAT1","A/Novosibirsk/77/2012|2013-02-20|C4/SIAT1","A/Astrakhan/2/2013|2013-02-20|C1/SIAT1","A/Astrakhan/5/2013|2013-02-20|C1/SIAT1","A/St. Petersburg/36/2013|2013-02-20|C2/SIAT1","A/Novosibirsk/78/2012|2013-02-20|C4/SIAT1",
+	"A/Burgos/96/2013|2013-03-12|SIAT2","A/Valladolid/95/2013|2013-03-14|SIAT2")
+ag_Sep2014_table8_19 <- agNames(map89) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT4","A/Stockholm/1/2013|2013-01-13|E7 clone 36-18","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Sarajevo/21/2012|2012-03-28|SIAT1","A/Sarajevo/57/2012|2012-04-26|SIAT1","A/Hong Kong/4801/2014|2014-02-26|MDCK3","A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2","A/Tomsk/6/2014|2014-03-01|MDCK1/SIAT1",
+	"A/Hong Kong/5320/2014|2014-03-20|MDCK2","A/Yaroslavl/234/2014|2014-03-21|MDCK1/SIAT1","A/Moscow/206/2014|2014-03-21|MDCK1/SIAT1","A/Vladimir/220/2014|2014-03-26|MDCK1/SIAT1","A/Palau/6759/2014|2014-03-26|C2/SIAT1","A/Belgium/14G0496/2014|2014-04-03|SIAT2","A/Hong Kong/5578/2014|2014-04-04|MDCK2","A/Mogilev/1273/2014|2014-04-07|MDCK2/SIAT1","A/V. Novgorod/223/2014|2014-04-08|MDCK1/SIAT1","A/Mogilev/1484/2014|2014-04-15|MDCK2/SIAT1",
+	"A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK2","A/Glasgow/4165/2014|2014-06-08|SIAT1")
+ag_Feb2014_table9_7 <- agNames(map89) %in% c("A/Stockholm/18/2011|2011-03-28|SIAT4","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT6","A/Kazakhstan/3372/2013|*|SIAT2","A/Kazakhstan/3291/2013|2013-11-12|SIAT2","A/Belguim/13G1319/2013|2013-12-12|SIAT2","A/Kazakhstan/3371/2013|2013-12-15|SIAT2","A/Belguim/13G1334/2013|2013-12-16|SIAT2","A/Moldova/696/2013|2013-12-17|MDCK2/SIAT1","A/Kazakhstan/3281/2013|2013-12-18|SIAT2","A/Belguim/13G1326/2013|2013-12-19|SIAT2",
+	"A/Kazakhstan/3319/2013|2013-12-23|SIAT2","A/Kazakhstan/3318/2013|2013-12-23|SIAT2","A/Belguim/14G0001/2014|2014-01-03|SIAT2")
+ag_Sep2014_table8_11 <- agNames(map89) %in% c('A/Victoria/361/2011|2011-10-24|MDCK2/SIAT3', 'A/Stockholm/1/2013|2013-01-13|E6 clone 36-18', 'A/Ukraine/77/2014|2014-02-07|SIAT2/SIAT2', 'A/Ukraine/86/2014|2014-02-13|SIAT2/SIAT2', 'A/Kharkov/200/2014|2014-02-13|SIAT2/SIAT2', 'A/Ukraine/105/2014|2014-02-15|SIAT2/SIAT2', 'A/Zhitomir/286/2014|2014-02-18|SIAT2/SIAT1', 'A/Kharkov/201/2014|2014-02-19|SIAT2/SIAT2', 'A/Zhitomir/290/2014|2014-02-20|SIAT2/SIAT1', 'A/Dnipro/168/2014|2014-02-21|SIAT2/SIAT2')
+
+agFill(map89)[ag_Sep2012_table15] <- '#ea5545'
+agFill(map89)[ag_Sep2013_table7_7] <- '#ef9b20'
+agFill(map89)[ag_Sep2014_table8_19] <- '#ede15b'
+agFill(map89)[ag_Feb2014_table9_7] <- '#87bc45'
+agFill(map89)[ag_Sep2014_table8_11] <- '#27aeef'
+p_map89 <- ggplot(map89) + ggtitle('map 89')
+p_map89
+
+
+#################### MAP 90 ####################
+#### colered by tables
+agSize(map90) <- 5
+agFill(map90) <- 'grey50'
+ag_Sep2015_table8_9 <- agNames(map90) %in% c("A/Hong Kong/146/2013|2013-01-11|E3/E3","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|E5/E1 clone 121","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT2","A/Stockholm/31/2014|2014-11-26|MDCK1/SIAT1","A/Stockholm/28/2014|2014-12-02|MDCK1/SIAT1","A/Stockholm/36/2014|2014-12-02|MDCK2/SIAT1","A/Stockholm/30/2014|2014-12-04|MDCK1/SIAT1","A/Stockholm/32/2014|2014-12-09|MDCK1/SIAT1",
+	"A/Stockholm/38/2014|2014-12-27|MDCK1/SIAT1","A/Mahajanga/122/2015|2015-01-05|MDCK2/SIAT1","A/Stockholm/1/2015|2015-01-12|MDCK1/SIAT1","A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1","A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1","A/Stockholm/12/2015|2015-02-10|MDCK1/SIAT1","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Stockholm/18/2015|2015-02-11|MDCK0/SIAT1","A/Stockholm/20/2015|2015-02-24|MDCK0/SIAT1","A/Stockholm/19/2015|2015-02-25|MDCK0/SIAT1",
+	"A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3","A/Sweden/16/2015|2015-03-05|MDCK1/SIAT1","A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2","A/Norway/1800/2015|2015-03-25|SIAT3")
+ag_Sep2014_table8_16 <- agNames(map90) %in% c("A/South Africa/4655/2013|2013-06-25|E7 clone 101-60","A/Stockholm/1/2013|2013-01-13|E7 clone 36-18","A/Stockholm/6/2014|2014-02-06|E2 (Am1/Al1)","A/Stockholm/6/2014|2014-02-06|E3 (Am2/Al1)","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT2","A/Sarajevo/22/2013|2013-01-14|SIAT2","A/Sarajevo/23/2013|2013-01-14|SIAT2","A/Sarajevo/58/2013|2013-01-18|SIAT2","A/Stockholm/2/2014|2014-01-02|MDCK2/SIAT1",
+	"A/Slovenia/142/2014|2014-01-16|MDCK0/SIAT1","A/Czech Republic/1/2014|*|MDCK3/SIAT1","A/Czech Republic/6/2014|*|MDCK3/SIAT1","A/Czech Republic/10/2014|*|MDCK3/SIAT2","A/Iceland/23/2014|2014-02-06|MDCK1/SIAT1","A/Austria/777909/2014|2014-02-08|SIAT1/SIAT1","A/Stockholm/14/2014|2014-02-12|MDCK1/SIAT1","A/Finland/405/2014|2014-02-13|MDCK1/SIAT1","A/Iceland/34/2014|2014-02-19|MDCK1/SIAT1","A/Stockholm/13/2014|2014-02-21|MDCK0/SIAT1",
+	"A/Stockholm/12/2014|2014-02-24|MDCK1/SIAT1","A/Iceland/45/2014|2014-02-27|MDCK1/SIAT1","A/Finland/411/2014|2014-03-06|MDCK1/SIAT1","A/England/399/2014|2014-03-10|SIAT1/SIAT3","A/Austria/784503/2014|2014-03-15|SIAT1/SIAT1","A/Vrancea/162893/2014|2014-03-20|SIAT1/SIAT2","A/Botosani/162689/2014|2014-03-23|SIAT1/SIAT1","A/Botosani/162690/2014|2014-03-23|SIAT1/SIAT1","A/Iasi/162712/2014|2014-03-24|SIAT1/SIAT1","A/Calarasi/162804/2014|2014-03-24|SIAT1/SIAT1",
+	"A/St. Petersburg/25/2014|2014-03-25|C1/SIAT1","A/St. Petersburg/45/2014|2014-03-25|C1/SIAT1","A/Kaliningrad/2/2014|2014-03-25|C1/SIAT1","A/Austria/786648/2014|2014-03-26|SIAT1/SIAT1","A/Mures/163025/2014|2014-03-26|SIAT1/SIAT1","A/Austria/787217/2014|2014-03-27|SIAT2/SIAT1","A/Austria/788090/2014|2014-04-01|SIAT2/SIAT1","A/Latvia/04-003950/2014|2014-04-02|MDCK2/SIAT1","A/Latvia/04-011765/2014|2014-04-04|MDCK1/SIAT1","A/Austria/790710/2014|2014-04-12|SIAT1/SIAT1")
+ag_Sep2014_table8_10 <- agNames(map90) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT3","A/Athens/112/2012|2012-02-01|SIAT5","A/Texas/50/2012_(6&7)|2012-04-15|E5/E2","NIB-85 (A/Almaty/2958/2013)|2013-01-27|E5/E1","A/South Africa/4655/2013|2013-06-25|E7 clone 118-76","A/South Africa/4655/2013|2013-06-25|E7  clone 101-06","A/South Africa/4655/2013|2013-06-25|E7 clone 93-38","A/Stockholm/1/2013|2013-01-13|E6 clone 36-18","A/Tehran/30732/2013|2013-03-22|MDCK3/SIAT1","A/Zambia/13/093/2013|2013-08-28|Cx/SIAT2",
+	"A/Zambia/13/262/2013|2013-08-07|Cx/SIAT1","A/Zambia/13/127/2013|2013-08-12|SIAT2","A/Zambia/13/338/2013|2013-09-13|Cx/SIAT1","A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1","A/Norway/86/2014|2014-01-08|MDCK2/SIAT1","A/Norway/160/2014|2014-01-08|MDCK1/SIAT1","A/Norway/184/2014|2014-01-08|MDCK1/SIAT1","A/Norway/163/2014|2014-01-11|MDCK2/SIAT1","A/Norway/161/2014|2014-01-12|MDCK2/SIAT1","A/Norway/228/2014|2014-01-12|MDCK2/SIAT1",
+	"A/Norway/162/2014|2014-01-13|MDCK1/SIAT1","A/Norway/120/2014|2014-01-14|MDCK1/SIAT1","A/Norway/226/2014|2014-01-14|MDCK1/SIAT1","A/Norway/208/2014|2014-01-16|MDCK1/SIAT1","A/Switzerland/10030276/2014|2014-02-05|SIAT2","A/Dnipro/230/2014|2014-02-28|SIAT2/SIAT3","A/Dnipro/232/2014|2014-03-03|SIAT2/SIAT3","A/Poland/1877/2014|2014-03-03|SIAT2","A/Norway/1003/2014|2014-03-04|SIAT2","A/Georgia/495/2014|2014-03-04|SIAT2",
+	"A/Dnipro/233/2014|2014-03-04|SIAT2/SIAT1","A/Norway/1020/2014|2014-03-07|SIAT2","A/Georgia/542/2014|2014-03-07|SIAT2","A/Georgia/584/2014|2014-03-10|SIAT2","A/Norway/1130/2014|2014-03-11|SIAT2","A/Dnipro/234/2014|2014-03-11|SIAT2/SIAT3","A/Norway/1078/2014|2014-03-16|SIAT2","A/Poland/3464/2014|2014-03-19|SIAT2","A/Switzerland/10261363/2014|2014-03-20|SIAT2","A/Georgia/699/2014|2014-03-26|SIAT2",
+	"A/Switzerland/10295858/2014|2014-03-27|SIAT2","A/Switzerland/10295823/2014|2014-03-28|SIAT2","A/Switzerland/10295759/2014|2014-03-28|SIAT2")
+ag_Feb2014_table9_2 <- agNames(map90) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C1/SIAT2","A/Stockholm/18/2011|2011-03-28|SIAT4","A/Iowa/19/2010|2010-12-30|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Athens/112/2012|2012-02-01|SIAT6","A/Almaty/2958/2013|2013-01-27|E5","A/Serbia/NS-210/2013|2013-01-18|E5","A/Hong Kong/146/2013|2013-01-11|E5","A/Mauritius/167/2013|2013-03-11|MDCK2/SIAT1","A/Mauritius/571/2013|2013-07-03|MDCK2/SIAT1",
+	"A/Mauritius/610/2013|2013-07-15|MDCK2/SIAT1","A/Mauritius/703/2013|2013-08-19|MDCK2/SIAT1")
+ag_Feb2015_table9_4 <- agNames(map90) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT5","A/Hong Kong/146/2013|2013-01-11|E6","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|E5 clone 121","A/Stockholm/17/2014|2014-07-23|MDCK2/SIAT1","A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1","A/Stockholm/19/2014|2014-09-07|MDCK1/SIAT1","A/Stockholm/20/2014|2014-09-28|MDCK1/SIAT1","A/Belgium/H80/2014|2014-09-29|SIAT1/SIAT1",
+	"A/La Rioja/2053/2014|2014-10-08|SIAT1/SIAT1","A/Stockholm/22/2014|2014-10-18|MDCK2/SIAT1","A/Pais Vasco/1979/2014|2014-10-22|SIAT1/SIAT1","A/Belgium/G589/2014|2014-10-22|SIAT1/SIAT1","A/La Rioja/2051/2014|2014-10-29|MDCKx/SIAT1","A/Sweden/76/2014|2014-11-02|MDCK1/SIAT1","A/Stockholm/26/2014|2014-11-03|MDCK1/SIAT1","A/Aragon/2031/2014|2014-11-07|SIAT1/SIAT1","A/La Rioja/2050/2014|2014-11-15|SIAT1/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1",
+	"A/Galicia/2055/2014|2014-11-20|SIAT2/SIAT1","A/Galicia/2054/2014|2014-11-24|SIAT1/SIAT1","A/Extremadura/2061/2014|2014-11-25|SIAT1/SIAT1","A/Aragon/2062/2014|2014-11-27|SIAT1/SIAT1")
+ag_Sep2012_table12 <- agNames(map90) %in% c("A/Victoria/361/2011|2011-10-24|E3/E1","A/Athens/GR112/2012|2012-02-01|SIAT3","A/Karlovy Vary/46/2012|*|MDCK5/SIAT3","A/Decin/42/2012|*|MDCK5/SIAT3","A/Cercany/96/2012|*|MDCK3/SIAT3","A/Praha/98/2012|*|MDCK3/SIAT3","A/Ireland/V1160/2012|2012-02-01|C2/SIAT1","A/Belgrade/449/2012|2012-02-02|C1/SIAT1","A/Ukraine/38/2012|2012-02-10|C1/SIAT3","A/Ukraine/134/2012|2012-02-25|C1/SIAT3",
+	"A/England/354/2012|2012-02-28|SIAT2/SIAT2","A/Ukraine/114/2012|2012-03-02|C1/SIAT3","A/Belgrade/898/2012|2012-03-06|C1/SIAT1","A/Cuprija/1212/2012|2012-03-15|C1/SIAT1","A/Ireland/12V2608/2012|2012-03-22|C1/SIAT1","A/Ireland/12V2628/2012|2012-03-22|C1/SIAT1","A/Ireland/12V2734/2012|2012-03-26|C1/SIAT1","A/Nis/1471/2012|2012-03-26|C1/SIAT1","A/Nis/1472/2012|2012-03-26|C1/SIAT1","A/Belgrade/1420/2012|2012-03-26|C1/SIAT1",
+	"A/Belgrade/1470/2012|2012-03-27|C1/SIAT2","A/Ireland/12V2794/2012|2012-03-28|C1/SIAT1","A/Scotland/1/2012|2012-03-30|SIAT3/SIAT2","A/Belgrade/1545/2012|2012-03-30|C1/SIAT1","A/Beograd/1549/2012|2012-04-02|C1/SIAT1","A/England/509/2012|2012-04-04|SIAT1/SIAT2","A/Beograd/1607/2012|2012-04-04|C1/SIAT1","A/Leskovac/1701/2012|2012-04-05|C1/SIAT1","A/Belgrade/1741/2012|2012-04-11|C1/SIAT1","A/England/524/2012|2012-04-12|SIAT1/SIAT3",
+	"A/Sabac/1930/2012|2012-04-24|C1/SIAT1")
+ag_Sep2012_table15 <- agNames(map90) %in% c("A/Athens/GR112/2012|2012-02-01|SIAT4","A/Milano/136/2012|2012-02-06|SIAT1/SIAT1","A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1","A/Iceland/10/2012|2012-02-08|MDCK2/SIAT1","A/Iceland/11/2012|2012-02-08|MDCK3/SIAT1","A/Georgia/161/2012|2012-02-08|SIAT2","A/Iceland/12/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/13/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/14/2012|2012-02-12|MDCK2/SIAT1","A/Iceland/15/2012|2012-02-13|MDCK1/SIAT1",
+	"A/Iceland/16/2012|2012-02-13|MDCK2/SIAT1","A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1","A/Parma/139/2012|2012-02-20|MDCK2/SIAT1","A/Georgia/255/2012|2012-02-22|SIAT2","A/Perugia/21/2012|2012-02-22|MDCK2/SIAT1","A/Iceland/18/2012|2012-02-23|MDCK3/SIAT1","A/Georgia/215/2012|2012-02-23|SIAT2","A/Iceland/19/2012|2012-02-24|MDCK2/SIAT1","A/Iceland/20/2012|2012-02-27|MDCK2/SIAT1","A/Iceland/21/2012|2012-03-02|MDCK2/SIAT1",
+	"A/Denmark/38/2012|2012-03-05|SIAT2","A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Georgia/370/2012|2012-03-06|SIAT2","A/Minsk/1574/2012|2012-03-12|MDCK2/SIAT1","A/Montenegro/158/2012|2012-03-13|SIAT3","A/Gomel/1613/2012|2012-03-14|MDCK2/SIAT1","A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1","A/Montenegro/190/2012|2012-03-16|SIAT2","A/Stockholm/14/2012|2012-03-16|C2/SIAT1","A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1",
+	"A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1","A/Georgia/512/2012|2012-03-23|SIAT2","A/Montenegro/269/2012|2012-03-24|SIAT2","A/Montenegro/272/2012|2012-03-24|SIAT2","A/Iceland/23/2012|2012-03-27|MDCK3/SIAT1","A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1","A/Gomel/1692/2012|2012-03-27|MDCK2/SIAT3","A/Georgia/554/2012|2012-03-27|SIAT2","A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1","A/Montenegro/312/2012|2012-03-29|SIAT2",
+	"A/Georgia/579/2012|2012-04-04|SIAT2","A/Iceland/24/2012|2012-04-14|MDCK2/SIAT1","A/Stockholm/19/2012|2012-04-14|C1/SIAT1","A/Stockholm/21/2012|2012-04-21|C2/SIAT1")
+
+agFill(map90)[ag_Sep2015_table8_9] <- '#ea5545'
+agFill(map90)[ag_Sep2014_table8_16] <- '#ef9b20'
+agFill(map90)[ag_Sep2014_table8_10] <- '#ede15b'
+agFill(map90)[ag_Feb2014_table9_2] <- '#87bc45'
+agFill(map90)[ag_Feb2015_table9_4] <- '#27aeef'
+agFill(map90)[ag_Sep2012_table12] <- '#b33dc6'
+agFill(map90)[ag_Sep2012_table15] <- '#4e00ff'
+p_map90 <- ggplot(map90) + ggtitle('map 90')
+p_map90
+
+
+#################### MAP 91 ####################
+#### colered by tables
+agSize(map91) <- 5
+agFill(map91) <- 'grey50'
+ag_Sep2016_table8_6 <- agNames(map91) %in% c("A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Hong Kong/4801/2014|2014-02-26|E6/E2","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT3","A/Bari/11/2016|2016-01-26|SIAT3/SIAT2","A/Palermo/1/2016|2016-02-01|SIAT3/SIAT2","A/Milano/23/2016|2016-02-01|MDCK1/SIAT2","A/St. Petersburg/210/2016|2016-02-06|MDCK1/SIAT1",
+	"A/Odessa/700/2016|2016-02-07|SIAT2/SIAT2","A/Odessa/695/2016|2016-02-13|SIAT2/SIAT2","A/Roma/12/2016|2016-02-15|SIAT2/SIAT2","A/Padova/17/2016|2016-02-15|SIAT3/SIAT2","A/Slovenia/852/2016|2016-02-18|MDCK1/SIAT2","A/Slovenia/920/2016|2016-02-19|MDCK1/SIAT2","A/Palermo/6/2016|2016-02-22|SIAT2/SIAT2","A/Bratislava/184/2016|2016-02-22|MDCKx/SIAT1","A/Parma/38/2016|2016-02-23|MDCK2/SIAT1","A/Slovenia/972/2016|2016-02-24|MDCK1/SIAT2",
+	"A/Friuli-Venezia Giulia/10/2016|2016-02-25|SIAT1/SIAT2","A/Friuli-Venezia Giulia/14/2016|2016-03-01|SIAT1/SIAT2","A/Slovenia/1070/2016|2016-03-01|MDCK1/SIAT2","A/Slovenia/1172/2016|2016-03-09|MDCK1/SIAT2","A/Bolzano/7/2016|2016-03-15|SIAT3/SIAT2","A/Czech Republic/122/2016|2016-03-21|C2/SIAT1","A/Slovenia/1307/2016|2016-03-21|MDCK1/SIAT1","A/Perugia/23/2016|2016-03-23|SIAT3/SIAT2","A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2","A/Iceland/59/2016|2016-05-08|MDCK1/SIAT1")
+ag_Feb2016_table9_2 <- agNames(map91) %in% c("A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT3","A/Hong Kong/146/2013|2013-01-11|E3/E3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/4801/2014|2014-02-26|E6/E1","A/Georgia/532/2015|2015-03-09|SIAT2","A/Gifu/46/2014|2014-09-09|MCDK3/SIAT2/SIAT1","A/Chiba/61/2014|2014-11-13|MDCK2/SIAT1/SIAT1","A/Hyogo/4001/2014|2014-12-08|MCDK1/SIAT1/SIAT1","A/Pennsylvania/09/2015|2015-01-07|SIAT2/SIAT1","A/Zambia/04-00021/2015|2015-01-26|MDCK2/SIAT1",
+	"A/Mozambique/IR424/2015|2015-01-26|SIAT1","A/Mozambique/IR436/2015|2015-01-30|SIAT1","A/Iceland/32/2015|2015-02-06|MDCK1/SIAT1","A/Mozambique/IR451/2015|2015-02-09|SIAT1","A/Hungary/423/2015|2015-02-09|MDCK3/SIAT2","A/Hungary/438/2015|2015-02-09|MDCK3/SIAT2","A/Hungary/436/2015|2015-02-09|MDCK3/SIAT3","A/Hokkaido/6/2015|2015-02-09|MDCK4/SIAT1/SIAT1","A/Iceland/34/2015|2015-02-09|MDCKx/SIAT1","A/Iceland/35/2015|2015-02-10|MDCKx/SIAT1",
+	"A/Mozambique/IR493/2015|2015-02-19|SIAT1","A/Iceland/37/2015|2015-02-20|MDCKx/SIAT1","A/Iceland/38/2015|2015-02-24|MDCK1/SIAT1","A/Wisconsin/20/2015|2015-02-24|SIAT3/SIAT1","A/Iceland/41/2015|2015-03-02|MDCKx/SIAT1","A/Fukui/78/2015|2015-03-02|MDCK2/SIAT1/SIAT1","A/Iceland/43/2015|2015-03-06|MDCKx/SIAT1","A/Iceland/45/2015|2015-03-13|MDCKx/SIAT1","A/Zambia/02-00106/2015|2015-03-25|MDCK2/SIAT1","A/Jordan/30226/2015|2015-04-14|MDCK1/SIAT1",
+	"A/Fukushima/69/2015|2015-04-24|MDCK1/SIAT1/SIAT1","A/Mozambique/IR803/2015|2015-05-06|SIAT2","A/Norway/2319/2015|2015-05-13|SIAT2/SIAT2","A/Iceland/6879/2015|2015-05-13|SIAT1","A/Iceland/7018/2015|2015-05-17|SIAT2","A/Norway/2501/2015|2015-06-01|SIAT2/SIAT2")
+
+agFill(map91)[ag_Sep2016_table8_6] <- '#ea5545'
+agFill(map91)[ag_Feb2016_table9_2] <- '#ef9b20'
+p_map91 <- ggplot(map91) + ggtitle('map 91')
+p_map91
+
+
+#################### MAP 92 ####################
+#### colered by tables
+agSize(map92) <- 5
+agFill(map92) <- 'grey50'
+ag_Sep2015_table8_4 <- agNames(map92) %in% c("A/Perth/16/2009|2009-07-04|E3/E2","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|E5/E2 clone 121","A/Zambia/06-041/2014|*|MDCK2/SIAT1","A/Zambia/06-027/2014|*|MDCK2/SIAT2","A/Zambia/04-215/2014|2014-01-09|MDCK2/SIAT1","A/Madagascar/269/2014|2014-01-27|SIAT1","A/Madagascar/431/2014|2014-02-06|SIAT1","A/Madagascar/460/2014|2014-02-10|SIAT1",
+	"A/Madagascar/493/2014|2014-02-18|SIAT1","A/Madagascar/582/2014|2014-02-19|SIAT1","A/Madagascar/801/2014|2014-02-24|SIAT1","A/Madagascar/897/2014|2014-03-07|SIAT1","A/Zambia/04-278/2014|2014-03-11|MDCK2/SIAT1","A/Madagascar/2576/2014|2014-09-08|SIAT1","A/Madagascar/2572/2014|2014-09-11|MDCK1/SIAT1","A/Madagascar/2583/2014|2014-09-11|MDCK2/SIAT1","A/Madagascar/2586/2014|2014-09-12|MDCK1/SIAT1","A/Madagascar/2611/2014|2014-09-12|MDCK2/SIAT1",
+	"A/Madagascar/2614/2014|2014-09-15|MDCK2/SIAT1","A/Madagascar/2636/2014|2014-09-15|MDCK1/SIAT1","A/Madagascar/2616/2014|2014-09-16|MDCK2/SIAT1","A/Madagascar/2618/2014|2014-09-17|MDCK2/SIAT1","A/Madagascar/2632/2014|2014-09-17|SIAT1","A/Madagascar/2639/2014|2014-09-17|MDCK1/SIAT1","A/Madagascar/2634/2014|2014-09-18|MDCK2/SIAT1","A/Madagascar/2679/2014|2014-09-19|MDCK2/SIAT1","A/Madagascar/2730/2014|2014-09-30|SIAT1","A/Antalya/1183/2014|2014-10-21|SIAT1",
+	"A/Gumushane/1211/2014|2014-10-22|SIAT1","A/Istanbul/1628/2014|2014-11-04|MDCK1","A/Hatay/2314/2014|2014-11-13|MDCK2","A/Erzurum/2568/2014|2014-12-09|MDCK1","A/Cyprus/F7/2015|2015-01-16|SIAT1","A/Hatay/141/2015|2015-01-17|MDCK2","A/Cyprus/F16/2015|2015-01-19|SIAT1","A/Greece/261/2015|2015-01-20|SIAT3","A/Cyprus/F19/2015|2015-01-22|SIAT1","A/Cyprus/F34/2015|2015-01-22|SIAT1",
+	"A/Cyprus/F33/2015|2015-01-23|SIAT1")
+ag_Sep2015_table8_13 <- agNames(map92) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT2","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT4","A/Switzerland/9715293/2013|2013-12-06|E4/E2 clone 123","A/Hong Kong/4801/2014|2014-02-26|E6 isolate 1","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT3","A/Slovenia/314/2015|2015-01-16|MDCKx/SIAT1","A/Slovenia/369/2015|2015-01-20|MDCK1/SIAT1","A/Slovenia/438/2015|2015-01-21|MDCKx/SIAT1","A/Slovenia/1066/15|2015-02-19|MDCK1/SIAT1",
+	"A/Slovenia/1077/2015|2015-02-19|MDCKx/SIAT1","A/Mauritius/I-203/2015|2015-02-25|MDCK2/SIAT1","A/Mauritius/I-238/2015|2015-03-06|MDCK3/SIAT1","A/Mauritius/I-240/2015|2015-03-09|MDCK2/SIAT1","A/Slovenia/1411/2015|2015-03-11|MDCK1/SIAT1","A/Cameroon/15V-2465/2015|2015-03-23|SIAT1","A/Mauritius/I-288/2015|2015-03-23|MDCK2/SIAT1","A/Slovenia/2049/2015|2015-04-10|MDCK1/SIAT1","A/Slovenia/2069/2015|2015-04-13|MDCKx/SIAT1","A/Hong Kong/11743/2015|2015-06-09|MDCK1/SIAT2")
+ag_Sep2015_table8_6 <- agNames(map92) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT4","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|E5/E1 clone 121","A/Iraq/470/2014|2014-07-30|C1/SIAT1","A/Iraq/821/2014|2014-12-17|C1/SIAT1","A/Galicia/756/2015|2014-12-17|SIAT2/SIAT3","A/Leon/256/2014|2014-12-18|MDCK1/SIAT1","A/Navarra/618/2015|2015-01-13|SIAT2/SIAT2","A/Navarra/616/2015|2015-01-15|SIAT2/SIAT1","A/Galicia/760/2015|2015-01-20|SIAT2/SIAT1",
+	"A/Serbia/NS-949/2015|2015-01-20|MDCK2","A/Castilla La Mancha/527/2015|2015-01-24|SIAT1/SIAT1","A/Milano/119/2015|2015-01-26|MDCK2/SIAT1","A/Milano/144/2015|2015-01-26|MDCK2/SIAT1","A/Roma/7/2015|2015-01-27|Cx/MDCK3","A/Roma/14/2015|2015-01-28|Cx/MDCK2","A/Milano/191/2015|2015-01-30|MDCK2/SIAT1","A/Sassari/9/2015|2015-02-03|Cx/SIAT1","A/Perugia/45/2015|2015-02-06|MDCK1/SIAT1","A/Perugia/46/2015|2015-02-06|MDCK1/SIAT1",
+	"A/Leon/201/2015|2015-02-06|MDCK1/SIAT1","A/Soria/198/2015|2015-02-06|MDCK1/SIAT1","A/Valladolid/205/2015|2015-02-06|MDCK1/SIAT1","A/Milano/210/2015|2015-02-10|MDCK2/SIAT1","A/Burgos/207/2015|2015-02-10|MDCK1/SIAT1","A/Perugia/52/2015|2015-02-12|MDCK1/SIAT1","A/Serbia/NS-1107/2015|2015-02-23|SIAT1","A/Serbia/NS-1256/2015|2015-03-24|MDCK1")
+
+agFill(map92)[ag_Sep2015_table8_4] <- '#ea5545'
+agFill(map92)[ag_Sep2015_table8_13] <- '#ef9b20'
+agFill(map92)[ag_Sep2015_table8_6] <- '#ede15b'
+p_map92 <- ggplot(map92) + ggtitle('map 92')
+p_map92
+
+
+#################### MAP 93 ####################
+#### colered by tables
+agSize(map93) <- 5
+agFill(map93) <- 'grey50'
+ag_Sep2015_table8_8 <- agNames(map93) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT5","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT5","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong-Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/5738/2014|2014-04-30|E5/E2 clone 121","A/Norway/3172/2014|2014-12-09|MDCK2","A/Norway/353/2015|2015-01-04|MDCK1","A/Manjakaray/13/2015|2015-01-05|MDCK1","A/Moramanga/50/2015|2015-01-08|MDCK1","A/Norway/217/2015|2015-01-12|MDCK1",
+	"A/Maevatanana/172/2015|2015-01-19|MDCK1","A/Toamasina/180/2015|2015-01-19|MDCK2","A/Nosy Be/284/2015|2015-01-19|MDCK1","A/Norway/923/2015|2015-01-20|SIAT2","A/Tsiroanomandidy/278/2015|2015-01-22|MDCK2","A/Manjakaray/215/15|2015-01-23|MDCK1","A/Antsirabe/289/2015|2015-01-28|MDCK1","A/Finland/506/2015|2015-02-02|SIAT1","A/Tsiroanomandidy/362/2015|2015-02-02|MDCK1","A/Behoririka/355/2015|2015-02-04|MDCK1",
+	"A/Moldova/111.07/2015|2015-02-10|MDCK2","A/Manjakaray/612/2015|2015-02-23|MDCK1","A/Norway/1151/2015|2015-02-25|SIAT1","A/Norway/1656/2015|2015-03-21|SIAT1","A/Tsiroanomandidy/1384/2015|2015-03-30|MDCK1")
+ag_Sep2015_table8_9 <- agNames(map93) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/5738/2014|2014-04-30|E5/E1 clone 121","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT2","A/Stockholm/31/2014|2014-11-26|MDCK1/SIAT1","A/Stockholm/28/2014|2014-12-02|MDCK1/SIAT1","A/Stockholm/36/2014|2014-12-02|MDCK2/SIAT1","A/Stockholm/30/2014|2014-12-04|MDCK1/SIAT1","A/Stockholm/32/2014|2014-12-09|MDCK1/SIAT1",
+	"A/Stockholm/38/2014|2014-12-27|MDCK1/SIAT1","A/Mahajanga/122/2015|2015-01-05|MDCK2/SIAT1","A/Stockholm/1/2015|2015-01-12|MDCK1/SIAT1","A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1","A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1","A/Stockholm/12/2015|2015-02-10|MDCK1/SIAT1","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Stockholm/18/2015|2015-02-11|MDCK0/SIAT1","A/Stockholm/20/2015|2015-02-24|MDCK0/SIAT1","A/Stockholm/19/2015|2015-02-25|MDCK0/SIAT1",
+	"A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3","A/Sweden/16/2015|2015-03-05|MDCK1/SIAT1","A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2","A/Norway/1800/2015|2015-03-25|SIAT3")
+
+agFill(map93)[ag_Sep2015_table8_8] <- '#ea5545'
+agFill(map93)[ag_Sep2015_table8_9] <- '#ef9b20'
+p_map93 <- ggplot(map93) + ggtitle('map 93')
+p_map93
+
+
+#################### MAP 94 ####################
+#### colered by tables
+agSize(map94) <- 5
+agFill(map94) <- 'grey50'
+ag_Sep2015_table8_13 <- agNames(map94) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT4","A/Switzerland/9715293/2013|2013-12-06|E4/E2 clone 123","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Hong Kong/4801/2014|2014-02-26|E6 isolate 1","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT3","A/Slovenia/314/2015|2015-01-16|MDCKx/SIAT1","A/Slovenia/369/2015|2015-01-20|MDCK1/SIAT1","A/Slovenia/438/2015|2015-01-21|MDCKx/SIAT1","A/Slovenia/1066/15|2015-02-19|MDCK1/SIAT1",
+	"A/Slovenia/1077/2015|2015-02-19|MDCKx/SIAT1","A/Mauritius/I-203/2015|2015-02-25|MDCK2/SIAT1","A/Mauritius/I-238/2015|2015-03-06|MDCK3/SIAT1","A/Mauritius/I-240/2015|2015-03-09|MDCK2/SIAT1","A/Slovenia/1411/2015|2015-03-11|MDCK1/SIAT1","A/Cameroon/15V-2465/2015|2015-03-23|SIAT1","A/Mauritius/I-288/2015|2015-03-23|MDCK2/SIAT1","A/Slovenia/2049/2015|2015-04-10|MDCK1/SIAT1","A/Slovenia/2069/2015|2015-04-13|MDCKx/SIAT1","A/Hong Kong/11743/2015|2015-06-09|MDCK1/SIAT2")
+ag_Sep2015_table8_9 <- agNames(map94) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/5738/2014|2014-04-30|E5/E1 clone 121","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT2","A/Stockholm/31/2014|2014-11-26|MDCK1/SIAT1","A/Stockholm/28/2014|2014-12-02|MDCK1/SIAT1","A/Stockholm/36/2014|2014-12-02|MDCK2/SIAT1","A/Stockholm/30/2014|2014-12-04|MDCK1/SIAT1",
+	"A/Stockholm/32/2014|2014-12-09|MDCK1/SIAT1","A/Stockholm/38/2014|2014-12-27|MDCK1/SIAT1","A/Mahajanga/122/2015|2015-01-05|MDCK2/SIAT1","A/Stockholm/1/2015|2015-01-12|MDCK1/SIAT1","A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1","A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1","A/Stockholm/12/2015|2015-02-10|MDCK1/SIAT1","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Stockholm/18/2015|2015-02-11|MDCK0/SIAT1","A/Stockholm/20/2015|2015-02-24|MDCK0/SIAT1",
+	"A/Stockholm/19/2015|2015-02-25|MDCK0/SIAT1","A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3","A/Sweden/16/2015|2015-03-05|MDCK1/SIAT1","A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2","A/Norway/1800/2015|2015-03-25|SIAT3")
+
+agFill(map94)[ag_Sep2015_table8_13] <- '#ea5545'
+agFill(map94)[ag_Sep2015_table8_9] <- '#ef9b20'
+p_map94 <- ggplot(map94) + ggtitle('map 94')
+p_map94
+
+
+#################### MAP 95 ####################
+#### colered by tables
+agSize(map95) <- 5
+agFill(map95) <- 'grey50'
+p_map95 <- ggplot(map95) + ggtitle('map 95')
+p_map95
+
+
+#################### MAP 96 ####################
+#### colered by tables
+agSize(map96) <- 5
+agFill(map96) <- 'grey50'
+ag_Sep2016_table8_6 <- agNames(map96) %in% c("A/Bari/11/2016|2016-01-26|SIAT3/SIAT2","A/Palermo/1/2016|2016-02-01|SIAT3/SIAT2","A/Milano/23/2016|2016-02-01|MDCK1/SIAT2","A/St. Petersburg/210/2016|2016-02-06|MDCK1/SIAT1","A/Odessa/700/2016|2016-02-07|SIAT2/SIAT2","A/Odessa/695/2016|2016-02-13|SIAT2/SIAT2","A/Roma/12/2016|2016-02-15|SIAT2/SIAT2","A/Padova/17/2016|2016-02-15|SIAT3/SIAT2","A/Slovenia/852/2016|2016-02-18|MDCK1/SIAT2","A/Slovenia/920/2016|2016-02-19|MDCK1/SIAT2",
+	"A/Palermo/6/2016|2016-02-22|SIAT2/SIAT2","A/Bratislava/184/2016|2016-02-22|MDCKx/SIAT1","A/Parma/38/2016|2016-02-23|MDCK2/SIAT1","A/Slovenia/972/2016|2016-02-24|MDCK1/SIAT2","A/Friuli-Venezia Giulia/10/2016|2016-02-25|SIAT1/SIAT2","A/Friuli-Venezia Giulia/14/2016|2016-03-01|SIAT1/SIAT2","A/Slovenia/1070/2016|2016-03-01|MDCK1/SIAT2","A/Slovenia/1172/2016|2016-03-09|MDCK1/SIAT2","A/Bolzano/7/2016|2016-03-15|SIAT3/SIAT2","A/Czech Republic/122/2016|2016-03-21|C2/SIAT1",
+	"A/Slovenia/1307/2016|2016-03-21|MDCK1/SIAT1","A/Perugia/23/2016|2016-03-23|SIAT3/SIAT2","A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2","A/Iceland/59/2016|2016-05-08|MDCK1/SIAT1")
+ag_Sep2016_table8_7 <- agNames(map96) %in% c("A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1",
+	"A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+
+agFill(map96)[ag_Sep2016_table8_6] <- '#ea5545'
+agFill(map96)[ag_Sep2016_table8_7] <- '#ef9b20'
+p_map96 <- ggplot(map96) + ggtitle('map 96')
+p_map96
+
+
+#################### MAP 97 ####################
+#### colered by tables
+agSize(map97) <- 5
+agFill(map97) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map97) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Hong Kong/4801/2014|2014-02-26|E6/E2","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT3","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1",
+	"A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1",
+	"A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Feb2016_table9_3 <- agNames(map97) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT3","A/Hong Kong/146/2013|2013-01-11|E3/E3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/4801/2014|2014-02-26|E6/E1","A/Georgia/532/2015|2015-03-09|SIAT2","A/Serbia/361/2015|2015-01-19|C2/SIAT2","A/Jiangxi-Donghu/1218/2015|2015-02-11|MDCK2/SIAT3/SIAT1","A/Jilin-Yanji/1179/2015|2015-03-03|MDCK1/SIAT2/SIAT1","A/Hubei-Dongbao/1205/2015|2015-04-09|MDCK4/SIAT2/SIAT1",
+	"A/Jiangsu-Qingpu/1660/2015|2015-04-29|E4/E1","A/Liaoning-Baita/1293/2015|2015-05-06|MDCK2/SIAT2/SIAT1","A/Hunan-Wuling/11088/2015|2015-06-15|MDCK2/SIAT2/SIAT1","A/England/333/2015|2015-09-04|MDCK2/SIAT1","A/England/334/2015|2015-09-06|MDCK2/SIAT1","A/England/335/2015|2015-09-29|SIAT1/SIAT1")
+
+agFill(map97)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map97)[ag_Feb2016_table9_3] <- '#ef9b20'
+p_map97 <- ggplot(map97) + ggtitle('map 97')
+p_map97
+
+
+#################### MAP 98 ####################
+#### colered by tables
+agSize(map98) <- 5
+agFill(map98) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map98) %in% c("A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1",
+	"A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Feb2016_table9_3 <- agNames(map98) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/146/2013|2013-01-11|E3/E3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/4801/2014|2014-02-26|E6/E1","A/Georgia/532/2015|2015-03-09|SIAT2","A/Serbia/361/2015|2015-01-19|C2/SIAT2","A/Jiangxi-Donghu/1218/2015|2015-02-11|MDCK2/SIAT3/SIAT1","A/Jilin-Yanji/1179/2015|2015-03-03|MDCK1/SIAT2/SIAT1","A/Hubei-Dongbao/1205/2015|2015-04-09|MDCK4/SIAT2/SIAT1","A/Jiangsu-Qingpu/1660/2015|2015-04-29|E4/E1",
+	"A/Liaoning-Baita/1293/2015|2015-05-06|MDCK2/SIAT2/SIAT1","A/Hunan-Wuling/11088/2015|2015-06-15|MDCK2/SIAT2/SIAT1","A/England/333/2015|2015-09-04|MDCK2/SIAT1","A/England/334/2015|2015-09-06|MDCK2/SIAT1","A/England/335/2015|2015-09-29|SIAT1/SIAT1")
+ag_Sep2016_table8_2 <- agNames(map98) %in% c("A/Ghana/FS-15-0583/2015|2015-09-25|Cx/SIAT3","A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2","A/Oman/5009/2015|2015-09-29|SIAT2/SIAT2","A/Oman/5011/2015|2015-09-30|SIAT2/SIAT2","A/Oman/5357/2015|2015-10-13|MDCK2/SIAT2","A/Konya/1926/2015|2015-10-15|MDCK1/SIAT1","A/Oman/5422/2015|2015-10-17|SIAT2/SIAT2","A/Oman/5691/2015|2015-10-27|SIAT2/SIAT2","A/Oman/4940/2015|2015-10-28|SIAT2/SIAT2","A/Italy-FVG/105/2015|2015-11-25|SIAT3/SIAT2",
+	"A/Switzerland/15772531/2015|2015-11-28|SIAT1","A/Malatya/5037/2015|2015-12-10|SIAT1/SIAT1","A/Ankara/5082/2015|2015-12-14|SIAT1/SIAT1","A/Ankara/5139/2015|2015-12-22|MDCK1/SIAT1","A/Turkey/TR-25/2016|2016-01-13|SIAT1","A/Turkey/TR-26/2016|2016-01-13|SIAT1","A/Berlin/7/2016|2016-01-18|C2/SIAT1","A/Sachsen/2/2016|2016-01-18|C2/SIAT1","A/Berlin/11/2016|2016-01-25|C2/SIAT1","A/Jordan/4054/2015|*|SIAT1")
+
+agFill(map98)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map98)[ag_Feb2016_table9_3] <- '#ef9b20'
+agFill(map98)[ag_Sep2016_table8_2] <- '#ede15b'
+p_map98 <- ggplot(map98) + ggtitle('map 98')
+p_map98
+
+
+#################### MAP 99 ####################
+#### colered by tables
+agSize(map99) <- 5
+agFill(map99) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map99) %in% c("A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1",
+	"A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2016_table8_2 <- agNames(map99) %in% c("A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT3","A/Ghana/FS-15-0583/2015|2015-09-25|Cx/SIAT3","A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2","A/Oman/5009/2015|2015-09-29|SIAT2/SIAT2","A/Oman/5011/2015|2015-09-30|SIAT2/SIAT2","A/Oman/5357/2015|2015-10-13|MDCK2/SIAT2","A/Konya/1926/2015|2015-10-15|MDCK1/SIAT1","A/Oman/5422/2015|2015-10-17|SIAT2/SIAT2","A/Oman/5691/2015|2015-10-27|SIAT2/SIAT2","A/Oman/4940/2015|2015-10-28|SIAT2/SIAT2",
+	"A/Italy-FVG/105/2015|2015-11-25|SIAT3/SIAT2","A/Switzerland/15772531/2015|2015-11-28|SIAT1","A/Malatya/5037/2015|2015-12-10|SIAT1/SIAT1","A/Ankara/5082/2015|2015-12-14|SIAT1/SIAT1","A/Ankara/5139/2015|2015-12-22|MDCK1/SIAT1","A/Turkey/TR-25/2016|2016-01-13|SIAT1","A/Turkey/TR-26/2016|2016-01-13|SIAT1","A/Berlin/7/2016|2016-01-18|C2/SIAT1","A/Sachsen/2/2016|2016-01-18|C2/SIAT1","A/Berlin/11/2016|2016-01-25|C2/SIAT1",
+	"A/Jordan/4054/2015|*|SIAT1")
+
+agFill(map99)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map99)[ag_Sep2016_table8_2] <- '#ef9b20'
+p_map99 <- ggplot(map99) + ggtitle('map 99')
+p_map99
+
+
+#################### MAP 100 ####################
+#### colered by tables
+agSize(map100) <- 5
+agFill(map100) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map100) %in% c("A/Texas/50/2012|2012-04-15|E5/E2","A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Stockholm/6/2014|2014-02-06|E4/E1","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Switzerland/9715293/2013|2013-12-06|E4/E1","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Hong Kong/4801/2014|2014-02-26|E6/E2",
+	"A/Georgia/532/2015|2015-03-09|SIAT1/SIAT3","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1",
+	"A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2017_table21 <- agNames(map100) %in% c("A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong_Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Hong_Kong/4801/2014|2014-02-26|MDCK4/MDCK3","A/Hong_Kong/4801/2014|2014-02-26|E6/E2","A/Norway/3806/2016|2016-06-13|E9","NIB-103_(A/Norway/3806/2016)|2016-06-13|Ex","A/Antananarivo/1067/2016|2016-04-05|E5/E1","A/South_Australia/54/2016|2016-07-12|E4/E1","A/Singapore/TT1374/2016|2016-12-01|E6/E1","A/Guizhou-Qingzhen/1968/2016|2016-12-06|C2/SIAT2/SIAT1",
+	"A/Singapore/GP2646/2016|2016-12-08|E6/E1","A/Brisbane/321/2016|2016-12-19|E6/E1","A/Bosnia_&_Herzegovina/18294/2017|2017-02-01|SIAT1","A/Sydney/52/2017|2017-03-06|E5/E1","A/Brisbane/29/2017|2017-03-08|E4/E1","A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1","A/Shanghai-Pudongxin/1987/2017|2017-06-13|C2/SIAT1/SIAT1","A/Ghana/1841/2017|2017-06-24|SIAT1","A/Ghana/1797/2017|2017-06-27|MDCK1","A/Ghana/1782/2017|2017-06-28|SIAT1",
+	"A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1","A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1","A/Hong_Kong/3861/2017|2017-07-14|Cx/SIAT1","A/Hong_Kong/3819/2017|2017-07-15|Cx/SIAT1","A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3946/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1","A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1","A/Hong_Kong/3824/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3854/2017|2017-07-21|Cx/SIAT1",
+	"A/Hong_Kong/3860/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3928/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4103/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4082/2017|2017-07-22|Cx/SIAT1","A/Hong_Kong/3855/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/4104/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3853/2017|2017-07-24|Cx/SIAT1","A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1","A/Hong_Kong/4108/2017|2017-07-25|Cx/SIAT1",
+	"A/Hong_Kong/3978/2017|2017-07-28|Cx/SIAT1","A/Hong_Kong/4018/2017|2017-07-28|Cx/SIAT1","A/Hong_Kong/4212/2017|2017-07-31|Cx/SIAT1")
+
+agFill(map100)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map100)[ag_Sep2017_table21] <- '#ef9b20'
+p_map100 <- ggplot(map100) + ggtitle('map 100')
+p_map100
+
+
+#################### MAP 101 ####################
+#### colered by tables
+agSize(map101) <- 5
+agFill(map101) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map101) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1",
+	"A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1",
+	"A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Feb2017_table8_2 <- agNames(map101) %in% c('A/Samara/73/2013|2013-03-12|C1/SIAT2', 'A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3', 'A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Lyon/CHU/23.11.R8/2016|2016-11-23|MDCK2/SIAT1', 'A/Alsace/3215/2016|2016-12-09|MDCK1/SIAT1')
+
+agFill(map101)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map101)[ag_Feb2017_table8_2] <- '#ef9b20'
+p_map101 <- ggplot(map101) + ggtitle('map 101')
+p_map101
+
+
+#################### MAP 102 ####################
+#### colered by tables
+agSize(map102) <- 5
+agFill(map102) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map102) %in% c("A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1",
+	"A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2016_table8_9 <- agNames(map102) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1', 'A/Marseille/2588/2015|2015-11-30|MDCK3/SIAT1', 'A/Jordan/30124/2016|2016-03-25|SIAT2', 'A/Jordan/IIIj-15-4470-01NT/2016|2016-03-27|SIAT1', 'A/England/929/2016|2016-04-22|SIAT1/SIAT2', 'A/South Africa/R4140/2016|2016-06-27|MDCK2/SIAT1', 'A/South Africa/R4626/2016|2016-07-06|MDCK1/SIAT1', 'A/Cameroon/6284/2016|2016-07-16|SIAT2', 'A/Hong Kong/2262/2016|2016-07-28|MDCK1/SIAT1', 'A/Hong Kong/2271/2016|2016-07-28|MDCK1/SIAT1')
+ag_Sep2017_table8_2 <- agNames(map102) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT5","A/Stockholm/48/2016|*|MDCK1/SIAT1","A/Czech Republic/178/2017|*|MDCKx/SIAT1","A/Sachsen/74/2016|2016-11-07|C1/SIAT1","A/Stockholm/42/2016|2016-11-10|MDCK1/SIAT1","A/Latvia/11-072125/2016|2016-11-28|C2/SIAT1","A/Austria/956928/2016|2016-11-30|C1/SIAT1","A/Austria/957344/2016|2016-12-04|C1/SIAT1",
+	"A/Austria/957860/2016|2016-12-06|C2/SIAT1","A/Latvia/12-020474/2016|2016-12-08|C2/SIAT1","A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1","A/Sweden/153/2016|2016-12-16|MDCK1/SIAT1","A/Sweden/157/2016|2016-12-17|MDCK1/SIAT1","A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1","A/Greece/726/2016|2016-12-19|SIAT1","A/Greece/35/2017|2017-01-10|SIAT2","A/Belarus/1136/2017|2017-01-13|SIAT1","A/Belarus/1146/2017|2017-01-14|SIAT1",
+	"A/Belarus/1147/2017|2017-01-14|SIAT1","A/Belarus/1140/2017|2017-01-15|SIAT1")
+
+agFill(map102)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map102)[ag_Sep2016_table8_9] <- '#ef9b20'
+agFill(map102)[ag_Sep2017_table8_2] <- '#ede15b'
+p_map102 <- ggplot(map102) + ggtitle('map 102')
+p_map102
+
+
+#################### MAP 103 ####################
+#### colered by tables
+agSize(map103) <- 5
+agFill(map103) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map103) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1",
+	"A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2016_table8_9 <- agNames(map103) %in% c('A/Marseille/2588/2015|2015-11-30|MDCK3/SIAT1', 'A/Jordan/30124/2016|2016-03-25|SIAT2', 'A/Jordan/IIIj-15-4470-01NT/2016|2016-03-27|SIAT1', 'A/England/929/2016|2016-04-22|SIAT1/SIAT2', 'A/South Africa/R4140/2016|2016-06-27|MDCK2/SIAT1', 'A/South Africa/R4626/2016|2016-07-06|MDCK1/SIAT1', 'A/Cameroon/6284/2016|2016-07-16|SIAT2', 'A/Hong Kong/2262/2016|2016-07-28|MDCK1/SIAT1', 'A/Hong Kong/2271/2016|2016-07-28|MDCK1/SIAT1')
+ag_Feb2017_table8_2 <- agNames(map103) %in% c('A/Samara/73/2013|2013-03-12|C1/SIAT2', 'A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3', 'A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Lyon/CHU/23.11.R8/2016|2016-11-23|MDCK2/SIAT1', 'A/Alsace/3215/2016|2016-12-09|MDCK1/SIAT1')
+
+agFill(map103)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map103)[ag_Sep2016_table8_9] <- '#ef9b20'
+agFill(map103)[ag_Feb2017_table8_2] <- '#ede15b'
+p_map103 <- ggplot(map103) + ggtitle('map 103')
+p_map103
+
+
+#################### MAP 104 ####################
+#### colered by tables
+agSize(map104) <- 5
+agFill(map104) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map104) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1",
+	"A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Feb2017_table8_2 <- agNames(map104) %in% c('A/Samara/73/2013|2013-03-12|C1/SIAT2', 'A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3', 'A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Lyon/CHU/23.11.R8/2016|2016-11-23|MDCK2/SIAT1', 'A/Alsace/3215/2016|2016-12-09|MDCK1/SIAT1')
+ag_Sep2017_table21 <- agNames(map104) %in% c("A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong_Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Hong_Kong/4801/2014|2014-02-26|MDCK4/MDCK3","A/Hong_Kong/4801/2014|2014-02-26|E6/E2","A/Norway/3806/2016|2016-06-13|E9","NIB-103_(A/Norway/3806/2016)|2016-06-13|Ex","A/Antananarivo/1067/2016|2016-04-05|E5/E1","A/South_Australia/54/2016|2016-07-12|E4/E1","A/Singapore/TT1374/2016|2016-12-01|E6/E1","A/Guizhou-Qingzhen/1968/2016|2016-12-06|C2/SIAT2/SIAT1",
+	"A/Singapore/GP2646/2016|2016-12-08|E6/E1","A/Brisbane/321/2016|2016-12-19|E6/E1","A/Bosnia_&_Herzegovina/18294/2017|2017-02-01|SIAT1","A/Sydney/52/2017|2017-03-06|E5/E1","A/Brisbane/29/2017|2017-03-08|E4/E1","A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1","A/Shanghai-Pudongxin/1987/2017|2017-06-13|C2/SIAT1/SIAT1","A/Ghana/1841/2017|2017-06-24|SIAT1","A/Ghana/1797/2017|2017-06-27|MDCK1","A/Ghana/1782/2017|2017-06-28|SIAT1",
+	"A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1","A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1","A/Hong_Kong/3861/2017|2017-07-14|Cx/SIAT1","A/Hong_Kong/3819/2017|2017-07-15|Cx/SIAT1","A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3946/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1","A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1","A/Hong_Kong/3824/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3854/2017|2017-07-21|Cx/SIAT1",
+	"A/Hong_Kong/3860/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3928/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4103/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4082/2017|2017-07-22|Cx/SIAT1","A/Hong_Kong/3855/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/4104/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3853/2017|2017-07-24|Cx/SIAT1","A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1","A/Hong_Kong/4108/2017|2017-07-25|Cx/SIAT1",
+	"A/Hong_Kong/3978/2017|2017-07-28|Cx/SIAT1","A/Hong_Kong/4018/2017|2017-07-28|Cx/SIAT1","A/Hong_Kong/4212/2017|2017-07-31|Cx/SIAT1")
+
+agFill(map104)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map104)[ag_Feb2017_table8_2] <- '#ef9b20'
+agFill(map104)[ag_Sep2017_table21] <- '#ede15b'
+p_map104 <- ggplot(map104) + ggtitle('map 104')
+p_map104
+
+
+#################### MAP 105 ####################
+#### colered by tables
+agSize(map105) <- 5
+agFill(map105) <- 'grey50'
+ag_Feb2019_table8_5 <- agNames(map105) %in% c("A/Stockholm/6/2014|2017-11-20|SIAT1/SIAT2","A/Hong Kong/5738/2014|2017-11-16|MDCK1/MDCK2/SIAT2","A/Bretagne/1413/2017|2018-06-28|MDCK1/SIAT4","A/Singapore/INFIMH-16-0019/2016|2017-10-05|E5/E2","A/Hong Kong/656/2018|2018-07-30|MDCK1/SIAT3","A/Switzerland/8060/2017|2018-08-13|E7 (AM2AL5)","A/Oman/3542/2018|2018-06-01|SIAT1/SIAT1","A/Oman/3329/2018|2018-06-04|SIAT1/SIAT1","A/Oman/3356/2018|2018-06-07|SIAT1/SIAT1","A/Oman/3340/2018|2018-06-08|SIAT1/SIAT1",
+	"A/Oman/3372/2018|2018-06-13|SIAT1/SIAT1","A/Oman/3407/2018|2018-06-16|SIAT1/SIAT1","A/Oman/3577/2018|2018-07-04|SIAT1/SIAT1","A/Oman/3610/2018|2018-07-06|SIAT0")
+ag_Feb2018_table8_4 <- agNames(map105) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Armenia/11/2017|2016-12-02|MDCKx/SIAT1', 'A/Armenia/12/2017|2016-12-02|MDCK1/SIAT1', 'A/Armenia/1/2017|2016-12-06|MDCK1/SIAT1', 'A/Armenia/10/2017|2016-12-23|MDCK1/SIAT1', 'A/Armenia/4/2017|2016-12-27|MDCK1/SIAT1', 'A/Armenia/3/2017|2016-12-28|MDCK1/SIAT1', 'A/Switzerland/882/2017|2017-10-11|SIAT1')
+ag_Sep2017_table8_16 <- agNames(map105) %in% c("A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1","A/Norway/4849/2016|2016-12-02|E7","A/Greece/4/2017|2017-01-02|E9","A/Norway/3806/2016|2016-06-13|E7/E8","A/Serbia/7921/2017|2016-12-09|C3/SIAT1","A/Serbia/7997/2017|2016-12-12|C3/SIAT1","A/Serbia/8255/2017|2016-12-16|C3/SIAT1","A/Serbia/8283/2017|2016-12-21|C3/SIAT1","A/Serbia/8374/2017|2016-12-21|C3/SIAT1","A/Serbia/8352/2017|2016-12-22|C3/SIAT1",
+	"A/Serbia/8375/2017|2016-12-22|C3/SIAT1","A/Serbia/8411/2017|2016-12-26|C3/SIAT1","A/Serbia/8499/2017|2016-12-27|C2/SIAT1","A/Stockholm/60/2016|2016-12-28|MDCK1/SIAT2","A/Serbia/8501/2017|2016-12-28|C3/SIAT1","A/Serbia/8554/2017|2016-12-30|C1/SIAT1","A/Ukraine/7647/2017|2017-01-04|C1/SIAT2","A/Thuringen/165/2017|2017-01-13|C1/SIAT2","A/Stockholm/11/2017|2017-01-14|MDCK0/SIAT2","A/England/19/2017|2017-01-31|SIAT1/SIAT1",
+	"А/Orenburg/70/2017|2017-02-07|SIAT1/SIAT1","А/Moscow/34/2017|2017-02-07|SIAT1/SIAT1","А/Orenburg/72/2017|2017-02-13|SIAT1/SIAT1","A/Paris/1023/2017|2017-02-16|MDCK1/SIAT1","A/Linkoping/1/2017|2017-02-17|MDCK2/SIAT2","А/Moscow/41/2017|2017-02-18|SIAT1/SIAT1","A/Basse Normandie/1055/2017|2017-02-20|MDCK1/SIAT1","A/Bosnia and Herzegovina/119/2017|2017-02-24|SIAT2","А/Moscow/47/2017|2017-02-25|SIAT1/SIAT1","A/Paris/1145/2017|2017-03-06|MDCK1/SIAT1",
+	"A/Dijon/1176/2017|2017-03-14|MDCK1/SIAT1","A/Niedersachsen/186/2017|2017-03-21|C2/SIAT2","A/St Petersburg/320/2017|2017-03-21|MDCK2/SIAT2","A/Hong Kong/2267/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2277/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2274/2017|2017-05-20|Cx/SIAT1","A/Hong Kong/2273/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2279/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2284/2017|2017-05-23|Cx/SIAT1",
+	"A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2291/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2293/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1","A/Hong Kong/3160/2017|2017-07-04|Cx/SIAT1","A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1")
+
+agFill(map105)[ag_Feb2019_table8_5] <- '#ea5545'
+agFill(map105)[ag_Feb2018_table8_4] <- '#ef9b20'
+agFill(map105)[ag_Sep2017_table8_16] <- '#ede15b'
+p_map105 <- ggplot(map105) + ggtitle('map 105')
+p_map105
+
+
+#################### MAP 106 ####################
+#### colered by tables
+agSize(map106) <- 5
+agFill(map106) <- 'grey50'
+ag_Sep2018_table8_6 <- agNames(map106) %in% c("A/Boras/1/2017|2017-11-15|MDCK2/SIAT1","A/Sundsvall/27/2017|2017-11-20|MDCK1/SIAT1","A/Linkoping/6/2017|2017-12-25|MDCK2/SIAT1","A/Stockholm/57/2017|2017-12-28|MDCK0/SIAT1","A/Sweden/8/2018|2018-01-29|MDCK0/SIAT1","A/Sweden/11/2018|2018-01-30|MDCK1/SIAT1","A/Tanger/1201/2018|2018-02-09|MDCK2/SIAT1","A/Meknes/1218/2018|2018-02-13|MDCK2/SIAT2","A/Tanger/1200/2018|2018-02-13|MDCK2/SIAT1","A/Rabat/1229/2018|2018-02-18|MDCK2/SIAT2",
+	"A/Fes/1440/2018|2018-02-26|MDCK2/SIAT1","A/Lyon/CHU-R18.50.47/2018|2018-03-02|MDCK3/SIAT1","A/Norway/1819/2018|2018-03-05|SIAT1","A/Lyon/CHU-R18.54.48/2018|2018-03-08|MDCK2/SIAT1","A/Norway/1952/2018|2018-03-10|SIAT1","A/Lyon/1332/2018|2018-03-12|MDCK4/SIAT1","A/Grenoble/1500/2018|2018-03-19|MDCK3/SIAT1","A/Tanger/1449/2018|2018-03-20|MDCK2/SIAT1","A/Norway/2238/2018|2018-03-23|SIAT1/SIAT1","A/Clermont Ferrand/1459/2018|2018-03-24|MDCK2/SIAT1",
+	"A/Switzerland/6796/2018|2018-03-26|SIAT1","A/Lyon/1493/2018|2018-03-30|MDCK3/SIAT1","A/Norway/2515/2018|2018-04-05|SIAT1","A/Norway/2486/2018|2018-04-06|SIAT1","A/Norway/2477/2018|2018-04-11|SIAT1","A/Norway/2620/2018|2018-04-16|SIAT1","A/Lyon/1560/2018|2018-04-17|MDCK4/SIAT1")
+ag_Sep2018_table8_5 <- agNames(map106) %in% c('A/Hong-Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3', 'A/Mauritius/1103/2017|2017-06-12|MDCK1/SIAT1', 'A/Mauritius/1115/2017|2017-06-12|MDCK2/SIAT3', 'A/Mauritius/1199/2017|2017-06-14|MDCKx/SIAT1', 'A/Mauritius/1369/2017|2017-06-17|MDCK1/SIAT2', 'A/England/551/2018|2018-02-09|MDCK2/SIAT1', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2', 'A/England/535/2018|2018-02-21|MDCK1/SIAT1', 'A/England/538/2018|2018-02-26|MDCK1/SIAT1', 'A/England/540/2018|2018-03-07|SIAT1/SIAT1')
+ag_Feb2018_table8_6 <- agNames(map106) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Iran/75924/2017|2017-01-22|SIAT2/SIAT1', 'A/Iran/78090/2017|2017-02-12|SIAT2/SIAT2', 'A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1')
+
+agFill(map106)[ag_Sep2018_table8_6] <- '#ea5545'
+agFill(map106)[ag_Sep2018_table8_5] <- '#ef9b20'
+agFill(map106)[ag_Feb2018_table8_6] <- '#ede15b'
+p_map106 <- ggplot(map106) + ggtitle('map 106')
+p_map106
+
+
+#################### MAP 107 ####################
+#### colered by tables
+agSize(map107) <- 5
+agFill(map107) <- 'grey50'
+ag_Sep2018_table8_6 <- agNames(map107) %in% c("A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1","A/Boras/1/2017|2017-11-15|MDCK2/SIAT1","A/Sundsvall/27/2017|2017-11-20|MDCK1/SIAT1","A/Linkoping/6/2017|2017-12-25|MDCK2/SIAT1","A/Stockholm/57/2017|2017-12-28|MDCK0/SIAT1","A/Sweden/8/2018|2018-01-29|MDCK0/SIAT1","A/Sweden/11/2018|2018-01-30|MDCK1/SIAT1","A/Tanger/1201/2018|2018-02-09|MDCK2/SIAT1","A/Meknes/1218/2018|2018-02-13|MDCK2/SIAT2",
+	"A/Tanger/1200/2018|2018-02-13|MDCK2/SIAT1","A/Rabat/1229/2018|2018-02-18|MDCK2/SIAT2","A/Fes/1440/2018|2018-02-26|MDCK2/SIAT1","A/Lyon/CHU-R18.50.47/2018|2018-03-02|MDCK3/SIAT1","A/Norway/1819/2018|2018-03-05|SIAT1","A/Lyon/CHU-R18.54.48/2018|2018-03-08|MDCK2/SIAT1","A/Norway/1952/2018|2018-03-10|SIAT1","A/Lyon/1332/2018|2018-03-12|MDCK4/SIAT1","A/Grenoble/1500/2018|2018-03-19|MDCK3/SIAT1","A/Tanger/1449/2018|2018-03-20|MDCK2/SIAT1",
+	"A/Norway/2238/2018|2018-03-23|SIAT1/SIAT1","A/Clermont Ferrand/1459/2018|2018-03-24|MDCK2/SIAT1","A/Switzerland/6796/2018|2018-03-26|SIAT1","A/Lyon/1493/2018|2018-03-30|MDCK3/SIAT1","A/Norway/2515/2018|2018-04-05|SIAT1","A/Norway/2486/2018|2018-04-06|SIAT1","A/Norway/2477/2018|2018-04-11|SIAT1","A/Norway/2620/2018|2018-04-16|SIAT1","A/Lyon/1560/2018|2018-04-17|MDCK4/SIAT1")
+ag_Feb2018_table8_6 <- agNames(map107) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Iran/75924/2017|2017-01-22|SIAT2/SIAT1', 'A/Iran/78090/2017|2017-02-12|SIAT2/SIAT2', 'A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1')
+ag_Sep2017_table21 <- agNames(map107) %in% c("A/Hong_Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Hong_Kong/4801/2014|2014-02-26|MDCK4/MDCK3","A/Hong_Kong/4801/2014|2014-02-26|E6/E2","A/Norway/3806/2016|2016-06-13|E9","NIB-103_(A/Norway/3806/2016)|2016-06-13|Ex","A/Antananarivo/1067/2016|2016-04-05|E5/E1","A/South_Australia/54/2016|2016-07-12|E4/E1","A/Singapore/TT1374/2016|2016-12-01|E6/E1","A/Guizhou-Qingzhen/1968/2016|2016-12-06|C2/SIAT2/SIAT1","A/Singapore/GP2646/2016|2016-12-08|E6/E1",
+	"A/Brisbane/321/2016|2016-12-19|E6/E1","A/Bosnia_&_Herzegovina/18294/2017|2017-02-01|SIAT1","A/Sydney/52/2017|2017-03-06|E5/E1","A/Brisbane/29/2017|2017-03-08|E4/E1","A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1","A/Shanghai-Pudongxin/1987/2017|2017-06-13|C2/SIAT1/SIAT1","A/Ghana/1841/2017|2017-06-24|SIAT1","A/Ghana/1797/2017|2017-06-27|MDCK1","A/Ghana/1782/2017|2017-06-28|SIAT1","A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1",
+	"A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1","A/Hong_Kong/3861/2017|2017-07-14|Cx/SIAT1","A/Hong_Kong/3819/2017|2017-07-15|Cx/SIAT1","A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3946/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1","A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1","A/Hong_Kong/3824/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3854/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3860/2017|2017-07-21|Cx/SIAT1",
+	"A/Hong_Kong/3928/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4103/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4082/2017|2017-07-22|Cx/SIAT1","A/Hong_Kong/3855/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/4104/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3853/2017|2017-07-24|Cx/SIAT1","A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1","A/Hong_Kong/4108/2017|2017-07-25|Cx/SIAT1","A/Hong_Kong/3978/2017|2017-07-28|Cx/SIAT1",
+	"A/Hong_Kong/4018/2017|2017-07-28|Cx/SIAT1","A/Hong_Kong/4212/2017|2017-07-31|Cx/SIAT1")
+
+agFill(map107)[ag_Sep2018_table8_6] <- '#ea5545'
+agFill(map107)[ag_Feb2018_table8_6] <- '#ef9b20'
+agFill(map107)[ag_Sep2017_table21] <- '#ede15b'
+p_map107 <- ggplot(map107) + ggtitle('map 107')
+p_map107
+
+
+#################### MAP 108 ####################
+#### colered by tables
+agSize(map108) <- 5
+agFill(map108) <- 'grey50'
+ag_Feb2018_table8_6 <- agNames(map108) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Iran/75924/2017|2017-01-22|SIAT2/SIAT1', 'A/Iran/78090/2017|2017-02-12|SIAT2/SIAT2', 'A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1')
+ag_Sep2017_table21 <- agNames(map108) %in% c("A/Hong_Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Hong_Kong/4801/2014|2014-02-26|MDCK4/MDCK3","A/Hong_Kong/4801/2014|2014-02-26|E6/E2","A/Norway/3806/2016|2016-06-13|E9","NIB-103_(A/Norway/3806/2016)|2016-06-13|Ex","A/Antananarivo/1067/2016|2016-04-05|E5/E1","A/South_Australia/54/2016|2016-07-12|E4/E1","A/Singapore/TT1374/2016|2016-12-01|E6/E1","A/Guizhou-Qingzhen/1968/2016|2016-12-06|C2/SIAT2/SIAT1","A/Singapore/GP2646/2016|2016-12-08|E6/E1",
+	"A/Brisbane/321/2016|2016-12-19|E6/E1","A/Bosnia_&_Herzegovina/18294/2017|2017-02-01|SIAT1","A/Sydney/52/2017|2017-03-06|E5/E1","A/Brisbane/29/2017|2017-03-08|E4/E1","A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1","A/Shanghai-Pudongxin/1987/2017|2017-06-13|C2/SIAT1/SIAT1","A/Ghana/1841/2017|2017-06-24|SIAT1","A/Ghana/1797/2017|2017-06-27|MDCK1","A/Ghana/1782/2017|2017-06-28|SIAT1","A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1",
+	"A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1","A/Hong_Kong/3861/2017|2017-07-14|Cx/SIAT1","A/Hong_Kong/3819/2017|2017-07-15|Cx/SIAT1","A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3946/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1","A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1","A/Hong_Kong/3824/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3854/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3860/2017|2017-07-21|Cx/SIAT1",
+	"A/Hong_Kong/3928/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4103/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4082/2017|2017-07-22|Cx/SIAT1","A/Hong_Kong/3855/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/4104/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3853/2017|2017-07-24|Cx/SIAT1","A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1","A/Hong_Kong/4108/2017|2017-07-25|Cx/SIAT1","A/Hong_Kong/3978/2017|2017-07-28|Cx/SIAT1",
+	"A/Hong_Kong/4018/2017|2017-07-28|Cx/SIAT1","A/Hong_Kong/4212/2017|2017-07-31|Cx/SIAT1")
+ag_Sep2018_table8_7 <- agNames(map108) %in% c("A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1","A/Egypt/293/2018|2018-01-08|SIAT1","A/Egypt/278/2018|2018-01-09|SIAT1","A/Sweden/37/2018|2018-02-09|MDCK0/SIAT2","A/Meknes/1299/2018|2018-02-23|MDCK2/SIAT2","A/Basse Normandie/1144/2018|2018-02-26|MDCK1/SIAT1","A/La Rioja/2197/2018|2018-03-08|SIAT1/SIAT1","A/La Rioja/2192/2018|2018-03-08|SIAT1/SIAT1","A/La Rioja/2206/2018|2018-03-19|SIAT1/SIAT1",
+	"A/La Rioja/2189/2018|2018-03-20|SIAT1/SIAT1","A/La Rioja/2190/2018|2018-03-23|SIAT1/SIAT1","A/Dijon/1723/2018|2018-04-02|MDCK2/SIAT2","A/La Rioja/2202/2018|2018-04-02|SIAT1/SIAT1","A/Pays de Loire/1693/2018|2018-04-05|MDCK2/SIAT2","A/Dijon/1771/2018|2018-04-10|MDCK1/SIAT1")
+
+agFill(map108)[ag_Feb2018_table8_6] <- '#ea5545'
+agFill(map108)[ag_Sep2017_table21] <- '#ef9b20'
+agFill(map108)[ag_Sep2018_table8_7] <- '#ede15b'
+p_map108 <- ggplot(map108) + ggtitle('map 108')
+p_map108
+
+
+#################### MAP 109 ####################
+#### colered by tables
+agSize(map109) <- 5
+agFill(map109) <- 'grey50'
+ag_Sep2018_table8_7 <- agNames(map109) %in% c("A/Egypt/293/2018|2018-01-08|SIAT1","A/Egypt/278/2018|2018-01-09|SIAT1","A/Sweden/37/2018|2018-02-09|MDCK0/SIAT2","A/Meknes/1299/2018|2018-02-23|MDCK2/SIAT2","A/Basse Normandie/1144/2018|2018-02-26|MDCK1/SIAT1","A/La Rioja/2197/2018|2018-03-08|SIAT1/SIAT1","A/La Rioja/2192/2018|2018-03-08|SIAT1/SIAT1","A/La Rioja/2206/2018|2018-03-19|SIAT1/SIAT1","A/La Rioja/2189/2018|2018-03-20|SIAT1/SIAT1","A/La Rioja/2190/2018|2018-03-23|SIAT1/SIAT1",
+	"A/Dijon/1723/2018|2018-04-02|MDCK2/SIAT2","A/La Rioja/2202/2018|2018-04-02|SIAT1/SIAT1","A/Pays de Loire/1693/2018|2018-04-05|MDCK2/SIAT2","A/Dijon/1771/2018|2018-04-10|MDCK1/SIAT1")
+ag_Sep2018_table8_2 <- agNames(map109) %in% c('A/Denmark/67/2017|2017-10-08|SIAT3/SIAT1', 'A/Israel/C7213/2017|2017-10-17|C1/SIAT1', 'A/Ankara/1050/2017|2017-12-01|SIAT1/SIAT1', 'A/Israel/SK386/2017|2017-12-10|C1/SIAT1', 'A/Denmark/86/2017|2017-12-11|SIAT3/SIAT1', 'A/Switzerland/143/2017|2017-12-15|SIAT1/SIAT2', 'A/Denmark/114/2017|2017-12-28|SIAT1', 'A/Netherlands/10028/2018|2018-01-08|MDCK-MIX2/SIAT1', 'A/Netherlands/10037/2018|2018-01-15|MDCK-MIX2/SIAT1')
+ag_Sep2018_table8_5 <- agNames(map109) %in% c('A/Hong-Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3', 'A/Mauritius/1103/2017|2017-06-12|MDCK1/SIAT1', 'A/Mauritius/1115/2017|2017-06-12|MDCK2/SIAT3', 'A/Mauritius/1199/2017|2017-06-14|MDCKx/SIAT1', 'A/Mauritius/1369/2017|2017-06-17|MDCK1/SIAT2', 'A/England/551/2018|2018-02-09|MDCK2/SIAT1', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2', 'A/England/535/2018|2018-02-21|MDCK1/SIAT1', 'A/England/538/2018|2018-02-26|MDCK1/SIAT1', 'A/England/540/2018|2018-03-07|SIAT1/SIAT1')
+
+agFill(map109)[ag_Sep2018_table8_7] <- '#ea5545'
+agFill(map109)[ag_Sep2018_table8_2] <- '#ef9b20'
+agFill(map109)[ag_Sep2018_table8_5] <- '#ede15b'
+p_map109 <- ggplot(map109) + ggtitle('map 109')
+p_map109
+
+
+#################### MAP 110 ####################
+#### colered by tables
+agSize(map110) <- 5
+agFill(map110) <- 'grey50'
+ag_Feb2020_table7_12 <- agNames(map110) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2","A/South Australia/34/2019|2019-02-06|E6/E1","A/Hong Kong/2671/2019|2019-06-17|E8/E1","A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5","A/England/538/2018|2018-02-26|MDCK1/SIAT4","A/Delaware/41/2019|2019-03-06|SIAT2/SIAT1","A/Aichi/218/2019|2019-04-02|MDCK2+SIAT2/SIAT1","A/Shanghai-Jiading/1977/2019|2019-12-03|C1/SIAT1/SIAT1","A/Tianjin-Nankai/3210/2019|2019-11-24|C2/SIAT1/SIAT1","A/Palermo/36/2019|2019-12-11|SIAT2/SIAT1",
+	"A/Palermo/02/2020|2020-01-02|SIAT2/SIAT1","A/Kanagawa/ZC1907/2019|2019-11-01|SIAT2/SIAT1","A/Jilin-Dongchang/1574/2019|2019-12-09|C1/SIAT1/SIAT1","A/Lithuania/MB42384/2019|2019-12-24|SIAT2/SIAT1","A/Parma/391/2019|2019-12-27|SIAT1/SIAT1","A/Lithuania/MB170/2019|2019-12-31|SIAT1/SIAT1","A/Norway/47/2020|2020-01-03|SIAT1/SIAT1","A/Poland/1521/2020|2020-01-05|SIAT1","A/Lithuania/MB398/2020|2020-01-05|SIAT1/SIAT1","A/Norway/108/2020|2020-01-06|SIAT1/SIAT1",
+	"A/Czech Republic/38/2020|2020-01-07|P2/SIAT1","A/Czech Republic/87/2020|2020-01-10|P1/SIAT1","A/Czech Republic/101/2020|2020-01-13|P1/SIAT1","A/Bucuresti/256299/2020|2020-01-13|MDCK1/SIAT1","A/Czech Republic/1691/2019|2019-12-05|P3/SIAT1","A/Poland/605/2019|2019-12-10|SIAT1")
+ag_Sep2019_table8_15 <- agNames(map110) %in% c("A/Mauritania/255-2018/2018|2018-12-10|SIAT1","A/Komarno/58/2018|2018-12-28|MDCK1/SIAT1","A/Trencin/74/2019|2019-01-16|MDCK1/SIAT1","A/Trnava/70/2019|2019-01-16|MDCK1/SIAT1","A/Nove Zamky/81/2019|2019-01-21|MDCK2/SIAT1","A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1","A/Prievidza/126/2019|2019-01-29|MDCKx/SIAT1","A/Mogilev/1547/2019|2019-03-12|MDCK2/SIAT1","A/PJovazska Bystrica/177/2019|2019-02-05|MDCKx/SIAT1","A/Bratislava/328/2019|2019-02-20|MDCKx/SIAT1",
+	"A/Skalica/339/2019|2019-02-21|MDCKx/SIAT1","A/Vitebsk/927/2019|2019-02-28|MDCK2/SIAT1","A/Orsha/1450/2019|2019-03-05|MDCK2/SIAT1","A/Bobruisk/1468/2019|2019-03-06|MDCK2/SIAT1","A/Mogilev/1315/2019|2019-03-06|MDCK2/SIAT1","A/Bratislava/446/2019|2019-03-08|MDCKx/SIAT1","A/Macedonia/1283/2019|2019-03-11|SIAT1","A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1","A/Macedonia/1350/2019|2019-03-18|SIAT1","A/Macedonia/1402/2019|2019-03-22|SIAT1",
+	"A/Kosovo/1130/2019|2019-03-29|SIAT1","A/Kosovo/1188/2019|2019-04-08|SIAT1","A/Macedonia/1462/2019|2019-04-15|SIAT1")
+ag_Sep2019_table8_6 <- agNames(map110) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Kansas/14/2017|2017-12-14|E7/E2","A/Valladolid/5/2019|2019-01-04|SIAT1/SIAT1","A/Valladolid/27/2019|2019-01-14|SIAT1/SIAT1","A/Soria/11/2019|2019-01-09|SIAT1/SIAT1","A/Rabat/352/2019|2019-01-07|MDCK1/SIAT1","A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1","A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1","A/Avila/3/2019|2019-01-03|SIAT1/SIAT1","A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1",
+	"A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1","A/Avila/15/2019|2019-01-10|SIAT1/SIAT1","A/Palencia/20/2019|2019-01-12|SIAT1/SIAT1","A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1","A/Valladolid/17/2019|2019-01-12|SIAT1/SIAT1","A/Valladolid/26/2019|2019-01-14|SIAT1/SIAT1","A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1","A/Valladolid/24/2019|2019-01-14|SIAT1/SIAT1","A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1")
+
+agFill(map110)[ag_Feb2020_table7_12] <- '#ea5545'
+agFill(map110)[ag_Sep2019_table8_15] <- '#ef9b20'
+agFill(map110)[ag_Sep2019_table8_6] <- '#ede15b'
+p_map110 <- ggplot(map110) + ggtitle('map 110')
+p_map110
+
+
+#################### MAP 111 ####################
+#### colered by tables
+agSize(map111) <- 5
+agFill(map111) <- 'grey50'
+ag_Sep2019_table8_7 <- agNames(map111) %in% c("A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Kansas/14/2017|2017-12-14|E7/E2","A/Cameroon/9199/2018|2018-10-09|SIAT1","A/Cameroon/8607/2018|2018-10-11|SIAT1","A/Cameroon/8600/2018|2018-10-17|SIAT1","A/Cameroon/9272/2018|2018-11-02|SIAT1","A/Cameroon/9207/2018|2018-11-02|SIAT1","A/Cameroon/9264/2018|2018-11-12|SIAT1","A/Cameroon/9678/2018|2018-11-19|SIAT1","A/Beijing/2019-15554/2018|2018-12-25|MDCK2/SIAT1",
+	"A/Beijing/2019-15554/2018|2018-12-25|E2/E1","A/Extremadura/283/2019|2019-01-06|SIAT1","A/Castilla La Mancha/242/2019|2019-01-17|SIAT1","A/Castilla La Mancha/337/2019|2019-01-21|SIAT1","A/Malta/53539/2019|2019-01-23|SIAT1","A/Greece/357/2019|2019-02-04|SIAT1","A/Latvia/02-013062/2019|2019-02-04|MDCK2/SIAT1","A/Latvia/02-053853/2019|2019-02-18|MDCK2/SIAT2","A/Latvia/02-073849/2019|2019-02-25|MDCKx/SIAT1","A/Latvia/02-073821/2019|2019-02-25|MDCK1/SIAT1",
+	"A/Latvia/02-033614/2019|2019-02-12|MDCK2/SIAT1","A/Latvia/03-012433/2019|2019-03-04|MDCKx/SIAT1","A/Greece/1451-19/2019|2019-03-15|SIAT1")
+ag_Sep2019_table8_17 <- agNames(map111) %in% c("A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT5","NYMC X-327(A/Kansas/14/17)|2017-12-14|Ex/E1","A/Champagne Ardenne/1908/2019|2019-04-10|MDCK2/SIAT1","A/Estonia/119303/2019|2019-02-11|SIAT2/SIAT2","A/Torino/544/2019|2019-02-19|SIAT3/SIAT2","A/Moscow/127/2019|2019-03-01|SIAT1/SIAT1","A/Torino/780/2019|2019-03-06|SIAT3/SIAT2","A/Czech Republic/1031/2019|2019-03-06|MDCK4/SIAT1","A/Palermo/20/2019|2019-03-06|SIAT4/SIAT2","A/Moscow/146/2019|2019-03-10|SIAT1/SIAT1",
+	"A/Parma/379/2019|2019-03-18|SIAT3/SIAT2","A/Nord Pas de Calais/1803/2019|2019-03-26|MDCK2/SIAT1","A/South Africa/R06219/2019|2019-05-31|SV/SIAT1","A/Parma/353/2019|2019-02-26|SIAT4/SIAT1","A/Palermo/12/2019|2019-02-27|SIAT3/SIAT1","A/Palermo/13/2019|2019-03-05|SIAT3/SIAT1","A/Torino/771/2019|2019-03-05|SIAT3/SIAT2","A/Parma/361/2019|2019-03-08|SIAT3/SIAT1","A/Parma/373/2019|2019-03-11|SIAT2SIAT1","A/Parma/377/2019|2019-03-15|SIAT2SIAT1",
+	"A/Basse Normandie/1798/2019|2019-03-26|SIAT1","A/Centre/1846/2019|2019-03-30|MDCK1/SIAT1","A/Brest/1998/2019|2019-04-07|MDCK1/SIAT1","A/Brest/1999/2019|2019-04-08|MDCK1/SIAT1","A/Picardie/1898/2019|2019-04-08|MDCK1/SIAT1","A/Czech Republic/1275/2019|2019-04-10|MDCK3/SIAT1","A/Brest/2002/2019|2019-04-11|MDCK1/SIAT1","A/Brest/2001/2019|2019-04-11|MDCK1/SIAT1","A/Bretagne/1913/2019|2019-04-11|MDCK1/SIAT1")
+ag_Feb2019_table8_10 <- agNames(map111) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/England/538/2018|2018-02-26|MDCK1/SIAT1","A/Netherlands/10260/2018|2018-02-15|E5","A/Sundsvall/2/2018|2018-12-01|MDCK0/SIAT1","A/Sundsvall/1/2018|2018-12-03|MDCK0/SIAT1","A/Israel/10464/2018|2018-12-21|C1/SIAT1","A/Israel/603/2018|2018-12-23|C1/SIAT1","A/Kyiv/532/2018|2018-12-24|SIAT1/SIAT1",
+	"A/Israel/604/2018|2018-12-25|C1/SIAT1","A/Ukraine/8106/2018|2018-12-27|MDCK2/SIAT1","A/Ukraine/8103/2019|2019-01-03|MDCK2/SIAT1","A/Portugal/139/2019|2019-01-04|MDCK1/SIAT1","A/Portugal/151/2019|2019-01-06|SIAT1/SIAT1","A/Portugal/146/2019|2019-01-07|MDCK1/SIAT1","A/Avila/32/2019|2019-01-15|SIAT1/SIAT1","A/Burgos/31/2019|2019-01-15|SIAT1/SIAT1")
+
+agFill(map111)[ag_Sep2019_table8_7] <- '#ea5545'
+agFill(map111)[ag_Sep2019_table8_17] <- '#ef9b20'
+agFill(map111)[ag_Feb2019_table8_10] <- '#ede15b'
+p_map111 <- ggplot(map111) + ggtitle('map 111')
+p_map111
+
+
+#################### MAP 112 ####################
+#### colered by tables
+agSize(map112) <- 5
+agFill(map112) <- 'grey50'
+ag_Sep2019_table8_13 <- agNames(map112) %in% c("A/Zambia/1-390/2018|2018-09-25|SIAT1","A/Lisboa/100/2019|2019-01-28|SIAT3/SIAT1","A/Eskilstuna/6/2019|2019-02-13|MDCK0/SIAT1","A/Skovde/1/2019|2019-02-11|MDCK1/SIAT1","A/Denmark/2785/2019|2019-03-13|SIAT2/SIAT1","A/Lisboa/93/2019|2019-02-08|SIAT2/SIAT1","A/Lisboa/92/2019|2019-02-15|MDCK2/SIAT1","A/Lisboa/91/2019|2019-02-20|SIAT1/SIAT1","A/Lisboa/97/2019|2019-02-25|SIAT2/SIAT1","A/Lisboa/94/2019|2019-02-26|SIAT1/SIAT1",
+	"A/Lisboa/95/2019|2019-02-27|SIAT2/SIAT1","A/Lisboa/98/2019|2019-03-08|SIAT1/SIAT1")
+ag_Sep2019_table8_14 <- agNames(map112) %in% c("A/Norway/3275/2018|2018-10-04|E6(Am3Al3)","A/Mauritania/200-2018/2018|2018-11-05|SIAT1","A/Mauritania/08-2019/2019|2019-01-02|SIAT1","A/Mauritania/09-2019/2019|2019-01-03|SIAT1","A/Mauritania/15-2019/2019|2019-01-07|SIAT1","A/Mauritania/10-2019/2019|2019-01-08|SIAT1","A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1","A/West Kazakhstan/461/2019|2019-02-27|MDCKx/SIAT1","A/West Kazakhstan/462/2019|2019-03-01|MDCKx/SIAT1","A/West Kazakhstan/463/2019|2019-03-05|MDCKx/SIAT1",
+	"A/Finland/105/2019|2019-04-09|SIAT1/SIAT1","A/North Kazakhstan/363/2019|2019-02-13|MDCKx/SIAT1","A/Finland/92/2019|2019-03-06|SIAT1/SIAT1","A/Georgia/658/2019|2019-03-13|SIAT2","A/Finland/99/2019|2019-03-26|SIAT1/SIAT1","A/Finland/104/2019|2019-04-03|SIAT1/SIAT1","A/Finland/114/2019|2019-04-30|SIAT1/SIAT1")
+ag_Sep2019_table8_15 <- agNames(map112) %in% c("A/Mauritania/255-2018/2018|2018-12-10|SIAT1","A/Komarno/58/2018|2018-12-28|MDCK1/SIAT1","A/Trencin/74/2019|2019-01-16|MDCK1/SIAT1","A/Trnava/70/2019|2019-01-16|MDCK1/SIAT1","A/Nove Zamky/81/2019|2019-01-21|MDCK2/SIAT1","A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1","A/Prievidza/126/2019|2019-01-29|MDCKx/SIAT1","A/Mogilev/1547/2019|2019-03-12|MDCK2/SIAT1","A/PJovazska Bystrica/177/2019|2019-02-05|MDCKx/SIAT1","A/Bratislava/328/2019|2019-02-20|MDCKx/SIAT1",
+	"A/Skalica/339/2019|2019-02-21|MDCKx/SIAT1","A/Vitebsk/927/2019|2019-02-28|MDCK2/SIAT1","A/Orsha/1450/2019|2019-03-05|MDCK2/SIAT1","A/Bobruisk/1468/2019|2019-03-06|MDCK2/SIAT1","A/Mogilev/1315/2019|2019-03-06|MDCK2/SIAT1","A/Bratislava/446/2019|2019-03-08|MDCKx/SIAT1","A/Macedonia/1283/2019|2019-03-11|SIAT1","A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1","A/Macedonia/1350/2019|2019-03-18|SIAT1","A/Macedonia/1402/2019|2019-03-22|SIAT1",
+	"A/Kosovo/1130/2019|2019-03-29|SIAT1","A/Kosovo/1188/2019|2019-04-08|SIAT1","A/Macedonia/1462/2019|2019-04-15|SIAT1")
+
+agFill(map112)[ag_Sep2019_table8_13] <- '#ea5545'
+agFill(map112)[ag_Sep2019_table8_14] <- '#ef9b20'
+agFill(map112)[ag_Sep2019_table8_15] <- '#ede15b'
+p_map112 <- ggplot(map112) + ggtitle('map 112')
+p_map112
+
+
+#################### MAP 113 ####################
+#### colered by tables
+agSize(map113) <- 5
+agFill(map113) <- 'grey50'
+ag_Sep2019_table8_17 <- agNames(map113) %in% c("NYMC X-327(A/Kansas/14/17)|2017-12-14|Ex/E1","A/Champagne Ardenne/1908/2019|2019-04-10|MDCK2/SIAT1","A/Estonia/119303/2019|2019-02-11|SIAT2/SIAT2","A/Torino/544/2019|2019-02-19|SIAT3/SIAT2","A/Moscow/127/2019|2019-03-01|SIAT1/SIAT1","A/Torino/780/2019|2019-03-06|SIAT3/SIAT2","A/Czech Republic/1031/2019|2019-03-06|MDCK4/SIAT1","A/Palermo/20/2019|2019-03-06|SIAT4/SIAT2","A/Moscow/146/2019|2019-03-10|SIAT1/SIAT1","A/Parma/379/2019|2019-03-18|SIAT3/SIAT2",
+	"A/Nord Pas de Calais/1803/2019|2019-03-26|MDCK2/SIAT1","A/South Africa/R06219/2019|2019-05-31|SV/SIAT1","A/Parma/353/2019|2019-02-26|SIAT4/SIAT1","A/Palermo/12/2019|2019-02-27|SIAT3/SIAT1","A/Palermo/13/2019|2019-03-05|SIAT3/SIAT1","A/Torino/771/2019|2019-03-05|SIAT3/SIAT2","A/Parma/361/2019|2019-03-08|SIAT3/SIAT1","A/Parma/373/2019|2019-03-11|SIAT2SIAT1","A/Parma/377/2019|2019-03-15|SIAT2SIAT1","A/Basse Normandie/1798/2019|2019-03-26|SIAT1",
+	"A/Centre/1846/2019|2019-03-30|MDCK1/SIAT1","A/Brest/1998/2019|2019-04-07|MDCK1/SIAT1","A/Brest/1999/2019|2019-04-08|MDCK1/SIAT1","A/Picardie/1898/2019|2019-04-08|MDCK1/SIAT1","A/Czech Republic/1275/2019|2019-04-10|MDCK3/SIAT1","A/Brest/2002/2019|2019-04-11|MDCK1/SIAT1","A/Brest/2001/2019|2019-04-11|MDCK1/SIAT1","A/Bretagne/1913/2019|2019-04-11|MDCK1/SIAT1")
+ag_Sep2019_table8_18 <- agNames(map113) %in% c("NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1","A/England/fmhwY2NxZm9pZg/2018|2018-12-19|SIAT3/SIAT1","A/England/138/2019|2019-01-28|SIAT3/SIAT1","A/Bosnia and Herzegovia/119G/2019|2019-01-17|SIAT1/SIAT1","A/England/93/2019|2019-01-31|MDCK2/SIAT1/SIAT1","A/England/95/2019|2019-02-04|SIAT3/SIAT1","A/Sydney/53/2019|2019-03-08|E3/E1","A/New Caledonia/59/2019|2019-04-02|E3/E1","A/St. Petersburg/1092V/2019|2019-05-05|MDCK1/SIAT1","A/England/99/2019|2019-02-07|MDCK2/SIAT1/SIAT1",
+	"A/England/102/2019|2019-02-12|SIAT2/SIAT1","A/Sakha/3014V/2019|2019-04-16|MDCK1/SIAT1","A/Tomsk/5645V/2019|2019-04-20|MDCK1/SIAT1","A/Omsk/1008V/2019|2019-04-23|MDCK1/SIAT1","A/England/eWlsYW9mYWxlaQ/2019|2019-02-08|MDCK1/SIAT1/SIAT1","A/England/154/2019|2019-02-07|SIAT2/SIAT1","A/England/185/2019|2019-02-08|SIAT2/SIAT1","A/England/155/2019|2019-02-08|SIAT2/SIAT1","A/England/157/2019|2019-02-25|SIAT2/SIAT1","A/England/156/2019|2019-02-26|SIAT2/SIAT1",
+	"A/England/222/2019|2019-02-20|SIAT1/SIAT1")
+
+agFill(map113)[ag_Sep2019_table8_17] <- '#ea5545'
+agFill(map113)[ag_Sep2019_table8_18] <- '#ef9b20'
+p_map113 <- ggplot(map113) + ggtitle('map 113')
+p_map113
+
+
+#################### MAP 114 ####################
+#### colered by tables
+agSize(map114) <- 5
+agFill(map114) <- 'grey50'
+ag_Sep2019_table8_6 <- agNames(map114) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Valladolid/5/2019|2019-01-04|SIAT1/SIAT1","A/Valladolid/27/2019|2019-01-14|SIAT1/SIAT1","A/Soria/11/2019|2019-01-09|SIAT1/SIAT1","A/Rabat/352/2019|2019-01-07|MDCK1/SIAT1","A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1","A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1","A/Avila/3/2019|2019-01-03|SIAT1/SIAT1","A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1","A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1",
+	"A/Avila/15/2019|2019-01-10|SIAT1/SIAT1","A/Palencia/20/2019|2019-01-12|SIAT1/SIAT1","A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1","A/Valladolid/17/2019|2019-01-12|SIAT1/SIAT1","A/Valladolid/26/2019|2019-01-14|SIAT1/SIAT1","A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1","A/Valladolid/24/2019|2019-01-14|SIAT1/SIAT1","A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1")
+ag_Sep2019_table8_3 <- agNames(map114) %in% c("A/Netherlands/10260/2018|2018-02-15|E5/E1","A/Oman/5362/2018|2018-10-24|SIAT1","A/Guangxi-Babu/1913/2018|2018-10-29|MDCK2/SIAT1/SIAT1","A/Oman/5838/2018|2018-11-07|SIAT2","A/Oman/5804/2018|2018-11-07|SIAT2","A/Oman/6018/2018|2018-11-13|SIAT1","A/Oman/6106/2018|2018-11-15|SIAT1","A/Kharkiv/446/2018|2018-11-23|SIAT2/SIAT1","A/Kharkiv/444/2018|2018-11-23|SIAT2/SIAT1","A/Kyiv/463/2018|2018-11-30|SIAT1/SIAT1",
+	"A/Khmelnytskyi/544/2018|2018-12-06|SIAT2/SIAT1","A/Khmelnytskyi/545/2018|2018-12-08|SIAT2/SIAT1","A/Kyiv/487/2018|2018-12-10|SIAT1/SIAT1","A/Kyiv/491/2018|2018-12-13|SIAT2/SIAT1","A/Kyiv/493/2018|2018-12-14|SIAT1/SIAT1","A/Khmelnytskyi/547/2018|2018-12-16|SIAT2/SIAT1","A/Kyiv/510/2018|2018-12-17|SIAT2/SIAT1","A/Luxembourg/341/2019|2019-01-03|SIAT1","A/Luxembourg/1177/2019|2019-01-06|SIAT1","A/Luxembourg/2293/2019|2019-01-14|SIAT1",
+	"A/Macedonia/723/2019|2019-01-28|SIAT1","A/Beijing-Chaoyang/12841/2018|2018-11-26|MDCK1/SIAT1/SIAT1")
+ag_Sep2019_table8_5 <- agNames(map114) %in% c("A/Belgium/G0023/2019|2019-01-03|SIAT1","A/Belgium/S0275/2019|2019-01-15|SIAT1","A/Niedersachsen/81/2019|2019-01-25|C1/MDCK1","A/Nordrhein-Westfalen/53/2019|2019-02-11|C1/MDCK1","A/Bayern/53/2019|2019-02-11|C1/MDCK1","A/Berlin/28/2019|2019-02-11|C1/MDCK1","A/Nordrhein-Westfalen/60/2019|2019-02-18|C1/MDCK1","A/Bremen/12/2019|2019-02-18|C1/MDCK1","A/Hessen/34/2019|2019-02-18|C1/MDCK1","A/Berlin/37/2019|2019-02-21|C1/MDCK1",
+	"A/Baden-Wurttemberg/87/2019|2019-02-25|C1/MDCK1")
+
+agFill(map114)[ag_Sep2019_table8_6] <- '#ea5545'
+agFill(map114)[ag_Sep2019_table8_3] <- '#ef9b20'
+agFill(map114)[ag_Sep2019_table8_5] <- '#ede15b'
+p_map114 <- ggplot(map114) + ggtitle('map 114')
+p_map114
+
+
+#################### MAP 115 ####################
+#### colered by tables
+agSize(map115) <- 5
+agFill(map115) <- 'grey50'
+ag_Feb2020_table7_5 <- agNames(map115) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Switzerland/8060/2017|2017-12-12|E7/E1","IVR-197 (A/South Australia/34/2019)|2019-02-06|E5/D8/E1","A/Newcastle/82/2018|2018-12-23|E4/E1","A/Christchurch/516/2019|2019-04-03|E3/E1","A/Qatar/13-VI-19-0046447/2019|2019-08-08|SIAT1","A/Qatar/10-VI-19-0048255/2019|2019-08-21|SIAT1","A/Qatar/10-VI-19-0048252/2019|2019-08-21|SIAT1","A/Qatar/16-VI-19-0048499/2019|2019-08-22|SIAT1",
+	"A/Qatar/10-VI-19-0048332/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048317/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048393/2019|2019-08-22|SIAT1","A/Qatar/16-VI-19-0048823/2019|2019-08-25|SIAT1","A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1","A/Qatar/10-VI-19-0049653/2019|2019-08-29|SIAT1")
+ag_Feb2021_table7_3 <- agNames(map115) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4","A/England/538/2018|2018-02-26|MDCK1/SIAT3","A/Finland/183/2020|2020-03-02|MDCK1/SIAT2","A/Finland/183/2020|2020-03-02|E6","A/Tasmania/503/2020|2020-02-16|E5/E1","A/Hungary/64/2020|2020-02-08|MDCK1/SIAT2","A/Bangladesh/1001/2020|2020-09-05|SIAT1",
+	"A/Bangladesh/2002/2020|2020-10-01|SIAT1","A/Bangladesh/2004/2020|2020-10-04|SIAT1","A/Bangladesh/4005/2020|2020-10-04|SIAT1")
+ag_Feb2020_table7_12 <- agNames(map115) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2","A/Hong Kong/2671/2019|2019-06-17|E8/E1","A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5","A/Delaware/41/2019|2019-03-06|SIAT2/SIAT1","A/Aichi/218/2019|2019-04-02|MDCK2+SIAT2/SIAT1","A/Shanghai-Jiading/1977/2019|2019-12-03|C1/SIAT1/SIAT1","A/Tianjin-Nankai/3210/2019|2019-11-24|C2/SIAT1/SIAT1","A/Palermo/36/2019|2019-12-11|SIAT2/SIAT1","A/Palermo/02/2020|2020-01-02|SIAT2/SIAT1","A/Kanagawa/ZC1907/2019|2019-11-01|SIAT2/SIAT1",
+	"A/Jilin-Dongchang/1574/2019|2019-12-09|C1/SIAT1/SIAT1","A/Lithuania/MB42384/2019|2019-12-24|SIAT2/SIAT1","A/Parma/391/2019|2019-12-27|SIAT1/SIAT1","A/Lithuania/MB170/2019|2019-12-31|SIAT1/SIAT1","A/Norway/47/2020|2020-01-03|SIAT1/SIAT1","A/Poland/1521/2020|2020-01-05|SIAT1","A/Lithuania/MB398/2020|2020-01-05|SIAT1/SIAT1","A/Norway/108/2020|2020-01-06|SIAT1/SIAT1","A/Czech Republic/38/2020|2020-01-07|P2/SIAT1","A/Czech Republic/87/2020|2020-01-10|P1/SIAT1",
+	"A/Czech Republic/101/2020|2020-01-13|P1/SIAT1","A/Bucuresti/256299/2020|2020-01-13|MDCK1/SIAT1","A/Czech Republic/1691/2019|2019-12-05|P3/SIAT1","A/Poland/605/2019|2019-12-10|SIAT1")
+
+agFill(map115)[ag_Feb2020_table7_5] <- '#ea5545'
+agFill(map115)[ag_Feb2021_table7_3] <- '#ef9b20'
+agFill(map115)[ag_Feb2020_table7_12] <- '#ede15b'
+p_map115 <- ggplot(map115) + ggtitle('map 115')
+p_map115
+
+
+#################### MAP 116 ####################
+#### colered by tables
+agSize(map116) <- 5
+agFill(map116) <- 'grey50'
+ag_Feb2020_table7_5 <- agNames(map116) %in% c("IVR-197 (A/South Australia/34/2019)|2019-02-06|E5/D8/E1","A/England/538/2018|2018-02-26|MDCK1/SIAT4","A/Newcastle/82/2018|2018-12-23|E4/E1","A/South Australia/34/2019|2019-02-06|E6/E1","A/Christchurch/516/2019|2019-04-03|E3/E1","A/Qatar/13-VI-19-0046447/2019|2019-08-08|SIAT1","A/Qatar/10-VI-19-0048255/2019|2019-08-21|SIAT1","A/Qatar/10-VI-19-0048252/2019|2019-08-21|SIAT1","A/Qatar/16-VI-19-0048499/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048332/2019|2019-08-22|SIAT1",
+	"A/Qatar/10-VI-19-0048317/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048393/2019|2019-08-22|SIAT1","A/Qatar/16-VI-19-0048823/2019|2019-08-25|SIAT1","A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1","A/Qatar/10-VI-19-0049653/2019|2019-08-29|SIAT1")
+ag_Sep2019_table8_16 <- agNames(map116) %in% c("A/South Africa/R03804/2019|2019-04-12|MDCK1/SIAT1","A/South Africa/R03985/2019|2019-04-16|MDCK2/SIAT1","A/South Africa/R05118/2019|2019-05-13|MDCK2/SIAT1","A/South Africa/R05114/2019|2019-05-13|MDCK2/SIAT1","A/South Africa/R05652/2019|2019-05-21|MDCK2/SIAT1","A/South Africa/R05636/2019|2019-05-22|MDCK2/SIAT1","A/Iceland/12621/2019|2019-06-15|SIAT1","A/Hong Kong/2672/2019|2019-06-17|MDCK1/SIAT1","A/Hong Kong/2673/2019|2019-06-18|MDCK1/SIAT1","A/Jordan/30076/2019|2019-03-02|SIAT2",
+	"A/Iceland/4/2019|2019-03-04|MDCK1/SIAT1","A/South Africa/R05176/2019|2019-05-14|MDCK2/SIAT1","A/Iceland/71/2019|2019-05-19|MDCK1/SIAT1","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1","A/Hong Kong/2670/2019|2019-06-17|MDCK1/SIAT1","A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1","A/Hong Kong/2675/2019|2019-06-18|MDCK1/SIAT1","A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1","A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1","A/Iceland/59/2019|2019-04-15|MDCK1/SIAT1",
+	"A/Jordan/30121/2019|2019-04-17|SIAT1","A/South Africa/R05121/2019|2019-05-14|MDCK1/SIAT1","A/South Africa/R05619/2019|2019-05-20|MDCK2/SIAT1","A/South Africa/R06404/2019|2019-06-04|SV/SIAT1","A/South Africa/R06917/2019|2019-06-10|MDCK1/SIAT1","A/South Africa/R06867/2019|2019-06-10|MDCK1/SIAT1","A/Iceland/23/2019|2019-03-18|MDCK1/SIAT1")
+ag_Sep2021_table7_4 <- agNames(map116) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Cambodia/e0826360/2020|2020-07-16|E5/E2', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/California/55/2020|2020-10-12|SIAT2', 'A/Cameroon/16996/2020|2020-12-15|SIAT3')
+
+agFill(map116)[ag_Feb2020_table7_5] <- '#ea5545'
+agFill(map116)[ag_Sep2019_table8_16] <- '#ef9b20'
+agFill(map116)[ag_Sep2021_table7_4] <- '#ede15b'
+p_map116 <- ggplot(map116) + ggtitle('map 116')
+p_map116
+
+
+#################### MAP 117 ####################
+#### colered by tables
+agSize(map117) <- 5
+agFill(map117) <- 'grey50'
+ag_Feb2020_table7_5 <- agNames(map117) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Switzerland/8060/2017|2017-12-12|E7/E1","IVR-197 (A/South Australia/34/2019)|2019-02-06|E5/D8/E1","A/Newcastle/82/2018|2018-12-23|E4/E1","A/Christchurch/516/2019|2019-04-03|E3/E1","A/Qatar/13-VI-19-0046447/2019|2019-08-08|SIAT1","A/Qatar/10-VI-19-0048255/2019|2019-08-21|SIAT1","A/Qatar/10-VI-19-0048252/2019|2019-08-21|SIAT1","A/Qatar/16-VI-19-0048499/2019|2019-08-22|SIAT1",
+	"A/Qatar/10-VI-19-0048332/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048317/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048393/2019|2019-08-22|SIAT1","A/Qatar/16-VI-19-0048823/2019|2019-08-25|SIAT1","A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1","A/Qatar/10-VI-19-0049653/2019|2019-08-29|SIAT1")
+ag_Sep2020_table7_9 <- agNames(map117) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4","A/South Africa/9306/2019|2019-07-29|MDCK1/SIAT1","A/Lyon/CHU/R19.154.50/2019|2019-12-31|MDCK2/SIAT1","A/Grenoble/185/2020|2020-01-10|MDCK2/SIAT1","A/Lyon/162/2020|2020-01-16|MDCK2/SIAT1","A/South Africa/8914/2019|2019-07-18|MDCK1/SIAT1","A/Lyon/86/2020|2020-01-09|MDCK2/SIAT1","A/Lyon/219/2020|2020-01-20|MDCK2/SIAT1",
+	"A/South Africa/0803/2020|2020-01-22|MDCK2/SIAT1","A/South Africa/9493/2019|2019-07-30|MDCK2/SIAT1","A/South Africa/9550/2019|2019-08-01|MDCK2/SIAT1","A/Lyon/CHU/R19.146.85/2019|2019-12-19|MDCK4/SIAT1","A/Beirut/421/2020|2020-03-05|SIAT1","A/Cyprus/F835/2020|2020-02-02|SIAT1","A/Cyprus/F913/2020|2020-02-04|SIAT1","A/Cyprus/F926/2020|2020-02-05|SIAT1","A/Cyprus/F960/2020|2020-02-07|SIAT1","A/Portugal/GG66/2020|2020-02-08|SIAT1",
+	"A/Macedonia/450/2020|2020-02-10|SIAT1","A/Saida/294/2020|2020-02-13|SIAT1","A/Cyprus/F1108/2020|2020-02-16|SIAT1","A/Poland/222/2020|2020-02-17|SIAT1","A/Poland/220/2020|2020-02-17|SIAT1","A/Macedonia/509/2020|2020-02-17|SIAT1","A/Macedonia/505/2020|2020-02-17|SIAT1","A/Macedonia/501/2020|2020-02-17|SIAT1","A/Avignon/1286/2020|2020-02-17|MDCK2/SIAT1","A/Poland/2724/2020|2020-02-18|SIAT1",
+	"A/Bosnia and Herzegovina/318/2020|2020-02-18|SIAT1","A/Macedonia/593/2020|2020-02-21|SIAT1","A/Bosnia and Herzegovina/360/2020|2020-02-25|SIAT1","A/Poland/3278/2020|2020-02-26|SIAT1","A/Macedonia/648/2020|2020-02-27|SIAT1","A/Lyon/1631/2020|2020-03-01|MDCK3/SIAT1","A/Saint-Etienne/2539/2020|2020-02-11|MDCK3/SIAT1","A/Portugal/MS74/2020|2020-03-21|SIAT1","A/Macedonia/465/2020|2020-02-10|SIAT1","A/Macedonia/607/2020|2020-02-24|SIAT1",
+	"A/Beirut/331/2020|2020-02-25|SIAT1","A/Macedonia/650/2020|2020-02-27|SIAT1")
+ag_Feb2022_table9_1 <- agNames(map117) %in% c("A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Darwin/9/2021|2021-04-17|E3/E2","A/Stockholm/5/2021|2021-04-16|S0/S3","A/Michigan/173/2020|2020-11-19|SIAT2/SIAT1","A/Togo/771/2020|2020-10-16|SIAT4/SIAT1","A/Qatar/16-VI-21-3809350/2021|2021-08-03|SIAT2","A/Qatar/16-VI-21-3801619/2021|2021-08-03|SIAT1","A/Delaware/01/2021|2021-04-16|SIAT2/SIAT1","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Qatar/16-VI-21-3673175/2021|2021-07-27|SIAT0",
+	"A/Qatar/16-VI-21-3738537/2021|2021-07-30|SIAT2","A/Qatar/16-VI-21-3744895/2021|2021-07-31|SIAT1","A/Qatar/24-VI-21-3752470/2021|2021-08-01|SIAT1","A/Qatar/16-VI-21-3820344/2021|2021-08-02|SIAT1","A/Qatar/16-VI-21-3782139/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3778452/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3773931/2021|2021-08-02|SIAT2","A/Qatar/16-VI-21-3798042/2021|2021-08-03|SIAT1","A/Qatar/10-VI-21-3813895/2021|2021-08-04|SIAT1","A/Qatar/10-VI-21-3843467/2021|2021-08-05|SIAT1",
+	"A/Qatar/24-VI-21-3868954/2021|2021-08-06|SIAT1","A/Qatar/10-VI-21-3886441/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-3912649/2021|2021-08-08|SIAT1","A/Qatar/10-VI-21-3904627/2021|2021-08-08|SIAT2","A/Qatar/24-VI-21-3942034/2021|2021-08-09|SIAT1","A/Qatar/24-VI-21-3929575/2021|2021-08-09|SIAT2","A/Qatar/47-VI-21-3971441/2021|2021-08-10|SIAT1","A/Qatar/47-VI-21-3968065/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3962572/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3950368/2021|2021-08-10|SIAT1",
+	"A/Qatar/47-VI-21-3995023/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3985321/2021|2021-08-11|SIAT2","A/Qatar/24-VI-21-3980766/2021|2021-08-11|SIAT2","A/Qatar/16-VI-21-3994833/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3994707/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3999123/2021|2021-08-12|SIAT1","A/Qatar/24-VI-21-4041206/2021|2021-08-13|SIAT1","A/Qatar/24-VI-21-4031255/2021|2021-08-13|SIAT2","A/Qatar/16-VI-21-4035811/2021|2021-08-13|SIAT1","A/Qatar/16-VI-21-4035218/2021|2021-08-13|SIAT1",
+	"A/Qatar/39-VI-21-4147440/2021|2021-08-17|SIAT1","A/Qatar/39-VI-21-4154225/2021|2021-08-17|SIAT1")
+ag_Sep2021_table7_4 <- agNames(map117) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/California/55/2020|2020-10-12|SIAT2', 'A/Cameroon/16996/2020|2020-12-15|SIAT3')
+
+agFill(map117)[ag_Feb2020_table7_5] <- '#ea5545'
+agFill(map117)[ag_Sep2020_table7_9] <- '#ef9b20'
+agFill(map117)[ag_Feb2022_table9_1] <- '#ede15b'
+agFill(map117)[ag_Sep2021_table7_4] <- '#87bc45'
+p_map117 <- ggplot(map117) + ggtitle('map 117')
+p_map117
+
+
+#################### MAP 118 ####################
+#### colered by tables
+agSize(map118) <- 5
+agFill(map118) <- 'grey50'
+ag_Feb2020_table7_5 <- agNames(map118) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Switzerland/8060/2017|2017-12-12|E7/E1","IVR-197 (A/South Australia/34/2019)|2019-02-06|E5/D8/E1","A/Newcastle/82/2018|2018-12-23|E4/E1","A/Christchurch/516/2019|2019-04-03|E3/E1","A/Qatar/13-VI-19-0046447/2019|2019-08-08|SIAT1","A/Qatar/10-VI-19-0048255/2019|2019-08-21|SIAT1","A/Qatar/10-VI-19-0048252/2019|2019-08-21|SIAT1","A/Qatar/16-VI-19-0048499/2019|2019-08-22|SIAT1",
+	"A/Qatar/10-VI-19-0048332/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048317/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048393/2019|2019-08-22|SIAT1","A/Qatar/16-VI-19-0048823/2019|2019-08-25|SIAT1","A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1","A/Qatar/10-VI-19-0049653/2019|2019-08-29|SIAT1")
+ag_Sep2020_table7_1 <- agNames(map118) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Netherlands/01624/2019|2019-11-27|hCK1/SIAT1', 'A/Netherlands/10267/2019|2019-12-02|MDCK-MIX2/SIAT1', 'A/Netherlands/01672/2019|2019-12-04|hCK1/SIAT1', 'A/Netherlands/10268/2019|2019-12-10|MDCK-MIX3/SIAT1', 'A/Netherlands/10273/2019|2019-12-16|MDCK-MIX2/SIAT1', 'A/Netherlands/10279/2019|2019-12-20|MDCK-MIX2/SIAT1', 'A/Lithuania/MB42123/2019|2019-12-20|SIAT1/SIAT1')
+ag_Sep2021_table7_5 <- agNames(map118) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Cambodia/e0826360/2020|2020-07-16|E5/E2', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'A/Norway/10230/2021|2021-04-14|SIAT1')
+
+agFill(map118)[ag_Feb2020_table7_5] <- '#ea5545'
+agFill(map118)[ag_Sep2020_table7_1] <- '#ef9b20'
+agFill(map118)[ag_Sep2021_table7_5] <- '#ede15b'
+p_map118 <- ggplot(map118) + ggtitle('map 118')
+p_map118
+
+
+#################### MAP 119 ####################
+#### colered by tables
+agSize(map119) <- 5
+agFill(map119) <- 'grey50'
+ag_Feb2020_table7_5 <- agNames(map119) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Switzerland/8060/2017|2017-12-12|E7/E1","IVR-197 (A/South Australia/34/2019)|2019-02-06|E5/D8/E1","A/Newcastle/82/2018|2018-12-23|E4/E1","A/South Australia/34/2019|2019-02-06|E6/E1","A/Christchurch/516/2019|2019-04-03|E3/E1","A/Qatar/13-VI-19-0046447/2019|2019-08-08|SIAT1","A/Qatar/10-VI-19-0048255/2019|2019-08-21|SIAT1","A/Qatar/10-VI-19-0048252/2019|2019-08-21|SIAT1",
+	"A/Qatar/16-VI-19-0048499/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048332/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048317/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048393/2019|2019-08-22|SIAT1","A/Qatar/16-VI-19-0048823/2019|2019-08-25|SIAT1","A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1","A/Qatar/10-VI-19-0049653/2019|2019-08-29|SIAT1")
+ag_Feb2021_table7_2 <- agNames(map119) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/45/2019|2018-12-24|SIAT5","A/Hong Kong/703/2020|2020-03-07|MDCK1/SIAT1","A/Hong Kong/709/2020|2020-03-15|MDCK1/SIAT1","A/Tunisia/3442/2020|2020-03-06|SIAT1","A/Tunisia/3085/2020|2020-03-04|SIAT1","A/Tunisia/3666/2020|2020-03-11|SIAT5","A/Hong Kong/711/2020|2020-03-20|MDCK1/SIAT1","A/Hong Kong/701/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1",
+	"A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/705/2020|2020-03-12|MDCK1/SIAT1","A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Cambodia/925256/2020|2020-09-25|SIAT1")
+ag_Sep2021_table7_10 <- agNames(map119) %in% c("A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Denmark/3264/2019|2019-10-25|SIAT5","A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Bangladesh/4005/2020|2020-10-04|SIAT2","A/Stockholm/5/2021|2021-04-16|S0/S2","A/Kansas/14/2017|2017-12-14|SIAT3/SIAT1","A/Norway/16606/2021|2021-08-02|hCK1/SIAT1","A/Norway/16960/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-4043041/2021|2021-08-08|SIAT1","A/Qatar/16-VI-21-4036102/2021|2021-08-08|SIAT1",
+	"A/Qatar/47-VI-21-3991750/2021|2021-08-09|SIAT1","A/Qatar/24-VI-21-3986733/2021|2021-08-09|SIAT1","A/Qatar/10-VI-21-3994025/2021|2021-08-09|SIAT1","A/Qatar/10-VI-21-3976292/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3948134/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3956954/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3942752/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3936112/2021|2021-08-11|SIAT1","A/Qatar/10-VI-21-3914545/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3909543/2021|2021-08-13|SIAT1",
+	"A/Netherlands/00007/2021|2021-08-13|SIAT1","A/Ghana/1344/2021|2021-07-05|SIAT1")
+ag_Sep2022_table10_17 <- agNames(map119) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT4","A/Cambodia/925256/2020|2020-09-25|SIAT5","A/Bangladesh/4005/2020|2020-10-04|SIAT3","A/Stockholm/5/2021|2021-04-16|S0/S3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Darwin/9/2021|2021-04-17|E3/E4","A/Orenburg/5/2022|2022-01-14|MDCK2/SIAT1/SIAT1","A/Dakar/02/2022|2022-01-19|SIAT1","A/Birobidjan/12/2022|2022-01-20|SIAT3/SIAT1","A/FVG-Trieste/05/2022|2022-01-25|SIAT2/SIAT1",
+	"A/Parma/2/2022|2022-02-02|SIAT4/SIAT1","A/FVG-Trieste/13/2022|2022-02-15|SIAT2/SIAT1","A/FVG-Trieste/16/2022|2022-02-17|SIAT2/SIAT1","A/Milano/30/2022|2022-03-14|SIAT4/SIAT1","A/Sassari/2/2022|2022-03-16|SIAT1/SIAT1","A/Sassari/4/2022|2022-03-29|SIAT1/SIAT1","A/Sassari/7/2022|2022-04-01|SIAT1/SIAT1","A/Sassari/9/2022|2022-04-08|SIAT1/SIAT1","A/Perugia/23/2022|2022-04-12|SIAT3/SIAT1","A/Bolzano/21/2022|2022-04-13|SIAT2/SIAT1",
+	"A/FVG-Trieste/366/2022|2022-04-14|SIAT3/SIAT1","A/Milano/112/2022|2022-05-03|SIAT3/SIAT1","A/Milano/37/2022|2022-03-14|SIAT3/SIAT1","A/Parma/51/2022|2022-03-08|SIAT3/SIAT1","A/Bolzano/16/2022|2022-03-14|SIAT2/SIAT1","A/Milano/32/2022|2022-03-16|SIAT3/SIAT1","A/FVG-Trieste/385/2022|2022-04-22|SIAT3/SIAT1","A/FVG-Trieste/381/2022|2022-04-22|SIAT3/SIAT1","A/Bolzano/24/2022|2022-04-29|SIAT2/SIAT1","A/Dakar/05/2022|2022-05-09|SIAT1",
+	"A/Dakar/23/2022|2022-05-10|SIAT1","A/Dakar/15/2022|2022-05-17|SIAT1","A/Dakar/06/2022|2022-05-23|SIAT1","A/Dakar/08/2022|2022-05-27|SIAT1","A/Dakar/21/2022|2022-06-09|SIAT1","A/Dakar/25/2022|2022-06-10|SIAT1","A/Dakar/24/2022|2022-06-13|SIAT1","A/Dakar/22/2022|2022-06-16|SIAT1")
+
+agFill(map119)[ag_Feb2020_table7_5] <- '#ea5545'
+agFill(map119)[ag_Feb2021_table7_2] <- '#ef9b20'
+agFill(map119)[ag_Sep2021_table7_10] <- '#ede15b'
+agFill(map119)[ag_Sep2022_table10_17] <- '#87bc45'
+p_map119 <- ggplot(map119) + ggtitle('map 119')
+p_map119
+
+
+#################### MAP 120 ####################
+#### colered by tables
+agSize(map120) <- 5
+agFill(map120) <- 'grey50'
+ag_Feb2020_table7_5 <- agNames(map120) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Switzerland/8060/2017|2017-12-12|E7/E1","IVR-197 (A/South Australia/34/2019)|2019-02-06|E5/D8/E1","A/Newcastle/82/2018|2018-12-23|E4/E1","A/South Australia/34/2019|2019-02-06|E6/E1","A/Christchurch/516/2019|2019-04-03|E3/E1","A/Qatar/13-VI-19-0046447/2019|2019-08-08|SIAT1","A/Qatar/10-VI-19-0048255/2019|2019-08-21|SIAT1","A/Qatar/10-VI-19-0048252/2019|2019-08-21|SIAT1",
+	"A/Qatar/16-VI-19-0048499/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048332/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048317/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048393/2019|2019-08-22|SIAT1","A/Qatar/16-VI-19-0048823/2019|2019-08-25|SIAT1","A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1","A/Qatar/10-VI-19-0049653/2019|2019-08-29|SIAT1")
+ag_Feb2021_table7_2 <- agNames(map120) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/45/2019|2018-12-24|SIAT5","A/Hong Kong/703/2020|2020-03-07|MDCK1/SIAT1","A/Hong Kong/709/2020|2020-03-15|MDCK1/SIAT1","A/Tunisia/3442/2020|2020-03-06|SIAT1","A/Tunisia/3085/2020|2020-03-04|SIAT1","A/Tunisia/3666/2020|2020-03-11|SIAT5","A/Hong Kong/711/2020|2020-03-20|MDCK1/SIAT1","A/Hong Kong/701/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1",
+	"A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/705/2020|2020-03-12|MDCK1/SIAT1","A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Cambodia/925256/2020|2020-09-25|SIAT1")
+ag_Sep2021_table7_10 <- agNames(map120) %in% c("A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Bangladesh/4005/2020|2020-10-04|SIAT2","A/Stockholm/5/2021|2021-04-16|S0/S2","A/Kansas/14/2017|2017-12-14|SIAT3/SIAT1","A/Norway/16606/2021|2021-08-02|hCK1/SIAT1","A/Norway/16960/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-4043041/2021|2021-08-08|SIAT1","A/Qatar/16-VI-21-4036102/2021|2021-08-08|SIAT1","A/Qatar/47-VI-21-3991750/2021|2021-08-09|SIAT1",
+	"A/Qatar/24-VI-21-3986733/2021|2021-08-09|SIAT1","A/Qatar/10-VI-21-3994025/2021|2021-08-09|SIAT1","A/Qatar/10-VI-21-3976292/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3948134/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3956954/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3942752/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3936112/2021|2021-08-11|SIAT1","A/Qatar/10-VI-21-3914545/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3909543/2021|2021-08-13|SIAT1","A/Netherlands/00007/2021|2021-08-13|SIAT1",
+	"A/Ghana/1344/2021|2021-07-05|SIAT1")
+ag_Feb2022_table9_9 <- agNames(map120) %in% c("A/Cambodia/925256/2020|2020-09-25|SIAT5","A/Bangladesh/4005/2020|2020-10-04|SIAT3","A/Darwin/9/2021|2021-04-17|E3/E2","A/Stockholm/5/2021|2021-04-16|S0/S3","A/Parma/02/2021|2021-11-03|SIAT2/SIAT1","A/Parma/03/2021|2021-11-14|SIAT2/SIAT1","A/Parma/04/2021|2021-11-22|SIAT2/SIAT1","A/Israel/R-6982/2021|2021-09-12|Px/SIAT1","A/Israel/R-6983/2021|2021-09-19|Px/SIAT1","A/Milano/01/2021|2021-09-26|SIAT3/SIAT1",
+	"A/Iran/Mehr28/2021|2021-10-14|SIAT3/SIAT1","A/Roma/01/2021|2021-10-20|SIAT3/SIAT1","A/Roma/02/2021|2021-10-27|SIAT3/SIAT1","A/Iran/Aban12/2021|2021-10-28|SIAT3/SIAT1","A/Iran/Aban11/2021|2021-10-30|SIAT3/SIAT1","A/Iran/83/Ab/8A/2021|2021-11-03|SIAT4/SIAT1","A/Iran/82/Ab/8A/2021|2021-11-03|SIAT4/SIAT2","A/Iran/81/Ab/18A/2021|2021-11-03|SIAT4/SIAT1","A/Iran/80/Ab/8A/2021|2021-11-03|SIAT4/SIAT1","A/Roma/03/2021|2021-11-03|SIAT2/SIAT1",
+	"A/Iran/90/Ab/8A/2021|2021-11-04|SIAT5/SIAT1","A/Iran/Aban17A/2021|2021-11-06|SIAT5/SIAT1","A/Iran/86/Ab/8A/2021|2021-11-09|SIAT4/SIAT1","A/Israel/R-6986/2021|2021-11-09|Px/SIAT1","A/Israel/S-1/2021|2021-11-09|Px/SIAT1","A/Israel/S-2/2021|2021-11-09|Px/SIAT1","A/Israel/S-3/2021|2021-11-09|Px/SIAT1","A/Israel/S-7/2021|2021-11-09|Px/SIAT1","A/Iran/Aban30/28/2021|2021-11-17|SIAT5/SIAT1","A/Parma/01/2021|2021-11-17|SIAT4/SIAT1",
+	"A/Iran/Ab29A/10/2021|2021-11-18|SIAT5/SIAT1","A/Israel/B-145/2021|2021-11-22|Px/SIAT1","A/Iran/Azar8/29/2021|2021-11-27|SIAT5/SIAT1","A/Iran/60/Azar17B/2021|2021-12-06|SIAT5/SIAT1","A/Iran/15/Azar21/2021|2021-12-06|SIAT5/SIAT1","A/Hungary/9/2021|2021-12-07|MDCK1/SIAT1","A/Hungary/8/2021|2021-12-07|MDCK1/SIAT1","A/Romania/493221/2021|2021-12-15|SIAT2/SIAT1","A/Romania/493220/2021|2021-12-15|SIAT2/SIAT1","A/Romania/493219/2021|2021-12-16|SIAT2/SIAT1",
+	"A/Romania/495026/2021|2021-12-29|SIAT2/SIAT1","A/Romania/495025/2021|2021-12-29|SIAT2/SIAT1","A/Hungary/1/2022|2022-01-03|MDCK1/SIAT1","A/Romania/495703/2022|2022-01-07|SIAT1/SIAT1","A/Romania/495700/2022|2022-01-07|SIAT1/SIAT1","A/Hungary/2/2022|2022-01-11|MDCK1/SIAT1","A/Romania/496796/2022|2022-01-13|SIAT1/SIAT1")
+
+agFill(map120)[ag_Feb2020_table7_5] <- '#ea5545'
+agFill(map120)[ag_Feb2021_table7_2] <- '#ef9b20'
+agFill(map120)[ag_Sep2021_table7_10] <- '#ede15b'
+agFill(map120)[ag_Feb2022_table9_9] <- '#87bc45'
+p_map120 <- ggplot(map120) + ggtitle('map 120')
+p_map120
+
+
+#################### MAP 121 ####################
+#### colered by tables
+agSize(map121) <- 5
+agFill(map121) <- 'grey50'
+ag_Feb2020_table7_5 <- agNames(map121) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Switzerland/8060/2017|2017-12-12|E7/E1","IVR-197 (A/South Australia/34/2019)|2019-02-06|E5/D8/E1","A/Newcastle/82/2018|2018-12-23|E4/E1","A/South Australia/34/2019|2019-02-06|E6/E1","A/Christchurch/516/2019|2019-04-03|E3/E1","A/Qatar/13-VI-19-0046447/2019|2019-08-08|SIAT1","A/Qatar/10-VI-19-0048255/2019|2019-08-21|SIAT1","A/Qatar/10-VI-19-0048252/2019|2019-08-21|SIAT1",
+	"A/Qatar/16-VI-19-0048499/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048332/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048317/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048393/2019|2019-08-22|SIAT1","A/Qatar/16-VI-19-0048823/2019|2019-08-25|SIAT1","A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1","A/Qatar/10-VI-19-0049653/2019|2019-08-29|SIAT1")
+ag_Feb2021_table7_2 <- agNames(map121) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/45/2019|2018-12-24|SIAT5","A/Hong Kong/703/2020|2020-03-07|MDCK1/SIAT1","A/Hong Kong/709/2020|2020-03-15|MDCK1/SIAT1","A/Tunisia/3442/2020|2020-03-06|SIAT1","A/Tunisia/3085/2020|2020-03-04|SIAT1","A/Tunisia/3666/2020|2020-03-11|SIAT5","A/Hong Kong/711/2020|2020-03-20|MDCK1/SIAT1","A/Hong Kong/701/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1",
+	"A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/705/2020|2020-03-12|MDCK1/SIAT1","A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Cambodia/925256/2020|2020-09-25|SIAT1")
+ag_Sep2021_table7_10 <- agNames(map121) %in% c("A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Bangladesh/4005/2020|2020-10-04|SIAT2","A/Stockholm/5/2021|2021-04-16|S0/S2","A/Kansas/14/2017|2017-12-14|SIAT3/SIAT1","A/Norway/16606/2021|2021-08-02|hCK1/SIAT1","A/Norway/16960/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-4043041/2021|2021-08-08|SIAT1","A/Qatar/16-VI-21-4036102/2021|2021-08-08|SIAT1","A/Qatar/47-VI-21-3991750/2021|2021-08-09|SIAT1","A/Qatar/24-VI-21-3986733/2021|2021-08-09|SIAT1",
+	"A/Qatar/10-VI-21-3994025/2021|2021-08-09|SIAT1","A/Qatar/10-VI-21-3976292/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3948134/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3956954/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3942752/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3936112/2021|2021-08-11|SIAT1","A/Qatar/10-VI-21-3914545/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3909543/2021|2021-08-13|SIAT1","A/Netherlands/00007/2021|2021-08-13|SIAT1","A/Ghana/1344/2021|2021-07-05|SIAT1")
+ag_Feb2022_table9_7 <- agNames(map121) %in% c("A/Bangladesh/4005/2020|2020-10-04|SIAT3","A/Darwin/9/2021|2021-04-17|E3/E2","A/Stockholm/5/2021|2021-04-16|S0/S3","A/South Africa/R12902/2021|2021-08-27|MDCK3/SIAT1","A/Qatar/24-VI-21-4532193/2021|2021-08-30|SIAT1","A/Alaska/01/2021|2021-08-20|SIAT1","A/Stockholm/8/2021|2021-08-10|SIAT1/SIAT1","A/Orebro/1/2021|2021-08-21|SIAT1/SIAT1","A/Qatar/47-VI-21-4548906/2021|2021-08-31|SIAT1","A/Stockholm/9/2021|2021-09-06|SIAT1/SIAT1",
+	"A/South Africa/R14202/2021|2021-09-23|MDCK1/SIAT1","A/South Africa/R16482/2021|2021-10-18|MDCK2/SIAT1","A/South Africa/R13526/2021|2021-09-07|MDCK1/SIAT1","A/South Africa/R13867/2021|2021-09-16|MDCK1/SIAT1","A/South Africa/R15681/2021|2021-10-26|MDCK1/SIAT1","A/Qatar/47-VI-21-4610963/2021|2021-09-02|SIAT1","A/Qatar/16-VI-21-4634794/2021|2021-09-03|SIAT1","A/Qatar/15-VI-21-4746170/2021|2021-09-07|SIAT1","A/Qatar/24-VI-21-4774653/2021|2021-09-08|SIAT1","A/Minieh Dinieh.LBN/7496/2021|2021-11-23|SIAT1",
+	"A/Saida.LBN/7412/2021|2021-11-23|SIAT1","A/Qatar/10-VI-21-4573977/2021|2021-09-01|SIAT1","A/Qatar/26-VI-21-4617124/2021|2021-09-02|SIAT1","A/South Africa/R13807/2021|2021-09-13|MDCK1/SIAT1","A/Qatar/21-VI-21-4953403/2021|2021-09-15|SIAT1","A/England/213861328/2021|2021-09-19|MDCK1/SIAT1","A/South Africa/R14408/2021|2021-09-20|MDCK1/SIAT1","A/England/214021587/2021|2021-09-30|SIAT1/SIAT1","A/England/214040938/2021|2021-10-03|SIAT1/SIAT1","A/England/214040936/2021|2021-10-04|SIAT1/SIAT1",
+	"A/England/214100502/2021|2021-10-06|SIAT1/SIAT1","A/England/214100501/2021|2021-10-06|SIAT1/SIAT1","A/South Africa/R14774/2021|2021-10-07|MDCK2/SIAT1","A/England/214100499/2021|2021-10-07|MDCK1/SIAT1","A/England/214191723/2021|2021-10-12|MDCK1/SIAT1","A/England/214200532/2021|2021-10-13|SIAT1/SIAT1","A/Uppsala/1/2021|2021-10-21|SIAT1/SIAT1","A/South Africa/R15449/2021|2021-10-21|MDCK1/SIAT1","A/Netherlands/10068/2021|2021-10-24|MDCK-MIX2/SIAT2","A/Uppsala/3/2021|2021-10-26|SIAT1/SIAT1",
+	"A/South Africa/R15599/2021|2021-10-26|MDCK1/MDCK1","A/Netherlands/10083/2021|2021-10-28|MDCK-MIX2/SIAT2","A/England/214420670/2021|2021-10-28|MDCK1/SIAT1","A/Netherlands/10078/2021|2021-10-29|MDCK-MIX2/SIAT2","A/Uppsala/6/2021|2021-11-01|SIAT1/SIAT1","A/Sweden/1/2021|2021-11-03|SIAT1/SIAT1","A/Uppsala/8/2021|2021-11-03|SIAT1/SIAT1","A/Uppsala/11/2021|2021-11-09|SIAT1/SIAT1","A/Uppsala/12/2021|2021-11-10|SIAT1/SIAT1","A/Zghorta.LBN/7506/2021|2021-11-23|SIAT1",
+	"A/Zghorta.LBN/7491/2021|2021-11-23|SIAT1","A/Akkar.LBN/7377/2021|2021-11-23|SIAT1","A/Tripoli.LBN/7350/2021|2021-11-23|SIAT1","A/Tripoli.LBN/7347/2021|2021-11-23|SIAT1","A/Tripoli.LBN/7325/2021|2021-11-23|SIAT1","A/Zghorta.LBN/7493/2021|2021-11-24|SIAT1","A/Baabda.LBN/7463/2021|2021-11-24|SIAT1","A/Baabda.LBN/7462/2021|2021-11-24|SIAT1","A/Navarra/9870/2021|2021-11-24|SIAT1/SIAT2","A/Netherlands/10162/2021|2021-11-26|MDCK-MIX2/SIAT1",
+	"A/Netherlands/10161/2021|2021-11-28|MDCK-MIX2/SIAT1","A/Netherlands/10163/2021|2021-11-30|MDCK-MIX2/SIAT1","A/Netherlands/10174/2021|2021-12-01|MDCK-MIX2/SIAT1","A/Netherlands/10168/2021|2021-12-01|MDCK-MIX2/SIAT1","A/Netherlands/10177/2021|2021-12-02|MDCK-MIX2/SIAT1")
+
+agFill(map121)[ag_Feb2020_table7_5] <- '#ea5545'
+agFill(map121)[ag_Feb2021_table7_2] <- '#ef9b20'
+agFill(map121)[ag_Sep2021_table7_10] <- '#ede15b'
+agFill(map121)[ag_Feb2022_table9_7] <- '#87bc45'
+p_map121 <- ggplot(map121) + ggtitle('map 121')
+p_map121
+
+
+#################### MAP 122 ####################
+#### colered by tables
+agSize(map122) <- 5
+agFill(map122) <- 'grey50'
+ag_Feb2020_table7_5 <- agNames(map122) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Switzerland/8060/2017|2017-12-12|E7/E1","IVR-197 (A/South Australia/34/2019)|2019-02-06|E5/D8/E1","A/Newcastle/82/2018|2018-12-23|E4/E1","A/South Australia/34/2019|2019-02-06|E6/E1","A/Christchurch/516/2019|2019-04-03|E3/E1","A/Qatar/13-VI-19-0046447/2019|2019-08-08|SIAT1","A/Qatar/10-VI-19-0048255/2019|2019-08-21|SIAT1","A/Qatar/10-VI-19-0048252/2019|2019-08-21|SIAT1",
+	"A/Qatar/16-VI-19-0048499/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048332/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048317/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048393/2019|2019-08-22|SIAT1","A/Qatar/16-VI-19-0048823/2019|2019-08-25|SIAT1","A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1","A/Qatar/10-VI-19-0049653/2019|2019-08-29|SIAT1")
+ag_Feb2021_table7_2 <- agNames(map122) %in% c("A/Hong Kong/45/2019|2018-12-24|SIAT5","A/Hong Kong/703/2020|2020-03-07|MDCK1/SIAT1","A/Hong Kong/709/2020|2020-03-15|MDCK1/SIAT1","A/Tunisia/3442/2020|2020-03-06|SIAT1","A/Tunisia/3085/2020|2020-03-04|SIAT1","A/Tunisia/3666/2020|2020-03-11|SIAT5","A/Hong Kong/711/2020|2020-03-20|MDCK1/SIAT1","A/Hong Kong/701/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1","A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1",
+	"A/Hong Kong/705/2020|2020-03-12|MDCK1/SIAT1","A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Cambodia/925256/2020|2020-09-25|SIAT1")
+ag_Feb2021_table7_3 <- agNames(map122) %in% c('A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'A/Finland/183/2020|2020-03-02|MDCK1/SIAT2', 'A/Finland/183/2020|2020-03-02|E6', 'A/Tasmania/503/2020|2020-02-16|E5/E1', 'A/Hungary/64/2020|2020-02-08|MDCK1/SIAT2', 'A/Bangladesh/1001/2020|2020-09-05|SIAT1', 'A/Bangladesh/2002/2020|2020-10-01|SIAT1', 'A/Bangladesh/2004/2020|2020-10-04|SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT1')
+ag_Sep2021_table7_10 <- agNames(map122) %in% c("A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Denmark/3264/2019|2019-10-25|SIAT5","A/Cambodia/e0826360/2020|2020-07-16|E5/E2","A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Bangladesh/4005/2020|2020-10-04|SIAT2","A/Stockholm/5/2021|2021-04-16|S0/S2","A/Kansas/14/2017|2017-12-14|SIAT3/SIAT1","A/Norway/16606/2021|2021-08-02|hCK1/SIAT1","A/Norway/16960/2021|2021-08-07|SIAT1","A/Qatar/24-VI-21-4043041/2021|2021-08-08|SIAT1",
+	"A/Qatar/16-VI-21-4036102/2021|2021-08-08|SIAT1","A/Qatar/47-VI-21-3991750/2021|2021-08-09|SIAT1","A/Qatar/24-VI-21-3986733/2021|2021-08-09|SIAT1","A/Qatar/10-VI-21-3994025/2021|2021-08-09|SIAT1","A/Qatar/10-VI-21-3976292/2021|2021-08-10|SIAT1","A/Qatar/24-VI-21-3948134/2021|2021-08-10|SIAT1","A/Qatar/16-VI-21-3956954/2021|2021-08-11|SIAT1","A/Qatar/24-VI-21-3942752/2021|2021-08-11|SIAT1","A/Qatar/16-VI-21-3936112/2021|2021-08-11|SIAT1","A/Qatar/10-VI-21-3914545/2021|2021-08-11|SIAT1",
+	"A/Qatar/24-VI-21-3909543/2021|2021-08-13|SIAT1","A/Netherlands/00007/2021|2021-08-13|SIAT1","A/Ghana/1344/2021|2021-07-05|SIAT1")
+
+agFill(map122)[ag_Feb2020_table7_5] <- '#ea5545'
+agFill(map122)[ag_Feb2021_table7_2] <- '#ef9b20'
+agFill(map122)[ag_Feb2021_table7_3] <- '#ede15b'
+agFill(map122)[ag_Sep2021_table7_10] <- '#87bc45'
+p_map122 <- ggplot(map122) + ggtitle('map 122')
+p_map122
+
+
+#################### MAP 123 ####################
+#### colered by tables
+agSize(map123) <- 5
+agFill(map123) <- 'grey50'
+ag_Sep2021_table7_6 <- agNames(map123) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/California/55/2020|2020-10-12|SIAT2/SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1', 'A/Darwin/6/2021|2021-03-16|E4/E1', 'A/Darwin/9/2021|2021-04-17|E3/E1')
+ag_Feb2022_table9_11 <- agNames(map123) %in% c("A/Stockholm/5/2021|2021-04-16|S0/S3","A/South Africa/R14962/2021|2021-10-12|MDCK3/MDCK2/SIAT1","A/Ireland/92285/2021|2021-10-21|SIAT1","A/Ireland/2707/2021|2021-12-05|SIAT1","A/Berlin/4/2021|2021-12-16|P2/SIAT1","A/Ireland/6979/2021|2021-12-20|SIAT1","A/Nordrhein-Westfalen/1/2021|2021-12-20|P1/SIAT1","A/Rheinland-Pfalz/2/2021|2021-12-22|P1/SIAT1","A/Nordrhein-Westfalen/2/2021|2021-12-22|P1/SIAT1","A/Berlin/5/2021|2021-12-23|P1/SIAT1",
+	"A/Baden-Wurttemberg/2/2021|2021-12-27|P1/SIAT1","A/Nordrhein-Westfalen/3/2021|2021-12-28|P1/SIAT1","A/Berlin/6/2021|2021-12-29|P1/SIAT1","A/Berlin/7/2021|2021-12-31|P1/SIAT1","A/Saarland/1/2022|2022-01-03|P1/SIAT1","A/Thuringen/1/2022|2022-01-03|P1/SIAT1","A/Kyiv/41/2022|2022-01-04|SIATx/SIAT1","A/Norway/409/2022|2022-01-04|SIAT1","A/Hessen/1/2022|2022-01-04|P1/SIAT1","A/Kyiv/7/2022|2022-01-05|SIATx/SIAT1",
+	"A/Kyiv/5/2022|2022-01-05|SIATx/SIAT1","A/Kyiv/4/2022|2022-01-05|SIATx/SIAT1","A/Kyiv/3/2022|2022-01-05|SIATx/SIAT1","A/Kyiv/1/2022|2022-01-05|SIATx/SIAT1","A/Norway/530/2022|2022-01-06|SIAT1","A/Norway/676/2022|2022-01-11|SIAT1","A/Serbia/206/2022|2022-01-13|SIAT1","A/Serbia/416478/2022|2022-01-17|SIAT1","A/Serbia/416476/2022|2022-01-17|SIAT1","A/Serbia/416473/2022|2022-01-17|SIAT1",
+	"A/Serbia/336/2022|2022-01-17|SIAT1")
+ag_Sep2022_table10_8 <- agNames(map123) %in% c("A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT2","A/Netherlands/10066/2021|2021-10-20|MDCK-MIX2/SIAT1","A/Netherlands/10067/2021|2021-10-21|MDCK-MIX2/SIAT2","A/Netherlands/10122/2021|2021-10-26|MDCK-MIX2/SIAT2","A/Netherlands/10065/2021|2021-10-29|MDCK-MIX2/SIAT1","A/Netherlands/10121/2021|2021-10-31|MDCK-MIX2/SIAT2","A/Netherlands/10109/2021|2021-10-31|MDCK-MIX2/SIAT1","A/Netherlands/10108/2021|2021-11-07|MDCK-MIX2/SIAT2","A/Netherlands/10128/2021|2021-11-08|MDCK-MIX2/SIAT1",
+	"A/Netherlands/10119/2021|2021-11-09|MDCK-MIX2/SIAT1","A/Netherlands/10114/2021|2021-11-09|MDCK-MIX2/SIAT1","A/Netherlands/10129/2021|2021-11-10|MDCK-MIX2/SIAT1","A/Netherlands/10138/2021|2021-11-15|MDCK-MIX2/SIAT1","A/Netherlands/10137/2021|2021-11-16|MDCK-MIX2/SIAT1","A/Netherlands/10132/2021|2021-11-16|MDCK-MIX2/SIAT1","A/Netherlands/10145/2021|2021-11-17|MDCK-MIX2/SIAT1","A/Netherlands/10144/2021|2021-11-17|MDCK-MIX2/SIAT1","A/Netherlands/10140/2021|2021-11-17|MDCK-MIX2/SIAT1","A/Netherlands/10148/2021|2021-11-18|MDCK-MIX2/SIAT1",
+	"A/Netherlands/10147/2021|2021-11-20|MDCK-MIX2/SIAT2","A/Netherlands/10150/2021|2021-11-23|MDCK-MIX2/SIAT1","A/Netherlands/10151/2021|2021-11-24|MDCK-MIX2/SIAT1","A/Netherlands/10154/2021|2021-11-25|MDCK-MIX2/SIAT1","A/Kosova/78/2021|2021-11-29|SIAT1","A/Netherlands/10180/2021|2021-12-02|MDCK-MIX2/SIAT1","A/Netherlands/10182/2021|2021-12-03|MDCK-MIX2/SIAT1","A/Kosova/114/2021|2021-12-03|SIAT1","A/Netherlands/10202/2021|2021-12-06|MDCK-MIX2/SIAT1","A/Netherlands/10184/2021|2021-12-08|MDCK-MIX2/SIAT1",
+	"A/Albania/8441/2021|2021-12-10|SIAT1","A/Albania/8322/2021|2021-12-10|SIAT1","A/Netherlands/10203/2021|2021-12-11|MDCK-MIX2/SIAT1","A/Albania/8614/2021|2021-12-11|SIAT1","A/Kosova/368/2021|2021-12-14|SIAT1","A/Netherlands/10193/2021|2021-12-16|MDCK-MIX2/SIAT1","A/Albania/9833/2021|2021-12-16|SIAT1","A/Albania/9725/2021|2021-12-16|SIAT1","A/Albania/78/2021|2021-12-17|SIAT1","A/Albania/31/2021|2021-12-17|SIAT1",
+	"A/Netherlands/10204/2021|2021-12-18|MDCK-MIX2/SIAT1","A/Netherlands/10205/2021|2021-12-19|MDCK-MIX2/SIAT1","A/Netherlands/10194/2021|2021-12-19|MDCK-MIX2/SIAT1","A/Netherlands/10197/2021|2021-12-20|MDCK-MIX2/SIAT1","A/Netherlands/10195/2021|2021-12-20|MDCK-MIX2/SIAT2","A/Albania/622/2021|2021-12-20|SIAT1","A/Kosova/587/2021|2021-12-21|SIAT1","A/Albania/890/2021|2021-12-21|SIAT1","A/Albania/862/2021|2021-12-21|SIAT1","A/Kosova/607/2021|2021-12-22|SIAT1",
+	"A/Kosova/618/2021|2021-12-22|SIAT1","A/Netherlands/10215/2021|2021-12-23|MDCK-MIX1/SIAT1","A/Netherlands/10210/2021|2021-12-23|MDCK-MIX2/SIAT1","A/Netherlands/10208/2021|2021-12-26|MDCK-MIX2/SIAT1","A/Kosova/701/2021|2021-12-27|SIAT1","A/Kosova/710/2021|2021-12-27|SIAT1","A/Netherlands/10231/2021|2021-12-28|MDCK-MIX1/SIAT1","A/Netherlands/10230/2021|2021-12-28|MDCK-MIX1/SIAT1","A/Argentina/R21/2022|2022-01-09|SIAT2","A/Netherlands/10206/2021|2021-12-15|MDCK-MIX2/SIAT1")
+
+agFill(map123)[ag_Sep2021_table7_6] <- '#ea5545'
+agFill(map123)[ag_Feb2022_table9_11] <- '#ef9b20'
+agFill(map123)[ag_Sep2022_table10_8] <- '#ede15b'
+p_map123 <- ggplot(map123) + ggtitle('map 123')
+p_map123
+
+
+#################### MAP 124 ####################
+#### colered by tables
+agSize(map124) <- 5
+agFill(map124) <- 'grey50'
+ag_Sep2021_table7_6 <- agNames(map124) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/California/55/2020|2020-10-12|SIAT2/SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1', 'A/Darwin/6/2021|2021-03-16|E4/E1', 'A/Darwin/9/2021|2021-04-17|E3/E1')
+ag_Sep2022_table10_8 <- agNames(map124) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT4","A/England/214191723/2021|2021-10-12|MDCK1/SIAT2","A/Netherlands/10066/2021|2021-10-20|MDCK-MIX2/SIAT1","A/Netherlands/10067/2021|2021-10-21|MDCK-MIX2/SIAT2","A/Netherlands/10122/2021|2021-10-26|MDCK-MIX2/SIAT2","A/Netherlands/10065/2021|2021-10-29|MDCK-MIX2/SIAT1","A/Netherlands/10121/2021|2021-10-31|MDCK-MIX2/SIAT2","A/Netherlands/10109/2021|2021-10-31|MDCK-MIX2/SIAT1","A/Netherlands/10108/2021|2021-11-07|MDCK-MIX2/SIAT2","A/Netherlands/10128/2021|2021-11-08|MDCK-MIX2/SIAT1",
+	"A/Netherlands/10119/2021|2021-11-09|MDCK-MIX2/SIAT1","A/Netherlands/10114/2021|2021-11-09|MDCK-MIX2/SIAT1","A/Netherlands/10129/2021|2021-11-10|MDCK-MIX2/SIAT1","A/Netherlands/10138/2021|2021-11-15|MDCK-MIX2/SIAT1","A/Netherlands/10137/2021|2021-11-16|MDCK-MIX2/SIAT1","A/Netherlands/10132/2021|2021-11-16|MDCK-MIX2/SIAT1","A/Netherlands/10145/2021|2021-11-17|MDCK-MIX2/SIAT1","A/Netherlands/10144/2021|2021-11-17|MDCK-MIX2/SIAT1","A/Netherlands/10140/2021|2021-11-17|MDCK-MIX2/SIAT1","A/Netherlands/10148/2021|2021-11-18|MDCK-MIX2/SIAT1",
+	"A/Netherlands/10147/2021|2021-11-20|MDCK-MIX2/SIAT2","A/Netherlands/10150/2021|2021-11-23|MDCK-MIX2/SIAT1","A/Netherlands/10151/2021|2021-11-24|MDCK-MIX2/SIAT1","A/Netherlands/10154/2021|2021-11-25|MDCK-MIX2/SIAT1","A/Kosova/78/2021|2021-11-29|SIAT1","A/Netherlands/10180/2021|2021-12-02|MDCK-MIX2/SIAT1","A/Netherlands/10182/2021|2021-12-03|MDCK-MIX2/SIAT1","A/Kosova/114/2021|2021-12-03|SIAT1","A/Netherlands/10202/2021|2021-12-06|MDCK-MIX2/SIAT1","A/Netherlands/10184/2021|2021-12-08|MDCK-MIX2/SIAT1",
+	"A/Albania/8441/2021|2021-12-10|SIAT1","A/Albania/8322/2021|2021-12-10|SIAT1","A/Netherlands/10203/2021|2021-12-11|MDCK-MIX2/SIAT1","A/Albania/8614/2021|2021-12-11|SIAT1","A/Kosova/368/2021|2021-12-14|SIAT1","A/Netherlands/10193/2021|2021-12-16|MDCK-MIX2/SIAT1","A/Albania/9833/2021|2021-12-16|SIAT1","A/Albania/9725/2021|2021-12-16|SIAT1","A/Albania/78/2021|2021-12-17|SIAT1","A/Albania/31/2021|2021-12-17|SIAT1",
+	"A/Netherlands/10204/2021|2021-12-18|MDCK-MIX2/SIAT1","A/Netherlands/10205/2021|2021-12-19|MDCK-MIX2/SIAT1","A/Netherlands/10194/2021|2021-12-19|MDCK-MIX2/SIAT1","A/Netherlands/10197/2021|2021-12-20|MDCK-MIX2/SIAT1","A/Netherlands/10195/2021|2021-12-20|MDCK-MIX2/SIAT2","A/Albania/622/2021|2021-12-20|SIAT1","A/Kosova/587/2021|2021-12-21|SIAT1","A/Albania/890/2021|2021-12-21|SIAT1","A/Albania/862/2021|2021-12-21|SIAT1","A/Kosova/607/2021|2021-12-22|SIAT1",
+	"A/Kosova/618/2021|2021-12-22|SIAT1","A/Netherlands/10215/2021|2021-12-23|MDCK-MIX1/SIAT1","A/Netherlands/10210/2021|2021-12-23|MDCK-MIX2/SIAT1","A/Netherlands/10208/2021|2021-12-26|MDCK-MIX2/SIAT1","A/Kosova/701/2021|2021-12-27|SIAT1","A/Kosova/710/2021|2021-12-27|SIAT1","A/Netherlands/10231/2021|2021-12-28|MDCK-MIX1/SIAT1","A/Netherlands/10230/2021|2021-12-28|MDCK-MIX1/SIAT1","A/Argentina/R21/2022|2022-01-09|SIAT2","A/Netherlands/10206/2021|2021-12-15|MDCK-MIX2/SIAT1")
+ag_Feb2023_tableH3_10 <- agNames(map124) %in% c("A/Cambodia/e0826360/2020|2020-07-16|E5/E3","A/Darwin/9/2021|2021-04-17|E3/E4","A/Norway/24873/2021|2021-10-24|SIAT3","A/Norway/24873/2021|2021-10-24|E3/E1","A/Poland/97/2022|2022-05-09|SIAT2","A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2","A/Catalonia/NSVH161512067/2022|2022-09-14|SIAT1/SIAT3","A/Dakar/27/2022|2022-06-28|P1/SIAT1","A/Argentina/3155/2022|2022-08-31|SIAT2","A/Argentina/3151/2022|2022-09-05|SIAT1",
+	"A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1","A/Switzerland/18284/2022|2022-10-06|SIAT2/SIAT1","A/Burgos/257/2022|2022-10-13|SIAT1","A/Soria/213/2022|2022-10-13|SIAT1","A/Salamanca/198/2022|2022-10-13|SIAT1","A/Salamanca/196/2022|2022-10-13|SIAT1","A/Switzerland/18694/2022|2022-11-18|MDCK1/SIAT1","A/Palencia/118/2022|2022-10-13|SIAT1","A/Switzerland/39985/2022|2022-11-21|MDCK1/SIAT1","A/Switzerland/07426/2022|2022-11-17|SIAT1/SIAT1",
+	"A/Ireland/73304/2022|2022-11-23|SIAT1","A/Ireland/74535/2022|2022-11-28|SIAT2","A/Lithuania/48774/2022|2022-11-24|SIAT1","A/Burgos/82/2022|2022-10-13|SIAT1","A/Hong Kong/34/2022|2022-11-26|MDCK1/SIAT1","A/Switzerland/54601/2022|2022-11-01|MDCK1/SIAT1","A/Ireland/74250/2022|2022-11-27|SIAT2","A/Ireland/74511/2022|2022-11-29|SIAT2","A/Switzerland/76550/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/01284/2022|2022-12-05|SIAT1/SIAT1",
+	"A/Switzerland/89053/2022|2022-12-06|SIAT1/SIAT1","A/Switzerland/12082/2022|2022-12-08|SIAT1/SIAT1","A/Georgia/2369/2022|2022-11-24|SIAT1","A/Georgia/8/2022|*|SIAT1","A/Georgia/4/2022|*|SIAT1","A/Argentina/3486/2022|2022-10-01|SIAT1","A/Argentina/3498/2022|2022-09-29|SIAT1","A/Argentina/3485/2022|2022-10-01|SIAT1","A/Hong Kong/19/2022|2022-11-09|MDCK1/SIAT1","A/Hong Kong/22/2022|2022-11-13|MDCK1/SIAT1",
+	"A/Hong Kong/24/2022|2022-11-15|MDCK1/SIAT1","A/Hong Kong/28/2022|2022-11-16|MDCK1/SIAT1","A/Hong Kong/30/2022|2022-11-20|MDCK1/SIAT1","A/Hong Kong/38/2022|2022-12-04|MDCK1/SIAT1","A/Hong Kong/26/2022|2022-11-16|MDCK1/SIAT1","A/Switzerland/52849/2022|2022-11-11|SIAT1/SIAT1","A/Switzerland/86247/2022|2022-11-14|MDCK1/SIAT1","A/Switzerland/85876/2022|2022-11-14|MDCK1/SIAT1","A/Hong Kong/15/2022|2022-10-04|MDCK1/SIAT1","A/Hong Kong/17/2022|2022-10-24|MDCK1/SIAT1",
+	"A/Hong Kong/32/2022|2022-11-25|MDCK1/SIAT1")
+ag_Feb2023_tableH3_1 <- agNames(map124) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT5","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT5","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Belgium/G0096/2022|2022-03-07|SIAT1/SIAT1","A/Belgium/S0822/2022|2022-03-18|SIAT1/SIAT1","A/Belgium/S0826/2022|2022-03-19|SIAT1/SIAT1","A/Belgium/G0153/2022|2022-03-23|SIAT1/SIAT1","A/Poland/52/2022|2022-03-30|SIAT2","A/Poland/58/2022|2022-04-07|SIAT1","A/Poland/65/2022|2022-04-14|SIAT1",
+	"A/Argentina/2745/2022|2022-04-21|SIAT1","A/Togo/1112/2022|2022-05-03|SIAT1","A/Argentina/2784/2022|2022-05-16|SIAT1","A/Argentina/2863/2022|2022-05-20|SIAT1","A/Argentina/2822/2022|2022-05-24|SIAT1","A/Ghana/341/2022|2022-05-24|MDCK2/SIAT1","A/Ghana/3122/2022|2022-06-02|MDCK1/SIAT1","A/Ghana/330/2022|2022-06-02|MDCK2/SIAT1","A/Argentina/2894/2022|2022-06-03|SIAT1","A/Ghana/3353/2022|2022-06-03|SIAT1",
+	"A/Argentina/2959/2022|2022-06-06|SIAT1","A/Ghana/365/2022|2022-06-06|SIAT1","A/Argentina/2953/2022|2022-06-08|SIAT1","A/Ghana/390/2022|2022-06-08|MDCK1/SIAT1","A/Argentina/3023/2022|2022-06-09|SIAT1","A/Argentina/2973/2022|2022-06-15|SIAT1","A/Norway/27853/2022|2022-07-18|SIAT2","A/Norway/28394/2022|2022-07-20|SIAT2","A/Norway/28359/2022|2022-07-24|SIAT3","A/Norway/29040/2022|2022-07-27|SIAT2")
+
+agFill(map124)[ag_Sep2021_table7_6] <- '#ea5545'
+agFill(map124)[ag_Sep2022_table10_8] <- '#ef9b20'
+agFill(map124)[ag_Feb2023_tableH3_10] <- '#ede15b'
+agFill(map124)[ag_Feb2023_tableH3_1] <- '#87bc45'
+p_map124 <- ggplot(map124) + ggtitle('map 124')
+p_map124
+
+
+#################### MAP 125 ####################
+#### colered by tables
+agSize(map125) <- 5
+agFill(map125) <- 'grey50'
+ag_Sep2021_table7_6 <- agNames(map125) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/California/55/2020|2020-10-12|SIAT2/SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1', 'A/Darwin/6/2021|2021-03-16|E4/E1', 'A/Darwin/9/2021|2021-04-17|E3/E1')
+ag_Sep2022_table10_19 <- agNames(map125) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT4","A/Cambodia/925256/2020|2020-09-25|SIAT5","A/Bangladesh/4005/2020|2020-10-04|SIAT3","A/Stockholm/5/2021|2021-04-16|SIAT0/SIAT3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Darwin/9/2021|2021-04-17|E3/E4","A/Slovenia/8720/2022|2022-02-10|E3(Am1Al2)","A/Slovenia/9216/2022|2022-02-24|E3(Am1Al2)","A/Slovenia/9318/2022|2022-03-02|E3(Am1Al2)","A/Estonia/168577/2022|2022-02-01|SIAT1/SIAT1",
+	"A/Austria/1491740/2022|2022-02-11|Cx/SIAT1","A/Austria/1494246/2022|2022-02-18|Cx/SIAT1","A/Austria/1496862/2022|2022-03-02|Cx/SIAT1","A/Austria/1503342/2022|2022-03-23|Cx/SIAT1","A/Austria/1504561/2022|2022-03-28|Cx/SIAT1","A/Austria/1504529/2022|2022-03-28|Cx/SIAT1","A/Belgium/G0197/2022|2022-04-08|SIAT1/SIAT1","A/Belgium/S1049/2022|2022-04-09|SIAT1/SIAT1","A/Estonia/KL4914/2022|2022-04-13|SIAT1/SIAT1","A/Estonia/KL4911/2022|2022-04-13|SIAT1/SIAT1",
+	"A/Estonia/KL4967/2022|2022-04-14|SIAT1/SIAT1","A/Austria/1510167/2022|2022-04-16|SIAT1","A/Estonia/169447/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169303/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169446/2022|2022-04-17|SIAT1/SIAT1","A/Belgium/S1030/2022|2022-04-17|SIAT1/SIAT1","A/Belgium/S1027/2022|2022-04-17|SIAT1/SIAT1","A/Estonia/KL4992/2022|2022-04-18|SIAT1/SIAT1","A/Estonia/169344/2022|2022-04-18|MDCKx/SIAT1","A/Estonia/169343/2022|2022-04-18|MDCKx/SIAT1",
+	"A/Austria/1510472/2022|2022-04-19|SIAT1","A/Estonia/169374/2022|2022-04-19|MDCKx/SIAT1","A/Austria/1510800/2022|2022-04-20|SIAT1","A/Estonia/KL4998/2022|2022-04-20|SIAT1/SIAT1","A/Estonia/169390/2022|2022-04-20|SIAT1/SIAT1","A/Estonia/169421/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169420/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169386/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169385/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169384/2022|2022-04-21|SIAT1/SIAT1",
+	"A/Austria/1512885/2022|2022-04-27|SIAT1","A/Austria/1513777/2022|2022-04-28|SIAT1","A/Austria/1513868/2022|2022-05-01|SIAT1","A/Austria/1502410/2022|2022-03-21|Cx/SIAT1","A/Estonia/169301/2022|2022-04-17|SIAT1/SIAT1","A/Austria/1497981/2022|2022-03-04|Cx/SIAT1","A/Austria/1499572/2022|2022-03-10|Cx/SIAT1","A/Austria/1501955/2022|2022-03-18|Cx/SIAT1","A/Austria/1502449/2022|2022-03-20|Cx/SIAT1","A/Austria/1503824/2022|2022-03-23|Cx/SIAT1",
+	"A/Austria/1503368/2022|2022-03-23|Cx/SIAT1","A/Austria/1503854/2022|2022-03-24|Cx/SIAT1","A/Austria/1503823/2022|2022-03-24|Cx/SIAT1","A/Austria/1504127/2022|2022-03-25|Cx/SIAT1","A/Austria/1504562/2022|2022-03-28|Cx/SIAT1","A/Austria/1508277/2022|2022-04-08|SIAT1","A/Austria/1509468/2022|2022-04-13|SIAT1","A/Austria/1514532/2022|2022-05-02|SIAT1","A/Belgium/S1074/2022|2022-05-03|SIAT1/SIAT1")
+
+agFill(map125)[ag_Sep2021_table7_6] <- '#ea5545'
+agFill(map125)[ag_Sep2022_table10_19] <- '#ef9b20'
+p_map125 <- ggplot(map125) + ggtitle('map 125')
+p_map125
+
+
+#################### MAP 126 ####################
+#### colered by tables
+agSize(map126) <- 5
+agFill(map126) <- 'grey50'
+ag_Sep2021_table7_6 <- agNames(map126) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/California/55/2020|2020-10-12|SIAT2/SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1', 'A/Darwin/6/2021|2021-03-16|E4/E1', 'A/Darwin/9/2021|2021-04-17|E3/E1')
+ag_Sep2022_table10_18 <- agNames(map126) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT4","A/Cambodia/925256/2020|2020-09-25|SIAT5","A/Bangladesh/4005/2020|2020-10-04|SIAT3","A/Stockholm/5/2021|2021-04-16|S0/S3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Darwin/9/2021|2021-04-17|E3/E4","A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1","A/Netherlands/10025/2022|2022-01-17|MDCK-MIX2/SIAT1","A/Dakar/01/2022|2022-01-03|SIAT2","A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2",
+	"A/Romania/516033/2022|2022-04-07|SIAT1/SIAT1","A/Romania/516038/2022|2022-04-13|SIAT0/SIAT1","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515290/2022|2022-04-15|SIAT1/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Romania/515894/2022|2022-04-18|SIAT1/SIAT1","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516041/2022|2022-04-19|SIAT1/SIAT1",
+	"A/Romania/516036/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516032/2022|2022-04-19|SIAT1/SIAT1","A/Romania/518145/2022|2022-04-21|SIAT1/SIAT1","A/Bolzano/22/2022|2022-04-22|SIAT3/SIAT2","A/Poland/76/2022|2022-04-24|SIAT2","A/Poland/75/2022|2022-04-24|SIAT1","A/Romania/516351/2022|2022-04-24|SIAT1/SIAT1","A/Romania/516348/2022|2022-04-24|SIAT1/SIAT1","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1",
+	"A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Poland/78/2022|2022-04-26|SIAT1","A/Poland/77/2022|2022-04-26|SIAT1","A/Romania/516540/2022|2022-04-26|SIAT1/SIAT1","A/Romania/518135/2022|2022-04-27|SIAT1/SIAT1","A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Poland/96/2022|2022-05-08|SIAT1",
+	"A/Poland/98/2022|2022-05-09|SIAT1","A/Poland/99/2022|2022-05-10|SIAT1","A/Poland/101/2022|2022-05-15|SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1","A/Parma/5/2022|2022-02-21|SIAT4/SIAT2","A/Romania/518147/2022|2022-04-21|SIAT1/SIAT1","A/Poland/97/2022|2022-05-09|SIAT1","A/Poland/100/2022|2022-05-13|SIAT1","A/FVG-Trieste/28/2022|2022-03-01|SIAT4/SIAT2","A/Bolzano/4/2022|2022-03-04|SIAT3/SIAT2",
+	"A/Romania/515331/2022|2022-04-13|SIAT1/SIAT1","A/Romania/515280/2022|2022-04-15|SIAT1/SIAT1","A/FVG-Trieste/391/2022|2022-04-28|SIAT3/SIAT2","A/Romania/516980/2022|2022-04-30|SIAT1/SIAT2","A/Romania/517370/2022|2022-05-03|SIAT1/SIAT2","A/Togo/1122/2022|2022-05-04|SIAT1","A/Togo/1126/2022|2022-05-05|SIAT1","A/Togo/1132/2022|2022-05-06|SIAT1","A/Togo/1129/2022|2022-05-06|SIAT1","A/Romania/518142/2022|2022-05-09|SIAT1",
+	"A/Togo/1153/2022|2022-05-11|SIAT1","A/Togo/1165/2022|2022-05-13|SIAT1","A/Togo/1184/2022|2022-05-18|SIAT1","A/Togo/1063/2022|2022-05-25|SIAT1","A/Dakar/14/2022|2022-06-08|SIAT2","A/Netherlands/10253/2022|2022-03-06|MDCK-MIX2/SIAT1","A/Netherlands/10182/2022|2022-03-10|MDCK-MIX2/SIAT1","A/Netherlands/10595/2022|2022-03-23|MDCK-MIX2/SIAT1","A/Milano/60/2022|2022-03-23|SIAT3/SIAT2","A/Romania/521422/2022|2022-06-18|SIAT1")
+
+agFill(map126)[ag_Sep2021_table7_6] <- '#ea5545'
+agFill(map126)[ag_Sep2022_table10_18] <- '#ef9b20'
+p_map126 <- ggplot(map126) + ggtitle('map 126')
+p_map126
+
+
+#################### MAP 127 ####################
+#### colered by tables
+agSize(map127) <- 5
+agFill(map127) <- 'grey50'
+ag_Sep2021_table7_6 <- agNames(map127) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/California/55/2020|2020-10-12|SIAT2/SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1', 'A/Darwin/6/2021|2021-03-16|E4/E1', 'A/Darwin/9/2021|2021-04-17|E3/E1')
+ag_Sep2022_table10_16 <- agNames(map127) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT4","A/Stockholm/5/2021|2021-04-16|S0/S3","A/Netherlands/00092/2021|2021-11-30|Hck1/SIAT1","A/Netherlands/00103/2021|2021-12-13|Hck1/SIAT1","A/Netherlands/00001/2022|2022-01-02|Hck1/SIAT1","A/Netherlands/00009/2022|2022-01-05|Hck1/SIAT1","A/Netherlands/00110/2021|2021-12-22|Hck1/SIAT1","A/Moldova/20837/2022|2022-03-17|SIAT1","A/Lithuania/33828/2022|2022-04-14|SIAT1","A/Norway/12347/2022|2022-02-25|SIAT3",
+	"A/Moldova/18402/2022|2022-02-28|SIAT1","A/Moldova/6662/2022|2022-04-04|SIAT1","A/Moldova/6649/2022|2022-04-05|SIAT1","A/Moldova/7267/2022|2022-04-11|SIAT1","A/Moldova/7273/2022|2022-04-13|SIAT1","A/Lithuania/33816/2022|2022-04-14|SIAT1","A/Lithuania/36119/2022|2022-04-28|SIAT1","A/Lithuania/36453/2022|2022-05-02|SIAT1","A/Lithuania/36696/2022|2022-05-05|SIAT1","A/Dakar/03/2022|2022-02-03|P1/SIAT1",
+	"A/Moldova/20046/2022|2022-03-10|SIAT1","A/Moldova/20838/2022|2022-03-17|SIAT1","A/Moldova/7877/2022|2022-04-19|SIAT1","A/Moldova/7896/2022|2022-04-21|SIAT1","A/Dakar/10/2022|2022-05-23|P1/SIAT1","A/Dakar/11/2022|2022-05-25|P1/SIAT1","A/Dakar/20/2022|2022-06-11|P1/SIAT1","A/Moldova/20035/2022|2022-03-07|SIAT1","A/Moldova/20813/2022|2022-03-15|SIAT1","A/Netherlands/10502/2022|2022-03-24|MDCK-MIX2/SIAT1",
+	"A/Netherlands/10884/2022|2022-04-05|MDCK-MIX2/SIAT1","A/Netherlands/10866/2022|2022-04-07|MDCK-MIX2/SIAT1","A/Netherlands/11119/2022|2022-04-13|MDCK-MIX2/SIAT1","A/Netherlands/11201/2022|2022-04-15|MDCK-MIX2/SIAT1","A/Netherlands/00832/2022|2022-04-19|Hck1/SIAT1")
+ag_Feb2023_tableH3_1 <- agNames(map127) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT5","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT5","A/Darwin/9/2021|2021-04-17|E3/E2","A/Belgium/G0096/2022|2022-03-07|SIAT1/SIAT1","A/Belgium/S0822/2022|2022-03-18|SIAT1/SIAT1","A/Belgium/S0826/2022|2022-03-19|SIAT1/SIAT1","A/Belgium/G0153/2022|2022-03-23|SIAT1/SIAT1","A/Poland/52/2022|2022-03-30|SIAT2","A/Poland/58/2022|2022-04-07|SIAT1","A/Poland/65/2022|2022-04-14|SIAT1",
+	"A/Argentina/2745/2022|2022-04-21|SIAT1","A/Togo/1112/2022|2022-05-03|SIAT1","A/Argentina/2784/2022|2022-05-16|SIAT1","A/Argentina/2863/2022|2022-05-20|SIAT1","A/Argentina/2822/2022|2022-05-24|SIAT1","A/Ghana/341/2022|2022-05-24|MDCK2/SIAT1","A/Ghana/3122/2022|2022-06-02|MDCK1/SIAT1","A/Ghana/330/2022|2022-06-02|MDCK2/SIAT1","A/Argentina/2894/2022|2022-06-03|SIAT1","A/Ghana/3353/2022|2022-06-03|SIAT1",
+	"A/Argentina/2959/2022|2022-06-06|SIAT1","A/Ghana/365/2022|2022-06-06|SIAT1","A/Argentina/2953/2022|2022-06-08|SIAT1","A/Ghana/390/2022|2022-06-08|MDCK1/SIAT1","A/Argentina/3023/2022|2022-06-09|SIAT1","A/Argentina/2973/2022|2022-06-15|SIAT1","A/Norway/27853/2022|2022-07-18|SIAT2","A/Norway/28394/2022|2022-07-20|SIAT2","A/Norway/28359/2022|2022-07-24|SIAT3","A/Norway/29040/2022|2022-07-27|SIAT2")
+ag_Feb2023_tableH3_10 <- agNames(map127) %in% c("A/Cambodia/e0826360/2020|2020-07-16|E5/E3","A/Norway/24873/2021|2021-10-24|SIAT3","A/Norway/24873/2021|2021-10-24|E3/E1","A/Poland/97/2022|2022-05-09|SIAT2","A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2","A/Catalonia/NSVH161512067/2022|2022-09-14|SIAT1/SIAT3","A/Dakar/27/2022|2022-06-28|P1/SIAT1","A/Argentina/3155/2022|2022-08-31|SIAT2","A/Argentina/3151/2022|2022-09-05|SIAT1","A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1",
+	"A/Switzerland/18284/2022|2022-10-06|SIAT2/SIAT1","A/Burgos/257/2022|2022-10-13|SIAT1","A/Soria/213/2022|2022-10-13|SIAT1","A/Salamanca/198/2022|2022-10-13|SIAT1","A/Salamanca/196/2022|2022-10-13|SIAT1","A/Switzerland/18694/2022|2022-11-18|MDCK1/SIAT1","A/Palencia/118/2022|2022-10-13|SIAT1","A/Switzerland/39985/2022|2022-11-21|MDCK1/SIAT1","A/Switzerland/07426/2022|2022-11-17|SIAT1/SIAT1","A/Ireland/73304/2022|2022-11-23|SIAT1",
+	"A/Ireland/74535/2022|2022-11-28|SIAT2","A/Lithuania/48774/2022|2022-11-24|SIAT1","A/Burgos/82/2022|2022-10-13|SIAT1","A/Hong Kong/34/2022|2022-11-26|MDCK1/SIAT1","A/Switzerland/54601/2022|2022-11-01|MDCK1/SIAT1","A/Ireland/74250/2022|2022-11-27|SIAT2","A/Ireland/74511/2022|2022-11-29|SIAT2","A/Switzerland/76550/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/01284/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/89053/2022|2022-12-06|SIAT1/SIAT1",
+	"A/Switzerland/12082/2022|2022-12-08|SIAT1/SIAT1","A/Georgia/2369/2022|2022-11-24|SIAT1","A/Georgia/8/2022|*|SIAT1","A/Georgia/4/2022|*|SIAT1","A/Argentina/3486/2022|2022-10-01|SIAT1","A/Argentina/3498/2022|2022-09-29|SIAT1","A/Argentina/3485/2022|2022-10-01|SIAT1","A/Hong Kong/19/2022|2022-11-09|MDCK1/SIAT1","A/Hong Kong/22/2022|2022-11-13|MDCK1/SIAT1","A/Hong Kong/24/2022|2022-11-15|MDCK1/SIAT1",
+	"A/Hong Kong/28/2022|2022-11-16|MDCK1/SIAT1","A/Hong Kong/30/2022|2022-11-20|MDCK1/SIAT1","A/Hong Kong/38/2022|2022-12-04|MDCK1/SIAT1","A/Hong Kong/26/2022|2022-11-16|MDCK1/SIAT1","A/Switzerland/52849/2022|2022-11-11|SIAT1/SIAT1","A/Switzerland/86247/2022|2022-11-14|MDCK1/SIAT1","A/Switzerland/85876/2022|2022-11-14|MDCK1/SIAT1","A/Hong Kong/15/2022|2022-10-04|MDCK1/SIAT1","A/Hong Kong/17/2022|2022-10-24|MDCK1/SIAT1","A/Hong Kong/32/2022|2022-11-25|MDCK1/SIAT1")
+
+agFill(map127)[ag_Sep2021_table7_6] <- '#ea5545'
+agFill(map127)[ag_Sep2022_table10_16] <- '#ef9b20'
+agFill(map127)[ag_Feb2023_tableH3_1] <- '#ede15b'
+agFill(map127)[ag_Feb2023_tableH3_10] <- '#87bc45'
+p_map127 <- ggplot(map127) + ggtitle('map 127')
+p_map127
+
+
+#################### MAP 128 ####################
+#### colered by tables
+agSize(map128) <- 5
+agFill(map128) <- 'grey50'
+ag_Mar2006_table4 <- agNames(map128) %in% c("A/Shantou/1219/2004|*|MDCKx","A/Hiroshima/52/2005|*|E3_1","A/Umea/9/2005|2005-11-10|MDCK1_1","A/Madagascar/2102/2005|2005-11-17|MDCK3_1","A/Ireland/12182/05|2005-12-01|MDCK2_3","A/Hong Kong/4920/2005|2005-12-19|MDCK2_3","A/Norway/28/2006|2005-12-20|MDCK1_1","A/Stockholm/1/2006|2005-12-22|MDCK1_1","A/Netherlands/548/2005|2005-12-26|MDCK1_1","A/Denmark/112/2005|2005-12-28|MDCK2_1",
+	"A/Latvia/222/2006|2006-01-04|MDCK1_1","A/Lyon/21/06|2006-01-04|MDCK2_1","A/Finland/634/2006|2006-01-06|MDCK2_1","A/England/4/2006|2006-01-09|MDCK1_2","A/Iceland/2/2006|2006-01-09|MDCK3_1","A/Stockholm/6/2006|2006-01-14|MDCK1_1","A/Norway/143/2006|2006-01-16|MDCK1_1","A/Slovakia/134/2006|2006-02-06|MDCK1_1","A/Latvia/2047/2006|2006-02-14|MDCK1_1")
+ag_Sep2006_table4 <- agNames(map128) %in% c("A/Anhui/1238/2005|*|*","A/St. Petersburg/1/2006|2006-02-06|C1_1","A/St. Petersburg/2/2006|2006-02-06|C1_1","A/St. Petersburg/3/2006|2006-02-06|C2_1","A/St. Petersburg/4/2006|2006-02-21|C1_2","A/Rostov-on-Don/1/2006|2006-01-23|C2_1","A/Rostov-on-Don/2/2006|2006-01-23|C2_1","A/Rostov-on-Don/3/2006|2006-01-30|C2_1","A/Kaliningrad/1/2006|2006-01-30|C3_1","A/Kaliningrad/4/2006|2006-01-31|C3_2",
+	"A/Kaliningrad/20/2006|2006-02-28|C2_2","A/Kaliningrad/24/2006|2006-03-02|C2_2","A/Astrakhan/103/2006|2006-02-08|C2_1","A/Astrakhan/150/2006|2006-03-08|C3_1","A/Astrakhan/172/2006|2006-03-15|C2_1","A/Astrakhan/319/2006|2006-02-22|C2_1","A/Voronezh/1/2006|2006-02-15|C2_1","A/Voronezh/4/2006|2006-02-17|C2_1","A/Voronezh/6/2006|2006-02-02|C2_2","A/Voronezh/10/2006|2006-02-26|C2_1",
+	"A/Voronezh/18/2006|2006-03-02|C2_1","A/Voronezh/58/2006|2006-03-16|C2_1","A/Stavropol/2/2006|2006-03-02|C2_1","A/Stavropol/3/2006|2006-02-27|C2_1","A/Stavropol/5/2006|2006-03-02|C2_1","A/Stavropol/6/2006|2006-02-27|C2_1","A/Moscow/4/2006|2006-02-19|C2_1","A/Moscow/8/2006|2006-02-21|C2_1","A/Moscow/11/2006|2006-02-11|C2_1","A/Moscow/12/2006|2006-02-21|C2_1",
+	"A/Moscow/16/2006|2006-02-26|C2_1","A/Finland/641/2006|2006-02-14|MDCK2_1","A/Finland/682/2006|2006-02-28|MDCK1_1","A/Finland/703/2006|2006-03-08|MDCK1_3","A/Finland/732/2006|2006-03-21|MDCK2_1","A/Finland/744/2006|2006-03-29|MDCK2_1","A/Finland/772/2006|2006-04-07|MDCK2_1")
+ag_Sep2006_table6 <- agNames(map128) %in% c("A/Slovakia/134/2006|*|*","A/Berlin/2/2006|*|*","A/Bayern/4/2006|*|*","A/Lyon/636/2006|*|*","A/Samara/120/2006|2006-05-03|MDCK3_2","A/Samara/123/2006|2006-05-15|MDCK4_2","A/Murmansk/3/2006|2006-04-28|MDCK3_3","A/Moscow/41/2006|2006-03-16|MDCK2_2","A/Moscow/40/2006|2006-03-16|MDCK2_3","A/N/ Novgorod/155/2006|2006-04-07|MDCK3_2",
+	"A/Voronezh/19/2006|2006-03-10|MDCK2_2","A/Voronezh/12/2006|2006-03-01|MDCK2_2","A/St/ Petersburg/37/2006|2006-05-08|MDCK2_1","A/Kaliningrad/44/2006|2006-04-06|MDCK2_3","A/Khabarovsk/49/2006|2006-05-22|MDCK2_2","A/Khabarovsk/10/2006|2006-04-07|MDCK5_2","A/Khabarovsk/29/2006|2006-04-20|MDCK3_3","A/Ryazan/10/2006|2006-04-06|MDCK2_3","A/Ryazan/4/2006|2006-04-06|MDCK2_2","A/Odessa/52/2006|2006-03-23|*",
+	"A/Odessa/62/2006|2006-03-27|*","A/Zagreb/4274/2006|2006-04-01|Ex_2","A/Paris/1889/2006|2006-03-01|MDCKx_1","A/Paris/2030/2006|2006-04-01|MDCKx_1","A/Paris/2109/2006|2006-04-01|MDCKx_1","A/Paris/2208/2006|2006-02-01|MDCKx_1","A/Johannesburg/350/2006|2006-06-09|MDCKx_3","A/Johannesburg/354/2006|2006-06-08|MDCKx_3","A/Johannesburg/185/2006|2006-05-29|MDCKx_3","A/Johannesburg/245/2006|2006-06-02|MDCKx_1",
+	"A/Johannesburg/271/2006|2006-06-04|MDCKx_2","A/Johannesburg/277/2006|2006-06-05|MDCKx_1","A/Johannesburg/339/2006|2006-06-07|MDCKx_1","A/Johannesburg/340/2006|2006-06-01|MDCKx_2","A/Johannesburg/344/2006|2006-06-08|MDCKx_2","A/Hong Kong/201/2006|2006-02-02|MDCK2_2","A/Hong Kong/453/2006|2006-02-22|MDCK2_2")
+ag_Sep2007_table6 <- agNames(map128) %in% c("A/California/7/2004|2004-09-16|SpfCk3, E3_3","A/Hong Kong/4443/2005|2006-06-24|MDCK2_6","A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2","A/Bayern/4/2006|2006-03-07|MDCKx_5","A/Berlin/2/2006|2006-02-06|MDCKx_3","A/Parma/1/2007|2006-12-01|MDCK1_2","A/Paris/1716/2007|2007-02-01|MDCKx_1","A/Sofia/671/2007|2007-02-01|MDCK1, E1_3","A/Zagreb/3064/07|2007-02-01|E","A/Norway/414/2007|2007-02-12|MDCK1_1",
+	"A/Kiev/546/07|2007-03-12|MDCKx_1","A/Borisov/175/07|2007-03-13|MDCKx_1","A/Dniprodzerzinsk SES/350/07|2007-03-16|MDCKx_1","A/Belarus/340/2007|2007-03-23|MDCK1_1","A/Latvia/4897/07|2007-04-02|MDCK1_1","A/Ulan-Ude/1/07|2007-04-02|C1_2","A/Norway/787/2007|2007-04-04|MK2, MDCK1_1","A/Mauritius/307/07|2007-04-24|MDCK1_1","A/Mauritius/354/2007|2007-05-15|MDCK2_1","A/St Petersburg/95/2007|2007-05-21|C3_1",
+	"A/Moscow/15/2007|2007-05-21|C3_2","A/Hong Kong/2571/2007|2007-05-28|MDCK2_1","A/Hong Kong/2657/2007|2007-06-08|MDCK2_1")
+ag_Sep2008_table4A <- agNames(map128) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3,E3_3","A/Brisbane/10/2007|2007-02-06|E2_3","A/Uruguay/716/2007|2007-06-21|SpfCk1, E3_1","A/Finland/9/2008|2008-01-07|MDCK2_1","A/Paris/2030/2008|2008-02-01|MDCKx_1","A/Lyon/669/08|2008-02-14|MDCK2_1","A/Netherlands/177/2008|2008-02-18|xMDCK2_1","A/Berlin/50/2008|2008-03-11|MDCKx_1","A/Hong Kong/796/2008|2008-03-15|MDCK2_1","A/Khabarovsk/5/2008|2008-04-14|C6_1",
+	"A/Denmark/190/2008|2008-04-17|MDCK2_1","A/Ulan-Ude/2/2008|2008-04-21|C2_1","A/Lyon/CHU/ 19.113/08|2008-05-05|MDCK2_1","A/Iceland/82/2008|2008-05-06|MDCK2_1","A/Johannesburg/15/2008|2008-06-26|MDCKx_1")
+ag_Sep2007_table7 <- agNames(map128) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3","A/Parma/1/2007|2007-01-01|MDCK1_2","A/Zagreb/1216/2007|2007-01-01|Ex_1","A/Serres/77/2007|2007-01-25|E1_1","A/Ulaanbaatar/1106/2007|*|E3_1","A/Santiago/6881/2007|*|C3_1","A/Iceland/19/07|2007-02-12|MDCK1_1","A/Georgia/13/2007|2007-02-21|MDCK2_1","A/Georgia/55/2007|2007-03-02|MDCK3_1","A/Rzeszow/2/07|2007-03-02|MDCK_1",
+	"A/Iceland/46/07|2007-03-17|MDCK2_1","A/Georgia/135/2007|2007-04-04|MDCK2_1","A/Iceland/48/07|2007-04-05|MDCK2_1","A/Sweden/4/07|2007-04-16|MDCK2_2","A/Sweden/2/07|2007-04-16|MDCK2_1","A/Stockholm/6/07|2007-04-16|MDCK1_2","A/Stockholm/7/07|2007-04-18|MDCK1_1","A/Stockholm/8/07|2007-04-18|MDCK1_2","A/Cape Town/97/07|2007-07-01| MDCKx_1","A/Johannesburg/46/07|2007-07-01|MDCKx_1",
+	"A/Johannesburg/74/07|2007-07-09|MDCKx_1")
+
+agFill(map128)[ag_Mar2006_table4] <- '#ea5545'
+agFill(map128)[ag_Sep2006_table4] <- '#ef9b20'
+agFill(map128)[ag_Sep2006_table6] <- '#ede15b'
+agFill(map128)[ag_Sep2007_table6] <- '#87bc45'
+agFill(map128)[ag_Sep2008_table4A] <- '#27aeef'
+agFill(map128)[ag_Sep2007_table7] <- '#b33dc6'
+p_map128 <- ggplot(map128) + ggtitle('map 128')
+p_map128
+
+
+#################### MAP 129 ####################
+#### colered by tables
+agSize(map129) <- 5
+agFill(map129) <- 'grey50'
+ag_Sep2009_table6 <- agNames(map129) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3","A/Trieste/25c/2007|2007-01-01|MDCKx Siat4","A/Brisbane/10/2007|2007-02-06|E2/E3","A/Uruguay/716/2007|2007-06-21|spfck1, E3_1","A/Finland/9/2008|2008-01-07|MDCK2_2","A/Hong Kong/1952/2009|2009-03-24|MDCKx2_2","A/Hong Kong/1985/2009|2009-04-01|MDCKx2_2","A/Perth/15/2009|*|E3_1","A/Perth/16/2009|*|E3_1","A/Toulouse/955/2009|2009-04-29|MDCK2 Siat1",
+	"A/Brisbane/54/2009|2009-05-07|E3 E1","A/Cape Town/294/2009|2009-05-22|MDCK2 Siat1","A/Durban/675/2009|2009-06-01|MDCK2 Siat3","A/Madagascar/4286/2009|2009-06-02|MDCK1 Siat1","A/Johannesburg/556/2009|2009-06-10|MDCK1 Siat1","A/Lisboa/32/2009|2009-06-25|MDCK2 Siat1","A/England/233/2009|2009-07-01|Cx Siat1","A/Ghana/FS-1035/2009|2009-07-13|MDCK1 Siat1","A/Singapore/33/2009|2009-05-07|MDCK1 Siat1","A/Hong Kong/2139/2009|2009-05-16|MDCK2 Siat3",
+	"A/Hong Kong/2142/2009|2009-05-17|MDCK2 Siat1","A/Singapore/41/2009|2009-05-19|MDCK1 Siat1","A/Singapore/37/2009|2009-06-01|E2 E1","A/England/232/2009|2009-06-01|Cx Siat1","A/Scotland/5/2009|2009-06-01|Cx Siat1","A/Singapore/46/2009|2009-06-05|MDCK1 Siat1","A/Norway/1739/2009|2009-06-10|MDCK1 Siat1","A/Grenoble/1144/2009|2009-06-17|MDCK2 Siat1","A/Dakar/005/09|2009-06-23|MDCK2 Siat1","A/Hong Kong/4494/2009|2009-07-10|MDCKx2 Siat1",
+	"A/Johannesburg/126/2009*|2009-05-21|MDCK2 Siat1","A/Victoria/208/2009*|2009-06-02|E3 E1","A/Johannesburg/385/2009*|2009-06-08|MDCK1 Siat3","A/Mauritius/461/2009*|2009-07-02|MDCK1 Siat1","A/Mauritius/487/2009*|2009-07-11|MDCK1 Siat1","A/Ghana/FS-1031/2009*|2009-07-13|MDCK1 Siat1")
+ag_Feb2010_table12 <- agNames(map129) %in% c("A/Wisconsin/67/2005|*|SpfCk3E3 E7","A/Brisbane/10/2007|*|E2 E3","A/Uruguay/716/2007|*|spfck1, E3 E3","A/Finland/9/2008|*|MDCK2 Siat2","A/Johannesburg/15/2008|*|MDCKx Siat6","A/Hong Kong/1952/2009|*|MDCKx2 Siat7","A/Hong Kong/1985/2009|*|MDCKx2 Siat5","A/Perth/16/2009|*|E3 E2","A/Wisconsin/15/2009|*|E2 E2","A/Cameroon/445/2009|2009-09-07|Cx Siat1",
+	"A/England/700/2009|2009-09-08|MDCK1 Siat1","A/Cameroon/486/2009|2009-10-13|Cx Siat1","A/Hong Kong/33726/2009|2009-10-18|MDCK2 Siat1","A/Paris/3873/09|2009-09-01|C1 Siat1","A/Paris/4596/09|2009-09-01|C1 Siat1","A/Hong Kong/26554/2009|2009-09-15|MDCK2 Siat1","A/England/815/2009|2009-09-15|Siat1 Siat1","A/Lyon/1715/2009|2009-09-17|MDCK2 Siat2","A/Hong Kong/26227/2009|2009-09-17|MDCK2 Siat1","A/Hong Kong/26233/2009|2009-09-17|MDCK2 Siat1",
+	"A/Bordeaux/1942/2009|2009-09-18|MDCK2 Siat3","A/Gibraltar/SB226/09|2009-09-22|Siat1 Siat1","A/Cameroon/422/2009|2009-09-28|Cx Siat1","A/Paris/5870/09|2009-10-01|C1 Siat1","A/Gibraltar/SB252/09|2009-10-07|Siat1 Siat1","A/Paris/6047/2009|2009-11-01|C1 Siat2","A/Cameroon/663/2009|2009-11-03|Cx Siat1","A/Cameroon/614/2009|2009-11-05|Cx Siat1","A/Cameroon/653/2009|2009-11-06|Cx Siat1","A/Dakar/41/2009|2009-11-06|Siat2",
+	"A/Dakar/43/2009|2009-11-06|Siat2","A/Cameroon/658/2009|2009-11-10|Cx Siat1","A/Cameroon/675/2009_1|2009-11-11|Cx Siat1","A/Dakar/44/2009|2009-11-11|Siat2","A/Algeria/G46/2009|2009-11-26|MDCK0 Siat2","A/Hong Kong/34194/2009|2009-11-10|MDCK2 Siat1","A/Hong Kong/34430/2009|2009-11-22|MDCK2 Siat1","A/Cameroon/598/2009|2009-11-02|Cx Siat1","A/Cameroon/675/2009_2|2009-11-11|Cx Siat1","A/Turkey/TR-26/2009|2009-12-02|SIAT1 SIAT1",
+	"A/Turkey/TR-28/2009|2009-12-12|SIAT1 SIAT1","A/Turkey/TR-33/2009|2010-01-05|SIAT1 SIAT1")
+
+agFill(map129)[ag_Sep2009_table6] <- '#ea5545'
+agFill(map129)[ag_Feb2010_table12] <- '#ef9b20'
+p_map129 <- ggplot(map129) + ggtitle('map 129')
+p_map129
+
+
+#################### MAP 130 ####################
+#### colered by tables
+agSize(map130) <- 5
+agFill(map130) <- 'grey50'
+ag_Sep2013_table7_12 <- agNames(map130) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT6","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Belgium/S0932/2013|2012-12-20|SIAT2",
+	"A/Hong Kong/209/2013|2013-01-16|MDCK2/SIAT1","A/Hong Kong/392/2013|2013-01-28|MDCK2/SIAT1","A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1","A/Belgium/G0508/2013|2013-02-04|SIAT2","A/Belgium/G0528/2013|2013-02-04|SIAT2","A/NosyBe/429/2013|2013-02-11|MDCK1/SIAT1","A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1","A/Maevatanana/563/2013|2013-02-25|MDCK1/SIAT1","A/Hong Kong/1036/2013|2013-02-25|MDCK2/SIAT1","A/Norway/1693/2013|2013-03-06|MDCK2/SIAT1",
+	"A/Minsk/1431/2013|2013-03-06|MDCK3/SIAT1","A/Norway/1665/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1683/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1736/2013|2013-03-07|MDCK2/SIAT1","A/Norway/1780/2013|2013-03-09|MDCK1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76614/2013|2013-03-11|MDCK1/SIAT1","A/Estonia/76663/2013|2013-03-13|MDCK2/SIAT1","A/Estonia/76676/2013|2013-03-13|MDCK2/SIAT1","A/Norway/1894/2013|2013-03-17|MDCK1/SIAT1",
+	"A/Norway/1940/2013|2013-03-18|MDCK2/SIAT1","A/Belgium/G1034/2013|2013-03-18|SIAT2","A/Norway/1861/2013|2013-03-19|MDCK1/SIAT1","A/Norway/1905/2013|2013-03-24|MDCK2/MDCK1","A/Belgium/G1067/2013|2013-03-25|SIAT2","A/Belgium/G1071/2013|2013-03-26|SIAT2","A/Norway/2010/2013|2013-04-07|MDCK2/SIAT1","A/Norway/2160/2013|2013-04-07|MDCK1/SIAT1","A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1","A/Belgium/S0923/2013|2013-04-10|SIAT2",
+	"A/Belgium/S0930/2013|2013-04-11|SIAT2","A/Norway/2255/2013|2013-04-23|MDCK1/SIAT1")
+ag_Feb2012_table14 <- agNames(map130) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/England/259/2011|2011-11-16|Cx/SIAT1","A/Norway/1789/2011|*|Cx/SIAT1","IVR-164(A/Brisbane/299/2011)|*|E5/E1","A/Dakar/21/2011|2011-09-29|SIAT2","A/Dakar/23/2011|2011-10-03|SIAT2",
+	"A/Stockholm/37/2011|2011-11-27|C3/SIAT1","A/Stockholm/42/2011|2011-12-02|C3/SIAT1","A/Jordan/20110030729/2011|2011-12-06|SIAT3","A/Stockholm/2011-21445/2011|2011-12-06|C1/SIAT1","A/Suceava/87402/2012|2011-12-12|MDCK3/SIAT1","A/Stockholm/40/2011|2011-12-13|C2/SIAT1","A/Stockholm/39/2011|2011-12-15|C1/SIAT1","A/Turkey/37/2011|2011-12-16|SIAT1/SIAT1","A/Bacau/88448/2012|2011-12-19|MDCK3/SIAT1","A/Turkey/36/2011|2011-12-20|SIAT1/SIAT1",
+	"A/Turkey/39/2011|2011-12-20|SIAT1/SIAT1","A/Antalya/214/2011|2011-12-20|C1/SIAT2","A/Turkey/33/2011|2011-12-22|SIAT1/SIAT1","A/Turkey/34/2011|2011-12-22|SIAT1/SIAT1","A/Turkey/35/2011|2011-12-22|SIAT1/SIAT1","A/Turkey/38/2011|2011-12-22|SIAT1/SIAT1","A/Turkey/40/2011|2011-12-26|SIAT1/SIAT1","A/Stockholm/43/2011|2011-12-26|C3/SIAT1","A/Stockholm/12-00978/2012|2011-12-26|C1/SIAT1","A/Turkey/41/2011|2011-12-27|SIAT1/SIAT1",
+	"A/Turkey/42/2011|2011-12-27|SIAT1/SIAT1","A/Stockholm/1200979/2012|2011-12-27|C1/SIAT1","A/Galati/88977/2012|2011-12-27|MDCK2/SIAT1","A/Stockholm/44/2011|2011-12-28|C0/SIAT1","A/Turkey/43/2011|2011-12-29|SIAT1/SIAT1","A/Turkey/44/2011|2011-12-29|SIAT1/SIAT1","A/Turkey/45/2011|2011-12-29|SIAT1/SIAT1","A/Turkey/46/2011|2012-01-02|SIAT1/SIAT1","A/Turkey/48/2011|2012-01-02|SIAT1/SIAT1","A/Turkey/49/2011|2012-01-02|SIAT1/SIAT1",
+	"A/Turkey/50/2011|2012-01-02|SIAT1/SIAT1","A/Turkey/51/2011|2012-01-03|SIAT1/SIAT1","A/Turkey/52/2011|2012-01-03|SIAT1/SIAT1","A/Bacau/89197/2012|2012-01-03|MDCK2/SIAT1","A/Turkey/53/2011|2012-01-04|SIAT1/SIAT1","A/Turkey/55/2011|2012-01-04|SIAT1/SIAT1","A/Braila/89501/2012|2012-01-04|MDCK3/SIAT1","A/Iasi/89451/2012|2012-01-04|MDCK3/SIAT1","A/Turkey/54/2011|2012-01-05|SIAT1/SIAT1","A/Turkey/56/2011|2012-01-09|SIAT1/SIAT1",
+	"A/Finland/196/2012|2012-01-09|MDCKSIAT3/SIAT1","A/Turkey/57/2011|2012-01-11|SIAT1/SIAT1","A/Stockholm/12-00694/2012|2012-01-11|C2/SIAT1","A/Stockholm/12-00574/2012|2012-01-12|C2/SIAT1","A/Stockholm/12-00974/2012|2012-01-12|C1/SIAT1","A/Finland/197/2012|2012-01-12|MDCK-SIAT2/SIAT1","A/Stockholm/12-00695/2012|2012-01-13|C2/SIAT1","A/Stockholm/12-00752/2012|2012-01-16|C0/SIAT1","A/Latvia/1-39879p/2012|2012-01-16|MDCK/SIAT1")
+
+agFill(map130)[ag_Sep2013_table7_12] <- '#ea5545'
+agFill(map130)[ag_Feb2012_table14] <- '#ef9b20'
+p_map130 <- ggplot(map130) + ggtitle('map 130')
+p_map130
+
+
+#################### MAP 131 ####################
+#### colered by tables
+agSize(map131) <- 5
+agFill(map131) <- 'grey50'
+ag_Sep2013_table7_10 <- agNames(map131) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1",
+	"A/Iceland/27/2012|2012-11-20|MDCK2/SIAT1","A/Odessa/175/2013|2013-01-09|MDCK2/SIAT1","A/Iceland/14/2013|2013-01-10|MDCK1/SIAT1","A/Ukraine/5725/2013|2013-01-21|C2/MDCK1/SIAT1","A/Ukraine/181/2013|2013-01-21|MDCK1/SIAT1","A/Parma/27/2013|2013-01-25|MDCK2/SIAT2","A/Perugia/14/2013|2013-01-27|MDCK2/SIAT2","A/Trieste/12/2013|2013-01-28|SIAT2","A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1","A/Belgrade/649/2013|2013-02-05|C2/SIAT3",
+	"A/Belgrade/650/2013|2013-02-05|C2/SIAT3","A/Belgrade/648/2013|2013-02-05|C2/SIAT2","A/Ukraine/5812/2013|2013-02-17|C2/SIAT2","A/Milano/28/2013|2013-02-19|MDCK1/SIAT3","A/Ukraine/211/2013|2013-02-20|SIAT1/SIAT2","A/Moldova/235/2013|2013-02-21|MDCK2/SIAT3","A/Dnipropetrovsk/257/2013|2013-03-01|MDCK1/SIAT2","A/Ukraine/5906/2013|2013-03-05|C2/SIAT3","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2",
+	"A/Ukraine/263/2013|2013-03-11|SIAT1/SIAT2","A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/369/2013|2013-03-22|MDCK1/SIAT1","A/Kmelnitsk/477/2013|2013-03-25|MDCK1/SIAT1","A/Ukraine/466/2013|2013-04-18|MDCK1/SIAT2")
+ag_Feb2012_table12 <- agNames(map131) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E1","A/Victoria/208/2009|2009-06-02|E3/E1","A/Victoria/210/2009|2009-06-02|E2/32","A/Alabama/5/2010|2010-07-13|MK1/M2/SIAT2","A/Perth/10/2010|2010-05-25|E2/E2","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/La Réunion/2055/2011|2011-06-22|MDCK2/SIAT1","A/La Réunion/1956/2011|2011-07-07|MDCK4/SIAT1",
+	"A/Paris/1744/2011|2011-10-05|MDCK3/SIAT1","A/Attecoube/GR1103/2011|2011-10-18|SIAT3","A/Lyon CHU/46.334/2011|2011-11-15|MDCK3/SIAT1","A/Korogho/GR1307/2011|2011-11-16|SIAT2","A/Ghana/FS-11-1981/2011|2011-11-22|SIAT2","A/Parma/171/2011|2011-11-24|MDCK2/SIAT1","A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1","A/Catalonia/S4345/2011|2011-11-28|MDCK0/SIAT1","A/Milano/260/2011|2011-11-30|MDCK1/SIAT1","A/Trieste/58/2011|2011-11-30|MDCK2/SIAT1",
+	"A/Milano/256/2011|2011-12-01|MDCK1/MDCK1","A/Paris/2013/2011|2011-12-06|MDCK1/SIAT1","A/Parma/169/2011|2011-12-06|MDCK2/SIAT1","A/Turkey/05/2011|2011-12-07|SIAT1/SIAT1","A/Marseille/2240/2011|2011-12-08|MDCK2/SIAT1","A/Lorraine/2073/2011|2011-12-08|MDCK1/SIAT1","A/Toulouse/2187/2011|2011-12-09|MDCK2/SIAT1","A/Rheinland-Pfalz/75/2011|2011-12-09|C6/SIAT1","A/Berlin/2/2012|2011-12-09|C2/SIAT1","A/Milano/258/2011|2011-12-09|MDCK1/SIAT1",
+	"A/Trieste/59/2011|2011-12-09|MDCK2/SIAT1","A/Israel/32/2011|2011-12-10|C1/SIAT1","A/Norway/2433/2011|2011-12-12|SIAT1/SIAT2","A/Lorraine/2056/2011|2011-12-12|MDCK1/SIAT1","A/Valladolid/48/2011|2011-12-13|MDCKx/SIAT1","A/Milano/265/2011|2011-12-13|MDCK1/SIAT1","A/Parma/170/2011|2011-12-13|MDCK2/SIAT1","A/Turkey/07/2011|2011-12-13|SIAT2/SIAT1","A/Turkey/08/2011|2011-12-13|SIAT2/SIAT1","A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1",
+	"A/Turkey/12/2011|2011-12-14|SIAT2/SIAT1","A/Paris/2097/2011|2011-12-15|MDCK2/SIAT1","A/Milano/268/2011|2011-12-15|MDCK1/SIAT2","A/Turkey/14/2011|2011-12-15|SIAT1/SIAT1","A/Paris/2100/2011|2011-12-16|MDCK2/SIAT1","A/Valladolid/49/2011|2011-12-16|MDCK1/SIAT1","A/Israel/38/2011|2011-12-18|C2/SIAT1","A/Paris/2114/2011|2011-12-19|MDCK2/SIAT1","A/Ireland/11M92381/2011|2011-12-19|MDCK3/SIAT1","A/Parma/168/2011|2011-12-19|MDCK3/SIAT1",
+	"A/Paris/2116/2011|2011-12-20|MDCK2/SIAT1","A/Paris/2133/2011|2011-12-22|MDCK1/SIAT1","A/Ireland/11M92761/2011|2011-12-22|MDCK2/SIAT1","A/Parma/172/2011|2011-12-22|MDCK2/SIAT1","A/Parma/175/2011|2011-12-22|MDCK2/SIAT1","A/Lyon/2264/2011|2011-12-23|MDCK2/SIAT1","A/Israel/41/2011|2011-12-24|C1/SIAT1","A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1","A/Pays de Loire/2149/2011|2011-12-27|MDCK2/SIAT1","A/Trieste/62/2011|2011-12-27|MDCK2/SIAT1",
+	"A/Parma/177/2011|2011-12-27|MDCK1/SIAT1","A/Paris/2154/2011|2011-12-28|MDCK1/SIAT1","A/Paris/7/2012|2011-12-28|MDCK1/SIAT1","A/Salamanca/50/2011|2011-12-29|MDCK1/SIAT1","A/Trieste/63/2011|2011-12-29|MDCK2/SIAT1","A/Parma/173/2011|2011-12-29|MDCK2/SIAT1","A/Parma/174/2011|2011-12-30|MDCK2/SIAT1","A/Parma/176/2011|2011-12-30|MDCK2/SIAT1","A/Baden-Wurttemberg/2/2012|2012-01-01|C2/SIAT1","A/Lyon/40/2012|2012-01-02|MDCK2/SIAT1",
+	"A/Via Real/SU6/2012|2012-01-03|SIAT2","A/Paris/27/2012|2012-01-03|MDCK2/SIAT1","A/Parma/01/2012|2012-01-04|MDCK1/SIAT1","A/Lyon CHU/01.593/2011|2012-01-06|MDCK2/SIAT1","A/Valladolid/1/2012|2012-01-09|MDCK1/SIAT1","A/Segovia/2/2012|2012-01-09|MDCK1/SIAT1","A/Berlin/3/2012|2012-01-10|C2/SIAT1","A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1","A/Israel/27/2011|*|C2/SIAT1","A/Israel/43/2011|*|Cx/SIAT1",
+	"A/Israel/47/2011|*|Cx/SIAT1","A/Israel/50/2011|*|C1/SIAT1")
+
+agFill(map131)[ag_Sep2013_table7_10] <- '#ea5545'
+agFill(map131)[ag_Feb2012_table12] <- '#ef9b20'
+p_map131 <- ggplot(map131) + ggtitle('map 131')
+p_map131
+
+
+#################### MAP 132 ####################
+#### colered by tables
+agSize(map132) <- 5
+agFill(map132) <- 'grey50'
+ag_Sep2013_table7_10 <- agNames(map132) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1",
+	"A/Iceland/27/2012|2012-11-20|MDCK2/SIAT1","A/Odessa/175/2013|2013-01-09|MDCK2/SIAT1","A/Iceland/14/2013|2013-01-10|MDCK1/SIAT1","A/Ukraine/5725/2013|2013-01-21|C2/MDCK1/SIAT1","A/Ukraine/181/2013|2013-01-21|MDCK1/SIAT1","A/Parma/27/2013|2013-01-25|MDCK2/SIAT2","A/Perugia/14/2013|2013-01-27|MDCK2/SIAT2","A/Trieste/12/2013|2013-01-28|SIAT2","A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1","A/Belgrade/649/2013|2013-02-05|C2/SIAT3",
+	"A/Belgrade/650/2013|2013-02-05|C2/SIAT3","A/Belgrade/648/2013|2013-02-05|C2/SIAT2","A/Ukraine/5812/2013|2013-02-17|C2/SIAT2","A/Milano/28/2013|2013-02-19|MDCK1/SIAT3","A/Ukraine/211/2013|2013-02-20|SIAT1/SIAT2","A/Moldova/235/2013|2013-02-21|MDCK2/SIAT3","A/Dnipropetrovsk/257/2013|2013-03-01|MDCK1/SIAT2","A/Ukraine/5906/2013|2013-03-05|C2/SIAT3","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2",
+	"A/Ukraine/263/2013|2013-03-11|SIAT1/SIAT2","A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/369/2013|2013-03-22|MDCK1/SIAT1","A/Kmelnitsk/477/2013|2013-03-25|MDCK1/SIAT1","A/Ukraine/466/2013|2013-04-18|MDCK1/SIAT2")
+ag_Feb2012_table13 <- agNames(map132) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/England/259/2011|2011-11-16|Cx/SIAT1","A/Norway/1789/2011|*|Cx/SIAT1","A/Denmark/87/2011|2011-09-04|SIAT1/SIAT1","A/Jordan/20110030568/2011|2011-09-14|SIAT1",
+	"A/Jordan/20110030585/2011|2011-09-23|SIAT2","A/Kobe/241/2011|2011-10-21|MDCK1+2/SIAT1","A/Hiroshima-C/53/2011|2011-10-29|MDCK1+2/SIAT1","A/Jordan/20110030655/2011|2011-10-31|SIAT1","A/Yopougon/GR1336/2011|2011-11-21|SIAT3","A/Jordan/20110030687/2011|2011-11-22|SIAT1","A/Bursa/108/2011|2011-11-22|C1/SIAT1","A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2","A/Denmark/90/2011|2011-11-28|MDCK1/SIAT1","A/Jordan/20110030713/2011|2011-11-30|SIAT2",
+	"A/Jordan/20110030706/2011|2011-12-03|SIAT1","A/Jordan/20110030717/2011|2011-12-03|SIAT2","A/Netherlands/710/2011|2011-12-06|MDCK2/SIAT1","A/Turkey/06/2011|2011-12-08|SIAT2/SIAT2","A/Turkey/10/2011|2011-12-08|SIAT2/SIAT3","A/Jordan/20110030732/2011|2011-12-08|SIAT1","A/İzmir/176/2011|2011-12-09|C1/SIAT1","A/Turkey/04/2011|2011-12-09|SIAT1/SIAT3","A/Jordan/20110030749/2011|2011-12-11|SIAT1","A/Turkey/26/2011|2011-12-13|SIAT1/SIAT1",
+	"A/İzmir/182/2011|2011-12-13|C1/SIAT1","A/Milano/268/2011|2011-12-15|MDCK1/SIAT2","A/Jordan/20110030777/2011|2011-12-15|SIAT1","A/Turkey/18/2011|2011-12-16|SIAT1/SIAT1","A/Norway/99/2012|2011-12-16|LLC-MK2-MDCK1/SIAT1","A/Turkey/19/2011|2011-12-18|SIAT1/SIAT1","A/İstanbul/202/2011|2011-12-19|C1/SIAT1","A/Antalya/204/2011|2011-12-19|C1/SIAT1","A/Ireland/11M92698/2011|2011-12-20|SIAT2","A/Turkey/21/2011|2011-12-20|SIAT1/SIAT3",
+	"A/Turkey/22/2011|2011-12-20|SIAT1/SIAT2","A/Turkey/27/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/30/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/31/2011|2011-12-20|SIAT1/SIAT1","A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1","A/Ireland/11M92761/2011_1|2011-12-21|SIAT2","A/Trieste/60/2011|2011-12-21|MDCK2/SIAT2","A/Turkey/23/2011|2011-12-21|SIAT1/SIAT1","A/Turkey/24/2011|2011-12-21|SIAT1/SIAT1","A/Jordan/20110030780/2011|2011-12-21|SIAT1",
+	"A/Norway/2448/2011|2011-12-21|SIAT3","A/Ireland/11M92761/2011_2|2011-12-21|SIAT2","A/Ireland/11M92922/2011|2011-12-22|SIAT1/SIAT2","A/Turkey/28/2011|2011-12-22|MDCK1/SIAT1","A/Norway/39/2012|2011-12-22|LLC-MK2-MDCK1/SIAT1","A/Norway/96/2012|2011-12-22|SIAT2","A/Ireland/11V9451/2011|2011-12-25|MDCK1/SIAT1","A/Norway/38/2012|2011-12-25|SIAT2","A/Switzerland/5776029/2011|2011-12-27|SIAT1","A/Jordan/20110030776/2011|2011-12-27|C1/SIAT1",
+	"A/İstanbul/249/2011|2011-12-28|MDCK1/SIAT1","A/Latvia/12-47890p/2011|2011-12-28|MDCK3/SIAT1","A/Netherlands/713/2011|2011-12-29|C1/SIAT1","A/ Bursa/250/2011|2011-12-29|C1/SIAT1","A/İzmir/251/2011|2011-12-29|C1/SIAT1","A/Norway/3/2012|2012-01-02|MDCK1/SIAT1","A/Norway/75/2012|2012-01-02|MDCK-SIAT1/SIAT1","A/Norway/97/2012|2012-01-02|LLC-MK2-MDCK1/SIAT1","A/Switzerland/5802473/2012|2012-01-03|SIAT2","A/Austria/654044/2012|2012-01-03|C2/SIAT1",
+	"A/Ireland/12M90/2012|2012-01-03|SIAT3","A/Lyon/37/2012|2012-01-04|MDCK2/SIAT2","A/Netherlands/001/2012|2012-01-05|MDCK2/SIAT1","A/Norway/73/2012|2012-01-05|SIAT1/SIAT1","A/Switzerland/5834715/2012|2012-01-09|SIAT2","A/Switzerland/5834718/2012|2012-01-09|SIAT2","A/Switzerland/5834731/2012|2012-01-09|SIAT2","A/Berlin/6/2012|2012-01-09|C3/SIAT1","A/Hamburg/1/2012|2012-01-09|C2/SIAT1","A/Austria/654591/2012|2012-01-09|C1/SIAT1",
+	"A/Latvia/1-34462p/2012|2012-01-09|MDCK1/SIAT1","A/Latvia/1-34610/2012|2012-01-09|MDCK1/SIAT1","A/Ireland/12v397/2012|2012-01-10|SIAT3","A/England/12/2012|2012-01-10|SIAT1/SIAT1","A/Norway/114/2012|2012-01-10|MDCK1/SIAT1","A/Latvia/1-35583/2012|2012-01-10|MDCKx/SIAT1","A/Austria/655242/2012|2012-01-11|C1/SIAT1","A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1","A/Rheinland-Pfalz/1/2012|2012-01-12|C2/SIAT1","A/Switzerland/5834730/2012|2012-01-13|SIAT3",
+	"A/Switzerland/5834796/2012|2012-01-13|SIAT3","A/Berlin/4/2012|2012-01-13|C2/SIAT1","A/Baden-Württemberg/3/2012|2012-01-13|C2/SIAT1","A/Latvia/1-37528/2012|2012-01-13|MDCKx/SIAT1","A/England/21/2012|2012-01-16|SIAT1/SIAT1","A/Berlin/5/2012|2012-01-16|C2/SIAT1","A/Berlin/7/2012|2012-01-16|C2/SIAT1","A/Brandenburg/1/2012|2012-01-16|C2/SIAT1","A/England/20/2012|2012-01-17|SIAT1/SIAT1","A/Berlin/8/2012|2012-01-17|C2/SIAT1",
+	"A/Switzerland/5867852/2012|2012-01-20|SIAT3","A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1")
+
+agFill(map132)[ag_Sep2013_table7_10] <- '#ea5545'
+agFill(map132)[ag_Feb2012_table13] <- '#ef9b20'
+p_map132 <- ggplot(map132) + ggtitle('map 132')
+p_map132
+
+
+#################### MAP 133 ####################
+#### colered by tables
+agSize(map133) <- 5
+agFill(map133) <- 'grey50'
+ag_Sep2013_table7_10 <- agNames(map133) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Iceland/27/2012|2012-11-20|MDCK2/SIAT1",
+	"A/Odessa/175/2013|2013-01-09|MDCK2/SIAT1","A/Iceland/14/2013|2013-01-10|MDCK1/SIAT1","A/Ukraine/5725/2013|2013-01-21|C2/MDCK1/SIAT1","A/Ukraine/181/2013|2013-01-21|MDCK1/SIAT1","A/Parma/27/2013|2013-01-25|MDCK2/SIAT2","A/Perugia/14/2013|2013-01-27|MDCK2/SIAT2","A/Trieste/12/2013|2013-01-28|SIAT2","A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1","A/Belgrade/649/2013|2013-02-05|C2/SIAT3","A/Belgrade/650/2013|2013-02-05|C2/SIAT3",
+	"A/Belgrade/648/2013|2013-02-05|C2/SIAT2","A/Ukraine/5812/2013|2013-02-17|C2/SIAT2","A/Milano/28/2013|2013-02-19|MDCK1/SIAT3","A/Ukraine/211/2013|2013-02-20|SIAT1/SIAT2","A/Moldova/235/2013|2013-02-21|MDCK2/SIAT3","A/Dnipropetrovsk/257/2013|2013-03-01|MDCK1/SIAT2","A/Ukraine/5906/2013|2013-03-05|C2/SIAT3","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2","A/Ukraine/263/2013|2013-03-11|SIAT1/SIAT2",
+	"A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/369/2013|2013-03-22|MDCK1/SIAT1","A/Kmelnitsk/477/2013|2013-03-25|MDCK1/SIAT1","A/Ukraine/466/2013|2013-04-18|MDCK1/SIAT2")
+ag_Feb2012_table14 <- agNames(map133) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/England/259/2011|2011-11-16|Cx/SIAT1","A/Norway/1789/2011|*|Cx/SIAT1","IVR-164(A/Brisbane/299/2011)|*|E5/E1","A/Dakar/21/2011|2011-09-29|SIAT2","A/Dakar/23/2011|2011-10-03|SIAT2",
+	"A/Stockholm/37/2011|2011-11-27|C3/SIAT1","A/Stockholm/42/2011|2011-12-02|C3/SIAT1","A/Jordan/20110030729/2011|2011-12-06|SIAT3","A/Stockholm/2011-21445/2011|2011-12-06|C1/SIAT1","A/Suceava/87402/2012|2011-12-12|MDCK3/SIAT1","A/Stockholm/40/2011|2011-12-13|C2/SIAT1","A/Stockholm/39/2011|2011-12-15|C1/SIAT1","A/Turkey/37/2011|2011-12-16|SIAT1/SIAT1","A/Bacau/88448/2012|2011-12-19|MDCK3/SIAT1","A/Turkey/36/2011|2011-12-20|SIAT1/SIAT1",
+	"A/Turkey/39/2011|2011-12-20|SIAT1/SIAT1","A/Antalya/214/2011|2011-12-20|C1/SIAT2","A/Turkey/33/2011|2011-12-22|SIAT1/SIAT1","A/Turkey/34/2011|2011-12-22|SIAT1/SIAT1","A/Turkey/35/2011|2011-12-22|SIAT1/SIAT1","A/Turkey/38/2011|2011-12-22|SIAT1/SIAT1","A/Turkey/40/2011|2011-12-26|SIAT1/SIAT1","A/Stockholm/43/2011|2011-12-26|C3/SIAT1","A/Stockholm/12-00978/2012|2011-12-26|C1/SIAT1","A/Turkey/41/2011|2011-12-27|SIAT1/SIAT1",
+	"A/Turkey/42/2011|2011-12-27|SIAT1/SIAT1","A/Stockholm/1200979/2012|2011-12-27|C1/SIAT1","A/Galati/88977/2012|2011-12-27|MDCK2/SIAT1","A/Stockholm/44/2011|2011-12-28|C0/SIAT1","A/Turkey/43/2011|2011-12-29|SIAT1/SIAT1","A/Turkey/44/2011|2011-12-29|SIAT1/SIAT1","A/Turkey/45/2011|2011-12-29|SIAT1/SIAT1","A/Turkey/46/2011|2012-01-02|SIAT1/SIAT1","A/Turkey/48/2011|2012-01-02|SIAT1/SIAT1","A/Turkey/49/2011|2012-01-02|SIAT1/SIAT1",
+	"A/Turkey/50/2011|2012-01-02|SIAT1/SIAT1","A/Turkey/51/2011|2012-01-03|SIAT1/SIAT1","A/Turkey/52/2011|2012-01-03|SIAT1/SIAT1","A/Bacau/89197/2012|2012-01-03|MDCK2/SIAT1","A/Turkey/53/2011|2012-01-04|SIAT1/SIAT1","A/Turkey/55/2011|2012-01-04|SIAT1/SIAT1","A/Braila/89501/2012|2012-01-04|MDCK3/SIAT1","A/Iasi/89451/2012|2012-01-04|MDCK3/SIAT1","A/Turkey/54/2011|2012-01-05|SIAT1/SIAT1","A/Turkey/56/2011|2012-01-09|SIAT1/SIAT1",
+	"A/Finland/196/2012|2012-01-09|MDCKSIAT3/SIAT1","A/Turkey/57/2011|2012-01-11|SIAT1/SIAT1","A/Stockholm/12-00694/2012|2012-01-11|C2/SIAT1","A/Stockholm/12-00574/2012|2012-01-12|C2/SIAT1","A/Stockholm/12-00974/2012|2012-01-12|C1/SIAT1","A/Finland/197/2012|2012-01-12|MDCK-SIAT2/SIAT1","A/Stockholm/12-00695/2012|2012-01-13|C2/SIAT1","A/Stockholm/12-00752/2012|2012-01-16|C0/SIAT1","A/Latvia/1-39879p/2012|2012-01-16|MDCK/SIAT1")
+
+agFill(map133)[ag_Sep2013_table7_10] <- '#ea5545'
+agFill(map133)[ag_Feb2012_table14] <- '#ef9b20'
+p_map133 <- ggplot(map133) + ggtitle('map 133')
+p_map133
+
+
+#################### MAP 134 ####################
+#### colered by tables
+agSize(map134) <- 5
+agFill(map134) <- 'grey50'
+ag_Sep2013_table7_10 <- agNames(map134) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Alabama/5/2010|2010-07-13|MK1/C2/SIAT2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1",
+	"A/Iceland/27/2012|2012-11-20|MDCK2/SIAT1","A/Odessa/175/2013|2013-01-09|MDCK2/SIAT1","A/Iceland/14/2013|2013-01-10|MDCK1/SIAT1","A/Ukraine/5725/2013|2013-01-21|C2/MDCK1/SIAT1","A/Ukraine/181/2013|2013-01-21|MDCK1/SIAT1","A/Parma/27/2013|2013-01-25|MDCK2/SIAT2","A/Perugia/14/2013|2013-01-27|MDCK2/SIAT2","A/Trieste/12/2013|2013-01-28|SIAT2","A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1","A/Belgrade/649/2013|2013-02-05|C2/SIAT3",
+	"A/Belgrade/650/2013|2013-02-05|C2/SIAT3","A/Belgrade/648/2013|2013-02-05|C2/SIAT2","A/Ukraine/5812/2013|2013-02-17|C2/SIAT2","A/Milano/28/2013|2013-02-19|MDCK1/SIAT3","A/Ukraine/211/2013|2013-02-20|SIAT1/SIAT2","A/Moldova/235/2013|2013-02-21|MDCK2/SIAT3","A/Dnipropetrovsk/257/2013|2013-03-01|MDCK1/SIAT2","A/Ukraine/5906/2013|2013-03-05|C2/SIAT3","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2",
+	"A/Ukraine/263/2013|2013-03-11|SIAT1/SIAT2","A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/369/2013|2013-03-22|MDCK1/SIAT1","A/Kmelnitsk/477/2013|2013-03-25|MDCK1/SIAT1","A/Ukraine/466/2013|2013-04-18|MDCK1/SIAT2")
+ag_Feb2012_table11 <- agNames(map134) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E1","A/Victoria/208/2009|2009-06-02|E3/E1","A/Victoria/210/2009|2009-06-02|E2/E2","A/Alabama/5/2010|2010-07-13|MK1/M2/SIAT5","A/Perth/10/2010|2010-05-25|E3/E1","A/Hong Kong/3969/2011|2011-05-19|M2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Adjame/GR765/2011|2011-09-12|SIAT3","A/Yopougon/GR826/2011|2011-09-15|SIAT2",
+	"A/Attecoube/GR1099/2011|2011-10-17|SIAT2","A/Marrakech/38/2011|2011-10-20|SIAT3","A/Attecoube/GR1241/2011|2011-10-31|SIAT2","A/Adjame/GR1272/2011|2011-11-10|SIAT2","A/Adjame/GR1327/2011|2011-11-18|SIAT2","A/Porto/EuroEva58/2011|2011-11-20|SIAT1","A/Norway/2233/2011|2011-11-22|MDCK1/SIAT1","A/Meknes/49H/2011|2011-11-24|SIAT2","A/Belgium/G1063/2011|2011-11-25|SIAT2","A/Meknes/136H/2011|2011-11-28|SIAT2",
+	"A/Berlin/94/2011|2011-11-29|C3/SIAT1","A/Meknes/56H/2011|2011-11-30|SIAT2","A/Hong Kong/4960/2011|2011-11-30|MDCK3/SIAT1","A/Hong Kong/4937/2011|2011-11-30|MDCK3/SIAT1","A/Norway/2350/2011|2011-11-30|MDCK1/SIAT1","A/Meknes/68/2011|2011-12-01|SIAT2","A/Tehran/9671/2011|2011-12-01|MDCK2/SIAT1","A/Ghom/9677/2011|2011-12-01|MDCK2/SIAT1","A/Tehran/9720/2011|2011-12-01|MDCK2/SIAT1","A/Tehran/9721/2011|2011-12-01|MDCK2/SIAT1",
+	"A/Hong Kong/4974/2011|2011-12-01|MDCK3/SIAT1","A/Norway/2335/2011|2011-12-01|MDCK2/SIAT1","A/Norway/2329/2011|2011-12-02|MDCK1/SIAT1","A/Belgium/G1109/2011|2011-12-05|SIAT3","A/Norway/2334/2011|2011-12-05|MDCK2/SIAT1","A/Norway/2352/2011|2011-12-05|MDKC2/SIAT1","A/Belgium/G1125/2011|2011-12-10|SIAT3","A/Agadir/87/2011|2011-12-12|SIAT2","A/Settat/91H/2011|2011-12-12|SIAT3","A/Norway/2382/2011|2011-12-13|MDCK2/SIAT1",
+	"A/Norway/2430/2011|2011-12-13|SIAT1/SIAT1","A/Norway/2431/2011|2011-12-13|SIAT1/SIAT1","A/Norway/2432/2011|2011-12-13|SIAT1/SIAT1","A/Bayern/88/2011|2011-12-14|C5/SIAT1","A/Hong Kong/5047/2011|2011-12-14|MDCK3/SIAT1","A/Norway/2400/2011|2011-12-14|SIAT1/SIAT1","A/Belgium/G1147/2011|2011-12-16|SIAT2","A/Norway/2406/2011|2011-12-17|SIAT1/S1","A/Tiznit/131/2011|2011-12-19|SIAT2","A/Norway/2426/2011|2011-12-20|SIAT1/S1",
+	"A/Norway/2418/2011|2011-12-21|SIAT1/S1","A/Norway/2442/2011|2011-12-23|SIAT1/S1","A/Casablanca/155/2011|2011-12-26|SIAT2","A/Tiznit/167/2011|2011-12-26|SIAT2","A/Rabat/197/2011|2011-12-28|SIAT2","A/Alborz/96/2012|2012-01-01|MDCK1/SIAT1","A/Tehran/104/2012|2012-01-01|MDCK1/SIAT1","A/Tehran/109/2012|2012-01-01|SIAT1","A/Tehran/115/2012|2012-01-01|MDCK1/SIAT1","A/Tehran/180/2012|2012-01-01|MDCK1/SIAT1",
+	"A/Tehran/181/2012|2012-01-01|MDCK1/SIAT1","A/Via Real/SU5/2012|2012-01-03|SIAT1","A/Porto/EuroEva69/2012|2012-01-04|SIAT1","A/Norway/2367/2011|2011-12-07|MDCK1/SIAT1","A/Baden-Wurttemberg/1/2012|2012-01-01|C2/SIAT1","A/Oujda/144H/2011|*|SIAT3")
+
+agFill(map134)[ag_Sep2013_table7_10] <- '#ea5545'
+agFill(map134)[ag_Feb2012_table11] <- '#ef9b20'
+p_map134 <- ggplot(map134) + ggtitle('map 134')
+p_map134
+
+
+#################### MAP 135 ####################
+#### colered by tables
+agSize(map135) <- 5
+agFill(map135) <- 'grey50'
+ag_Sep2013_table7_10 <- agNames(map135) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Iowa/19/2010|2010-12-30|E3/E2","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Iceland/27/2012|2012-11-20|MDCK2/SIAT1",
+	"A/Odessa/175/2013|2013-01-09|MDCK2/SIAT1","A/Iceland/14/2013|2013-01-10|MDCK1/SIAT1","A/Ukraine/5725/2013|2013-01-21|C2/MDCK1/SIAT1","A/Ukraine/181/2013|2013-01-21|MDCK1/SIAT1","A/Parma/27/2013|2013-01-25|MDCK2/SIAT2","A/Perugia/14/2013|2013-01-27|MDCK2/SIAT2","A/Trieste/12/2013|2013-01-28|SIAT2","A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1","A/Belgrade/649/2013|2013-02-05|C2/SIAT3","A/Belgrade/650/2013|2013-02-05|C2/SIAT3",
+	"A/Belgrade/648/2013|2013-02-05|C2/SIAT2","A/Ukraine/5812/2013|2013-02-17|C2/SIAT2","A/Milano/28/2013|2013-02-19|MDCK1/SIAT3","A/Ukraine/211/2013|2013-02-20|SIAT1/SIAT2","A/Moldova/235/2013|2013-02-21|MDCK2/SIAT3","A/Dnipropetrovsk/257/2013|2013-03-01|MDCK1/SIAT2","A/Ukraine/5906/2013|2013-03-05|C2/SIAT3","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2","A/Ukraine/263/2013|2013-03-11|SIAT1/SIAT2",
+	"A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/369/2013|2013-03-22|MDCK1/SIAT1","A/Kmelnitsk/477/2013|2013-03-25|MDCK1/SIAT1","A/Ukraine/466/2013|2013-04-18|MDCK1/SIAT2")
+ag_Sep2012_table12 <- agNames(map135) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Iowa/19/2010|2010-12-30|E3/E1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT3","A/Karlovy Vary/46/2012|*|MDCK5/SIAT3","A/Decin/42/2012|*|MDCK5/SIAT3",
+	"A/Cercany/96/2012|*|MDCK3/SIAT3","A/Praha/98/2012|*|MDCK3/SIAT3","A/Ireland/V1160/2012|2012-02-01|C2/SIAT1","A/Belgrade/449/2012|2012-02-02|C1/SIAT1","A/Ukraine/38/2012|2012-02-10|C1/SIAT3","A/Ukraine/134/2012|2012-02-25|C1/SIAT3","A/England/354/2012|2012-02-28|SIAT2/SIAT2","A/Ukraine/114/2012|2012-03-02|C1/SIAT3","A/Belgrade/898/2012|2012-03-06|C1/SIAT1","A/Cuprija/1212/2012|2012-03-15|C1/SIAT1",
+	"A/Ireland/12V2608/2012|2012-03-22|C1/SIAT1","A/Ireland/12V2628/2012|2012-03-22|C1/SIAT1","A/Ireland/12V2734/2012|2012-03-26|C1/SIAT1","A/Nis/1471/2012|2012-03-26|C1/SIAT1","A/Nis/1472/2012|2012-03-26|C1/SIAT1","A/Belgrade/1420/2012|2012-03-26|C1/SIAT1","A/Belgrade/1470/2012|2012-03-27|C1/SIAT2","A/Ireland/12V2794/2012|2012-03-28|C1/SIAT1","A/Scotland/1/2012|2012-03-30|SIAT3/SIAT2","A/Belgrade/1545/2012|2012-03-30|C1/SIAT1",
+	"A/Beograd/1549/2012|2012-04-02|C1/SIAT1","A/England/509/2012|2012-04-04|SIAT1/SIAT2","A/Beograd/1607/2012|2012-04-04|C1/SIAT1","A/Leskovac/1701/2012|2012-04-05|C1/SIAT1","A/Belgrade/1741/2012|2012-04-11|C1/SIAT1","A/England/524/2012|2012-04-12|SIAT1/SIAT3","A/Sabac/1930/2012|2012-04-24|C1/SIAT1")
+
+agFill(map135)[ag_Sep2013_table7_10] <- '#ea5545'
+agFill(map135)[ag_Sep2012_table12] <- '#ef9b20'
+p_map135 <- ggplot(map135) + ggtitle('map 135')
+p_map135
+
+
+#################### MAP 136 ####################
+#### colered by tables
+agSize(map136) <- 5
+agFill(map136) <- 'grey50'
+ag_Sep2012_table15 <- agNames(map136) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Iowa/19/2010|2010-12-30|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Milano/136/2012|2012-02-06|SIAT1/SIAT1","A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1","A/Iceland/10/2012|2012-02-08|MDCK2/SIAT1",
+	"A/Iceland/11/2012|2012-02-08|MDCK3/SIAT1","A/Georgia/161/2012|2012-02-08|SIAT2","A/Iceland/12/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/13/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/14/2012|2012-02-12|MDCK2/SIAT1","A/Iceland/15/2012|2012-02-13|MDCK1/SIAT1","A/Iceland/16/2012|2012-02-13|MDCK2/SIAT1","A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1","A/Parma/139/2012|2012-02-20|MDCK2/SIAT1","A/Georgia/255/2012|2012-02-22|SIAT2",
+	"A/Perugia/21/2012|2012-02-22|MDCK2/SIAT1","A/Iceland/18/2012|2012-02-23|MDCK3/SIAT1","A/Georgia/215/2012|2012-02-23|SIAT2","A/Iceland/19/2012|2012-02-24|MDCK2/SIAT1","A/Iceland/20/2012|2012-02-27|MDCK2/SIAT1","A/Iceland/21/2012|2012-03-02|MDCK2/SIAT1","A/Denmark/38/2012|2012-03-05|SIAT2","A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Georgia/370/2012|2012-03-06|SIAT2","A/Minsk/1574/2012|2012-03-12|MDCK2/SIAT1",
+	"A/Montenegro/158/2012|2012-03-13|SIAT3","A/Gomel/1613/2012|2012-03-14|MDCK2/SIAT1","A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1","A/Montenegro/190/2012|2012-03-16|SIAT2","A/Stockholm/14/2012|2012-03-16|C2/SIAT1","A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1","A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1","A/Georgia/512/2012|2012-03-23|SIAT2","A/Montenegro/269/2012|2012-03-24|SIAT2","A/Montenegro/272/2012|2012-03-24|SIAT2",
+	"A/Iceland/23/2012|2012-03-27|MDCK3/SIAT1","A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1","A/Gomel/1692/2012|2012-03-27|MDCK2/SIAT3","A/Georgia/554/2012|2012-03-27|SIAT2","A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1","A/Montenegro/312/2012|2012-03-29|SIAT2","A/Georgia/579/2012|2012-04-04|SIAT2","A/Iceland/24/2012|2012-04-14|MDCK2/SIAT1","A/Stockholm/19/2012|2012-04-14|C1/SIAT1","A/Stockholm/21/2012|2012-04-21|C2/SIAT1")
+ag_Sep2013_table7_10 <- agNames(map136) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Iceland/27/2012|2012-11-20|MDCK2/SIAT1","A/Odessa/175/2013|2013-01-09|MDCK2/SIAT1","A/Iceland/14/2013|2013-01-10|MDCK1/SIAT1","A/Ukraine/5725/2013|2013-01-21|C2/MDCK1/SIAT1",
+	"A/Ukraine/181/2013|2013-01-21|MDCK1/SIAT1","A/Parma/27/2013|2013-01-25|MDCK2/SIAT2","A/Perugia/14/2013|2013-01-27|MDCK2/SIAT2","A/Trieste/12/2013|2013-01-28|SIAT2","A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1","A/Belgrade/649/2013|2013-02-05|C2/SIAT3","A/Belgrade/650/2013|2013-02-05|C2/SIAT3","A/Belgrade/648/2013|2013-02-05|C2/SIAT2","A/Ukraine/5812/2013|2013-02-17|C2/SIAT2","A/Milano/28/2013|2013-02-19|MDCK1/SIAT3",
+	"A/Ukraine/211/2013|2013-02-20|SIAT1/SIAT2","A/Moldova/235/2013|2013-02-21|MDCK2/SIAT3","A/Dnipropetrovsk/257/2013|2013-03-01|MDCK1/SIAT2","A/Ukraine/5906/2013|2013-03-05|C2/SIAT3","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2","A/Ukraine/263/2013|2013-03-11|SIAT1/SIAT2","A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/369/2013|2013-03-22|MDCK1/SIAT1",
+	"A/Kmelnitsk/477/2013|2013-03-25|MDCK1/SIAT1","A/Ukraine/466/2013|2013-04-18|MDCK1/SIAT2")
+ag_Feb2014_table9_2 <- agNames(map136) %in% c('A/Alabama/5/2010|2010-07-13|MK1/C1/SIAT2', 'A/Stockholm/18/2011|2011-03-28|SIAT4', 'A/Athens/112/2012|2012-02-01|SIAT6', 'A/Almaty/2958/2013|2013-01-27|E5', 'A/Serbia/NS-210/2013|2013-01-18|E5', 'A/Hong Kong/146/2013|2013-01-11|E5', 'A/Mauritius/167/2013|2013-03-11|MDCK2/SIAT1', 'A/Mauritius/571/2013|2013-07-03|MDCK2/SIAT1', 'A/Mauritius/610/2013|2013-07-15|MDCK2/SIAT1', 'A/Mauritius/703/2013|2013-08-19|MDCK2/SIAT1')
+ag_Sep2014_table8_10 <- agNames(map136) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT3","A/Athens/112/2012|2012-02-01|SIAT5","A/Texas/50/2012_(6&7)|2012-04-15|E5/E2","NIB-85 (A/Almaty/2958/2013)|2013-01-27|E5/E1","A/South Africa/4655/2013|2013-06-25|E7 clone 118-76","A/South Africa/4655/2013|2013-06-25|E7  clone 101-06","A/South Africa/4655/2013|2013-06-25|E7 clone 93-38","A/Stockholm/1/2013|2013-01-13|E6 clone 36-18","A/Tehran/30732/2013|2013-03-22|MDCK3/SIAT1","A/Zambia/13/093/2013|2013-08-28|Cx/SIAT2",
+	"A/Zambia/13/262/2013|2013-08-07|Cx/SIAT1","A/Zambia/13/127/2013|2013-08-12|SIAT2","A/Zambia/13/338/2013|2013-09-13|Cx/SIAT1","A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1","A/Norway/86/2014|2014-01-08|MDCK2/SIAT1","A/Norway/160/2014|2014-01-08|MDCK1/SIAT1","A/Norway/184/2014|2014-01-08|MDCK1/SIAT1","A/Norway/163/2014|2014-01-11|MDCK2/SIAT1","A/Norway/161/2014|2014-01-12|MDCK2/SIAT1","A/Norway/228/2014|2014-01-12|MDCK2/SIAT1",
+	"A/Norway/162/2014|2014-01-13|MDCK1/SIAT1","A/Norway/120/2014|2014-01-14|MDCK1/SIAT1","A/Norway/226/2014|2014-01-14|MDCK1/SIAT1","A/Norway/208/2014|2014-01-16|MDCK1/SIAT1","A/Switzerland/10030276/2014|2014-02-05|SIAT2","A/Dnipro/230/2014|2014-02-28|SIAT2/SIAT3","A/Dnipro/232/2014|2014-03-03|SIAT2/SIAT3","A/Poland/1877/2014|2014-03-03|SIAT2","A/Norway/1003/2014|2014-03-04|SIAT2","A/Georgia/495/2014|2014-03-04|SIAT2",
+	"A/Dnipro/233/2014|2014-03-04|SIAT2/SIAT1","A/Norway/1020/2014|2014-03-07|SIAT2","A/Georgia/542/2014|2014-03-07|SIAT2","A/Georgia/584/2014|2014-03-10|SIAT2","A/Norway/1130/2014|2014-03-11|SIAT2","A/Dnipro/234/2014|2014-03-11|SIAT2/SIAT3","A/Norway/1078/2014|2014-03-16|SIAT2","A/Poland/3464/2014|2014-03-19|SIAT2","A/Switzerland/10261363/2014|2014-03-20|SIAT2","A/Georgia/699/2014|2014-03-26|SIAT2",
+	"A/Switzerland/10295858/2014|2014-03-27|SIAT2","A/Switzerland/10295823/2014|2014-03-28|SIAT2","A/Switzerland/10295759/2014|2014-03-28|SIAT2")
+ag_Sep2014_table8_19 <- agNames(map136) %in% c("A/South Africa/4655/2013|2013-06-25|E7 clone 101-60","A/Stockholm/1/2013|2013-01-13|E7 clone 36-18","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Sarajevo/21/2012|2012-03-28|SIAT1","A/Sarajevo/57/2012|2012-04-26|SIAT1","A/Hong Kong/4801/2014|2014-02-26|MDCK3","A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2","A/Tomsk/6/2014|2014-03-01|MDCK1/SIAT1",
+	"A/Hong Kong/5320/2014|2014-03-20|MDCK2","A/Yaroslavl/234/2014|2014-03-21|MDCK1/SIAT1","A/Moscow/206/2014|2014-03-21|MDCK1/SIAT1","A/Vladimir/220/2014|2014-03-26|MDCK1/SIAT1","A/Palau/6759/2014|2014-03-26|C2/SIAT1","A/Belgium/14G0496/2014|2014-04-03|SIAT2","A/Hong Kong/5578/2014|2014-04-04|MDCK2","A/Mogilev/1273/2014|2014-04-07|MDCK2/SIAT1","A/V. Novgorod/223/2014|2014-04-08|MDCK1/SIAT1","A/Mogilev/1484/2014|2014-04-15|MDCK2/SIAT1",
+	"A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK2","A/Glasgow/4165/2014|2014-06-08|SIAT1")
+
+agFill(map136)[ag_Sep2012_table15] <- '#ea5545'
+agFill(map136)[ag_Sep2013_table7_10] <- '#ef9b20'
+agFill(map136)[ag_Feb2014_table9_2] <- '#ede15b'
+agFill(map136)[ag_Sep2014_table8_10] <- '#87bc45'
+agFill(map136)[ag_Sep2014_table8_19] <- '#27aeef'
+p_map136 <- ggplot(map136) + ggtitle('map 136')
+p_map136
+
+
+#################### MAP 137 ####################
+#### colered by tables
+agSize(map137) <- 5
+agFill(map137) <- 'grey50'
+ag_Sep2012_table9 <- agNames(map137) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Bulgaria/182/2012|2012-02-02|C3/SIAT1","A/Bulgaria/217/2012|2012-02-09|C3/SIAT1",
+	"A/Bulgaria/218/2012|2012-02-09|C3/SIAT1","A/Slovenia/402/2012|2012-02-20|Mx/SIAT1","A/Slovenia/435/2012|2012-02-20|Mx/SIAT1","A/Slovenia/459/2012|2012-02-20|Mx/SIAT1","A/Bulgaria/280/2012|2012-02-20|C3/SIAT1","A/Bulgaria/311/2012|2012-02-24|C3/SIAT1","A/Bulgaria/312/2012|2012-02-24|C3/SIAT1","A/Bulgaria/313/2012|2012-02-24|C3/SIAT1","A/Bulgaria/314/2012|2012-02-24|C3/SIAT1","A/Slovenia/566/2012|2012-02-27|Mx/SIAT1",
+	"A/Slovenia/599/2012|2012-02-27|Mx/SIAT1","A/St Petersburg/2/2012|2012-02-27|C3/SIAT1","A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1","A/Slovenia/637/2012|2012-03-05|Mx/SIAT1","A/Slovenia/815/2012|2012-03-12|Mx/SIAT1","A/Slovenia/879/2012|2012-03-19|Mx/SIAT1","A/St Petersburg/4/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1","A/Omsk/1/2012|2012-03-25|C1/SIAT1","A/St Petersburg/8/2012|2012-03-25|C2/SIAT1",
+	"A/St Petersburg/10/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Slovenia/1049/2012|2012-04-02|Mx/SIAT1")
+ag_Sep2013_table7_10 <- agNames(map137) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Iceland/27/2012|2012-11-20|MDCK2/SIAT1","A/Odessa/175/2013|2013-01-09|MDCK2/SIAT1",
+	"A/Iceland/14/2013|2013-01-10|MDCK1/SIAT1","A/Ukraine/5725/2013|2013-01-21|C2/MDCK1/SIAT1","A/Ukraine/181/2013|2013-01-21|MDCK1/SIAT1","A/Parma/27/2013|2013-01-25|MDCK2/SIAT2","A/Perugia/14/2013|2013-01-27|MDCK2/SIAT2","A/Trieste/12/2013|2013-01-28|SIAT2","A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1","A/Belgrade/649/2013|2013-02-05|C2/SIAT3","A/Belgrade/650/2013|2013-02-05|C2/SIAT3","A/Belgrade/648/2013|2013-02-05|C2/SIAT2",
+	"A/Ukraine/5812/2013|2013-02-17|C2/SIAT2","A/Milano/28/2013|2013-02-19|MDCK1/SIAT3","A/Ukraine/211/2013|2013-02-20|SIAT1/SIAT2","A/Moldova/235/2013|2013-02-21|MDCK2/SIAT3","A/Dnipropetrovsk/257/2013|2013-03-01|MDCK1/SIAT2","A/Ukraine/5906/2013|2013-03-05|C2/SIAT3","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2","A/Ukraine/263/2013|2013-03-11|SIAT1/SIAT2","A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1",
+	"A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1","A/Dnipropetrovsk/369/2013|2013-03-22|MDCK1/SIAT1","A/Kmelnitsk/477/2013|2013-03-25|MDCK1/SIAT1","A/Ukraine/466/2013|2013-04-18|MDCK1/SIAT2")
+ag_Feb2014_table9_7 <- agNames(map137) %in% c("A/Stockholm/18/2011|2011-03-28|SIAT4","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT6","A/Athens/112/2012|2012-02-01|SIAT4","A/Kazakhstan/3372/2013|*|SIAT2","A/Kazakhstan/3291/2013|2013-11-12|SIAT2","A/Belguim/13G1319/2013|2013-12-12|SIAT2","A/Kazakhstan/3371/2013|2013-12-15|SIAT2","A/Belguim/13G1334/2013|2013-12-16|SIAT2","A/Moldova/696/2013|2013-12-17|MDCK2/SIAT1","A/Kazakhstan/3281/2013|2013-12-18|SIAT2",
+	"A/Belguim/13G1326/2013|2013-12-19|SIAT2","A/Kazakhstan/3319/2013|2013-12-23|SIAT2","A/Kazakhstan/3318/2013|2013-12-23|SIAT2","A/Belguim/14G0001/2014|2014-01-03|SIAT2")
+ag_Sep2014_table8_13 <- agNames(map137) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT3","A/Stockholm/1/2013|2013-01-13|E7 clone 36-18","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT1","A/Trieste/01/2014|2013-12-28|SIAT1/SIAT1","A/Milano/13/2014|2014-01-12|SIAT1/SIAT1","A/Serbia/NS-613/2014|2014-01-15|SIAT1","A/Serbia/NS-619/2014|2014-01-17|SIAT1","A/Serbia/NS-630/2014|2014-01-21|SIAT1","A/Georgia/76/2014|2014-01-22|SIAT1","A/Georgia/117/2014|2014-01-23|SIAT1",
+	"A/Georgia/108/2014|2014-01-27|SIAT1","A/Norway/513/2014|2014-01-29|SIAT1","A/Norway/504/2014|2014-02-01|SIAT1","A/Norway/507/2014|2014-02-03|SIAT1","A/Norway/627/2014|2014-02-04|SIAT1","A/Norway/467/2014|2014-02-06|SIAT1","A/Georgia/175/2014|2014-02-06|SIAT1","A/Georgia/215/2014|2014-02-06|SIAT1","A/Georgia/231/2014|2014-02-07|SIAT1","A/Georgia/241/2014|2014-02-10|SIAT1",
+	"A/Norway/580/2014|2014-02-11|SIAT2","A/Serbia/NS-666/2014|2014-02-11|SIAT1","A/Serbia/NS-669/2014|2014-02-13|SIAT1","A/Belgium/14H0010/2014|2014-02-13|SIAT1","A/Serbia/NS-670/2014|2014-02-13|SIAT1","A/Belgium/14S0070/2014|2014-02-16|SIAT1","A/Georgia/328/2014|2014-02-18|SIAT1","A/Serbia/NS-682/2014|2014-02-21|SIAT1","A/Ukraine/6095/2014|2014-02-27|C3/SIAT1","A/Ukraine/6096/2014|2014-02-27|C2/SIAT1",
+	"A/Ukraine/6097/2014|2014-02-27|C2/SIAT1","A/Ukraine/6098/2014|2014-02-28|C2/SIAT1","A/Serbia/NS-707/2014|2014-02-28|SIAT1","A/Ukraine/6069/2014|2014-03-01|C0/SIAT1","A/Ukraine/6070/2014|2014-03-02|C0/SIAT1","A/Ukraine/6174/2014|2014-03-04|C1/SIAT1","A/Ukraine/6141/2014|2014-03-04|C0/SIAT1","A/Belgium/14S0265/2014|2014-03-07|SIAT1","A/Ukraine/6138/2014|2014-03-10|C0/SIAT2","A/Ukraine/6079/2014|2014-03-12|C1/SIAT1",
+	"A/Ukraine/6080/2014|2014-03-13|C1/SIAT1","A/Ukraine/6156/2014|2014-03-24|C1/SIAT1","A/Ukraine/6158/2014|2014-03-25|C1/SIAT1","A/Ukraine/6159/2014|2014-03-25|C1/SIAT1","A/Ukraine/6161/2014|2014-03-26|C1/SIAT1")
+ag_Feb2015_table9_3 <- agNames(map137) %in% c('A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT4', 'A/Norway/466/2014|2014-02-03|SIAT1/SIAT2', 'A/Hong Kong/7364/2014|2014-08-18|MDCK2/SIAT3', 'A/Niedersachsen/8/2014|2014-10-09|C2/SIAT1', 'A/England/516/2014|2014-10-24|SIAT1/SIAT1', 'A/Niedersachsen/9/2014|2014-11-03|C2/SIAT1', 'A/Rheinland-Pfalz/13/2014|2014-11-08|C2/SIAT1', 'A/England/527/2014|2014-11-18|SIAT1/SIAT1', 'A/England/528/2014|2014-11-20|SIAT2/SIAT1', 'A/England/530/2014|2014-11-26|MDCK1/SIAT1')
+ag_Feb2015_table9_4 <- agNames(map137) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/5738/2014|2014-04-30|E5 clone 121","A/Stockholm/17/2014|2014-07-23|MDCK2/SIAT1","A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1","A/Stockholm/19/2014|2014-09-07|MDCK1/SIAT1","A/Stockholm/20/2014|2014-09-28|MDCK1/SIAT1","A/Belgium/H80/2014|2014-09-29|SIAT1/SIAT1","A/La Rioja/2053/2014|2014-10-08|SIAT1/SIAT1","A/Stockholm/22/2014|2014-10-18|MDCK2/SIAT1",
+	"A/Pais Vasco/1979/2014|2014-10-22|SIAT1/SIAT1","A/Belgium/G589/2014|2014-10-22|SIAT1/SIAT1","A/La Rioja/2051/2014|2014-10-29|MDCKx/SIAT1","A/Sweden/76/2014|2014-11-02|MDCK1/SIAT1","A/Stockholm/26/2014|2014-11-03|MDCK1/SIAT1","A/Aragon/2031/2014|2014-11-07|SIAT1/SIAT1","A/La Rioja/2050/2014|2014-11-15|SIAT1/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1","A/Galicia/2055/2014|2014-11-20|SIAT2/SIAT1","A/Galicia/2054/2014|2014-11-24|SIAT1/SIAT1",
+	"A/Extremadura/2061/2014|2014-11-25|SIAT1/SIAT1","A/Aragon/2062/2014|2014-11-27|SIAT1/SIAT1")
+
+agFill(map137)[ag_Sep2012_table9] <- '#ea5545'
+agFill(map137)[ag_Sep2013_table7_10] <- '#ef9b20'
+agFill(map137)[ag_Feb2014_table9_7] <- '#ede15b'
+agFill(map137)[ag_Sep2014_table8_13] <- '#87bc45'
+agFill(map137)[ag_Feb2015_table9_3] <- '#27aeef'
+agFill(map137)[ag_Feb2015_table9_4] <- '#b33dc6'
+p_map137 <- ggplot(map137) + ggtitle('map 137')
+p_map137
+
+
+#################### MAP 138 ####################
+#### colered by tables
+agSize(map138) <- 5
+agFill(map138) <- 'grey50'
+ag_Sep2012_table9 <- agNames(map138) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Bulgaria/182/2012|2012-02-02|C3/SIAT1","A/Bulgaria/217/2012|2012-02-09|C3/SIAT1",
+	"A/Bulgaria/218/2012|2012-02-09|C3/SIAT1","A/Slovenia/402/2012|2012-02-20|Mx/SIAT1","A/Slovenia/435/2012|2012-02-20|Mx/SIAT1","A/Slovenia/459/2012|2012-02-20|Mx/SIAT1","A/Bulgaria/280/2012|2012-02-20|C3/SIAT1","A/Bulgaria/311/2012|2012-02-24|C3/SIAT1","A/Bulgaria/312/2012|2012-02-24|C3/SIAT1","A/Bulgaria/313/2012|2012-02-24|C3/SIAT1","A/Bulgaria/314/2012|2012-02-24|C3/SIAT1","A/Slovenia/566/2012|2012-02-27|Mx/SIAT1",
+	"A/Slovenia/599/2012|2012-02-27|Mx/SIAT1","A/St Petersburg/2/2012|2012-02-27|C3/SIAT1","A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1","A/Slovenia/637/2012|2012-03-05|Mx/SIAT1","A/Slovenia/815/2012|2012-03-12|Mx/SIAT1","A/Slovenia/879/2012|2012-03-19|Mx/SIAT1","A/St Petersburg/4/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1","A/Omsk/1/2012|2012-03-25|C1/SIAT1","A/St Petersburg/8/2012|2012-03-25|C2/SIAT1",
+	"A/St Petersburg/10/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Slovenia/1049/2012|2012-04-02|Mx/SIAT1")
+ag_Sep2013_table7_7 <- agNames(map138) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT2","A/Athens/112/2012|2012-02-01|SIAT6","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Moscow/84/2012|2012-12-25|Cx/SIAT1","A/England/119/2013|2013-01-09|MDCK2/SIAT1","A/England/104/2013|2013-01-09|MDCK2/SIAT1",
+	"A/Valencia/1S/2013|2013-01-10|SIAT2","A/Serbia/NS-200/2013|2013-01-14|SIAT2","A/Serbia/NS-210/2013|2013-01-18|SIAT3","A/Catalonia/2070282NS/2013|2013-01-22|SIAT2","A/Catalonia/5742S/2013|2013-01-23|SIAT2","A/Catalonia/2071057NS/2013|2013-01-24|SIAT2","A/England/188/2013|2013-01-29|SIAT1/SIAT1","A/England/256/2013|2013-01-30|MDCK1/SIAT1","A/England/280/2013|2013-01-31|MDCK1/SIAT1","A/Bulgaria/270/2013|2013-02-04|C2/SIAT1",
+	"A/Bulgaria/253/2013|2013-02-08|C2/SIAT1","A/England/279/2013|2013-02-09|SIAT1/SIAT1","A/St. Petersburg/4/2013|2013-02-13|C1/SIAT1","A/St. Petersburg/6/2013|2013-02-13|C1/SIAT1","A/Valladolid/39/2013|2013-02-14|SIAT2","A/England/308/2013|2013-02-15|SIAT1/SIAT1","A/Novosibirsk/77/2012|2013-02-20|C4/SIAT1","A/Astrakhan/2/2013|2013-02-20|C1/SIAT1","A/Astrakhan/5/2013|2013-02-20|C1/SIAT1","A/St. Petersburg/36/2013|2013-02-20|C2/SIAT1",
+	"A/Novosibirsk/78/2012|2013-02-20|C4/SIAT1","A/Burgos/96/2013|2013-03-12|SIAT2","A/Valladolid/95/2013|2013-03-14|SIAT2")
+ag_Feb2014_table9_7 <- agNames(map138) %in% c("A/Stockholm/18/2011|2011-03-28|SIAT4","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT6","A/Athens/112/2012|2012-02-01|SIAT4","A/Kazakhstan/3372/2013|*|SIAT2","A/Kazakhstan/3291/2013|2013-11-12|SIAT2","A/Belguim/13G1319/2013|2013-12-12|SIAT2","A/Kazakhstan/3371/2013|2013-12-15|SIAT2","A/Belguim/13G1334/2013|2013-12-16|SIAT2","A/Moldova/696/2013|2013-12-17|MDCK2/SIAT1","A/Kazakhstan/3281/2013|2013-12-18|SIAT2",
+	"A/Belguim/13G1326/2013|2013-12-19|SIAT2","A/Kazakhstan/3319/2013|2013-12-23|SIAT2","A/Kazakhstan/3318/2013|2013-12-23|SIAT2","A/Belguim/14G0001/2014|2014-01-03|SIAT2")
+ag_Sep2014_table8_10 <- agNames(map138) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT3","A/Athens/112/2012|2012-02-01|SIAT5","A/Texas/50/2012_(6&7)|2012-04-15|E5/E2","A/South Africa/4655/2013|2013-06-25|E7 clone 118-76","A/South Africa/4655/2013|2013-06-25|E7  clone 101-06","A/South Africa/4655/2013|2013-06-25|E7 clone 93-38","A/Stockholm/1/2013|2013-01-13|E6 clone 36-18","A/Tehran/30732/2013|2013-03-22|MDCK3/SIAT1","A/Zambia/13/093/2013|2013-08-28|Cx/SIAT2","A/Zambia/13/262/2013|2013-08-07|Cx/SIAT1",
+	"A/Zambia/13/127/2013|2013-08-12|SIAT2","A/Zambia/13/338/2013|2013-09-13|Cx/SIAT1","A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1","A/Norway/86/2014|2014-01-08|MDCK2/SIAT1","A/Norway/160/2014|2014-01-08|MDCK1/SIAT1","A/Norway/184/2014|2014-01-08|MDCK1/SIAT1","A/Norway/163/2014|2014-01-11|MDCK2/SIAT1","A/Norway/161/2014|2014-01-12|MDCK2/SIAT1","A/Norway/228/2014|2014-01-12|MDCK2/SIAT1","A/Norway/162/2014|2014-01-13|MDCK1/SIAT1",
+	"A/Norway/120/2014|2014-01-14|MDCK1/SIAT1","A/Norway/226/2014|2014-01-14|MDCK1/SIAT1","A/Norway/208/2014|2014-01-16|MDCK1/SIAT1","A/Switzerland/10030276/2014|2014-02-05|SIAT2","A/Dnipro/230/2014|2014-02-28|SIAT2/SIAT3","A/Dnipro/232/2014|2014-03-03|SIAT2/SIAT3","A/Poland/1877/2014|2014-03-03|SIAT2","A/Norway/1003/2014|2014-03-04|SIAT2","A/Georgia/495/2014|2014-03-04|SIAT2","A/Dnipro/233/2014|2014-03-04|SIAT2/SIAT1",
+	"A/Norway/1020/2014|2014-03-07|SIAT2","A/Georgia/542/2014|2014-03-07|SIAT2","A/Georgia/584/2014|2014-03-10|SIAT2","A/Norway/1130/2014|2014-03-11|SIAT2","A/Dnipro/234/2014|2014-03-11|SIAT2/SIAT3","A/Norway/1078/2014|2014-03-16|SIAT2","A/Poland/3464/2014|2014-03-19|SIAT2","A/Switzerland/10261363/2014|2014-03-20|SIAT2","A/Georgia/699/2014|2014-03-26|SIAT2","A/Switzerland/10295858/2014|2014-03-27|SIAT2",
+	"A/Switzerland/10295823/2014|2014-03-28|SIAT2","A/Switzerland/10295759/2014|2014-03-28|SIAT2")
+ag_Sep2014_table8_16 <- agNames(map138) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT4","A/South Africa/4655/2013|2013-06-25|E7 clone 101-60","A/Stockholm/1/2013|2013-01-13|E7 clone 36-18","A/Stockholm/6/2014|2014-02-06|E2 (Am1/Al1)","A/Stockholm/6/2014|2014-02-06|E3 (Am2/Al1)","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT2","A/Sarajevo/22/2013|2013-01-14|SIAT2","A/Sarajevo/23/2013|2013-01-14|SIAT2","A/Sarajevo/58/2013|2013-01-18|SIAT2",
+	"A/Stockholm/2/2014|2014-01-02|MDCK2/SIAT1","A/Slovenia/142/2014|2014-01-16|MDCK0/SIAT1","A/Czech Republic/1/2014|*|MDCK3/SIAT1","A/Czech Republic/6/2014|*|MDCK3/SIAT1","A/Czech Republic/10/2014|*|MDCK3/SIAT2","A/Iceland/23/2014|2014-02-06|MDCK1/SIAT1","A/Austria/777909/2014|2014-02-08|SIAT1/SIAT1","A/Stockholm/14/2014|2014-02-12|MDCK1/SIAT1","A/Finland/405/2014|2014-02-13|MDCK1/SIAT1","A/Iceland/34/2014|2014-02-19|MDCK1/SIAT1",
+	"A/Stockholm/13/2014|2014-02-21|MDCK0/SIAT1","A/Stockholm/12/2014|2014-02-24|MDCK1/SIAT1","A/Iceland/45/2014|2014-02-27|MDCK1/SIAT1","A/Finland/411/2014|2014-03-06|MDCK1/SIAT1","A/England/399/2014|2014-03-10|SIAT1/SIAT3","A/Austria/784503/2014|2014-03-15|SIAT1/SIAT1","A/Vrancea/162893/2014|2014-03-20|SIAT1/SIAT2","A/Botosani/162689/2014|2014-03-23|SIAT1/SIAT1","A/Botosani/162690/2014|2014-03-23|SIAT1/SIAT1","A/Iasi/162712/2014|2014-03-24|SIAT1/SIAT1",
+	"A/Calarasi/162804/2014|2014-03-24|SIAT1/SIAT1","A/St. Petersburg/25/2014|2014-03-25|C1/SIAT1","A/St. Petersburg/45/2014|2014-03-25|C1/SIAT1","A/Kaliningrad/2/2014|2014-03-25|C1/SIAT1","A/Austria/786648/2014|2014-03-26|SIAT1/SIAT1","A/Mures/163025/2014|2014-03-26|SIAT1/SIAT1","A/Austria/787217/2014|2014-03-27|SIAT2/SIAT1","A/Austria/788090/2014|2014-04-01|SIAT2/SIAT1","A/Latvia/04-003950/2014|2014-04-02|MDCK2/SIAT1","A/Latvia/04-011765/2014|2014-04-04|MDCK1/SIAT1",
+	"A/Austria/790710/2014|2014-04-12|SIAT1/SIAT1")
+ag_Feb2015_table9_4 <- agNames(map138) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT5","A/Hong Kong/146/2013|2013-01-11|E6","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|E5 clone 121","A/Stockholm/17/2014|2014-07-23|MDCK2/SIAT1","A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1","A/Stockholm/19/2014|2014-09-07|MDCK1/SIAT1","A/Stockholm/20/2014|2014-09-28|MDCK1/SIAT1","A/Belgium/H80/2014|2014-09-29|SIAT1/SIAT1",
+	"A/La Rioja/2053/2014|2014-10-08|SIAT1/SIAT1","A/Stockholm/22/2014|2014-10-18|MDCK2/SIAT1","A/Pais Vasco/1979/2014|2014-10-22|SIAT1/SIAT1","A/Belgium/G589/2014|2014-10-22|SIAT1/SIAT1","A/La Rioja/2051/2014|2014-10-29|MDCKx/SIAT1","A/Sweden/76/2014|2014-11-02|MDCK1/SIAT1","A/Stockholm/26/2014|2014-11-03|MDCK1/SIAT1","A/Aragon/2031/2014|2014-11-07|SIAT1/SIAT1","A/La Rioja/2050/2014|2014-11-15|SIAT1/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1",
+	"A/Galicia/2055/2014|2014-11-20|SIAT2/SIAT1","A/Galicia/2054/2014|2014-11-24|SIAT1/SIAT1","A/Extremadura/2061/2014|2014-11-25|SIAT1/SIAT1","A/Aragon/2062/2014|2014-11-27|SIAT1/SIAT1")
+ag_Sep2015_table8_9 <- agNames(map138) %in% c("A/Hong Kong/146/2013|2013-01-11|E3/E3","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|E5/E1 clone 121","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT2","A/Stockholm/31/2014|2014-11-26|MDCK1/SIAT1","A/Stockholm/28/2014|2014-12-02|MDCK1/SIAT1","A/Stockholm/36/2014|2014-12-02|MDCK2/SIAT1","A/Stockholm/30/2014|2014-12-04|MDCK1/SIAT1","A/Stockholm/32/2014|2014-12-09|MDCK1/SIAT1",
+	"A/Stockholm/38/2014|2014-12-27|MDCK1/SIAT1","A/Mahajanga/122/2015|2015-01-05|MDCK2/SIAT1","A/Stockholm/1/2015|2015-01-12|MDCK1/SIAT1","A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1","A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1","A/Stockholm/12/2015|2015-02-10|MDCK1/SIAT1","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Stockholm/18/2015|2015-02-11|MDCK0/SIAT1","A/Stockholm/20/2015|2015-02-24|MDCK0/SIAT1","A/Stockholm/19/2015|2015-02-25|MDCK0/SIAT1",
+	"A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3","A/Sweden/16/2015|2015-03-05|MDCK1/SIAT1","A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2","A/Norway/1800/2015|2015-03-25|SIAT3")
+
+agFill(map138)[ag_Sep2012_table9] <- '#ea5545'
+agFill(map138)[ag_Sep2013_table7_7] <- '#ef9b20'
+agFill(map138)[ag_Feb2014_table9_7] <- '#ede15b'
+agFill(map138)[ag_Sep2014_table8_10] <- '#87bc45'
+agFill(map138)[ag_Sep2014_table8_16] <- '#27aeef'
+agFill(map138)[ag_Feb2015_table9_4] <- '#b33dc6'
+agFill(map138)[ag_Sep2015_table8_9] <- '#4e00ff'
+p_map138 <- ggplot(map138) + ggtitle('map 138')
+p_map138
+
+
+#################### MAP 139 ####################
+#### colered by tables
+agSize(map139) <- 5
+agFill(map139) <- 'grey50'
+ag_Sep2013_table7_8 <- agNames(map139) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Zamora/10/2012|2012-01-19|SIAT3","A/Spain/13831/2012|2012-02-16|SIAT3","A/Spain/13916/2012|2012-02-17|SIAT3","A/Spain/14701/2012|2012-02-21|SIAT3",
+	"A/Spain/14758/2012|2012-02-21|SIAT3","A/Spain/20322/2012|2012-03-10|SIAT3","A/Spain/23634/2012|2012-03-22|SIAT3","A/Zamora/87/2012|2012-04-03|SIAT3","A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1","A/Tulkarem/83/2013|2013-01-08|SIAT3","A/Plzen/22/2013|2013-01-10|MDCK4/SIAT1","A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1","A/Skopje/DZ K 33/2013|2013-01-21|SIAT3","A/Almaty/2944/2013|2013-01-24|SIAT3",
+	"A/Almaty/2946/2013|2013-01-25|SIAT3","A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1","A/Ramallah/84/2013|2013-01-26|SIAT3","A/Almaty/2952/2013|2013-01-27|SIAT3","A/Almaty/2955/2013|2013-01-27|SIAT3","A/Almaty/2956/2013|2013-01-27|SIAT3","A/Almaty/2958/2013|2013-01-27|SIAT3","A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1","A/Slovenia/549/2013|2013-02-04|MDCK1/SIAT1","A/Slovenia/709/2013|2013-02-12|MDCK1/SIAT1",
+	"A/Slovenia/741/2013|2013-02-14|MDCKx/SIAT1","A/Slovenia/760/2013|2013-02-15|MDCKx/SIAT1","A/Spain/18719/2013|2013-03-03|SIAT4","A/St. Petersburg/69/2013|2013-03-12|C2/SIAT1","A/Samara/73/2013|2013-03-12|C1/SIAT1","A/Kaliningrad/1/2013|2013-03-12|C1/SIAT1","A/St. Petersburg/125/2013|2013-03-12|C1/SIAT1","A/St. Petersburg/106/2013|2013-03-12|C1/SIAT1","A/St. Petersburg/86/2013|2013-03-13|C2/SIAT1","A/Valladolid/98/2013|2013-03-18|SIAT3",
+	"A/St. Petersburg/170/2013|2013-03-20|C2/SIAT1","A/Valladolid/118/2013|2013-04-02|SIAT3","A/Novosibirsk/32/2013|2013-04-03|C1/SIAT1")
+ag_Sep2012_table15 <- agNames(map139) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT4","A/Iowa/19/2010|2010-12-30|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Victoria/361/2011|2011-10-24|M2/S2","A/Athens/GR112/2012|2012-02-01|SIAT4","A/Milano/136/2012|2012-02-06|SIAT1/SIAT1","A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1","A/Iceland/10/2012|2012-02-08|MDCK2/SIAT1",
+	"A/Iceland/11/2012|2012-02-08|MDCK3/SIAT1","A/Georgia/161/2012|2012-02-08|SIAT2","A/Iceland/12/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/13/2012|2012-02-09|MDCK2/SIAT1","A/Iceland/14/2012|2012-02-12|MDCK2/SIAT1","A/Iceland/15/2012|2012-02-13|MDCK1/SIAT1","A/Iceland/16/2012|2012-02-13|MDCK2/SIAT1","A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1","A/Parma/139/2012|2012-02-20|MDCK2/SIAT1","A/Georgia/255/2012|2012-02-22|SIAT2",
+	"A/Perugia/21/2012|2012-02-22|MDCK2/SIAT1","A/Iceland/18/2012|2012-02-23|MDCK3/SIAT1","A/Georgia/215/2012|2012-02-23|SIAT2","A/Iceland/19/2012|2012-02-24|MDCK2/SIAT1","A/Iceland/20/2012|2012-02-27|MDCK2/SIAT1","A/Iceland/21/2012|2012-03-02|MDCK2/SIAT1","A/Denmark/38/2012|2012-03-05|SIAT2","A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Georgia/370/2012|2012-03-06|SIAT2","A/Minsk/1574/2012|2012-03-12|MDCK2/SIAT1",
+	"A/Montenegro/158/2012|2012-03-13|SIAT3","A/Gomel/1613/2012|2012-03-14|MDCK2/SIAT1","A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1","A/Montenegro/190/2012|2012-03-16|SIAT2","A/Stockholm/14/2012|2012-03-16|C2/SIAT1","A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1","A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1","A/Georgia/512/2012|2012-03-23|SIAT2","A/Montenegro/269/2012|2012-03-24|SIAT2","A/Montenegro/272/2012|2012-03-24|SIAT2",
+	"A/Iceland/23/2012|2012-03-27|MDCK3/SIAT1","A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1","A/Gomel/1692/2012|2012-03-27|MDCK2/SIAT3","A/Georgia/554/2012|2012-03-27|SIAT2","A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1","A/Montenegro/312/2012|2012-03-29|SIAT2","A/Georgia/579/2012|2012-04-04|SIAT2","A/Iceland/24/2012|2012-04-14|MDCK2/SIAT1","A/Stockholm/19/2012|2012-04-14|C1/SIAT1","A/Stockholm/21/2012|2012-04-21|C2/SIAT1")
+ag_Sep2014_table8_19 <- agNames(map139) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT4","A/South Africa/4655/2013|2013-06-25|E7 clone 101-60","A/Stockholm/1/2013|2013-01-13|E7 clone 36-18","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Sarajevo/21/2012|2012-03-28|SIAT1","A/Sarajevo/57/2012|2012-04-26|SIAT1","A/Hong Kong/4801/2014|2014-02-26|MDCK3","A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2",
+	"A/Tomsk/6/2014|2014-03-01|MDCK1/SIAT1","A/Hong Kong/5320/2014|2014-03-20|MDCK2","A/Yaroslavl/234/2014|2014-03-21|MDCK1/SIAT1","A/Moscow/206/2014|2014-03-21|MDCK1/SIAT1","A/Vladimir/220/2014|2014-03-26|MDCK1/SIAT1","A/Palau/6759/2014|2014-03-26|C2/SIAT1","A/Belgium/14G0496/2014|2014-04-03|SIAT2","A/Hong Kong/5578/2014|2014-04-04|MDCK2","A/Mogilev/1273/2014|2014-04-07|MDCK2/SIAT1","A/V. Novgorod/223/2014|2014-04-08|MDCK1/SIAT1",
+	"A/Mogilev/1484/2014|2014-04-15|MDCK2/SIAT1","A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK2","A/Glasgow/4165/2014|2014-06-08|SIAT1")
+ag_Sep2014_table8_10 <- agNames(map139) %in% c("A/Athens/112/2012|2012-02-01|SIAT5","A/Texas/50/2012_(6&7)|2012-04-15|E5/E2","A/South Africa/4655/2013|2013-06-25|E7 clone 118-76","A/South Africa/4655/2013|2013-06-25|E7  clone 101-06","A/South Africa/4655/2013|2013-06-25|E7 clone 93-38","A/Stockholm/1/2013|2013-01-13|E6 clone 36-18","A/Tehran/30732/2013|2013-03-22|MDCK3/SIAT1","A/Zambia/13/093/2013|2013-08-28|Cx/SIAT2","A/Zambia/13/262/2013|2013-08-07|Cx/SIAT1","A/Zambia/13/127/2013|2013-08-12|SIAT2",
+	"A/Zambia/13/338/2013|2013-09-13|Cx/SIAT1","A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1","A/Norway/86/2014|2014-01-08|MDCK2/SIAT1","A/Norway/160/2014|2014-01-08|MDCK1/SIAT1","A/Norway/184/2014|2014-01-08|MDCK1/SIAT1","A/Norway/163/2014|2014-01-11|MDCK2/SIAT1","A/Norway/161/2014|2014-01-12|MDCK2/SIAT1","A/Norway/228/2014|2014-01-12|MDCK2/SIAT1","A/Norway/162/2014|2014-01-13|MDCK1/SIAT1","A/Norway/120/2014|2014-01-14|MDCK1/SIAT1",
+	"A/Norway/226/2014|2014-01-14|MDCK1/SIAT1","A/Norway/208/2014|2014-01-16|MDCK1/SIAT1","A/Switzerland/10030276/2014|2014-02-05|SIAT2","A/Dnipro/230/2014|2014-02-28|SIAT2/SIAT3","A/Dnipro/232/2014|2014-03-03|SIAT2/SIAT3","A/Poland/1877/2014|2014-03-03|SIAT2","A/Norway/1003/2014|2014-03-04|SIAT2","A/Georgia/495/2014|2014-03-04|SIAT2","A/Dnipro/233/2014|2014-03-04|SIAT2/SIAT1","A/Norway/1020/2014|2014-03-07|SIAT2",
+	"A/Georgia/542/2014|2014-03-07|SIAT2","A/Georgia/584/2014|2014-03-10|SIAT2","A/Norway/1130/2014|2014-03-11|SIAT2","A/Dnipro/234/2014|2014-03-11|SIAT2/SIAT3","A/Norway/1078/2014|2014-03-16|SIAT2","A/Poland/3464/2014|2014-03-19|SIAT2","A/Switzerland/10261363/2014|2014-03-20|SIAT2","A/Georgia/699/2014|2014-03-26|SIAT2","A/Switzerland/10295858/2014|2014-03-27|SIAT2","A/Switzerland/10295823/2014|2014-03-28|SIAT2",
+	"A/Switzerland/10295759/2014|2014-03-28|SIAT2")
+ag_Feb2014_table9_6 <- agNames(map139) %in% c("A/Stockholm/18/2011|2011-03-28|SIAT4","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT6","A/Athens/112/2012|2012-02-01|SIAT4","A/Paris/2031/2013|2013-09-30|MDCK2/SIAT1","A/Denmark/96/2013|2013-11-03|SIAT4/SIAT1","A/Bursa/176/2013|2013-12-02|MDCK1/SIAT2","A/Latvia/12019591/2013|2013-12-10|MDCK2/SIAT1","A/Bursa/246/2013|2013-12-16|MDCK1/SIAT2","A/Ukraine/710/2013|2013-12-16|SIAT2/SIAT1","A/Centre/2484/2013|2013-12-17|MDCK2/SIAT1",
+	"A/Lorraine/2485/2013|2013-12-17|MDCK1/SIAT1","A/Provence-Alpes-Côte d'Azur/2501/2013|2013-12-18|MDCK2/SIAT1","A/Denmark/104/2013|2013-12-23|SIAT2/SIAT1","A/Ukraine/6004/2013|2013-12-24|C1/SIAT1","A/Ukraine/728/2013|2013-12-25|SIAT1/SIAT1","A/Hong Kong/23/2014|2013-12-26|MDCK1/SIAT1","A/Hong Kong/4/2014|2013-12-26|MDCK1/SIAT1","A/Hong Kong/12/2014|2013-12-28|MDCK1/SIAT1","A/Hong Kong/32/2014|2013-12-29|MDCK1/SIAT1","A/Hong Kong/19/2014|2013-12-29|MDCK1/SIAT1",
+	"A/Hong Kong/33/2014|2013-12-30|MDCK1/SIAT1","A/Denmark/103/2013|2013-12-30|SIAT2/SIAT1","A/Lorraine/004/2014|2013-12-30|MDCK1/SIAT1","A/Bretagne/014/2014|2013-12-30|MDCK1/SIAT1")
+
+agFill(map139)[ag_Sep2013_table7_8] <- '#ea5545'
+agFill(map139)[ag_Sep2012_table15] <- '#ef9b20'
+agFill(map139)[ag_Sep2014_table8_19] <- '#ede15b'
+agFill(map139)[ag_Sep2014_table8_10] <- '#87bc45'
+agFill(map139)[ag_Feb2014_table9_6] <- '#27aeef'
+p_map139 <- ggplot(map139) + ggtitle('map 139')
+p_map139
+
+
+#################### MAP 140 ####################
+#### colered by tables
+agSize(map140) <- 5
+agFill(map140) <- 'grey50'
+ag_Sep2013_table7_8 <- agNames(map140) %in% c("A/Victoria/208/2009|2009-06-02|E3/E2","A/Stockholm/18/2011|2011-03-28|SIAT5","A/Victoria/361/2011|2011-10-24|E3/E2","A/Berlin/93/2011|2011-12-07|NVD3/SIAT6","A/Athens/112/2012|2012-02-01|SIAT7","A/Texas/50/2012|2012-04-15|E5/E1","A/Hawaii/22/2012|2012-07-09|E4/E1","A/Zamora/10/2012|2012-01-19|SIAT3","A/Spain/13831/2012|2012-02-16|SIAT3","A/Spain/13916/2012|2012-02-17|SIAT3",
+	"A/Spain/14701/2012|2012-02-21|SIAT3","A/Spain/14758/2012|2012-02-21|SIAT3","A/Spain/20322/2012|2012-03-10|SIAT3","A/Spain/23634/2012|2012-03-22|SIAT3","A/Zamora/87/2012|2012-04-03|SIAT3","A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1","A/Tulkarem/83/2013|2013-01-08|SIAT3","A/Plzen/22/2013|2013-01-10|MDCK4/SIAT1","A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1","A/Skopje/DZ K 33/2013|2013-01-21|SIAT3",
+	"A/Almaty/2944/2013|2013-01-24|SIAT3","A/Almaty/2946/2013|2013-01-25|SIAT3","A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1","A/Ramallah/84/2013|2013-01-26|SIAT3","A/Almaty/2952/2013|2013-01-27|SIAT3","A/Almaty/2955/2013|2013-01-27|SIAT3","A/Almaty/2956/2013|2013-01-27|SIAT3","A/Almaty/2958/2013|2013-01-27|SIAT3","A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1","A/Slovenia/549/2013|2013-02-04|MDCK1/SIAT1",
+	"A/Slovenia/709/2013|2013-02-12|MDCK1/SIAT1","A/Slovenia/741/2013|2013-02-14|MDCKx/SIAT1","A/Slovenia/760/2013|2013-02-15|MDCKx/SIAT1","A/Spain/18719/2013|2013-03-03|SIAT4","A/St. Petersburg/69/2013|2013-03-12|C2/SIAT1","A/Samara/73/2013|2013-03-12|C1/SIAT1","A/Kaliningrad/1/2013|2013-03-12|C1/SIAT1","A/St. Petersburg/125/2013|2013-03-12|C1/SIAT1","A/St. Petersburg/106/2013|2013-03-12|C1/SIAT1","A/St. Petersburg/86/2013|2013-03-13|C2/SIAT1",
+	"A/Valladolid/98/2013|2013-03-18|SIAT3","A/St. Petersburg/170/2013|2013-03-20|C2/SIAT1","A/Valladolid/118/2013|2013-04-02|SIAT3","A/Novosibirsk/32/2013|2013-04-03|C1/SIAT1")
+ag_Feb2015_table9_4 <- agNames(map140) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT5","A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Hong Kong/146/2013|2013-01-11|E6","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Stockholm/6/2014|2014-02-06|E4/E1 isolate 2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/5738/2014|2014-04-30|E5 clone 121","A/Stockholm/17/2014|2014-07-23|MDCK2/SIAT1",
+	"A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1","A/Stockholm/19/2014|2014-09-07|MDCK1/SIAT1","A/Stockholm/20/2014|2014-09-28|MDCK1/SIAT1","A/Belgium/H80/2014|2014-09-29|SIAT1/SIAT1","A/La Rioja/2053/2014|2014-10-08|SIAT1/SIAT1","A/Stockholm/22/2014|2014-10-18|MDCK2/SIAT1","A/Pais Vasco/1979/2014|2014-10-22|SIAT1/SIAT1","A/Belgium/G589/2014|2014-10-22|SIAT1/SIAT1","A/La Rioja/2051/2014|2014-10-29|MDCKx/SIAT1","A/Sweden/76/2014|2014-11-02|MDCK1/SIAT1",
+	"A/Stockholm/26/2014|2014-11-03|MDCK1/SIAT1","A/Aragon/2031/2014|2014-11-07|SIAT1/SIAT1","A/La Rioja/2050/2014|2014-11-15|SIAT1/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1","A/Galicia/2055/2014|2014-11-20|SIAT2/SIAT1","A/Galicia/2054/2014|2014-11-24|SIAT1/SIAT1","A/Extremadura/2061/2014|2014-11-25|SIAT1/SIAT1","A/Aragon/2062/2014|2014-11-27|SIAT1/SIAT1")
+ag_Sep2012_table9 <- agNames(map140) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1","A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4","A/Stockholm/18/2011|2011-03-28|MDCK2/SIAT3","A/Iowa/19/2010|2010-12-30|E3/E1","A/Finland/190/2011|2011-11-25|Cx/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1","A/Victoria/361/2011|2011-10-24|E3/E1","A/Berlin/93/2011|2011-12-07|NVD3/S2","A/Bulgaria/182/2012|2012-02-02|C3/SIAT1","A/Bulgaria/217/2012|2012-02-09|C3/SIAT1",
+	"A/Bulgaria/218/2012|2012-02-09|C3/SIAT1","A/Slovenia/402/2012|2012-02-20|Mx/SIAT1","A/Slovenia/435/2012|2012-02-20|Mx/SIAT1","A/Slovenia/459/2012|2012-02-20|Mx/SIAT1","A/Bulgaria/280/2012|2012-02-20|C3/SIAT1","A/Bulgaria/311/2012|2012-02-24|C3/SIAT1","A/Bulgaria/312/2012|2012-02-24|C3/SIAT1","A/Bulgaria/313/2012|2012-02-24|C3/SIAT1","A/Bulgaria/314/2012|2012-02-24|C3/SIAT1","A/Slovenia/566/2012|2012-02-27|Mx/SIAT1",
+	"A/Slovenia/599/2012|2012-02-27|Mx/SIAT1","A/St Petersburg/2/2012|2012-02-27|C3/SIAT1","A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1","A/Slovenia/637/2012|2012-03-05|Mx/SIAT1","A/Slovenia/815/2012|2012-03-12|Mx/SIAT1","A/Slovenia/879/2012|2012-03-19|Mx/SIAT1","A/St Petersburg/4/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1","A/Omsk/1/2012|2012-03-25|C1/SIAT1","A/St Petersburg/8/2012|2012-03-25|C2/SIAT1",
+	"A/St Petersburg/10/2012|2012-03-25|C2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Slovenia/1049/2012|2012-04-02|Mx/SIAT1")
+ag_Sep2014_table8_19 <- agNames(map140) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT4","A/South Africa/4655/2013|2013-06-25|E7 clone 101-60","A/Stockholm/1/2013|2013-01-13|E7 clone 36-18","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Sarajevo/21/2012|2012-03-28|SIAT1","A/Sarajevo/57/2012|2012-04-26|SIAT1","A/Hong Kong/4801/2014|2014-02-26|MDCK3","A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2",
+	"A/Tomsk/6/2014|2014-03-01|MDCK1/SIAT1","A/Hong Kong/5320/2014|2014-03-20|MDCK2","A/Yaroslavl/234/2014|2014-03-21|MDCK1/SIAT1","A/Moscow/206/2014|2014-03-21|MDCK1/SIAT1","A/Vladimir/220/2014|2014-03-26|MDCK1/SIAT1","A/Palau/6759/2014|2014-03-26|C2/SIAT1","A/Belgium/14G0496/2014|2014-04-03|SIAT2","A/Hong Kong/5578/2014|2014-04-04|MDCK2","A/Mogilev/1273/2014|2014-04-07|MDCK2/SIAT1","A/V. Novgorod/223/2014|2014-04-08|MDCK1/SIAT1",
+	"A/Mogilev/1484/2014|2014-04-15|MDCK2/SIAT1","A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK2","A/Glasgow/4165/2014|2014-06-08|SIAT1")
+ag_Sep2014_table8_10 <- agNames(map140) %in% c("A/Athens/112/2012|2012-02-01|SIAT5","A/Texas/50/2012_(6&7)|2012-04-15|E5/E2","A/South Africa/4655/2013|2013-06-25|E7 clone 118-76","A/South Africa/4655/2013|2013-06-25|E7  clone 101-06","A/South Africa/4655/2013|2013-06-25|E7 clone 93-38","A/Stockholm/1/2013|2013-01-13|E6 clone 36-18","A/Tehran/30732/2013|2013-03-22|MDCK3/SIAT1","A/Zambia/13/093/2013|2013-08-28|Cx/SIAT2","A/Zambia/13/262/2013|2013-08-07|Cx/SIAT1","A/Zambia/13/127/2013|2013-08-12|SIAT2",
+	"A/Zambia/13/338/2013|2013-09-13|Cx/SIAT1","A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1","A/Norway/86/2014|2014-01-08|MDCK2/SIAT1","A/Norway/160/2014|2014-01-08|MDCK1/SIAT1","A/Norway/184/2014|2014-01-08|MDCK1/SIAT1","A/Norway/163/2014|2014-01-11|MDCK2/SIAT1","A/Norway/161/2014|2014-01-12|MDCK2/SIAT1","A/Norway/228/2014|2014-01-12|MDCK2/SIAT1","A/Norway/162/2014|2014-01-13|MDCK1/SIAT1","A/Norway/120/2014|2014-01-14|MDCK1/SIAT1",
+	"A/Norway/226/2014|2014-01-14|MDCK1/SIAT1","A/Norway/208/2014|2014-01-16|MDCK1/SIAT1","A/Switzerland/10030276/2014|2014-02-05|SIAT2","A/Dnipro/230/2014|2014-02-28|SIAT2/SIAT3","A/Dnipro/232/2014|2014-03-03|SIAT2/SIAT3","A/Poland/1877/2014|2014-03-03|SIAT2","A/Norway/1003/2014|2014-03-04|SIAT2","A/Georgia/495/2014|2014-03-04|SIAT2","A/Dnipro/233/2014|2014-03-04|SIAT2/SIAT1","A/Norway/1020/2014|2014-03-07|SIAT2",
+	"A/Georgia/542/2014|2014-03-07|SIAT2","A/Georgia/584/2014|2014-03-10|SIAT2","A/Norway/1130/2014|2014-03-11|SIAT2","A/Dnipro/234/2014|2014-03-11|SIAT2/SIAT3","A/Norway/1078/2014|2014-03-16|SIAT2","A/Poland/3464/2014|2014-03-19|SIAT2","A/Switzerland/10261363/2014|2014-03-20|SIAT2","A/Georgia/699/2014|2014-03-26|SIAT2","A/Switzerland/10295858/2014|2014-03-27|SIAT2","A/Switzerland/10295823/2014|2014-03-28|SIAT2",
+	"A/Switzerland/10295759/2014|2014-03-28|SIAT2")
+ag_Feb2014_table9_6 <- agNames(map140) %in% c("A/Stockholm/18/2011|2011-03-28|SIAT4","A/Victoria/361/2011|2011-10-24|MDCK2/SIAT6","A/Athens/112/2012|2012-02-01|SIAT4","A/Paris/2031/2013|2013-09-30|MDCK2/SIAT1","A/Denmark/96/2013|2013-11-03|SIAT4/SIAT1","A/Bursa/176/2013|2013-12-02|MDCK1/SIAT2","A/Latvia/12019591/2013|2013-12-10|MDCK2/SIAT1","A/Bursa/246/2013|2013-12-16|MDCK1/SIAT2","A/Ukraine/710/2013|2013-12-16|SIAT2/SIAT1","A/Centre/2484/2013|2013-12-17|MDCK2/SIAT1",
+	"A/Lorraine/2485/2013|2013-12-17|MDCK1/SIAT1","A/Provence-Alpes-Côte d'Azur/2501/2013|2013-12-18|MDCK2/SIAT1","A/Denmark/104/2013|2013-12-23|SIAT2/SIAT1","A/Ukraine/6004/2013|2013-12-24|C1/SIAT1","A/Ukraine/728/2013|2013-12-25|SIAT1/SIAT1","A/Hong Kong/23/2014|2013-12-26|MDCK1/SIAT1","A/Hong Kong/4/2014|2013-12-26|MDCK1/SIAT1","A/Hong Kong/12/2014|2013-12-28|MDCK1/SIAT1","A/Hong Kong/32/2014|2013-12-29|MDCK1/SIAT1","A/Hong Kong/19/2014|2013-12-29|MDCK1/SIAT1",
+	"A/Hong Kong/33/2014|2013-12-30|MDCK1/SIAT1","A/Denmark/103/2013|2013-12-30|SIAT2/SIAT1","A/Lorraine/004/2014|2013-12-30|MDCK1/SIAT1","A/Bretagne/014/2014|2013-12-30|MDCK1/SIAT1")
+
+agFill(map140)[ag_Sep2013_table7_8] <- '#ea5545'
+agFill(map140)[ag_Feb2015_table9_4] <- '#ef9b20'
+agFill(map140)[ag_Sep2012_table9] <- '#ede15b'
+agFill(map140)[ag_Sep2014_table8_19] <- '#87bc45'
+agFill(map140)[ag_Sep2014_table8_10] <- '#27aeef'
+agFill(map140)[ag_Feb2014_table9_6] <- '#b33dc6'
+p_map140 <- ggplot(map140) + ggtitle('map 140')
+p_map140
+
+
+#################### MAP 141 ####################
+#### colered by tables
+agSize(map141) <- 5
+agFill(map141) <- 'grey50'
+ag_Sep2014_table8_19 <- agNames(map141) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT4","A/Samara/73/2013|2013-03-12|C1/SIAT2","A/Serbia/NS-210/2013|2013-01-18|E5/E1","A/Hong Kong/146/2013|2013-01-11|E5/E1","A/Stockholm/1/2013|2013-01-13|E7 clone 36-18","A/Stockholm/6/2014|2014-02-06|SIAT2/SIAT2","A/Norway/466/2014|2014-02-03|SIAT2/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Sarajevo/21/2012|2012-03-28|SIAT1","A/Sarajevo/57/2012|2012-04-26|SIAT1",
+	"A/Hong Kong/4801/2014|2014-02-26|MDCK3","A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2","A/Tomsk/6/2014|2014-03-01|MDCK1/SIAT1","A/Hong Kong/5320/2014|2014-03-20|MDCK2","A/Yaroslavl/234/2014|2014-03-21|MDCK1/SIAT1","A/Moscow/206/2014|2014-03-21|MDCK1/SIAT1","A/Vladimir/220/2014|2014-03-26|MDCK1/SIAT1","A/Palau/6759/2014|2014-03-26|C2/SIAT1","A/Belgium/14G0496/2014|2014-04-03|SIAT2","A/Hong Kong/5578/2014|2014-04-04|MDCK2",
+	"A/Mogilev/1273/2014|2014-04-07|MDCK2/SIAT1","A/V. Novgorod/223/2014|2014-04-08|MDCK1/SIAT1","A/Mogilev/1484/2014|2014-04-15|MDCK2/SIAT1","A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK2","A/Glasgow/4165/2014|2014-06-08|SIAT1")
+ag_Feb2015_table9_2 <- agNames(map141) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT5","A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Hong Kong/146/2013|2013-01-11|E6","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT4","A/Stockholm/6/2014|2014-02-06|E4/E1 isolate 2","A/Norway/466/2014|2014-02-03|SIAT1/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123","A/Hong Kong/4244/2014|2014-02-16|MDCKx/SIAT1","A/Hong Kong/6013/2014|2014-06-05|MDCK2/SIAT1",
+	"A/Hong Kong/6033/2014|2014-06-05|MDCKx/SIAT1","A/Hong Kong/6086/2014|2014-06-08|MDCKx/SIAT1","A/Hong Kong/6315/2014|2014-06-14|MDCKx/SIAT1","A/Hong Kong/6421/2014|2014-06-19|MDCKx/SIAT1","A/Hong Kong/6872/2014|2014-07-14|MDCKx/SIAT1","A/Hong Kong/6873/2014|2014-07-15|MDCKx/SIAT1","A/Hong Kong/7229/2014|2014-07-31|MDCKx/SIAT1","A/Hong Kong/7243/2014|2014-08-02|MDCKx/SIAT1","A/Hong Kong/7276/2014|2014-08-02|MDCKx/SIAT1","A/Hong Kong/7272/2014|2014-08-04|MDCKx/SIAT1",
+	"A/Hong Kong/7313/2014|2014-08-07|MDCKx/SIAT1","A/Hong Kong/7329/2014|2014-08-11|MDCK2/SIAT1","A/Hong Kong/7347/2014|2014-08-14|MDCK2/SIAT1","A/Hong Kong/7364/2014|2014-08-18|MDCK2/SIAT3","A/Norway/3004/2014|2014-10-16|SIAT1")
+
+agFill(map141)[ag_Sep2014_table8_19] <- '#ea5545'
+agFill(map141)[ag_Feb2015_table9_2] <- '#ef9b20'
+p_map141 <- ggplot(map141) + ggtitle('map 141')
+p_map141
+
+
+#################### MAP 142 ####################
+#### colered by tables
+agSize(map142) <- 5
+agFill(map142) <- 'grey50'
+ag_Feb2015_table9_4 <- agNames(map142) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/5738/2014|2014-04-30|E5 clone 121","A/Stockholm/17/2014|2014-07-23|MDCK2/SIAT1","A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1","A/Stockholm/19/2014|2014-09-07|MDCK1/SIAT1","A/Stockholm/20/2014|2014-09-28|MDCK1/SIAT1","A/Belgium/H80/2014|2014-09-29|SIAT1/SIAT1","A/La Rioja/2053/2014|2014-10-08|SIAT1/SIAT1","A/Stockholm/22/2014|2014-10-18|MDCK2/SIAT1",
+	"A/Pais Vasco/1979/2014|2014-10-22|SIAT1/SIAT1","A/Belgium/G589/2014|2014-10-22|SIAT1/SIAT1","A/La Rioja/2051/2014|2014-10-29|MDCKx/SIAT1","A/Sweden/76/2014|2014-11-02|MDCK1/SIAT1","A/Stockholm/26/2014|2014-11-03|MDCK1/SIAT1","A/Aragon/2031/2014|2014-11-07|SIAT1/SIAT1","A/La Rioja/2050/2014|2014-11-15|SIAT1/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1","A/Galicia/2055/2014|2014-11-20|SIAT2/SIAT1","A/Galicia/2054/2014|2014-11-24|SIAT1/SIAT1",
+	"A/Extremadura/2061/2014|2014-11-25|SIAT1/SIAT1","A/Aragon/2062/2014|2014-11-27|SIAT1/SIAT1")
+ag_Feb2015_table9_2 <- agNames(map142) %in% c("A/South Africa/4655/2013|2013-06-25|E7 clone 101-60","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT4","A/Norway/466/2014|2014-02-03|SIAT1/SIAT2","A/Hong Kong/4244/2014|2014-02-16|MDCKx/SIAT1","A/Hong Kong/6013/2014|2014-06-05|MDCK2/SIAT1","A/Hong Kong/6033/2014|2014-06-05|MDCKx/SIAT1","A/Hong Kong/6086/2014|2014-06-08|MDCKx/SIAT1","A/Hong Kong/6315/2014|2014-06-14|MDCKx/SIAT1","A/Hong Kong/6421/2014|2014-06-19|MDCKx/SIAT1","A/Hong Kong/6872/2014|2014-07-14|MDCKx/SIAT1",
+	"A/Hong Kong/6873/2014|2014-07-15|MDCKx/SIAT1","A/Hong Kong/7229/2014|2014-07-31|MDCKx/SIAT1","A/Hong Kong/7243/2014|2014-08-02|MDCKx/SIAT1","A/Hong Kong/7276/2014|2014-08-02|MDCKx/SIAT1","A/Hong Kong/7272/2014|2014-08-04|MDCKx/SIAT1","A/Hong Kong/7313/2014|2014-08-07|MDCKx/SIAT1","A/Hong Kong/7329/2014|2014-08-11|MDCK2/SIAT1","A/Hong Kong/7347/2014|2014-08-14|MDCK2/SIAT1","A/Hong Kong/7364/2014|2014-08-18|MDCK2/SIAT3","A/Norway/3004/2014|2014-10-16|SIAT1")
+
+agFill(map142)[ag_Feb2015_table9_4] <- '#ea5545'
+agFill(map142)[ag_Feb2015_table9_2] <- '#ef9b20'
+p_map142 <- ggplot(map142) + ggtitle('map 142')
+p_map142
+
+
+#################### MAP 143 ####################
+#### colered by tables
+agSize(map143) <- 5
+agFill(map143) <- 'grey50'
+ag_Sep2015_table8_9 <- agNames(map143) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/5738/2014|2014-04-30|E5/E1 clone 121","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT2","A/Stockholm/31/2014|2014-11-26|MDCK1/SIAT1","A/Stockholm/28/2014|2014-12-02|MDCK1/SIAT1","A/Stockholm/36/2014|2014-12-02|MDCK2/SIAT1","A/Stockholm/30/2014|2014-12-04|MDCK1/SIAT1","A/Stockholm/32/2014|2014-12-09|MDCK1/SIAT1",
+	"A/Stockholm/38/2014|2014-12-27|MDCK1/SIAT1","A/Mahajanga/122/2015|2015-01-05|MDCK2/SIAT1","A/Stockholm/1/2015|2015-01-12|MDCK1/SIAT1","A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1","A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1","A/Stockholm/12/2015|2015-02-10|MDCK1/SIAT1","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Stockholm/18/2015|2015-02-11|MDCK0/SIAT1","A/Stockholm/20/2015|2015-02-24|MDCK0/SIAT1","A/Stockholm/19/2015|2015-02-25|MDCK0/SIAT1",
+	"A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3","A/Sweden/16/2015|2015-03-05|MDCK1/SIAT1","A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2","A/Norway/1800/2015|2015-03-25|SIAT3")
+ag_Sep2015_table8_8 <- agNames(map143) %in% c("A/Victoria/361/2011|2011-10-24|MDCK2/SIAT5","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT5","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong-Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/5738/2014|2014-04-30|E5/E2 clone 121","A/Norway/3172/2014|2014-12-09|MDCK2","A/Norway/353/2015|2015-01-04|MDCK1","A/Manjakaray/13/2015|2015-01-05|MDCK1","A/Moramanga/50/2015|2015-01-08|MDCK1","A/Norway/217/2015|2015-01-12|MDCK1",
+	"A/Maevatanana/172/2015|2015-01-19|MDCK1","A/Toamasina/180/2015|2015-01-19|MDCK2","A/Nosy Be/284/2015|2015-01-19|MDCK1","A/Norway/923/2015|2015-01-20|SIAT2","A/Tsiroanomandidy/278/2015|2015-01-22|MDCK2","A/Manjakaray/215/15|2015-01-23|MDCK1","A/Antsirabe/289/2015|2015-01-28|MDCK1","A/Finland/506/2015|2015-02-02|SIAT1","A/Tsiroanomandidy/362/2015|2015-02-02|MDCK1","A/Behoririka/355/2015|2015-02-04|MDCK1",
+	"A/Moldova/111.07/2015|2015-02-10|MDCK2","A/Manjakaray/612/2015|2015-02-23|MDCK1","A/Norway/1151/2015|2015-02-25|SIAT1","A/Norway/1656/2015|2015-03-21|SIAT1","A/Tsiroanomandidy/1384/2015|2015-03-30|MDCK1")
+
+agFill(map143)[ag_Sep2015_table8_9] <- '#ea5545'
+agFill(map143)[ag_Sep2015_table8_8] <- '#ef9b20'
+p_map143 <- ggplot(map143) + ggtitle('map 143')
+p_map143
+
+
+#################### MAP 144 ####################
+#### colered by tables
+agSize(map144) <- 5
+agFill(map144) <- 'grey50'
+ag_Sep2016_table8_6 <- agNames(map144) %in% c("A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Bari/11/2016|2016-01-26|SIAT3/SIAT2","A/Palermo/1/2016|2016-02-01|SIAT3/SIAT2","A/Milano/23/2016|2016-02-01|MDCK1/SIAT2","A/St. Petersburg/210/2016|2016-02-06|MDCK1/SIAT1","A/Odessa/700/2016|2016-02-07|SIAT2/SIAT2","A/Odessa/695/2016|2016-02-13|SIAT2/SIAT2","A/Roma/12/2016|2016-02-15|SIAT2/SIAT2","A/Padova/17/2016|2016-02-15|SIAT3/SIAT2","A/Slovenia/852/2016|2016-02-18|MDCK1/SIAT2",
+	"A/Slovenia/920/2016|2016-02-19|MDCK1/SIAT2","A/Palermo/6/2016|2016-02-22|SIAT2/SIAT2","A/Bratislava/184/2016|2016-02-22|MDCKx/SIAT1","A/Parma/38/2016|2016-02-23|MDCK2/SIAT1","A/Slovenia/972/2016|2016-02-24|MDCK1/SIAT2","A/Friuli-Venezia Giulia/10/2016|2016-02-25|SIAT1/SIAT2","A/Friuli-Venezia Giulia/14/2016|2016-03-01|SIAT1/SIAT2","A/Slovenia/1070/2016|2016-03-01|MDCK1/SIAT2","A/Slovenia/1172/2016|2016-03-09|MDCK1/SIAT2","A/Bolzano/7/2016|2016-03-15|SIAT3/SIAT2",
+	"A/Czech Republic/122/2016|2016-03-21|C2/SIAT1","A/Slovenia/1307/2016|2016-03-21|MDCK1/SIAT1","A/Perugia/23/2016|2016-03-23|SIAT3/SIAT2","A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2","A/Iceland/59/2016|2016-05-08|MDCK1/SIAT1")
+ag_Sep2016_table8_2 <- agNames(map144) %in% c("A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT3","A/Ghana/FS-15-0583/2015|2015-09-25|Cx/SIAT3","A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2","A/Oman/5009/2015|2015-09-29|SIAT2/SIAT2","A/Oman/5011/2015|2015-09-30|SIAT2/SIAT2","A/Oman/5357/2015|2015-10-13|MDCK2/SIAT2","A/Konya/1926/2015|2015-10-15|MDCK1/SIAT1","A/Oman/5422/2015|2015-10-17|SIAT2/SIAT2","A/Oman/5691/2015|2015-10-27|SIAT2/SIAT2","A/Oman/4940/2015|2015-10-28|SIAT2/SIAT2",
+	"A/Italy-FVG/105/2015|2015-11-25|SIAT3/SIAT2","A/Switzerland/15772531/2015|2015-11-28|SIAT1","A/Malatya/5037/2015|2015-12-10|SIAT1/SIAT1","A/Ankara/5082/2015|2015-12-14|SIAT1/SIAT1","A/Ankara/5139/2015|2015-12-22|MDCK1/SIAT1","A/Turkey/TR-25/2016|2016-01-13|SIAT1","A/Turkey/TR-26/2016|2016-01-13|SIAT1","A/Berlin/7/2016|2016-01-18|C2/SIAT1","A/Sachsen/2/2016|2016-01-18|C2/SIAT1","A/Berlin/11/2016|2016-01-25|C2/SIAT1",
+	"A/Jordan/4054/2015|*|SIAT1")
+
+agFill(map144)[ag_Sep2016_table8_6] <- '#ea5545'
+agFill(map144)[ag_Sep2016_table8_2] <- '#ef9b20'
+p_map144 <- ggplot(map144) + ggtitle('map 144')
+p_map144
+
+
+#################### MAP 145 ####################
+#### colered by tables
+agSize(map145) <- 5
+agFill(map145) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map145) %in% c("A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1",
+	"A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2016_table8_6 <- agNames(map145) %in% c("A/Bari/11/2016|2016-01-26|SIAT3/SIAT2","A/Palermo/1/2016|2016-02-01|SIAT3/SIAT2","A/Milano/23/2016|2016-02-01|MDCK1/SIAT2","A/St. Petersburg/210/2016|2016-02-06|MDCK1/SIAT1","A/Odessa/700/2016|2016-02-07|SIAT2/SIAT2","A/Odessa/695/2016|2016-02-13|SIAT2/SIAT2","A/Roma/12/2016|2016-02-15|SIAT2/SIAT2","A/Padova/17/2016|2016-02-15|SIAT3/SIAT2","A/Slovenia/852/2016|2016-02-18|MDCK1/SIAT2","A/Slovenia/920/2016|2016-02-19|MDCK1/SIAT2",
+	"A/Palermo/6/2016|2016-02-22|SIAT2/SIAT2","A/Bratislava/184/2016|2016-02-22|MDCKx/SIAT1","A/Parma/38/2016|2016-02-23|MDCK2/SIAT1","A/Slovenia/972/2016|2016-02-24|MDCK1/SIAT2","A/Friuli-Venezia Giulia/10/2016|2016-02-25|SIAT1/SIAT2","A/Friuli-Venezia Giulia/14/2016|2016-03-01|SIAT1/SIAT2","A/Slovenia/1070/2016|2016-03-01|MDCK1/SIAT2","A/Slovenia/1172/2016|2016-03-09|MDCK1/SIAT2","A/Bolzano/7/2016|2016-03-15|SIAT3/SIAT2","A/Czech Republic/122/2016|2016-03-21|C2/SIAT1",
+	"A/Slovenia/1307/2016|2016-03-21|MDCK1/SIAT1","A/Perugia/23/2016|2016-03-23|SIAT3/SIAT2","A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2","A/Iceland/59/2016|2016-05-08|MDCK1/SIAT1")
+
+agFill(map145)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map145)[ag_Sep2016_table8_6] <- '#ef9b20'
+p_map145 <- ggplot(map145) + ggtitle('map 145')
+p_map145
+
+
+#################### MAP 146 ####################
+#### colered by tables
+agSize(map146) <- 5
+agFill(map146) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map146) %in% c("A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1",
+	"A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2016_table8_2 <- agNames(map146) %in% c("A/Ghana/FS-15-0583/2015|2015-09-25|Cx/SIAT3","A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2","A/Oman/5009/2015|2015-09-29|SIAT2/SIAT2","A/Oman/5011/2015|2015-09-30|SIAT2/SIAT2","A/Oman/5357/2015|2015-10-13|MDCK2/SIAT2","A/Konya/1926/2015|2015-10-15|MDCK1/SIAT1","A/Oman/5422/2015|2015-10-17|SIAT2/SIAT2","A/Oman/5691/2015|2015-10-27|SIAT2/SIAT2","A/Oman/4940/2015|2015-10-28|SIAT2/SIAT2","A/Italy-FVG/105/2015|2015-11-25|SIAT3/SIAT2",
+	"A/Switzerland/15772531/2015|2015-11-28|SIAT1","A/Malatya/5037/2015|2015-12-10|SIAT1/SIAT1","A/Ankara/5082/2015|2015-12-14|SIAT1/SIAT1","A/Ankara/5139/2015|2015-12-22|MDCK1/SIAT1","A/Turkey/TR-25/2016|2016-01-13|SIAT1","A/Turkey/TR-26/2016|2016-01-13|SIAT1","A/Berlin/7/2016|2016-01-18|C2/SIAT1","A/Sachsen/2/2016|2016-01-18|C2/SIAT1","A/Berlin/11/2016|2016-01-25|C2/SIAT1","A/Jordan/4054/2015|*|SIAT1")
+ag_Feb2016_table9_3 <- agNames(map146) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/146/2013|2013-01-11|E3/E3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3","A/Hong Kong/4801/2014|2014-02-26|E6/E1","A/Georgia/532/2015|2015-03-09|SIAT2","A/Serbia/361/2015|2015-01-19|C2/SIAT2","A/Jiangxi-Donghu/1218/2015|2015-02-11|MDCK2/SIAT3/SIAT1","A/Jilin-Yanji/1179/2015|2015-03-03|MDCK1/SIAT2/SIAT1","A/Hubei-Dongbao/1205/2015|2015-04-09|MDCK4/SIAT2/SIAT1","A/Jiangsu-Qingpu/1660/2015|2015-04-29|E4/E1",
+	"A/Liaoning-Baita/1293/2015|2015-05-06|MDCK2/SIAT2/SIAT1","A/Hunan-Wuling/11088/2015|2015-06-15|MDCK2/SIAT2/SIAT1","A/England/333/2015|2015-09-04|MDCK2/SIAT1","A/England/334/2015|2015-09-06|MDCK2/SIAT1","A/England/335/2015|2015-09-29|SIAT1/SIAT1")
+
+agFill(map146)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map146)[ag_Sep2016_table8_2] <- '#ef9b20'
+agFill(map146)[ag_Feb2016_table9_3] <- '#ede15b'
+p_map146 <- ggplot(map146) + ggtitle('map 146')
+p_map146
+
+
+#################### MAP 147 ####################
+#### colered by tables
+agSize(map147) <- 5
+agFill(map147) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map147) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT3","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1","A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1",
+	"A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1","A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1",
+	"A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2017_table8_16 <- agNames(map147) %in% c("A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1","A/Norway/4849/2016|2016-12-02|E7","A/Greece/4/2017|2017-01-02|E9","A/Norway/3806/2016|2016-06-13|E7/E8","A/Serbia/7921/2017|2016-12-09|C3/SIAT1","A/Serbia/7997/2017|2016-12-12|C3/SIAT1","A/Serbia/8255/2017|2016-12-16|C3/SIAT1","A/Serbia/8283/2017|2016-12-21|C3/SIAT1","A/Serbia/8374/2017|2016-12-21|C3/SIAT1",
+	"A/Serbia/8352/2017|2016-12-22|C3/SIAT1","A/Serbia/8375/2017|2016-12-22|C3/SIAT1","A/Serbia/8411/2017|2016-12-26|C3/SIAT1","A/Serbia/8499/2017|2016-12-27|C2/SIAT1","A/Stockholm/60/2016|2016-12-28|MDCK1/SIAT2","A/Serbia/8501/2017|2016-12-28|C3/SIAT1","A/Serbia/8554/2017|2016-12-30|C1/SIAT1","A/Ukraine/7647/2017|2017-01-04|C1/SIAT2","A/Thuringen/165/2017|2017-01-13|C1/SIAT2","A/Stockholm/11/2017|2017-01-14|MDCK0/SIAT2",
+	"A/England/19/2017|2017-01-31|SIAT1/SIAT1","А/Orenburg/70/2017|2017-02-07|SIAT1/SIAT1","А/Moscow/34/2017|2017-02-07|SIAT1/SIAT1","А/Orenburg/72/2017|2017-02-13|SIAT1/SIAT1","A/Paris/1023/2017|2017-02-16|MDCK1/SIAT1","A/Linkoping/1/2017|2017-02-17|MDCK2/SIAT2","А/Moscow/41/2017|2017-02-18|SIAT1/SIAT1","A/Basse Normandie/1055/2017|2017-02-20|MDCK1/SIAT1","A/Bosnia and Herzegovina/119/2017|2017-02-24|SIAT2","А/Moscow/47/2017|2017-02-25|SIAT1/SIAT1",
+	"A/Paris/1145/2017|2017-03-06|MDCK1/SIAT1","A/Dijon/1176/2017|2017-03-14|MDCK1/SIAT1","A/Niedersachsen/186/2017|2017-03-21|C2/SIAT2","A/St Petersburg/320/2017|2017-03-21|MDCK2/SIAT2","A/Hong Kong/2267/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2277/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2274/2017|2017-05-20|Cx/SIAT1","A/Hong Kong/2273/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2279/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1",
+	"A/Hong Kong/2284/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2291/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2293/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1","A/Hong Kong/3160/2017|2017-07-04|Cx/SIAT1","A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1")
+ag_Sep2017_table8_2 <- agNames(map147) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT5","A/Stockholm/48/2016|*|MDCK1/SIAT1","A/Czech Republic/178/2017|*|MDCKx/SIAT1","A/Sachsen/74/2016|2016-11-07|C1/SIAT1","A/Stockholm/42/2016|2016-11-10|MDCK1/SIAT1","A/Latvia/11-072125/2016|2016-11-28|C2/SIAT1","A/Austria/956928/2016|2016-11-30|C1/SIAT1",
+	"A/Austria/957344/2016|2016-12-04|C1/SIAT1","A/Austria/957860/2016|2016-12-06|C2/SIAT1","A/Latvia/12-020474/2016|2016-12-08|C2/SIAT1","A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1","A/Sweden/153/2016|2016-12-16|MDCK1/SIAT1","A/Sweden/157/2016|2016-12-17|MDCK1/SIAT1","A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1","A/Greece/726/2016|2016-12-19|SIAT1","A/Greece/35/2017|2017-01-10|SIAT2","A/Belarus/1136/2017|2017-01-13|SIAT1",
+	"A/Belarus/1146/2017|2017-01-14|SIAT1","A/Belarus/1147/2017|2017-01-14|SIAT1","A/Belarus/1140/2017|2017-01-15|SIAT1")
+
+agFill(map147)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map147)[ag_Sep2017_table8_16] <- '#ef9b20'
+agFill(map147)[ag_Sep2017_table8_2] <- '#ede15b'
+p_map147 <- ggplot(map147) + ggtitle('map 147')
+p_map147
+
+
+#################### MAP 148 ####################
+#### colered by tables
+agSize(map148) <- 5
+agFill(map148) <- 'grey50'
+ag_Sep2016_table8_7 <- agNames(map148) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT3","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Netherlands/525/2014|2014-12-17|SIAT2/SIAT4","A/Hong Kong/146/2013|2013-01-11|E6","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT3","A/Ukraine/7030/2016|2016-01-04|P2/MDCK1","A/Slovenia/486/2016|2016-02-01|MDCK1/SIAT2","A/Finland/586/2016|2016-02-15|SIAT1/SIAT1","A/Stockholm/24/2016|2016-02-22|MDCK3/SIAT1",
+	"A/Stockholm/25/2016|2016-02-24|MDCK2/SIAT1","A/Kazakhstan/4766/2016|2016-02-29|SIAT1","A/Istanbul/1946182/2016|2016-03-03|MDCK1/SIAT1","A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1","A/Cote D'Ivoire/544/2016|2016-04-06|P1/SIAT1","A/Cote D'Ivoire/595/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/599/2016|2016-04-15|P1/SIAT1","A/Cote D'Ivoire/651/2016|2016-04-25|P2/SIAT1","A/Cote D'Ivoire/695/2016|2016-05-06|P1/SIAT1","A/South Africa/R3026/2016|2016-05-26|MDCK1/SIAT1",
+	"A/South Africa/R3142/2016|2016-05-30|MDCK1/SIAT1","A/South Africa/R3328/2016|2016-06-02|MDCK1/SIAT1","A/South Africa/VW0036/2016|2016-06-04|MDCK1/SIAT1")
+ag_Sep2017_table8_2 <- agNames(map148) %in% c("A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT5","A/Stockholm/48/2016|*|MDCK1/SIAT1","A/Czech Republic/178/2017|*|MDCKx/SIAT1","A/Sachsen/74/2016|2016-11-07|C1/SIAT1","A/Stockholm/42/2016|2016-11-10|MDCK1/SIAT1","A/Latvia/11-072125/2016|2016-11-28|C2/SIAT1","A/Austria/956928/2016|2016-11-30|C1/SIAT1",
+	"A/Austria/957344/2016|2016-12-04|C1/SIAT1","A/Austria/957860/2016|2016-12-06|C2/SIAT1","A/Latvia/12-020474/2016|2016-12-08|C2/SIAT1","A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1","A/Sweden/153/2016|2016-12-16|MDCK1/SIAT1","A/Sweden/157/2016|2016-12-17|MDCK1/SIAT1","A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1","A/Greece/726/2016|2016-12-19|SIAT1","A/Greece/35/2017|2017-01-10|SIAT2","A/Belarus/1136/2017|2017-01-13|SIAT1",
+	"A/Belarus/1146/2017|2017-01-14|SIAT1","A/Belarus/1147/2017|2017-01-14|SIAT1","A/Belarus/1140/2017|2017-01-15|SIAT1")
+
+agFill(map148)[ag_Sep2016_table8_7] <- '#ea5545'
+agFill(map148)[ag_Sep2017_table8_2] <- '#ef9b20'
+p_map148 <- ggplot(map148) + ggtitle('map 148')
+p_map148
+
+
+#################### MAP 149 ####################
+#### colered by tables
+agSize(map149) <- 5
+agFill(map149) <- 'grey50'
+ag_Sep2017_table8_16 <- agNames(map149) %in% c("A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1","A/Norway/4849/2016|2016-12-02|E7","A/Greece/4/2017|2017-01-02|E9","A/Norway/3806/2016|2016-06-13|E7/E8","A/Serbia/7921/2017|2016-12-09|C3/SIAT1","A/Serbia/7997/2017|2016-12-12|C3/SIAT1","A/Serbia/8255/2017|2016-12-16|C3/SIAT1","A/Serbia/8283/2017|2016-12-21|C3/SIAT1","A/Serbia/8374/2017|2016-12-21|C3/SIAT1","A/Serbia/8352/2017|2016-12-22|C3/SIAT1",
+	"A/Serbia/8375/2017|2016-12-22|C3/SIAT1","A/Serbia/8411/2017|2016-12-26|C3/SIAT1","A/Serbia/8499/2017|2016-12-27|C2/SIAT1","A/Stockholm/60/2016|2016-12-28|MDCK1/SIAT2","A/Serbia/8501/2017|2016-12-28|C3/SIAT1","A/Serbia/8554/2017|2016-12-30|C1/SIAT1","A/Ukraine/7647/2017|2017-01-04|C1/SIAT2","A/Thuringen/165/2017|2017-01-13|C1/SIAT2","A/Stockholm/11/2017|2017-01-14|MDCK0/SIAT2","A/England/19/2017|2017-01-31|SIAT1/SIAT1",
+	"А/Orenburg/70/2017|2017-02-07|SIAT1/SIAT1","А/Moscow/34/2017|2017-02-07|SIAT1/SIAT1","А/Orenburg/72/2017|2017-02-13|SIAT1/SIAT1","A/Paris/1023/2017|2017-02-16|MDCK1/SIAT1","A/Linkoping/1/2017|2017-02-17|MDCK2/SIAT2","А/Moscow/41/2017|2017-02-18|SIAT1/SIAT1","A/Basse Normandie/1055/2017|2017-02-20|MDCK1/SIAT1","A/Bosnia and Herzegovina/119/2017|2017-02-24|SIAT2","А/Moscow/47/2017|2017-02-25|SIAT1/SIAT1","A/Paris/1145/2017|2017-03-06|MDCK1/SIAT1",
+	"A/Dijon/1176/2017|2017-03-14|MDCK1/SIAT1","A/Niedersachsen/186/2017|2017-03-21|C2/SIAT2","A/St Petersburg/320/2017|2017-03-21|MDCK2/SIAT2","A/Hong Kong/2267/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2277/2017|2017-05-19|Cx/SIAT1","A/Hong Kong/2274/2017|2017-05-20|Cx/SIAT1","A/Hong Kong/2273/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2279/2017|2017-05-21|Cx/SIAT1","A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2284/2017|2017-05-23|Cx/SIAT1",
+	"A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2291/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/2293/2017|2017-05-23|Cx/SIAT1","A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1","A/Hong Kong/3160/2017|2017-07-04|Cx/SIAT1","A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1")
+ag_Feb2018_table8_6 <- agNames(map149) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Iran/75924/2017|2017-01-22|SIAT2/SIAT1', 'A/Iran/78090/2017|2017-02-12|SIAT2/SIAT2', 'A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1')
+ag_Feb2019_table8_7 <- agNames(map149) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Hong Kong/656/2018|2018-04-07|MDCK1/SIAT3","A/Switzerland/8060/2017|2017-12-12|E7/E1","A/Latvia/11-019324/2018|2018-11-07|MDCK2/SIAT1","A/Clermont-Ferrand/2062/2018|2018-11-07|MDCK3/SIAT1","A/Iceland/108/2018|2018-11-13|MDCK1/SIAT1","A/Austria/1102969/2018|2018-11-16|SIAT1/SIAT1",
+	"A/Lyon/2106/2018|2018-11-20|MDCK3/SIAT1","A/Paris/2511/2018|2018-11-29|MDCK1/SIAT1","A/Latvia/12-005233/2018|2018-12-03|MDCK1/SIAT1","A/Paris/2538/2018|2018-12-04|MDCK1/SIAT1","A/Paris/2544/2018|2018-12-04|MDCK1/SIAT1")
+
+agFill(map149)[ag_Sep2017_table8_16] <- '#ea5545'
+agFill(map149)[ag_Feb2018_table8_6] <- '#ef9b20'
+agFill(map149)[ag_Feb2019_table8_7] <- '#ede15b'
+p_map149 <- ggplot(map149) + ggtitle('map 149')
+p_map149
+
+
+#################### MAP 150 ####################
+#### colered by tables
+agSize(map150) <- 5
+agFill(map150) <- 'grey50'
+ag_Feb2019_table8_9 <- agNames(map150) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Hong Kong/656/2018|2018-04-07|MDCK1/SIAT3', 'A/Switzerland/8060/2017|2017-12-12|E7/E1', 'A/Trollhattan/3/2018|2018-12-01|MDCK0/SIAT1', 'A/Paris/2671/2018|2018-12-17|MDCK1/SIAT1', 'A/Bretagne/026/2019|2019-01-02|MDCK1/SIAT1', 'A/Paris/029/2019|2019-01-03|MDCK1/SIAT1')
+ag_Feb2018_table8_9 <- agNames(map150) %in% c("A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2","A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3","A/Croatia/3608/2017|2017-12-12|MDCKx/SIAT2","A/Toulon/2533/2017|2017-12-18|MDCK2/SIAT2","A/Novosibirsk/265/2017|2017-12-24|MDCK1/SIAT1","A/Iceland/136/2017|2017-12-27|MDCK1/SIAT1","A/Iceland/03/2018|2018-01-02|MDCK1/SIAT1","A/Ankara/22/2018|2018-01-03|SIAT1/SIAT1",
+	"A/Iceland/08/2018|2018-01-04|MDCK1/SIAT1")
+ag_Sep2017_table8_2 <- agNames(map150) %in% c("A/Texas/50/2012|2012-04-15|E5/E2","A/Samara/73/2013|2013-03-12|C1/SIAT4","A/Stockholm/6/2014|2014-02-06|E4/E1","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2","A/Switzerland/9715293/2013|2013-12-06|E4/E1","A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2","A/Georgia/532/2015|2015-03-09|SIAT1/SIAT5","A/Stockholm/48/2016|*|MDCK1/SIAT1","A/Czech Republic/178/2017|*|MDCKx/SIAT1","A/Sachsen/74/2016|2016-11-07|C1/SIAT1",
+	"A/Stockholm/42/2016|2016-11-10|MDCK1/SIAT1","A/Latvia/11-072125/2016|2016-11-28|C2/SIAT1","A/Austria/956928/2016|2016-11-30|C1/SIAT1","A/Austria/957344/2016|2016-12-04|C1/SIAT1","A/Austria/957860/2016|2016-12-06|C2/SIAT1","A/Latvia/12-020474/2016|2016-12-08|C2/SIAT1","A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1","A/Sweden/153/2016|2016-12-16|MDCK1/SIAT1","A/Sweden/157/2016|2016-12-17|MDCK1/SIAT1","A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1",
+	"A/Greece/726/2016|2016-12-19|SIAT1","A/Greece/35/2017|2017-01-10|SIAT2","A/Belarus/1136/2017|2017-01-13|SIAT1","A/Belarus/1146/2017|2017-01-14|SIAT1","A/Belarus/1147/2017|2017-01-14|SIAT1","A/Belarus/1140/2017|2017-01-15|SIAT1")
+
+agFill(map150)[ag_Feb2019_table8_9] <- '#ea5545'
+agFill(map150)[ag_Feb2018_table8_9] <- '#ef9b20'
+agFill(map150)[ag_Sep2017_table8_2] <- '#ede15b'
+p_map150 <- ggplot(map150) + ggtitle('map 150')
+p_map150
+
+
+#################### MAP 151 ####################
+#### colered by tables
+agSize(map151) <- 5
+agFill(map151) <- 'grey50'
+ag_Feb2018_table8_9 <- agNames(map151) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Hong Kong/4801/2014|2014-02-26|E6/E2","A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2","A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3","A/Croatia/3608/2017|2017-12-12|MDCKx/SIAT2","A/Toulon/2533/2017|2017-12-18|MDCK2/SIAT2","A/Novosibirsk/265/2017|2017-12-24|MDCK1/SIAT1","A/Iceland/136/2017|2017-12-27|MDCK1/SIAT1","A/Iceland/03/2018|2018-01-02|MDCK1/SIAT1","A/Ankara/22/2018|2018-01-03|SIAT1/SIAT1",
+	"A/Iceland/08/2018|2018-01-04|MDCK1/SIAT1")
+ag_Feb2019_table8_7 <- agNames(map151) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Hong Kong/656/2018|2018-04-07|MDCK1/SIAT3","A/Switzerland/8060/2017|2017-12-12|E7/E1","A/Latvia/11-019324/2018|2018-11-07|MDCK2/SIAT1","A/Clermont-Ferrand/2062/2018|2018-11-07|MDCK3/SIAT1","A/Iceland/108/2018|2018-11-13|MDCK1/SIAT1","A/Austria/1102969/2018|2018-11-16|SIAT1/SIAT1","A/Lyon/2106/2018|2018-11-20|MDCK3/SIAT1","A/Paris/2511/2018|2018-11-29|MDCK1/SIAT1",
+	"A/Latvia/12-005233/2018|2018-12-03|MDCK1/SIAT1","A/Paris/2538/2018|2018-12-04|MDCK1/SIAT1","A/Paris/2544/2018|2018-12-04|MDCK1/SIAT1")
+ag_Sep2017_table21 <- agNames(map151) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT2","A/Hong_Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT3","A/Hong_Kong/4801/2014|2014-02-26|MDCK4/MDCK3","A/Hong_Kong/4801/2014|2014-02-26|E6/E2","A/Norway/3806/2016|2016-06-13|E9","NIB-103_(A/Norway/3806/2016)|2016-06-13|Ex","A/Antananarivo/1067/2016|2016-04-05|E5/E1","A/South_Australia/54/2016|2016-07-12|E4/E1","A/Singapore/TT1374/2016|2016-12-01|E6/E1","A/Guizhou-Qingzhen/1968/2016|2016-12-06|C2/SIAT2/SIAT1",
+	"A/Singapore/GP2646/2016|2016-12-08|E6/E1","A/Brisbane/321/2016|2016-12-19|E6/E1","A/Bosnia_&_Herzegovina/18294/2017|2017-02-01|SIAT1","A/Sydney/52/2017|2017-03-06|E5/E1","A/Brisbane/29/2017|2017-03-08|E4/E1","A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1","A/Shanghai-Pudongxin/1987/2017|2017-06-13|C2/SIAT1/SIAT1","A/Ghana/1841/2017|2017-06-24|SIAT1","A/Ghana/1797/2017|2017-06-27|MDCK1","A/Ghana/1782/2017|2017-06-28|SIAT1",
+	"A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1","A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1","A/Hong_Kong/3861/2017|2017-07-14|Cx/SIAT1","A/Hong_Kong/3819/2017|2017-07-15|Cx/SIAT1","A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3946/2017|2017-07-17|Cx/SIAT1","A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1","A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1","A/Hong_Kong/3824/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3854/2017|2017-07-21|Cx/SIAT1",
+	"A/Hong_Kong/3860/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/3928/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4103/2017|2017-07-21|Cx/SIAT1","A/Hong_Kong/4082/2017|2017-07-22|Cx/SIAT1","A/Hong_Kong/3855/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/4104/2017|2017-07-23|Cx/SIAT1","A/Hong_Kong/3853/2017|2017-07-24|Cx/SIAT1","A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1","A/Hong_Kong/4108/2017|2017-07-25|Cx/SIAT1",
+	"A/Hong_Kong/3978/2017|2017-07-28|Cx/SIAT1","A/Hong_Kong/4018/2017|2017-07-28|Cx/SIAT1","A/Hong_Kong/4212/2017|2017-07-31|Cx/SIAT1")
+
+agFill(map151)[ag_Feb2018_table8_9] <- '#ea5545'
+agFill(map151)[ag_Feb2019_table8_7] <- '#ef9b20'
+agFill(map151)[ag_Sep2017_table21] <- '#ede15b'
+p_map151 <- ggplot(map151) + ggtitle('map 151')
+p_map151
+
+
+#################### MAP 152 ####################
+#### colered by tables
+agSize(map152) <- 5
+agFill(map152) <- 'grey50'
+ag_Sep2019_table8_1 <- agNames(map152) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Netherlands/10260/2018|2018-02-15|E5/E1","A/Abu Dhabi/240/2018|2018-01-01|E6/E1","A/Parma/177/2018|2018-11-20|SIAT2/SIAT2","A/Parma/180/2018|2018-11-21|SIAT1/SIAT2","A/Parma/179/2018|2018-11-22|SIAT1/SIAT1","A/Parma/174/2018|2018-11-22|SIAT1/SIAT1","A/England/630/2018|2018-11-23|SIAT1/SIAT1","A/Hong Kong/2946/2018|2018-11-27|MDCK1/SIAT1",
+	"A/England/646/2018|2018-11-28|SIAT2/SIAT1","A/Constanta/239165/2018|2018-12-07|SIAT1/SIAT2","A/England/754/2018|2018-12-13|MDCK1/SIAT1","A/Centre/013/2019|2019-01-02|SIAT1","A/Pays de Loire/040/2019|2019-01-04|SIAT1","A/Nord Pas de Calais/054/2019|2019-01-07|SIAT1","A/England/3/2019|2019-01-07|MDCK1/SIAT1","A/Paris/105/2019|2019-01-08|SIAT1","A/Iasi/239836/2019|2019-01-09|SIAT1","A/Palermo/327/2018|2018-11-28|SIAT3/SIAT1",
+	"A/Ghana/758/2018|2018-10-29|SIAT1","A/Nord Pas de Calais/2726/2018|2018-12-26|SIAT1","A/Bourgogne/074/2019|2019-01-02|SIAT1","A/Haute Normandie/085/2019|2019-01-07|SIAT1")
+ag_Sep2019_table8_11 <- agNames(map152) %in% c("А/Kyrgyzstan/42/2019|2018-12-19|MDCKx/SIAT1","A/Austria/1113943/2018|2018-12-31|SIAT1/SIAT1","A/Austria/1114682/2019|2019-01-02|SIAT1/SIAT1","A/Austria/1114171/2019|2019-01-03|SIAT1/SIAT1","A/Austria/1115877/2019|2019-01-08|SIAT1/SIAT1","А/Kyrgyzstan/46/2019|2019-01-10|MDCKx/SIAT1","А/Kyrgyzstan/43/2019|2019-01-10|MDCKx/SIAT1","A/Austria/1117700/2019|2019-01-16|SIAT1/SIAT1","A/Austria/1120261/2019|2019-01-25|SIAT1/SIAT1","A/Austria/1121454/2019|2019-01-31|SIAT1/SIAT1",
+	"A/Austria/1121450/2019|2019-01-31|SIAT1/SIAT1","A/Austria/1117352/2019|2019-01-14|SIAT1/SIAT1","A/Austria/1121455/2019|2019-01-29|SIAT1/SIAT1","A/Austria/1115342/2019|2019-01-08|SIAT1/SIAT1","A/Bulgaria/896/2019|2019-02-01|SIAT2/SIAT1","A/Zaporizhia/156/2019|2019-02-01|SIAT2/SIAT1","A/Austria/1129536/2019|2019-02-27|SIAT1/SIAT1","A/Iran/168336/2019|2019-03-07|SIAT1/SIAT1","A/Iran/168555/2019|2019-03-15|SIAT1/SIAT1","A/Iran/171909/2019|2019-04-12|SIAT1/SIAT1",
+	"A/Bulgaria/958/2019|2019-02-01|SIAT2/SIAT1","A/Bulgaria/949/2019|2019-02-01|SIAT2/SIAT1","A/Ukraine/8210/2019|2019-02-01|MDCK0/SIAT1","A/Khmelnytskyi/155/2019|2019-02-01|SIAT2/SIAT1","A/Bulgaria/947/2019|2019-02-03|SIAT2/SIAT1","A/Bulgaria/909/2019|2019-02-03|SIAT2/SIAT1","A/Bulgaria/1052/2019|2019-02-05|SIAT2/SIAT1","A/Ukraine/8211/2019|2019-02-05|MDCK0/SIAT1","A/Bulgaria/1051/2019|2019-02-06|SIAT2/SIAT1","A/Bulgaria/1134/2019|2019-02-12|SIAT2/SIAT2",
+	"A/Khmelnytskyi/149/2019|2019-02-15|SIAT2/SIAT1","A/Bulgaria/1129/2019|2019-02-16|SIAT2/SIAT1","A/Iran/167623/2019|2019-02-16|SIAT1/SIAT1","A/Khmelnytskyi/148/2019|2019-02-16|SIAT1/SIAT1","A/Iran/168206/2019|2019-02-19|SIAT1/SIAT1","A/Ukraine/8230/2019|2019-02-20|MDCK1/SIAT1","A/Bulgaria/1153/2019|2019-02-21|SIAT2/SIAT1","A/Khmelnytskyi/145/2019|2019-02-27|SIAT1/SIAT1","A/Iran/168359/2019|2019-03-11|SIAT1/SIAT1","A/Ukraine/8233/2019|2019-03-11|MDCK1/SIAT1",
+	"A/Bulgaria/902/2019|2019-02-01|SIAT2/SIAT1","A/Bulgaria/900/2019|2019-02-01|SIAT2/SIAT1")
+ag_Sep2019_table8_14 <- agNames(map152) %in% c("A/Norway/3275/2018|2018-10-04|E6(Am3Al3)","A/Mauritania/200-2018/2018|2018-11-05|SIAT1","A/Mauritania/08-2019/2019|2019-01-02|SIAT1","A/Mauritania/09-2019/2019|2019-01-03|SIAT1","A/Mauritania/15-2019/2019|2019-01-07|SIAT1","A/Mauritania/10-2019/2019|2019-01-08|SIAT1","A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1","A/West Kazakhstan/461/2019|2019-02-27|MDCKx/SIAT1","A/West Kazakhstan/462/2019|2019-03-01|MDCKx/SIAT1","A/West Kazakhstan/463/2019|2019-03-05|MDCKx/SIAT1",
+	"A/Finland/105/2019|2019-04-09|SIAT1/SIAT1","A/North Kazakhstan/363/2019|2019-02-13|MDCKx/SIAT1","A/Finland/92/2019|2019-03-06|SIAT1/SIAT1","A/Georgia/658/2019|2019-03-13|SIAT2","A/Finland/99/2019|2019-03-26|SIAT1/SIAT1","A/Finland/104/2019|2019-04-03|SIAT1/SIAT1","A/Finland/114/2019|2019-04-30|SIAT1/SIAT1")
+
+agFill(map152)[ag_Sep2019_table8_1] <- '#ea5545'
+agFill(map152)[ag_Sep2019_table8_11] <- '#ef9b20'
+agFill(map152)[ag_Sep2019_table8_14] <- '#ede15b'
+p_map152 <- ggplot(map152) + ggtitle('map 152')
+p_map152
+
+
+#################### MAP 153 ####################
+#### colered by tables
+agSize(map153) <- 5
+agFill(map153) <- 'grey50'
+ag_Sep2019_table8_6 <- agNames(map153) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Kansas/14/2017|2017-12-14|E7/E2","A/Valladolid/5/2019|2019-01-04|SIAT1/SIAT1","A/Valladolid/27/2019|2019-01-14|SIAT1/SIAT1","A/Soria/11/2019|2019-01-09|SIAT1/SIAT1","A/Rabat/352/2019|2019-01-07|MDCK1/SIAT1","A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1","A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1","A/Avila/3/2019|2019-01-03|SIAT1/SIAT1","A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1",
+	"A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1","A/Avila/15/2019|2019-01-10|SIAT1/SIAT1","A/Palencia/20/2019|2019-01-12|SIAT1/SIAT1","A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1","A/Valladolid/17/2019|2019-01-12|SIAT1/SIAT1","A/Valladolid/26/2019|2019-01-14|SIAT1/SIAT1","A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1","A/Valladolid/24/2019|2019-01-14|SIAT1/SIAT1","A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1")
+ag_Sep2019_table8_3 <- agNames(map153) %in% c("A/Oman/5362/2018|2018-10-24|SIAT1","A/Guangxi-Babu/1913/2018|2018-10-29|MDCK2/SIAT1/SIAT1","A/Oman/5838/2018|2018-11-07|SIAT2","A/Oman/5804/2018|2018-11-07|SIAT2","A/Oman/6018/2018|2018-11-13|SIAT1","A/Oman/6106/2018|2018-11-15|SIAT1","A/Kharkiv/446/2018|2018-11-23|SIAT2/SIAT1","A/Kharkiv/444/2018|2018-11-23|SIAT2/SIAT1","A/Kyiv/463/2018|2018-11-30|SIAT1/SIAT1","A/Khmelnytskyi/544/2018|2018-12-06|SIAT2/SIAT1",
+	"A/Khmelnytskyi/545/2018|2018-12-08|SIAT2/SIAT1","A/Kyiv/487/2018|2018-12-10|SIAT1/SIAT1","A/Kyiv/491/2018|2018-12-13|SIAT2/SIAT1","A/Kyiv/493/2018|2018-12-14|SIAT1/SIAT1","A/Khmelnytskyi/547/2018|2018-12-16|SIAT2/SIAT1","A/Kyiv/510/2018|2018-12-17|SIAT2/SIAT1","A/Luxembourg/341/2019|2019-01-03|SIAT1","A/Luxembourg/1177/2019|2019-01-06|SIAT1","A/Luxembourg/2293/2019|2019-01-14|SIAT1","A/Macedonia/723/2019|2019-01-28|SIAT1",
+	"A/Beijing-Chaoyang/12841/2018|2018-11-26|MDCK1/SIAT1/SIAT1")
+ag_Sep2019_table8_1 <- agNames(map153) %in% c("A/Abu Dhabi/240/2018|2018-01-01|E6/E1","A/Parma/177/2018|2018-11-20|SIAT2/SIAT2","A/Parma/180/2018|2018-11-21|SIAT1/SIAT2","A/Parma/179/2018|2018-11-22|SIAT1/SIAT1","A/Parma/174/2018|2018-11-22|SIAT1/SIAT1","A/England/630/2018|2018-11-23|SIAT1/SIAT1","A/Hong Kong/2946/2018|2018-11-27|MDCK1/SIAT1","A/England/646/2018|2018-11-28|SIAT2/SIAT1","A/Constanta/239165/2018|2018-12-07|SIAT1/SIAT2","A/England/754/2018|2018-12-13|MDCK1/SIAT1",
+	"A/Centre/013/2019|2019-01-02|SIAT1","A/Pays de Loire/040/2019|2019-01-04|SIAT1","A/Nord Pas de Calais/054/2019|2019-01-07|SIAT1","A/England/3/2019|2019-01-07|MDCK1/SIAT1","A/Paris/105/2019|2019-01-08|SIAT1","A/Iasi/239836/2019|2019-01-09|SIAT1","A/Palermo/327/2018|2018-11-28|SIAT3/SIAT1","A/Ghana/758/2018|2018-10-29|SIAT1","A/Nord Pas de Calais/2726/2018|2018-12-26|SIAT1","A/Bourgogne/074/2019|2019-01-02|SIAT1",
+	"A/Haute Normandie/085/2019|2019-01-07|SIAT1")
+
+agFill(map153)[ag_Sep2019_table8_6] <- '#ea5545'
+agFill(map153)[ag_Sep2019_table8_3] <- '#ef9b20'
+agFill(map153)[ag_Sep2019_table8_1] <- '#ede15b'
+p_map153 <- ggplot(map153) + ggtitle('map 153')
+p_map153
+
+
+#################### MAP 154 ####################
+#### colered by tables
+agSize(map154) <- 5
+agFill(map154) <- 'grey50'
+ag_Feb2019_table8_11 <- agNames(map154) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Netherlands/10260/2018|2018-02-15|E5","A/Switzerland/293/2018|2018-11-01|MDCK1/SIAT3","A/Nizhny Novgorod/14645V/2018|2018-11-20|MDCK1/SIAT2","A/Hungary/5/2019|2018-12-19|Cx/SIAT1","A/Hungary/28/2019|2019-01-03|Cx/SIAT1","A/Hungary/26/2019|2019-01-07|Cx/SIAT1","A/Netherlands/10002/2019|2019-01-07|MDCK-MIX2/SIAT1","A/Armenia/91/2019|2019-01-14|SIAT1",
+	"A/Neth/10006/2019|2019-01-14|MDCK-MIX2/SIAT1","A/Albania/9142/2019|2019-01-19|SIAT1")
+ag_Sep2019_table8_14 <- agNames(map154) %in% c("A/Norway/3275/2018|2018-10-04|E6(Am3Al3)","A/Mauritania/200-2018/2018|2018-11-05|SIAT1","A/Mauritania/08-2019/2019|2019-01-02|SIAT1","A/Mauritania/09-2019/2019|2019-01-03|SIAT1","A/Mauritania/15-2019/2019|2019-01-07|SIAT1","A/Mauritania/10-2019/2019|2019-01-08|SIAT1","A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1","A/West Kazakhstan/461/2019|2019-02-27|MDCKx/SIAT1","A/West Kazakhstan/462/2019|2019-03-01|MDCKx/SIAT1","A/West Kazakhstan/463/2019|2019-03-05|MDCKx/SIAT1",
+	"A/Finland/105/2019|2019-04-09|SIAT1/SIAT1","A/North Kazakhstan/363/2019|2019-02-13|MDCKx/SIAT1","A/Finland/92/2019|2019-03-06|SIAT1/SIAT1","A/Georgia/658/2019|2019-03-13|SIAT2","A/Finland/99/2019|2019-03-26|SIAT1/SIAT1","A/Finland/104/2019|2019-04-03|SIAT1/SIAT1","A/Finland/114/2019|2019-04-30|SIAT1/SIAT1")
+ag_Sep2019_table8_15 <- agNames(map154) %in% c("A/Mauritania/255-2018/2018|2018-12-10|SIAT1","A/Komarno/58/2018|2018-12-28|MDCK1/SIAT1","A/Trencin/74/2019|2019-01-16|MDCK1/SIAT1","A/Trnava/70/2019|2019-01-16|MDCK1/SIAT1","A/Nove Zamky/81/2019|2019-01-21|MDCK2/SIAT1","A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1","A/Prievidza/126/2019|2019-01-29|MDCKx/SIAT1","A/Mogilev/1547/2019|2019-03-12|MDCK2/SIAT1","A/PJovazska Bystrica/177/2019|2019-02-05|MDCKx/SIAT1","A/Bratislava/328/2019|2019-02-20|MDCKx/SIAT1",
+	"A/Skalica/339/2019|2019-02-21|MDCKx/SIAT1","A/Vitebsk/927/2019|2019-02-28|MDCK2/SIAT1","A/Orsha/1450/2019|2019-03-05|MDCK2/SIAT1","A/Bobruisk/1468/2019|2019-03-06|MDCK2/SIAT1","A/Mogilev/1315/2019|2019-03-06|MDCK2/SIAT1","A/Bratislava/446/2019|2019-03-08|MDCKx/SIAT1","A/Macedonia/1283/2019|2019-03-11|SIAT1","A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1","A/Macedonia/1350/2019|2019-03-18|SIAT1","A/Macedonia/1402/2019|2019-03-22|SIAT1",
+	"A/Kosovo/1130/2019|2019-03-29|SIAT1","A/Kosovo/1188/2019|2019-04-08|SIAT1","A/Macedonia/1462/2019|2019-04-15|SIAT1")
+
+agFill(map154)[ag_Feb2019_table8_11] <- '#ea5545'
+agFill(map154)[ag_Sep2019_table8_14] <- '#ef9b20'
+agFill(map154)[ag_Sep2019_table8_15] <- '#ede15b'
+p_map154 <- ggplot(map154) + ggtitle('map 154')
+p_map154
+
+
+#################### MAP 155 ####################
+#### colered by tables
+agSize(map155) <- 5
+agFill(map155) <- 'grey50'
+ag_Sep2019_table8_1 <- agNames(map155) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT1/SIAT3","A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Netherlands/10260/2018|2018-02-15|E5/E1","A/Abu Dhabi/240/2018|2018-01-01|E6/E1","A/Parma/177/2018|2018-11-20|SIAT2/SIAT2","A/Parma/180/2018|2018-11-21|SIAT1/SIAT2","A/Parma/179/2018|2018-11-22|SIAT1/SIAT1","A/Parma/174/2018|2018-11-22|SIAT1/SIAT1","A/England/630/2018|2018-11-23|SIAT1/SIAT1",
+	"A/Hong Kong/2946/2018|2018-11-27|MDCK1/SIAT1","A/England/646/2018|2018-11-28|SIAT2/SIAT1","A/Constanta/239165/2018|2018-12-07|SIAT1/SIAT2","A/England/754/2018|2018-12-13|MDCK1/SIAT1","A/Centre/013/2019|2019-01-02|SIAT1","A/Pays de Loire/040/2019|2019-01-04|SIAT1","A/Nord Pas de Calais/054/2019|2019-01-07|SIAT1","A/England/3/2019|2019-01-07|MDCK1/SIAT1","A/Paris/105/2019|2019-01-08|SIAT1","A/Iasi/239836/2019|2019-01-09|SIAT1",
+	"A/Palermo/327/2018|2018-11-28|SIAT3/SIAT1","A/Ghana/758/2018|2018-10-29|SIAT1","A/Nord Pas de Calais/2726/2018|2018-12-26|SIAT1","A/Bourgogne/074/2019|2019-01-02|SIAT1","A/Haute Normandie/085/2019|2019-01-07|SIAT1")
+ag_Sep2019_table8_18 <- agNames(map155) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT5","NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1","A/Kansas/14/2017|2017-12-14|SIAT3/SIAT2","A/England/fmhwY2NxZm9pZg/2018|2018-12-19|SIAT3/SIAT1","A/England/138/2019|2019-01-28|SIAT3/SIAT1","A/Bosnia and Herzegovia/119G/2019|2019-01-17|SIAT1/SIAT1","A/England/93/2019|2019-01-31|MDCK2/SIAT1/SIAT1","A/England/95/2019|2019-02-04|SIAT3/SIAT1","A/Sydney/53/2019|2019-03-08|E3/E1",
+	"A/New Caledonia/59/2019|2019-04-02|E3/E1","A/St. Petersburg/1092V/2019|2019-05-05|MDCK1/SIAT1","A/England/99/2019|2019-02-07|MDCK2/SIAT1/SIAT1","A/England/102/2019|2019-02-12|SIAT2/SIAT1","A/Sakha/3014V/2019|2019-04-16|MDCK1/SIAT1","A/Tomsk/5645V/2019|2019-04-20|MDCK1/SIAT1","A/Omsk/1008V/2019|2019-04-23|MDCK1/SIAT1","A/England/eWlsYW9mYWxlaQ/2019|2019-02-08|MDCK1/SIAT1/SIAT1","A/England/154/2019|2019-02-07|SIAT2/SIAT1","A/England/185/2019|2019-02-08|SIAT2/SIAT1",
+	"A/England/155/2019|2019-02-08|SIAT2/SIAT1","A/England/157/2019|2019-02-25|SIAT2/SIAT1","A/England/156/2019|2019-02-26|SIAT2/SIAT1","A/England/222/2019|2019-02-20|SIAT1/SIAT1")
+
+agFill(map155)[ag_Sep2019_table8_1] <- '#ea5545'
+agFill(map155)[ag_Sep2019_table8_18] <- '#ef9b20'
+p_map155 <- ggplot(map155) + ggtitle('map 155')
+p_map155
+
+
+#################### MAP 156 ####################
+#### colered by tables
+agSize(map156) <- 5
+agFill(map156) <- 'grey50'
+ag_Sep2021_table7_9 <- agNames(map156) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Denmark/3264/2019|2019-10-25|SIAT5","A/Hong Kong/2671/2019|2019-06-17|E8/E3","A/Cambodia/e0826360/2020|2020-07-16|E5/E2","A/Bangladesh/4005/2020|2020-10-04|SIAT2","A/Stockholm/5/2021|2021-04-16|S0/S2","A/England/538/2018|2018-02-26|MDCK1/SIAT3","A/Kansas/14/2017|2017-12-14|SIAT3/SIAT1","A/Ghana/1352/2021|2021-07-08|SIAT1",
+	"A/Ghana/1948/2021|2021-07-26|SIAT1")
+ag_Sep2020_table7_5 <- agNames(map156) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E2","A/South Australia/34/2019|2019-02-06|E6/E1","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5","A/England/538/2018|2018-02-26|MDCK1/SIAT4","A/Kansas/14/2017|2017-12-14|SIAT3/SIAT2","A/Bretagne/775/2020|2020-02-03|MDCK2/SIAT1","A/England/103/2020|2020-02-05|SIAT1/SIAT1","A/Bulgaria/912/2020|2020-02-06|SIAT2/SIAT1",
+	"A/Bratislava/225/2020|2020-02-06|MDCKx/SIAT1","A/Bulgaria/927/2020|2020-02-07|SIAT2/SIAT1","A/England/107/2020|2020-02-11|SIAT1/SIAT1","A/Sachsen/38/2020|2020-02-14|C1/SIAT1","A/Bulgaria/1024/2020|2020-02-16|SIAT2/SIAT1","A/Bulgaria/1009/2020|2020-02-17|SIAT2/SIAT1","A/Bulgaria/1008/2020|2020-02-17|SIAT2/SIAT1","A/Bourgogne/1249/2020|2020-02-17|MDCK1/SIAT1","A/L'ubica/314/2020|2020-02-17|MDCK1/SIAT1","A/L'ubica/315/2020|2020-02-18|MDCK1/SIAT1",
+	"A/Bulgaria/1052/2020|2020-02-21|SIAT2/SIAT1","A/Bratislava/319/2020|2020-02-21|MDCK1/SIAT1","A/Brandenburg/9/2020|2020-02-23|C1/SIAT1","A/Rheinland-Pfalz/26/2020|2020-03-02|C1/SIAT1","A/Bremen/7/2020|2020-03-02|C1/SIAT1","A/Baden-Wurttemberg/95/2020|2020-02-10|C1/SIAT1","A/Nord pas de Calais/1108/2020|2020-02-10|MDCK2/SIAT1","A/Bulgaria/1772/2020|2020-03-09|SIAT2/SIAT1","A/Bulgaria/906/2020|2020-02-04|SIAT2/SIAT1","A/Bulgaria/962/2020|2020-02-11|SIAT2/SIAT1",
+	"A/Bulgaria/969/2020|2020-02-12|SIAT2/SIAT1")
+
+agFill(map156)[ag_Sep2021_table7_9] <- '#ea5545'
+agFill(map156)[ag_Sep2020_table7_5] <- '#ef9b20'
+p_map156 <- ggplot(map156) + ggtitle('map 156')
+p_map156
+
+
+#################### MAP 157 ####################
+#### colered by tables
+agSize(map157) <- 5
+agFill(map157) <- 'grey50'
+ag_Sep2020_table7_9 <- agNames(map157) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E2","A/South Australia/34/2019|2019-02-06|E6/E1","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4","A/England/538/2018|2018-02-26|MDCK1/SIAT4","A/South Africa/9306/2019|2019-07-29|MDCK1/SIAT1","A/Lyon/CHU/R19.154.50/2019|2019-12-31|MDCK2/SIAT1","A/Grenoble/185/2020|2020-01-10|MDCK2/SIAT1","A/Lyon/162/2020|2020-01-16|MDCK2/SIAT1",
+	"A/South Africa/8914/2019|2019-07-18|MDCK1/SIAT1","A/Lyon/86/2020|2020-01-09|MDCK2/SIAT1","A/Lyon/219/2020|2020-01-20|MDCK2/SIAT1","A/South Africa/0803/2020|2020-01-22|MDCK2/SIAT1","A/South Africa/9493/2019|2019-07-30|MDCK2/SIAT1","A/South Africa/9550/2019|2019-08-01|MDCK2/SIAT1","A/Lyon/CHU/R19.146.85/2019|2019-12-19|MDCK4/SIAT1","A/Beirut/421/2020|2020-03-05|SIAT1","A/Cyprus/F835/2020|2020-02-02|SIAT1","A/Cyprus/F913/2020|2020-02-04|SIAT1",
+	"A/Cyprus/F926/2020|2020-02-05|SIAT1","A/Cyprus/F960/2020|2020-02-07|SIAT1","A/Portugal/GG66/2020|2020-02-08|SIAT1","A/Macedonia/450/2020|2020-02-10|SIAT1","A/Saida/294/2020|2020-02-13|SIAT1","A/Cyprus/F1108/2020|2020-02-16|SIAT1","A/Poland/222/2020|2020-02-17|SIAT1","A/Poland/220/2020|2020-02-17|SIAT1","A/Macedonia/509/2020|2020-02-17|SIAT1","A/Macedonia/505/2020|2020-02-17|SIAT1",
+	"A/Macedonia/501/2020|2020-02-17|SIAT1","A/Avignon/1286/2020|2020-02-17|MDCK2/SIAT1","A/Poland/2724/2020|2020-02-18|SIAT1","A/Bosnia and Herzegovina/318/2020|2020-02-18|SIAT1","A/Macedonia/593/2020|2020-02-21|SIAT1","A/Bosnia and Herzegovina/360/2020|2020-02-25|SIAT1","A/Poland/3278/2020|2020-02-26|SIAT1","A/Macedonia/648/2020|2020-02-27|SIAT1","A/Lyon/1631/2020|2020-03-01|MDCK3/SIAT1","A/Saint-Etienne/2539/2020|2020-02-11|MDCK3/SIAT1",
+	"A/Portugal/MS74/2020|2020-03-21|SIAT1","A/Macedonia/465/2020|2020-02-10|SIAT1","A/Macedonia/607/2020|2020-02-24|SIAT1","A/Beirut/331/2020|2020-02-25|SIAT1","A/Macedonia/650/2020|2020-02-27|SIAT1")
+ag_Sep2021_table7_4 <- agNames(map157) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Denmark/3264/2019|2019-10-25|SIAT5","A/Hong Kong/2671/2019|2019-06-17|E8/E3","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4","A/Cambodia/e0826360/2020|2020-07-16|E5/E2","A/Bangladesh/4005/2020|2020-10-04|SIAT2","A/England/538/2018|2018-02-26|MDCK1/SIAT3","A/Bangladesh/911009/2020|2020-09-03|SIAT3","A/California/55/2020|2020-10-12|SIAT2",
+	"A/Cameroon/16996/2020|2020-12-15|SIAT3")
+
+agFill(map157)[ag_Sep2020_table7_9] <- '#ea5545'
+agFill(map157)[ag_Sep2021_table7_4] <- '#ef9b20'
+p_map157 <- ggplot(map157) + ggtitle('map 157')
+p_map157
+
+
+#################### MAP 158 ####################
+#### colered by tables
+agSize(map158) <- 5
+agFill(map158) <- 'grey50'
+ag_Feb2021_table7_3 <- agNames(map158) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4","A/England/538/2018|2018-02-26|MDCK1/SIAT3","A/Finland/183/2020|2020-03-02|MDCK1/SIAT2","A/Finland/183/2020|2020-03-02|E6","A/Tasmania/503/2020|2020-02-16|E5/E1","A/Hungary/64/2020|2020-02-08|MDCK1/SIAT2","A/Bangladesh/1001/2020|2020-09-05|SIAT1",
+	"A/Bangladesh/2002/2020|2020-10-01|SIAT1","A/Bangladesh/2004/2020|2020-10-04|SIAT1","A/Bangladesh/4005/2020|2020-10-04|SIAT1")
+ag_Feb2020_table7_12 <- agNames(map158) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2","A/South Australia/34/2019|2019-02-06|E6/E1","A/Hong Kong/2671/2019|2019-06-17|E8/E1","A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5","A/England/538/2018|2018-02-26|MDCK1/SIAT4","A/Delaware/41/2019|2019-03-06|SIAT2/SIAT1","A/Aichi/218/2019|2019-04-02|MDCK2+SIAT2/SIAT1","A/Shanghai-Jiading/1977/2019|2019-12-03|C1/SIAT1/SIAT1","A/Tianjin-Nankai/3210/2019|2019-11-24|C2/SIAT1/SIAT1","A/Palermo/36/2019|2019-12-11|SIAT2/SIAT1",
+	"A/Palermo/02/2020|2020-01-02|SIAT2/SIAT1","A/Kanagawa/ZC1907/2019|2019-11-01|SIAT2/SIAT1","A/Jilin-Dongchang/1574/2019|2019-12-09|C1/SIAT1/SIAT1","A/Lithuania/MB42384/2019|2019-12-24|SIAT2/SIAT1","A/Parma/391/2019|2019-12-27|SIAT1/SIAT1","A/Lithuania/MB170/2019|2019-12-31|SIAT1/SIAT1","A/Norway/47/2020|2020-01-03|SIAT1/SIAT1","A/Poland/1521/2020|2020-01-05|SIAT1","A/Lithuania/MB398/2020|2020-01-05|SIAT1/SIAT1","A/Norway/108/2020|2020-01-06|SIAT1/SIAT1",
+	"A/Czech Republic/38/2020|2020-01-07|P2/SIAT1","A/Czech Republic/87/2020|2020-01-10|P1/SIAT1","A/Czech Republic/101/2020|2020-01-13|P1/SIAT1","A/Bucuresti/256299/2020|2020-01-13|MDCK1/SIAT1","A/Czech Republic/1691/2019|2019-12-05|P3/SIAT1","A/Poland/605/2019|2019-12-10|SIAT1")
+
+agFill(map158)[ag_Feb2021_table7_3] <- '#ea5545'
+agFill(map158)[ag_Feb2020_table7_12] <- '#ef9b20'
+p_map158 <- ggplot(map158) + ggtitle('map 158')
+p_map158
+
+
+#################### MAP 159 ####################
+#### colered by tables
+agSize(map159) <- 5
+agFill(map159) <- 'grey50'
+ag_Feb2022_table9_6 <- agNames(map159) %in% c("A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4","A/Cambodia/925256/2020|2020-09-25|SIAT4","A/Salalah/72124837/2021|2021-09-05|SIAT1/SIAT1","A/Mayotte/517/2021|2021-09-11|MDCK2/SIAT1","A/Mayotte/513/2021|2021-09-15|MDCK2/SIAT1","A/Mayotte/508/21|2021-09-18|MDCK2/SIAT1","A/Mayotte/567/2021|2021-09-26|MDCK3/SIAT1","A/Mayotte/555/2021|2021-10-01|MDCK2/SIAT1","A/Chambery/760/2021|2021-11-01|MDCK2/SIAT1","A/Saint-Martin d'Heres/785/2021|2021-11-03|MDCK2/SIAT1",
+	"A/La Reunion/876/2021|2021-11-14|MDCK2/SIAT1","A/Picardie/44663/2021|2021-11-24|MDCK1/SIAT1","A/Mayotte/616/2021|2021-10-09|MDCK2/SIAT1","A/Sohar/72125048/2021|2021-09-08|SIAT1/SIAT1","A/Nord Pas de Calais/27313/2021|2021-09-09|MDCK1/SIAT1","A/Haute Normandie/27444/2021|2021-09-11|MDCK1/SIAT1","A/Lille/27403/2021|2021-09-13|MDCK1/SIAT1","A/Lyon/R21.800.58/2021|2021-09-16|MDCK2/SIAT1","A/Mayotte/564/2021|2021-09-28|MDCK2/SIAT1","A/Salalah/72126169/2021|2021-09-29|SIAT1/SIAT1",
+	"A/Ibra/72126272/2021|2021-10-03|SIAT1/SIAT1","A/Reims/30384/2021|2021-10-08|MDCK2/SIAT2","A/Norway/23621/2021|2021-10-13|SIAT1","A/Navarra/9534/2021|2021-10-16|SIAT1/SIAT1","A/Barka/72126850/2021|2021-10-17|SIAT1/SIAT1","A/Norway/24873/2021|2021-10-24|SIAT1","A/Salalah/72127281/2021|2021-10-24|SIAT1/SIAT1","A/Ibra/72127166/2021|2021-10-24|SIAT1/SIAT1","A/Norway/24864/2021|2021-10-26|SIAT1","A/Netherlands/10071/2021|2021-10-26|MDCK-MIX2/SIAT1",
+	"A/Haima/72127478/2021|2021-10-26|SIAT1/SIAT1","A/Netherlands/10074/2021|2021-10-28|MDCK-MIX2/SIAT1","A/Novosibirsk/RII-02/2021|2021-10-30|SIAT2/SIAT1","A/Netherlands/10087/2021|2021-10-31|MDCK-MIX2/SIAT1","A/Salalah/72127789/2021|2021-10-31|SIAT1/SIAT1","A/Novosibirsk/RII-03/2021|2021-11-02|SIAT2/SIAT1","A/Novosibirsk/RII-01/2021|2021-11-03|SIAT2/SIAT1","A/S.Petersburg/RII-10/2021|2021-11-04|MDCK3/SIAT1","A/S.Petersburg/RII-12/2021|2021-11-04|SIAT2/SIAT1","A/Lyon/782/2021|2021-11-06|MDCK2/SIAT1",
+	"A/Navarra/9643/2021|2021-11-06|SIAT1/SIAT1","A/Muttrah/72128411/2021|2021-11-09|SIAT1/SIAT2","A/S.Petersburg/RII-08/2021|2021-11-13|SIAT2/SIAT1","A/Ibra/72128577/2021|2021-11-14|SIAT1/SIAT1","A/Cantabria/9788/2021|2021-11-15|SIAT1/SIAT1","A/Castilla La Mancha/9869/2021|2021-11-16|SIAT1/SIAT1","A/Norway/28578/2021|2021-11-19|SIAT1","A/Norway/28830/2021|2021-11-21|SIAT1","A/Norway/28577/2021|2021-11-21|SIAT1","A/Lyon/CHU-R21.830.39/2021|2021-11-22|MDCK2/SIAT1",
+	"A/Norway/29511/2021|2021-11-25|SIAT1","A/Baleares/9868/2021|2021-11-26|SIAT1/SIAT1","A/Reims/46045/2021|2021-11-30|MDCK1/SIAT1","A/Paris/47350/2021|2021-12-02|MDCK1/SIAT1")
+ag_Feb2022_table9_8 <- agNames(map159) %in% c("A/Hong_Kong/2671/2019|2019-06-17|MDCK1/SIAT4","A/Cambodia/925256/2020|2020-09-25|SIAT5","A/Switzerland/51230/2021|2021-12-02|MDCK1/SIAT1","A/Nosy_Be/13359/2021|2021-12-06|SIAT1","A/Nosy_Be/13357/2021|2021-12-06|SIAT1","A/Nosy_Be/13360/2021|2021-12-07|SIAT1","A/Armenia/921/2021|2021-12-28|SIAT1","A/Switzerland/06630/2021|2021-11-02|MDCK1/SIAT1","A/Astrakhan/01/2021|2021-11-03|MDCK4/SIAT1","A/Switzerland/69954/2021|2021-11-20|MDCK1/SIAT1",
+	"A/S.Petersburg/RII-25/2021|2021-11-22|MDCK3/SIAT1","A/S.Petersburg/RII-16/2021|2021-11-22|SIAT2/SIAT1","A/S.Petersburg/RII-19/2021|2021-11-23|SIAT1/SIAT1","A/S.Petersburg/RII-17/2021|2021-11-23|SIAT2/SIAT1","A/Kaliningrad/RII-03/2021|2021-11-24|MDCK3/SIAT1","A/S.Petersburg/RII-22/2021|2021-11-25|SIAT2/SIAT1","A/Kaliningrad/RII-06/2021|2021-11-25|MDCK3/SIAT1","A/Kaliningrad/RII-05/2021|2021-11-25|MDCK3/SIAT1","A/Astrakhan/07/2021|2021-11-25|MDCK3/SIAT1","A/S.Petersburg/RII-24/2021|2021-11-27|SIAT2/SIAT1",
+	"A/S.Petersburg/RII-23/2021|2021-11-27|SIAT2/SIAT1","A/S.Petersburg/RII-28/2021|2021-11-29|SIAT2/SIAT1","A/S.Petersburg/RII-36/2021|2021-11-30|MDCK2/SIAT1","A/S.Petersburg/RII-32/2021|2021-11-30|MDCK2/SIAT1","A/S.Petersburg/RII-29/2021|2021-11-30|MDCK2/SIAT1","A/Mahajanga/12820/2021|2021-12-01|SIAT1","A/Astrakhan/05/2021|2021-12-02|MDCK3/SIAT1","A/Mahajanga/13001/2021|2021-12-03|SIAT1","A/Mahajanga/12995/2021|2021-12-06|SIAT1","A/Toamasina/13669/2021|2021-12-15|SIAT1",
+	"A/Portugal/17/2021|2021-12-15|SIAT1/SIAT1","A/Switzerland/11712/2021|2021-12-22|MDCK1/SIAT1","A/Armenia/887/2021|2021-12-24|SIAT1","A/Armenia/885/2021|2021-12-24|SIAT1","A/Armenia/883/2021|2021-12-24|SIAT1","A/Armenia/881/2021|2021-12-24|SIAT1","A/Armenia/922/2021|2021-12-28|SIAT1","A/Armenia/919/2021|2021-12-28|SIAT1","A/Armenia/917/2021|2021-12-28|SIAT1","A/Armenia/897/2021|2021-12-28|SIAT1")
+
+agFill(map159)[ag_Feb2022_table9_6] <- '#ea5545'
+agFill(map159)[ag_Feb2022_table9_8] <- '#ef9b20'
+p_map159 <- ggplot(map159) + ggtitle('map 159')
+p_map159
+
+
+#################### MAP 160 ####################
+#### colered by tables
+agSize(map160) <- 5
+agFill(map160) <- 'grey50'
+ag_Sep2021_table7_4 <- agNames(map160) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Cambodia/e0826360/2020|2020-07-16|E5/E2', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/California/55/2020|2020-10-12|SIAT2', 'A/Cameroon/16996/2020|2020-12-15|SIAT3')
+ag_Sep2020_table7_5 <- agNames(map160) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK3/SIAT2","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E2","A/South Australia/34/2019|2019-02-06|E6/E1","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5","A/England/538/2018|2018-02-26|MDCK1/SIAT4","A/Bretagne/775/2020|2020-02-03|MDCK2/SIAT1","A/England/103/2020|2020-02-05|SIAT1/SIAT1","A/Bulgaria/912/2020|2020-02-06|SIAT2/SIAT1","A/Bratislava/225/2020|2020-02-06|MDCKx/SIAT1",
+	"A/Bulgaria/927/2020|2020-02-07|SIAT2/SIAT1","A/England/107/2020|2020-02-11|SIAT1/SIAT1","A/Sachsen/38/2020|2020-02-14|C1/SIAT1","A/Bulgaria/1024/2020|2020-02-16|SIAT2/SIAT1","A/Bulgaria/1009/2020|2020-02-17|SIAT2/SIAT1","A/Bulgaria/1008/2020|2020-02-17|SIAT2/SIAT1","A/Bourgogne/1249/2020|2020-02-17|MDCK1/SIAT1","A/L'ubica/314/2020|2020-02-17|MDCK1/SIAT1","A/L'ubica/315/2020|2020-02-18|MDCK1/SIAT1","A/Bulgaria/1052/2020|2020-02-21|SIAT2/SIAT1",
+	"A/Bratislava/319/2020|2020-02-21|MDCK1/SIAT1","A/Brandenburg/9/2020|2020-02-23|C1/SIAT1","A/Rheinland-Pfalz/26/2020|2020-03-02|C1/SIAT1","A/Bremen/7/2020|2020-03-02|C1/SIAT1","A/Baden-Wurttemberg/95/2020|2020-02-10|C1/SIAT1","A/Nord pas de Calais/1108/2020|2020-02-10|MDCK2/SIAT1","A/Bulgaria/1772/2020|2020-03-09|SIAT2/SIAT1","A/Bulgaria/906/2020|2020-02-04|SIAT2/SIAT1","A/Bulgaria/962/2020|2020-02-11|SIAT2/SIAT1","A/Bulgaria/969/2020|2020-02-12|SIAT2/SIAT1")
+
+agFill(map160)[ag_Sep2021_table7_4] <- '#ea5545'
+agFill(map160)[ag_Sep2020_table7_5] <- '#ef9b20'
+p_map160 <- ggplot(map160) + ggtitle('map 160')
+p_map160
+
+
+#################### MAP 161 ####################
+#### colered by tables
+agSize(map161) <- 5
+agFill(map161) <- 'grey50'
+ag_Feb2021_table7_2 <- agNames(map161) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/2671/2019|2019-06-17|E8/E2","A/Hong Kong/45/2019|2018-12-24|SIAT5","A/Hong Kong/703/2020|2020-03-07|MDCK1/SIAT1","A/Hong Kong/709/2020|2020-03-15|MDCK1/SIAT1","A/Tunisia/3442/2020|2020-03-06|SIAT1","A/Tunisia/3085/2020|2020-03-04|SIAT1","A/Tunisia/3666/2020|2020-03-11|SIAT5","A/Hong Kong/711/2020|2020-03-20|MDCK1/SIAT1","A/Hong Kong/701/2020|2020-03-10|MDCK1/SIAT1",
+	"A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1","A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1","A/Hong Kong/705/2020|2020-03-12|MDCK1/SIAT1","A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Cambodia/925256/2020|2020-09-25|SIAT1")
+ag_Feb2020_table7_5 <- agNames(map161) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT1","A/Bretagne/1413/2017|2017-10-09|MDCK1/SIAT4","A/Switzerland/8060/2017|2017-12-12|E7/E1","IVR-197 (A/South Australia/34/2019)|2019-02-06|E5/D8/E1","A/Newcastle/82/2018|2018-12-23|E4/E1","A/South Australia/34/2019|2019-02-06|E6/E1","A/Christchurch/516/2019|2019-04-03|E3/E1","A/Qatar/13-VI-19-0046447/2019|2019-08-08|SIAT1","A/Qatar/10-VI-19-0048255/2019|2019-08-21|SIAT1","A/Qatar/10-VI-19-0048252/2019|2019-08-21|SIAT1",
+	"A/Qatar/16-VI-19-0048499/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048332/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048317/2019|2019-08-22|SIAT1","A/Qatar/10-VI-19-0048393/2019|2019-08-22|SIAT1","A/Qatar/16-VI-19-0048823/2019|2019-08-25|SIAT1","A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1","A/Qatar/10-VI-19-0049653/2019|2019-08-29|SIAT1")
+ag_Sep2022_table10_18 <- agNames(map161) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT4","A/Cambodia/925256/2020|2020-09-25|SIAT5","A/Bangladesh/4005/2020|2020-10-04|SIAT3","A/Stockholm/5/2021|2021-04-16|S0/S3","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Darwin/9/2021|2021-04-17|E3/E4","A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1","A/Netherlands/10025/2022|2022-01-17|MDCK-MIX2/SIAT1","A/Dakar/01/2022|2022-01-03|SIAT2","A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2",
+	"A/Romania/516033/2022|2022-04-07|SIAT1/SIAT1","A/Romania/516038/2022|2022-04-13|SIAT0/SIAT1","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515290/2022|2022-04-15|SIAT1/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Romania/515894/2022|2022-04-18|SIAT1/SIAT1","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516041/2022|2022-04-19|SIAT1/SIAT1",
+	"A/Romania/516036/2022|2022-04-19|SIAT1/SIAT1","A/Romania/516032/2022|2022-04-19|SIAT1/SIAT1","A/Romania/518145/2022|2022-04-21|SIAT1/SIAT1","A/Bolzano/22/2022|2022-04-22|SIAT3/SIAT2","A/Poland/76/2022|2022-04-24|SIAT2","A/Poland/75/2022|2022-04-24|SIAT1","A/Romania/516351/2022|2022-04-24|SIAT1/SIAT1","A/Romania/516348/2022|2022-04-24|SIAT1/SIAT1","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1",
+	"A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Poland/78/2022|2022-04-26|SIAT1","A/Poland/77/2022|2022-04-26|SIAT1","A/Romania/516540/2022|2022-04-26|SIAT1/SIAT1","A/Romania/518135/2022|2022-04-27|SIAT1/SIAT1","A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Poland/96/2022|2022-05-08|SIAT1",
+	"A/Poland/98/2022|2022-05-09|SIAT1","A/Poland/99/2022|2022-05-10|SIAT1","A/Poland/101/2022|2022-05-15|SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1","A/Parma/5/2022|2022-02-21|SIAT4/SIAT2","A/Romania/518147/2022|2022-04-21|SIAT1/SIAT1","A/Poland/97/2022|2022-05-09|SIAT1","A/Poland/100/2022|2022-05-13|SIAT1","A/FVG-Trieste/28/2022|2022-03-01|SIAT4/SIAT2","A/Bolzano/4/2022|2022-03-04|SIAT3/SIAT2",
+	"A/Romania/515331/2022|2022-04-13|SIAT1/SIAT1","A/Romania/515280/2022|2022-04-15|SIAT1/SIAT1","A/FVG-Trieste/391/2022|2022-04-28|SIAT3/SIAT2","A/Romania/516980/2022|2022-04-30|SIAT1/SIAT2","A/Romania/517370/2022|2022-05-03|SIAT1/SIAT2","A/Togo/1122/2022|2022-05-04|SIAT1","A/Togo/1126/2022|2022-05-05|SIAT1","A/Togo/1132/2022|2022-05-06|SIAT1","A/Togo/1129/2022|2022-05-06|SIAT1","A/Romania/518142/2022|2022-05-09|SIAT1",
+	"A/Togo/1153/2022|2022-05-11|SIAT1","A/Togo/1165/2022|2022-05-13|SIAT1","A/Togo/1184/2022|2022-05-18|SIAT1","A/Togo/1063/2022|2022-05-25|SIAT1","A/Dakar/14/2022|2022-06-08|SIAT2","A/Netherlands/10253/2022|2022-03-06|MDCK-MIX2/SIAT1","A/Netherlands/10182/2022|2022-03-10|MDCK-MIX2/SIAT1","A/Netherlands/10595/2022|2022-03-23|MDCK-MIX2/SIAT1","A/Milano/60/2022|2022-03-23|SIAT3/SIAT2","A/Romania/521422/2022|2022-06-18|SIAT1")
+ag_Sep2021_table7_4 <- agNames(map161) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/California/55/2020|2020-10-12|SIAT2', 'A/Cameroon/16996/2020|2020-12-15|SIAT3')
+
+agFill(map161)[ag_Feb2021_table7_2] <- '#ea5545'
+agFill(map161)[ag_Feb2020_table7_5] <- '#ef9b20'
+agFill(map161)[ag_Sep2022_table10_18] <- '#ede15b'
+agFill(map161)[ag_Sep2021_table7_4] <- '#87bc45'
+p_map161 <- ggplot(map161) + ggtitle('map 161')
+p_map161
+
+
+#################### MAP 162 ####################
+#### colered by tables
+agSize(map162) <- 5
+agFill(map162) <- 'grey50'
+ag_Sep2021_table7_6 <- agNames(map162) %in% c('A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/California/55/2020|2020-10-12|SIAT2/SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/England/538/2018|2018-02-26|MDCK1/SIAT3', 'NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1', 'A/Darwin/6/2021|2021-03-16|E4/E1', 'A/Darwin/9/2021|2021-04-17|E3/E1')
+ag_Sep2022_table10_17 <- agNames(map162) %in% c("A/Orenburg/5/2022|2022-01-14|MDCK2/SIAT1/SIAT1","A/Dakar/02/2022|2022-01-19|SIAT1","A/Birobidjan/12/2022|2022-01-20|SIAT3/SIAT1","A/FVG-Trieste/05/2022|2022-01-25|SIAT2/SIAT1","A/Parma/2/2022|2022-02-02|SIAT4/SIAT1","A/FVG-Trieste/13/2022|2022-02-15|SIAT2/SIAT1","A/FVG-Trieste/16/2022|2022-02-17|SIAT2/SIAT1","A/Milano/30/2022|2022-03-14|SIAT4/SIAT1","A/Sassari/2/2022|2022-03-16|SIAT1/SIAT1","A/Sassari/4/2022|2022-03-29|SIAT1/SIAT1",
+	"A/Sassari/7/2022|2022-04-01|SIAT1/SIAT1","A/Sassari/9/2022|2022-04-08|SIAT1/SIAT1","A/Perugia/23/2022|2022-04-12|SIAT3/SIAT1","A/Bolzano/21/2022|2022-04-13|SIAT2/SIAT1","A/FVG-Trieste/366/2022|2022-04-14|SIAT3/SIAT1","A/Milano/112/2022|2022-05-03|SIAT3/SIAT1","A/Milano/37/2022|2022-03-14|SIAT3/SIAT1","A/Parma/51/2022|2022-03-08|SIAT3/SIAT1","A/Bolzano/16/2022|2022-03-14|SIAT2/SIAT1","A/Milano/32/2022|2022-03-16|SIAT3/SIAT1",
+	"A/FVG-Trieste/385/2022|2022-04-22|SIAT3/SIAT1","A/FVG-Trieste/381/2022|2022-04-22|SIAT3/SIAT1","A/Bolzano/24/2022|2022-04-29|SIAT2/SIAT1","A/Dakar/05/2022|2022-05-09|SIAT1","A/Dakar/23/2022|2022-05-10|SIAT1","A/Dakar/15/2022|2022-05-17|SIAT1","A/Dakar/06/2022|2022-05-23|SIAT1","A/Dakar/08/2022|2022-05-27|SIAT1","A/Dakar/21/2022|2022-06-09|SIAT1","A/Dakar/25/2022|2022-06-10|SIAT1",
+	"A/Dakar/24/2022|2022-06-13|SIAT1","A/Dakar/22/2022|2022-06-16|SIAT1")
+ag_Sep2022_table10_16 <- agNames(map162) %in% c("A/Netherlands/00092/2021|2021-11-30|Hck1/SIAT1","A/Netherlands/00103/2021|2021-12-13|Hck1/SIAT1","A/Netherlands/00001/2022|2022-01-02|Hck1/SIAT1","A/Netherlands/00009/2022|2022-01-05|Hck1/SIAT1","A/Netherlands/00110/2021|2021-12-22|Hck1/SIAT1","A/Moldova/20837/2022|2022-03-17|SIAT1","A/Lithuania/33828/2022|2022-04-14|SIAT1","A/Norway/12347/2022|2022-02-25|SIAT3","A/Moldova/18402/2022|2022-02-28|SIAT1","A/Moldova/6662/2022|2022-04-04|SIAT1",
+	"A/Moldova/6649/2022|2022-04-05|SIAT1","A/Moldova/7267/2022|2022-04-11|SIAT1","A/Moldova/7273/2022|2022-04-13|SIAT1","A/Lithuania/33816/2022|2022-04-14|SIAT1","A/Lithuania/36119/2022|2022-04-28|SIAT1","A/Lithuania/36453/2022|2022-05-02|SIAT1","A/Lithuania/36696/2022|2022-05-05|SIAT1","A/Dakar/03/2022|2022-02-03|P1/SIAT1","A/Moldova/20046/2022|2022-03-10|SIAT1","A/Moldova/20838/2022|2022-03-17|SIAT1",
+	"A/Moldova/7877/2022|2022-04-19|SIAT1","A/Moldova/7896/2022|2022-04-21|SIAT1","A/Dakar/10/2022|2022-05-23|P1/SIAT1","A/Dakar/11/2022|2022-05-25|P1/SIAT1","A/Dakar/20/2022|2022-06-11|P1/SIAT1","A/Moldova/20035/2022|2022-03-07|SIAT1","A/Moldova/20813/2022|2022-03-15|SIAT1","A/Netherlands/10502/2022|2022-03-24|MDCK-MIX2/SIAT1","A/Netherlands/10884/2022|2022-04-05|MDCK-MIX2/SIAT1","A/Netherlands/10866/2022|2022-04-07|MDCK-MIX2/SIAT1",
+	"A/Netherlands/11119/2022|2022-04-13|MDCK-MIX2/SIAT1","A/Netherlands/11201/2022|2022-04-15|MDCK-MIX2/SIAT1","A/Netherlands/00832/2022|2022-04-19|Hck1/SIAT1")
+
+agFill(map162)[ag_Sep2021_table7_6] <- '#ea5545'
+agFill(map162)[ag_Sep2022_table10_17] <- '#ef9b20'
+agFill(map162)[ag_Sep2022_table10_16] <- '#ede15b'
+p_map162 <- ggplot(map162) + ggtitle('map 162')
+p_map162
+
+
+#################### MAP 163 ####################
+#### colered by tables
+agSize(map163) <- 5
+agFill(map163) <- 'grey50'
+ag_Sep2021_table7_6 <- agNames(map163) %in% c("A/Hong Kong/5738/2014|2014-04-30|MDCK1/MDCK2/SIAT2","A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3","A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT3","A/Hong Kong/2671/2019|2019-06-17|E8/E1","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4","A/California/55/2020|2020-10-12|SIAT2/SIAT1","A/Bangladesh/4005/2020|2020-10-04|SIAT2","A/England/538/2018|2018-02-26|MDCK1/SIAT3","NYMC X-327 (A/Kansas/14/17)|2017-12-14|Ex/E1","A/Darwin/6/2021|2021-03-16|E4/E1",
+	"A/Darwin/9/2021|2021-04-17|E3/E1")
+ag_Feb2023_tableH3_10 <- agNames(map163) %in% c("A/Cambodia/e0826360/2020|2020-07-16|E5/E3","A/Darwin/9/2021|2021-04-17|E3/E4","A/Norway/24873/2021|2021-10-24|SIAT3","A/Norway/24873/2021|2021-10-24|E3/E1","A/Poland/97/2022|2022-05-09|SIAT2","A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2","A/Catalonia/NSVH161512067/2022|2022-09-14|SIAT1/SIAT3","A/Dakar/27/2022|2022-06-28|P1/SIAT1","A/Argentina/3155/2022|2022-08-31|SIAT2","A/Argentina/3151/2022|2022-09-05|SIAT1",
+	"A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1","A/Switzerland/18284/2022|2022-10-06|SIAT2/SIAT1","A/Burgos/257/2022|2022-10-13|SIAT1","A/Soria/213/2022|2022-10-13|SIAT1","A/Salamanca/198/2022|2022-10-13|SIAT1","A/Salamanca/196/2022|2022-10-13|SIAT1","A/Switzerland/18694/2022|2022-11-18|MDCK1/SIAT1","A/Palencia/118/2022|2022-10-13|SIAT1","A/Switzerland/39985/2022|2022-11-21|MDCK1/SIAT1","A/Switzerland/07426/2022|2022-11-17|SIAT1/SIAT1",
+	"A/Ireland/73304/2022|2022-11-23|SIAT1","A/Ireland/74535/2022|2022-11-28|SIAT2","A/Lithuania/48774/2022|2022-11-24|SIAT1","A/Burgos/82/2022|2022-10-13|SIAT1","A/Hong Kong/34/2022|2022-11-26|MDCK1/SIAT1","A/Switzerland/54601/2022|2022-11-01|MDCK1/SIAT1","A/Ireland/74250/2022|2022-11-27|SIAT2","A/Ireland/74511/2022|2022-11-29|SIAT2","A/Switzerland/76550/2022|2022-12-05|SIAT1/SIAT1","A/Switzerland/01284/2022|2022-12-05|SIAT1/SIAT1",
+	"A/Switzerland/89053/2022|2022-12-06|SIAT1/SIAT1","A/Switzerland/12082/2022|2022-12-08|SIAT1/SIAT1","A/Georgia/2369/2022|2022-11-24|SIAT1","A/Georgia/8/2022|*|SIAT1","A/Georgia/4/2022|*|SIAT1","A/Argentina/3486/2022|2022-10-01|SIAT1","A/Argentina/3498/2022|2022-09-29|SIAT1","A/Argentina/3485/2022|2022-10-01|SIAT1","A/Hong Kong/19/2022|2022-11-09|MDCK1/SIAT1","A/Hong Kong/22/2022|2022-11-13|MDCK1/SIAT1",
+	"A/Hong Kong/24/2022|2022-11-15|MDCK1/SIAT1","A/Hong Kong/28/2022|2022-11-16|MDCK1/SIAT1","A/Hong Kong/30/2022|2022-11-20|MDCK1/SIAT1","A/Hong Kong/38/2022|2022-12-04|MDCK1/SIAT1","A/Hong Kong/26/2022|2022-11-16|MDCK1/SIAT1","A/Switzerland/52849/2022|2022-11-11|SIAT1/SIAT1","A/Switzerland/86247/2022|2022-11-14|MDCK1/SIAT1","A/Switzerland/85876/2022|2022-11-14|MDCK1/SIAT1","A/Hong Kong/15/2022|2022-10-04|MDCK1/SIAT1","A/Hong Kong/17/2022|2022-10-24|MDCK1/SIAT1",
+	"A/Hong Kong/32/2022|2022-11-25|MDCK1/SIAT1")
+ag_Feb2023_tableH3_1 <- agNames(map163) %in% c("A/Denmark/3264/2019|2019-10-25|SIAT3/SIAT5","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT5","A/Bangladesh/4005/2020|2020-10-04|SIAT3","A/Darwin/9/2021|2021-04-17|E3/E2","A/England/214191723/2021|2021-10-12|MDCK1/SIAT3","A/Belgium/G0096/2022|2022-03-07|SIAT1/SIAT1","A/Belgium/S0822/2022|2022-03-18|SIAT1/SIAT1","A/Belgium/S0826/2022|2022-03-19|SIAT1/SIAT1","A/Belgium/G0153/2022|2022-03-23|SIAT1/SIAT1","A/Poland/52/2022|2022-03-30|SIAT2",
+	"A/Poland/58/2022|2022-04-07|SIAT1","A/Poland/65/2022|2022-04-14|SIAT1","A/Argentina/2745/2022|2022-04-21|SIAT1","A/Togo/1112/2022|2022-05-03|SIAT1","A/Argentina/2784/2022|2022-05-16|SIAT1","A/Argentina/2863/2022|2022-05-20|SIAT1","A/Argentina/2822/2022|2022-05-24|SIAT1","A/Ghana/341/2022|2022-05-24|MDCK2/SIAT1","A/Ghana/3122/2022|2022-06-02|MDCK1/SIAT1","A/Ghana/330/2022|2022-06-02|MDCK2/SIAT1",
+	"A/Argentina/2894/2022|2022-06-03|SIAT1","A/Ghana/3353/2022|2022-06-03|SIAT1","A/Argentina/2959/2022|2022-06-06|SIAT1","A/Ghana/365/2022|2022-06-06|SIAT1","A/Argentina/2953/2022|2022-06-08|SIAT1","A/Ghana/390/2022|2022-06-08|MDCK1/SIAT1","A/Argentina/3023/2022|2022-06-09|SIAT1","A/Argentina/2973/2022|2022-06-15|SIAT1","A/Norway/27853/2022|2022-07-18|SIAT2","A/Norway/28394/2022|2022-07-20|SIAT2",
+	"A/Norway/28359/2022|2022-07-24|SIAT3","A/Norway/29040/2022|2022-07-27|SIAT2")
+
+agFill(map163)[ag_Sep2021_table7_6] <- '#ea5545'
+agFill(map163)[ag_Feb2023_tableH3_10] <- '#ef9b20'
+agFill(map163)[ag_Feb2023_tableH3_1] <- '#ede15b'
+p_map163 <- ggplot(map163) + ggtitle('map 163')
+p_map163
+

@@ -1,0 +1,190 @@
+region,season,comparison,n mutations,n epitope mutations,n mutations in koel sites
+us,2002-2003,vaccine strain,18,13,2
+us,2002-2003,reproducible selection at WHO-timing,12,7,2
+us,2002-2003,reproducible selection at delayed timing,12,7,2
+us,2003-2004,vaccine strain,19,14,2
+us,2003-2004,reproducible selection at WHO-timing,1,1,0
+us,2003-2004,reproducible selection at delayed timing,1,1,0
+us,2004-2005,vaccine strain,8,7,4
+us,2004-2005,reproducible selection at WHO-timing,6,6,3
+us,2004-2005,reproducible selection at delayed timing,2,2,1
+us,2005-2006,vaccine strain,6,5,1
+us,2005-2006,reproducible selection at WHO-timing,3,2,1
+us,2005-2006,reproducible selection at delayed timing,3,2,1
+us,2006-2007,vaccine strain,6,5,0
+us,2006-2007,reproducible selection at WHO-timing,2,2,0
+us,2006-2007,reproducible selection at delayed timing,1,1,0
+us,2007-2008,vaccine strain,7,6,0
+us,2007-2008,reproducible selection at WHO-timing,3,3,0
+us,2007-2008,reproducible selection at delayed timing,1,1,0
+us,2008-2009,vaccine strain,2,2,0
+us,2008-2009,reproducible selection at WHO-timing,0,0,0
+us,2008-2009,reproducible selection at delayed timing,0,0,0
+us,2009-2010,vaccine strain,5,5,2
+us,2009-2010,reproducible selection at WHO-timing,3,3,2
+us,2009-2010,reproducible selection at delayed timing,3,3,2
+us,2010-2011,vaccine strain,8,8,0
+us,2010-2011,reproducible selection at WHO-timing,4,4,0
+us,2010-2011,reproducible selection at delayed timing,5,5,0
+us,2011-2012,vaccine strain,7,6,0
+us,2011-2012,reproducible selection at WHO-timing,7,6,0
+us,2011-2012,reproducible selection at delayed timing,7,6,0
+us,2012-2013,vaccine strain,4,2,1
+us,2012-2013,reproducible selection at WHO-timing,5,4,1
+us,2012-2013,reproducible selection at delayed timing,5,4,1
+us,2013-2014,vaccine strain,6,3,1
+us,2013-2014,reproducible selection at WHO-timing,3,0,0
+us,2013-2014,reproducible selection at delayed timing,5,2,0
+us,2014-2015,vaccine strain,10,6,2
+us,2014-2015,reproducible selection at WHO-timing,9,5,1
+us,2014-2015,reproducible selection at delayed timing,9,5,1
+us,2015-2016,vaccine strain,12,8,1
+us,2015-2016,reproducible selection at WHO-timing,0,0,0
+us,2015-2016,reproducible selection at delayed timing,0,0,0
+us,2016-2017,vaccine strain,7,4,0
+us,2016-2017,reproducible selection at WHO-timing,4,2,0
+us,2016-2017,reproducible selection at delayed timing,4,2,0
+us,2017-2018,vaccine strain,6,5,0
+us,2017-2018,reproducible selection at WHO-timing,7,5,0
+us,2017-2018,reproducible selection at delayed timing,7,5,0
+us,2018-2019,vaccine strain,18,10,2
+us,2018-2019,reproducible selection at WHO-timing,16,10,2
+us,2018-2019,reproducible selection at delayed timing,16,10,2
+us,2019-2020,vaccine strain,19,11,2
+us,2019-2020,reproducible selection at WHO-timing,4,2,0
+us,2019-2020,reproducible selection at delayed timing,19,11,2
+us,2020-2021,vaccine strain,16,10,1
+us,2020-2021,reproducible selection at WHO-timing,14,8,1
+us,2020-2021,reproducible selection at delayed timing,14,9,1
+us,2021-2022,vaccine strain,14,10,2
+us,2021-2022,reproducible selection at WHO-timing,7,5,1
+us,2021-2022,reproducible selection at delayed timing,11,7,2
+us,2022-2023,vaccine strain,6,4,1
+us,2022-2023,reproducible selection at WHO-timing,5,4,1
+us,2022-2023,reproducible selection at delayed timing,7,5,1
+europe,2002-2003,vaccine strain,18,13,2
+europe,2002-2003,reproducible selection at WHO-timing,12,7,2
+europe,2002-2003,reproducible selection at delayed timing,12,7,2
+europe,2003-2004,vaccine strain,20,15,2
+europe,2003-2004,reproducible selection at WHO-timing,2,2,0
+europe,2003-2004,reproducible selection at delayed timing,2,2,0
+europe,2004-2005,vaccine strain,9,8,3
+europe,2004-2005,reproducible selection at WHO-timing,7,7,2
+europe,2004-2005,reproducible selection at delayed timing,3,3,0
+europe,2005-2006,vaccine strain,5,4,1
+europe,2005-2006,reproducible selection at WHO-timing,2,1,1
+europe,2005-2006,reproducible selection at delayed timing,2,1,1
+europe,2006-2007,vaccine strain,4,3,0
+europe,2006-2007,reproducible selection at WHO-timing,0,0,0
+europe,2006-2007,reproducible selection at delayed timing,1,1,0
+europe,2007-2008,vaccine strain,7,6,0
+europe,2007-2008,reproducible selection at WHO-timing,3,3,0
+europe,2007-2008,reproducible selection at delayed timing,1,1,0
+europe,2008-2009,vaccine strain,2,2,0
+europe,2008-2009,reproducible selection at WHO-timing,0,0,0
+europe,2008-2009,reproducible selection at delayed timing,0,0,0
+europe,2009-2010,vaccine strain,5,5,2
+europe,2009-2010,reproducible selection at WHO-timing,3,3,2
+europe,2009-2010,reproducible selection at delayed timing,3,3,2
+europe,2010-2011,vaccine strain,8,8,0
+europe,2010-2011,reproducible selection at WHO-timing,4,4,0
+europe,2010-2011,reproducible selection at delayed timing,5,5,0
+europe,2011-2012,vaccine strain,7,6,0
+europe,2011-2012,reproducible selection at WHO-timing,7,6,0
+europe,2011-2012,reproducible selection at delayed timing,7,6,0
+europe,2012-2013,vaccine strain,6,4,1
+europe,2012-2013,reproducible selection at WHO-timing,7,6,1
+europe,2012-2013,reproducible selection at delayed timing,7,6,1
+europe,2013-2014,vaccine strain,5,4,1
+europe,2013-2014,reproducible selection at WHO-timing,3,2,0
+europe,2013-2014,reproducible selection at delayed timing,1,0,0
+europe,2014-2015,vaccine strain,10,6,2
+europe,2014-2015,reproducible selection at WHO-timing,9,5,1
+europe,2014-2015,reproducible selection at delayed timing,9,5,1
+europe,2015-2016,vaccine strain,12,8,1
+europe,2015-2016,reproducible selection at WHO-timing,0,0,0
+europe,2015-2016,reproducible selection at delayed timing,0,0,0
+europe,2016-2017,vaccine strain,7,4,0
+europe,2016-2017,reproducible selection at WHO-timing,4,2,0
+europe,2016-2017,reproducible selection at delayed timing,4,2,0
+europe,2017-2018,vaccine strain,6,5,0
+europe,2017-2018,reproducible selection at WHO-timing,7,5,0
+europe,2017-2018,reproducible selection at delayed timing,7,5,0
+europe,2018-2019,vaccine strain,7,5,0
+europe,2018-2019,reproducible selection at WHO-timing,11,9,0
+europe,2018-2019,reproducible selection at delayed timing,11,9,0
+europe,2019-2020,vaccine strain,2,0,0
+europe,2019-2020,reproducible selection at WHO-timing,17,9,2
+europe,2019-2020,reproducible selection at delayed timing,2,0,0
+europe,2020-2021,vaccine strain,17,10,1
+europe,2020-2021,reproducible selection at WHO-timing,15,8,1
+europe,2020-2021,reproducible selection at delayed timing,15,9,1
+europe,2021-2022,vaccine strain,12,8,2
+europe,2021-2022,reproducible selection at WHO-timing,5,3,1
+europe,2021-2022,reproducible selection at delayed timing,9,5,2
+europe,2022-2023,vaccine strain,6,4,1
+europe,2022-2023,reproducible selection at WHO-timing,5,4,1
+europe,2022-2023,reproducible selection at delayed timing,7,5,1
+aunz,2003,vaccine strain,20,14,2
+aunz,2003,reproducible selection at WHO-timing,14,8,2
+aunz,2003,reproducible selection at delayed timing,14,8,2
+aunz,2004,vaccine strain,8,7,4
+aunz,2004,reproducible selection at WHO-timing,7,6,3
+aunz,2004,reproducible selection at delayed timing,6,6,3
+aunz,2005,vaccine strain,5,4,1
+aunz,2005,reproducible selection at WHO-timing,4,3,1
+aunz,2005,reproducible selection at delayed timing,4,3,1
+aunz,2006,vaccine strain,6,5,1
+aunz,2006,reproducible selection at WHO-timing,2,1,1
+aunz,2006,reproducible selection at delayed timing,3,1,0
+aunz,2007,vaccine strain,6,5,0
+aunz,2007,reproducible selection at WHO-timing,1,1,0
+aunz,2007,reproducible selection at delayed timing,2,2,0
+aunz,2008,vaccine strain,2,2,0
+aunz,2008,reproducible selection at WHO-timing,1,1,0
+aunz,2008,reproducible selection at delayed timing,1,1,0
+aunz,2009,vaccine strain,6,6,2
+aunz,2009,reproducible selection at WHO-timing,4,4,2
+aunz,2009,reproducible selection at delayed timing,4,4,2
+aunz,2010,vaccine strain,8,8,0
+aunz,2010,reproducible selection at WHO-timing,8,8,0
+aunz,2010,reproducible selection at delayed timing,4,4,0
+aunz,2011,vaccine strain,8,8,0
+aunz,2011,reproducible selection at WHO-timing,0,0,0
+aunz,2011,reproducible selection at delayed timing,0,0,0
+aunz,2012,vaccine strain,11,9,0
+aunz,2012,reproducible selection at WHO-timing,5,4,1
+aunz,2012,reproducible selection at delayed timing,3,2,0
+aunz,2013,vaccine strain,6,4,1
+aunz,2013,reproducible selection at WHO-timing,2,2,0
+aunz,2013,reproducible selection at delayed timing,2,2,0
+aunz,2014,vaccine strain,4,4,1
+aunz,2014,reproducible selection at WHO-timing,1,0,0
+aunz,2014,reproducible selection at delayed timing,0,0,0
+aunz,2015,vaccine strain,12,8,1
+aunz,2015,reproducible selection at WHO-timing,8,5,1
+aunz,2015,reproducible selection at delayed timing,0,0,0
+aunz,2016,vaccine strain,6,3,0
+aunz,2016,reproducible selection at WHO-timing,3,1,0
+aunz,2016,reproducible selection at delayed timing,3,1,0
+aunz,2017,vaccine strain,8,5,0
+aunz,2017,reproducible selection at WHO-timing,2,2,0
+aunz,2017,reproducible selection at delayed timing,1,1,0
+aunz,2018,vaccine strain,10,6,0
+aunz,2018,reproducible selection at WHO-timing,5,5,0
+aunz,2018,reproducible selection at delayed timing,0,0,0
+aunz,2019,vaccine strain,14,11,0
+aunz,2019,reproducible selection at WHO-timing,8,5,0
+aunz,2019,reproducible selection at delayed timing,7,4,0
+aunz,2020,vaccine strain,9,6,1
+aunz,2020,reproducible selection at WHO-timing,7,5,1
+aunz,2020,reproducible selection at delayed timing,10,7,0
+aunz,2021,vaccine strain,19,12,2
+aunz,2021,reproducible selection at WHO-timing,10,7,2
+aunz,2021,reproducible selection at delayed timing,7,4,2
+aunz,2022,vaccine strain,5,3,0
+aunz,2022,reproducible selection at WHO-timing,4,2,0
+aunz,2022,reproducible selection at delayed timing,2,2,0
+aunz,2023,vaccine strain,10,6,0
+aunz,2023,reproducible selection at WHO-timing,7,4,0
+aunz,2023,reproducible selection at delayed timing,8,4,1

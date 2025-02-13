@@ -1,0 +1,15 @@
+#ignore pycache 
+*/__pycache__/
+*/*/__pycache__/
+*/*/*/__pycache__/
+
+#ignore DS_store
+.DS_Store
+
+#data to ignore 
+data/vaccine_strains/H3N2/*.fasta
+data/gisaid_data/
+analysis/aunz_0023_sep_pp24_pd16
+analysis/europe_0023_feb_pp24_pd16
+analysis/us_0023_feb_pp24_pd16
+analysis/antigenic_comparison/antigenic_maps/complete_maps
