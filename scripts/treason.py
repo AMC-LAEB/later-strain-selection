@@ -14,7 +14,7 @@ import calendar
 #get file path
 cwd = os.getcwd()
 filedir = os.path.abspath(os.path.dirname(__file__))
-refdir = os.path.join(filedir, "..","data","reference")
+refdir = os.path.join(filedir, "..","data","references")
 dropdir = os.path.join(filedir, "..","data","outliers") #gisaid ID of isolates that should not be included
 
 #general variables 
@@ -36,10 +36,6 @@ def ArgumentParser():
     parser.add_argument('-st','--subtype', required=False, action="store", type=str, default="H3N2", choices=["H3N2", "H1N1pdm"], help="subtype to be analyzed (default: A/H3N2)")
     parser.add_argument('-HA1', required=False, action="store_true", help="if only HA1 part of sequence should be analyzed (! ONLY AVAILABLE FOR A/H3N2 HA)")
 
-    parser.add_argument('-p','--protein', required=False, action="store_true", 
-                        help="if sequences need be translated into protein sequences (coding region only) and if mutations in final LBI need to be translated")
-    parser.add_argument('-on','--only-nonsyn', required=False, action="store_true", help="if '-p' flag is specified, only report non-synonymous mutations in tree files")
-    
     parser.add_argument('-mxa','--max-ambig', required=False, action="store", type=float, default=0.01, help="maximum percentage of ambiguous nucleotides allowed (default: 0.01)")
     parser.add_argument('-ml','--min-length', required=False, action="store", type=float, default=0.95, help="miminum percentage of length w.r.t. the reference segment")
    
@@ -410,8 +406,7 @@ def main():
         "min_length":args.min_length, 
         "subsample":subsample,
         "subsample_time":subsample_time,
-        "translate":args.protein,
-        "o_nonsyn":args.only_nonsyn,
+
         "seed": args.seed,
         "no_seed":args.no_seed,
     }
