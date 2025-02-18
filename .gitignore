@@ -6,6 +6,7 @@
 #ignore DS_store
 .DS_Store
 .Rhistory
+.snakemake
 
 #data to ignore 
 data/vaccine_strains/H3N2/*.fasta
