@@ -7,6 +7,8 @@ setwd('~/Desktop/later-strain-selection')
 dir <- "./data/HI_data/individual_HI_tables/"
 acmap_dir <- "./analysis/antigenic_comparison/antigenic_maps/maps"
 coords_dir <- "./analysis/antigenic_comparison/antigenic_maps/coords"
+table_fig_dir <- "./figures/antigenic_maps/colored_by_table"
+strain_fig_dir <- "./figures/antigenic_maps/colored_by_strain"
 
 #load individual maps
 map1 <- read.acmap(file.path(acmap_dir, 'map1.ace'))
@@ -351,24 +353,408 @@ ag_2003_table6 <- agNames(map1) %in% c("A/Wyoming/3/03|*|*","A/UK/1861/03|*|*","
 
 agFill(map1)[ag_2003_table5] <- '#ea5545'
 agFill(map1)[ag_2003_table6] <- '#ef9b20'
-p_map1 <- ggplot(map1) + ggtitle('map 1')
+p_map1 <- ggplot(map1) + ggtitle('map 1 (2003_table5, 2003_table6)')
+p_map1_png <- file.path(table_fig_dir, 'map1.png')
+png(file=p_map1_png)
 p_map1
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2003 #########
+agSize(map1) <- 5
+agFill(map1) <- 'grey50'
+css_lss <- agNames(map1) %in% c('A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')
+ds <- agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map1) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map1)[css_lss] <- 8
+agFill(map1)[css_lss] <- '#6d21b8'
+agSize(map1)[ds] <- 8
+agFill(map1)[ds] <- '#fcd74e'
+agSize(map1)[vs] <- 8
+agFill(map1)[vs] <- '#ffa600'
+ptDrawingOrder(map1) <- c(seq_len(numSera(map1)) + numAntigens(map1),
+    which(!agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')),
+    which(agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*'))
+)
+p_map1_aunz_2003 <- ggplot(map1) + ggtitle('aunz 2003  (map 1)')
+p_map1_aunz_2003
+
+p_map1_aunz_2003_png <- file.path(strain_fig_dir, 'map1_aunz_2003.png')
+png(file=p_map1_aunz_2003_png)
+p_map1_aunz_2003
+dev.off()
+
+
+####### europe, 2002-2003 #########
+agSize(map1) <- 5
+agFill(map1) <- 'grey50'
+css_lss <- agNames(map1) %in% c('A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')
+ds <- agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map1) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map1)[css_lss] <- 8
+agFill(map1)[css_lss] <- '#6d21b8'
+agSize(map1)[ds] <- 8
+agFill(map1)[ds] <- '#fcd74e'
+agSize(map1)[vs] <- 8
+agFill(map1)[vs] <- '#ffa600'
+ptDrawingOrder(map1) <- c(seq_len(numSera(map1)) + numAntigens(map1),
+    which(!agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')),
+    which(agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*'))
+)
+p_map1_europe_2002_2003 <- ggplot(map1) + ggtitle('europe 2002-2003  (map 1)')
+p_map1_europe_2002_2003
+
+p_map1_europe_2002_2003_png <- file.path(strain_fig_dir, 'map1_europe_2002_2003.png')
+png(file=p_map1_europe_2002_2003_png)
+p_map1_europe_2002_2003
+dev.off()
+
+
+####### europe, 2003-2004 #########
+agSize(map1) <- 5
+agFill(map1) <- 'grey50'
+ds_css_lss <- agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map1) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map1)[ds_css_lss] <- 8
+agFill(map1)[ds_css_lss] <- '#00c1f3'
+agSize(map1)[vs] <- 8
+agFill(map1)[vs] <- '#ffa600'
+ptDrawingOrder(map1) <- c(seq_len(numSera(map1)) + numAntigens(map1),
+    which(!agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map1_europe_2003_2004 <- ggplot(map1) + ggtitle('europe 2003-2004  (map 1)')
+p_map1_europe_2003_2004
+
+p_map1_europe_2003_2004_png <- file.path(strain_fig_dir, 'map1_europe_2003_2004.png')
+png(file=p_map1_europe_2003_2004_png)
+p_map1_europe_2003_2004
+dev.off()
+
+
+####### us, 2002-2003 #########
+agSize(map1) <- 5
+agFill(map1) <- 'grey50'
+css_lss <- agNames(map1) %in% c('A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')
+ds <- agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map1) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map1)[css_lss] <- 8
+agFill(map1)[css_lss] <- '#6d21b8'
+agSize(map1)[ds] <- 8
+agFill(map1)[ds] <- '#fcd74e'
+agSize(map1)[vs] <- 8
+agFill(map1)[vs] <- '#ffa600'
+ptDrawingOrder(map1) <- c(seq_len(numSera(map1)) + numAntigens(map1),
+    which(!agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')),
+    which(agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*'))
+)
+p_map1_us_2002_2003 <- ggplot(map1) + ggtitle('us 2002-2003  (map 1)')
+p_map1_us_2002_2003
+
+p_map1_us_2002_2003_png <- file.path(strain_fig_dir, 'map1_us_2002_2003.png')
+png(file=p_map1_us_2002_2003_png)
+p_map1_us_2002_2003
+dev.off()
+
+
+####### us, 2003-2004 #########
+agSize(map1) <- 5
+agFill(map1) <- 'grey50'
+ds_css_lss <- agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map1) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map1)[ds_css_lss] <- 8
+agFill(map1)[ds_css_lss] <- '#00c1f3'
+agSize(map1)[vs] <- 8
+agFill(map1)[vs] <- '#ffa600'
+ptDrawingOrder(map1) <- c(seq_len(numSera(map1)) + numAntigens(map1),
+    which(!agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map1) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map1_us_2003_2004 <- ggplot(map1) + ggtitle('us 2003-2004  (map 1)')
+p_map1_us_2003_2004
+
+p_map1_us_2003_2004_png <- file.path(strain_fig_dir, 'map1_us_2003_2004.png')
+png(file=p_map1_us_2003_2004_png)
+p_map1_us_2003_2004
+dev.off()
 
 
 #################### MAP 2 ####################
 #### colered by tables
 agSize(map2) <- 5
 agFill(map2) <- 'grey50'
-p_map2 <- ggplot(map2) + ggtitle('map 2')
+p_map2 <- ggplot(map2) + ggtitle('map 2 (2003_table5)')
+p_map2_png <- file.path(table_fig_dir, 'map2.png')
+png(file=p_map2_png)
 p_map2
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2003 #########
+agSize(map2) <- 5
+agFill(map2) <- 'grey50'
+css_lss <- agNames(map2) %in% c('A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')
+ds <- agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map2) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map2)[css_lss] <- 8
+agFill(map2)[css_lss] <- '#6d21b8'
+agSize(map2)[ds] <- 8
+agFill(map2)[ds] <- '#fcd74e'
+agSize(map2)[vs] <- 8
+agFill(map2)[vs] <- '#ffa600'
+ptDrawingOrder(map2) <- c(seq_len(numSera(map2)) + numAntigens(map2),
+    which(!agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')),
+    which(agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*'))
+)
+p_map2_aunz_2003 <- ggplot(map2) + ggtitle('aunz 2003  (map 2)')
+p_map2_aunz_2003
+
+p_map2_aunz_2003_png <- file.path(strain_fig_dir, 'map2_aunz_2003.png')
+png(file=p_map2_aunz_2003_png)
+p_map2_aunz_2003
+dev.off()
+
+
+####### europe, 2002-2003 #########
+agSize(map2) <- 5
+agFill(map2) <- 'grey50'
+css_lss <- agNames(map2) %in% c('A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')
+ds <- agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map2) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map2)[css_lss] <- 8
+agFill(map2)[css_lss] <- '#6d21b8'
+agSize(map2)[ds] <- 8
+agFill(map2)[ds] <- '#fcd74e'
+agSize(map2)[vs] <- 8
+agFill(map2)[vs] <- '#ffa600'
+ptDrawingOrder(map2) <- c(seq_len(numSera(map2)) + numAntigens(map2),
+    which(!agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')),
+    which(agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*'))
+)
+p_map2_europe_2002_2003 <- ggplot(map2) + ggtitle('europe 2002-2003  (map 2)')
+p_map2_europe_2002_2003
+
+p_map2_europe_2002_2003_png <- file.path(strain_fig_dir, 'map2_europe_2002_2003.png')
+png(file=p_map2_europe_2002_2003_png)
+p_map2_europe_2002_2003
+dev.off()
+
+
+####### europe, 2003-2004 #########
+agSize(map2) <- 5
+agFill(map2) <- 'grey50'
+ds_css_lss <- agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map2) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map2)[ds_css_lss] <- 8
+agFill(map2)[ds_css_lss] <- '#00c1f3'
+agSize(map2)[vs] <- 8
+agFill(map2)[vs] <- '#ffa600'
+ptDrawingOrder(map2) <- c(seq_len(numSera(map2)) + numAntigens(map2),
+    which(!agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map2_europe_2003_2004 <- ggplot(map2) + ggtitle('europe 2003-2004  (map 2)')
+p_map2_europe_2003_2004
+
+p_map2_europe_2003_2004_png <- file.path(strain_fig_dir, 'map2_europe_2003_2004.png')
+png(file=p_map2_europe_2003_2004_png)
+p_map2_europe_2003_2004
+dev.off()
+
+
+####### us, 2002-2003 #########
+agSize(map2) <- 5
+agFill(map2) <- 'grey50'
+css_lss <- agNames(map2) %in% c('A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')
+ds <- agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map2) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map2)[css_lss] <- 8
+agFill(map2)[css_lss] <- '#6d21b8'
+agSize(map2)[ds] <- 8
+agFill(map2)[ds] <- '#fcd74e'
+agSize(map2)[vs] <- 8
+agFill(map2)[vs] <- '#ffa600'
+ptDrawingOrder(map2) <- c(seq_len(numSera(map2)) + numAntigens(map2),
+    which(!agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*')),
+    which(agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*', 'A/New York/55/01|*|*', 'A/Latvia/1506/03|2003-02-10|*'))
+)
+p_map2_us_2002_2003 <- ggplot(map2) + ggtitle('us 2002-2003  (map 2)')
+p_map2_us_2002_2003
+
+p_map2_us_2002_2003_png <- file.path(strain_fig_dir, 'map2_us_2002_2003.png')
+png(file=p_map2_us_2002_2003_png)
+p_map2_us_2002_2003
+dev.off()
+
+
+####### us, 2003-2004 #########
+agSize(map2) <- 5
+agFill(map2) <- 'grey50'
+ds_css_lss <- agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map2) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map2)[ds_css_lss] <- 8
+agFill(map2)[ds_css_lss] <- '#00c1f3'
+agSize(map2)[vs] <- 8
+agFill(map2)[vs] <- '#ffa600'
+ptDrawingOrder(map2) <- c(seq_len(numSera(map2)) + numAntigens(map2),
+    which(!agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map2) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map2_us_2003_2004 <- ggplot(map2) + ggtitle('us 2003-2004  (map 2)')
+p_map2_us_2003_2004
+
+p_map2_us_2003_2004_png <- file.path(strain_fig_dir, 'map2_us_2003_2004.png')
+png(file=p_map2_us_2003_2004_png)
+p_map2_us_2003_2004
+dev.off()
 
 
 #################### MAP 3 ####################
 #### colered by tables
 agSize(map3) <- 5
 agFill(map3) <- 'grey50'
-p_map3 <- ggplot(map3) + ggtitle('map 3')
+p_map3 <- ggplot(map3) + ggtitle('map 3 (2003_table6)')
+p_map3_png <- file.path(table_fig_dir, 'map3.png')
+png(file=p_map3_png)
 p_map3
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2003 #########
+agSize(map3) <- 5
+agFill(map3) <- 'grey50'
+css_lss <- agNames(map3) %in% c("A/New York/55/01|*|*")
+ds <- agNames(map3) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map3) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map3)[css_lss] <- 8
+agFill(map3)[css_lss] <- '#6d21b8'
+agSize(map3)[ds] <- 8
+agFill(map3)[ds] <- '#fcd74e'
+agSize(map3)[vs] <- 8
+agFill(map3)[vs] <- '#ffa600'
+ptDrawingOrder(map3) <- c(seq_len(numSera(map3)) + numAntigens(map3),
+    which(!agNames(map3) %in% c('A/New York/55/01|*|*', 'A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map3) %in% c('A/New York/55/01|*|*', 'A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map3_aunz_2003 <- ggplot(map3) + ggtitle('aunz 2003  (map 3)')
+p_map3_aunz_2003
+
+p_map3_aunz_2003_png <- file.path(strain_fig_dir, 'map3_aunz_2003.png')
+png(file=p_map3_aunz_2003_png)
+p_map3_aunz_2003
+dev.off()
+
+
+####### europe, 2002-2003 #########
+agSize(map3) <- 5
+agFill(map3) <- 'grey50'
+css_lss <- agNames(map3) %in% c("A/New York/55/01|*|*")
+ds <- agNames(map3) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map3) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map3)[css_lss] <- 8
+agFill(map3)[css_lss] <- '#6d21b8'
+agSize(map3)[ds] <- 8
+agFill(map3)[ds] <- '#fcd74e'
+agSize(map3)[vs] <- 8
+agFill(map3)[vs] <- '#ffa600'
+ptDrawingOrder(map3) <- c(seq_len(numSera(map3)) + numAntigens(map3),
+    which(!agNames(map3) %in% c('A/New York/55/01|*|*', 'A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map3) %in% c('A/New York/55/01|*|*', 'A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map3_europe_2002_2003 <- ggplot(map3) + ggtitle('europe 2002-2003  (map 3)')
+p_map3_europe_2002_2003
+
+p_map3_europe_2002_2003_png <- file.path(strain_fig_dir, 'map3_europe_2002_2003.png')
+png(file=p_map3_europe_2002_2003_png)
+p_map3_europe_2002_2003
+dev.off()
+
+
+####### europe, 2003-2004 #########
+agSize(map3) <- 5
+agFill(map3) <- 'grey50'
+ds_css_lss <- agNames(map3) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map3) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map3)[ds_css_lss] <- 8
+agFill(map3)[ds_css_lss] <- '#00c1f3'
+agSize(map3)[vs] <- 8
+agFill(map3)[vs] <- '#ffa600'
+ptDrawingOrder(map3) <- c(seq_len(numSera(map3)) + numAntigens(map3),
+    which(!agNames(map3) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map3) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map3_europe_2003_2004 <- ggplot(map3) + ggtitle('europe 2003-2004  (map 3)')
+p_map3_europe_2003_2004
+
+p_map3_europe_2003_2004_png <- file.path(strain_fig_dir, 'map3_europe_2003_2004.png')
+png(file=p_map3_europe_2003_2004_png)
+p_map3_europe_2003_2004
+dev.off()
+
+
+####### us, 2002-2003 #########
+agSize(map3) <- 5
+agFill(map3) <- 'grey50'
+css_lss <- agNames(map3) %in% c("A/New York/55/01|*|*")
+ds <- agNames(map3) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map3) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map3)[css_lss] <- 8
+agFill(map3)[css_lss] <- '#6d21b8'
+agSize(map3)[ds] <- 8
+agFill(map3)[ds] <- '#fcd74e'
+agSize(map3)[vs] <- 8
+agFill(map3)[vs] <- '#ffa600'
+ptDrawingOrder(map3) <- c(seq_len(numSera(map3)) + numAntigens(map3),
+    which(!agNames(map3) %in% c('A/New York/55/01|*|*', 'A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map3) %in% c('A/New York/55/01|*|*', 'A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map3_us_2002_2003 <- ggplot(map3) + ggtitle('us 2002-2003  (map 3)')
+p_map3_us_2002_2003
+
+p_map3_us_2002_2003_png <- file.path(strain_fig_dir, 'map3_us_2002_2003.png')
+png(file=p_map3_us_2002_2003_png)
+p_map3_us_2002_2003
+dev.off()
+
+
+####### us, 2003-2004 #########
+agSize(map3) <- 5
+agFill(map3) <- 'grey50'
+ds_css_lss <- agNames(map3) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map3) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map3)[ds_css_lss] <- 8
+agFill(map3)[ds_css_lss] <- '#00c1f3'
+agSize(map3)[vs] <- 8
+agFill(map3)[vs] <- '#ffa600'
+ptDrawingOrder(map3) <- c(seq_len(numSera(map3)) + numAntigens(map3),
+    which(!agNames(map3) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map3) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map3_us_2003_2004 <- ggplot(map3) + ggtitle('us 2003-2004  (map 3)')
+p_map3_us_2003_2004
+
+p_map3_us_2003_2004_png <- file.path(strain_fig_dir, 'map3_us_2003_2004.png')
+png(file=p_map3_us_2003_2004_png)
+p_map3_us_2003_2004
+dev.off()
 
 
 #################### MAP 4 ####################
@@ -396,24 +782,114 @@ agFill(map4)[ag_Mar2007_table5] <- '#ef9b20'
 agFill(map4)[ag_Mar2006_table4] <- '#ede15b'
 agFill(map4)[ag_Sep2006_table4] <- '#87bc45'
 agFill(map4)[ag_Sep2006_table6] <- '#27aeef'
-p_map4 <- ggplot(map4) + ggtitle('map 4')
+p_map4 <- ggplot(map4) + ggtitle('map 4 (Mar2007_table4, Mar2007_table5, Mar2006_table4, Sep2006_table4, Sep2006_table6)')
+p_map4_png <- file.path(table_fig_dir, 'map4.png')
+png(file=p_map4_png)
 p_map4
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2006 #########
+agSize(map4) <- 5
+agFill(map4) <- 'grey50'
+ds_css <- agNames(map4) %in% c('A/Berlin/2/2006|*|*', 'A/Berlin/2/2006|2006-02-06|MDCKx_3')
+ds_lss <- agNames(map4) %in% c('A/Netherlands/548/2005|2005-12-26|MDCK1_1', 'A/Slovakia/134/2006|2006-02-06|MDCK1_1', 'A/Slovakia/134/2006|*|*', 'A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3')
+vs <- agNames(map4) %in% c('A/California/7/2004|*|SpfCk3 E3', 'A/California/7/2004|2004-09-16|SpfCk3 E3_3')
+
+agSize(map4)[ds_css] <- 8
+agFill(map4)[ds_css] <- '#584e82'
+agSize(map4)[ds_lss] <- 8
+agFill(map4)[ds_lss] <- '#9fd600'
+agSize(map4)[vs] <- 8
+agFill(map4)[vs] <- '#ffa600'
+ptDrawingOrder(map4) <- c(seq_len(numSera(map4)) + numAntigens(map4),
+    which(!agNames(map4) %in% c('A/Slovakia/134/2006|2006-02-06|MDCK1_1', 'A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Berlin/2/2006|*|*', 'A/California/7/2004|2004-09-16|SpfCk3 E3_3', 'A/Netherlands/548/2005|2005-12-26|MDCK1_1', 'A/Slovakia/134/2006|*|*', 'A/Berlin/2/2006|2006-02-06|MDCKx_3', 'A/California/7/2004|*|SpfCk3 E3')),
+    which(agNames(map4) %in% c('A/Slovakia/134/2006|2006-02-06|MDCK1_1', 'A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Berlin/2/2006|*|*', 'A/California/7/2004|2004-09-16|SpfCk3 E3_3', 'A/Netherlands/548/2005|2005-12-26|MDCK1_1', 'A/Slovakia/134/2006|*|*', 'A/Berlin/2/2006|2006-02-06|MDCKx_3', 'A/California/7/2004|*|SpfCk3 E3'))
+)
+p_map4_aunz_2006 <- ggplot(map4) + ggtitle('aunz 2006  (map 4)')
+p_map4_aunz_2006
+
+p_map4_aunz_2006_png <- file.path(strain_fig_dir, 'map4_aunz_2006.png')
+png(file=p_map4_aunz_2006_png)
+p_map4_aunz_2006
+dev.off()
 
 
 #################### MAP 5 ####################
 #### colered by tables
 agSize(map5) <- 5
 agFill(map5) <- 'grey50'
-p_map5 <- ggplot(map5) + ggtitle('map 5')
+p_map5 <- ggplot(map5) + ggtitle('map 5 (Mar2007_table4)')
+p_map5_png <- file.path(table_fig_dir, 'map5.png')
+png(file=p_map5_png)
 p_map5
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2006 #########
+agSize(map5) <- 5
+agFill(map5) <- 'grey50'
+ds_css <- agNames(map5) %in% c("A/Berlin/2/2006|2006-02-06|MDCKx_3")
+ds_lss <- agNames(map5) %in% c("A/Slovakia/134/2006|2006-02-06|MDCK1_3")
+vs <- agNames(map5) %in% c("A/California/7/2004|2004-09-16|SpfCk3 E3_3")
+
+agSize(map5)[ds_css] <- 8
+agFill(map5)[ds_css] <- '#584e82'
+agSize(map5)[ds_lss] <- 8
+agFill(map5)[ds_lss] <- '#9fd600'
+agSize(map5)[vs] <- 8
+agFill(map5)[vs] <- '#ffa600'
+ptDrawingOrder(map5) <- c(seq_len(numSera(map5)) + numAntigens(map5),
+    which(!agNames(map5) %in% c('A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Berlin/2/2006|2006-02-06|MDCKx_3', 'A/California/7/2004|2004-09-16|SpfCk3 E3_3')),
+    which(agNames(map5) %in% c('A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Berlin/2/2006|2006-02-06|MDCKx_3', 'A/California/7/2004|2004-09-16|SpfCk3 E3_3'))
+)
+p_map5_aunz_2006 <- ggplot(map5) + ggtitle('aunz 2006  (map 5)')
+p_map5_aunz_2006
+
+p_map5_aunz_2006_png <- file.path(strain_fig_dir, 'map5_aunz_2006.png')
+png(file=p_map5_aunz_2006_png)
+p_map5_aunz_2006
+dev.off()
 
 
 #################### MAP 6 ####################
 #### colered by tables
 agSize(map6) <- 5
 agFill(map6) <- 'grey50'
-p_map6 <- ggplot(map6) + ggtitle('map 6')
+p_map6 <- ggplot(map6) + ggtitle('map 6 (Mar2007_table5)')
+p_map6_png <- file.path(table_fig_dir, 'map6.png')
+png(file=p_map6_png)
 p_map6
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2006 #########
+agSize(map6) <- 5
+agFill(map6) <- 'grey50'
+ds_css <- agNames(map6) %in% c("A/Berlin/2/2006|2006-02-06|MDCKx_3")
+ds_lss <- agNames(map6) %in% c("A/Slovakia/134/2006|2006-02-06|MDCK1_3")
+vs <- agNames(map6) %in% c("A/California/7/2004|2004-09-16|SpfCk3 E3_3")
+
+agSize(map6)[ds_css] <- 8
+agFill(map6)[ds_css] <- '#584e82'
+agSize(map6)[ds_lss] <- 8
+agFill(map6)[ds_lss] <- '#9fd600'
+agSize(map6)[vs] <- 8
+agFill(map6)[vs] <- '#ffa600'
+ptDrawingOrder(map6) <- c(seq_len(numSera(map6)) + numAntigens(map6),
+    which(!agNames(map6) %in% c('A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Berlin/2/2006|2006-02-06|MDCKx_3', 'A/California/7/2004|2004-09-16|SpfCk3 E3_3')),
+    which(agNames(map6) %in% c('A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Berlin/2/2006|2006-02-06|MDCKx_3', 'A/California/7/2004|2004-09-16|SpfCk3 E3_3'))
+)
+p_map6_aunz_2006 <- ggplot(map6) + ggtitle('aunz 2006  (map 6)')
+p_map6_aunz_2006
+
+p_map6_aunz_2006_png <- file.path(strain_fig_dir, 'map6_aunz_2006.png')
+png(file=p_map6_aunz_2006_png)
+p_map6_aunz_2006
+dev.off()
 
 
 #################### MAP 7 ####################
@@ -433,8 +909,35 @@ ag_Sep2007_table8 <- agNames(map7) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk3
 agFill(map7)[ag_Sep2008_table4A] <- '#ea5545'
 agFill(map7)[ag_Sep2008_table4B] <- '#ef9b20'
 agFill(map7)[ag_Sep2007_table8] <- '#ede15b'
-p_map7 <- ggplot(map7) + ggtitle('map 7')
+p_map7 <- ggplot(map7) + ggtitle('map 7 (Sep2008_table4A, Sep2008_table4B, Sep2007_table8)')
+p_map7_png <- file.path(table_fig_dir, 'map7.png')
+png(file=p_map7_png)
 p_map7
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2008 #########
+agSize(map7) <- 5
+agFill(map7) <- 'grey50'
+vs_css_lss <- agNames(map7) %in% c('A/Perth/27/2007|2007-07-05|MDCKx+2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Brisbane/10/2007|2007-02-06|E2_3')
+ds <- agNames(map7) %in% c('A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Toyama/123/2008|2008-04-03|MDCK1+2_1')
+
+agSize(map7)[vs_css_lss] <- 8
+agFill(map7)[vs_css_lss] <- '#d399d8'
+agSize(map7)[ds] <- 8
+agFill(map7)[ds] <- '#fcd74e'
+ptDrawingOrder(map7) <- c(seq_len(numSera(map7)) + numAntigens(map7),
+    which(!agNames(map7) %in% c('A/Toyama/123/2008|2008-04-03|MDCK1+2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1')),
+    which(agNames(map7) %in% c('A/Toyama/123/2008|2008-04-03|MDCK1+2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1'))
+)
+p_map7_aunz_2008 <- ggplot(map7) + ggtitle('aunz 2008  (map 7)')
+p_map7_aunz_2008
+
+p_map7_aunz_2008_png <- file.path(strain_fig_dir, 'map7_aunz_2008.png')
+png(file=p_map7_aunz_2008_png)
+p_map7_aunz_2008
+dev.off()
 
 
 #################### MAP 8 ####################
@@ -458,16 +961,116 @@ agFill(map8)[ag_Sep2008_table4B] <- '#ea5545'
 agFill(map8)[ag_Sep2008_table4A] <- '#ef9b20'
 agFill(map8)[ag_Sep2007_table7] <- '#ede15b'
 agFill(map8)[ag_Sep2007_table6] <- '#87bc45'
-p_map8 <- ggplot(map8) + ggtitle('map 8')
+p_map8 <- ggplot(map8) + ggtitle('map 8 (Sep2008_table4B, Sep2008_table4A, Sep2007_table7, Sep2007_table6)')
+p_map8_png <- file.path(table_fig_dir, 'map8.png')
+png(file=p_map8_png)
 p_map8
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2008 #########
+agSize(map8) <- 5
+agFill(map8) <- 'grey50'
+vs_css_lss <- agNames(map8) %in% c('A/Hong Kong/2571/2007|2007-05-28|MDCK2_1', 'A/Johannesburg/74/07|2007-07-09|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Brisbane/10/2007|2007-02-06|E2_1')
+ds <- agNames(map8) %in% c('A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Toyama/123/2008|2008-04-03|MDCK1+2_1')
+
+agSize(map8)[vs_css_lss] <- 8
+agFill(map8)[vs_css_lss] <- '#d399d8'
+agSize(map8)[ds] <- 8
+agFill(map8)[ds] <- '#fcd74e'
+ptDrawingOrder(map8) <- c(seq_len(numSera(map8)) + numAntigens(map8),
+    which(!agNames(map8) %in% c('A/Toyama/123/2008|2008-04-03|MDCK1+2_1', 'A/Johannesburg/74/07|2007-07-09|MDCKx_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Hong Kong/2571/2007|2007-05-28|MDCK2_1')),
+    which(agNames(map8) %in% c('A/Toyama/123/2008|2008-04-03|MDCK1+2_1', 'A/Johannesburg/74/07|2007-07-09|MDCKx_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Hong Kong/2571/2007|2007-05-28|MDCK2_1'))
+)
+p_map8_aunz_2008 <- ggplot(map8) + ggtitle('aunz 2008  (map 8)')
+p_map8_aunz_2008
+
+p_map8_aunz_2008_png <- file.path(strain_fig_dir, 'map8_aunz_2008.png')
+png(file=p_map8_aunz_2008_png)
+p_map8_aunz_2008
+dev.off()
 
 
 #################### MAP 9 ####################
 #### colered by tables
 agSize(map9) <- 5
 agFill(map9) <- 'grey50'
-p_map9 <- ggplot(map9) + ggtitle('map 9')
+p_map9 <- ggplot(map9) + ggtitle('map 9 (Feb2009_table4)')
+p_map9_png <- file.path(table_fig_dir, 'map9.png')
+png(file=p_map9_png)
 p_map9
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2008 #########
+agSize(map9) <- 5
+agFill(map9) <- 'grey50'
+vs_css_lss <- agNames(map9) %in% c("A/Brisbane/10/2007|2007-02-06|E2_3")
+ds <- agNames(map9) %in% c('A/Sweden/6/08|2008-12-08|MDCK2_1', 'A/Sweden/9/2008|2008-12-17|MDCK2_1', 'A/Firenze/24/08|2008-12-22|I MDCK_1', 'A/Bremen/1/2009|2008-01-05|MDCK3_1', 'A/Slovenia/55/2009|2009-01-07|MDCKx_1', 'A/Cluj/35/2009|2009-01-09|MDCK 3_1', 'A/Algeria/G217/2009|2008-12-30|Cx_1')
+
+agSize(map9)[vs_css_lss] <- 8
+agFill(map9)[vs_css_lss] <- '#d399d8'
+agSize(map9)[ds] <- 8
+agFill(map9)[ds] <- '#fcd74e'
+ptDrawingOrder(map9) <- c(seq_len(numSera(map9)) + numAntigens(map9),
+    which(!agNames(map9) %in% c('A/Bremen/1/2009|2008-01-05|MDCK3_1', 'A/Slovenia/55/2009|2009-01-07|MDCKx_1', 'A/Cluj/35/2009|2009-01-09|MDCK 3_1', 'A/Sweden/9/2008|2008-12-17|MDCK2_1', 'A/Sweden/6/08|2008-12-08|MDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Algeria/G217/2009|2008-12-30|Cx_1', 'A/Firenze/24/08|2008-12-22|I MDCK_1')),
+    which(agNames(map9) %in% c('A/Bremen/1/2009|2008-01-05|MDCK3_1', 'A/Slovenia/55/2009|2009-01-07|MDCKx_1', 'A/Cluj/35/2009|2009-01-09|MDCK 3_1', 'A/Sweden/9/2008|2008-12-17|MDCK2_1', 'A/Sweden/6/08|2008-12-08|MDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Algeria/G217/2009|2008-12-30|Cx_1', 'A/Firenze/24/08|2008-12-22|I MDCK_1'))
+)
+p_map9_aunz_2008 <- ggplot(map9) + ggtitle('aunz 2008  (map 9)')
+p_map9_aunz_2008
+
+p_map9_aunz_2008_png <- file.path(strain_fig_dir, 'map9_aunz_2008.png')
+png(file=p_map9_aunz_2008_png)
+p_map9_aunz_2008
+dev.off()
+
+
+####### europe, 2008-2009 #########
+agSize(map9) <- 5
+agFill(map9) <- 'grey50'
+ds_css_lss <- agNames(map9) %in% c('A/Sweden/6/08|2008-12-08|MDCK2_1', 'A/Sweden/9/2008|2008-12-17|MDCK2_1', 'A/Firenze/24/08|2008-12-22|I MDCK_1', 'A/Bremen/1/2009|2008-01-05|MDCK3_1', 'A/Slovenia/55/2009|2009-01-07|MDCKx_1', 'A/Cluj/35/2009|2009-01-09|MDCK 3_1', 'A/Algeria/G217/2009|2008-12-30|Cx_1')
+vs <- agNames(map9) %in% c("A/Brisbane/10/2007|2007-02-06|E2_3")
+
+agSize(map9)[ds_css_lss] <- 8
+agFill(map9)[ds_css_lss] <- '#00c1f3'
+agSize(map9)[vs] <- 8
+agFill(map9)[vs] <- '#ffa600'
+ptDrawingOrder(map9) <- c(seq_len(numSera(map9)) + numAntigens(map9),
+    which(!agNames(map9) %in% c('A/Bremen/1/2009|2008-01-05|MDCK3_1', 'A/Slovenia/55/2009|2009-01-07|MDCKx_1', 'A/Cluj/35/2009|2009-01-09|MDCK 3_1', 'A/Sweden/9/2008|2008-12-17|MDCK2_1', 'A/Sweden/6/08|2008-12-08|MDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Algeria/G217/2009|2008-12-30|Cx_1', 'A/Firenze/24/08|2008-12-22|I MDCK_1')),
+    which(agNames(map9) %in% c('A/Bremen/1/2009|2008-01-05|MDCK3_1', 'A/Slovenia/55/2009|2009-01-07|MDCKx_1', 'A/Cluj/35/2009|2009-01-09|MDCK 3_1', 'A/Sweden/9/2008|2008-12-17|MDCK2_1', 'A/Sweden/6/08|2008-12-08|MDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Algeria/G217/2009|2008-12-30|Cx_1', 'A/Firenze/24/08|2008-12-22|I MDCK_1'))
+)
+p_map9_europe_2008_2009 <- ggplot(map9) + ggtitle('europe 2008-2009  (map 9)')
+p_map9_europe_2008_2009
+
+p_map9_europe_2008_2009_png <- file.path(strain_fig_dir, 'map9_europe_2008_2009.png')
+png(file=p_map9_europe_2008_2009_png)
+p_map9_europe_2008_2009
+dev.off()
+
+
+####### us, 2008-2009 #########
+agSize(map9) <- 5
+agFill(map9) <- 'grey50'
+ds_css_lss <- agNames(map9) %in% c('A/Sweden/6/08|2008-12-08|MDCK2_1', 'A/Sweden/9/2008|2008-12-17|MDCK2_1', 'A/Firenze/24/08|2008-12-22|I MDCK_1', 'A/Bremen/1/2009|2008-01-05|MDCK3_1', 'A/Slovenia/55/2009|2009-01-07|MDCKx_1', 'A/Cluj/35/2009|2009-01-09|MDCK 3_1', 'A/Algeria/G217/2009|2008-12-30|Cx_1')
+vs <- agNames(map9) %in% c("A/Brisbane/10/2007|2007-02-06|E2_3")
+
+agSize(map9)[ds_css_lss] <- 8
+agFill(map9)[ds_css_lss] <- '#00c1f3'
+agSize(map9)[vs] <- 8
+agFill(map9)[vs] <- '#ffa600'
+ptDrawingOrder(map9) <- c(seq_len(numSera(map9)) + numAntigens(map9),
+    which(!agNames(map9) %in% c('A/Bremen/1/2009|2008-01-05|MDCK3_1', 'A/Slovenia/55/2009|2009-01-07|MDCKx_1', 'A/Cluj/35/2009|2009-01-09|MDCK 3_1', 'A/Sweden/9/2008|2008-12-17|MDCK2_1', 'A/Sweden/6/08|2008-12-08|MDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Algeria/G217/2009|2008-12-30|Cx_1', 'A/Firenze/24/08|2008-12-22|I MDCK_1')),
+    which(agNames(map9) %in% c('A/Bremen/1/2009|2008-01-05|MDCK3_1', 'A/Slovenia/55/2009|2009-01-07|MDCKx_1', 'A/Cluj/35/2009|2009-01-09|MDCK 3_1', 'A/Sweden/9/2008|2008-12-17|MDCK2_1', 'A/Sweden/6/08|2008-12-08|MDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Algeria/G217/2009|2008-12-30|Cx_1', 'A/Firenze/24/08|2008-12-22|I MDCK_1'))
+)
+p_map9_us_2008_2009 <- ggplot(map9) + ggtitle('us 2008-2009  (map 9)')
+p_map9_us_2008_2009
+
+p_map9_us_2008_2009_png <- file.path(strain_fig_dir, 'map9_us_2008_2009.png')
+png(file=p_map9_us_2008_2009_png)
+p_map9_us_2008_2009
+dev.off()
 
 
 #################### MAP 10 ####################
@@ -482,16 +1085,151 @@ ag_Mar2008_table5 <- agNames(map10) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk
 
 agFill(map10)[ag_Sep2008_table4A] <- '#ea5545'
 agFill(map10)[ag_Mar2008_table5] <- '#ef9b20'
-p_map10 <- ggplot(map10) + ggtitle('map 10')
+p_map10 <- ggplot(map10) + ggtitle('map 10 (Sep2008_table4A, Mar2008_table5)')
+p_map10_png <- file.path(table_fig_dir, 'map10.png')
+png(file=p_map10_png)
 p_map10
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2008 #########
+agSize(map10) <- 5
+agFill(map10) <- 'grey50'
+vs_css_lss <- agNames(map10) %in% c("A/Brisbane/10/2007|2007-02-06|E2_3")
+css_lss <- agNames(map10) %in% c("A/Nevada/05/2007|2007-10-05|x,MDCK2_1")
+ds <- agNames(map10) %in% c('A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1')
+vs <- agNames(map10) %in% c("A/Nevada/05/2007|2007-10-05|xMDCK2_1")
+
+agSize(map10)[vs_css_lss] <- 8
+agFill(map10)[vs_css_lss] <- '#d399d8'
+agSize(map10)[css_lss] <- 8
+agFill(map10)[css_lss] <- '#6d21b8'
+agSize(map10)[ds] <- 8
+agFill(map10)[ds] <- '#fcd74e'
+agSize(map10)[vs] <- 8
+agFill(map10)[vs] <- '#ffa600'
+ptDrawingOrder(map10) <- c(seq_len(numSera(map10)) + numAntigens(map10),
+    which(!agNames(map10) %in% c('A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Nevada/05/2007|2007-10-05|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Nevada/05/2007|2007-10-05|x,MDCK2_1')),
+    which(agNames(map10) %in% c('A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Nevada/05/2007|2007-10-05|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Nevada/05/2007|2007-10-05|x,MDCK2_1'))
+)
+p_map10_aunz_2008 <- ggplot(map10) + ggtitle('aunz 2008  (map 10)')
+p_map10_aunz_2008
+
+p_map10_aunz_2008_png <- file.path(strain_fig_dir, 'map10_aunz_2008.png')
+png(file=p_map10_aunz_2008_png)
+p_map10_aunz_2008
+dev.off()
 
 
 #################### MAP 11 ####################
 #### colered by tables
 agSize(map11) <- 5
 agFill(map11) <- 'grey50'
-p_map11 <- ggplot(map11) + ggtitle('map 11')
+p_map11 <- ggplot(map11) + ggtitle('map 11 (Sep2009_table6)')
+p_map11_png <- file.path(table_fig_dir, 'map11.png')
+png(file=p_map11_png)
 p_map11
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2009 #########
+agSize(map11) <- 5
+agFill(map11) <- 'grey50'
+css_lss <- agNames(map11) %in% c("A/England/233/2009|2009-07-01|Cx Siat1")
+ds <- agNames(map11) %in% c("A/Hong Kong/1985/2009|2009-04-01|MDCKx2_2")
+vs <- agNames(map11) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E3")
+
+agSize(map11)[css_lss] <- 8
+agFill(map11)[css_lss] <- '#6d21b8'
+agSize(map11)[ds] <- 8
+agFill(map11)[ds] <- '#fcd74e'
+agSize(map11)[vs] <- 8
+agFill(map11)[vs] <- '#ffa600'
+ptDrawingOrder(map11) <- c(seq_len(numSera(map11)) + numAntigens(map11),
+    which(!agNames(map11) %in% c('A/Hong Kong/1985/2009|2009-04-01|MDCKx2_2', 'A/Brisbane/10/2007|2007-02-06|E2/E3', 'A/England/233/2009|2009-07-01|Cx Siat1')),
+    which(agNames(map11) %in% c('A/Hong Kong/1985/2009|2009-04-01|MDCKx2_2', 'A/Brisbane/10/2007|2007-02-06|E2/E3', 'A/England/233/2009|2009-07-01|Cx Siat1'))
+)
+p_map11_aunz_2009 <- ggplot(map11) + ggtitle('aunz 2009  (map 11)')
+p_map11_aunz_2009
+
+p_map11_aunz_2009_png <- file.path(strain_fig_dir, 'map11_aunz_2009.png')
+png(file=p_map11_aunz_2009_png)
+p_map11_aunz_2009
+dev.off()
+
+
+####### europe, 2008-2009 #########
+agSize(map11) <- 5
+agFill(map11) <- 'grey50'
+ds_css_lss <- agNames(map11) %in% c("A/England/233/2009|2009-07-01|Cx Siat1")
+vs <- agNames(map11) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E3")
+
+agSize(map11)[ds_css_lss] <- 8
+agFill(map11)[ds_css_lss] <- '#00c1f3'
+agSize(map11)[vs] <- 8
+agFill(map11)[vs] <- '#ffa600'
+ptDrawingOrder(map11) <- c(seq_len(numSera(map11)) + numAntigens(map11),
+    which(!agNames(map11) %in% c('A/Brisbane/10/2007|2007-02-06|E2/E3', 'A/England/233/2009|2009-07-01|Cx Siat1')),
+    which(agNames(map11) %in% c('A/Brisbane/10/2007|2007-02-06|E2/E3', 'A/England/233/2009|2009-07-01|Cx Siat1'))
+)
+p_map11_europe_2008_2009 <- ggplot(map11) + ggtitle('europe 2008-2009  (map 11)')
+p_map11_europe_2008_2009
+
+p_map11_europe_2008_2009_png <- file.path(strain_fig_dir, 'map11_europe_2008_2009.png')
+png(file=p_map11_europe_2008_2009_png)
+p_map11_europe_2008_2009
+dev.off()
+
+
+####### us, 2008-2009 #########
+agSize(map11) <- 5
+agFill(map11) <- 'grey50'
+ds_css_lss <- agNames(map11) %in% c("A/England/233/2009|2009-07-01|Cx Siat1")
+vs <- agNames(map11) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E3")
+
+agSize(map11)[ds_css_lss] <- 8
+agFill(map11)[ds_css_lss] <- '#00c1f3'
+agSize(map11)[vs] <- 8
+agFill(map11)[vs] <- '#ffa600'
+ptDrawingOrder(map11) <- c(seq_len(numSera(map11)) + numAntigens(map11),
+    which(!agNames(map11) %in% c('A/Brisbane/10/2007|2007-02-06|E2/E3', 'A/England/233/2009|2009-07-01|Cx Siat1')),
+    which(agNames(map11) %in% c('A/Brisbane/10/2007|2007-02-06|E2/E3', 'A/England/233/2009|2009-07-01|Cx Siat1'))
+)
+p_map11_us_2008_2009 <- ggplot(map11) + ggtitle('us 2008-2009  (map 11)')
+p_map11_us_2008_2009
+
+p_map11_us_2008_2009_png <- file.path(strain_fig_dir, 'map11_us_2008_2009.png')
+png(file=p_map11_us_2008_2009_png)
+p_map11_us_2008_2009
+dev.off()
+
+
+####### us, 2009-2010 #########
+agSize(map11) <- 5
+agFill(map11) <- 'grey50'
+css_lss <- agNames(map11) %in% c("A/England/233/2009|2009-07-01|Cx Siat1")
+ds <- agNames(map11) %in% c('A/Johannesburg/126/2009*|2009-05-21|MDCK2 Siat1', 'A/Victoria/208/2009*|2009-06-02|E3 E1', 'A/Johannesburg/385/2009*|2009-06-08|MDCK1 Siat3', 'A/Mauritius/461/2009*|2009-07-02|MDCK1 Siat1', 'A/Ghana/FS-1031/2009*|2009-07-13|MDCK1 Siat1')
+vs <- agNames(map11) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E3")
+
+agSize(map11)[css_lss] <- 8
+agFill(map11)[css_lss] <- '#6d21b8'
+agSize(map11)[ds] <- 8
+agFill(map11)[ds] <- '#fcd74e'
+agSize(map11)[vs] <- 8
+agFill(map11)[vs] <- '#ffa600'
+ptDrawingOrder(map11) <- c(seq_len(numSera(map11)) + numAntigens(map11),
+    which(!agNames(map11) %in% c('A/Mauritius/461/2009*|2009-07-02|MDCK1 Siat1', 'A/Victoria/208/2009*|2009-06-02|E3 E1', 'A/Brisbane/10/2007|2007-02-06|E2/E3', 'A/Johannesburg/385/2009*|2009-06-08|MDCK1 Siat3', 'A/England/233/2009|2009-07-01|Cx Siat1', 'A/Ghana/FS-1031/2009*|2009-07-13|MDCK1 Siat1', 'A/Johannesburg/126/2009*|2009-05-21|MDCK2 Siat1')),
+    which(agNames(map11) %in% c('A/Mauritius/461/2009*|2009-07-02|MDCK1 Siat1', 'A/Victoria/208/2009*|2009-06-02|E3 E1', 'A/Brisbane/10/2007|2007-02-06|E2/E3', 'A/Johannesburg/385/2009*|2009-06-08|MDCK1 Siat3', 'A/England/233/2009|2009-07-01|Cx Siat1', 'A/Ghana/FS-1031/2009*|2009-07-13|MDCK1 Siat1', 'A/Johannesburg/126/2009*|2009-05-21|MDCK2 Siat1'))
+)
+p_map11_us_2009_2010 <- ggplot(map11) + ggtitle('us 2009-2010  (map 11)')
+p_map11_us_2009_2010
+
+p_map11_us_2009_2010_png <- file.path(strain_fig_dir, 'map11_us_2009_2010.png')
+png(file=p_map11_us_2009_2010_png)
+p_map11_us_2009_2010
+dev.off()
 
 
 #################### MAP 12 ####################
@@ -507,8 +1245,42 @@ ag_Feb2010_table13 <- agNames(map12) %in% c("A/Uruguay/716/2007|2007-06-21|spfck
 
 agFill(map12)[ag_Sep2010_table7B] <- '#ea5545'
 agFill(map12)[ag_Feb2010_table13] <- '#ef9b20'
-p_map12 <- ggplot(map12) + ggtitle('map 12')
+p_map12 <- ggplot(map12) + ggtitle('map 12 (Sep2010_table7B, Feb2010_table13)')
+p_map12_png <- file.path(table_fig_dir, 'map12.png')
+png(file=p_map12_png)
 p_map12
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2010 #########
+agSize(map12) <- 5
+agFill(map12) <- 'grey50'
+ds <- agNames(map12) %in% c("A/Hong Kong/2146/2010|2010-07-06|MDCK2/SIAT1")
+vs <- agNames(map12) %in% c('A/Perth/16/2009|2009-07-04|E3 E2', 'A/Perth/16/2009|2009-07-04|E3/E2')
+css <- agNames(map12) %in% c('A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat7', 'A/Philippines/2191/2009|2009-05-26|E3 E1', 'A/Hong Kong/34430/2009|2009-11-22|MDCK2/SIAT2')
+lss <- agNames(map12) %in% c('A/Norway/3789/2009|2009-10-12|MDCK1 Siat1', 'A/Norway/3790/2009|2009-10-13|MDCK1 Siat1', 'A/Finland/638/2009|2009-10-20|MDCK3 Siat1', 'A/Finland/640/2009|2009-10-26|MDCK3 Siat1', 'A/Cameroon/704/2009|2009-11-24|Cx Siat1', 'A/Stockholm/112/2009|2009-11-28|C1 Siat1', 'A/Israel/22/2009|2009-11-01|Cx Siat1', 'A/Israel/24/2009|2009-11-01|P2 Siat1', 'A/Israel/26/2009|2009-11-01|P2 Siat1', 'A/Lyon/Cx-R/3120/2009|2009-11-01|p2MDCK Siat1')
+
+agSize(map12)[ds] <- 8
+agFill(map12)[ds] <- '#fcd74e'
+agSize(map12)[vs] <- 8
+agFill(map12)[vs] <- '#ffa600'
+agSize(map12)[css] <- 8
+agFill(map12)[css] <- '#d900ba'
+agSize(map12)[lss] <- 8
+agFill(map12)[lss] <- '#0051ff'
+ptDrawingOrder(map12) <- c(seq_len(numSera(map12)) + numAntigens(map12),
+	which(!agNames(map12) %in% c('A/Finland/640/2009|2009-10-26|MDCK3 Siat1','A/Philippines/2191/2009|2009-05-26|E3 E1','A/Norway/3790/2009|2009-10-13|MDCK1 Siat1','A/Perth/16/2009|2009-07-04|E3 E2','A/Norway/3789/2009|2009-10-12|MDCK1 Siat1','A/Hong Kong/34430/2009|2009-11-22|MDCK2/SIAT2','A/Israel/24/2009|2009-11-01|P2 Siat1','A/Lyon/Cx-R/3120/2009|2009-11-01|p2MDCK Siat1','A/Cameroon/704/2009|2009-11-24|Cx Siat1','A/Israel/26/2009|2009-11-01|P2 Siat1',
+	"A/Israel/22/2009|2009-11-01|Cx Siat1","A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat7","A/Hong Kong/2146/2010|2010-07-06|MDCK2/SIAT1","A/Perth/16/2009|2009-07-04|E3/E2","A/Finland/638/2009|2009-10-20|MDCK3 Siat1","A/Stockholm/112/2009|2009-11-28|C1 Siat1")),
+	which(agNames(map12) %in% c('A/Finland/640/2009|2009-10-26|MDCK3 Siat1','A/Philippines/2191/2009|2009-05-26|E3 E1','A/Norway/3790/2009|2009-10-13|MDCK1 Siat1','A/Perth/16/2009|2009-07-04|E3 E2','A/Norway/3789/2009|2009-10-12|MDCK1 Siat1','A/Hong Kong/34430/2009|2009-11-22|MDCK2/SIAT2','A/Israel/24/2009|2009-11-01|P2 Siat1','A/Lyon/Cx-R/3120/2009|2009-11-01|p2MDCK Siat1','A/Cameroon/704/2009|2009-11-24|Cx Siat1','A/Israel/26/2009|2009-11-01|P2 Siat1',	"A/Israel/22/2009|2009-11-01|Cx Siat1","A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat7","A/Hong Kong/2146/2010|2010-07-06|MDCK2/SIAT1","A/Perth/16/2009|2009-07-04|E3/E2","A/Finland/638/2009|2009-10-20|MDCK3 Siat1","A/Stockholm/112/2009|2009-11-28|C1 Siat1"))
+)
+p_map12_aunz_2010 <- ggplot(map12) + ggtitle('aunz 2010  (map 12)')
+p_map12_aunz_2010
+
+p_map12_aunz_2010_png <- file.path(strain_fig_dir, 'map12_aunz_2010.png')
+png(file=p_map12_aunz_2010_png)
+p_map12_aunz_2010
+dev.off()
 
 
 #################### MAP 13 ####################
@@ -528,24 +1300,114 @@ ag_Feb2010_table13 <- agNames(map13) %in% c("A/Uruguay/716/2007|2007-06-21|spfck
 agFill(map13)[ag_Sep2009_table5] <- '#ea5545'
 agFill(map13)[ag_Sep2010_table7B] <- '#ef9b20'
 agFill(map13)[ag_Feb2010_table13] <- '#ede15b'
-p_map13 <- ggplot(map13) + ggtitle('map 13')
+p_map13 <- ggplot(map13) + ggtitle('map 13 (Sep2009_table5, Sep2010_table7B, Feb2010_table13)')
+p_map13_png <- file.path(table_fig_dir, 'map13.png')
+png(file=p_map13_png)
 p_map13
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2010 #########
+agSize(map13) <- 5
+agFill(map13) <- 'grey50'
+ds <- agNames(map13) %in% c("A/Hong Kong/2146/2010|2010-07-06|MDCK2/SIAT1")
+vs <- agNames(map13) %in% c('A/Perth/15/2009|*|E3 E1', 'A/Perth/16/2009|*|E3 E1', 'A/Perth/16/2009|2009-07-04|E3 E2', 'A/Perth/16/2009|2009-07-04|E3/E2')
+css <- agNames(map13) %in% c('A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat2', 'A/Hong Kong/2142/2009|2009-05-17|MDCKx2 Siat1', 'A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat7', 'A/Philippines/2191/2009|2009-05-26|E3 E1', 'A/Hong Kong/34430/2009|2009-11-22|MDCK2/SIAT2')
+lss <- agNames(map13) %in% c("A/Johannesburg/126/2009*|2009-05-21|MDCK2 Siat1","A/Norway/3789/2009|2009-10-12|MDCK1 Siat1","A/Norway/3790/2009|2009-10-13|MDCK1 Siat1","A/Finland/638/2009|2009-10-20|MDCK3 Siat1","A/Finland/640/2009|2009-10-26|MDCK3 Siat1","A/Cameroon/704/2009|2009-11-24|Cx Siat1","A/Stockholm/112/2009|2009-11-28|C1 Siat1","A/Israel/22/2009|2009-11-01|Cx Siat1","A/Israel/24/2009|2009-11-01|P2 Siat1","A/Israel/26/2009|2009-11-01|P2 Siat1",
+	"A/Lyon/Cx-R/3120/2009|2009-11-01|p2MDCK Siat1")
+
+agSize(map13)[ds] <- 8
+agFill(map13)[ds] <- '#fcd74e'
+agSize(map13)[vs] <- 8
+agFill(map13)[vs] <- '#ffa600'
+agSize(map13)[css] <- 8
+agFill(map13)[css] <- '#d900ba'
+agSize(map13)[lss] <- 8
+agFill(map13)[lss] <- '#0051ff'
+ptDrawingOrder(map13) <- c(seq_len(numSera(map13)) + numAntigens(map13),
+	which(!agNames(map13) %in% c('A/Perth/16/2009|*|E3 E1','A/Philippines/2191/2009|2009-05-26|E3 E1','A/Finland/638/2009|2009-10-20|MDCK3 Siat1','A/Norway/3789/2009|2009-10-12|MDCK1 Siat1','A/Israel/26/2009|2009-11-01|P2 Siat1','A/Israel/24/2009|2009-11-01|P2 Siat1','A/Hong Kong/2146/2010|2010-07-06|MDCK2/SIAT1','A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat2','A/Perth/15/2009|*|E3 E1','A/Finland/640/2009|2009-10-26|MDCK3 Siat1',
+	"A/Perth/16/2009|2009-07-04|E3 E2","A/Hong Kong/34430/2009|2009-11-22|MDCK2/SIAT2","A/Lyon/Cx-R/3120/2009|2009-11-01|p2MDCK Siat1","A/Johannesburg/126/2009*|2009-05-21|MDCK2 Siat1","A/Norway/3790/2009|2009-10-13|MDCK1 Siat1","A/Hong Kong/2142/2009|2009-05-17|MDCKx2 Siat1","A/Cameroon/704/2009|2009-11-24|Cx Siat1","A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat7","A/Israel/22/2009|2009-11-01|Cx Siat1","A/Perth/16/2009|2009-07-04|E3/E2",
+	"A/Stockholm/112/2009|2009-11-28|C1 Siat1")),
+	which(agNames(map13) %in% c('A/Perth/16/2009|*|E3 E1','A/Philippines/2191/2009|2009-05-26|E3 E1','A/Finland/638/2009|2009-10-20|MDCK3 Siat1','A/Norway/3789/2009|2009-10-12|MDCK1 Siat1','A/Israel/26/2009|2009-11-01|P2 Siat1','A/Israel/24/2009|2009-11-01|P2 Siat1','A/Hong Kong/2146/2010|2010-07-06|MDCK2/SIAT1','A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat2','A/Perth/15/2009|*|E3 E1','A/Finland/640/2009|2009-10-26|MDCK3 Siat1',	"A/Perth/16/2009|2009-07-04|E3 E2","A/Hong Kong/34430/2009|2009-11-22|MDCK2/SIAT2","A/Lyon/Cx-R/3120/2009|2009-11-01|p2MDCK Siat1","A/Johannesburg/126/2009*|2009-05-21|MDCK2 Siat1","A/Norway/3790/2009|2009-10-13|MDCK1 Siat1","A/Hong Kong/2142/2009|2009-05-17|MDCKx2 Siat1","A/Cameroon/704/2009|2009-11-24|Cx Siat1","A/Hong Kong/1952/2009|2009-03-24|MDCKx2 Siat7","A/Israel/22/2009|2009-11-01|Cx Siat1","A/Perth/16/2009|2009-07-04|E3/E2",	"A/Stockholm/112/2009|2009-11-28|C1 Siat1"))
+)
+p_map13_aunz_2010 <- ggplot(map13) + ggtitle('aunz 2010  (map 13)')
+p_map13_aunz_2010
+
+p_map13_aunz_2010_png <- file.path(strain_fig_dir, 'map13_aunz_2010.png')
+png(file=p_map13_aunz_2010_png)
+p_map13_aunz_2010
+dev.off()
 
 
 #################### MAP 14 ####################
 #### colered by tables
 agSize(map14) <- 5
 agFill(map14) <- 'grey50'
-p_map14 <- ggplot(map14) + ggtitle('map 14')
+p_map14 <- ggplot(map14) + ggtitle('map 14 (Sep2011_table18)')
+p_map14_png <- file.path(table_fig_dir, 'map14.png')
+png(file=p_map14_png)
 p_map14
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2011 #########
+agSize(map14) <- 5
+agFill(map14) <- 'grey50'
+ds_css_lss <- agNames(map14) %in% c('A/Serbia/822/2011|2011-02-01|MDCK2/SIAT1', 'A/Serbia/1580/2011|2011-02-24|MDCK2/SIAT1', 'A/Serbia/1605/2011|2011-02-26|MDCK2/SIAT1', 'A/Serbia/1731/2011|2011-03-01|MDCK2/SIAT1', 'A/Serbia/1891/2011|2011-03-09|MDCK2/SIAT1')
+vs <- agNames(map14) %in% c("A/Perth/16/2009|2009-07-04|E3/E4")
+
+agSize(map14)[ds_css_lss] <- 8
+agFill(map14)[ds_css_lss] <- '#00c1f3'
+agSize(map14)[vs] <- 8
+agFill(map14)[vs] <- '#ffa600'
+ptDrawingOrder(map14) <- c(seq_len(numSera(map14)) + numAntigens(map14),
+    which(!agNames(map14) %in% c('A/Serbia/822/2011|2011-02-01|MDCK2/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E4', 'A/Serbia/1580/2011|2011-02-24|MDCK2/SIAT1', 'A/Serbia/1605/2011|2011-02-26|MDCK2/SIAT1', 'A/Serbia/1891/2011|2011-03-09|MDCK2/SIAT1', 'A/Serbia/1731/2011|2011-03-01|MDCK2/SIAT1')),
+    which(agNames(map14) %in% c('A/Serbia/822/2011|2011-02-01|MDCK2/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E4', 'A/Serbia/1580/2011|2011-02-24|MDCK2/SIAT1', 'A/Serbia/1605/2011|2011-02-26|MDCK2/SIAT1', 'A/Serbia/1891/2011|2011-03-09|MDCK2/SIAT1', 'A/Serbia/1731/2011|2011-03-01|MDCK2/SIAT1'))
+)
+p_map14_aunz_2011 <- ggplot(map14) + ggtitle('aunz 2011  (map 14)')
+p_map14_aunz_2011
+
+p_map14_aunz_2011_png <- file.path(strain_fig_dir, 'map14_aunz_2011.png')
+png(file=p_map14_aunz_2011_png)
+p_map14_aunz_2011
+dev.off()
 
 
 #################### MAP 15 ####################
 #### colered by tables
 agSize(map15) <- 5
 agFill(map15) <- 'grey50'
-p_map15 <- ggplot(map15) + ggtitle('map 15')
+p_map15 <- ggplot(map15) + ggtitle('map 15 (Sep2012_table9)')
+p_map15_png <- file.path(table_fig_dir, 'map15.png')
+png(file=p_map15_png)
 p_map15
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2011 #########
+agSize(map15) <- 5
+agFill(map15) <- 'grey50'
+ds_css_lss <- agNames(map15) %in% c('A/Bulgaria/182/2012|2012-02-02|C3/SIAT1', 'A/Bulgaria/217/2012|2012-02-09|C3/SIAT1', 'A/Bulgaria/280/2012|2012-02-20|C3/SIAT1', 'A/Bulgaria/311/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/312/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/313/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/314/2012|2012-02-24|C3/SIAT1')
+vs <- agNames(map15) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map15)[ds_css_lss] <- 8
+agFill(map15)[ds_css_lss] <- '#00c1f3'
+agSize(map15)[vs] <- 8
+agFill(map15)[vs] <- '#ffa600'
+ptDrawingOrder(map15) <- c(seq_len(numSera(map15)) + numAntigens(map15),
+    which(!agNames(map15) %in% c('A/Bulgaria/312/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/314/2012|2012-02-24|C3/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Bulgaria/182/2012|2012-02-02|C3/SIAT1', 'A/Bulgaria/280/2012|2012-02-20|C3/SIAT1', 'A/Bulgaria/311/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/313/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/217/2012|2012-02-09|C3/SIAT1')),
+    which(agNames(map15) %in% c('A/Bulgaria/312/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/314/2012|2012-02-24|C3/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Bulgaria/182/2012|2012-02-02|C3/SIAT1', 'A/Bulgaria/280/2012|2012-02-20|C3/SIAT1', 'A/Bulgaria/311/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/313/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/217/2012|2012-02-09|C3/SIAT1'))
+)
+p_map15_aunz_2011 <- ggplot(map15) + ggtitle('aunz 2011  (map 15)')
+p_map15_aunz_2011
+
+p_map15_aunz_2011_png <- file.path(strain_fig_dir, 'map15_aunz_2011.png')
+png(file=p_map15_aunz_2011_png)
+p_map15_aunz_2011
+dev.off()
 
 
 #################### MAP 16 ####################
@@ -573,40 +1435,190 @@ ag_Feb2012_table13 <- agNames(map16) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C2/
 
 agFill(map16)[ag_Feb2012_table12] <- '#ea5545'
 agFill(map16)[ag_Feb2012_table13] <- '#ef9b20'
-p_map16 <- ggplot(map16) + ggtitle('map 16')
+p_map16 <- ggplot(map16) + ggtitle('map 16 (Feb2012_table12, Feb2012_table13)')
+p_map16_png <- file.path(table_fig_dir, 'map16.png')
+png(file=p_map16_png)
 p_map16
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2011 #########
+agSize(map16) <- 5
+agFill(map16) <- 'grey50'
+ds_css_lss <- agNames(map16) %in% c('A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1', 'A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1', 'A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1', 'A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1', 'A/Netherlands/710/2011|2011-12-06|MDCK2/SIAT1', 'A/Netherlands/001/2012|2012-01-05|MDCK2/SIAT1')
+vs <- agNames(map16) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map16)[ds_css_lss] <- 8
+agFill(map16)[ds_css_lss] <- '#00c1f3'
+agSize(map16)[vs] <- 8
+agFill(map16)[vs] <- '#ffa600'
+ptDrawingOrder(map16) <- c(seq_len(numSera(map16)) + numAntigens(map16),
+    which(!agNames(map16) %in% c('A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1', 'A/Netherlands/710/2011|2011-12-06|MDCK2/SIAT1', 'A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1', 'A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1', 'A/Netherlands/001/2012|2012-01-05|MDCK2/SIAT1', 'A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2')),
+    which(agNames(map16) %in% c('A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1', 'A/Netherlands/710/2011|2011-12-06|MDCK2/SIAT1', 'A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1', 'A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1', 'A/Netherlands/001/2012|2012-01-05|MDCK2/SIAT1', 'A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2'))
+)
+p_map16_aunz_2011 <- ggplot(map16) + ggtitle('aunz 2011  (map 16)')
+p_map16_aunz_2011
+
+p_map16_aunz_2011_png <- file.path(strain_fig_dir, 'map16_aunz_2011.png')
+png(file=p_map16_aunz_2011_png)
+p_map16_aunz_2011
+dev.off()
 
 
 #################### MAP 17 ####################
 #### colered by tables
 agSize(map17) <- 5
 agFill(map17) <- 'grey50'
-p_map17 <- ggplot(map17) + ggtitle('map 17')
+p_map17 <- ggplot(map17) + ggtitle('map 17 (Sep2012_table15)')
+p_map17_png <- file.path(table_fig_dir, 'map17.png')
+png(file=p_map17_png)
 p_map17
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2011 #########
+agSize(map17) <- 5
+agFill(map17) <- 'grey50'
+ds_css_lss <- agNames(map17) %in% c('A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1', 'A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1', 'A/Parma/139/2012|2012-02-20|MDCK2/SIAT1', 'A/Denmark/38/2012|2012-03-05|SIAT2', 'A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1', 'A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1', 'A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1', 'A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1', 'A/Stockholm/19/2012|2012-04-14|C1/SIAT1', 'A/Stockholm/21/2012|2012-04-21|C2/SIAT1')
+vs <- agNames(map17) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map17)[ds_css_lss] <- 8
+agFill(map17)[ds_css_lss] <- '#00c1f3'
+agSize(map17)[vs] <- 8
+agFill(map17)[vs] <- '#ffa600'
+ptDrawingOrder(map17) <- c(seq_len(numSera(map17)) + numAntigens(map17),
+	which(!agNames(map17) %in% c('A/Denmark/38/2012|2012-03-05|SIAT2','A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1','A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1','A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1','A/Perth/16/2009|2009-07-04|E3/E2','A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1','A/Stockholm/19/2012|2012-04-14|C1/SIAT1','A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1','A/Stockholm/21/2012|2012-04-21|C2/SIAT1','A/Parma/139/2012|2012-02-20|MDCK2/SIAT1',
+	"A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1")),
+	which(agNames(map17) %in% c('A/Denmark/38/2012|2012-03-05|SIAT2','A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1','A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1','A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1','A/Perth/16/2009|2009-07-04|E3/E2','A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1','A/Stockholm/19/2012|2012-04-14|C1/SIAT1','A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1','A/Stockholm/21/2012|2012-04-21|C2/SIAT1','A/Parma/139/2012|2012-02-20|MDCK2/SIAT1',	"A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1"))
+)
+p_map17_aunz_2011 <- ggplot(map17) + ggtitle('aunz 2011  (map 17)')
+p_map17_aunz_2011
+
+p_map17_aunz_2011_png <- file.path(strain_fig_dir, 'map17_aunz_2011.png')
+png(file=p_map17_aunz_2011_png)
+p_map17_aunz_2011
+dev.off()
 
 
 #################### MAP 18 ####################
 #### colered by tables
 agSize(map18) <- 5
 agFill(map18) <- 'grey50'
-p_map18 <- ggplot(map18) + ggtitle('map 18')
+p_map18 <- ggplot(map18) + ggtitle('map 18 (Feb2012_table10)')
+p_map18_png <- file.path(table_fig_dir, 'map18.png')
+png(file=p_map18_png)
 p_map18
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2011 #########
+agSize(map18) <- 5
+agFill(map18) <- 'grey50'
+ds_css_lss <- agNames(map18) %in% c('A/Tehran/8331/2011|2011-11-01|MDCK3/SIAT1', 'A/Esfahan/8343/2011|2011-11-01|MDCK2/SIAT1', 'A/Slovenia/2855/2011|2011-12-05|MDCKx/SIAT1', 'A/Slovenia/2970/2011|2011-12-12|MDCKx/SIAT1', 'A/Castilla La Mancha/RR8871/2011|2011-12-27|SIAT1/SIAT1', 'A/Slovenia/9/2012|2012-01-03|MDCKx/SIAT1')
+vs <- agNames(map18) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map18)[ds_css_lss] <- 8
+agFill(map18)[ds_css_lss] <- '#00c1f3'
+agSize(map18)[vs] <- 8
+agFill(map18)[vs] <- '#ffa600'
+ptDrawingOrder(map18) <- c(seq_len(numSera(map18)) + numAntigens(map18),
+    which(!agNames(map18) %in% c('A/Slovenia/2855/2011|2011-12-05|MDCKx/SIAT1', 'A/Slovenia/2970/2011|2011-12-12|MDCKx/SIAT1', 'A/Tehran/8331/2011|2011-11-01|MDCK3/SIAT1', 'A/Slovenia/9/2012|2012-01-03|MDCKx/SIAT1', 'A/Esfahan/8343/2011|2011-11-01|MDCK2/SIAT1', 'A/Castilla La Mancha/RR8871/2011|2011-12-27|SIAT1/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2')),
+    which(agNames(map18) %in% c('A/Slovenia/2855/2011|2011-12-05|MDCKx/SIAT1', 'A/Slovenia/2970/2011|2011-12-12|MDCKx/SIAT1', 'A/Tehran/8331/2011|2011-11-01|MDCK3/SIAT1', 'A/Slovenia/9/2012|2012-01-03|MDCKx/SIAT1', 'A/Esfahan/8343/2011|2011-11-01|MDCK2/SIAT1', 'A/Castilla La Mancha/RR8871/2011|2011-12-27|SIAT1/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2'))
+)
+p_map18_aunz_2011 <- ggplot(map18) + ggtitle('aunz 2011  (map 18)')
+p_map18_aunz_2011
+
+p_map18_aunz_2011_png <- file.path(strain_fig_dir, 'map18_aunz_2011.png')
+png(file=p_map18_aunz_2011_png)
+p_map18_aunz_2011
+dev.off()
 
 
 #################### MAP 19 ####################
 #### colered by tables
 agSize(map19) <- 5
 agFill(map19) <- 'grey50'
-p_map19 <- ggplot(map19) + ggtitle('map 19')
+p_map19 <- ggplot(map19) + ggtitle('map 19 (Feb2012_table13)')
+p_map19_png <- file.path(table_fig_dir, 'map19.png')
+png(file=p_map19_png)
 p_map19
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2012 #########
+agSize(map19) <- 5
+agFill(map19) <- 'grey50'
+ds <- agNames(map19) %in% c('A/Norway/1789/2011|*|Cx/SIAT1', 'A/Denmark/87/2011|2011-09-04|SIAT1/SIAT1', 'A/Switzerland/5834715/2012|2012-01-09|SIAT2', 'A/Switzerland/5834718/2012|2012-01-09|SIAT2', 'A/Brandenburg/1/2012|2012-01-16|C2/SIAT1')
+vs <- agNames(map19) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+css <- agNames(map19) %in% c('A/Jordan/20110030655/2011|2011-10-31|SIAT1', 'A/Bursa/108/2011|2011-11-22|C1/SIAT1', 'A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2', 'A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1', 'A/Austria/654044/2012|2012-01-03|C2/SIAT1', 'A/Norway/114/2012|2012-01-10|MDCK1/SIAT1', 'A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1', 'A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1')
+lss <- agNames(map19) %in% c('A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Switzerland/5834730/2012|2012-01-13|SIAT3')
+
+agSize(map19)[ds] <- 8
+agFill(map19)[ds] <- '#fcd74e'
+agSize(map19)[vs] <- 8
+agFill(map19)[vs] <- '#ffa600'
+agSize(map19)[css] <- 8
+agFill(map19)[css] <- '#d900ba'
+agSize(map19)[lss] <- 8
+agFill(map19)[lss] <- '#0051ff'
+ptDrawingOrder(map19) <- c(seq_len(numSera(map19)) + numAntigens(map19),
+	which(!agNames(map19) %in% c('A/Norway/1789/2011|*|Cx/SIAT1','A/Jordan/20110030655/2011|2011-10-31|SIAT1','A/Switzerland/5834718/2012|2012-01-09|SIAT2','A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1','A/Denmark/87/2011|2011-09-04|SIAT1/SIAT1','A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Brandenburg/1/2012|2012-01-16|C2/SIAT1','A/Switzerland/5834715/2012|2012-01-09|SIAT2','A/Norway/114/2012|2012-01-10|MDCK1/SIAT1',
+	"A/Bursa/108/2011|2011-11-22|C1/SIAT1","A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2","A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1","A/Austria/654044/2012|2012-01-03|C2/SIAT1","A/Perth/16/2009|2009-07-04|E3/E2","A/Switzerland/5834730/2012|2012-01-13|SIAT3")),
+	which(agNames(map19) %in% c('A/Norway/1789/2011|*|Cx/SIAT1','A/Jordan/20110030655/2011|2011-10-31|SIAT1','A/Switzerland/5834718/2012|2012-01-09|SIAT2','A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1','A/Denmark/87/2011|2011-09-04|SIAT1/SIAT1','A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Brandenburg/1/2012|2012-01-16|C2/SIAT1','A/Switzerland/5834715/2012|2012-01-09|SIAT2','A/Norway/114/2012|2012-01-10|MDCK1/SIAT1',	"A/Bursa/108/2011|2011-11-22|C1/SIAT1","A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2","A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1","A/Austria/654044/2012|2012-01-03|C2/SIAT1","A/Perth/16/2009|2009-07-04|E3/E2","A/Switzerland/5834730/2012|2012-01-13|SIAT3"))
+)
+p_map19_aunz_2012 <- ggplot(map19) + ggtitle('aunz 2012  (map 19)')
+p_map19_aunz_2012
+
+p_map19_aunz_2012_png <- file.path(strain_fig_dir, 'map19_aunz_2012.png')
+png(file=p_map19_aunz_2012_png)
+p_map19_aunz_2012
+dev.off()
 
 
 #################### MAP 20 ####################
 #### colered by tables
 agSize(map20) <- 5
 agFill(map20) <- 'grey50'
-p_map20 <- ggplot(map20) + ggtitle('map 20')
+p_map20 <- ggplot(map20) + ggtitle('map 20 (Feb2012_table14)')
+p_map20_png <- file.path(table_fig_dir, 'map20.png')
+png(file=p_map20_png)
 p_map20
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2012 #########
+agSize(map20) <- 5
+agFill(map20) <- 'grey50'
+ds <- agNames(map20) %in% c('A/Norway/1789/2011|*|Cx/SIAT1', 'A/Galati/88977/2012|2011-12-27|MDCK2/SIAT1', 'A/Braila/89501/2012|2012-01-04|MDCK3/SIAT1', 'A/Iasi/89451/2012|2012-01-04|MDCK3/SIAT1', 'A/Stockholm/12-00694/2012|2012-01-11|C2/SIAT1')
+vs <- agNames(map20) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+css <- agNames(map20) %in% c('A/Stockholm/37/2011|2011-11-27|C3/SIAT1', 'A/Antalya/214/2011|2011-12-20|C1/SIAT2', 'A/Turkey/33/2011|2011-12-22|SIAT1/SIAT1', 'A/Turkey/38/2011|2011-12-22|SIAT1/SIAT1', 'A/Turkey/51/2011|2012-01-03|SIAT1/SIAT1', 'A/Turkey/57/2011|2012-01-11|SIAT1/SIAT1')
+lss <- agNames(map20) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4")
+
+agSize(map20)[ds] <- 8
+agFill(map20)[ds] <- '#fcd74e'
+agSize(map20)[vs] <- 8
+agFill(map20)[vs] <- '#ffa600'
+agSize(map20)[css] <- 8
+agFill(map20)[css] <- '#d900ba'
+agSize(map20)[lss] <- 8
+agFill(map20)[lss] <- '#0051ff'
+ptDrawingOrder(map20) <- c(seq_len(numSera(map20)) + numAntigens(map20),
+	which(!agNames(map20) %in% c('A/Turkey/33/2011|2011-12-22|SIAT1/SIAT1','A/Norway/1789/2011|*|Cx/SIAT1','A/Stockholm/37/2011|2011-11-27|C3/SIAT1','A/Braila/89501/2012|2012-01-04|MDCK3/SIAT1','A/Turkey/38/2011|2011-12-22|SIAT1/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Turkey/57/2011|2012-01-11|SIAT1/SIAT1','A/Galati/88977/2012|2011-12-27|MDCK2/SIAT1','A/Antalya/214/2011|2011-12-20|C1/SIAT2','A/Iasi/89451/2012|2012-01-04|MDCK3/SIAT1',
+	"A/Perth/16/2009|2009-07-04|E3/E2","A/Stockholm/12-00694/2012|2012-01-11|C2/SIAT1","A/Turkey/51/2011|2012-01-03|SIAT1/SIAT1")),
+	which(agNames(map20) %in% c('A/Turkey/33/2011|2011-12-22|SIAT1/SIAT1','A/Norway/1789/2011|*|Cx/SIAT1','A/Stockholm/37/2011|2011-11-27|C3/SIAT1','A/Braila/89501/2012|2012-01-04|MDCK3/SIAT1','A/Turkey/38/2011|2011-12-22|SIAT1/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Turkey/57/2011|2012-01-11|SIAT1/SIAT1','A/Galati/88977/2012|2011-12-27|MDCK2/SIAT1','A/Antalya/214/2011|2011-12-20|C1/SIAT2','A/Iasi/89451/2012|2012-01-04|MDCK3/SIAT1',	"A/Perth/16/2009|2009-07-04|E3/E2","A/Stockholm/12-00694/2012|2012-01-11|C2/SIAT1","A/Turkey/51/2011|2012-01-03|SIAT1/SIAT1"))
+)
+p_map20_aunz_2012 <- ggplot(map20) + ggtitle('aunz 2012  (map 20)')
+p_map20_aunz_2012
+
+p_map20_aunz_2012_png <- file.path(strain_fig_dir, 'map20_aunz_2012.png')
+png(file=p_map20_aunz_2012_png)
+p_map20_aunz_2012
+dev.off()
 
 
 #################### MAP 21 ####################
@@ -621,8 +1633,42 @@ ag_Sep2012_table17 <- agNames(map21) %in% c("A/Hong Kong/3969/2011|2011-05-19|MD
 
 agFill(map21)[ag_Sep2012_table18] <- '#ea5545'
 agFill(map21)[ag_Sep2012_table17] <- '#ef9b20'
-p_map21 <- ggplot(map21) + ggtitle('map 21')
+p_map21 <- ggplot(map21) + ggtitle('map 21 (Sep2012_table18, Sep2012_table17)')
+p_map21_png <- file.path(table_fig_dir, 'map21.png')
+png(file=p_map21_png)
 p_map21
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2012 #########
+agSize(map21) <- 5
+agFill(map21) <- 'grey50'
+ds <- agNames(map21) %in% c('A/Pays de Loire/882/2012|2012-03-02|MDCK1/SIAT1', 'A/Centre/929/2012|2012-03-07|MDCK2/SIAT1', 'A/Guyane/1297/2012 (A/Guadeloupe/45/2012)|2012-03-08|MDCK2/SIAT1', 'A/Madagascar/03536/2012|2012-06-04|MDCK1/SIAT1')
+vs <- agNames(map21) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+css <- agNames(map21) %in% c('A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1', 'A/Dakar/01/2012|2012-01-17|MDCK2/SIAT1', 'A/Dakar/02/2012|2012-01-31|MDCK1/SIAT2', 'A/Caen/539/2012|2012-02-07|MDCK2/SIAT3')
+lss <- agNames(map21) %in% c('A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT5')
+
+agSize(map21)[ds] <- 8
+agFill(map21)[ds] <- '#fcd74e'
+agSize(map21)[vs] <- 8
+agFill(map21)[vs] <- '#ffa600'
+agSize(map21)[css] <- 8
+agFill(map21)[css] <- '#d900ba'
+agSize(map21)[lss] <- 8
+agFill(map21)[lss] <- '#0051ff'
+ptDrawingOrder(map21) <- c(seq_len(numSera(map21)) + numAntigens(map21),
+	which(!agNames(map21) %in% c('A/Dakar/02/2012|2012-01-31|MDCK1/SIAT2','A/Perth/16/2009|2009-07-04|E3/E2','A/Madagascar/03536/2012|2012-06-04|MDCK1/SIAT1','A/Guyane/1297/2012 (A/Guadeloupe/45/2012)|2012-03-08|MDCK2/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Caen/539/2012|2012-02-07|MDCK2/SIAT3','A/Pays de Loire/882/2012|2012-03-02|MDCK1/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT5','A/Dakar/01/2012|2012-01-17|MDCK2/SIAT1','A/Centre/929/2012|2012-03-07|MDCK2/SIAT1',
+	"A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1")),
+	which(agNames(map21) %in% c('A/Dakar/02/2012|2012-01-31|MDCK1/SIAT2','A/Perth/16/2009|2009-07-04|E3/E2','A/Madagascar/03536/2012|2012-06-04|MDCK1/SIAT1','A/Guyane/1297/2012 (A/Guadeloupe/45/2012)|2012-03-08|MDCK2/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Caen/539/2012|2012-02-07|MDCK2/SIAT3','A/Pays de Loire/882/2012|2012-03-02|MDCK1/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT5','A/Dakar/01/2012|2012-01-17|MDCK2/SIAT1','A/Centre/929/2012|2012-03-07|MDCK2/SIAT1',	"A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1"))
+)
+p_map21_aunz_2012 <- ggplot(map21) + ggtitle('aunz 2012  (map 21)')
+p_map21_aunz_2012
+
+p_map21_aunz_2012_png <- file.path(strain_fig_dir, 'map21_aunz_2012.png')
+png(file=p_map21_aunz_2012_png)
+p_map21_aunz_2012
+dev.off()
 
 
 #################### MAP 22 ####################
@@ -639,8 +1685,42 @@ ag_Sep2012_table12 <- agNames(map22) %in% c("A/Stockholm/18/2011|2011-03-28|MDCK
 
 agFill(map22)[ag_Sep2012_table17] <- '#ea5545'
 agFill(map22)[ag_Sep2012_table12] <- '#ef9b20'
-p_map22 <- ggplot(map22) + ggtitle('map 22')
+p_map22 <- ggplot(map22) + ggtitle('map 22 (Sep2012_table17, Sep2012_table12)')
+p_map22_png <- file.path(table_fig_dir, 'map22.png')
+png(file=p_map22_png)
 p_map22
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2012 #########
+agSize(map22) <- 5
+agFill(map22) <- 'grey50'
+ds <- agNames(map22) %in% c('A/Belgrade/1420/2012|2012-03-26|C1/SIAT1', 'A/Pays de Loire/882/2012|2012-03-02|MDCK1/SIAT1', 'A/Centre/929/2012|2012-03-07|MDCK2/SIAT1', 'A/Guyane/1297/2012 (A/Guadeloupe/45/2012)|2012-03-08|MDCK2/SIAT1', 'A/Madagascar/03536/2012|2012-06-04|MDCK1/SIAT1')
+vs <- agNames(map22) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+css <- agNames(map22) %in% c('A/Belgrade/449/2012|2012-02-02|C1/SIAT1', 'A/Ukraine/114/2012|2012-03-02|C1/SIAT3', 'A/Ireland/12V2794/2012|2012-03-28|C1/SIAT1', 'A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1')
+lss <- agNames(map22) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4")
+
+agSize(map22)[ds] <- 8
+agFill(map22)[ds] <- '#fcd74e'
+agSize(map22)[vs] <- 8
+agFill(map22)[vs] <- '#ffa600'
+agSize(map22)[css] <- 8
+agFill(map22)[css] <- '#d900ba'
+agSize(map22)[lss] <- 8
+agFill(map22)[lss] <- '#0051ff'
+ptDrawingOrder(map22) <- c(seq_len(numSera(map22)) + numAntigens(map22),
+	which(!agNames(map22) %in% c('A/Ireland/12V2794/2012|2012-03-28|C1/SIAT1','A/Perth/16/2009|2009-07-04|E3/E2','A/Madagascar/03536/2012|2012-06-04|MDCK1/SIAT1','A/Guyane/1297/2012 (A/Guadeloupe/45/2012)|2012-03-08|MDCK2/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Belgrade/449/2012|2012-02-02|C1/SIAT1','A/Belgrade/1420/2012|2012-03-26|C1/SIAT1','A/Pays de Loire/882/2012|2012-03-02|MDCK1/SIAT1','A/Ukraine/114/2012|2012-03-02|C1/SIAT3','A/Centre/929/2012|2012-03-07|MDCK2/SIAT1',
+	"A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1")),
+	which(agNames(map22) %in% c('A/Ireland/12V2794/2012|2012-03-28|C1/SIAT1','A/Perth/16/2009|2009-07-04|E3/E2','A/Madagascar/03536/2012|2012-06-04|MDCK1/SIAT1','A/Guyane/1297/2012 (A/Guadeloupe/45/2012)|2012-03-08|MDCK2/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Belgrade/449/2012|2012-02-02|C1/SIAT1','A/Belgrade/1420/2012|2012-03-26|C1/SIAT1','A/Pays de Loire/882/2012|2012-03-02|MDCK1/SIAT1','A/Ukraine/114/2012|2012-03-02|C1/SIAT3','A/Centre/929/2012|2012-03-07|MDCK2/SIAT1',	"A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1"))
+)
+p_map22_aunz_2012 <- ggplot(map22) + ggtitle('aunz 2012  (map 22)')
+p_map22_aunz_2012
+
+p_map22_aunz_2012_png <- file.path(strain_fig_dir, 'map22_aunz_2012.png')
+png(file=p_map22_aunz_2012_png)
+p_map22_aunz_2012
+dev.off()
 
 
 #################### MAP 23 ####################
@@ -659,8 +1739,42 @@ ag_Sep2012_table10 <- agNames(map23) %in% c("A/Finland/190/2011|2011-11-25|Cx/SI
 
 agFill(map23)[ag_Feb2012_table9] <- '#ea5545'
 agFill(map23)[ag_Sep2012_table10] <- '#ef9b20'
-p_map23 <- ggplot(map23) + ggtitle('map 23')
+p_map23 <- ggplot(map23) + ggtitle('map 23 (Feb2012_table9, Sep2012_table10)')
+p_map23_png <- file.path(table_fig_dir, 'map23.png')
+png(file=p_map23_png)
 p_map23
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2012 #########
+agSize(map23) <- 5
+agFill(map23) <- 'grey50'
+ds <- agNames(map23) %in% c('A/Stockholm/32/2011|2011-11-27|C2/SIAT1', 'A/Norway/1789/2011|2011-08-02|Cx/SIAT1', 'A/Sabac/1370/2012|2012-03-20|SIAT3', 'A/Glasgow/407664/2012|2012-04-03|SIAT2', 'A/Glasgow/407665/2012|2012-04-03|SIAT2', 'A/Rostov-on-Don/1/2012|2012-04-19|C1/SIAT1')
+vs <- agNames(map23) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+css <- agNames(map23) %in% c('A/Stockholm/23/2011|2011-09-05|C1/SIAT1', 'A/Stockholm/24/2011|2011-09-05|C1/SIAT1', 'A/Algeria/G04/2011|2011-10-30|C0/SIAT1', 'A/Algeria/G05/2011|2011-10-31|C1/SIAT1', 'A/Stockholm/34/2011|2011-11-27|C1/SIAT1', 'A/Estonia/66073/2012|2012-03-06|MDCK2/SIAT1')
+lss <- agNames(map23) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4")
+
+agSize(map23)[ds] <- 8
+agFill(map23)[ds] <- '#fcd74e'
+agSize(map23)[vs] <- 8
+agFill(map23)[vs] <- '#ffa600'
+agSize(map23)[css] <- 8
+agFill(map23)[css] <- '#d900ba'
+agSize(map23)[lss] <- 8
+agFill(map23)[lss] <- '#0051ff'
+ptDrawingOrder(map23) <- c(seq_len(numSera(map23)) + numAntigens(map23),
+	which(!agNames(map23) %in% c('A/Glasgow/407665/2012|2012-04-03|SIAT2','A/Algeria/G05/2011|2011-10-31|C1/SIAT1','A/Stockholm/32/2011|2011-11-27|C2/SIAT1','A/Stockholm/23/2011|2011-09-05|C1/SIAT1','A/Stockholm/24/2011|2011-09-05|C1/SIAT1','A/Sabac/1370/2012|2012-03-20|SIAT3','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Estonia/66073/2012|2012-03-06|MDCK2/SIAT1','A/Rostov-on-Don/1/2012|2012-04-19|C1/SIAT1','A/Glasgow/407664/2012|2012-04-03|SIAT2',
+	"A/Algeria/G04/2011|2011-10-30|C0/SIAT1","A/Perth/16/2009|2009-07-04|E3/E2","A/Stockholm/34/2011|2011-11-27|C1/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1")),
+	which(agNames(map23) %in% c('A/Glasgow/407665/2012|2012-04-03|SIAT2','A/Algeria/G05/2011|2011-10-31|C1/SIAT1','A/Stockholm/32/2011|2011-11-27|C2/SIAT1','A/Stockholm/23/2011|2011-09-05|C1/SIAT1','A/Stockholm/24/2011|2011-09-05|C1/SIAT1','A/Sabac/1370/2012|2012-03-20|SIAT3','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Estonia/66073/2012|2012-03-06|MDCK2/SIAT1','A/Rostov-on-Don/1/2012|2012-04-19|C1/SIAT1','A/Glasgow/407664/2012|2012-04-03|SIAT2',	"A/Algeria/G04/2011|2011-10-30|C0/SIAT1","A/Perth/16/2009|2009-07-04|E3/E2","A/Stockholm/34/2011|2011-11-27|C1/SIAT1","A/Norway/1789/2011|2011-08-02|Cx/SIAT1"))
+)
+p_map23_aunz_2012 <- ggplot(map23) + ggtitle('aunz 2012  (map 23)')
+p_map23_aunz_2012
+
+p_map23_aunz_2012_png <- file.path(strain_fig_dir, 'map23_aunz_2012.png')
+png(file=p_map23_aunz_2012_png)
+p_map23_aunz_2012
+dev.off()
 
 
 #################### MAP 24 ####################
@@ -688,8 +1802,39 @@ ag_Feb2012_table13 <- agNames(map24) %in% c("A/Victoria/208/2009|2009-06-02|E3/E
 agFill(map24)[ag_Sep2013_table7_7] <- '#ea5545'
 agFill(map24)[ag_Sep2013_table7_10] <- '#ef9b20'
 agFill(map24)[ag_Feb2012_table13] <- '#ede15b'
-p_map24 <- ggplot(map24) + ggtitle('map 24')
+p_map24 <- ggplot(map24) + ggtitle('map 24 (Sep2013_table7-7, Sep2013_table7-10, Feb2012_table13)')
+p_map24_png <- file.path(table_fig_dir, 'map24.png')
+png(file=p_map24_png)
 p_map24
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2013 #########
+agSize(map24) <- 5
+agFill(map24) <- 'grey50'
+css_lss <- agNames(map24) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1')
+ds <- agNames(map24) %in% c('A/Serbia/NS-200/2013|2013-01-14|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|SIAT3', 'A/Astrakhan/5/2013|2013-02-20|C1/SIAT1', 'A/Valladolid/95/2013|2013-03-14|SIAT2')
+vs <- agNames(map24) %in% c('A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Switzerland/5834730/2012|2012-01-13|SIAT3')
+
+agSize(map24)[css_lss] <- 8
+agFill(map24)[css_lss] <- '#6d21b8'
+agSize(map24)[ds] <- 8
+agFill(map24)[ds] <- '#fcd74e'
+agSize(map24)[vs] <- 8
+agFill(map24)[vs] <- '#ffa600'
+ptDrawingOrder(map24) <- c(seq_len(numSera(map24)) + numAntigens(map24),
+	which(!agNames(map24) %in% c('A/Serbia/NS-200/2013|2013-01-14|SIAT2','A/Belgrade/648/2013|2013-02-05|C2/SIAT2','A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1','A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2','A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1','A/Astrakhan/5/2013|2013-02-20|C1/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Valladolid/95/2013|2013-03-14|SIAT2','A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1','A/Serbia/NS-210/2013|2013-01-18|SIAT3',
+	"A/Switzerland/5834730/2012|2012-01-13|SIAT3")),
+	which(agNames(map24) %in% c('A/Serbia/NS-200/2013|2013-01-14|SIAT2','A/Belgrade/648/2013|2013-02-05|C2/SIAT2','A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1','A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2','A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1','A/Astrakhan/5/2013|2013-02-20|C1/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Valladolid/95/2013|2013-03-14|SIAT2','A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1','A/Serbia/NS-210/2013|2013-01-18|SIAT3',	"A/Switzerland/5834730/2012|2012-01-13|SIAT3"))
+)
+p_map24_aunz_2013 <- ggplot(map24) + ggtitle('aunz 2013  (map 24)')
+p_map24_aunz_2013
+
+p_map24_aunz_2013_png <- file.path(strain_fig_dir, 'map24_aunz_2013.png')
+png(file=p_map24_aunz_2013_png)
+p_map24_aunz_2013
+dev.off()
 
 
 #################### MAP 25 ####################
@@ -715,8 +1860,38 @@ ag_Feb2012_table13 <- agNames(map25) %in% c("A/Victoria/208/2009|2009-06-02|E3/E
 
 agFill(map25)[ag_Feb2013_table18] <- '#ea5545'
 agFill(map25)[ag_Feb2012_table13] <- '#ef9b20'
-p_map25 <- ggplot(map25) + ggtitle('map 25')
+p_map25 <- ggplot(map25) + ggtitle('map 25 (Feb2013_table18, Feb2012_table13)')
+p_map25_png <- file.path(table_fig_dir, 'map25.png')
+png(file=p_map25_png)
 p_map25
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2013 #########
+agSize(map25) <- 5
+agFill(map25) <- 'grey50'
+css_lss <- agNames(map25) %in% c('A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2', 'A/Delaware/15/2012|2012-11-12|C2/SIAT1')
+ds <- agNames(map25) %in% c('A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2', 'A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1')
+vs <- agNames(map25) %in% c('A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Switzerland/5834730/2012|2012-01-13|SIAT3')
+
+agSize(map25)[css_lss] <- 8
+agFill(map25)[css_lss] <- '#6d21b8'
+agSize(map25)[ds] <- 8
+agFill(map25)[ds] <- '#fcd74e'
+agSize(map25)[vs] <- 8
+agFill(map25)[vs] <- '#ffa600'
+ptDrawingOrder(map25) <- c(seq_len(numSera(map25)) + numAntigens(map25),
+    which(!agNames(map25) %in% c('A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1', 'A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Delaware/15/2012|2012-11-12|C2/SIAT1', 'A/Switzerland/5834730/2012|2012-01-13|SIAT3', 'A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2')),
+    which(agNames(map25) %in% c('A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1', 'A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Delaware/15/2012|2012-11-12|C2/SIAT1', 'A/Switzerland/5834730/2012|2012-01-13|SIAT3', 'A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2'))
+)
+p_map25_aunz_2013 <- ggplot(map25) + ggtitle('aunz 2013  (map 25)')
+p_map25_aunz_2013
+
+p_map25_aunz_2013_png <- file.path(strain_fig_dir, 'map25_aunz_2013.png')
+png(file=p_map25_aunz_2013_png)
+p_map25_aunz_2013
+dev.off()
 
 
 #################### MAP 26 ####################
@@ -745,8 +1920,38 @@ ag_Sep2013_table7_11 <- agNames(map26) %in% c("A/Victoria/208/2009|2009-06-02|E3
 agFill(map26)[ag_Feb2012_table13] <- '#ea5545'
 agFill(map26)[ag_Sep2013_table7_16] <- '#ef9b20'
 agFill(map26)[ag_Sep2013_table7_11] <- '#ede15b'
-p_map26 <- ggplot(map26) + ggtitle('map 26')
+p_map26 <- ggplot(map26) + ggtitle('map 26 (Feb2012_table13, Sep2013_table7-16, Sep2013_table7-11)')
+p_map26_png <- file.path(table_fig_dir, 'map26.png')
+png(file=p_map26_png)
 p_map26
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2013 #########
+agSize(map26) <- 5
+agFill(map26) <- 'grey50'
+css_lss <- agNames(map26) %in% c('A/Stockholm/10/2013|2013-01-30|MDCK1/SIAT1', 'A/Osaka/32/2013|2013-05-01|MDCK2/MDCK1/SIAT1')
+ds <- agNames(map26) %in% c("A/Lithuania/8003/2013|2013-03-12|SIAT3")
+vs <- agNames(map26) %in% c('A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Switzerland/5834730/2012|2012-01-13|SIAT3')
+
+agSize(map26)[css_lss] <- 8
+agFill(map26)[css_lss] <- '#6d21b8'
+agSize(map26)[ds] <- 8
+agFill(map26)[ds] <- '#fcd74e'
+agSize(map26)[vs] <- 8
+agFill(map26)[vs] <- '#ffa600'
+ptDrawingOrder(map26) <- c(seq_len(numSera(map26)) + numAntigens(map26),
+    which(!agNames(map26) %in% c('A/Lithuania/8003/2013|2013-03-12|SIAT3', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Stockholm/10/2013|2013-01-30|MDCK1/SIAT1', 'A/Switzerland/5834730/2012|2012-01-13|SIAT3', 'A/Osaka/32/2013|2013-05-01|MDCK2/MDCK1/SIAT1')),
+    which(agNames(map26) %in% c('A/Lithuania/8003/2013|2013-03-12|SIAT3', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Stockholm/10/2013|2013-01-30|MDCK1/SIAT1', 'A/Switzerland/5834730/2012|2012-01-13|SIAT3', 'A/Osaka/32/2013|2013-05-01|MDCK2/MDCK1/SIAT1'))
+)
+p_map26_aunz_2013 <- ggplot(map26) + ggtitle('aunz 2013  (map 26)')
+p_map26_aunz_2013
+
+p_map26_aunz_2013_png <- file.path(strain_fig_dir, 'map26_aunz_2013.png')
+png(file=p_map26_aunz_2013_png)
+p_map26_aunz_2013
+dev.off()
 
 
 #################### MAP 27 ####################
@@ -767,8 +1972,38 @@ ag_Sep2013_table7_9 <- agNames(map27) %in% c("A/Athens/112/2012|2012-02-01|SIAT7
 agFill(map27)[ag_Sep2012_table20] <- '#ea5545'
 agFill(map27)[ag_Sep2013_table7_12] <- '#ef9b20'
 agFill(map27)[ag_Sep2013_table7_9] <- '#ede15b'
-p_map27 <- ggplot(map27) + ggtitle('map 27')
+p_map27 <- ggplot(map27) + ggtitle('map 27 (Sep2012_table20, Sep2013_table7-12, Sep2013_table7-9)')
+p_map27_png <- file.path(table_fig_dir, 'map27.png')
+png(file=p_map27_png)
 p_map27
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2013 #########
+agSize(map27) <- 5
+agFill(map27) <- 'grey50'
+css_lss <- agNames(map27) %in% c('A/Ukraine/5840/2013|2013-03-25|C1/SIAT1', 'A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1')
+ds <- agNames(map27) %in% c('A/Timis/136369/2013|2013-03-04|MDCK3/SIAT1', 'A/Moldova/326/2013|2013-03-07|MDCK2/SIAT1', 'A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1')
+vs <- agNames(map27) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT6")
+
+agSize(map27)[css_lss] <- 8
+agFill(map27)[css_lss] <- '#6d21b8'
+agSize(map27)[ds] <- 8
+agFill(map27)[ds] <- '#fcd74e'
+agSize(map27)[vs] <- 8
+agFill(map27)[vs] <- '#ffa600'
+ptDrawingOrder(map27) <- c(seq_len(numSera(map27)) + numAntigens(map27),
+    which(!agNames(map27) %in% c('A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT6', 'A/Moldova/326/2013|2013-03-07|MDCK2/SIAT1', 'A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1', 'A/Timis/136369/2013|2013-03-04|MDCK3/SIAT1', 'A/Ukraine/5840/2013|2013-03-25|C1/SIAT1', 'A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1')),
+    which(agNames(map27) %in% c('A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT6', 'A/Moldova/326/2013|2013-03-07|MDCK2/SIAT1', 'A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1', 'A/Timis/136369/2013|2013-03-04|MDCK3/SIAT1', 'A/Ukraine/5840/2013|2013-03-25|C1/SIAT1', 'A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1'))
+)
+p_map27_aunz_2013 <- ggplot(map27) + ggtitle('aunz 2013  (map 27)')
+p_map27_aunz_2013
+
+p_map27_aunz_2013_png <- file.path(strain_fig_dir, 'map27_aunz_2013.png')
+png(file=p_map27_aunz_2013_png)
+p_map27_aunz_2013
+dev.off()
 
 
 #################### MAP 28 ####################
@@ -788,8 +2023,38 @@ ag_Feb2013_table20 <- agNames(map28) %in% c("A/Berlin/93/2011|2011-12-07|NVD3/SI
 agFill(map28)[ag_Sep2012_table20] <- '#ea5545'
 agFill(map28)[ag_Feb2013_table18] <- '#ef9b20'
 agFill(map28)[ag_Feb2013_table20] <- '#ede15b'
-p_map28 <- ggplot(map28) + ggtitle('map 28')
+p_map28 <- ggplot(map28) + ggtitle('map 28 (Sep2012_table20, Feb2013_table18, Feb2013_table20)')
+p_map28_png <- file.path(table_fig_dir, 'map28.png')
+png(file=p_map28_png)
 p_map28
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2013 #########
+agSize(map28) <- 5
+agFill(map28) <- 'grey50'
+css_lss <- agNames(map28) %in% c('A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2', 'A/Delaware/15/2012|2012-11-12|C2/SIAT1', 'A/Israel/19/2013|2013-01-15|Cx/SIAT1')
+ds <- agNames(map28) %in% c('A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2', 'A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1')
+vs <- agNames(map28) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT6")
+
+agSize(map28)[css_lss] <- 8
+agFill(map28)[css_lss] <- '#6d21b8'
+agSize(map28)[ds] <- 8
+agFill(map28)[ds] <- '#fcd74e'
+agSize(map28)[vs] <- 8
+agFill(map28)[vs] <- '#ffa600'
+ptDrawingOrder(map28) <- c(seq_len(numSera(map28)) + numAntigens(map28),
+    which(!agNames(map28) %in% c('A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT6', 'A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1', 'A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2', 'A/Delaware/15/2012|2012-11-12|C2/SIAT1', 'A/Israel/19/2013|2013-01-15|Cx/SIAT1', 'A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2')),
+    which(agNames(map28) %in% c('A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT6', 'A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1', 'A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2', 'A/Delaware/15/2012|2012-11-12|C2/SIAT1', 'A/Israel/19/2013|2013-01-15|Cx/SIAT1', 'A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2'))
+)
+p_map28_aunz_2013 <- ggplot(map28) + ggtitle('aunz 2013  (map 28)')
+p_map28_aunz_2013
+
+p_map28_aunz_2013_png <- file.path(strain_fig_dir, 'map28_aunz_2013.png')
+png(file=p_map28_aunz_2013_png)
+p_map28_aunz_2013
+dev.off()
 
 
 #################### MAP 29 ####################
@@ -816,8 +2081,38 @@ ag_Sep2013_table7_8 <- agNames(map29) %in% c("A/Victoria/208/2009|2009-06-02|E3/
 agFill(map29)[ag_Sep2012_table9] <- '#ea5545'
 agFill(map29)[ag_Feb2014_table9_8] <- '#ef9b20'
 agFill(map29)[ag_Sep2013_table7_8] <- '#ede15b'
-p_map29 <- ggplot(map29) + ggtitle('map 29')
+p_map29 <- ggplot(map29) + ggtitle('map 29 (Sep2012_table9, Feb2014_table9-8, Sep2013_table7-8)')
+p_map29_png <- file.path(table_fig_dir, 'map29.png')
+png(file=p_map29_png)
 p_map29
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2014 #########
+agSize(map29) <- 5
+agFill(map29) <- 'grey50'
+ds_lss <- agNames(map29) %in% c('A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1', 'A/Tulkarem/83/2013|2013-01-08|SIAT3', 'A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1', 'A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1', 'A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1')
+vs <- agNames(map29) %in% c('A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1')
+css <- agNames(map29) %in% c('A/Slovenia/760/2013|2013-02-15|MDCKx/SIAT1', 'A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1')
+
+agSize(map29)[ds_lss] <- 8
+agFill(map29)[ds_lss] <- '#9fd600'
+agSize(map29)[vs] <- 8
+agFill(map29)[vs] <- '#ffa600'
+agSize(map29)[css] <- 8
+agFill(map29)[css] <- '#d900ba'
+ptDrawingOrder(map29) <- c(seq_len(numSera(map29)) + numAntigens(map29),
+    which(!agNames(map29) %in% c('A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1', 'A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1', 'A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Tulkarem/83/2013|2013-01-08|SIAT3', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1', 'A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1', 'A/Slovenia/760/2013|2013-02-15|MDCKx/SIAT1', 'A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1')),
+    which(agNames(map29) %in% c('A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1', 'A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1', 'A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Tulkarem/83/2013|2013-01-08|SIAT3', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1', 'A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1', 'A/Slovenia/760/2013|2013-02-15|MDCKx/SIAT1', 'A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1'))
+)
+p_map29_aunz_2014 <- ggplot(map29) + ggtitle('aunz 2014  (map 29)')
+p_map29_aunz_2014
+
+p_map29_aunz_2014_png <- file.path(strain_fig_dir, 'map29_aunz_2014.png')
+png(file=p_map29_aunz_2014_png)
+p_map29_aunz_2014
+dev.off()
 
 
 #################### MAP 30 ####################
@@ -847,8 +2142,39 @@ agFill(map30)[ag_Sep2013_table7_7] <- '#ef9b20'
 agFill(map30)[ag_Feb2014_table9_2] <- '#ede15b'
 agFill(map30)[ag_Sep2014_table8_10] <- '#87bc45'
 agFill(map30)[ag_Sep2014_table8_14] <- '#27aeef'
-p_map30 <- ggplot(map30) + ggtitle('map 30')
+p_map30 <- ggplot(map30) + ggtitle('map 30 (Sep2012_table9, Sep2013_table7-7, Feb2014_table9-2, Sep2014_table8-10, Sep2014_table8-14)')
+p_map30_png <- file.path(table_fig_dir, 'map30.png')
+png(file=p_map30_png)
 p_map30
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2014 #########
+agSize(map30) <- 5
+agFill(map30) <- 'grey50'
+ds_lss <- agNames(map30) %in% c('A/Serbia/NS-200/2013|2013-01-14|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|SIAT3', 'A/Astrakhan/5/2013|2013-02-20|C1/SIAT1', 'A/Valladolid/95/2013|2013-03-14|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|E5', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1')
+vs <- agNames(map30) %in% c('A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1')
+css <- agNames(map30) %in% c('A/England/104/2013|2013-01-09|MDCK2/SIAT1', 'A/Catalonia/2070282NS/2013|2013-01-22|SIAT2', 'A/Catalonia/5742S/2013|2013-01-23|SIAT2', 'A/Catalonia/2071057NS/2013|2013-01-24|SIAT2', 'A/Mauritius/571/2013|2013-07-03|MDCK2/SIAT1', 'A/Norway/120/2014|2014-01-14|MDCK1/SIAT1', 'A/Norway/226/2014|2014-01-14|MDCK1/SIAT1')
+
+agSize(map30)[ds_lss] <- 8
+agFill(map30)[ds_lss] <- '#9fd600'
+agSize(map30)[vs] <- 8
+agFill(map30)[vs] <- '#ffa600'
+agSize(map30)[css] <- 8
+agFill(map30)[css] <- '#d900ba'
+ptDrawingOrder(map30) <- c(seq_len(numSera(map30)) + numAntigens(map30),
+	which(!agNames(map30) %in% c('A/Serbia/NS-210/2013|2013-01-18|E5','A/Norway/120/2014|2014-01-14|MDCK1/SIAT1','A/Serbia/NS-200/2013|2013-01-14|SIAT2','A/England/104/2013|2013-01-09|MDCK2/SIAT1','A/Norway/226/2014|2014-01-14|MDCK1/SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1','A/Astrakhan/5/2013|2013-02-20|C1/SIAT1','A/Mauritius/571/2013|2013-07-03|MDCK2/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1',
+	"A/Catalonia/5742S/2013|2013-01-23|SIAT2","A/Valladolid/95/2013|2013-03-14|SIAT2","A/Catalonia/2070282NS/2013|2013-01-22|SIAT2","A/Catalonia/2071057NS/2013|2013-01-24|SIAT2","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Serbia/NS-210/2013|2013-01-18|SIAT3")),
+	which(agNames(map30) %in% c('A/Serbia/NS-210/2013|2013-01-18|E5','A/Norway/120/2014|2014-01-14|MDCK1/SIAT1','A/Serbia/NS-200/2013|2013-01-14|SIAT2','A/England/104/2013|2013-01-09|MDCK2/SIAT1','A/Norway/226/2014|2014-01-14|MDCK1/SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1','A/Astrakhan/5/2013|2013-02-20|C1/SIAT1','A/Mauritius/571/2013|2013-07-03|MDCK2/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1',	"A/Catalonia/5742S/2013|2013-01-23|SIAT2","A/Valladolid/95/2013|2013-03-14|SIAT2","A/Catalonia/2070282NS/2013|2013-01-22|SIAT2","A/Catalonia/2071057NS/2013|2013-01-24|SIAT2","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Serbia/NS-210/2013|2013-01-18|SIAT3"))
+)
+p_map30_aunz_2014 <- ggplot(map30) + ggtitle('aunz 2014  (map 30)')
+p_map30_aunz_2014
+
+p_map30_aunz_2014_png <- file.path(strain_fig_dir, 'map30_aunz_2014.png')
+png(file=p_map30_aunz_2014_png)
+p_map30_aunz_2014
+dev.off()
 
 
 #################### MAP 31 ####################
@@ -875,8 +2201,38 @@ agFill(map31)[ag_Sep2012_table15] <- '#ea5545'
 agFill(map31)[ag_Sep2013_table7_12] <- '#ef9b20'
 agFill(map31)[ag_Feb2014_table9_7] <- '#ede15b'
 agFill(map31)[ag_Sep2014_table8_14] <- '#87bc45'
-p_map31 <- ggplot(map31) + ggtitle('map 31')
+p_map31 <- ggplot(map31) + ggtitle('map 31 (Sep2012_table15, Sep2013_table7-12, Feb2014_table9-7, Sep2014_table8-14)')
+p_map31_png <- file.path(table_fig_dir, 'map31.png')
+png(file=p_map31_png)
 p_map31
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2014 #########
+agSize(map31) <- 5
+agFill(map31) <- 'grey50'
+ds_lss <- agNames(map31) %in% c('A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1')
+vs <- agNames(map31) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1')
+css <- agNames(map31) %in% c('A/Belgium/G0528/2013|2013-02-04|SIAT2', 'A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1', 'A/Belgium/G1067/2013|2013-03-25|SIAT2', 'A/Belgium/S0923/2013|2013-04-10|SIAT2')
+
+agSize(map31)[ds_lss] <- 8
+agFill(map31)[ds_lss] <- '#9fd600'
+agSize(map31)[vs] <- 8
+agFill(map31)[vs] <- '#ffa600'
+agSize(map31)[css] <- 8
+agFill(map31)[css] <- '#d900ba'
+ptDrawingOrder(map31) <- c(seq_len(numSera(map31)) + numAntigens(map31),
+    which(!agNames(map31) %in% c('A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1', 'A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1', 'A/Belgium/G1067/2013|2013-03-25|SIAT2', 'A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Belgium/S0923/2013|2013-04-10|SIAT2', 'A/Belgium/G0528/2013|2013-02-04|SIAT2')),
+    which(agNames(map31) %in% c('A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1', 'A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1', 'A/Belgium/G1067/2013|2013-03-25|SIAT2', 'A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Belgium/S0923/2013|2013-04-10|SIAT2', 'A/Belgium/G0528/2013|2013-02-04|SIAT2'))
+)
+p_map31_aunz_2014 <- ggplot(map31) + ggtitle('aunz 2014  (map 31)')
+p_map31_aunz_2014
+
+p_map31_aunz_2014_png <- file.path(strain_fig_dir, 'map31_aunz_2014.png')
+png(file=p_map31_aunz_2014_png)
+p_map31_aunz_2014
+dev.off()
 
 
 #################### MAP 32 ####################
@@ -904,8 +2260,39 @@ agFill(map32)[ag_Sep2012_table15] <- '#ea5545'
 agFill(map32)[ag_Sep2013_table7_12] <- '#ef9b20'
 agFill(map32)[ag_Feb2014_table9_2] <- '#ede15b'
 agFill(map32)[ag_Feb2014_table9_8] <- '#87bc45'
-p_map32 <- ggplot(map32) + ggtitle('map 32')
+p_map32 <- ggplot(map32) + ggtitle('map 32 (Sep2012_table15, Sep2013_table7-12, Feb2014_table9-2, Feb2014_table9-8)')
+p_map32_png <- file.path(table_fig_dir, 'map32.png')
+png(file=p_map32_png)
 p_map32
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2014 #########
+agSize(map32) <- 5
+agFill(map32) <- 'grey50'
+ds_lss <- agNames(map32) %in% c('A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1')
+vs <- agNames(map32) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1')
+css <- agNames(map32) %in% c('A/Belgium/G0528/2013|2013-02-04|SIAT2', 'A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1', 'A/Belgium/G1067/2013|2013-03-25|SIAT2', 'A/Belgium/S0923/2013|2013-04-10|SIAT2', 'A/Mauritius/571/2013|2013-07-03|MDCK2/SIAT1', 'A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1')
+
+agSize(map32)[ds_lss] <- 8
+agFill(map32)[ds_lss] <- '#9fd600'
+agSize(map32)[vs] <- 8
+agFill(map32)[vs] <- '#ffa600'
+agSize(map32)[css] <- 8
+agFill(map32)[css] <- '#d900ba'
+ptDrawingOrder(map32) <- c(seq_len(numSera(map32)) + numAntigens(map32),
+	which(!agNames(map32) %in% c('A/Serbia/NS-210/2013|2013-01-18|E5','A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1','A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1','A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1','A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1','A/Belgium/G1067/2013|2013-03-25|SIAT2','A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Mauritius/571/2013|2013-07-03|MDCK2/SIAT1','A/Belgium/S0923/2013|2013-04-10|SIAT2',
+	"A/Belgium/G0528/2013|2013-02-04|SIAT2")),
+	which(agNames(map32) %in% c('A/Serbia/NS-210/2013|2013-01-18|E5','A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1','A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1','A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1','A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1','A/Belgium/G1067/2013|2013-03-25|SIAT2','A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Mauritius/571/2013|2013-07-03|MDCK2/SIAT1','A/Belgium/S0923/2013|2013-04-10|SIAT2',	"A/Belgium/G0528/2013|2013-02-04|SIAT2"))
+)
+p_map32_aunz_2014 <- ggplot(map32) + ggtitle('aunz 2014  (map 32)')
+p_map32_aunz_2014
+
+p_map32_aunz_2014_png <- file.path(strain_fig_dir, 'map32_aunz_2014.png')
+png(file=p_map32_aunz_2014_png)
+p_map32_aunz_2014
+dev.off()
 
 
 #################### MAP 33 ####################
@@ -939,8 +2326,39 @@ agFill(map33)[ag_Sep2013_table7_7] <- '#ef9b20'
 agFill(map33)[ag_Feb2014_table9_7] <- '#ede15b'
 agFill(map33)[ag_Feb2014_table9_8] <- '#87bc45'
 agFill(map33)[ag_Sep2014_table8_14] <- '#27aeef'
-p_map33 <- ggplot(map33) + ggtitle('map 33')
+p_map33 <- ggplot(map33) + ggtitle('map 33 (Sep2012_table15, Sep2013_table7-7, Feb2014_table9-7, Feb2014_table9-8, Sep2014_table8-14)')
+p_map33_png <- file.path(table_fig_dir, 'map33.png')
+png(file=p_map33_png)
 p_map33
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2014 #########
+agSize(map33) <- 5
+agFill(map33) <- 'grey50'
+ds_lss <- agNames(map33) %in% c('A/Serbia/NS-200/2013|2013-01-14|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|SIAT3', 'A/Astrakhan/5/2013|2013-02-20|C1/SIAT1', 'A/Valladolid/95/2013|2013-03-14|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1')
+vs <- agNames(map33) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1')
+css <- agNames(map33) %in% c('A/England/104/2013|2013-01-09|MDCK2/SIAT1', 'A/Catalonia/2070282NS/2013|2013-01-22|SIAT2', 'A/Catalonia/5742S/2013|2013-01-23|SIAT2', 'A/Catalonia/2071057NS/2013|2013-01-24|SIAT2', 'A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1')
+
+agSize(map33)[ds_lss] <- 8
+agFill(map33)[ds_lss] <- '#9fd600'
+agSize(map33)[vs] <- 8
+agFill(map33)[vs] <- '#ffa600'
+agSize(map33)[css] <- 8
+agFill(map33)[css] <- '#d900ba'
+ptDrawingOrder(map33) <- c(seq_len(numSera(map33)) + numAntigens(map33),
+	which(!agNames(map33) %in% c('A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1','A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1','A/Serbia/NS-200/2013|2013-01-14|SIAT2','A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1','A/England/104/2013|2013-01-09|MDCK2/SIAT1','A/Astrakhan/5/2013|2013-02-20|C1/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Catalonia/5742S/2013|2013-01-23|SIAT2','A/Valladolid/95/2013|2013-03-14|SIAT2','A/Catalonia/2070282NS/2013|2013-01-22|SIAT2',
+	"A/Catalonia/2071057NS/2013|2013-01-24|SIAT2","A/Serbia/NS-210/2013|2013-01-18|SIAT3")),
+	which(agNames(map33) %in% c('A/Lisboa/147/2013|2013-12-15|SIAT3/SIAT1','A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1','A/Serbia/NS-200/2013|2013-01-14|SIAT2','A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1','A/England/104/2013|2013-01-09|MDCK2/SIAT1','A/Astrakhan/5/2013|2013-02-20|C1/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Catalonia/5742S/2013|2013-01-23|SIAT2','A/Valladolid/95/2013|2013-03-14|SIAT2','A/Catalonia/2070282NS/2013|2013-01-22|SIAT2',	"A/Catalonia/2071057NS/2013|2013-01-24|SIAT2","A/Serbia/NS-210/2013|2013-01-18|SIAT3"))
+)
+p_map33_aunz_2014 <- ggplot(map33) + ggtitle('aunz 2014  (map 33)')
+p_map33_aunz_2014
+
+p_map33_aunz_2014_png <- file.path(strain_fig_dir, 'map33_aunz_2014.png')
+png(file=p_map33_aunz_2014_png)
+p_map33_aunz_2014
+dev.off()
 
 
 #################### MAP 34 ####################
@@ -961,8 +2379,40 @@ ag_Sep2014_table8_18 <- agNames(map34) %in% c("A/Victoria/361/2011|2011-10-24|MD
 agFill(map34)[ag_Feb2015_table9_10] <- '#ea5545'
 agFill(map34)[ag_Feb2015_table9_4] <- '#ef9b20'
 agFill(map34)[ag_Sep2014_table8_18] <- '#ede15b'
-p_map34 <- ggplot(map34) + ggtitle('map 34')
+p_map34 <- ggplot(map34) + ggtitle('map 34 (Feb2015_table9-10, Feb2015_table9-4, Sep2014_table8-18)')
+p_map34_png <- file.path(table_fig_dir, 'map34.png')
+png(file=p_map34_png)
 p_map34
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2015 #########
+agSize(map34) <- 5
+agFill(map34) <- 'grey50'
+ds_lss <- agNames(map34) %in% c('A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1', 'A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1')
+vs <- agNames(map34) %in% c("A/Finland/428/2014|2014-02-17|MDCK1","A/Finland/428/2014|2014-02-17|SIAT1","A/Finland/437/2014|2014-03-24|MDCK1","A/Finland/437/2014|2014-03-24|SIAT1","A/Finland/438/2014|2014-04-03|MDCK1","A/Finland/438/2014|2014-04-03|SIAT1","A/Finland/439/2014|2014-04-23|MDCK1","A/Finland/439/2014|2014-04-23|SIAT1","A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3","A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123",
+	"A/North Carolina/13/2014|2014-04-15|SIAT2/SIAT1","A/Madagascar/2676/2014|2014-09-23|MDCK2/SIAT1","A/Madagascar/2735/2014|2014-09-29|MDCK2/SIAT1","A/Madagascar/2739/2014|2014-09-30|MDCK1/SIAT1")
+css <- agNames(map34) %in% c("A/Serbia/NS-210/2013|2013-01-18|E5/E1")
+
+agSize(map34)[ds_lss] <- 8
+agFill(map34)[ds_lss] <- '#9fd600'
+agSize(map34)[vs] <- 8
+agFill(map34)[vs] <- '#ffa600'
+agSize(map34)[css] <- 8
+agFill(map34)[css] <- '#d900ba'
+ptDrawingOrder(map34) <- c(seq_len(numSera(map34)) + numAntigens(map34),
+	which(!agNames(map34) %in% c('A/Finland/439/2014|2014-04-23|MDCK1','A/Finland/439/2014|2014-04-23|SIAT1','A/Madagascar/2735/2014|2014-09-29|MDCK2/SIAT1','A/Finland/428/2014|2014-02-17|SIAT1','A/Finland/438/2014|2014-04-03|SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3','A/Finland/438/2014|2014-04-03|MDCK1','A/Finland/437/2014|2014-03-24|SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/North Carolina/13/2014|2014-04-15|SIAT2/SIAT1',
+	"A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1","A/Madagascar/2676/2014|2014-09-23|MDCK2/SIAT1","A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123","A/Madagascar/2739/2014|2014-09-30|MDCK1/SIAT1","A/Finland/437/2014|2014-03-24|MDCK1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1","A/Finland/428/2014|2014-02-17|MDCK1")),
+	which(agNames(map34) %in% c('A/Finland/439/2014|2014-04-23|MDCK1','A/Finland/439/2014|2014-04-23|SIAT1','A/Madagascar/2735/2014|2014-09-29|MDCK2/SIAT1','A/Finland/428/2014|2014-02-17|SIAT1','A/Finland/438/2014|2014-04-03|SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3','A/Finland/438/2014|2014-04-03|MDCK1','A/Finland/437/2014|2014-03-24|SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/North Carolina/13/2014|2014-04-15|SIAT2/SIAT1',	"A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1","A/Madagascar/2676/2014|2014-09-23|MDCK2/SIAT1","A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123","A/Madagascar/2739/2014|2014-09-30|MDCK1/SIAT1","A/Finland/437/2014|2014-03-24|MDCK1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1","A/Finland/428/2014|2014-02-17|MDCK1"))
+)
+p_map34_aunz_2015 <- ggplot(map34) + ggtitle('aunz 2015  (map 34)')
+p_map34_aunz_2015
+
+p_map34_aunz_2015_png <- file.path(strain_fig_dir, 'map34_aunz_2015.png')
+png(file=p_map34_aunz_2015_png)
+p_map34_aunz_2015
+dev.off()
 
 
 #################### MAP 35 ####################
@@ -982,8 +2432,39 @@ ag_Sep2014_table8_19 <- agNames(map35) %in% c("A/Victoria/361/2011|2011-10-24|MD
 agFill(map35)[ag_Sep2015_table8_9] <- '#ea5545'
 agFill(map35)[ag_Feb2015_table9_10] <- '#ef9b20'
 agFill(map35)[ag_Sep2014_table8_19] <- '#ede15b'
-p_map35 <- ggplot(map35) + ggtitle('map 35')
+p_map35 <- ggplot(map35) + ggtitle('map 35 (Sep2015_table8-9, Feb2015_table9-10, Sep2014_table8-19)')
+p_map35_png <- file.path(table_fig_dir, 'map35.png')
+png(file=p_map35_png)
 p_map35
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2015 #########
+agSize(map35) <- 5
+agFill(map35) <- 'grey50'
+ds_lss <- agNames(map35) %in% c('A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2', 'A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2', 'A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1', 'A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1', 'A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1', 'A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3', 'A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2', 'A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2')
+vs <- agNames(map35) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123', 'A/North Carolina/13/2014|2014-04-15|SIAT2/SIAT1', 'A/Madagascar/2676/2014|2014-09-23|MDCK2/SIAT1', 'A/Madagascar/2735/2014|2014-09-29|MDCK2/SIAT1', 'A/Madagascar/2739/2014|2014-09-30|MDCK1/SIAT1')
+css <- agNames(map35) %in% c("A/Serbia/NS-210/2013|2013-01-18|E5/E1")
+
+agSize(map35)[ds_lss] <- 8
+agFill(map35)[ds_lss] <- '#9fd600'
+agSize(map35)[vs] <- 8
+agFill(map35)[vs] <- '#ffa600'
+agSize(map35)[css] <- 8
+agFill(map35)[css] <- '#d900ba'
+ptDrawingOrder(map35) <- c(seq_len(numSera(map35)) + numAntigens(map35),
+	which(!agNames(map35) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/North Carolina/13/2014|2014-04-15|SIAT2/SIAT1','A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2',
+	"A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2","A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Madagascar/2676/2014|2014-09-23|MDCK2/SIAT1","A/Madagascar/2735/2014|2014-09-29|MDCK2/SIAT1","A/Madagascar/2739/2014|2014-09-30|MDCK1/SIAT1")),
+	which(agNames(map35) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/North Carolina/13/2014|2014-04-15|SIAT2/SIAT1','A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2',	"A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2","A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Madagascar/2676/2014|2014-09-23|MDCK2/SIAT1","A/Madagascar/2735/2014|2014-09-29|MDCK2/SIAT1","A/Madagascar/2739/2014|2014-09-30|MDCK1/SIAT1"))
+)
+p_map35_aunz_2015 <- ggplot(map35) + ggtitle('aunz 2015  (map 35)')
+p_map35_aunz_2015
+
+p_map35_aunz_2015_png <- file.path(strain_fig_dir, 'map35_aunz_2015.png')
+png(file=p_map35_aunz_2015_png)
+p_map35_aunz_2015
+dev.off()
 
 
 #################### MAP 36 ####################
@@ -1004,8 +2485,39 @@ ag_Sep2014_table8_10 <- agNames(map36) %in% c("A/Victoria/361/2011|2011-10-24|MD
 agFill(map36)[ag_Sep2014_table8_19] <- '#ea5545'
 agFill(map36)[ag_Sep2014_table8_18] <- '#ef9b20'
 agFill(map36)[ag_Sep2014_table8_10] <- '#ede15b'
-p_map36 <- ggplot(map36) + ggtitle('map 36')
+p_map36 <- ggplot(map36) + ggtitle('map 36 (Sep2014_table8-19, Sep2014_table8-18, Sep2014_table8-10)')
+p_map36_png <- file.path(table_fig_dir, 'map36.png')
+png(file=p_map36_png)
 p_map36
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2015 #########
+agSize(map36) <- 5
+agFill(map36) <- 'grey50'
+ds_lss <- agNames(map36) %in% c('A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2', 'A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2')
+vs <- agNames(map36) %in% c('A/Finland/428/2014|2014-02-17|MDCK1', 'A/Finland/428/2014|2014-02-17|SIAT1', 'A/Finland/437/2014|2014-03-24|MDCK1', 'A/Finland/437/2014|2014-03-24|SIAT1', 'A/Finland/438/2014|2014-04-03|MDCK1', 'A/Finland/438/2014|2014-04-03|SIAT1', 'A/Finland/439/2014|2014-04-23|MDCK1', 'A/Finland/439/2014|2014-04-23|SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2')
+css <- agNames(map36) %in% c('A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1')
+
+agSize(map36)[ds_lss] <- 8
+agFill(map36)[ds_lss] <- '#9fd600'
+agSize(map36)[vs] <- 8
+agFill(map36)[vs] <- '#ffa600'
+agSize(map36)[css] <- 8
+agFill(map36)[css] <- '#d900ba'
+ptDrawingOrder(map36) <- c(seq_len(numSera(map36)) + numAntigens(map36),
+	which(!agNames(map36) %in% c('A/Finland/439/2014|2014-04-23|MDCK1','A/Finland/439/2014|2014-04-23|SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Finland/428/2014|2014-02-17|SIAT1','A/Finland/438/2014|2014-04-03|SIAT1','A/Finland/438/2014|2014-04-03|MDCK1','A/Finland/437/2014|2014-03-24|SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2',
+	"A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2","A/Finland/437/2014|2014-03-24|MDCK1","A/Finland/428/2014|2014-02-17|MDCK1")),
+	which(agNames(map36) %in% c('A/Finland/439/2014|2014-04-23|MDCK1','A/Finland/439/2014|2014-04-23|SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Finland/428/2014|2014-02-17|SIAT1','A/Finland/438/2014|2014-04-03|SIAT1','A/Finland/438/2014|2014-04-03|MDCK1','A/Finland/437/2014|2014-03-24|SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2',	"A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2","A/Finland/437/2014|2014-03-24|MDCK1","A/Finland/428/2014|2014-02-17|MDCK1"))
+)
+p_map36_aunz_2015 <- ggplot(map36) + ggtitle('aunz 2015  (map 36)')
+p_map36_aunz_2015
+
+p_map36_aunz_2015_png <- file.path(strain_fig_dir, 'map36_aunz_2015.png')
+png(file=p_map36_aunz_2015_png)
+p_map36_aunz_2015
+dev.off()
 
 
 #################### MAP 37 ####################
@@ -1029,8 +2541,38 @@ agFill(map37)[ag_Sep2017_table8_13] <- '#ea5545'
 agFill(map37)[ag_Sep2017_table8_12] <- '#ef9b20'
 agFill(map37)[ag_Sep2016_table8_6] <- '#ede15b'
 agFill(map37)[ag_Sep2016_table8_2] <- '#87bc45'
-p_map37 <- ggplot(map37) + ggtitle('map 37')
+p_map37 <- ggplot(map37) + ggtitle('map 37 (Sep2017_table8-13, Sep2017_table8-12, Sep2016_table8-6, Sep2016_table8-2)')
+p_map37_png <- file.path(table_fig_dir, 'map37.png')
+png(file=p_map37_png)
 p_map37
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2016 #########
+agSize(map37) <- 5
+agFill(map37) <- 'grey50'
+css_lss <- agNames(map37) %in% c('A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Jordan/4054/2015|*|SIAT1', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2')
+ds <- agNames(map37) %in% c('A/Dunajska Streda/232/2017|2017-01-24|MDCKx/SIAT1', 'A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1')
+vs <- agNames(map37) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')
+
+agSize(map37)[css_lss] <- 8
+agFill(map37)[css_lss] <- '#6d21b8'
+agSize(map37)[ds] <- 8
+agFill(map37)[ds] <- '#fcd74e'
+agSize(map37)[vs] <- 8
+agFill(map37)[vs] <- '#ffa600'
+ptDrawingOrder(map37) <- c(seq_len(numSera(map37)) + numAntigens(map37),
+    which(!agNames(map37) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2', 'A/Dunajska Streda/232/2017|2017-01-24|MDCKx/SIAT1', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')),
+    which(agNames(map37) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2', 'A/Dunajska Streda/232/2017|2017-01-24|MDCKx/SIAT1', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1'))
+)
+p_map37_aunz_2016 <- ggplot(map37) + ggtitle('aunz 2016  (map 37)')
+p_map37_aunz_2016
+
+p_map37_aunz_2016_png <- file.path(strain_fig_dir, 'map37_aunz_2016.png')
+png(file=p_map37_aunz_2016_png)
+p_map37_aunz_2016
+dev.off()
 
 
 #################### MAP 38 ####################
@@ -1049,8 +2591,38 @@ ag_Feb2017_table8_5 <- agNames(map38) %in% c("A/Samara/73/2013|2013-03-12|C1/SIA
 agFill(map38)[ag_Sep2017_table8_13] <- '#ea5545'
 agFill(map38)[ag_Feb2016_table9_3] <- '#ef9b20'
 agFill(map38)[ag_Feb2017_table8_5] <- '#ede15b'
-p_map38 <- ggplot(map38) + ggtitle('map 38')
+p_map38 <- ggplot(map38) + ggtitle('map 38 (Sep2017_table8-13, Feb2016_table9-3, Feb2017_table8-5)')
+p_map38_png <- file.path(table_fig_dir, 'map38.png')
+png(file=p_map38_png)
 p_map38
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2016 #########
+agSize(map38) <- 5
+agFill(map38) <- 'grey50'
+css_lss <- agNames(map38) %in% c('A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/England/333/2015|2015-09-04|MDCK2/SIAT1')
+ds <- agNames(map38) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1')
+vs <- agNames(map38) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')
+
+agSize(map38)[css_lss] <- 8
+agFill(map38)[css_lss] <- '#6d21b8'
+agSize(map38)[ds] <- 8
+agFill(map38)[ds] <- '#fcd74e'
+agSize(map38)[vs] <- 8
+agFill(map38)[vs] <- '#ffa600'
+ptDrawingOrder(map38) <- c(seq_len(numSera(map38)) + numAntigens(map38),
+    which(!agNames(map38) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')),
+    which(agNames(map38) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1'))
+)
+p_map38_aunz_2016 <- ggplot(map38) + ggtitle('aunz 2016  (map 38)')
+p_map38_aunz_2016
+
+p_map38_aunz_2016_png <- file.path(strain_fig_dir, 'map38_aunz_2016.png')
+png(file=p_map38_aunz_2016_png)
+p_map38_aunz_2016
+dev.off()
 
 
 #################### MAP 39 ####################
@@ -1072,8 +2644,38 @@ ag_Sep2016_table8_2 <- agNames(map39) %in% c("A/Samara/73/2013|2013-03-12|C1/SIA
 agFill(map39)[ag_Sep2017_table8_16] <- '#ea5545'
 agFill(map39)[ag_Sep2017_table8_2] <- '#ef9b20'
 agFill(map39)[ag_Sep2016_table8_2] <- '#ede15b'
-p_map39 <- ggplot(map39) + ggtitle('map 39')
+p_map39 <- ggplot(map39) + ggtitle('map 39 (Sep2017_table8-16, Sep2017_table8-2, Sep2016_table8-2)')
+p_map39_png <- file.path(table_fig_dir, 'map39.png')
+png(file=p_map39_png)
 p_map39
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2016 #########
+agSize(map39) <- 5
+agFill(map39) <- 'grey50'
+css_lss <- agNames(map39) %in% c('A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Jordan/4054/2015|*|SIAT1')
+ds <- agNames(map39) %in% c("A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1")
+vs <- agNames(map39) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')
+
+agSize(map39)[css_lss] <- 8
+agFill(map39)[css_lss] <- '#6d21b8'
+agSize(map39)[ds] <- 8
+agFill(map39)[ds] <- '#fcd74e'
+agSize(map39)[vs] <- 8
+agFill(map39)[vs] <- '#ffa600'
+ptDrawingOrder(map39) <- c(seq_len(numSera(map39)) + numAntigens(map39),
+    which(!agNames(map39) %in% c('A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')),
+    which(agNames(map39) %in% c('A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1'))
+)
+p_map39_aunz_2016 <- ggplot(map39) + ggtitle('aunz 2016  (map 39)')
+p_map39_aunz_2016
+
+p_map39_aunz_2016_png <- file.path(strain_fig_dir, 'map39_aunz_2016.png')
+png(file=p_map39_aunz_2016_png)
+p_map39_aunz_2016
+dev.off()
 
 
 #################### MAP 40 ####################
@@ -1094,8 +2696,38 @@ ag_Sep2016_table8_2 <- agNames(map40) %in% c("A/Samara/73/2013|2013-03-12|C1/SIA
 agFill(map40)[ag_Sep2017_table8_13] <- '#ea5545'
 agFill(map40)[ag_Sep2017_table8_2] <- '#ef9b20'
 agFill(map40)[ag_Sep2016_table8_2] <- '#ede15b'
-p_map40 <- ggplot(map40) + ggtitle('map 40')
+p_map40 <- ggplot(map40) + ggtitle('map 40 (Sep2017_table8-13, Sep2017_table8-2, Sep2016_table8-2)')
+p_map40_png <- file.path(table_fig_dir, 'map40.png')
+png(file=p_map40_png)
 p_map40
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2016 #########
+agSize(map40) <- 5
+agFill(map40) <- 'grey50'
+css_lss <- agNames(map40) %in% c('A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Jordan/4054/2015|*|SIAT1')
+ds <- agNames(map40) %in% c('A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1', 'A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1')
+vs <- agNames(map40) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')
+
+agSize(map40)[css_lss] <- 8
+agFill(map40)[css_lss] <- '#6d21b8'
+agSize(map40)[ds] <- 8
+agFill(map40)[ds] <- '#fcd74e'
+agSize(map40)[vs] <- 8
+agFill(map40)[vs] <- '#ffa600'
+ptDrawingOrder(map40) <- c(seq_len(numSera(map40)) + numAntigens(map40),
+    which(!agNames(map40) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')),
+    which(agNames(map40) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1'))
+)
+p_map40_aunz_2016 <- ggplot(map40) + ggtitle('aunz 2016  (map 40)')
+p_map40_aunz_2016
+
+p_map40_aunz_2016_png <- file.path(strain_fig_dir, 'map40_aunz_2016.png')
+png(file=p_map40_aunz_2016_png)
+p_map40_aunz_2016
+dev.off()
 
 
 #################### MAP 41 ####################
@@ -1115,8 +2747,38 @@ ag_Feb2016_table9_3 <- agNames(map41) %in% c("A/Samara/73/2013|2013-03-12|C1/SIA
 agFill(map41)[ag_Sep2017_table8_13] <- '#ea5545'
 agFill(map41)[ag_Sep2017_table8_2] <- '#ef9b20'
 agFill(map41)[ag_Feb2016_table9_3] <- '#ede15b'
-p_map41 <- ggplot(map41) + ggtitle('map 41')
+p_map41 <- ggplot(map41) + ggtitle('map 41 (Sep2017_table8-13, Sep2017_table8-2, Feb2016_table9-3)')
+p_map41_png <- file.path(table_fig_dir, 'map41.png')
+png(file=p_map41_png)
 p_map41
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2016 #########
+agSize(map41) <- 5
+agFill(map41) <- 'grey50'
+css_lss <- agNames(map41) %in% c('A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/England/333/2015|2015-09-04|MDCK2/SIAT1')
+ds <- agNames(map41) %in% c('A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1', 'A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1')
+vs <- agNames(map41) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')
+
+agSize(map41)[css_lss] <- 8
+agFill(map41)[css_lss] <- '#6d21b8'
+agSize(map41)[ds] <- 8
+agFill(map41)[ds] <- '#fcd74e'
+agSize(map41)[vs] <- 8
+agFill(map41)[vs] <- '#ffa600'
+ptDrawingOrder(map41) <- c(seq_len(numSera(map41)) + numAntigens(map41),
+    which(!agNames(map41) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')),
+    which(agNames(map41) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Czech Republic/169/2016|2016-12-14|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1'))
+)
+p_map41_aunz_2016 <- ggplot(map41) + ggtitle('aunz 2016  (map 41)')
+p_map41_aunz_2016
+
+p_map41_aunz_2016_png <- file.path(strain_fig_dir, 'map41_aunz_2016.png')
+png(file=p_map41_aunz_2016_png)
+p_map41_aunz_2016
+dev.off()
 
 
 #################### MAP 42 ####################
@@ -1141,8 +2803,41 @@ agFill(map42)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map42)[ag_Sep2017_table8_13] <- '#ef9b20'
 agFill(map42)[ag_Sep2017_table8_16] <- '#ede15b'
 agFill(map42)[ag_Feb2018_table8_3] <- '#87bc45'
-p_map42 <- ggplot(map42) + ggtitle('map 42')
+p_map42 <- ggplot(map42) + ggtitle('map 42 (Sep2016_table8-7, Sep2017_table8-13, Sep2017_table8-16, Feb2018_table8-3)')
+p_map42_png <- file.path(table_fig_dir, 'map42.png')
+png(file=p_map42_png)
 p_map42
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2017 #########
+agSize(map42) <- 5
+agFill(map42) <- 'grey50'
+ds_lss <- agNames(map42) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map42) %in% c("A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1")
+vs <- agNames(map42) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3')
+css <- agNames(map42) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1')
+
+agSize(map42)[ds_lss] <- 8
+agFill(map42)[ds_lss] <- '#9fd600'
+agSize(map42)[ds] <- 8
+agFill(map42)[ds] <- '#fcd74e'
+agSize(map42)[vs] <- 8
+agFill(map42)[vs] <- '#ffa600'
+agSize(map42)[css] <- 8
+agFill(map42)[css] <- '#d900ba'
+ptDrawingOrder(map42) <- c(seq_len(numSera(map42)) + numAntigens(map42),
+    which(!agNames(map42) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')),
+    which(agNames(map42) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1'))
+)
+p_map42_aunz_2017 <- ggplot(map42) + ggtitle('aunz 2017  (map 42)')
+p_map42_aunz_2017
+
+p_map42_aunz_2017_png <- file.path(strain_fig_dir, 'map42_aunz_2017.png')
+png(file=p_map42_aunz_2017_png)
+p_map42_aunz_2017
+dev.off()
 
 
 #################### MAP 43 ####################
@@ -1165,8 +2860,41 @@ ag_Sep2017_table8_16 <- agNames(map43) %in% c("A/Norway/4849/2016|2016-12-02|E7"
 agFill(map43)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map43)[ag_Sep2017_table8_13] <- '#ef9b20'
 agFill(map43)[ag_Sep2017_table8_16] <- '#ede15b'
-p_map43 <- ggplot(map43) + ggtitle('map 43')
+p_map43 <- ggplot(map43) + ggtitle('map 43 (Sep2016_table8-7, Sep2017_table8-13, Sep2017_table8-16)')
+p_map43_png <- file.path(table_fig_dir, 'map43.png')
+png(file=p_map43_png)
 p_map43
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2017 #########
+agSize(map43) <- 5
+agFill(map43) <- 'grey50'
+ds_lss <- agNames(map43) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map43) %in% c("A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1")
+vs <- agNames(map43) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')
+css <- agNames(map43) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1')
+
+agSize(map43)[ds_lss] <- 8
+agFill(map43)[ds_lss] <- '#9fd600'
+agSize(map43)[ds] <- 8
+agFill(map43)[ds] <- '#fcd74e'
+agSize(map43)[vs] <- 8
+agFill(map43)[vs] <- '#ffa600'
+agSize(map43)[css] <- 8
+agFill(map43)[css] <- '#d900ba'
+ptDrawingOrder(map43) <- c(seq_len(numSera(map43)) + numAntigens(map43),
+    which(!agNames(map43) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')),
+    which(agNames(map43) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1'))
+)
+p_map43_aunz_2017 <- ggplot(map43) + ggtitle('aunz 2017  (map 43)')
+p_map43_aunz_2017
+
+p_map43_aunz_2017_png <- file.path(strain_fig_dir, 'map43_aunz_2017.png')
+png(file=p_map43_aunz_2017_png)
+p_map43_aunz_2017
+dev.off()
 
 
 #################### MAP 44 ####################
@@ -1188,8 +2916,41 @@ agFill(map44)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map44)[ag_Sep2017_table8_13] <- '#ef9b20'
 agFill(map44)[ag_Sep2017_table8_12] <- '#ede15b'
 agFill(map44)[ag_Feb2018_table8_3] <- '#87bc45'
-p_map44 <- ggplot(map44) + ggtitle('map 44')
+p_map44 <- ggplot(map44) + ggtitle('map 44 (Sep2016_table8-7, Sep2017_table8-13, Sep2017_table8-12, Feb2018_table8-3)')
+p_map44_png <- file.path(table_fig_dir, 'map44.png')
+png(file=p_map44_png)
 p_map44
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2017 #########
+agSize(map44) <- 5
+agFill(map44) <- 'grey50'
+ds_lss <- agNames(map44) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map44) %in% c("A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1")
+vs <- agNames(map44) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3')
+css <- agNames(map44) %in% c('A/Dunajska Streda/232/2017|2017-01-24|MDCKx/SIAT1', 'A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1')
+
+agSize(map44)[ds_lss] <- 8
+agFill(map44)[ds_lss] <- '#9fd600'
+agSize(map44)[ds] <- 8
+agFill(map44)[ds] <- '#fcd74e'
+agSize(map44)[vs] <- 8
+agFill(map44)[vs] <- '#ffa600'
+agSize(map44)[css] <- 8
+agFill(map44)[css] <- '#d900ba'
+ptDrawingOrder(map44) <- c(seq_len(numSera(map44)) + numAntigens(map44),
+    which(!agNames(map44) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Dunajska Streda/232/2017|2017-01-24|MDCKx/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')),
+    which(agNames(map44) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Dunajska Streda/232/2017|2017-01-24|MDCKx/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1'))
+)
+p_map44_aunz_2017 <- ggplot(map44) + ggtitle('aunz 2017  (map 44)')
+p_map44_aunz_2017
+
+p_map44_aunz_2017_png <- file.path(strain_fig_dir, 'map44_aunz_2017.png')
+png(file=p_map44_aunz_2017_png)
+p_map44_aunz_2017
+dev.off()
 
 
 #################### MAP 45 ####################
@@ -1208,8 +2969,41 @@ ag_Feb2018_table8_3 <- agNames(map45) %in% c('A/Hong Kong/4801/2014|2014-02-26|M
 agFill(map45)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map45)[ag_Sep2017_table8_13] <- '#ef9b20'
 agFill(map45)[ag_Feb2018_table8_3] <- '#ede15b'
-p_map45 <- ggplot(map45) + ggtitle('map 45')
+p_map45 <- ggplot(map45) + ggtitle('map 45 (Sep2016_table8-7, Sep2017_table8-13, Feb2018_table8-3)')
+p_map45_png <- file.path(table_fig_dir, 'map45.png')
+png(file=p_map45_png)
 p_map45
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2017 #########
+agSize(map45) <- 5
+agFill(map45) <- 'grey50'
+ds_lss <- agNames(map45) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map45) %in% c("A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1")
+vs <- agNames(map45) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3')
+css <- agNames(map45) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1')
+
+agSize(map45)[ds_lss] <- 8
+agFill(map45)[ds_lss] <- '#9fd600'
+agSize(map45)[ds] <- 8
+agFill(map45)[ds] <- '#fcd74e'
+agSize(map45)[vs] <- 8
+agFill(map45)[vs] <- '#ffa600'
+agSize(map45)[css] <- 8
+agFill(map45)[css] <- '#d900ba'
+ptDrawingOrder(map45) <- c(seq_len(numSera(map45)) + numAntigens(map45),
+    which(!agNames(map45) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')),
+    which(agNames(map45) %in% c('A/Piestany/80/2016|2016-12-12|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK3', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Ukraine/7767/2017|2017-01-17|C2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Zaporizza/157/2017|2017-01-01|MDCK2/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1'))
+)
+p_map45_aunz_2017 <- ggplot(map45) + ggtitle('aunz 2017  (map 45)')
+p_map45_aunz_2017
+
+p_map45_aunz_2017_png <- file.path(strain_fig_dir, 'map45_aunz_2017.png')
+png(file=p_map45_aunz_2017_png)
+p_map45_aunz_2017
+dev.off()
 
 
 #################### MAP 46 ####################
@@ -1228,8 +3022,38 @@ ag_Sep2017_table8_20 <- agNames(map46) %in% c('A/Hong Kong/5738/2014|2014-04-30|
 agFill(map46)[ag_Sep2018_table8_5] <- '#ea5545'
 agFill(map46)[ag_Sep2017_table8_16] <- '#ef9b20'
 agFill(map46)[ag_Sep2017_table8_20] <- '#ede15b'
-p_map46 <- ggplot(map46) + ggtitle('map 46')
+p_map46 <- ggplot(map46) + ggtitle('map 46 (Sep2018_table8-5, Sep2017_table8-16, Sep2017_table8-20)')
+p_map46_png <- file.path(table_fig_dir, 'map46.png')
+png(file=p_map46_png)
 p_map46
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2018 #########
+agSize(map46) <- 5
+agFill(map46) <- 'grey50'
+ds_lss <- agNames(map46) %in% c('A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2')
+vs <- agNames(map46) %in% c("A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1")
+css <- agNames(map46) %in% c("A/Mauritius/1115/2017|2017-06-12|MDCK2/SIAT3")
+
+agSize(map46)[ds_lss] <- 8
+agFill(map46)[ds_lss] <- '#9fd600'
+agSize(map46)[vs] <- 8
+agFill(map46)[vs] <- '#ffa600'
+agSize(map46)[css] <- 8
+agFill(map46)[css] <- '#d900ba'
+ptDrawingOrder(map46) <- c(seq_len(numSera(map46)) + numAntigens(map46),
+    which(!agNames(map46) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Mauritius/1115/2017|2017-06-12|MDCK2/SIAT3', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2')),
+    which(agNames(map46) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Mauritius/1115/2017|2017-06-12|MDCK2/SIAT3', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2'))
+)
+p_map46_aunz_2018 <- ggplot(map46) + ggtitle('aunz 2018  (map 46)')
+p_map46_aunz_2018
+
+p_map46_aunz_2018_png <- file.path(strain_fig_dir, 'map46_aunz_2018.png')
+png(file=p_map46_aunz_2018_png)
+p_map46_aunz_2018
+dev.off()
 
 
 #################### MAP 47 ####################
@@ -1249,8 +3073,38 @@ ag_Sep2017_table8_16 <- agNames(map47) %in% c("A/Hong Kong/4801/2014|2014-02-26|
 agFill(map47)[ag_Sep2018_table8_5] <- '#ea5545'
 agFill(map47)[ag_Feb2018_table8_9] <- '#ef9b20'
 agFill(map47)[ag_Sep2017_table8_16] <- '#ede15b'
-p_map47 <- ggplot(map47) + ggtitle('map 47')
+p_map47 <- ggplot(map47) + ggtitle('map 47 (Sep2018_table8-5, Feb2018_table8-9, Sep2017_table8-16)')
+p_map47_png <- file.path(table_fig_dir, 'map47.png')
+png(file=p_map47_png)
 p_map47
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2018 #########
+agSize(map47) <- 5
+agFill(map47) <- 'grey50'
+ds_lss <- agNames(map47) %in% c('A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2')
+vs <- agNames(map47) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1')
+css <- agNames(map47) %in% c("A/Mauritius/1115/2017|2017-06-12|MDCK2/SIAT3")
+
+agSize(map47)[ds_lss] <- 8
+agFill(map47)[ds_lss] <- '#9fd600'
+agSize(map47)[vs] <- 8
+agFill(map47)[vs] <- '#ffa600'
+agSize(map47)[css] <- 8
+agFill(map47)[css] <- '#d900ba'
+ptDrawingOrder(map47) <- c(seq_len(numSera(map47)) + numAntigens(map47),
+    which(!agNames(map47) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Mauritius/1115/2017|2017-06-12|MDCK2/SIAT3', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2')),
+    which(agNames(map47) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Mauritius/1115/2017|2017-06-12|MDCK2/SIAT3', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2'))
+)
+p_map47_aunz_2018 <- ggplot(map47) + ggtitle('aunz 2018  (map 47)')
+p_map47_aunz_2018
+
+p_map47_aunz_2018_png <- file.path(strain_fig_dir, 'map47_aunz_2018.png')
+png(file=p_map47_aunz_2018_png)
+p_map47_aunz_2018
+dev.off()
 
 
 #################### MAP 48 ####################
@@ -1287,8 +3141,41 @@ agFill(map48)[ag_Feb2018_table8_9] <- '#87bc45'
 agFill(map48)[ag_Feb2017_table8_5] <- '#27aeef'
 agFill(map48)[ag_Sep2017_table21] <- '#b33dc6'
 agFill(map48)[ag_Sep2017_table8_16] <- '#4e00ff'
-p_map48 <- ggplot(map48) + ggtitle('map 48')
+p_map48 <- ggplot(map48) + ggtitle('map 48 (Feb2020_table7-11, Sep2019_table8-3, Feb2019_table8-9, Feb2018_table8-9, Feb2017_table8-5, Sep2017_table21, Sep2017_table8-16)')
+p_map48_png <- file.path(table_fig_dir, 'map48.png')
+png(file=p_map48_png)
 p_map48
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2019 #########
+agSize(map48) <- 5
+agFill(map48) <- 'grey50'
+ds <- agNames(map48) %in% c("A/Athens.GR/25/2020|2020-01-07|MDCK1/SIAT1")
+vs <- agNames(map48) %in% c('A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3')
+css <- agNames(map48) %in% c("A/Linkoping/5/2016|2016-12-03|MDCK1/SIAT1")
+lss <- agNames(map48) %in% c("A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1")
+
+agSize(map48)[ds] <- 8
+agFill(map48)[ds] <- '#fcd74e'
+agSize(map48)[vs] <- 8
+agFill(map48)[vs] <- '#ffa600'
+agSize(map48)[css] <- 8
+agFill(map48)[css] <- '#d900ba'
+agSize(map48)[lss] <- 8
+agFill(map48)[lss] <- '#0051ff'
+ptDrawingOrder(map48) <- c(seq_len(numSera(map48)) + numAntigens(map48),
+    which(!agNames(map48) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Linkoping/5/2016|2016-12-03|MDCK1/SIAT1', 'A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1', 'A/Athens.GR/25/2020|2020-01-07|MDCK1/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1')),
+    which(agNames(map48) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Linkoping/5/2016|2016-12-03|MDCK1/SIAT1', 'A/Hong Kong/2283/2017|2017-05-23|Cx/SIAT1', 'A/Athens.GR/25/2020|2020-01-07|MDCK1/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1'))
+)
+p_map48_aunz_2019 <- ggplot(map48) + ggtitle('aunz 2019  (map 48)')
+p_map48_aunz_2019
+
+p_map48_aunz_2019_png <- file.path(strain_fig_dir, 'map48_aunz_2019.png')
+png(file=p_map48_aunz_2019_png)
+p_map48_aunz_2019
+dev.off()
 
 
 #################### MAP 49 ####################
@@ -1310,8 +3197,41 @@ agFill(map49)[ag_Feb2021_table7_2] <- '#ea5545'
 agFill(map49)[ag_Sep2019_table8_1] <- '#ef9b20'
 agFill(map49)[ag_Sep2020_table7_2] <- '#ede15b'
 agFill(map49)[ag_Sep2019_table8_18] <- '#87bc45'
-p_map49 <- ggplot(map49) + ggtitle('map 49')
+p_map49 <- ggplot(map49) + ggtitle('map 49 (Feb2021_table7-2, Sep2019_table8-1, Sep2020_table7-2, Sep2019_table8-18)')
+p_map49_png <- file.path(table_fig_dir, 'map49.png')
+png(file=p_map49_png)
 p_map49
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2020 #########
+agSize(map49) <- 5
+agFill(map49) <- 'grey50'
+ds <- agNames(map49) %in% c('A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1')
+vs <- agNames(map49) %in% c("A/St. Petersburg/1092V/2019|2019-05-05|MDCK1/SIAT1")
+css <- agNames(map49) %in% c('A/Pays de Loire/040/2019|2019-01-04|SIAT1', 'A/Iasi/239836/2019|2019-01-09|SIAT1')
+lss <- agNames(map49) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4')
+
+agSize(map49)[ds] <- 8
+agFill(map49)[ds] <- '#fcd74e'
+agSize(map49)[vs] <- 8
+agFill(map49)[vs] <- '#ffa600'
+agSize(map49)[css] <- 8
+agFill(map49)[css] <- '#d900ba'
+agSize(map49)[lss] <- 8
+agFill(map49)[lss] <- '#0051ff'
+ptDrawingOrder(map49) <- c(seq_len(numSera(map49)) + numAntigens(map49),
+    which(!agNames(map49) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Pays de Loire/040/2019|2019-01-04|SIAT1', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/St. Petersburg/1092V/2019|2019-05-05|MDCK1/SIAT1', 'A/Iasi/239836/2019|2019-01-09|SIAT1', 'A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1')),
+    which(agNames(map49) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Pays de Loire/040/2019|2019-01-04|SIAT1', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/St. Petersburg/1092V/2019|2019-05-05|MDCK1/SIAT1', 'A/Iasi/239836/2019|2019-01-09|SIAT1', 'A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1'))
+)
+p_map49_aunz_2020 <- ggplot(map49) + ggtitle('aunz 2020  (map 49)')
+p_map49_aunz_2020
+
+p_map49_aunz_2020_png <- file.path(strain_fig_dir, 'map49_aunz_2020.png')
+png(file=p_map49_aunz_2020_png)
+p_map49_aunz_2020
+dev.off()
 
 
 #################### MAP 50 ####################
@@ -1331,8 +3251,41 @@ agFill(map50)[ag_Feb2021_table7_2] <- '#ea5545'
 agFill(map50)[ag_Sep2019_table8_14] <- '#ef9b20'
 agFill(map50)[ag_Sep2020_table7_1] <- '#ede15b'
 agFill(map50)[ag_Feb2019_table8_11] <- '#87bc45'
-p_map50 <- ggplot(map50) + ggtitle('map 50')
+p_map50 <- ggplot(map50) + ggtitle('map 50 (Feb2021_table7-2, Sep2019_table8-14, Sep2020_table7-1, Feb2019_table8-11)')
+p_map50_png <- file.path(table_fig_dir, 'map50.png')
+png(file=p_map50_png)
 p_map50
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2020 #########
+agSize(map50) <- 5
+agFill(map50) <- 'grey50'
+ds <- agNames(map50) %in% c('A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1')
+vs <- agNames(map50) %in% c("A/West Kazakhstan/463/2019|2019-03-05|MDCKx/SIAT1")
+css <- agNames(map50) %in% c("A/Switzerland/293/2018|2018-11-01|MDCK1/SIAT3")
+lss <- agNames(map50) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4')
+
+agSize(map50)[ds] <- 8
+agFill(map50)[ds] <- '#fcd74e'
+agSize(map50)[vs] <- 8
+agFill(map50)[vs] <- '#ffa600'
+agSize(map50)[css] <- 8
+agFill(map50)[css] <- '#d900ba'
+agSize(map50)[lss] <- 8
+agFill(map50)[lss] <- '#0051ff'
+ptDrawingOrder(map50) <- c(seq_len(numSera(map50)) + numAntigens(map50),
+    which(!agNames(map50) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/West Kazakhstan/463/2019|2019-03-05|MDCKx/SIAT1', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Switzerland/293/2018|2018-11-01|MDCK1/SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1')),
+    which(agNames(map50) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/West Kazakhstan/463/2019|2019-03-05|MDCKx/SIAT1', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Switzerland/293/2018|2018-11-01|MDCK1/SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1'))
+)
+p_map50_aunz_2020 <- ggplot(map50) + ggtitle('aunz 2020  (map 50)')
+p_map50_aunz_2020
+
+p_map50_aunz_2020_png <- file.path(strain_fig_dir, 'map50_aunz_2020.png')
+png(file=p_map50_aunz_2020_png)
+p_map50_aunz_2020
+dev.off()
 
 
 #################### MAP 51 ####################
@@ -1355,8 +3308,41 @@ agFill(map51)[ag_Sep2020_table7_7] <- '#ea5545'
 agFill(map51)[ag_Sep2019_table8_19] <- '#ef9b20'
 agFill(map51)[ag_Sep2019_table8_18] <- '#ede15b'
 agFill(map51)[ag_Sep2019_table8_16] <- '#87bc45'
-p_map51 <- ggplot(map51) + ggtitle('map 51')
+p_map51 <- ggplot(map51) + ggtitle('map 51 (Sep2020_table7-7, Sep2019_table8-19, Sep2019_table8-18, Sep2019_table8-16)')
+p_map51_png <- file.path(table_fig_dir, 'map51.png')
+png(file=p_map51_png)
 p_map51
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2020 #########
+agSize(map51) <- 5
+agFill(map51) <- 'grey50'
+ds <- agNames(map51) %in% c("A/Finland/183/2020|2020-03-02|SIAT1/SIAT1")
+vs <- agNames(map51) %in% c("A/St. Petersburg/1092V/2019|2019-05-05|MDCK1/SIAT1")
+css <- agNames(map51) %in% c("A/Oman/4262/2019|2019-06-25|SIAT1/SIAT1")
+lss <- agNames(map51) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1', 'A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1', 'A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4')
+
+agSize(map51)[ds] <- 8
+agFill(map51)[ds] <- '#fcd74e'
+agSize(map51)[vs] <- 8
+agFill(map51)[vs] <- '#ffa600'
+agSize(map51)[css] <- 8
+agFill(map51)[css] <- '#d900ba'
+agSize(map51)[lss] <- 8
+agFill(map51)[lss] <- '#0051ff'
+ptDrawingOrder(map51) <- c(seq_len(numSera(map51)) + numAntigens(map51),
+    which(!agNames(map51) %in% c('A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4', 'A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1', 'A/Finland/183/2020|2020-03-02|SIAT1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1', 'A/St. Petersburg/1092V/2019|2019-05-05|MDCK1/SIAT1', 'A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1', 'A/Oman/4262/2019|2019-06-25|SIAT1/SIAT1')),
+    which(agNames(map51) %in% c('A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4', 'A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1', 'A/Finland/183/2020|2020-03-02|SIAT1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1', 'A/St. Petersburg/1092V/2019|2019-05-05|MDCK1/SIAT1', 'A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1', 'A/Oman/4262/2019|2019-06-25|SIAT1/SIAT1'))
+)
+p_map51_aunz_2020 <- ggplot(map51) + ggtitle('aunz 2020  (map 51)')
+p_map51_aunz_2020
+
+p_map51_aunz_2020_png <- file.path(strain_fig_dir, 'map51_aunz_2020.png')
+png(file=p_map51_aunz_2020_png)
+p_map51_aunz_2020
+dev.off()
 
 
 #################### MAP 52 ####################
@@ -1375,8 +3361,41 @@ ag_Feb2022_table9_1 <- agNames(map52) %in% c("A/Cambodia/925256/2020|2020-09-25|
 agFill(map52)[ag_Feb2021_table7_2] <- '#ea5545'
 agFill(map52)[ag_Sep2021_table7_4] <- '#ef9b20'
 agFill(map52)[ag_Feb2022_table9_1] <- '#ede15b'
-p_map52 <- ggplot(map52) + ggtitle('map 52')
+p_map52 <- ggplot(map52) + ggtitle('map 52 (Feb2021_table7-2, Sep2021_table7-4, Feb2022_table9-1)')
+p_map52_png <- file.path(table_fig_dir, 'map52.png')
+png(file=p_map52_png)
 p_map52
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2021 #########
+agSize(map52) <- 5
+agFill(map52) <- 'grey50'
+ds <- agNames(map52) %in% c("A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0")
+vs <- agNames(map52) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3')
+css <- agNames(map52) %in% c("A/Cambodia/923251/2020|2020-09-22|SIAT2")
+lss <- agNames(map52) %in% c('A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1')
+
+agSize(map52)[ds] <- 8
+agFill(map52)[ds] <- '#fcd74e'
+agSize(map52)[vs] <- 8
+agFill(map52)[vs] <- '#ffa600'
+agSize(map52)[css] <- 8
+agFill(map52)[css] <- '#d900ba'
+agSize(map52)[lss] <- 8
+agFill(map52)[lss] <- '#0051ff'
+ptDrawingOrder(map52) <- c(seq_len(numSera(map52)) + numAntigens(map52),
+    which(!agNames(map52) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0', 'A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1')),
+    which(agNames(map52) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0', 'A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1'))
+)
+p_map52_aunz_2021 <- ggplot(map52) + ggtitle('aunz 2021  (map 52)')
+p_map52_aunz_2021
+
+p_map52_aunz_2021_png <- file.path(strain_fig_dir, 'map52_aunz_2021.png')
+png(file=p_map52_aunz_2021_png)
+p_map52_aunz_2021
+dev.off()
 
 
 #################### MAP 53 ####################
@@ -1395,8 +3414,41 @@ ag_Feb2022_table9_1 <- agNames(map53) %in% c("A/Cambodia/925256/2020|2020-09-25|
 agFill(map53)[ag_Feb2021_table7_2] <- '#ea5545'
 agFill(map53)[ag_Sep2021_table7_7] <- '#ef9b20'
 agFill(map53)[ag_Feb2022_table9_1] <- '#ede15b'
-p_map53 <- ggplot(map53) + ggtitle('map 53')
+p_map53 <- ggplot(map53) + ggtitle('map 53 (Feb2021_table7-2, Sep2021_table7-7, Feb2022_table9-1)')
+p_map53_png <- file.path(table_fig_dir, 'map53.png')
+png(file=p_map53_png)
 p_map53
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2021 #########
+agSize(map53) <- 5
+agFill(map53) <- 'grey50'
+ds <- agNames(map53) %in% c('A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1', 'A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0')
+vs <- agNames(map53) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4')
+css <- agNames(map53) %in% c("A/Cambodia/923251/2020|2020-09-22|SIAT2")
+lss <- agNames(map53) %in% c('A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1')
+
+agSize(map53)[ds] <- 8
+agFill(map53)[ds] <- '#fcd74e'
+agSize(map53)[vs] <- 8
+agFill(map53)[vs] <- '#ffa600'
+agSize(map53)[css] <- 8
+agFill(map53)[css] <- '#d900ba'
+agSize(map53)[lss] <- 8
+agFill(map53)[lss] <- '#0051ff'
+ptDrawingOrder(map53) <- c(seq_len(numSera(map53)) + numAntigens(map53),
+    which(!agNames(map53) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1', 'A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0', 'A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1')),
+    which(agNames(map53) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1', 'A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0', 'A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1'))
+)
+p_map53_aunz_2021 <- ggplot(map53) + ggtitle('aunz 2021  (map 53)')
+p_map53_aunz_2021
+
+p_map53_aunz_2021_png <- file.path(strain_fig_dir, 'map53_aunz_2021.png')
+png(file=p_map53_aunz_2021_png)
+p_map53_aunz_2021
+dev.off()
 
 
 #################### MAP 54 ####################
@@ -1421,8 +3473,41 @@ agFill(map54)[ag_Feb2021_table7_2] <- '#ea5545'
 agFill(map54)[ag_Sep2021_table7_7] <- '#ef9b20'
 agFill(map54)[ag_Sep2022_table10_6] <- '#ede15b'
 agFill(map54)[ag_Sep2022_table10_20] <- '#87bc45'
-p_map54 <- ggplot(map54) + ggtitle('map 54')
+p_map54 <- ggplot(map54) + ggtitle('map 54 (Feb2021_table7-2, Sep2021_table7-7, Sep2022_table10-6, Sep2022_table10-20)')
+p_map54_png <- file.path(table_fig_dir, 'map54.png')
+png(file=p_map54_png)
 p_map54
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2021 #########
+agSize(map54) <- 5
+agFill(map54) <- 'grey50'
+ds <- agNames(map54) %in% c('A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1', 'A/Saudi-Arabia/6/2021|2021-12-05|SIAT1')
+vs <- agNames(map54) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4')
+css <- agNames(map54) %in% c("A/Cambodia/923251/2020|2020-09-22|SIAT2")
+lss <- agNames(map54) %in% c('A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1')
+
+agSize(map54)[ds] <- 8
+agFill(map54)[ds] <- '#fcd74e'
+agSize(map54)[vs] <- 8
+agFill(map54)[vs] <- '#ffa600'
+agSize(map54)[css] <- 8
+agFill(map54)[css] <- '#d900ba'
+agSize(map54)[lss] <- 8
+agFill(map54)[lss] <- '#0051ff'
+ptDrawingOrder(map54) <- c(seq_len(numSera(map54)) + numAntigens(map54),
+    which(!agNames(map54) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1', 'A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Saudi-Arabia/6/2021|2021-12-05|SIAT1', 'A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1')),
+    which(agNames(map54) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1', 'A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Saudi-Arabia/6/2021|2021-12-05|SIAT1', 'A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1'))
+)
+p_map54_aunz_2021 <- ggplot(map54) + ggtitle('aunz 2021  (map 54)')
+p_map54_aunz_2021
+
+p_map54_aunz_2021_png <- file.path(strain_fig_dir, 'map54_aunz_2021.png')
+png(file=p_map54_aunz_2021_png)
+p_map54_aunz_2021
+dev.off()
 
 
 #################### MAP 55 ####################
@@ -1454,8 +3539,42 @@ agFill(map55)[ag_Sep2021_table7_1] <- '#ede15b'
 agFill(map55)[ag_Sep2022_table10_6] <- '#87bc45'
 agFill(map55)[ag_Sep2022_table10_20] <- '#27aeef'
 agFill(map55)[ag_Sep2019_table8_16] <- '#b33dc6'
-p_map55 <- ggplot(map55) + ggtitle('map 55')
+p_map55 <- ggplot(map55) + ggtitle('map 55 (Feb2021_table7-2, Sep2021_table7-7, Sep2021_table7-1, Sep2022_table10-6, Sep2022_table10-20, Sep2019_table8-16)')
+p_map55_png <- file.path(table_fig_dir, 'map55.png')
+png(file=p_map55_png)
 p_map55
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2021 #########
+agSize(map55) <- 5
+agFill(map55) <- 'grey50'
+ds <- agNames(map55) %in% c('A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1', 'A/Saudi-Arabia/6/2021|2021-12-05|SIAT1')
+vs <- agNames(map55) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1', 'A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1', 'A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3')
+css <- agNames(map55) %in% c("A/Cambodia/923251/2020|2020-09-22|SIAT2")
+lss <- agNames(map55) %in% c('A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1', 'A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1', 'A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1', 'A/Finland/183/2020|2020-03-02|MDCK1/SIAT2', 'A/Finland/183/2020|2020-03-02|E6')
+
+agSize(map55)[ds] <- 8
+agFill(map55)[ds] <- '#fcd74e'
+agSize(map55)[vs] <- 8
+agFill(map55)[vs] <- '#ffa600'
+agSize(map55)[css] <- 8
+agFill(map55)[css] <- '#d900ba'
+agSize(map55)[lss] <- 8
+agFill(map55)[lss] <- '#0051ff'
+ptDrawingOrder(map55) <- c(seq_len(numSera(map55)) + numAntigens(map55),
+	which(!agNames(map55) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4','A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1','A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1','A/Hong Kong/2671/2019|2019-06-17|E8/E2','A/Finland/183/2020|2020-03-02|MDCK1/SIAT2','A/Hong Kong/2671/2019|2019-06-17|E8/E3','A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1','A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1','A/Cambodia/923251/2020|2020-09-22|SIAT2','A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1',
+	"A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1","A/Saudi-Arabia/6/2021|2021-12-05|SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1","A/Finland/183/2020|2020-03-02|E6")),
+	which(agNames(map55) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4','A/Hong Kong/702/2020|2020-03-10|MDCK1/SIAT1','A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1','A/Hong Kong/2671/2019|2019-06-17|E8/E2','A/Finland/183/2020|2020-03-02|MDCK1/SIAT2','A/Hong Kong/2671/2019|2019-06-17|E8/E3','A/Hong Kong/706/2020|2020-03-16|MDCK1/SIAT1','A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1','A/Cambodia/923251/2020|2020-09-22|SIAT2','A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1',	"A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1","A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1","A/Saudi-Arabia/6/2021|2021-12-05|SIAT1","A/Hong Kong/699/2020|2020-03-09|MDCK1/SIAT1","A/Finland/183/2020|2020-03-02|E6"))
+)
+p_map55_aunz_2021 <- ggplot(map55) + ggtitle('aunz 2021  (map 55)')
+p_map55_aunz_2021
+
+p_map55_aunz_2021_png <- file.path(strain_fig_dir, 'map55_aunz_2021.png')
+png(file=p_map55_aunz_2021_png)
+p_map55_aunz_2021
+dev.off()
 
 
 #################### MAP 56 ####################
@@ -1484,8 +3603,44 @@ agFill(map56)[ag_Sep2021_table7_6] <- '#ea5545'
 agFill(map56)[ag_Feb2022_table9_1] <- '#ef9b20'
 agFill(map56)[ag_Feb2022_table9_10] <- '#ede15b'
 agFill(map56)[ag_Sep2022_table10_18] <- '#87bc45'
-p_map56 <- ggplot(map56) + ggtitle('map 56')
+p_map56 <- ggplot(map56) + ggtitle('map 56 (Sep2021_table7-6, Feb2022_table9-1, Feb2022_table9-10, Sep2022_table10-18)')
+p_map56_png <- file.path(table_fig_dir, 'map56.png')
+png(file=p_map56_png)
 p_map56
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2022 #########
+agSize(map56) <- 5
+agFill(map56) <- 'grey50'
+ds <- agNames(map56) %in% c("A/Lebanon/8505/2021|2021-12-29|SIAT1","A/Lebanon/8500/2021|2021-12-29|SIAT1","A/Lebanon/8497/2021|2021-12-29|SIAT1","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1","A/Poland/76/2022|2022-04-24|SIAT2","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2",
+	"A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Poland/77/2022|2022-04-26|SIAT1","A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Poland/96/2022|2022-05-08|SIAT1","A/Poland/101/2022|2022-05-15|SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1")
+vs <- agNames(map56) %in% c('A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map56) %in% c("A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0")
+lss <- agNames(map56) %in% c('A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1', 'A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2')
+
+agSize(map56)[ds] <- 8
+agFill(map56)[ds] <- '#fcd74e'
+agSize(map56)[vs] <- 8
+agFill(map56)[vs] <- '#ffa600'
+agSize(map56)[css] <- 8
+agFill(map56)[css] <- '#d900ba'
+agSize(map56)[lss] <- 8
+agFill(map56)[lss] <- '#0051ff'
+ptDrawingOrder(map56) <- c(seq_len(numSera(map56)) + numAntigens(map56),
+	which(!agNames(map56) %in% c('A/Darwin/9/2021|2021-04-17|E3/E4','A/Poland/96/2022|2022-05-08|SIAT1','A/Poland/101/2022|2022-05-15|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2','A/Lebanon/8505/2021|2021-12-29|SIAT1','A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2','A/Lebanon/8500/2021|2021-12-29|SIAT1','A/Poland/76/2022|2022-04-24|SIAT2','A/Poland/77/2022|2022-04-26|SIAT1',
+	"A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Darwin/9/2021|2021-04-17|E3/E2","A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Lebanon/8497/2021|2021-12-29|SIAT1",
+	"A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1")),
+	which(agNames(map56) %in% c('A/Darwin/9/2021|2021-04-17|E3/E4','A/Poland/96/2022|2022-05-08|SIAT1','A/Poland/101/2022|2022-05-15|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2','A/Lebanon/8505/2021|2021-12-29|SIAT1','A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2','A/Lebanon/8500/2021|2021-12-29|SIAT1','A/Poland/76/2022|2022-04-24|SIAT2','A/Poland/77/2022|2022-04-26|SIAT1',	"A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Darwin/9/2021|2021-04-17|E3/E2","A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Lebanon/8497/2021|2021-12-29|SIAT1",	"A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1"))
+)
+p_map56_aunz_2022 <- ggplot(map56) + ggtitle('aunz 2022  (map 56)')
+p_map56_aunz_2022
+
+p_map56_aunz_2022_png <- file.path(strain_fig_dir, 'map56_aunz_2022.png')
+png(file=p_map56_aunz_2022_png)
+p_map56_aunz_2022
+dev.off()
 
 
 #################### MAP 57 ####################
@@ -1511,8 +3666,45 @@ agFill(map57)[ag_Sep2021_table7_6] <- '#ea5545'
 agFill(map57)[ag_Feb2022_table9_1] <- '#ef9b20'
 agFill(map57)[ag_Feb2022_table9_2] <- '#ede15b'
 agFill(map57)[ag_Sep2022_table10_18] <- '#87bc45'
-p_map57 <- ggplot(map57) + ggtitle('map 57')
+p_map57 <- ggplot(map57) + ggtitle('map 57 (Sep2021_table7-6, Feb2022_table9-1, Feb2022_table9-2, Sep2022_table10-18)')
+p_map57_png <- file.path(table_fig_dir, 'map57.png')
+png(file=p_map57_png)
 p_map57
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2022 #########
+agSize(map57) <- 5
+agFill(map57) <- 'grey50'
+ds <- agNames(map57) %in% c("A/Beirut/5518/2021|2021-09-01|SIAT1","A/Tripoli/5651/2021|2021-09-07|SIAT1","A/Tripoli/5646/2021|2021-09-07|SIAT1","A/Arsal/5773/2021|2021-09-13|SIAT1","A/Arsal/5767/2021|2021-09-13|SIAT1","A/Tripoli/5937/2021|2021-09-21|SIAT1","A/Saida/5915/2021|2021-09-21|SIAT1","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1",
+	"A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1","A/Poland/76/2022|2022-04-24|SIAT2","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Poland/77/2022|2022-04-26|SIAT1","A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2",
+	"A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Poland/96/2022|2022-05-08|SIAT1","A/Poland/101/2022|2022-05-15|SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1")
+vs <- agNames(map57) %in% c('A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map57) %in% c("A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0")
+lss <- agNames(map57) %in% c('A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1', 'A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2')
+
+agSize(map57)[ds] <- 8
+agFill(map57)[ds] <- '#fcd74e'
+agSize(map57)[vs] <- 8
+agFill(map57)[vs] <- '#ffa600'
+agSize(map57)[css] <- 8
+agFill(map57)[css] <- '#d900ba'
+agSize(map57)[lss] <- 8
+agFill(map57)[lss] <- '#0051ff'
+ptDrawingOrder(map57) <- c(seq_len(numSera(map57)) + numAntigens(map57),
+	which(!agNames(map57) %in% c('A/Arsal/5767/2021|2021-09-13|SIAT1','A/Arsal/5773/2021|2021-09-13|SIAT1','A/Tripoli/5646/2021|2021-09-07|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Poland/96/2022|2022-05-08|SIAT1','A/Tripoli/5651/2021|2021-09-07|SIAT1','A/Beirut/5518/2021|2021-09-01|SIAT1','A/Poland/101/2022|2022-05-15|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2',
+	"A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Saida/5915/2021|2021-09-21|SIAT1","A/Poland/76/2022|2022-04-24|SIAT2","A/Poland/77/2022|2022-04-26|SIAT1","A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Darwin/9/2021|2021-04-17|E3/E2","A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1",
+	"A/Romania/521767/2022|2022-06-16|SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Tripoli/5937/2021|2021-09-21|SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1")),
+	which(agNames(map57) %in% c('A/Arsal/5767/2021|2021-09-13|SIAT1','A/Arsal/5773/2021|2021-09-13|SIAT1','A/Tripoli/5646/2021|2021-09-07|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Poland/96/2022|2022-05-08|SIAT1','A/Tripoli/5651/2021|2021-09-07|SIAT1','A/Beirut/5518/2021|2021-09-01|SIAT1','A/Poland/101/2022|2022-05-15|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2',	"A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Saida/5915/2021|2021-09-21|SIAT1","A/Poland/76/2022|2022-04-24|SIAT2","A/Poland/77/2022|2022-04-26|SIAT1","A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Darwin/9/2021|2021-04-17|E3/E2","A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1",	"A/Romania/521767/2022|2022-06-16|SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Tripoli/5937/2021|2021-09-21|SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1"))
+)
+p_map57_aunz_2022 <- ggplot(map57) + ggtitle('aunz 2022  (map 57)')
+p_map57_aunz_2022
+
+p_map57_aunz_2022_png <- file.path(strain_fig_dir, 'map57_aunz_2022.png')
+png(file=p_map57_aunz_2022_png)
+p_map57_aunz_2022
+dev.off()
 
 
 #################### MAP 58 ####################
@@ -1543,8 +3735,48 @@ agFill(map58)[ag_Sep2021_table7_6] <- '#ea5545'
 agFill(map58)[ag_Sep2022_table10_20] <- '#ef9b20'
 agFill(map58)[ag_Feb2022_table9_1] <- '#ede15b'
 agFill(map58)[ag_Sep2022_table10_18] <- '#87bc45'
-p_map58 <- ggplot(map58) + ggtitle('map 58')
+p_map58 <- ggplot(map58) + ggtitle('map 58 (Sep2021_table7-6, Sep2022_table10-20, Feb2022_table9-1, Sep2022_table10-18)')
+p_map58_png <- file.path(table_fig_dir, 'map58.png')
+png(file=p_map58_png)
 p_map58
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2022 #########
+agSize(map58) <- 5
+agFill(map58) <- 'grey50'
+ds <- agNames(map58) %in% c("A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1","A/Poland/76/2022|2022-04-24|SIAT2","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1",
+	"A/Poland/77/2022|2022-04-26|SIAT1","A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Poland/96/2022|2022-05-08|SIAT1","A/Poland/101/2022|2022-05-15|SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1","A/Saudi Arabia/11/2021|2021-12-15|SIAT1","A/Slovenia/9454/2022|2022-03-08|SIAT1/SIAT1","A/Slovenia/9456/2022|2022-03-08|SIATx/SIAT2",
+	"A/Slovenia/9565/2022|2022-03-11|SIAT1/SIAT1","A/Slovenia/9560/2022|2022-03-14|SIAT1/SIAT1","A/Slovenia/9623/2022|2022-03-17|MDCKx/SIAT1","A/Slovenia/9670/2022|2022-03-22|MDCKx/SIAT1","A/Slovenia/9668/2022|2022-03-23|SIATx/SIAT1","A/Slovenia/9706/2022|2022-03-23|SIATx/SIAT2","A/Slovenia/9676/2022|2022-03-24|SIATx/SIAT1","A/Slovenia/9737/2022|2022-03-28|MDCKx/SIAT1","A/Slovenia/9739/2022|2022-03-29|SIAT1/SIAT1","A/Spain/1097/2022|2022-05-03|SIAT1",
+	"A/Spain/1105/2022|2022-05-04|SIAT1","A/Spain/1100/2022|2022-05-04|SIAT1","A/Spain/1099/2022|2022-05-04|SIAT1","A/Spain/1098/2022|2022-05-04|SIAT1","A/Spain/1109/2022|2022-05-05|SIAT1","A/Spain/1108/2022|2022-05-05|SIAT1")
+vs <- agNames(map58) %in% c('A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map58) %in% c('A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0', 'A/Saudi-Arabia/6/2021|2021-12-05|SIAT1')
+lss <- agNames(map58) %in% c('A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1', 'A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2')
+
+agSize(map58)[ds] <- 8
+agFill(map58)[ds] <- '#fcd74e'
+agSize(map58)[vs] <- 8
+agFill(map58)[vs] <- '#ffa600'
+agSize(map58)[css] <- 8
+agFill(map58)[css] <- '#d900ba'
+agSize(map58)[lss] <- 8
+agFill(map58)[lss] <- '#0051ff'
+ptDrawingOrder(map58) <- c(seq_len(numSera(map58)) + numAntigens(map58),
+	which(!agNames(map58) %in% c('A/Spain/1097/2022|2022-05-03|SIAT1','A/Spain/1108/2022|2022-05-05|SIAT1','A/Saudi Arabia/11/2021|2021-12-15|SIAT1','A/Slovenia/9676/2022|2022-03-24|SIATx/SIAT1','A/Slovenia/9668/2022|2022-03-23|SIATx/SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Poland/96/2022|2022-05-08|SIAT1','A/Poland/101/2022|2022-05-15|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2',
+	"A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Slovenia/9454/2022|2022-03-08|SIAT1/SIAT1","A/Slovenia/9565/2022|2022-03-11|SIAT1/SIAT1","A/Poland/76/2022|2022-04-24|SIAT2","A/Poland/77/2022|2022-04-26|SIAT1","A/Slovenia/9706/2022|2022-03-23|SIATx/SIAT2","A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Darwin/9/2021|2021-04-17|E3/E2","A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1","A/Slovenia/9737/2022|2022-03-28|MDCKx/SIAT1",
+	"A/Saudi-Arabia/6/2021|2021-12-05|SIAT1","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Slovenia/9739/2022|2022-03-29|SIAT1/SIAT1","A/Spain/1105/2022|2022-05-04|SIAT1","A/Slovenia/9560/2022|2022-03-14|SIAT1/SIAT1","A/Spain/1098/2022|2022-05-04|SIAT1","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1",
+	"A/Slovenia/9623/2022|2022-03-17|MDCKx/SIAT1","A/Spain/1100/2022|2022-05-04|SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Spain/1099/2022|2022-05-04|SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Slovenia/9456/2022|2022-03-08|SIATx/SIAT2","A/Slovenia/9670/2022|2022-03-22|MDCKx/SIAT1","A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2","A/Spain/1109/2022|2022-05-05|SIAT1","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1",
+	"A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1")),
+	which(agNames(map58) %in% c('A/Spain/1097/2022|2022-05-03|SIAT1','A/Spain/1108/2022|2022-05-05|SIAT1','A/Saudi Arabia/11/2021|2021-12-15|SIAT1','A/Slovenia/9676/2022|2022-03-24|SIATx/SIAT1','A/Slovenia/9668/2022|2022-03-23|SIATx/SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Poland/96/2022|2022-05-08|SIAT1','A/Poland/101/2022|2022-05-15|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2',	"A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Slovenia/9454/2022|2022-03-08|SIAT1/SIAT1","A/Slovenia/9565/2022|2022-03-11|SIAT1/SIAT1","A/Poland/76/2022|2022-04-24|SIAT2","A/Poland/77/2022|2022-04-26|SIAT1","A/Slovenia/9706/2022|2022-03-23|SIATx/SIAT2","A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Darwin/9/2021|2021-04-17|E3/E2","A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1","A/Slovenia/9737/2022|2022-03-28|MDCKx/SIAT1",	"A/Saudi-Arabia/6/2021|2021-12-05|SIAT1","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0","A/Slovenia/9739/2022|2022-03-29|SIAT1/SIAT1","A/Spain/1105/2022|2022-05-04|SIAT1","A/Slovenia/9560/2022|2022-03-14|SIAT1/SIAT1","A/Spain/1098/2022|2022-05-04|SIAT1","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1",	"A/Slovenia/9623/2022|2022-03-17|MDCKx/SIAT1","A/Spain/1100/2022|2022-05-04|SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Spain/1099/2022|2022-05-04|SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Slovenia/9456/2022|2022-03-08|SIATx/SIAT2","A/Slovenia/9670/2022|2022-03-22|MDCKx/SIAT1","A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2","A/Spain/1109/2022|2022-05-05|SIAT1","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1",	"A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1"))
+)
+p_map58_aunz_2022 <- ggplot(map58) + ggtitle('aunz 2022  (map 58)')
+p_map58_aunz_2022
+
+p_map58_aunz_2022_png <- file.path(strain_fig_dir, 'map58_aunz_2022.png')
+png(file=p_map58_aunz_2022_png)
+p_map58_aunz_2022
+dev.off()
 
 
 #################### MAP 59 ####################
@@ -1576,8 +3808,41 @@ agFill(map59)[ag_Feb2023_tableH3_10] <- '#ea5545'
 agFill(map59)[ag_Sep2023_tableH3_12] <- '#ef9b20'
 agFill(map59)[ag_Sep2022_table10_20] <- '#ede15b'
 agFill(map59)[ag_Sep2022_table10_12] <- '#87bc45'
-p_map59 <- ggplot(map59) + ggtitle('map 59')
+p_map59 <- ggplot(map59) + ggtitle('map 59 (Feb2023_tableH3-10, Sep2023_tableH3-12, Sep2022_table10-20, Sep2022_table10-12)')
+p_map59_png <- file.path(table_fig_dir, 'map59.png')
+png(file=p_map59_png)
 p_map59
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2023 #########
+agSize(map59) <- 5
+agFill(map59) <- 'grey50'
+ds <- agNames(map59) %in% c('A/Greece/267/2022|2022-10-17|SIAT1', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1')
+vs <- agNames(map59) %in% c('A/Darwin/9/2021|2021-04-17|E3/E4', 'A/Darwin/9/2021|2021-04-17|E3/E2')
+css <- agNames(map59) %in% c("A/Saudi-Arabia/6/2021|2021-12-05|SIAT1")
+lss <- agNames(map59) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1')
+
+agSize(map59)[ds] <- 8
+agFill(map59)[ds] <- '#fcd74e'
+agSize(map59)[vs] <- 8
+agFill(map59)[vs] <- '#ffa600'
+agSize(map59)[css] <- 8
+agFill(map59)[css] <- '#d900ba'
+agSize(map59)[lss] <- 8
+agFill(map59)[lss] <- '#0051ff'
+ptDrawingOrder(map59) <- c(seq_len(numSera(map59)) + numAntigens(map59),
+    which(!agNames(map59) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Greece/267/2022|2022-10-17|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Saudi-Arabia/6/2021|2021-12-05|SIAT1', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E4', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1')),
+    which(agNames(map59) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Greece/267/2022|2022-10-17|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Saudi-Arabia/6/2021|2021-12-05|SIAT1', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E4', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1'))
+)
+p_map59_aunz_2023 <- ggplot(map59) + ggtitle('aunz 2023  (map 59)')
+p_map59_aunz_2023
+
+p_map59_aunz_2023_png <- file.path(strain_fig_dir, 'map59_aunz_2023.png')
+png(file=p_map59_aunz_2023_png)
+p_map59_aunz_2023
+dev.off()
 
 
 #################### MAP 60 ####################
@@ -1610,8 +3875,41 @@ agFill(map60)[ag_Sep2023_tableH3_12] <- '#ef9b20'
 agFill(map60)[ag_Sep2023_tableH3_1] <- '#ede15b'
 agFill(map60)[ag_Sep2022_table10_25] <- '#87bc45'
 agFill(map60)[ag_Sep2021_table7_7] <- '#27aeef'
-p_map60 <- ggplot(map60) + ggtitle('map 60')
+p_map60 <- ggplot(map60) + ggtitle('map 60 (Feb2023_tableH3-10, Sep2023_tableH3-12, Sep2023_tableH3-1, Sep2022_table10-25, Sep2021_table7-7)')
+p_map60_png <- file.path(table_fig_dir, 'map60.png')
+png(file=p_map60_png)
 p_map60
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2023 #########
+agSize(map60) <- 5
+agFill(map60) <- 'grey50'
+ds <- agNames(map60) %in% c('A/Valladolid/17/2023|2023-01-16|SIAT1/SIAT1', 'A/Greece/267/2022|2022-10-17|SIAT1', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1')
+vs <- agNames(map60) %in% c('A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map60) %in% c("A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1")
+lss <- agNames(map60) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1', 'A/Albania/290586/2023|2023-01-05|SIAT1')
+
+agSize(map60)[ds] <- 8
+agFill(map60)[ds] <- '#fcd74e'
+agSize(map60)[vs] <- 8
+agFill(map60)[vs] <- '#ffa600'
+agSize(map60)[css] <- 8
+agFill(map60)[css] <- '#d900ba'
+agSize(map60)[lss] <- 8
+agFill(map60)[lss] <- '#0051ff'
+ptDrawingOrder(map60) <- c(seq_len(numSera(map60)) + numAntigens(map60),
+    which(!agNames(map60) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Albania/290586/2023|2023-01-05|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1', 'A/Valladolid/17/2023|2023-01-16|SIAT1/SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1', 'A/Greece/267/2022|2022-10-17|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E4', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1')),
+    which(agNames(map60) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Albania/290586/2023|2023-01-05|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1', 'A/Valladolid/17/2023|2023-01-16|SIAT1/SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Stockholm/6/2021|2021-04-23|SIAT0/SIAT1', 'A/Greece/267/2022|2022-10-17|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E4', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1'))
+)
+p_map60_aunz_2023 <- ggplot(map60) + ggtitle('aunz 2023  (map 60)')
+p_map60_aunz_2023
+
+p_map60_aunz_2023_png <- file.path(strain_fig_dir, 'map60_aunz_2023.png')
+png(file=p_map60_aunz_2023_png)
+p_map60_aunz_2023
+dev.off()
 
 
 #################### MAP 61 ####################
@@ -1642,8 +3940,41 @@ agFill(map61)[ag_Feb2023_tableH3_10] <- '#ea5545'
 agFill(map61)[ag_Sep2023_tableH3_12] <- '#ef9b20'
 agFill(map61)[ag_Sep2022_table10_12] <- '#ede15b'
 agFill(map61)[ag_Feb2022_table9_1] <- '#87bc45'
-p_map61 <- ggplot(map61) + ggtitle('map 61')
+p_map61 <- ggplot(map61) + ggtitle('map 61 (Feb2023_tableH3-10, Sep2023_tableH3-12, Sep2022_table10-12, Feb2022_table9-1)')
+p_map61_png <- file.path(table_fig_dir, 'map61.png')
+png(file=p_map61_png)
 p_map61
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2023 #########
+agSize(map61) <- 5
+agFill(map61) <- 'grey50'
+ds <- agNames(map61) %in% c('A/Greece/267/2022|2022-10-17|SIAT1', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1')
+vs <- agNames(map61) %in% c('A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map61) %in% c("A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0")
+lss <- agNames(map61) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1')
+
+agSize(map61)[ds] <- 8
+agFill(map61)[ds] <- '#fcd74e'
+agSize(map61)[vs] <- 8
+agFill(map61)[vs] <- '#ffa600'
+agSize(map61)[css] <- 8
+agFill(map61)[css] <- '#d900ba'
+agSize(map61)[lss] <- 8
+agFill(map61)[lss] <- '#0051ff'
+ptDrawingOrder(map61) <- c(seq_len(numSera(map61)) + numAntigens(map61),
+    which(!agNames(map61) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Greece/267/2022|2022-10-17|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0', 'A/Darwin/9/2021|2021-04-17|E3/E4', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1')),
+    which(agNames(map61) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Greece/267/2022|2022-10-17|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0', 'A/Darwin/9/2021|2021-04-17|E3/E4', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1'))
+)
+p_map61_aunz_2023 <- ggplot(map61) + ggtitle('aunz 2023  (map 61)')
+p_map61_aunz_2023
+
+p_map61_aunz_2023_png <- file.path(strain_fig_dir, 'map61_aunz_2023.png')
+png(file=p_map61_aunz_2023_png)
+p_map61_aunz_2023
+dev.off()
 
 
 #################### MAP 62 ####################
@@ -1681,8 +4012,41 @@ agFill(map62)[ag_Sep2023_tableH3_12] <- '#ef9b20'
 agFill(map62)[ag_Sep2022_table10_12] <- '#ede15b'
 agFill(map62)[ag_Sep2022_table10_10] <- '#87bc45'
 agFill(map62)[ag_Feb2022_table9_1] <- '#27aeef'
-p_map62 <- ggplot(map62) + ggtitle('map 62')
+p_map62 <- ggplot(map62) + ggtitle('map 62 (Feb2023_tableH3-10, Sep2023_tableH3-12, Sep2022_table10-12, Sep2022_table10-10, Feb2022_table9-1)')
+p_map62_png <- file.path(table_fig_dir, 'map62.png')
+png(file=p_map62_png)
 p_map62
+dev.off()
+
+#### colered by region and season
+
+####### aunz, 2023 #########
+agSize(map62) <- 5
+agFill(map62) <- 'grey50'
+ds <- agNames(map62) %in% c('A/Greece/267/2022|2022-10-17|SIAT1', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1')
+vs <- agNames(map62) %in% c('A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map62) %in% c("A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0")
+lss <- agNames(map62) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1')
+
+agSize(map62)[ds] <- 8
+agFill(map62)[ds] <- '#fcd74e'
+agSize(map62)[vs] <- 8
+agFill(map62)[vs] <- '#ffa600'
+agSize(map62)[css] <- 8
+agFill(map62)[css] <- '#d900ba'
+agSize(map62)[lss] <- 8
+agFill(map62)[lss] <- '#0051ff'
+ptDrawingOrder(map62) <- c(seq_len(numSera(map62)) + numAntigens(map62),
+    which(!agNames(map62) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Greece/267/2022|2022-10-17|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0', 'A/Darwin/9/2021|2021-04-17|E3/E4', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1')),
+    which(agNames(map62) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Greece/267/2022|2022-10-17|SIAT1', 'A/Bouira/44511/2022|2022-12-20|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/SaudiArabia/2439/2022|2022-11-14|SIAT1', 'A/Qatar/34-VI-21-3664968/2021|2021-07-27|SIAT0', 'A/Darwin/9/2021|2021-04-17|E3/E4', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1'))
+)
+p_map62_aunz_2023 <- ggplot(map62) + ggtitle('aunz 2023  (map 62)')
+p_map62_aunz_2023
+
+p_map62_aunz_2023_png <- file.path(strain_fig_dir, 'map62_aunz_2023.png')
+png(file=p_map62_aunz_2023_png)
+p_map62_aunz_2023
+dev.off()
 
 
 #################### MAP 63 ####################
@@ -1700,16 +4064,122 @@ ag_2003_table6 <- agNames(map63) %in% c("A/New York/55/01|*|*","A/Finland/170/03
 
 agFill(map63)[ag_2004_table5] <- '#ea5545'
 agFill(map63)[ag_2003_table6] <- '#ef9b20'
-p_map63 <- ggplot(map63) + ggtitle('map 63')
+p_map63 <- ggplot(map63) + ggtitle('map 63 (2004_table5, 2003_table6)')
+p_map63_png <- file.path(table_fig_dir, 'map63.png')
+png(file=p_map63_png)
 p_map63
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2003-2004 #########
+agSize(map63) <- 5
+agFill(map63) <- 'grey50'
+ds_css_lss <- agNames(map63) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+ds <- agNames(map63) %in% c("A/Austria/134419/03|2003-12-29|*")
+vs <- agNames(map63) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map63)[ds_css_lss] <- 8
+agFill(map63)[ds_css_lss] <- '#00c1f3'
+agSize(map63)[ds] <- 8
+agFill(map63)[ds] <- '#fcd74e'
+agSize(map63)[vs] <- 8
+agFill(map63)[vs] <- '#ffa600'
+ptDrawingOrder(map63) <- c(seq_len(numSera(map63)) + numAntigens(map63),
+    which(!agNames(map63) %in% c('A/Austria/134419/03|2003-12-29|*', 'A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map63) %in% c('A/Austria/134419/03|2003-12-29|*', 'A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map63_europe_2003_2004 <- ggplot(map63) + ggtitle('europe 2003-2004  (map 63)')
+p_map63_europe_2003_2004
+
+p_map63_europe_2003_2004_png <- file.path(strain_fig_dir, 'map63_europe_2003_2004.png')
+png(file=p_map63_europe_2003_2004_png)
+p_map63_europe_2003_2004
+dev.off()
+
+
+####### us, 2003-2004 #########
+agSize(map63) <- 5
+agFill(map63) <- 'grey50'
+ds_css_lss <- agNames(map63) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*')
+vs <- agNames(map63) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map63)[ds_css_lss] <- 8
+agFill(map63)[ds_css_lss] <- '#00c1f3'
+agSize(map63)[vs] <- 8
+agFill(map63)[vs] <- '#ffa600'
+ptDrawingOrder(map63) <- c(seq_len(numSera(map63)) + numAntigens(map63),
+    which(!agNames(map63) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map63) %in% c('A/Fujian/411/02|*|*', 'A/Finland/170/03|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map63_us_2003_2004 <- ggplot(map63) + ggtitle('us 2003-2004  (map 63)')
+p_map63_us_2003_2004
+
+p_map63_us_2003_2004_png <- file.path(strain_fig_dir, 'map63_us_2003_2004.png')
+png(file=p_map63_us_2003_2004_png)
+p_map63_us_2003_2004
+dev.off()
 
 
 #################### MAP 64 ####################
 #### colered by tables
 agSize(map64) <- 5
 agFill(map64) <- 'grey50'
-p_map64 <- ggplot(map64) + ggtitle('map 64')
+p_map64 <- ggplot(map64) + ggtitle('map 64 (2004_table5)')
+p_map64_png <- file.path(table_fig_dir, 'map64.png')
+png(file=p_map64_png)
 p_map64
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2003-2004 #########
+agSize(map64) <- 5
+agFill(map64) <- 'grey50'
+ds_css_lss <- agNames(map64) %in% c("A/Fujian/411/02|*|*")
+ds <- agNames(map64) %in% c("A/Austria/134419/03|2003-12-29|*")
+vs <- agNames(map64) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map64)[ds_css_lss] <- 8
+agFill(map64)[ds_css_lss] <- '#00c1f3'
+agSize(map64)[ds] <- 8
+agFill(map64)[ds] <- '#fcd74e'
+agSize(map64)[vs] <- 8
+agFill(map64)[vs] <- '#ffa600'
+ptDrawingOrder(map64) <- c(seq_len(numSera(map64)) + numAntigens(map64),
+    which(!agNames(map64) %in% c('A/Austria/134419/03|2003-12-29|*', 'A/Fujian/411/02|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map64) %in% c('A/Austria/134419/03|2003-12-29|*', 'A/Fujian/411/02|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map64_europe_2003_2004 <- ggplot(map64) + ggtitle('europe 2003-2004  (map 64)')
+p_map64_europe_2003_2004
+
+p_map64_europe_2003_2004_png <- file.path(strain_fig_dir, 'map64_europe_2003_2004.png')
+png(file=p_map64_europe_2003_2004_png)
+p_map64_europe_2003_2004
+dev.off()
+
+
+####### us, 2003-2004 #########
+agSize(map64) <- 5
+agFill(map64) <- 'grey50'
+ds_css_lss <- agNames(map64) %in% c("A/Fujian/411/02|*|*")
+vs <- agNames(map64) %in% c("A/Panama/2007/99|*|*")
+
+agSize(map64)[ds_css_lss] <- 8
+agFill(map64)[ds_css_lss] <- '#00c1f3'
+agSize(map64)[vs] <- 8
+agFill(map64)[vs] <- '#ffa600'
+ptDrawingOrder(map64) <- c(seq_len(numSera(map64)) + numAntigens(map64),
+    which(!agNames(map64) %in% c('A/Fujian/411/02|*|*', 'A/Panama/2007/99|*|*')),
+    which(agNames(map64) %in% c('A/Fujian/411/02|*|*', 'A/Panama/2007/99|*|*'))
+)
+p_map64_us_2003_2004 <- ggplot(map64) + ggtitle('us 2003-2004  (map 64)')
+p_map64_us_2003_2004
+
+p_map64_us_2003_2004_png <- file.path(strain_fig_dir, 'map64_us_2003_2004.png')
+png(file=p_map64_us_2003_2004_png)
+p_map64_us_2003_2004
+dev.off()
 
 
 #################### MAP 65 ####################
@@ -1726,8 +4196,38 @@ ag_Sep2006_table6 <- agNames(map65) %in% c("A/Slovakia/134/2006|*|*","A/Berlin/2
 
 agFill(map65)[ag_Sep2006_table3] <- '#ea5545'
 agFill(map65)[ag_Sep2006_table6] <- '#ef9b20'
-p_map65 <- ggplot(map65) + ggtitle('map 65')
+p_map65 <- ggplot(map65) + ggtitle('map 65 (Sep2006_table3, Sep2006_table6)')
+p_map65_png <- file.path(table_fig_dir, 'map65.png')
+png(file=p_map65_png)
 p_map65
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2006-2007 #########
+agSize(map65) <- 5
+agFill(map65) <- 'grey50'
+ds_css <- agNames(map65) %in% c('A/Slovakia/134/2006|*|*', 'A/Johannesburg/245/2006|2006-06-02|MDCKx_1')
+vs <- agNames(map65) %in% c("A/Wisconsin/67/2005|*|*")
+lss <- agNames(map65) %in% c("A/Berlin/5/2006|2006-03-06|MDCKx_1")
+
+agSize(map65)[ds_css] <- 8
+agFill(map65)[ds_css] <- '#584e82'
+agSize(map65)[vs] <- 8
+agFill(map65)[vs] <- '#ffa600'
+agSize(map65)[lss] <- 8
+agFill(map65)[lss] <- '#0051ff'
+ptDrawingOrder(map65) <- c(seq_len(numSera(map65)) + numAntigens(map65),
+    which(!agNames(map65) %in% c('A/Slovakia/134/2006|*|*', 'A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Wisconsin/67/2005|*|*', 'A/Berlin/5/2006|2006-03-06|MDCKx_1')),
+    which(agNames(map65) %in% c('A/Slovakia/134/2006|*|*', 'A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Wisconsin/67/2005|*|*', 'A/Berlin/5/2006|2006-03-06|MDCKx_1'))
+)
+p_map65_europe_2006_2007 <- ggplot(map65) + ggtitle('europe 2006-2007  (map 65)')
+p_map65_europe_2006_2007
+
+p_map65_europe_2006_2007_png <- file.path(strain_fig_dir, 'map65_europe_2006_2007.png')
+png(file=p_map65_europe_2006_2007_png)
+p_map65_europe_2006_2007
+dev.off()
 
 
 #################### MAP 66 ####################
@@ -1743,8 +4243,38 @@ ag_Sep2006_table3 <- agNames(map66) %in% c("A/Shantou/1219/2004|*|MDCKx","A/Anhu
 
 agFill(map66)[ag_Sep2006_table5] <- '#ea5545'
 agFill(map66)[ag_Sep2006_table3] <- '#ef9b20'
-p_map66 <- ggplot(map66) + ggtitle('map 66')
+p_map66 <- ggplot(map66) + ggtitle('map 66 (Sep2006_table5, Sep2006_table3)')
+p_map66_png <- file.path(table_fig_dir, 'map66.png')
+png(file=p_map66_png)
 p_map66
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2006-2007 #########
+agSize(map66) <- 5
+agFill(map66) <- 'grey50'
+ds_css <- agNames(map66) %in% c("A/Berlin/32/2006|2006-04-11|MDCKx_1")
+vs <- agNames(map66) %in% c("A/Wisconsin/67/2005|*|*")
+lss <- agNames(map66) %in% c("A/Berlin/5/2006|2006-03-06|MDCKx_1")
+
+agSize(map66)[ds_css] <- 8
+agFill(map66)[ds_css] <- '#584e82'
+agSize(map66)[vs] <- 8
+agFill(map66)[vs] <- '#ffa600'
+agSize(map66)[lss] <- 8
+agFill(map66)[lss] <- '#0051ff'
+ptDrawingOrder(map66) <- c(seq_len(numSera(map66)) + numAntigens(map66),
+    which(!agNames(map66) %in% c('A/Wisconsin/67/2005|*|*', 'A/Berlin/32/2006|2006-04-11|MDCKx_1', 'A/Berlin/5/2006|2006-03-06|MDCKx_1')),
+    which(agNames(map66) %in% c('A/Wisconsin/67/2005|*|*', 'A/Berlin/32/2006|2006-04-11|MDCKx_1', 'A/Berlin/5/2006|2006-03-06|MDCKx_1'))
+)
+p_map66_europe_2006_2007 <- ggplot(map66) + ggtitle('europe 2006-2007  (map 66)')
+p_map66_europe_2006_2007
+
+p_map66_europe_2006_2007_png <- file.path(strain_fig_dir, 'map66_europe_2006_2007.png')
+png(file=p_map66_europe_2006_2007_png)
+p_map66_europe_2006_2007
+dev.off()
 
 
 #################### MAP 67 ####################
@@ -1763,8 +4293,38 @@ ag_Sep2006_table6 <- agNames(map67) %in% c("A/Wyoming/3/2003|*|Ex","A/California
 
 agFill(map67)[ag_Mar2007_table4] <- '#ea5545'
 agFill(map67)[ag_Sep2006_table6] <- '#ef9b20'
-p_map67 <- ggplot(map67) + ggtitle('map 67')
+p_map67 <- ggplot(map67) + ggtitle('map 67 (Mar2007_table4, Sep2006_table6)')
+p_map67_png <- file.path(table_fig_dir, 'map67.png')
+png(file=p_map67_png)
 p_map67
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2007-2008 #########
+agSize(map67) <- 5
+agFill(map67) <- 'grey50'
+ds_lss <- agNames(map67) %in% c('A/Lyon/1359/06|2006-12-27|P2MDCK_1', 'A/Lyon/1324/06|2006-12-20|P2MDCK_1')
+vs <- agNames(map67) %in% c('A/Wisconsin/67/2005|*|*', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2')
+css <- agNames(map67) %in% c('A/Slovakia/134/2006|*|*', 'A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3')
+
+agSize(map67)[ds_lss] <- 8
+agFill(map67)[ds_lss] <- '#9fd600'
+agSize(map67)[vs] <- 8
+agFill(map67)[vs] <- '#ffa600'
+agSize(map67)[css] <- 8
+agFill(map67)[css] <- '#d900ba'
+ptDrawingOrder(map67) <- c(seq_len(numSera(map67)) + numAntigens(map67),
+    which(!agNames(map67) %in% c('A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Wisconsin/67/2005|*|*', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2', 'A/Slovakia/134/2006|*|*', 'A/Lyon/1359/06|2006-12-27|P2MDCK_1', 'A/Lyon/1324/06|2006-12-20|P2MDCK_1')),
+    which(agNames(map67) %in% c('A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Wisconsin/67/2005|*|*', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2', 'A/Slovakia/134/2006|*|*', 'A/Lyon/1359/06|2006-12-27|P2MDCK_1', 'A/Lyon/1324/06|2006-12-20|P2MDCK_1'))
+)
+p_map67_europe_2007_2008 <- ggplot(map67) + ggtitle('europe 2007-2008  (map 67)')
+p_map67_europe_2007_2008
+
+p_map67_europe_2007_2008_png <- file.path(strain_fig_dir, 'map67_europe_2007_2008.png')
+png(file=p_map67_europe_2007_2008_png)
+p_map67_europe_2007_2008
+dev.off()
 
 
 #################### MAP 68 ####################
@@ -1786,8 +4346,38 @@ ag_Sep2007_table6 <- agNames(map68) %in% c("A/Bayern/4/2006|2006-03-07|MDCKx_5",
 agFill(map68)[ag_Mar2007_table4] <- '#ea5545'
 agFill(map68)[ag_Sep2006_table6] <- '#ef9b20'
 agFill(map68)[ag_Sep2007_table6] <- '#ede15b'
-p_map68 <- ggplot(map68) + ggtitle('map 68')
+p_map68 <- ggplot(map68) + ggtitle('map 68 (Mar2007_table4, Sep2006_table6, Sep2007_table6)')
+p_map68_png <- file.path(table_fig_dir, 'map68.png')
+png(file=p_map68_png)
 p_map68
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2007-2008 #########
+agSize(map68) <- 5
+agFill(map68) <- 'grey50'
+ds_lss <- agNames(map68) %in% c('A/Lyon/1359/06|2006-12-27|P2MDCK_1', 'A/Lyon/1324/06|2006-12-20|P2MDCK_1', 'A/Hong Kong/2571/2007|2007-05-28|MDCK2_1')
+vs <- agNames(map68) %in% c('A/Wisconsin/67/2005|*|*', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2')
+css <- agNames(map68) %in% c('A/Slovakia/134/2006|*|*', 'A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3')
+
+agSize(map68)[ds_lss] <- 8
+agFill(map68)[ds_lss] <- '#9fd600'
+agSize(map68)[vs] <- 8
+agFill(map68)[vs] <- '#ffa600'
+agSize(map68)[css] <- 8
+agFill(map68)[css] <- '#d900ba'
+ptDrawingOrder(map68) <- c(seq_len(numSera(map68)) + numAntigens(map68),
+    which(!agNames(map68) %in% c('A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Wisconsin/67/2005|*|*', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2', 'A/Slovakia/134/2006|*|*', 'A/Lyon/1359/06|2006-12-27|P2MDCK_1', 'A/Lyon/1324/06|2006-12-20|P2MDCK_1', 'A/Hong Kong/2571/2007|2007-05-28|MDCK2_1')),
+    which(agNames(map68) %in% c('A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Wisconsin/67/2005|*|*', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2', 'A/Slovakia/134/2006|*|*', 'A/Lyon/1359/06|2006-12-27|P2MDCK_1', 'A/Lyon/1324/06|2006-12-20|P2MDCK_1', 'A/Hong Kong/2571/2007|2007-05-28|MDCK2_1'))
+)
+p_map68_europe_2007_2008 <- ggplot(map68) + ggtitle('europe 2007-2008  (map 68)')
+p_map68_europe_2007_2008
+
+p_map68_europe_2007_2008_png <- file.path(strain_fig_dir, 'map68_europe_2007_2008.png')
+png(file=p_map68_europe_2007_2008_png)
+p_map68_europe_2007_2008
+dev.off()
 
 
 #################### MAP 69 ####################
@@ -1805,8 +4395,38 @@ ag_Sep2007_table8 <- agNames(map69) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk
 agFill(map69)[ag_Sep2007_table5] <- '#ea5545'
 agFill(map69)[ag_Sep2007_table6] <- '#ef9b20'
 agFill(map69)[ag_Sep2007_table8] <- '#ede15b'
-p_map69 <- ggplot(map69) + ggtitle('map 69')
+p_map69 <- ggplot(map69) + ggtitle('map 69 (Sep2007_table5, Sep2007_table6, Sep2007_table8)')
+p_map69_png <- file.path(table_fig_dir, 'map69.png')
+png(file=p_map69_png)
 p_map69
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2007-2008 #########
+agSize(map69) <- 5
+agFill(map69) <- 'grey50'
+ds_lss <- agNames(map69) %in% c('A/Hong Kong/2571/2007|2007-05-28|MDCK2_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1')
+vs <- agNames(map69) %in% c('A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3')
+css <- agNames(map69) %in% c("A/Slovakia/134/2006|2006-02-06|MDCK1_3")
+
+agSize(map69)[ds_lss] <- 8
+agFill(map69)[ds_lss] <- '#9fd600'
+agSize(map69)[vs] <- 8
+agFill(map69)[vs] <- '#ffa600'
+agSize(map69)[css] <- 8
+agFill(map69)[css] <- '#d900ba'
+ptDrawingOrder(map69) <- c(seq_len(numSera(map69)) + numAntigens(map69),
+    which(!agNames(map69) %in% c('A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1', 'A/Hong Kong/2571/2007|2007-05-28|MDCK2_1')),
+    which(agNames(map69) %in% c('A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1', 'A/Hong Kong/2571/2007|2007-05-28|MDCK2_1'))
+)
+p_map69_europe_2007_2008 <- ggplot(map69) + ggtitle('europe 2007-2008  (map 69)')
+p_map69_europe_2007_2008
+
+p_map69_europe_2007_2008_png <- file.path(strain_fig_dir, 'map69_europe_2007_2008.png')
+png(file=p_map69_europe_2007_2008_png)
+p_map69_europe_2007_2008
+dev.off()
 
 
 #################### MAP 70 ####################
@@ -1834,8 +4454,39 @@ agFill(map70)[ag_Sep2007_table6] <- '#ef9b20'
 agFill(map70)[ag_Sep2007_table8] <- '#ede15b'
 agFill(map70)[ag_Mar2007_table4] <- '#87bc45'
 agFill(map70)[ag_Sep2006_table6] <- '#27aeef'
-p_map70 <- ggplot(map70) + ggtitle('map 70')
+p_map70 <- ggplot(map70) + ggtitle('map 70 (Sep2007_table5, Sep2007_table6, Sep2007_table8, Mar2007_table4, Sep2006_table6)')
+p_map70_png <- file.path(table_fig_dir, 'map70.png')
+png(file=p_map70_png)
 p_map70
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2007-2008 #########
+agSize(map70) <- 5
+agFill(map70) <- 'grey50'
+ds_lss <- agNames(map70) %in% c('A/Lyon/1359/06|2006-12-27|P2MDCK_1', 'A/Lyon/1324/06|2006-12-20|P2MDCK_1', 'A/Hong Kong/2571/2007|2007-05-28|MDCK2_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1')
+vs <- agNames(map70) %in% c('A/Wisconsin/67/2005|*|*', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3')
+css <- agNames(map70) %in% c('A/Slovakia/134/2006|*|*', 'A/Johannesburg/245/2006|2006-06-02|MDCKx_1', 'A/Slovakia/134/2006|2006-02-06|MDCK1_3')
+
+agSize(map70)[ds_lss] <- 8
+agFill(map70)[ds_lss] <- '#9fd600'
+agSize(map70)[vs] <- 8
+agFill(map70)[vs] <- '#ffa600'
+agSize(map70)[css] <- 8
+agFill(map70)[css] <- '#d900ba'
+ptDrawingOrder(map70) <- c(seq_len(numSera(map70)) + numAntigens(map70),
+	which(!agNames(map70) %in% c('A/Johannesburg/91/2007|2007-07-01|MDCK_1','A/Wisconsin/67/2005|*|*','A/Johannesburg/245/2006|2006-06-02|MDCKx_1','A/Slovakia/134/2006|2006-02-06|MDCK1_3','A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2','A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3','A/Slovakia/134/2006|*|*','A/Lyon/1359/06|2006-12-27|P2MDCK_1','A/Lyon/1324/06|2006-12-20|P2MDCK_1','A/Brisbane/10/2007|2007-02-06|E2_1',
+	"A/Johannesburg/66/2007|2007-07-03|MDCK_1","A/Perth/27/2007|2007-07-05|MDCKx+2_1","A/Hong Kong/2571/2007|2007-05-28|MDCK2_1")),
+	which(agNames(map70) %in% c('A/Johannesburg/91/2007|2007-07-01|MDCK_1','A/Wisconsin/67/2005|*|*','A/Johannesburg/245/2006|2006-06-02|MDCKx_1','A/Slovakia/134/2006|2006-02-06|MDCK1_3','A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2','A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3','A/Slovakia/134/2006|*|*','A/Lyon/1359/06|2006-12-27|P2MDCK_1','A/Lyon/1324/06|2006-12-20|P2MDCK_1','A/Brisbane/10/2007|2007-02-06|E2_1',	"A/Johannesburg/66/2007|2007-07-03|MDCK_1","A/Perth/27/2007|2007-07-05|MDCKx+2_1","A/Hong Kong/2571/2007|2007-05-28|MDCK2_1"))
+)
+p_map70_europe_2007_2008 <- ggplot(map70) + ggtitle('europe 2007-2008  (map 70)')
+p_map70_europe_2007_2008
+
+p_map70_europe_2007_2008_png <- file.path(strain_fig_dir, 'map70_europe_2007_2008.png')
+png(file=p_map70_europe_2007_2008_png)
+p_map70_europe_2007_2008
+dev.off()
 
 
 #################### MAP 71 ####################
@@ -1855,8 +4506,58 @@ ag_Sep2008_table4B <- agNames(map71) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfC
 agFill(map71)[ag_Sep2008_table4A] <- '#ea5545'
 agFill(map71)[ag_Sep2007_table8] <- '#ef9b20'
 agFill(map71)[ag_Sep2008_table4B] <- '#ede15b'
-p_map71 <- ggplot(map71) + ggtitle('map 71')
+p_map71 <- ggplot(map71) + ggtitle('map 71 (Sep2008_table4A, Sep2007_table8, Sep2008_table4B)')
+p_map71_png <- file.path(table_fig_dir, 'map71.png')
+png(file=p_map71_png)
 p_map71
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2008-2009 #########
+agSize(map71) <- 5
+agFill(map71) <- 'grey50'
+ds_css_lss <- agNames(map71) %in% c('A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Toyama/123/2008|2008-04-03|MDCK1+2_1')
+vs <- agNames(map71) %in% c('A/Perth/27/2007|2007-07-05|MDCKx+2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Brisbane/10/2007|2007-02-06|E2_3')
+
+agSize(map71)[ds_css_lss] <- 8
+agFill(map71)[ds_css_lss] <- '#00c1f3'
+agSize(map71)[vs] <- 8
+agFill(map71)[vs] <- '#ffa600'
+ptDrawingOrder(map71) <- c(seq_len(numSera(map71)) + numAntigens(map71),
+    which(!agNames(map71) %in% c('A/Toyama/123/2008|2008-04-03|MDCK1+2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1')),
+    which(agNames(map71) %in% c('A/Toyama/123/2008|2008-04-03|MDCK1+2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1'))
+)
+p_map71_europe_2008_2009 <- ggplot(map71) + ggtitle('europe 2008-2009  (map 71)')
+p_map71_europe_2008_2009
+
+p_map71_europe_2008_2009_png <- file.path(strain_fig_dir, 'map71_europe_2008_2009.png')
+png(file=p_map71_europe_2008_2009_png)
+p_map71_europe_2008_2009
+dev.off()
+
+
+####### us, 2008-2009 #########
+agSize(map71) <- 5
+agFill(map71) <- 'grey50'
+ds_css_lss <- agNames(map71) %in% c('A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Toyama/123/2008|2008-04-03|MDCK1+2_1')
+vs <- agNames(map71) %in% c('A/Perth/27/2007|2007-07-05|MDCKx+2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Brisbane/10/2007|2007-02-06|E2_3')
+
+agSize(map71)[ds_css_lss] <- 8
+agFill(map71)[ds_css_lss] <- '#00c1f3'
+agSize(map71)[vs] <- 8
+agFill(map71)[vs] <- '#ffa600'
+ptDrawingOrder(map71) <- c(seq_len(numSera(map71)) + numAntigens(map71),
+    which(!agNames(map71) %in% c('A/Toyama/123/2008|2008-04-03|MDCK1+2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1')),
+    which(agNames(map71) %in% c('A/Toyama/123/2008|2008-04-03|MDCK1+2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1'))
+)
+p_map71_us_2008_2009 <- ggplot(map71) + ggtitle('us 2008-2009  (map 71)')
+p_map71_us_2008_2009
+
+p_map71_us_2008_2009_png <- file.path(strain_fig_dir, 'map71_us_2008_2009.png')
+png(file=p_map71_us_2008_2009_png)
+p_map71_us_2008_2009
+dev.off()
 
 
 #################### MAP 72 ####################
@@ -1871,16 +4572,120 @@ ag_Sep2007_table8 <- agNames(map72) %in% c("A/Wisconsin/67/2005|2005-08-31|SpfCk
 
 agFill(map72)[ag_Sep2008_table4A] <- '#ea5545'
 agFill(map72)[ag_Sep2007_table8] <- '#ef9b20'
-p_map72 <- ggplot(map72) + ggtitle('map 72')
+p_map72 <- ggplot(map72) + ggtitle('map 72 (Sep2008_table4A, Sep2007_table8)')
+p_map72_png <- file.path(table_fig_dir, 'map72.png')
+png(file=p_map72_png)
 p_map72
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2008-2009 #########
+agSize(map72) <- 5
+agFill(map72) <- 'grey50'
+ds_css_lss <- agNames(map72) %in% c('A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1')
+vs <- agNames(map72) %in% c('A/Perth/27/2007|2007-07-05|MDCKx+2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Brisbane/10/2007|2007-02-06|E2_3')
+
+agSize(map72)[ds_css_lss] <- 8
+agFill(map72)[ds_css_lss] <- '#00c1f3'
+agSize(map72)[vs] <- 8
+agFill(map72)[vs] <- '#ffa600'
+ptDrawingOrder(map72) <- c(seq_len(numSera(map72)) + numAntigens(map72),
+    which(!agNames(map72) %in% c('A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1')),
+    which(agNames(map72) %in% c('A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1'))
+)
+p_map72_europe_2008_2009 <- ggplot(map72) + ggtitle('europe 2008-2009  (map 72)')
+p_map72_europe_2008_2009
+
+p_map72_europe_2008_2009_png <- file.path(strain_fig_dir, 'map72_europe_2008_2009.png')
+png(file=p_map72_europe_2008_2009_png)
+p_map72_europe_2008_2009
+dev.off()
+
+
+####### us, 2008-2009 #########
+agSize(map72) <- 5
+agFill(map72) <- 'grey50'
+ds_css_lss <- agNames(map72) %in% c('A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1')
+vs <- agNames(map72) %in% c('A/Perth/27/2007|2007-07-05|MDCKx+2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Brisbane/10/2007|2007-02-06|E2_3')
+
+agSize(map72)[ds_css_lss] <- 8
+agFill(map72)[ds_css_lss] <- '#00c1f3'
+agSize(map72)[vs] <- 8
+agFill(map72)[vs] <- '#ffa600'
+ptDrawingOrder(map72) <- c(seq_len(numSera(map72)) + numAntigens(map72),
+    which(!agNames(map72) %in% c('A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1')),
+    which(agNames(map72) %in% c('A/Johannesburg/91/2007|2007-07-01|MDCK_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1', 'A/Brisbane/10/2007|2007-02-06|E2_1', 'A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3', 'A/Johannesburg/66/2007|2007-07-03|MDCK_1', 'A/Perth/27/2007|2007-07-05|MDCKx+2_1'))
+)
+p_map72_us_2008_2009 <- ggplot(map72) + ggtitle('us 2008-2009  (map 72)')
+p_map72_us_2008_2009
+
+p_map72_us_2008_2009_png <- file.path(strain_fig_dir, 'map72_us_2008_2009.png')
+png(file=p_map72_us_2008_2009_png)
+p_map72_us_2008_2009
+dev.off()
 
 
 #################### MAP 73 ####################
 #### colered by tables
 agSize(map73) <- 5
 agFill(map73) <- 'grey50'
-p_map73 <- ggplot(map73) + ggtitle('map 73')
+p_map73 <- ggplot(map73) + ggtitle('map 73 (Feb2009_table5)')
+p_map73_png <- file.path(table_fig_dir, 'map73.png')
+png(file=p_map73_png)
 p_map73
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2008-2009 #########
+agSize(map73) <- 5
+agFill(map73) <- 'grey50'
+ds_css_lss <- agNames(map73) %in% c("A/Singapore/N593/2008|2008-09-15|Cx_1","A/Sweden/3/08|2008-10-15|MDCK2_1","A/England/687/2008|2008-12-30|MDCKP1_2","A/Seoul/4436/2008|2008-12-05|MDCK-P2_1","A/Switzerland/1409281/2008|2008-12-31|cs_2","A/Poitiers/1341/08|2008-11-04|Px+P1MDCK_3","A/Bratislava/144/2009|2009-01-19|MDCK1_1","A/Tanger/533/09|2008-12-20|Cx_1","A/Torino/14/08|2008-12-12|MDCK1_2","A/Algeria/G202/2009|2008-12-23|Cx_1",
+	"A/Lisboa/01/2009|2009-01-05|MDCK2_2","A/Valladolid/14/2009|2009-01-26|MDCK1_2","A/Prague/63/2009|2009-01-28|MDCK2_1")
+vs <- agNames(map73) %in% c("A/Brisbane/10/2007|2007-02-06|E2_3")
+
+agSize(map73)[ds_css_lss] <- 8
+agFill(map73)[ds_css_lss] <- '#00c1f3'
+agSize(map73)[vs] <- 8
+agFill(map73)[vs] <- '#ffa600'
+ptDrawingOrder(map73) <- c(seq_len(numSera(map73)) + numAntigens(map73),
+	which(!agNames(map73) %in% c('A/England/687/2008|2008-12-30|MDCKP1_2','A/Bratislava/144/2009|2009-01-19|MDCK1_1','A/Prague/63/2009|2009-01-28|MDCK2_1','A/Tanger/533/09|2008-12-20|Cx_1','A/Switzerland/1409281/2008|2008-12-31|cs_2','A/Torino/14/08|2008-12-12|MDCK1_2','A/Singapore/N593/2008|2008-09-15|Cx_1','A/Seoul/4436/2008|2008-12-05|MDCK-P2_1','A/Algeria/G202/2009|2008-12-23|Cx_1','A/Sweden/3/08|2008-10-15|MDCK2_1',
+	"A/Valladolid/14/2009|2009-01-26|MDCK1_2","A/Brisbane/10/2007|2007-02-06|E2_3","A/Lisboa/01/2009|2009-01-05|MDCK2_2","A/Poitiers/1341/08|2008-11-04|Px+P1MDCK_3")),
+	which(agNames(map73) %in% c('A/England/687/2008|2008-12-30|MDCKP1_2','A/Bratislava/144/2009|2009-01-19|MDCK1_1','A/Prague/63/2009|2009-01-28|MDCK2_1','A/Tanger/533/09|2008-12-20|Cx_1','A/Switzerland/1409281/2008|2008-12-31|cs_2','A/Torino/14/08|2008-12-12|MDCK1_2','A/Singapore/N593/2008|2008-09-15|Cx_1','A/Seoul/4436/2008|2008-12-05|MDCK-P2_1','A/Algeria/G202/2009|2008-12-23|Cx_1','A/Sweden/3/08|2008-10-15|MDCK2_1',	"A/Valladolid/14/2009|2009-01-26|MDCK1_2","A/Brisbane/10/2007|2007-02-06|E2_3","A/Lisboa/01/2009|2009-01-05|MDCK2_2","A/Poitiers/1341/08|2008-11-04|Px+P1MDCK_3"))
+)
+p_map73_europe_2008_2009 <- ggplot(map73) + ggtitle('europe 2008-2009  (map 73)')
+p_map73_europe_2008_2009
+
+p_map73_europe_2008_2009_png <- file.path(strain_fig_dir, 'map73_europe_2008_2009.png')
+png(file=p_map73_europe_2008_2009_png)
+p_map73_europe_2008_2009
+dev.off()
+
+
+####### us, 2008-2009 #########
+agSize(map73) <- 5
+agFill(map73) <- 'grey50'
+ds_css_lss <- agNames(map73) %in% c("A/Singapore/N593/2008|2008-09-15|Cx_1","A/Sweden/3/08|2008-10-15|MDCK2_1","A/England/687/2008|2008-12-30|MDCKP1_2","A/Seoul/4436/2008|2008-12-05|MDCK-P2_1","A/Switzerland/1409281/2008|2008-12-31|cs_2","A/Poitiers/1341/08|2008-11-04|Px+P1MDCK_3","A/Bratislava/144/2009|2009-01-19|MDCK1_1","A/Tanger/533/09|2008-12-20|Cx_1","A/Torino/14/08|2008-12-12|MDCK1_2","A/Algeria/G202/2009|2008-12-23|Cx_1",
+	"A/Lisboa/01/2009|2009-01-05|MDCK2_2","A/Valladolid/14/2009|2009-01-26|MDCK1_2","A/Prague/63/2009|2009-01-28|MDCK2_1")
+vs <- agNames(map73) %in% c("A/Brisbane/10/2007|2007-02-06|E2_3")
+
+agSize(map73)[ds_css_lss] <- 8
+agFill(map73)[ds_css_lss] <- '#00c1f3'
+agSize(map73)[vs] <- 8
+agFill(map73)[vs] <- '#ffa600'
+ptDrawingOrder(map73) <- c(seq_len(numSera(map73)) + numAntigens(map73),
+	which(!agNames(map73) %in% c('A/England/687/2008|2008-12-30|MDCKP1_2','A/Bratislava/144/2009|2009-01-19|MDCK1_1','A/Prague/63/2009|2009-01-28|MDCK2_1','A/Tanger/533/09|2008-12-20|Cx_1','A/Switzerland/1409281/2008|2008-12-31|cs_2','A/Torino/14/08|2008-12-12|MDCK1_2','A/Singapore/N593/2008|2008-09-15|Cx_1','A/Seoul/4436/2008|2008-12-05|MDCK-P2_1','A/Algeria/G202/2009|2008-12-23|Cx_1','A/Sweden/3/08|2008-10-15|MDCK2_1',
+	"A/Valladolid/14/2009|2009-01-26|MDCK1_2","A/Brisbane/10/2007|2007-02-06|E2_3","A/Lisboa/01/2009|2009-01-05|MDCK2_2","A/Poitiers/1341/08|2008-11-04|Px+P1MDCK_3")),
+	which(agNames(map73) %in% c('A/England/687/2008|2008-12-30|MDCKP1_2','A/Bratislava/144/2009|2009-01-19|MDCK1_1','A/Prague/63/2009|2009-01-28|MDCK2_1','A/Tanger/533/09|2008-12-20|Cx_1','A/Switzerland/1409281/2008|2008-12-31|cs_2','A/Torino/14/08|2008-12-12|MDCK1_2','A/Singapore/N593/2008|2008-09-15|Cx_1','A/Seoul/4436/2008|2008-12-05|MDCK-P2_1','A/Algeria/G202/2009|2008-12-23|Cx_1','A/Sweden/3/08|2008-10-15|MDCK2_1',	"A/Valladolid/14/2009|2009-01-26|MDCK1_2","A/Brisbane/10/2007|2007-02-06|E2_3","A/Lisboa/01/2009|2009-01-05|MDCK2_2","A/Poitiers/1341/08|2008-11-04|Px+P1MDCK_3"))
+)
+p_map73_us_2008_2009 <- ggplot(map73) + ggtitle('us 2008-2009  (map 73)')
+p_map73_us_2008_2009
+
+p_map73_us_2008_2009_png <- file.path(strain_fig_dir, 'map73_us_2008_2009.png')
+png(file=p_map73_us_2008_2009_png)
+p_map73_us_2008_2009
+dev.off()
 
 
 #################### MAP 74 ####################
@@ -1899,8 +4704,64 @@ ag_Sep2012_table9 <- agNames(map74) %in% c("A/Victoria/208/2009|2009-06-02|E3/E1
 
 agFill(map74)[ag_Sep2013_table7_12] <- '#ea5545'
 agFill(map74)[ag_Sep2012_table9] <- '#ef9b20'
-p_map74 <- ggplot(map74) + ggtitle('map 74')
+p_map74 <- ggplot(map74) + ggtitle('map 74 (Sep2013_table7-12, Sep2012_table9)')
+p_map74_png <- file.path(table_fig_dir, 'map74.png')
+png(file=p_map74_png)
 p_map74
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2011-2012 #########
+agSize(map74) <- 5
+agFill(map74) <- 'grey50'
+css_lss <- agNames(map74) %in% c('A/Bulgaria/182/2012|2012-02-02|C3/SIAT1', 'A/Bulgaria/217/2012|2012-02-09|C3/SIAT1', 'A/Bulgaria/280/2012|2012-02-20|C3/SIAT1', 'A/Bulgaria/311/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/312/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/313/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/314/2012|2012-02-24|C3/SIAT1')
+ds <- agNames(map74) %in% c("A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")
+vs <- agNames(map74) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map74)[css_lss] <- 8
+agFill(map74)[css_lss] <- '#6d21b8'
+agSize(map74)[ds] <- 8
+agFill(map74)[ds] <- '#fcd74e'
+agSize(map74)[vs] <- 8
+agFill(map74)[vs] <- '#ffa600'
+ptDrawingOrder(map74) <- c(seq_len(numSera(map74)) + numAntigens(map74),
+    which(!agNames(map74) %in% c('A/Bulgaria/312/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/314/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/182/2012|2012-02-02|C3/SIAT1', 'A/Bulgaria/280/2012|2012-02-20|C3/SIAT1', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1', 'A/Bulgaria/311/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/313/2012|2012-02-24|C3/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Bulgaria/217/2012|2012-02-09|C3/SIAT1')),
+    which(agNames(map74) %in% c('A/Bulgaria/312/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/314/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/182/2012|2012-02-02|C3/SIAT1', 'A/Bulgaria/280/2012|2012-02-20|C3/SIAT1', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1', 'A/Bulgaria/311/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/313/2012|2012-02-24|C3/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Bulgaria/217/2012|2012-02-09|C3/SIAT1'))
+)
+p_map74_europe_2011_2012 <- ggplot(map74) + ggtitle('europe 2011-2012  (map 74)')
+p_map74_europe_2011_2012
+
+p_map74_europe_2011_2012_png <- file.path(strain_fig_dir, 'map74_europe_2011_2012.png')
+png(file=p_map74_europe_2011_2012_png)
+p_map74_europe_2011_2012
+dev.off()
+
+
+####### us, 2011-2012 #########
+agSize(map74) <- 5
+agFill(map74) <- 'grey50'
+css_lss <- agNames(map74) %in% c('A/Bulgaria/182/2012|2012-02-02|C3/SIAT1', 'A/Bulgaria/217/2012|2012-02-09|C3/SIAT1', 'A/Bulgaria/280/2012|2012-02-20|C3/SIAT1', 'A/Bulgaria/311/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/312/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/313/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/314/2012|2012-02-24|C3/SIAT1')
+ds <- agNames(map74) %in% c("A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")
+vs <- agNames(map74) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map74)[css_lss] <- 8
+agFill(map74)[css_lss] <- '#6d21b8'
+agSize(map74)[ds] <- 8
+agFill(map74)[ds] <- '#fcd74e'
+agSize(map74)[vs] <- 8
+agFill(map74)[vs] <- '#ffa600'
+ptDrawingOrder(map74) <- c(seq_len(numSera(map74)) + numAntigens(map74),
+    which(!agNames(map74) %in% c('A/Bulgaria/312/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/314/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/182/2012|2012-02-02|C3/SIAT1', 'A/Bulgaria/280/2012|2012-02-20|C3/SIAT1', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1', 'A/Bulgaria/311/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/313/2012|2012-02-24|C3/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Bulgaria/217/2012|2012-02-09|C3/SIAT1')),
+    which(agNames(map74) %in% c('A/Bulgaria/312/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/314/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/182/2012|2012-02-02|C3/SIAT1', 'A/Bulgaria/280/2012|2012-02-20|C3/SIAT1', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1', 'A/Bulgaria/311/2012|2012-02-24|C3/SIAT1', 'A/Bulgaria/313/2012|2012-02-24|C3/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Bulgaria/217/2012|2012-02-09|C3/SIAT1'))
+)
+p_map74_us_2011_2012 <- ggplot(map74) + ggtitle('us 2011-2012  (map 74)')
+p_map74_us_2011_2012
+
+p_map74_us_2011_2012_png <- file.path(strain_fig_dir, 'map74_us_2011_2012.png')
+png(file=p_map74_us_2011_2012_png)
+p_map74_us_2011_2012
+dev.off()
 
 
 #################### MAP 75 ####################
@@ -1921,8 +4782,38 @@ ag_Sep2012_table10 <- agNames(map75) %in% c("A/Victoria/208/2009|2009-06-02|E3/E
 
 agFill(map75)[ag_Sep2013_table7_12] <- '#ea5545'
 agFill(map75)[ag_Sep2012_table10] <- '#ef9b20'
-p_map75 <- ggplot(map75) + ggtitle('map 75')
+p_map75 <- ggplot(map75) + ggtitle('map 75 (Sep2013_table7-12, Sep2012_table10)')
+p_map75_png <- file.path(table_fig_dir, 'map75.png')
+png(file=p_map75_png)
 p_map75
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2011-2012 #########
+agSize(map75) <- 5
+agFill(map75) <- 'grey50'
+css_lss <- agNames(map75) %in% c('A/Slovenia/274/2012|2012-02-06|P1/SIAT1', 'A/Estonia/65266/2012|2012-02-13|MDCK1/SIAT1', 'A/Norway/657/2012|2012-02-22|SIAT2/SIAT2', 'A/Estonia/66788/2012|2012-03-27|MDCK1/SIAT1', 'A/Estonia/66837/2012|2012-03-28|MDCK1/SIAT1', 'A/Estonia/67238/2012|2012-04-10|MDCK1/SIAT3', 'A/Estonia/67221/2012|2012-04-11|MDCK1/SIAT2')
+ds <- agNames(map75) %in% c("A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")
+vs <- agNames(map75) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map75)[css_lss] <- 8
+agFill(map75)[css_lss] <- '#6d21b8'
+agSize(map75)[ds] <- 8
+agFill(map75)[ds] <- '#fcd74e'
+agSize(map75)[vs] <- 8
+agFill(map75)[vs] <- '#ffa600'
+ptDrawingOrder(map75) <- c(seq_len(numSera(map75)) + numAntigens(map75),
+    which(!agNames(map75) %in% c('A/Estonia/66837/2012|2012-03-28|MDCK1/SIAT1', 'A/Norway/657/2012|2012-02-22|SIAT2/SIAT2', 'A/Estonia/65266/2012|2012-02-13|MDCK1/SIAT1', 'A/Estonia/66788/2012|2012-03-27|MDCK1/SIAT1', 'A/Estonia/67238/2012|2012-04-10|MDCK1/SIAT3', 'A/Estonia/67221/2012|2012-04-11|MDCK1/SIAT2', 'A/Slovenia/274/2012|2012-02-06|P1/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1')),
+    which(agNames(map75) %in% c('A/Estonia/66837/2012|2012-03-28|MDCK1/SIAT1', 'A/Norway/657/2012|2012-02-22|SIAT2/SIAT2', 'A/Estonia/65266/2012|2012-02-13|MDCK1/SIAT1', 'A/Estonia/66788/2012|2012-03-27|MDCK1/SIAT1', 'A/Estonia/67238/2012|2012-04-10|MDCK1/SIAT3', 'A/Estonia/67221/2012|2012-04-11|MDCK1/SIAT2', 'A/Slovenia/274/2012|2012-02-06|P1/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1'))
+)
+p_map75_europe_2011_2012 <- ggplot(map75) + ggtitle('europe 2011-2012  (map 75)')
+p_map75_europe_2011_2012
+
+p_map75_europe_2011_2012_png <- file.path(strain_fig_dir, 'map75_europe_2011_2012.png')
+png(file=p_map75_europe_2011_2012_png)
+p_map75_europe_2011_2012
+dev.off()
 
 
 #################### MAP 76 ####################
@@ -1946,8 +4837,64 @@ ag_Feb2012_table12 <- agNames(map76) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E1
 
 agFill(map76)[ag_Sep2013_table7_12] <- '#ea5545'
 agFill(map76)[ag_Feb2012_table12] <- '#ef9b20'
-p_map76 <- ggplot(map76) + ggtitle('map 76')
+p_map76 <- ggplot(map76) + ggtitle('map 76 (Sep2013_table7-12, Feb2012_table12)')
+p_map76_png <- file.path(table_fig_dir, 'map76.png')
+png(file=p_map76_png)
 p_map76
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2011-2012 #########
+agSize(map76) <- 5
+agFill(map76) <- 'grey50'
+css_lss <- agNames(map76) %in% c('A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1', 'A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1', 'A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1', 'A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1')
+ds <- agNames(map76) %in% c("A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")
+vs <- agNames(map76) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map76)[css_lss] <- 8
+agFill(map76)[css_lss] <- '#6d21b8'
+agSize(map76)[ds] <- 8
+agFill(map76)[ds] <- '#fcd74e'
+agSize(map76)[vs] <- 8
+agFill(map76)[vs] <- '#ffa600'
+ptDrawingOrder(map76) <- c(seq_len(numSera(map76)) + numAntigens(map76),
+    which(!agNames(map76) %in% c('A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1', 'A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1', 'A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1', 'A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1')),
+    which(agNames(map76) %in% c('A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1', 'A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1', 'A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1', 'A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1'))
+)
+p_map76_europe_2011_2012 <- ggplot(map76) + ggtitle('europe 2011-2012  (map 76)')
+p_map76_europe_2011_2012
+
+p_map76_europe_2011_2012_png <- file.path(strain_fig_dir, 'map76_europe_2011_2012.png')
+png(file=p_map76_europe_2011_2012_png)
+p_map76_europe_2011_2012
+dev.off()
+
+
+####### us, 2011-2012 #########
+agSize(map76) <- 5
+agFill(map76) <- 'grey50'
+css_lss <- agNames(map76) %in% c('A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1', 'A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1', 'A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1', 'A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1')
+ds <- agNames(map76) %in% c("A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")
+vs <- agNames(map76) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map76)[css_lss] <- 8
+agFill(map76)[css_lss] <- '#6d21b8'
+agSize(map76)[ds] <- 8
+agFill(map76)[ds] <- '#fcd74e'
+agSize(map76)[vs] <- 8
+agFill(map76)[vs] <- '#ffa600'
+ptDrawingOrder(map76) <- c(seq_len(numSera(map76)) + numAntigens(map76),
+    which(!agNames(map76) %in% c('A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1', 'A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1', 'A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1', 'A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1')),
+    which(agNames(map76) %in% c('A/Salamanca/4/2012|2012-01-12|MDCK1/SIAT1', 'A/Firenze/3/2011|2011-12-14|MDCK2/SIAT1', 'A/Firenze/1/2011|2011-11-25|MDCK2/SIAT1', 'A/Catalonia/S4320/2011|2011-12-27|C0/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1'))
+)
+p_map76_us_2011_2012 <- ggplot(map76) + ggtitle('us 2011-2012  (map 76)')
+p_map76_us_2011_2012
+
+p_map76_us_2011_2012_png <- file.path(strain_fig_dir, 'map76_us_2011_2012.png')
+png(file=p_map76_us_2011_2012_png)
+p_map76_us_2011_2012
+dev.off()
 
 
 #################### MAP 77 ####################
@@ -1964,8 +4911,64 @@ ag_Feb2013_table13 <- agNames(map77) %in% c("A/Victoria/208/2009|2009-06-02|E3/E
 
 agFill(map77)[ag_Sep2013_table7_12] <- '#ea5545'
 agFill(map77)[ag_Feb2013_table13] <- '#ef9b20'
-p_map77 <- ggplot(map77) + ggtitle('map 77')
+p_map77 <- ggplot(map77) + ggtitle('map 77 (Sep2013_table7-12, Feb2013_table13)')
+p_map77_png <- file.path(table_fig_dir, 'map77.png')
+png(file=p_map77_png)
 p_map77
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2011-2012 #########
+agSize(map77) <- 5
+agFill(map77) <- 'grey50'
+css_lss <- agNames(map77) %in% c('A/Stockholm/30/2012|2012-07-12|MDCK1/SIAT1', 'A/Stockholm/31/2012|2012-10-17|MDCK2/SIAT1', 'A/Mecklenburg Vorpommern/4/2012|2012-10-30|C2/SIAT2', 'A/Stockholm/38/2012|2012-11-05|MDCK1/SIAT1', 'A/Stockholm/40/2012|2012-11-14|MDCK1/SIAT1', 'A/Stockholm/37/2012|2012-11-15|MDCK0/SIAT1')
+ds <- agNames(map77) %in% c("A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")
+vs <- agNames(map77) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map77)[css_lss] <- 8
+agFill(map77)[css_lss] <- '#6d21b8'
+agSize(map77)[ds] <- 8
+agFill(map77)[ds] <- '#fcd74e'
+agSize(map77)[vs] <- 8
+agFill(map77)[vs] <- '#ffa600'
+ptDrawingOrder(map77) <- c(seq_len(numSera(map77)) + numAntigens(map77),
+    which(!agNames(map77) %in% c('A/Stockholm/40/2012|2012-11-14|MDCK1/SIAT1', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1', 'A/Stockholm/30/2012|2012-07-12|MDCK1/SIAT1', 'A/Stockholm/38/2012|2012-11-05|MDCK1/SIAT1', 'A/Mecklenburg Vorpommern/4/2012|2012-10-30|C2/SIAT2', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Stockholm/37/2012|2012-11-15|MDCK0/SIAT1', 'A/Stockholm/31/2012|2012-10-17|MDCK2/SIAT1')),
+    which(agNames(map77) %in% c('A/Stockholm/40/2012|2012-11-14|MDCK1/SIAT1', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1', 'A/Stockholm/30/2012|2012-07-12|MDCK1/SIAT1', 'A/Stockholm/38/2012|2012-11-05|MDCK1/SIAT1', 'A/Mecklenburg Vorpommern/4/2012|2012-10-30|C2/SIAT2', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Stockholm/37/2012|2012-11-15|MDCK0/SIAT1', 'A/Stockholm/31/2012|2012-10-17|MDCK2/SIAT1'))
+)
+p_map77_europe_2011_2012 <- ggplot(map77) + ggtitle('europe 2011-2012  (map 77)')
+p_map77_europe_2011_2012
+
+p_map77_europe_2011_2012_png <- file.path(strain_fig_dir, 'map77_europe_2011_2012.png')
+png(file=p_map77_europe_2011_2012_png)
+p_map77_europe_2011_2012
+dev.off()
+
+
+####### us, 2011-2012 #########
+agSize(map77) <- 5
+agFill(map77) <- 'grey50'
+css_lss <- agNames(map77) %in% c('A/Stockholm/30/2012|2012-07-12|MDCK1/SIAT1', 'A/Stockholm/31/2012|2012-10-17|MDCK2/SIAT1', 'A/Mecklenburg Vorpommern/4/2012|2012-10-30|C2/SIAT2', 'A/Stockholm/38/2012|2012-11-05|MDCK1/SIAT1', 'A/Stockholm/40/2012|2012-11-14|MDCK1/SIAT1', 'A/Stockholm/37/2012|2012-11-15|MDCK0/SIAT1')
+ds <- agNames(map77) %in% c("A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")
+vs <- agNames(map77) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map77)[css_lss] <- 8
+agFill(map77)[css_lss] <- '#6d21b8'
+agSize(map77)[ds] <- 8
+agFill(map77)[ds] <- '#fcd74e'
+agSize(map77)[vs] <- 8
+agFill(map77)[vs] <- '#ffa600'
+ptDrawingOrder(map77) <- c(seq_len(numSera(map77)) + numAntigens(map77),
+    which(!agNames(map77) %in% c('A/Stockholm/40/2012|2012-11-14|MDCK1/SIAT1', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1', 'A/Stockholm/30/2012|2012-07-12|MDCK1/SIAT1', 'A/Stockholm/38/2012|2012-11-05|MDCK1/SIAT1', 'A/Mecklenburg Vorpommern/4/2012|2012-10-30|C2/SIAT2', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Stockholm/37/2012|2012-11-15|MDCK0/SIAT1', 'A/Stockholm/31/2012|2012-10-17|MDCK2/SIAT1')),
+    which(agNames(map77) %in% c('A/Stockholm/40/2012|2012-11-14|MDCK1/SIAT1', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1', 'A/Stockholm/30/2012|2012-07-12|MDCK1/SIAT1', 'A/Stockholm/38/2012|2012-11-05|MDCK1/SIAT1', 'A/Mecklenburg Vorpommern/4/2012|2012-10-30|C2/SIAT2', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Stockholm/37/2012|2012-11-15|MDCK0/SIAT1', 'A/Stockholm/31/2012|2012-10-17|MDCK2/SIAT1'))
+)
+p_map77_us_2011_2012 <- ggplot(map77) + ggtitle('us 2011-2012  (map 77)')
+p_map77_us_2011_2012
+
+p_map77_us_2011_2012_png <- file.path(strain_fig_dir, 'map77_us_2011_2012.png')
+png(file=p_map77_us_2011_2012_png)
+p_map77_us_2011_2012
+dev.off()
 
 
 #################### MAP 78 ####################
@@ -1985,8 +4988,66 @@ ag_Sep2012_table15 <- agNames(map78) %in% c("A/Victoria/208/2009|2009-06-02|E3/E
 
 agFill(map78)[ag_Sep2013_table7_12] <- '#ea5545'
 agFill(map78)[ag_Sep2012_table15] <- '#ef9b20'
-p_map78 <- ggplot(map78) + ggtitle('map 78')
+p_map78 <- ggplot(map78) + ggtitle('map 78 (Sep2013_table7-12, Sep2012_table15)')
+p_map78_png <- file.path(table_fig_dir, 'map78.png')
+png(file=p_map78_png)
 p_map78
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2011-2012 #########
+agSize(map78) <- 5
+agFill(map78) <- 'grey50'
+css_lss <- agNames(map78) %in% c('A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1', 'A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1', 'A/Parma/139/2012|2012-02-20|MDCK2/SIAT1', 'A/Denmark/38/2012|2012-03-05|SIAT2', 'A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1', 'A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1', 'A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1', 'A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1', 'A/Stockholm/19/2012|2012-04-14|C1/SIAT1', 'A/Stockholm/21/2012|2012-04-21|C2/SIAT1')
+ds <- agNames(map78) %in% c("A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")
+vs <- agNames(map78) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map78)[css_lss] <- 8
+agFill(map78)[css_lss] <- '#6d21b8'
+agSize(map78)[ds] <- 8
+agFill(map78)[ds] <- '#fcd74e'
+agSize(map78)[vs] <- 8
+agFill(map78)[vs] <- '#ffa600'
+ptDrawingOrder(map78) <- c(seq_len(numSera(map78)) + numAntigens(map78),
+	which(!agNames(map78) %in% c('A/Perth/16/2009|2009-07-04|E3/E2','A/Denmark/38/2012|2012-03-05|SIAT2','A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1','A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1','A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1','A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1','A/Stockholm/19/2012|2012-04-14|C1/SIAT1','A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1','A/Stockholm/21/2012|2012-04-21|C2/SIAT1','A/Parma/139/2012|2012-02-20|MDCK2/SIAT1',
+	"A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")),
+	which(agNames(map78) %in% c('A/Perth/16/2009|2009-07-04|E3/E2','A/Denmark/38/2012|2012-03-05|SIAT2','A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1','A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1','A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1','A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1','A/Stockholm/19/2012|2012-04-14|C1/SIAT1','A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1','A/Stockholm/21/2012|2012-04-21|C2/SIAT1','A/Parma/139/2012|2012-02-20|MDCK2/SIAT1',	"A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1"))
+)
+p_map78_europe_2011_2012 <- ggplot(map78) + ggtitle('europe 2011-2012  (map 78)')
+p_map78_europe_2011_2012
+
+p_map78_europe_2011_2012_png <- file.path(strain_fig_dir, 'map78_europe_2011_2012.png')
+png(file=p_map78_europe_2011_2012_png)
+p_map78_europe_2011_2012
+dev.off()
+
+
+####### us, 2011-2012 #########
+agSize(map78) <- 5
+agFill(map78) <- 'grey50'
+css_lss <- agNames(map78) %in% c('A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1', 'A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1', 'A/Parma/139/2012|2012-02-20|MDCK2/SIAT1', 'A/Denmark/38/2012|2012-03-05|SIAT2', 'A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1', 'A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1', 'A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1', 'A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1', 'A/Stockholm/19/2012|2012-04-14|C1/SIAT1', 'A/Stockholm/21/2012|2012-04-21|C2/SIAT1')
+ds <- agNames(map78) %in% c("A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")
+vs <- agNames(map78) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map78)[css_lss] <- 8
+agFill(map78)[css_lss] <- '#6d21b8'
+agSize(map78)[ds] <- 8
+agFill(map78)[ds] <- '#fcd74e'
+agSize(map78)[vs] <- 8
+agFill(map78)[vs] <- '#ffa600'
+ptDrawingOrder(map78) <- c(seq_len(numSera(map78)) + numAntigens(map78),
+	which(!agNames(map78) %in% c('A/Perth/16/2009|2009-07-04|E3/E2','A/Denmark/38/2012|2012-03-05|SIAT2','A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1','A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1','A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1','A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1','A/Stockholm/19/2012|2012-04-14|C1/SIAT1','A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1','A/Stockholm/21/2012|2012-04-21|C2/SIAT1','A/Parma/139/2012|2012-02-20|MDCK2/SIAT1',
+	"A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")),
+	which(agNames(map78) %in% c('A/Perth/16/2009|2009-07-04|E3/E2','A/Denmark/38/2012|2012-03-05|SIAT2','A/Lisboa/23/2012|2012-02-07|SIAT1/SIAT1','A/Iceland/17/2012|2012-02-17|MDCK2/SIAT1','A/Lisboa/38/2012|2012-03-15|SIAT1/SIAT1','A/Lisboa/58/2012|2012-03-20|SIAT1/SIAT1','A/Stockholm/19/2012|2012-04-14|C1/SIAT1','A/Lisboa/59/2012|2012-03-27|SIAT1/SIAT1','A/Stockholm/21/2012|2012-04-21|C2/SIAT1','A/Parma/139/2012|2012-02-20|MDCK2/SIAT1',	"A/Lisboa/61/2012|2012-03-05|SIAT1/SIAT1","A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1"))
+)
+p_map78_us_2011_2012 <- ggplot(map78) + ggtitle('us 2011-2012  (map 78)')
+p_map78_us_2011_2012
+
+p_map78_us_2011_2012_png <- file.path(strain_fig_dir, 'map78_us_2011_2012.png')
+png(file=p_map78_us_2011_2012_png)
+p_map78_us_2011_2012
+dev.off()
 
 
 #################### MAP 79 ####################
@@ -2016,8 +5077,39 @@ ag_Feb2013_table13 <- agNames(map79) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C2/
 agFill(map79)[ag_Feb2012_table13] <- '#ea5545'
 agFill(map79)[ag_Feb2013_table18] <- '#ef9b20'
 agFill(map79)[ag_Feb2013_table13] <- '#ede15b'
-p_map79 <- ggplot(map79) + ggtitle('map 79')
+p_map79 <- ggplot(map79) + ggtitle('map 79 (Feb2012_table13, Feb2013_table18, Feb2013_table13)')
+p_map79_png <- file.path(table_fig_dir, 'map79.png')
+png(file=p_map79_png)
 p_map79
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2012-2013 #########
+agSize(map79) <- 5
+agFill(map79) <- 'grey50'
+vs_css_lss <- agNames(map79) %in% c('A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Switzerland/5834730/2012|2012-01-13|SIAT3')
+css_lss <- agNames(map79) %in% c('A/Jordan/20110030655/2011|2011-10-31|SIAT1', 'A/Bursa/108/2011|2011-11-22|C1/SIAT1', 'A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2', 'A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1', 'A/Austria/654044/2012|2012-01-03|C2/SIAT1', 'A/Norway/114/2012|2012-01-10|MDCK1/SIAT1', 'A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1', 'A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1')
+ds <- agNames(map79) %in% c('A/Niedersachsen/29/2012|2012-11-05|C1/SIAT1', 'A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2', 'A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1')
+
+agSize(map79)[vs_css_lss] <- 8
+agFill(map79)[vs_css_lss] <- '#d399d8'
+agSize(map79)[css_lss] <- 8
+agFill(map79)[css_lss] <- '#6d21b8'
+agSize(map79)[ds] <- 8
+agFill(map79)[ds] <- '#fcd74e'
+ptDrawingOrder(map79) <- c(seq_len(numSera(map79)) + numAntigens(map79),
+	which(!agNames(map79) %in% c('A/Jordan/20110030655/2011|2011-10-31|SIAT1','A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1','A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1','A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Norway/114/2012|2012-01-10|MDCK1/SIAT1','A/Bursa/108/2011|2011-11-22|C1/SIAT1','A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2','A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1','A/Austria/654044/2012|2012-01-03|C2/SIAT1',
+	"A/Niedersachsen/29/2012|2012-11-05|C1/SIAT1","A/Switzerland/5834730/2012|2012-01-13|SIAT3","A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2")),
+	which(agNames(map79) %in% c('A/Jordan/20110030655/2011|2011-10-31|SIAT1','A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1','A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1','A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Norway/114/2012|2012-01-10|MDCK1/SIAT1','A/Bursa/108/2011|2011-11-22|C1/SIAT1','A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2','A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1','A/Austria/654044/2012|2012-01-03|C2/SIAT1',	"A/Niedersachsen/29/2012|2012-11-05|C1/SIAT1","A/Switzerland/5834730/2012|2012-01-13|SIAT3","A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2"))
+)
+p_map79_europe_2012_2013 <- ggplot(map79) + ggtitle('europe 2012-2013  (map 79)')
+p_map79_europe_2012_2013
+
+p_map79_europe_2012_2013_png <- file.path(strain_fig_dir, 'map79_europe_2012_2013.png')
+png(file=p_map79_europe_2012_2013_png)
+p_map79_europe_2012_2013
+dev.off()
 
 
 #################### MAP 80 ####################
@@ -2038,8 +5130,38 @@ ag_Sep2013_table7_16 <- agNames(map80) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C
 agFill(map80)[ag_Feb2012_table8] <- '#ea5545'
 agFill(map80)[ag_Feb2013_table18] <- '#ef9b20'
 agFill(map80)[ag_Sep2013_table7_16] <- '#ede15b'
-p_map80 <- ggplot(map80) + ggtitle('map 80')
+p_map80 <- ggplot(map80) + ggtitle('map 80 (Feb2012_table8, Feb2013_table18, Sep2013_table7-16)')
+p_map80_png <- file.path(table_fig_dir, 'map80.png')
+png(file=p_map80_png)
 p_map80
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2012-2013 #########
+agSize(map80) <- 5
+agFill(map80) <- 'grey50'
+vs_css_lss <- agNames(map80) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK3")
+css_lss <- agNames(map80) %in% c('A/England/256/2011|2011-10-12|SIAT1/SIAT1', 'A/England/255/2011|2011-10-14|SIAT1/SIAT1', 'A/Tunisia/15685/2011|2011-11-09|SIAT2')
+ds <- agNames(map80) %in% c('A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2', 'A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1', 'A/Lithuania/8003/2013|2013-03-12|SIAT3')
+
+agSize(map80)[vs_css_lss] <- 8
+agFill(map80)[vs_css_lss] <- '#d399d8'
+agSize(map80)[css_lss] <- 8
+agFill(map80)[css_lss] <- '#6d21b8'
+agSize(map80)[ds] <- 8
+agFill(map80)[ds] <- '#fcd74e'
+ptDrawingOrder(map80) <- c(seq_len(numSera(map80)) + numAntigens(map80),
+    which(!agNames(map80) %in% c('A/Tunisia/15685/2011|2011-11-09|SIAT2', 'A/England/256/2011|2011-10-12|SIAT1/SIAT1', 'A/Lithuania/8003/2013|2013-03-12|SIAT3', 'A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1', 'A/England/255/2011|2011-10-14|SIAT1/SIAT1', 'A/Hong Kong/3969/2011|2011-05-19|MDCK3', 'A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2')),
+    which(agNames(map80) %in% c('A/Tunisia/15685/2011|2011-11-09|SIAT2', 'A/England/256/2011|2011-10-12|SIAT1/SIAT1', 'A/Lithuania/8003/2013|2013-03-12|SIAT3', 'A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1', 'A/England/255/2011|2011-10-14|SIAT1/SIAT1', 'A/Hong Kong/3969/2011|2011-05-19|MDCK3', 'A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2'))
+)
+p_map80_europe_2012_2013 <- ggplot(map80) + ggtitle('europe 2012-2013  (map 80)')
+p_map80_europe_2012_2013
+
+p_map80_europe_2012_2013_png <- file.path(strain_fig_dir, 'map80_europe_2012_2013.png')
+png(file=p_map80_europe_2012_2013_png)
+p_map80_europe_2012_2013
+dev.off()
 
 
 #################### MAP 81 ####################
@@ -2055,8 +5177,38 @@ ag_Sep2013_table7_7 <- agNames(map81) %in% c("A/Victoria/208/2009|2009-06-02|E3/
 
 agFill(map81)[ag_Sep2012_table18] <- '#ea5545'
 agFill(map81)[ag_Sep2013_table7_7] <- '#ef9b20'
-p_map81 <- ggplot(map81) + ggtitle('map 81')
+p_map81 <- ggplot(map81) + ggtitle('map 81 (Sep2012_table18, Sep2013_table7-7)')
+p_map81_png <- file.path(table_fig_dir, 'map81.png')
+png(file=p_map81_png)
 p_map81
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2012-2013 #########
+agSize(map81) <- 5
+agFill(map81) <- 'grey50'
+vs_css_lss <- agNames(map81) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT5")
+css_lss <- agNames(map81) %in% c('A/Dakar/01/2012|2012-01-17|MDCK2/SIAT1', 'A/Dakar/02/2012|2012-01-31|MDCK1/SIAT2', 'A/Caen/539/2012|2012-02-07|MDCK2/SIAT3')
+ds <- agNames(map81) %in% c('A/Serbia/NS-200/2013|2013-01-14|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|SIAT3', 'A/Astrakhan/5/2013|2013-02-20|C1/SIAT1', 'A/Valladolid/95/2013|2013-03-14|SIAT2')
+
+agSize(map81)[vs_css_lss] <- 8
+agFill(map81)[vs_css_lss] <- '#d399d8'
+agSize(map81)[css_lss] <- 8
+agFill(map81)[css_lss] <- '#6d21b8'
+agSize(map81)[ds] <- 8
+agFill(map81)[ds] <- '#fcd74e'
+ptDrawingOrder(map81) <- c(seq_len(numSera(map81)) + numAntigens(map81),
+    which(!agNames(map81) %in% c('A/Dakar/02/2012|2012-01-31|MDCK1/SIAT2', 'A/Serbia/NS-200/2013|2013-01-14|SIAT2', 'A/Astrakhan/5/2013|2013-02-20|C1/SIAT1', 'A/Caen/539/2012|2012-02-07|MDCK2/SIAT3', 'A/Valladolid/95/2013|2013-03-14|SIAT2', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT5', 'A/Dakar/01/2012|2012-01-17|MDCK2/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|SIAT3')),
+    which(agNames(map81) %in% c('A/Dakar/02/2012|2012-01-31|MDCK1/SIAT2', 'A/Serbia/NS-200/2013|2013-01-14|SIAT2', 'A/Astrakhan/5/2013|2013-02-20|C1/SIAT1', 'A/Caen/539/2012|2012-02-07|MDCK2/SIAT3', 'A/Valladolid/95/2013|2013-03-14|SIAT2', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT5', 'A/Dakar/01/2012|2012-01-17|MDCK2/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|SIAT3'))
+)
+p_map81_europe_2012_2013 <- ggplot(map81) + ggtitle('europe 2012-2013  (map 81)')
+p_map81_europe_2012_2013
+
+p_map81_europe_2012_2013_png <- file.path(strain_fig_dir, 'map81_europe_2012_2013.png')
+png(file=p_map81_europe_2012_2013_png)
+p_map81_europe_2012_2013
+dev.off()
 
 
 #################### MAP 82 ####################
@@ -2075,8 +5227,38 @@ ag_Sep2012_table17 <- agNames(map82) %in% c("A/Victoria/208/2009|2009-06-02|E3/E
 
 agFill(map82)[ag_Sep2013_table7_8] <- '#ea5545'
 agFill(map82)[ag_Sep2012_table17] <- '#ef9b20'
-p_map82 <- ggplot(map82) + ggtitle('map 82')
+p_map82 <- ggplot(map82) + ggtitle('map 82 (Sep2013_table7-8, Sep2012_table17)')
+p_map82_png <- file.path(table_fig_dir, 'map82.png')
+png(file=p_map82_png)
 p_map82
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2012-2013 #########
+agSize(map82) <- 5
+agFill(map82) <- 'grey50'
+vs_css_lss <- agNames(map82) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4")
+css_lss <- agNames(map82) %in% c('A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1', 'A/Zamora/87/2012|2012-04-03|SIAT3')
+ds <- agNames(map82) %in% c('A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1', 'A/Tulkarem/83/2013|2013-01-08|SIAT3', 'A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1', 'A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1', 'A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1')
+
+agSize(map82)[vs_css_lss] <- 8
+agFill(map82)[vs_css_lss] <- '#d399d8'
+agSize(map82)[css_lss] <- 8
+agFill(map82)[css_lss] <- '#6d21b8'
+agSize(map82)[ds] <- 8
+agFill(map82)[ds] <- '#fcd74e'
+ptDrawingOrder(map82) <- c(seq_len(numSera(map82)) + numAntigens(map82),
+    which(!agNames(map82) %in% c('A/Zamora/87/2012|2012-04-03|SIAT3', 'A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Tulkarem/83/2013|2013-01-08|SIAT3', 'A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1', 'A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1', 'A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1', 'A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1')),
+    which(agNames(map82) %in% c('A/Zamora/87/2012|2012-04-03|SIAT3', 'A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Tulkarem/83/2013|2013-01-08|SIAT3', 'A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1', 'A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1', 'A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1', 'A/Bourgogne/850/2012|2012-03-01|MDCK2/SIAT1'))
+)
+p_map82_europe_2012_2013 <- ggplot(map82) + ggtitle('europe 2012-2013  (map 82)')
+p_map82_europe_2012_2013
+
+p_map82_europe_2012_2013_png <- file.path(strain_fig_dir, 'map82_europe_2012_2013.png')
+png(file=p_map82_europe_2012_2013_png)
+p_map82_europe_2012_2013
+dev.off()
 
 
 #################### MAP 83 ####################
@@ -2099,8 +5281,38 @@ ag_Sep2013_table7_16 <- agNames(map83) %in% c("A/Alabama/5/2010|2010-07-13|MK1/C
 agFill(map83)[ag_Sep2013_table7_3] <- '#ea5545'
 agFill(map83)[ag_Sep2012_table9] <- '#ef9b20'
 agFill(map83)[ag_Sep2013_table7_16] <- '#ede15b'
-p_map83 <- ggplot(map83) + ggtitle('map 83')
+p_map83 <- ggplot(map83) + ggtitle('map 83 (Sep2013_table7-3, Sep2012_table9, Sep2013_table7-16)')
+p_map83_png <- file.path(table_fig_dir, 'map83.png')
+png(file=p_map83_png)
 p_map83
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2012-2013 #########
+agSize(map83) <- 5
+agFill(map83) <- 'grey50'
+vs_css_lss <- agNames(map83) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4")
+css_lss <- agNames(map83) %in% c('A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1', 'A/Antananarivo/3635/2012|2012-06-14|MDCK1/SIAT1')
+ds <- agNames(map83) %in% c('A/Malta/MV720824/2013|2013-01-15|MDCK3', 'A/Lithuania/8003/2013|2013-03-12|SIAT3')
+
+agSize(map83)[vs_css_lss] <- 8
+agFill(map83)[vs_css_lss] <- '#d399d8'
+agSize(map83)[css_lss] <- 8
+agFill(map83)[css_lss] <- '#6d21b8'
+agSize(map83)[ds] <- 8
+agFill(map83)[ds] <- '#fcd74e'
+ptDrawingOrder(map83) <- c(seq_len(numSera(map83)) + numAntigens(map83),
+    which(!agNames(map83) %in% c('A/Lithuania/8003/2013|2013-03-12|SIAT3', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Antananarivo/3635/2012|2012-06-14|MDCK1/SIAT1', 'A/Malta/MV720824/2013|2013-01-15|MDCK3', 'A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1')),
+    which(agNames(map83) %in% c('A/Lithuania/8003/2013|2013-03-12|SIAT3', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Antananarivo/3635/2012|2012-06-14|MDCK1/SIAT1', 'A/Malta/MV720824/2013|2013-01-15|MDCK3', 'A/Petrozavodsk/1/2012|2012-02-27|C3/SIAT1'))
+)
+p_map83_europe_2012_2013 <- ggplot(map83) + ggtitle('europe 2012-2013  (map 83)')
+p_map83_europe_2012_2013
+
+p_map83_europe_2012_2013_png <- file.path(strain_fig_dir, 'map83_europe_2012_2013.png')
+png(file=p_map83_europe_2012_2013_png)
+p_map83_europe_2012_2013
+dev.off()
 
 
 #################### MAP 84 ####################
@@ -2121,8 +5333,42 @@ ag_Sep2013_table7_7 <- agNames(map84) %in% c("A/Athens/112/2012|2012-02-01|SIAT6
 agFill(map84)[ag_Sep2012_table9] <- '#ea5545'
 agFill(map84)[ag_Sep2013_table7_9] <- '#ef9b20'
 agFill(map84)[ag_Sep2013_table7_7] <- '#ede15b'
-p_map84 <- ggplot(map84) + ggtitle('map 84')
+p_map84 <- ggplot(map84) + ggtitle('map 84 (Sep2012_table9, Sep2013_table7-9, Sep2013_table7-7)')
+p_map84_png <- file.path(table_fig_dir, 'map84.png')
+png(file=p_map84_png)
 p_map84
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2013-2014 #########
+agSize(map84) <- 5
+agFill(map84) <- 'grey50'
+ds <- agNames(map84) %in% c('A/England/104/2013|2013-01-09|MDCK2/SIAT1', 'A/Catalonia/2070282NS/2013|2013-01-22|SIAT2', 'A/Catalonia/5742S/2013|2013-01-23|SIAT2', 'A/Catalonia/2071057NS/2013|2013-01-24|SIAT2', 'A/Firenze/13/2013|*|MDCK2/SIAT1')
+vs <- agNames(map84) %in% c('A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1')
+css <- agNames(map84) %in% c("A/Ukraine/5840/2013|2013-03-25|C1/SIAT1")
+lss <- agNames(map84) %in% c('A/Serbia/NS-200/2013|2013-01-14|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|SIAT3', 'A/Astrakhan/5/2013|2013-02-20|C1/SIAT1', 'A/Valladolid/95/2013|2013-03-14|SIAT2', 'A/Timis/136369/2013|2013-03-04|MDCK3/SIAT1', 'A/Moldova/326/2013|2013-03-07|MDCK2/SIAT1')
+
+agSize(map84)[ds] <- 8
+agFill(map84)[ds] <- '#fcd74e'
+agSize(map84)[vs] <- 8
+agFill(map84)[vs] <- '#ffa600'
+agSize(map84)[css] <- 8
+agFill(map84)[css] <- '#d900ba'
+agSize(map84)[lss] <- 8
+agFill(map84)[lss] <- '#0051ff'
+ptDrawingOrder(map84) <- c(seq_len(numSera(map84)) + numAntigens(map84),
+	which(!agNames(map84) %in% c('A/Serbia/NS-200/2013|2013-01-14|SIAT2','A/England/104/2013|2013-01-09|MDCK2/SIAT1','A/Serbia/NS-210/2013|2013-01-18|SIAT3','A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1','A/Astrakhan/5/2013|2013-02-20|C1/SIAT1','A/Moldova/326/2013|2013-03-07|MDCK2/SIAT1','A/Timis/136369/2013|2013-03-04|MDCK3/SIAT1','A/Valladolid/95/2013|2013-03-14|SIAT2','A/Catalonia/2070282NS/2013|2013-01-22|SIAT2','A/Catalonia/2071057NS/2013|2013-01-24|SIAT2',
+	"A/Ukraine/5840/2013|2013-03-25|C1/SIAT1","A/Firenze/13/2013|*|MDCK2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Catalonia/5742S/2013|2013-01-23|SIAT2")),
+	which(agNames(map84) %in% c('A/Serbia/NS-200/2013|2013-01-14|SIAT2','A/England/104/2013|2013-01-09|MDCK2/SIAT1','A/Serbia/NS-210/2013|2013-01-18|SIAT3','A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1','A/Astrakhan/5/2013|2013-02-20|C1/SIAT1','A/Moldova/326/2013|2013-03-07|MDCK2/SIAT1','A/Timis/136369/2013|2013-03-04|MDCK3/SIAT1','A/Valladolid/95/2013|2013-03-14|SIAT2','A/Catalonia/2070282NS/2013|2013-01-22|SIAT2','A/Catalonia/2071057NS/2013|2013-01-24|SIAT2',	"A/Ukraine/5840/2013|2013-03-25|C1/SIAT1","A/Firenze/13/2013|*|MDCK2/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Catalonia/5742S/2013|2013-01-23|SIAT2"))
+)
+p_map84_europe_2013_2014 <- ggplot(map84) + ggtitle('europe 2013-2014  (map 84)')
+p_map84_europe_2013_2014
+
+p_map84_europe_2013_2014_png <- file.path(strain_fig_dir, 'map84_europe_2013_2014.png')
+png(file=p_map84_europe_2013_2014_png)
+p_map84_europe_2013_2014
+dev.off()
 
 
 #################### MAP 85 ####################
@@ -2141,8 +5387,41 @@ ag_Sep2013_table7_12 <- agNames(map85) %in% c("A/Victoria/208/2009|2009-06-02|E3
 
 agFill(map85)[ag_Sep2012_table9] <- '#ea5545'
 agFill(map85)[ag_Sep2013_table7_12] <- '#ef9b20'
-p_map85 <- ggplot(map85) + ggtitle('map 85')
+p_map85 <- ggplot(map85) + ggtitle('map 85 (Sep2012_table9, Sep2013_table7-12)')
+p_map85_png <- file.path(table_fig_dir, 'map85.png')
+png(file=p_map85_png)
 p_map85
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2013-2014 #########
+agSize(map85) <- 5
+agFill(map85) <- 'grey50'
+ds <- agNames(map85) %in% c('A/Belgium/G0528/2013|2013-02-04|SIAT2', 'A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1', 'A/Belgium/G1067/2013|2013-03-25|SIAT2', 'A/Belgium/S0923/2013|2013-04-10|SIAT2')
+vs <- agNames(map85) %in% c('A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1')
+css <- agNames(map85) %in% c("A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1")
+lss <- agNames(map85) %in% c("A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1")
+
+agSize(map85)[ds] <- 8
+agFill(map85)[ds] <- '#fcd74e'
+agSize(map85)[vs] <- 8
+agFill(map85)[vs] <- '#ffa600'
+agSize(map85)[css] <- 8
+agFill(map85)[css] <- '#d900ba'
+agSize(map85)[lss] <- 8
+agFill(map85)[lss] <- '#0051ff'
+ptDrawingOrder(map85) <- c(seq_len(numSera(map85)) + numAntigens(map85),
+    which(!agNames(map85) %in% c('A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1', 'A/Belgium/G1067/2013|2013-03-25|SIAT2', 'A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1', 'A/Belgium/S0923/2013|2013-04-10|SIAT2', 'A/Belgium/G0528/2013|2013-02-04|SIAT2', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1', 'A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1')),
+    which(agNames(map85) %in% c('A/Minsk/1262/2013|2013-02-22|MDCK3/SIAT1', 'A/Belgium/G1067/2013|2013-03-25|SIAT2', 'A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Hong Kong/419/2013|2013-01-29|MDCK2/SIAT1', 'A/Belgium/S0923/2013|2013-04-10|SIAT2', 'A/Belgium/G0528/2013|2013-02-04|SIAT2', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1', 'A/Norway/2200/2013|2013-04-10|MDCK1/SIAT1'))
+)
+p_map85_europe_2013_2014 <- ggplot(map85) + ggtitle('europe 2013-2014  (map 85)')
+p_map85_europe_2013_2014
+
+p_map85_europe_2013_2014_png <- file.path(strain_fig_dir, 'map85_europe_2013_2014.png')
+png(file=p_map85_europe_2013_2014_png)
+p_map85_europe_2013_2014
+dev.off()
 
 
 #################### MAP 86 ####################
@@ -2163,8 +5442,41 @@ ag_Feb2013_table18 <- agNames(map86) %in% c("A/Victoria/208/2009|2009-06-02|E3/E
 
 agFill(map86)[ag_Sep2012_table15] <- '#ea5545'
 agFill(map86)[ag_Feb2013_table18] <- '#ef9b20'
-p_map86 <- ggplot(map86) + ggtitle('map 86')
+p_map86 <- ggplot(map86) + ggtitle('map 86 (Sep2012_table15, Feb2013_table18)')
+p_map86_png <- file.path(table_fig_dir, 'map86.png')
+png(file=p_map86_png)
 p_map86
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2013-2014 #########
+agSize(map86) <- 5
+agFill(map86) <- 'grey50'
+ds <- agNames(map86) %in% c('A/Belgium/G1010/2012|2012-12-24|SIAT2', 'A/Belgium/S0325/2012|2012-12-26|SIAT2', 'A/Latvia/1-37023/2013|2013-01-13|MDCK1/SIAT1')
+vs <- agNames(map86) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1')
+css <- agNames(map86) %in% c('A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2', 'A/Delaware/15/2012|2012-11-12|C2/SIAT1')
+lss <- agNames(map86) %in% c('A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2', 'A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1')
+
+agSize(map86)[ds] <- 8
+agFill(map86)[ds] <- '#fcd74e'
+agSize(map86)[vs] <- 8
+agFill(map86)[vs] <- '#ffa600'
+agSize(map86)[css] <- 8
+agFill(map86)[css] <- '#d900ba'
+agSize(map86)[lss] <- 8
+agFill(map86)[lss] <- '#0051ff'
+ptDrawingOrder(map86) <- c(seq_len(numSera(map86)) + numAntigens(map86),
+    which(!agNames(map86) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1', 'A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1', 'A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2', 'A/Delaware/15/2012|2012-11-12|C2/SIAT1', 'A/Latvia/1-37023/2013|2013-01-13|MDCK1/SIAT1', 'A/Belgium/G1010/2012|2012-12-24|SIAT2', 'A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2', 'A/Belgium/S0325/2012|2012-12-26|SIAT2')),
+    which(agNames(map86) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1', 'A/Norway/2423/2012|2012-11-26|MDCK1/SIAT1', 'A/Paris/1651/2012|2012-10-29|MDCK2/SIAT2', 'A/Delaware/15/2012|2012-11-12|C2/SIAT1', 'A/Latvia/1-37023/2013|2013-01-13|MDCK1/SIAT1', 'A/Belgium/G1010/2012|2012-12-24|SIAT2', 'A/Yamaguchi/30/2012|2012-10-10|MDCK3/SIAT2', 'A/Belgium/S0325/2012|2012-12-26|SIAT2'))
+)
+p_map86_europe_2013_2014 <- ggplot(map86) + ggtitle('europe 2013-2014  (map 86)')
+p_map86_europe_2013_2014
+
+p_map86_europe_2013_2014_png <- file.path(strain_fig_dir, 'map86_europe_2013_2014.png')
+png(file=p_map86_europe_2013_2014_png)
+p_map86_europe_2013_2014
+dev.off()
 
 
 #################### MAP 87 ####################
@@ -2185,8 +5497,41 @@ ag_Sep2013_table7_10 <- agNames(map87) %in% c("A/Victoria/208/2009|2009-06-02|E3
 agFill(map87)[ag_Sep2012_table9] <- '#ea5545'
 agFill(map87)[ag_Feb2014_table9_7] <- '#ef9b20'
 agFill(map87)[ag_Sep2013_table7_10] <- '#ede15b'
-p_map87 <- ggplot(map87) + ggtitle('map 87')
+p_map87 <- ggplot(map87) + ggtitle('map 87 (Sep2012_table9, Feb2014_table9-7, Sep2013_table7-10)')
+p_map87_png <- file.path(table_fig_dir, 'map87.png')
+png(file=p_map87_png)
 p_map87
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2013-2014 #########
+agSize(map87) <- 5
+agFill(map87) <- 'grey50'
+ds <- agNames(map87) %in% c('A/Trieste/12/2013|2013-01-28|SIAT2', 'A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1')
+vs <- agNames(map87) %in% c('A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1')
+css <- agNames(map87) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1')
+lss <- agNames(map87) %in% c("A/Serbia/NS-210/2013|2013-01-18|E5/E1")
+
+agSize(map87)[ds] <- 8
+agFill(map87)[ds] <- '#fcd74e'
+agSize(map87)[vs] <- 8
+agFill(map87)[vs] <- '#ffa600'
+agSize(map87)[css] <- 8
+agFill(map87)[css] <- '#d900ba'
+agSize(map87)[lss] <- 8
+agFill(map87)[lss] <- '#0051ff'
+ptDrawingOrder(map87) <- c(seq_len(numSera(map87)) + numAntigens(map87),
+    which(!agNames(map87) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Trieste/12/2013|2013-01-28|SIAT2', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1', 'A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1')),
+    which(agNames(map87) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Trieste/12/2013|2013-01-28|SIAT2', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1', 'A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1'))
+)
+p_map87_europe_2013_2014 <- ggplot(map87) + ggtitle('europe 2013-2014  (map 87)')
+p_map87_europe_2013_2014
+
+p_map87_europe_2013_2014_png <- file.path(strain_fig_dir, 'map87_europe_2013_2014.png')
+png(file=p_map87_europe_2013_2014_png)
+p_map87_europe_2013_2014
+dev.off()
 
 
 #################### MAP 88 ####################
@@ -2208,8 +5553,41 @@ ag_Feb2014_table9_7 <- agNames(map88) %in% c("A/Perth/16/2009|2009-07-04|E3/E3",
 agFill(map88)[ag_Sep2012_table15] <- '#ea5545'
 agFill(map88)[ag_Sep2013_table7_10] <- '#ef9b20'
 agFill(map88)[ag_Feb2014_table9_7] <- '#ede15b'
-p_map88 <- ggplot(map88) + ggtitle('map 88')
+p_map88 <- ggplot(map88) + ggtitle('map 88 (Sep2012_table15, Sep2013_table7-10, Feb2014_table9-7)')
+p_map88_png <- file.path(table_fig_dir, 'map88.png')
+png(file=p_map88_png)
 p_map88
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2013-2014 #########
+agSize(map88) <- 5
+agFill(map88) <- 'grey50'
+ds <- agNames(map88) %in% c('A/Trieste/12/2013|2013-01-28|SIAT2', 'A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1')
+vs <- agNames(map88) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1')
+css <- agNames(map88) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1')
+lss <- agNames(map88) %in% c("A/Serbia/NS-210/2013|2013-01-18|E5/E1")
+
+agSize(map88)[ds] <- 8
+agFill(map88)[ds] <- '#fcd74e'
+agSize(map88)[vs] <- 8
+agFill(map88)[vs] <- '#ffa600'
+agSize(map88)[css] <- 8
+agFill(map88)[css] <- '#d900ba'
+agSize(map88)[lss] <- 8
+agFill(map88)[lss] <- '#0051ff'
+ptDrawingOrder(map88) <- c(seq_len(numSera(map88)) + numAntigens(map88),
+    which(!agNames(map88) %in% c('A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1', 'A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1', 'A/Trieste/12/2013|2013-01-28|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1')),
+    which(agNames(map88) %in% c('A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1', 'A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1', 'A/Trieste/12/2013|2013-01-28|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Iceland/30/2013|2013-01-28|MDCKx/SIAT1'))
+)
+p_map88_europe_2013_2014 <- ggplot(map88) + ggtitle('europe 2013-2014  (map 88)')
+p_map88_europe_2013_2014
+
+p_map88_europe_2013_2014_png <- file.path(strain_fig_dir, 'map88_europe_2013_2014.png')
+png(file=p_map88_europe_2013_2014_png)
+p_map88_europe_2013_2014
+dev.off()
 
 
 #################### MAP 89 ####################
@@ -2237,8 +5615,38 @@ agFill(map89)[ag_Sep2013_table7_7] <- '#ef9b20'
 agFill(map89)[ag_Sep2014_table8_19] <- '#ede15b'
 agFill(map89)[ag_Feb2014_table9_7] <- '#87bc45'
 agFill(map89)[ag_Sep2014_table8_11] <- '#27aeef'
-p_map89 <- ggplot(map89) + ggtitle('map 89')
+p_map89 <- ggplot(map89) + ggtitle('map 89 (Sep2012_table15, Sep2013_table7-7, Sep2014_table8-19, Feb2014_table9-7, Sep2014_table8-11)')
+p_map89_png <- file.path(table_fig_dir, 'map89.png')
+png(file=p_map89_png)
 p_map89
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2014-2015 #########
+agSize(map89) <- 5
+agFill(map89) <- 'grey50'
+css_lss <- agNames(map89) %in% c('A/Serbia/NS-200/2013|2013-01-14|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|SIAT3', 'A/Astrakhan/5/2013|2013-02-20|C1/SIAT1', 'A/Valladolid/95/2013|2013-03-14|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1')
+ds <- agNames(map89) %in% c('A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2', 'A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2')
+vs <- agNames(map89) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1')
+
+agSize(map89)[css_lss] <- 8
+agFill(map89)[css_lss] <- '#6d21b8'
+agSize(map89)[ds] <- 8
+agFill(map89)[ds] <- '#fcd74e'
+agSize(map89)[vs] <- 8
+agFill(map89)[vs] <- '#ffa600'
+ptDrawingOrder(map89) <- c(seq_len(numSera(map89)) + numAntigens(map89),
+    which(!agNames(map89) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Serbia/NS-200/2013|2013-01-14|SIAT2', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1', 'A/Astrakhan/5/2013|2013-02-20|C1/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Valladolid/95/2013|2013-03-14|SIAT2', 'A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2', 'A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|SIAT3')),
+    which(agNames(map89) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Serbia/NS-200/2013|2013-01-14|SIAT2', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1', 'A/Astrakhan/5/2013|2013-02-20|C1/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Valladolid/95/2013|2013-03-14|SIAT2', 'A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2', 'A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|SIAT3'))
+)
+p_map89_europe_2014_2015 <- ggplot(map89) + ggtitle('europe 2014-2015  (map 89)')
+p_map89_europe_2014_2015
+
+p_map89_europe_2014_2015_png <- file.path(strain_fig_dir, 'map89_europe_2014_2015.png')
+png(file=p_map89_europe_2014_2015_png)
+p_map89_europe_2014_2015
+dev.off()
 
 
 #################### MAP 90 ####################
@@ -2279,8 +5687,39 @@ agFill(map90)[ag_Feb2014_table9_2] <- '#87bc45'
 agFill(map90)[ag_Feb2015_table9_4] <- '#27aeef'
 agFill(map90)[ag_Sep2012_table12] <- '#b33dc6'
 agFill(map90)[ag_Sep2012_table15] <- '#4e00ff'
-p_map90 <- ggplot(map90) + ggtitle('map 90')
+p_map90 <- ggplot(map90) + ggtitle('map 90 (Sep2015_table8-9, Sep2014_table8-16, Sep2014_table8-10, Feb2014_table9-2, Feb2015_table9-4, Sep2012_table12, Sep2012_table15)')
+p_map90_png <- file.path(table_fig_dir, 'map90.png')
+png(file=p_map90_png)
 p_map90
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2014-2015 #########
+agSize(map90) <- 5
+agFill(map90) <- 'grey50'
+css_lss <- agNames(map90) %in% c('A/Serbia/NS-210/2013|2013-01-18|E5', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1')
+ds <- agNames(map90) %in% c('A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1', 'A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1', 'A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1', 'A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1', 'A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1', 'A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3', 'A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2', 'A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2')
+vs <- agNames(map90) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1')
+
+agSize(map90)[css_lss] <- 8
+agFill(map90)[css_lss] <- '#6d21b8'
+agSize(map90)[ds] <- 8
+agFill(map90)[ds] <- '#fcd74e'
+agSize(map90)[vs] <- 8
+agFill(map90)[vs] <- '#ffa600'
+ptDrawingOrder(map90) <- c(seq_len(numSera(map90)) + numAntigens(map90),
+	which(!agNames(map90) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1','A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1',
+	"A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1")),
+	which(agNames(map90) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1','A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1',	"A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1"))
+)
+p_map90_europe_2014_2015 <- ggplot(map90) + ggtitle('europe 2014-2015  (map 90)')
+p_map90_europe_2014_2015
+
+p_map90_europe_2014_2015_png <- file.path(strain_fig_dir, 'map90_europe_2014_2015.png')
+png(file=p_map90_europe_2014_2015_png)
+p_map90_europe_2014_2015
+dev.off()
 
 
 #################### MAP 91 ####################
@@ -2297,8 +5736,35 @@ ag_Feb2016_table9_2 <- agNames(map91) %in% c("A/Netherlands/525/2014|2014-12-17|
 
 agFill(map91)[ag_Sep2016_table8_6] <- '#ea5545'
 agFill(map91)[ag_Feb2016_table9_2] <- '#ef9b20'
-p_map91 <- ggplot(map91) + ggtitle('map 91')
+p_map91 <- ggplot(map91) + ggtitle('map 91 (Sep2016_table8-6, Feb2016_table9-2)')
+p_map91_png <- file.path(table_fig_dir, 'map91.png')
+png(file=p_map91_png)
 p_map91
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2015-2016 #########
+agSize(map91) <- 5
+agFill(map91) <- 'grey50'
+ds_css_lss <- agNames(map91) %in% c('A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2')
+vs <- agNames(map91) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1', 'A/Fukui/78/2015|2015-03-02|MDCK2/SIAT1/SIAT1')
+
+agSize(map91)[ds_css_lss] <- 8
+agFill(map91)[ds_css_lss] <- '#00c1f3'
+agSize(map91)[vs] <- 8
+agFill(map91)[vs] <- '#ffa600'
+ptDrawingOrder(map91) <- c(seq_len(numSera(map91)) + numAntigens(map91),
+    which(!agNames(map91) %in% c('A/Fukui/78/2015|2015-03-02|MDCK2/SIAT1/SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2')),
+    which(agNames(map91) %in% c('A/Fukui/78/2015|2015-03-02|MDCK2/SIAT1/SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2'))
+)
+p_map91_europe_2015_2016 <- ggplot(map91) + ggtitle('europe 2015-2016  (map 91)')
+p_map91_europe_2015_2016
+
+p_map91_europe_2015_2016_png <- file.path(strain_fig_dir, 'map91_europe_2015_2016.png')
+png(file=p_map91_europe_2015_2016_png)
+p_map91_europe_2015_2016
+dev.off()
 
 
 #################### MAP 92 ####################
@@ -2319,8 +5785,36 @@ ag_Sep2015_table8_6 <- agNames(map92) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT
 agFill(map92)[ag_Sep2015_table8_4] <- '#ea5545'
 agFill(map92)[ag_Sep2015_table8_13] <- '#ef9b20'
 agFill(map92)[ag_Sep2015_table8_6] <- '#ede15b'
-p_map92 <- ggplot(map92) + ggtitle('map 92')
+p_map92 <- ggplot(map92) + ggtitle('map 92 (Sep2015_table8-4, Sep2015_table8-13, Sep2015_table8-6)')
+p_map92_png <- file.path(table_fig_dir, 'map92.png')
+png(file=p_map92_png)
 p_map92
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2015-2016 #########
+agSize(map92) <- 5
+agFill(map92) <- 'grey50'
+ds_css_lss <- agNames(map92) %in% c('A/Serbia/NS-949/2015|2015-01-20|MDCK2', 'A/Slovenia/314/2015|2015-01-16|MDCKx/SIAT1', 'A/Mauritius/I-288/2015|2015-03-23|MDCK2/SIAT1')
+vs <- agNames(map92) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123', 'A/Madagascar/2576/2014|2014-09-08|SIAT1', 'A/Madagascar/2572/2014|2014-09-11|MDCK1/SIAT1', 'A/Madagascar/2636/2014|2014-09-15|MDCK1/SIAT1', 'A/Madagascar/2632/2014|2014-09-17|SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT4', 'A/Switzerland/9715293/2013|2013-12-06|E4/E2 clone 123')
+
+agSize(map92)[ds_css_lss] <- 8
+agFill(map92)[ds_css_lss] <- '#00c1f3'
+agSize(map92)[vs] <- 8
+agFill(map92)[vs] <- '#ffa600'
+ptDrawingOrder(map92) <- c(seq_len(numSera(map92)) + numAntigens(map92),
+	which(!agNames(map92) %in% c('A/Switzerland/9715293/2013|2013-12-06|E4/E2 clone 123','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3','A/Madagascar/2632/2014|2014-09-17|SIAT1','A/Slovenia/314/2015|2015-01-16|MDCKx/SIAT1','A/Mauritius/I-288/2015|2015-03-23|MDCK2/SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/Madagascar/2636/2014|2014-09-15|MDCK1/SIAT1','A/Serbia/NS-949/2015|2015-01-20|MDCK2','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT4','A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123',
+	"A/Madagascar/2576/2014|2014-09-08|SIAT1","A/Madagascar/2572/2014|2014-09-11|MDCK1/SIAT1")),
+	which(agNames(map92) %in% c('A/Switzerland/9715293/2013|2013-12-06|E4/E2 clone 123','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3','A/Madagascar/2632/2014|2014-09-17|SIAT1','A/Slovenia/314/2015|2015-01-16|MDCKx/SIAT1','A/Mauritius/I-288/2015|2015-03-23|MDCK2/SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/Madagascar/2636/2014|2014-09-15|MDCK1/SIAT1','A/Serbia/NS-949/2015|2015-01-20|MDCK2','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT4','A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123',	"A/Madagascar/2576/2014|2014-09-08|SIAT1","A/Madagascar/2572/2014|2014-09-11|MDCK1/SIAT1"))
+)
+p_map92_europe_2015_2016 <- ggplot(map92) + ggtitle('europe 2015-2016  (map 92)')
+p_map92_europe_2015_2016
+
+p_map92_europe_2015_2016_png <- file.path(strain_fig_dir, 'map92_europe_2015_2016.png')
+png(file=p_map92_europe_2015_2016_png)
+p_map92_europe_2015_2016
+dev.off()
 
 
 #################### MAP 93 ####################
@@ -2336,8 +5830,36 @@ ag_Sep2015_table8_9 <- agNames(map93) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT
 
 agFill(map93)[ag_Sep2015_table8_8] <- '#ea5545'
 agFill(map93)[ag_Sep2015_table8_9] <- '#ef9b20'
-p_map93 <- ggplot(map93) + ggtitle('map 93')
+p_map93 <- ggplot(map93) + ggtitle('map 93 (Sep2015_table8-8, Sep2015_table8-9)')
+p_map93_png <- file.path(table_fig_dir, 'map93.png')
+png(file=p_map93_png)
 p_map93
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2015-2016 #########
+agSize(map93) <- 5
+agFill(map93) <- 'grey50'
+ds_css_lss <- agNames(map93) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1', 'A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1', 'A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1', 'A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3', 'A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2', 'A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2')
+vs <- agNames(map93) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123', 'A/Maevatanana/172/2015|2015-01-19|MDCK1', 'A/Tsiroanomandidy/1384/2015|2015-03-30|MDCK1', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2')
+
+agSize(map93)[ds_css_lss] <- 8
+agFill(map93)[ds_css_lss] <- '#00c1f3'
+agSize(map93)[vs] <- 8
+agFill(map93)[vs] <- '#ffa600'
+ptDrawingOrder(map93) <- c(seq_len(numSera(map93)) + numAntigens(map93),
+	which(!agNames(map93) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3','A/Maevatanana/172/2015|2015-01-19|MDCK1','A/Tsiroanomandidy/1384/2015|2015-03-30|MDCK1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2',
+	"A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1")),
+	which(agNames(map93) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3','A/Maevatanana/172/2015|2015-01-19|MDCK1','A/Tsiroanomandidy/1384/2015|2015-03-30|MDCK1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2',	"A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1"))
+)
+p_map93_europe_2015_2016 <- ggplot(map93) + ggtitle('europe 2015-2016  (map 93)')
+p_map93_europe_2015_2016
+
+p_map93_europe_2015_2016_png <- file.path(strain_fig_dir, 'map93_europe_2015_2016.png')
+png(file=p_map93_europe_2015_2016_png)
+p_map93_europe_2015_2016
+dev.off()
 
 
 #################### MAP 94 ####################
@@ -2352,16 +5874,94 @@ ag_Sep2015_table8_9 <- agNames(map94) %in% c("A/Samara/73/2013|2013-03-12|C1/SIA
 
 agFill(map94)[ag_Sep2015_table8_13] <- '#ea5545'
 agFill(map94)[ag_Sep2015_table8_9] <- '#ef9b20'
-p_map94 <- ggplot(map94) + ggtitle('map 94')
+p_map94 <- ggplot(map94) + ggtitle('map 94 (Sep2015_table8-13, Sep2015_table8-9)')
+p_map94_png <- file.path(table_fig_dir, 'map94.png')
+png(file=p_map94_png)
 p_map94
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2015-2016 #########
+agSize(map94) <- 5
+agFill(map94) <- 'grey50'
+ds_css_lss <- agNames(map94) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1', 'A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1', 'A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1', 'A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3', 'A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2', 'A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2', 'A/Slovenia/314/2015|2015-01-16|MDCKx/SIAT1', 'A/Mauritius/I-288/2015|2015-03-23|MDCK2/SIAT1')
+vs <- agNames(map94) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT4', 'A/Switzerland/9715293/2013|2013-12-06|E4/E2 clone 123')
+
+agSize(map94)[ds_css_lss] <- 8
+agFill(map94)[ds_css_lss] <- '#00c1f3'
+agSize(map94)[vs] <- 8
+agFill(map94)[vs] <- '#ffa600'
+ptDrawingOrder(map94) <- c(seq_len(numSera(map94)) + numAntigens(map94),
+	which(!agNames(map94) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123','A/Switzerland/9715293/2013|2013-12-06|E4/E2 clone 123','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Slovenia/314/2015|2015-01-16|MDCKx/SIAT1','A/Mauritius/I-288/2015|2015-03-23|MDCK2/SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT4',
+	"A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1")),
+	which(agNames(map94) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123','A/Switzerland/9715293/2013|2013-12-06|E4/E2 clone 123','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Slovenia/314/2015|2015-01-16|MDCKx/SIAT1','A/Mauritius/I-288/2015|2015-03-23|MDCK2/SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT4',	"A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1"))
+)
+p_map94_europe_2015_2016 <- ggplot(map94) + ggtitle('europe 2015-2016  (map 94)')
+p_map94_europe_2015_2016
+
+p_map94_europe_2015_2016_png <- file.path(strain_fig_dir, 'map94_europe_2015_2016.png')
+png(file=p_map94_europe_2015_2016_png)
+p_map94_europe_2015_2016
+dev.off()
 
 
 #################### MAP 95 ####################
 #### colered by tables
 agSize(map95) <- 5
 agFill(map95) <- 'grey50'
-p_map95 <- ggplot(map95) + ggtitle('map 95')
+p_map95 <- ggplot(map95) + ggtitle('map 95 (Feb2016_table9-3)')
+p_map95_png <- file.path(table_fig_dir, 'map95.png')
+png(file=p_map95_png)
 p_map95
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2015-2016 #########
+agSize(map95) <- 5
+agFill(map95) <- 'grey50'
+ds_css_lss <- agNames(map95) %in% c('A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/England/333/2015|2015-09-04|MDCK2/SIAT1')
+vs <- agNames(map95) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1', 'A/Jilin-Yanji/1179/2015|2015-03-03|MDCK1/SIAT2/SIAT1')
+
+agSize(map95)[ds_css_lss] <- 8
+agFill(map95)[ds_css_lss] <- '#00c1f3'
+agSize(map95)[vs] <- 8
+agFill(map95)[vs] <- '#ffa600'
+ptDrawingOrder(map95) <- c(seq_len(numSera(map95)) + numAntigens(map95),
+    which(!agNames(map95) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1', 'A/Jilin-Yanji/1179/2015|2015-03-03|MDCK1/SIAT2/SIAT1', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2')),
+    which(agNames(map95) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1', 'A/Jilin-Yanji/1179/2015|2015-03-03|MDCK1/SIAT2/SIAT1', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2'))
+)
+p_map95_europe_2015_2016 <- ggplot(map95) + ggtitle('europe 2015-2016  (map 95)')
+p_map95_europe_2015_2016
+
+p_map95_europe_2015_2016_png <- file.path(strain_fig_dir, 'map95_europe_2015_2016.png')
+png(file=p_map95_europe_2015_2016_png)
+p_map95_europe_2015_2016
+dev.off()
+
+
+####### us, 2015-2016 #########
+agSize(map95) <- 5
+agFill(map95) <- 'grey50'
+ds_css_lss <- agNames(map95) %in% c('A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/England/333/2015|2015-09-04|MDCK2/SIAT1')
+vs <- agNames(map95) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1', 'A/Jilin-Yanji/1179/2015|2015-03-03|MDCK1/SIAT2/SIAT1')
+
+agSize(map95)[ds_css_lss] <- 8
+agFill(map95)[ds_css_lss] <- '#00c1f3'
+agSize(map95)[vs] <- 8
+agFill(map95)[vs] <- '#ffa600'
+ptDrawingOrder(map95) <- c(seq_len(numSera(map95)) + numAntigens(map95),
+    which(!agNames(map95) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1', 'A/Jilin-Yanji/1179/2015|2015-03-03|MDCK1/SIAT2/SIAT1', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2')),
+    which(agNames(map95) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1', 'A/Jilin-Yanji/1179/2015|2015-03-03|MDCK1/SIAT2/SIAT1', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2'))
+)
+p_map95_us_2015_2016 <- ggplot(map95) + ggtitle('us 2015-2016  (map 95)')
+p_map95_us_2015_2016
+
+p_map95_us_2015_2016_png <- file.path(strain_fig_dir, 'map95_us_2015_2016.png')
+png(file=p_map95_us_2015_2016_png)
+p_map95_us_2015_2016
+dev.off()
 
 
 #################### MAP 96 ####################
@@ -2376,8 +5976,38 @@ ag_Sep2016_table8_7 <- agNames(map96) %in% c("A/Ukraine/7030/2016|2016-01-04|P2/
 
 agFill(map96)[ag_Sep2016_table8_6] <- '#ea5545'
 agFill(map96)[ag_Sep2016_table8_7] <- '#ef9b20'
-p_map96 <- ggplot(map96) + ggtitle('map 96')
+p_map96 <- ggplot(map96) + ggtitle('map 96 (Sep2016_table8-6, Sep2016_table8-7)')
+p_map96_png <- file.path(table_fig_dir, 'map96.png')
+png(file=p_map96_png)
 p_map96
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2016-2017 #########
+agSize(map96) <- 5
+agFill(map96) <- 'grey50'
+css_lss <- agNames(map96) %in% c('A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2')
+ds <- agNames(map96) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+vs <- agNames(map96) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2')
+
+agSize(map96)[css_lss] <- 8
+agFill(map96)[css_lss] <- '#6d21b8'
+agSize(map96)[ds] <- 8
+agFill(map96)[ds] <- '#fcd74e'
+agSize(map96)[vs] <- 8
+agFill(map96)[vs] <- '#ffa600'
+ptDrawingOrder(map96) <- c(seq_len(numSera(map96)) + numAntigens(map96),
+    which(!agNames(map96) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1')),
+    which(agNames(map96) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1'))
+)
+p_map96_europe_2016_2017 <- ggplot(map96) + ggtitle('europe 2016-2017  (map 96)')
+p_map96_europe_2016_2017
+
+p_map96_europe_2016_2017_png <- file.path(strain_fig_dir, 'map96_europe_2016_2017.png')
+png(file=p_map96_europe_2016_2017_png)
+p_map96_europe_2016_2017
+dev.off()
 
 
 #################### MAP 97 ####################
@@ -2392,8 +6022,64 @@ ag_Feb2016_table9_3 <- agNames(map97) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT
 
 agFill(map97)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map97)[ag_Feb2016_table9_3] <- '#ef9b20'
-p_map97 <- ggplot(map97) + ggtitle('map 97')
+p_map97 <- ggplot(map97) + ggtitle('map 97 (Sep2016_table8-7, Feb2016_table9-3)')
+p_map97_png <- file.path(table_fig_dir, 'map97.png')
+png(file=p_map97_png)
 p_map97
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2016-2017 #########
+agSize(map97) <- 5
+agFill(map97) <- 'grey50'
+css_lss <- agNames(map97) %in% c('A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/England/333/2015|2015-09-04|MDCK2/SIAT1')
+ds <- agNames(map97) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+vs <- agNames(map97) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2')
+
+agSize(map97)[css_lss] <- 8
+agFill(map97)[css_lss] <- '#6d21b8'
+agSize(map97)[ds] <- 8
+agFill(map97)[ds] <- '#fcd74e'
+agSize(map97)[vs] <- 8
+agFill(map97)[vs] <- '#ffa600'
+ptDrawingOrder(map97) <- c(seq_len(numSera(map97)) + numAntigens(map97),
+    which(!agNames(map97) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1')),
+    which(agNames(map97) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1'))
+)
+p_map97_europe_2016_2017 <- ggplot(map97) + ggtitle('europe 2016-2017  (map 97)')
+p_map97_europe_2016_2017
+
+p_map97_europe_2016_2017_png <- file.path(strain_fig_dir, 'map97_europe_2016_2017.png')
+png(file=p_map97_europe_2016_2017_png)
+p_map97_europe_2016_2017
+dev.off()
+
+
+####### us, 2016-2017 #########
+agSize(map97) <- 5
+agFill(map97) <- 'grey50'
+css_lss <- agNames(map97) %in% c('A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/England/333/2015|2015-09-04|MDCK2/SIAT1')
+ds <- agNames(map97) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+vs <- agNames(map97) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2')
+
+agSize(map97)[css_lss] <- 8
+agFill(map97)[css_lss] <- '#6d21b8'
+agSize(map97)[ds] <- 8
+agFill(map97)[ds] <- '#fcd74e'
+agSize(map97)[vs] <- 8
+agFill(map97)[vs] <- '#ffa600'
+ptDrawingOrder(map97) <- c(seq_len(numSera(map97)) + numAntigens(map97),
+    which(!agNames(map97) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1')),
+    which(agNames(map97) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1'))
+)
+p_map97_us_2016_2017 <- ggplot(map97) + ggtitle('us 2016-2017  (map 97)')
+p_map97_us_2016_2017
+
+p_map97_us_2016_2017_png <- file.path(strain_fig_dir, 'map97_us_2016_2017.png')
+png(file=p_map97_us_2016_2017_png)
+p_map97_us_2016_2017
+dev.off()
 
 
 #################### MAP 98 ####################
@@ -2410,8 +6096,38 @@ ag_Sep2016_table8_2 <- agNames(map98) %in% c("A/Ghana/FS-15-0583/2015|2015-09-25
 agFill(map98)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map98)[ag_Feb2016_table9_3] <- '#ef9b20'
 agFill(map98)[ag_Sep2016_table8_2] <- '#ede15b'
-p_map98 <- ggplot(map98) + ggtitle('map 98')
+p_map98 <- ggplot(map98) + ggtitle('map 98 (Sep2016_table8-7, Feb2016_table9-3, Sep2016_table8-2)')
+p_map98_png <- file.path(table_fig_dir, 'map98.png')
+png(file=p_map98_png)
 p_map98
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2016-2017 #########
+agSize(map98) <- 5
+agFill(map98) <- 'grey50'
+css_lss <- agNames(map98) %in% c('A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Jordan/4054/2015|*|SIAT1')
+ds <- agNames(map98) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+vs <- agNames(map98) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2')
+
+agSize(map98)[css_lss] <- 8
+agFill(map98)[css_lss] <- '#6d21b8'
+agSize(map98)[ds] <- 8
+agFill(map98)[ds] <- '#fcd74e'
+agSize(map98)[vs] <- 8
+agFill(map98)[vs] <- '#ffa600'
+ptDrawingOrder(map98) <- c(seq_len(numSera(map98)) + numAntigens(map98),
+    which(!agNames(map98) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1')),
+    which(agNames(map98) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1'))
+)
+p_map98_europe_2016_2017 <- ggplot(map98) + ggtitle('europe 2016-2017  (map 98)')
+p_map98_europe_2016_2017
+
+p_map98_europe_2016_2017_png <- file.path(strain_fig_dir, 'map98_europe_2016_2017.png')
+png(file=p_map98_europe_2016_2017_png)
+p_map98_europe_2016_2017
+dev.off()
 
 
 #################### MAP 99 ####################
@@ -2426,8 +6142,64 @@ ag_Sep2016_table8_2 <- agNames(map99) %in% c("A/Netherlands/525/2014|2014-12-17|
 
 agFill(map99)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map99)[ag_Sep2016_table8_2] <- '#ef9b20'
-p_map99 <- ggplot(map99) + ggtitle('map 99')
+p_map99 <- ggplot(map99) + ggtitle('map 99 (Sep2016_table8-7, Sep2016_table8-2)')
+p_map99_png <- file.path(table_fig_dir, 'map99.png')
+png(file=p_map99_png)
 p_map99
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2016-2017 #########
+agSize(map99) <- 5
+agFill(map99) <- 'grey50'
+css_lss <- agNames(map99) %in% c('A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Jordan/4054/2015|*|SIAT1')
+ds <- agNames(map99) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+vs <- agNames(map99) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2')
+
+agSize(map99)[css_lss] <- 8
+agFill(map99)[css_lss] <- '#6d21b8'
+agSize(map99)[ds] <- 8
+agFill(map99)[ds] <- '#fcd74e'
+agSize(map99)[vs] <- 8
+agFill(map99)[vs] <- '#ffa600'
+ptDrawingOrder(map99) <- c(seq_len(numSera(map99)) + numAntigens(map99),
+    which(!agNames(map99) %in% c('A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1')),
+    which(agNames(map99) %in% c('A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1'))
+)
+p_map99_europe_2016_2017 <- ggplot(map99) + ggtitle('europe 2016-2017  (map 99)')
+p_map99_europe_2016_2017
+
+p_map99_europe_2016_2017_png <- file.path(strain_fig_dir, 'map99_europe_2016_2017.png')
+png(file=p_map99_europe_2016_2017_png)
+p_map99_europe_2016_2017
+dev.off()
+
+
+####### us, 2016-2017 #########
+agSize(map99) <- 5
+agFill(map99) <- 'grey50'
+css_lss <- agNames(map99) %in% c('A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Jordan/4054/2015|*|SIAT1')
+ds <- agNames(map99) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+vs <- agNames(map99) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2')
+
+agSize(map99)[css_lss] <- 8
+agFill(map99)[css_lss] <- '#6d21b8'
+agSize(map99)[ds] <- 8
+agFill(map99)[ds] <- '#fcd74e'
+agSize(map99)[vs] <- 8
+agFill(map99)[vs] <- '#ffa600'
+ptDrawingOrder(map99) <- c(seq_len(numSera(map99)) + numAntigens(map99),
+    which(!agNames(map99) %in% c('A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1')),
+    which(agNames(map99) %in% c('A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1'))
+)
+p_map99_us_2016_2017 <- ggplot(map99) + ggtitle('us 2016-2017  (map 99)')
+p_map99_us_2016_2017
+
+p_map99_us_2016_2017_png <- file.path(strain_fig_dir, 'map99_us_2016_2017.png')
+png(file=p_map99_us_2016_2017_png)
+p_map99_us_2016_2017
+dev.off()
 
 
 #################### MAP 100 ####################
@@ -2445,8 +6217,38 @@ ag_Sep2017_table21 <- agNames(map100) %in% c("A/Switzerland/9715293/2013|2013-12
 
 agFill(map100)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map100)[ag_Sep2017_table21] <- '#ef9b20'
-p_map100 <- ggplot(map100) + ggtitle('map 100')
+p_map100 <- ggplot(map100) + ggtitle('map 100 (Sep2016_table8-7, Sep2017_table21)')
+p_map100_png <- file.path(table_fig_dir, 'map100.png')
+png(file=p_map100_png)
 p_map100
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2017-2018 #########
+agSize(map100) <- 5
+agFill(map100) <- 'grey50'
+css_lss <- agNames(map100) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map100) %in% c('A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1')
+vs <- agNames(map100) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2')
+
+agSize(map100)[css_lss] <- 8
+agFill(map100)[css_lss] <- '#6d21b8'
+agSize(map100)[ds] <- 8
+agFill(map100)[ds] <- '#fcd74e'
+agSize(map100)[vs] <- 8
+agFill(map100)[vs] <- '#ffa600'
+ptDrawingOrder(map100) <- c(seq_len(numSera(map100)) + numAntigens(map100),
+    which(!agNames(map100) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1')),
+    which(agNames(map100) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1'))
+)
+p_map100_europe_2017_2018 <- ggplot(map100) + ggtitle('europe 2017-2018  (map 100)')
+p_map100_europe_2017_2018
+
+p_map100_europe_2017_2018_png <- file.path(strain_fig_dir, 'map100_europe_2017_2018.png')
+png(file=p_map100_europe_2017_2018_png)
+p_map100_europe_2017_2018
+dev.off()
 
 
 #################### MAP 101 ####################
@@ -2460,8 +6262,64 @@ ag_Feb2017_table8_2 <- agNames(map101) %in% c('A/Samara/73/2013|2013-03-12|C1/SI
 
 agFill(map101)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map101)[ag_Feb2017_table8_2] <- '#ef9b20'
-p_map101 <- ggplot(map101) + ggtitle('map 101')
+p_map101 <- ggplot(map101) + ggtitle('map 101 (Sep2016_table8-7, Feb2017_table8-2)')
+p_map101_png <- file.path(table_fig_dir, 'map101.png')
+png(file=p_map101_png)
 p_map101
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2017-2018 #########
+agSize(map101) <- 5
+agFill(map101) <- 'grey50'
+css_lss <- agNames(map101) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map101) %in% c('A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2')
+vs <- agNames(map101) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2')
+
+agSize(map101)[css_lss] <- 8
+agFill(map101)[css_lss] <- '#6d21b8'
+agSize(map101)[ds] <- 8
+agFill(map101)[ds] <- '#fcd74e'
+agSize(map101)[vs] <- 8
+agFill(map101)[vs] <- '#ffa600'
+ptDrawingOrder(map101) <- c(seq_len(numSera(map101)) + numAntigens(map101),
+    which(!agNames(map101) %in% c('A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1')),
+    which(agNames(map101) %in% c('A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1'))
+)
+p_map101_europe_2017_2018 <- ggplot(map101) + ggtitle('europe 2017-2018  (map 101)')
+p_map101_europe_2017_2018
+
+p_map101_europe_2017_2018_png <- file.path(strain_fig_dir, 'map101_europe_2017_2018.png')
+png(file=p_map101_europe_2017_2018_png)
+p_map101_europe_2017_2018
+dev.off()
+
+
+####### us, 2017-2018 #########
+agSize(map101) <- 5
+agFill(map101) <- 'grey50'
+css_lss <- agNames(map101) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map101) %in% c('A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2')
+vs <- agNames(map101) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2')
+
+agSize(map101)[css_lss] <- 8
+agFill(map101)[css_lss] <- '#6d21b8'
+agSize(map101)[ds] <- 8
+agFill(map101)[ds] <- '#fcd74e'
+agSize(map101)[vs] <- 8
+agFill(map101)[vs] <- '#ffa600'
+ptDrawingOrder(map101) <- c(seq_len(numSera(map101)) + numAntigens(map101),
+    which(!agNames(map101) %in% c('A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1')),
+    which(agNames(map101) %in% c('A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1'))
+)
+p_map101_us_2017_2018 <- ggplot(map101) + ggtitle('us 2017-2018  (map 101)')
+p_map101_us_2017_2018
+
+p_map101_us_2017_2018_png <- file.path(strain_fig_dir, 'map101_us_2017_2018.png')
+png(file=p_map101_us_2017_2018_png)
+p_map101_us_2017_2018
+dev.off()
 
 
 #################### MAP 102 ####################
@@ -2478,8 +6336,38 @@ ag_Sep2017_table8_2 <- agNames(map102) %in% c("A/Samara/73/2013|2013-03-12|C1/SI
 agFill(map102)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map102)[ag_Sep2016_table8_9] <- '#ef9b20'
 agFill(map102)[ag_Sep2017_table8_2] <- '#ede15b'
-p_map102 <- ggplot(map102) + ggtitle('map 102')
+p_map102 <- ggplot(map102) + ggtitle('map 102 (Sep2016_table8-7, Sep2016_table8-9, Sep2017_table8-2)')
+p_map102_png <- file.path(table_fig_dir, 'map102.png')
+png(file=p_map102_png)
 p_map102
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2017-2018 #########
+agSize(map102) <- 5
+agFill(map102) <- 'grey50'
+css_lss <- agNames(map102) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map102) %in% c('A/Hong Kong/2262/2016|2016-07-28|MDCK1/SIAT1', 'A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1')
+vs <- agNames(map102) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2')
+
+agSize(map102)[css_lss] <- 8
+agFill(map102)[css_lss] <- '#6d21b8'
+agSize(map102)[ds] <- 8
+agFill(map102)[ds] <- '#fcd74e'
+agSize(map102)[vs] <- 8
+agFill(map102)[vs] <- '#ffa600'
+ptDrawingOrder(map102) <- c(seq_len(numSera(map102)) + numAntigens(map102),
+    which(!agNames(map102) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/2262/2016|2016-07-28|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1')),
+    which(agNames(map102) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/2262/2016|2016-07-28|MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1'))
+)
+p_map102_europe_2017_2018 <- ggplot(map102) + ggtitle('europe 2017-2018  (map 102)')
+p_map102_europe_2017_2018
+
+p_map102_europe_2017_2018_png <- file.path(strain_fig_dir, 'map102_europe_2017_2018.png')
+png(file=p_map102_europe_2017_2018_png)
+p_map102_europe_2017_2018
+dev.off()
 
 
 #################### MAP 103 ####################
@@ -2494,8 +6382,38 @@ ag_Feb2017_table8_2 <- agNames(map103) %in% c('A/Samara/73/2013|2013-03-12|C1/SI
 agFill(map103)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map103)[ag_Sep2016_table8_9] <- '#ef9b20'
 agFill(map103)[ag_Feb2017_table8_2] <- '#ede15b'
-p_map103 <- ggplot(map103) + ggtitle('map 103')
+p_map103 <- ggplot(map103) + ggtitle('map 103 (Sep2016_table8-7, Sep2016_table8-9, Feb2017_table8-2)')
+p_map103_png <- file.path(table_fig_dir, 'map103.png')
+png(file=p_map103_png)
 p_map103
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2017-2018 #########
+agSize(map103) <- 5
+agFill(map103) <- 'grey50'
+css_lss <- agNames(map103) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map103) %in% c('A/Hong Kong/2262/2016|2016-07-28|MDCK1/SIAT1', 'A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2')
+vs <- agNames(map103) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2')
+
+agSize(map103)[css_lss] <- 8
+agFill(map103)[css_lss] <- '#6d21b8'
+agSize(map103)[ds] <- 8
+agFill(map103)[ds] <- '#fcd74e'
+agSize(map103)[vs] <- 8
+agFill(map103)[vs] <- '#ffa600'
+ptDrawingOrder(map103) <- c(seq_len(numSera(map103)) + numAntigens(map103),
+    which(!agNames(map103) %in% c('A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/2262/2016|2016-07-28|MDCK1/SIAT1', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1')),
+    which(agNames(map103) %in% c('A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/2262/2016|2016-07-28|MDCK1/SIAT1', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1'))
+)
+p_map103_europe_2017_2018 <- ggplot(map103) + ggtitle('europe 2017-2018  (map 103)')
+p_map103_europe_2017_2018
+
+p_map103_europe_2017_2018_png <- file.path(strain_fig_dir, 'map103_europe_2017_2018.png')
+png(file=p_map103_europe_2017_2018_png)
+p_map103_europe_2017_2018
+dev.off()
 
 
 #################### MAP 104 ####################
@@ -2514,8 +6432,38 @@ ag_Sep2017_table21 <- agNames(map104) %in% c("A/Switzerland/9715293/2013|2013-12
 agFill(map104)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map104)[ag_Feb2017_table8_2] <- '#ef9b20'
 agFill(map104)[ag_Sep2017_table21] <- '#ede15b'
-p_map104 <- ggplot(map104) + ggtitle('map 104')
+p_map104 <- ggplot(map104) + ggtitle('map 104 (Sep2016_table8-7, Feb2017_table8-2, Sep2017_table21)')
+p_map104_png <- file.path(table_fig_dir, 'map104.png')
+png(file=p_map104_png)
 p_map104
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2017-2018 #########
+agSize(map104) <- 5
+agFill(map104) <- 'grey50'
+css_lss <- agNames(map104) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map104) %in% c('A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1')
+vs <- agNames(map104) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2')
+
+agSize(map104)[css_lss] <- 8
+agFill(map104)[css_lss] <- '#6d21b8'
+agSize(map104)[ds] <- 8
+agFill(map104)[ds] <- '#fcd74e'
+agSize(map104)[vs] <- 8
+agFill(map104)[vs] <- '#ffa600'
+ptDrawingOrder(map104) <- c(seq_len(numSera(map104)) + numAntigens(map104),
+    which(!agNames(map104) %in% c('A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1')),
+    which(agNames(map104) %in% c('A/Norway/4676/2016|2016-11-23|SIAT1/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Norway/4858/2016|2016-12-02|SIAT1/SIAT2', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1'))
+)
+p_map104_europe_2017_2018 <- ggplot(map104) + ggtitle('europe 2017-2018  (map 104)')
+p_map104_europe_2017_2018
+
+p_map104_europe_2017_2018_png <- file.path(strain_fig_dir, 'map104_europe_2017_2018.png')
+png(file=p_map104_europe_2017_2018_png)
+p_map104_europe_2017_2018
+dev.off()
 
 
 #################### MAP 105 ####################
@@ -2534,8 +6482,38 @@ ag_Sep2017_table8_16 <- agNames(map105) %in% c("A/Hong Kong/4801/2014|2014-02-26
 agFill(map105)[ag_Feb2019_table8_5] <- '#ea5545'
 agFill(map105)[ag_Feb2018_table8_4] <- '#ef9b20'
 agFill(map105)[ag_Sep2017_table8_16] <- '#ede15b'
-p_map105 <- ggplot(map105) + ggtitle('map 105')
+p_map105 <- ggplot(map105) + ggtitle('map 105 (Feb2019_table8-5, Feb2018_table8-4, Sep2017_table8-16)')
+p_map105_png <- file.path(table_fig_dir, 'map105.png')
+png(file=p_map105_png)
 p_map105
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2018-2019 #########
+agSize(map105) <- 5
+agFill(map105) <- 'grey50'
+css_lss <- agNames(map105) %in% c('A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1')
+ds <- agNames(map105) %in% c('A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1', 'A/Oman/3542/2018|2018-06-01|SIAT1/SIAT1', 'A/Oman/3356/2018|2018-06-07|SIAT1/SIAT1')
+vs <- agNames(map105) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Singapore/INFIMH-16-0019/2016|2017-10-05|E5/E2')
+
+agSize(map105)[css_lss] <- 8
+agFill(map105)[css_lss] <- '#6d21b8'
+agSize(map105)[ds] <- 8
+agFill(map105)[ds] <- '#fcd74e'
+agSize(map105)[vs] <- 8
+agFill(map105)[vs] <- '#ffa600'
+ptDrawingOrder(map105) <- c(seq_len(numSera(map105)) + numAntigens(map105),
+    which(!agNames(map105) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1', 'A/Oman/3356/2018|2018-06-07|SIAT1/SIAT1', 'A/Oman/3542/2018|2018-06-01|SIAT1/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Singapore/INFIMH-16-0019/2016|2017-10-05|E5/E2', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2')),
+    which(agNames(map105) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Hong Kong/2285/2017|2017-05-23|Cx/SIAT1', 'A/Oman/3356/2018|2018-06-07|SIAT1/SIAT1', 'A/Oman/3542/2018|2018-06-01|SIAT1/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Singapore/INFIMH-16-0019/2016|2017-10-05|E5/E2', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2'))
+)
+p_map105_europe_2018_2019 <- ggplot(map105) + ggtitle('europe 2018-2019  (map 105)')
+p_map105_europe_2018_2019
+
+p_map105_europe_2018_2019_png <- file.path(strain_fig_dir, 'map105_europe_2018_2019.png')
+png(file=p_map105_europe_2018_2019_png)
+p_map105_europe_2018_2019
+dev.off()
 
 
 #################### MAP 106 ####################
@@ -2551,8 +6529,38 @@ ag_Feb2018_table8_6 <- agNames(map106) %in% c('A/Switzerland/9715293/2013|2013-1
 agFill(map106)[ag_Sep2018_table8_6] <- '#ea5545'
 agFill(map106)[ag_Sep2018_table8_5] <- '#ef9b20'
 agFill(map106)[ag_Feb2018_table8_6] <- '#ede15b'
-p_map106 <- ggplot(map106) + ggtitle('map 106')
+p_map106 <- ggplot(map106) + ggtitle('map 106 (Sep2018_table8-6, Sep2018_table8-5, Feb2018_table8-6)')
+p_map106_png <- file.path(table_fig_dir, 'map106.png')
+png(file=p_map106_png)
 p_map106
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2018-2019 #########
+agSize(map106) <- 5
+agFill(map106) <- 'grey50'
+css_lss <- agNames(map106) %in% c('A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2')
+ds <- agNames(map106) %in% c("A/Sweden/11/2018|2018-01-30|MDCK1/SIAT1")
+vs <- agNames(map106) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1')
+
+agSize(map106)[css_lss] <- 8
+agFill(map106)[css_lss] <- '#6d21b8'
+agSize(map106)[ds] <- 8
+agFill(map106)[ds] <- '#fcd74e'
+agSize(map106)[vs] <- 8
+agFill(map106)[vs] <- '#ffa600'
+ptDrawingOrder(map106) <- c(seq_len(numSera(map106)) + numAntigens(map106),
+    which(!agNames(map106) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1', 'A/Sweden/11/2018|2018-01-30|MDCK1/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2')),
+    which(agNames(map106) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1', 'A/Sweden/11/2018|2018-01-30|MDCK1/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2'))
+)
+p_map106_europe_2018_2019 <- ggplot(map106) + ggtitle('europe 2018-2019  (map 106)')
+p_map106_europe_2018_2019
+
+p_map106_europe_2018_2019_png <- file.path(strain_fig_dir, 'map106_europe_2018_2019.png')
+png(file=p_map106_europe_2018_2019_png)
+p_map106_europe_2018_2019
+dev.off()
 
 
 #################### MAP 107 ####################
@@ -2572,8 +6580,39 @@ ag_Sep2017_table21 <- agNames(map107) %in% c("A/Hong_Kong/5738/2014|2014-04-30|M
 agFill(map107)[ag_Sep2018_table8_6] <- '#ea5545'
 agFill(map107)[ag_Feb2018_table8_6] <- '#ef9b20'
 agFill(map107)[ag_Sep2017_table21] <- '#ede15b'
-p_map107 <- ggplot(map107) + ggtitle('map 107')
+p_map107 <- ggplot(map107) + ggtitle('map 107 (Sep2018_table8-6, Feb2018_table8-6, Sep2017_table21)')
+p_map107_png <- file.path(table_fig_dir, 'map107.png')
+png(file=p_map107_png)
 p_map107
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2018-2019 #########
+agSize(map107) <- 5
+agFill(map107) <- 'grey50'
+css_lss <- agNames(map107) %in% c('A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1')
+ds <- agNames(map107) %in% c('A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1', 'A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1', 'A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1', 'A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1', 'A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1', 'A/Sweden/11/2018|2018-01-30|MDCK1/SIAT1')
+vs <- agNames(map107) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1')
+
+agSize(map107)[css_lss] <- 8
+agFill(map107)[css_lss] <- '#6d21b8'
+agSize(map107)[ds] <- 8
+agFill(map107)[ds] <- '#fcd74e'
+agSize(map107)[vs] <- 8
+agFill(map107)[vs] <- '#ffa600'
+ptDrawingOrder(map107) <- c(seq_len(numSera(map107)) + numAntigens(map107),
+	which(!agNames(map107) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1','A/Sweden/11/2018|2018-01-30|MDCK1/SIAT1','A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1','A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1','A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1','A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1','A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2','A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1','A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1','A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1',
+	"A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1","A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1")),
+	which(agNames(map107) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1','A/Sweden/11/2018|2018-01-30|MDCK1/SIAT1','A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1','A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1','A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1','A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1','A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2','A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1','A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1','A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1',	"A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1","A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1"))
+)
+p_map107_europe_2018_2019 <- ggplot(map107) + ggtitle('europe 2018-2019  (map 107)')
+p_map107_europe_2018_2019
+
+p_map107_europe_2018_2019_png <- file.path(strain_fig_dir, 'map107_europe_2018_2019.png')
+png(file=p_map107_europe_2018_2019_png)
+p_map107_europe_2018_2019
+dev.off()
 
 
 #################### MAP 108 ####################
@@ -2592,8 +6631,39 @@ ag_Sep2018_table8_7 <- agNames(map108) %in% c("A/Bretagne/1413/2017|2017-10-09|M
 agFill(map108)[ag_Feb2018_table8_6] <- '#ea5545'
 agFill(map108)[ag_Sep2017_table21] <- '#ef9b20'
 agFill(map108)[ag_Sep2018_table8_7] <- '#ede15b'
-p_map108 <- ggplot(map108) + ggtitle('map 108')
+p_map108 <- ggplot(map108) + ggtitle('map 108 (Feb2018_table8-6, Sep2017_table21, Sep2018_table8-7)')
+p_map108_png <- file.path(table_fig_dir, 'map108.png')
+png(file=p_map108_png)
 p_map108
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2018-2019 #########
+agSize(map108) <- 5
+agFill(map108) <- 'grey50'
+css_lss <- agNames(map108) %in% c('A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1')
+ds <- agNames(map108) %in% c('A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1', 'A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1', 'A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1', 'A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1', 'A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1', 'A/Sweden/37/2018|2018-02-09|MDCK0/SIAT2')
+vs <- agNames(map108) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1')
+
+agSize(map108)[css_lss] <- 8
+agFill(map108)[css_lss] <- '#6d21b8'
+agSize(map108)[ds] <- 8
+agFill(map108)[ds] <- '#fcd74e'
+agSize(map108)[vs] <- 8
+agFill(map108)[vs] <- '#ffa600'
+ptDrawingOrder(map108) <- c(seq_len(numSera(map108)) + numAntigens(map108),
+	which(!agNames(map108) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1','A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1','A/Sweden/37/2018|2018-02-09|MDCK0/SIAT2','A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1','A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1','A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1','A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2','A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1','A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1','A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1',
+	"A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1","A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1")),
+	which(agNames(map108) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1','A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1','A/Sweden/37/2018|2018-02-09|MDCK0/SIAT2','A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1','A/Hong_Kong/3815/2017|2017-07-13|Cx/SIAT1','A/Hong_Kong/3856/2017|2017-07-23|Cx/SIAT1','A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2','A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1','A/Hong_Kong/3820/2017|2017-07-17|Cx/SIAT1','A/Hong_Kong/4105/2017|2017-07-25|Cx/SIAT1',	"A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1","A/Hong_Kong/3800/2017|2017-07-20|Cx/SIAT1"))
+)
+p_map108_europe_2018_2019 <- ggplot(map108) + ggtitle('europe 2018-2019  (map 108)')
+p_map108_europe_2018_2019
+
+p_map108_europe_2018_2019_png <- file.path(strain_fig_dir, 'map108_europe_2018_2019.png')
+png(file=p_map108_europe_2018_2019_png)
+p_map108_europe_2018_2019
+dev.off()
 
 
 #################### MAP 109 ####################
@@ -2608,8 +6678,38 @@ ag_Sep2018_table8_5 <- agNames(map109) %in% c('A/Hong-Kong/5738/2014|2014-04-30|
 agFill(map109)[ag_Sep2018_table8_7] <- '#ea5545'
 agFill(map109)[ag_Sep2018_table8_2] <- '#ef9b20'
 agFill(map109)[ag_Sep2018_table8_5] <- '#ede15b'
-p_map109 <- ggplot(map109) + ggtitle('map 109')
+p_map109 <- ggplot(map109) + ggtitle('map 109 (Sep2018_table8-7, Sep2018_table8-2, Sep2018_table8-5)')
+p_map109_png <- file.path(table_fig_dir, 'map109.png')
+png(file=p_map109_png)
 p_map109
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2018-2019 #########
+agSize(map109) <- 5
+agFill(map109) <- 'grey50'
+css_lss <- agNames(map109) %in% c('A/Switzerland/143/2017|2017-12-15|SIAT1/SIAT2', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2')
+ds <- agNames(map109) %in% c("A/Sweden/37/2018|2018-02-09|MDCK0/SIAT2")
+vs <- agNames(map109) %in% c("A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1")
+
+agSize(map109)[css_lss] <- 8
+agFill(map109)[css_lss] <- '#6d21b8'
+agSize(map109)[ds] <- 8
+agFill(map109)[ds] <- '#fcd74e'
+agSize(map109)[vs] <- 8
+agFill(map109)[vs] <- '#ffa600'
+ptDrawingOrder(map109) <- c(seq_len(numSera(map109)) + numAntigens(map109),
+    which(!agNames(map109) %in% c('A/Sweden/37/2018|2018-02-09|MDCK0/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1', 'A/Switzerland/143/2017|2017-12-15|SIAT1/SIAT2', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2')),
+    which(agNames(map109) %in% c('A/Sweden/37/2018|2018-02-09|MDCK0/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E1', 'A/Switzerland/143/2017|2017-12-15|SIAT1/SIAT2', 'A/England/553/2018|2018-02-09|MDCK2/SIAT2'))
+)
+p_map109_europe_2018_2019 <- ggplot(map109) + ggtitle('europe 2018-2019  (map 109)')
+p_map109_europe_2018_2019
+
+p_map109_europe_2018_2019_png <- file.path(strain_fig_dir, 'map109_europe_2018_2019.png')
+png(file=p_map109_europe_2018_2019_png)
+p_map109_europe_2018_2019
+dev.off()
 
 
 #################### MAP 110 ####################
@@ -2628,8 +6728,39 @@ ag_Sep2019_table8_6 <- agNames(map110) %in% c("A/Stockholm/6/2014|2014-02-06|SIA
 agFill(map110)[ag_Feb2020_table7_12] <- '#ea5545'
 agFill(map110)[ag_Sep2019_table8_15] <- '#ef9b20'
 agFill(map110)[ag_Sep2019_table8_6] <- '#ede15b'
-p_map110 <- ggplot(map110) + ggtitle('map 110')
+p_map110 <- ggplot(map110) + ggtitle('map 110 (Feb2020_table7-12, Sep2019_table8-15, Sep2019_table8-6)')
+p_map110_png <- file.path(table_fig_dir, 'map110.png')
+png(file=p_map110_png)
 p_map110
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2019-2020 #########
+agSize(map110) <- 5
+agFill(map110) <- 'grey50'
+vs_lss <- agNames(map110) %in% c('A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1', 'A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1', 'A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1', 'A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1', 'A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1', 'A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1', 'A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1')
+ds <- agNames(map110) %in% c('A/Valladolid/24/2019|2019-01-14|SIAT1/SIAT1', 'A/Poland/1521/2020|2020-01-05|SIAT1', 'A/Lithuania/MB398/2020|2020-01-05|SIAT1/SIAT1', 'A/Czech Republic/38/2020|2020-01-07|P2/SIAT1')
+css <- agNames(map110) %in% c('A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1', 'A/Macedonia/1283/2019|2019-03-11|SIAT1', 'A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1')
+
+agSize(map110)[vs_lss] <- 8
+agFill(map110)[vs_lss] <- '#7eb4f2'
+agSize(map110)[ds] <- 8
+agFill(map110)[ds] <- '#fcd74e'
+agSize(map110)[css] <- 8
+agFill(map110)[css] <- '#d900ba'
+ptDrawingOrder(map110) <- c(seq_len(numSera(map110)) + numAntigens(map110),
+	which(!agNames(map110) %in% c('A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1','A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1','A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1','A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1','A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1','A/Lithuania/MB398/2020|2020-01-05|SIAT1/SIAT1','A/Poland/1521/2020|2020-01-05|SIAT1','A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1','A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1','A/Czech Republic/38/2020|2020-01-07|P2/SIAT1',
+	"A/Macedonia/1283/2019|2019-03-11|SIAT1","A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1","A/Valladolid/24/2019|2019-01-14|SIAT1/SIAT1","A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1")),
+	which(agNames(map110) %in% c('A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1','A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1','A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1','A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1','A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1','A/Lithuania/MB398/2020|2020-01-05|SIAT1/SIAT1','A/Poland/1521/2020|2020-01-05|SIAT1','A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1','A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1','A/Czech Republic/38/2020|2020-01-07|P2/SIAT1',	"A/Macedonia/1283/2019|2019-03-11|SIAT1","A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1","A/Valladolid/24/2019|2019-01-14|SIAT1/SIAT1","A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1"))
+)
+p_map110_europe_2019_2020 <- ggplot(map110) + ggtitle('europe 2019-2020  (map 110)')
+p_map110_europe_2019_2020
+
+p_map110_europe_2019_2020_png <- file.path(strain_fig_dir, 'map110_europe_2019_2020.png')
+png(file=p_map110_europe_2019_2020_png)
+p_map110_europe_2019_2020
+dev.off()
 
 
 #################### MAP 111 ####################
@@ -2648,8 +6779,39 @@ ag_Feb2019_table8_10 <- agNames(map111) %in% c("A/Stockholm/6/2014|2014-02-06|SI
 agFill(map111)[ag_Sep2019_table8_7] <- '#ea5545'
 agFill(map111)[ag_Sep2019_table8_17] <- '#ef9b20'
 agFill(map111)[ag_Feb2019_table8_10] <- '#ede15b'
-p_map111 <- ggplot(map111) + ggtitle('map 111')
+p_map111 <- ggplot(map111) + ggtitle('map 111 (Sep2019_table8-7, Sep2019_table8-17, Feb2019_table8-10)')
+p_map111_png <- file.path(table_fig_dir, 'map111.png')
+png(file=p_map111_png)
 p_map111
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2019-2020 #########
+agSize(map111) <- 5
+agFill(map111) <- 'grey50'
+vs_lss <- agNames(map111) %in% c('A/Castilla La Mancha/242/2019|2019-01-17|SIAT1', 'A/Torino/771/2019|2019-03-05|SIAT3/SIAT2')
+ds <- agNames(map111) %in% c('A/Malta/53539/2019|2019-01-23|SIAT1', 'A/Latvia/03-012433/2019|2019-03-04|MDCKx/SIAT1', 'A/Palermo/13/2019|2019-03-05|SIAT3/SIAT1', 'A/Basse Normandie/1798/2019|2019-03-26|SIAT1')
+css <- agNames(map111) %in% c('A/Ukraine/8103/2019|2019-01-03|MDCK2/SIAT1', 'A/Portugal/151/2019|2019-01-06|SIAT1/SIAT1', 'A/Portugal/146/2019|2019-01-07|MDCK1/SIAT1', 'A/Torino/780/2019|2019-03-06|SIAT3/SIAT2', 'A/Palermo/20/2019|2019-03-06|SIAT4/SIAT2')
+
+agSize(map111)[vs_lss] <- 8
+agFill(map111)[vs_lss] <- '#7eb4f2'
+agSize(map111)[ds] <- 8
+agFill(map111)[ds] <- '#fcd74e'
+agSize(map111)[css] <- 8
+agFill(map111)[css] <- '#d900ba'
+ptDrawingOrder(map111) <- c(seq_len(numSera(map111)) + numAntigens(map111),
+	which(!agNames(map111) %in% c('A/Palermo/20/2019|2019-03-06|SIAT4/SIAT2','A/Palermo/13/2019|2019-03-05|SIAT3/SIAT1','A/Ukraine/8103/2019|2019-01-03|MDCK2/SIAT1','A/Basse Normandie/1798/2019|2019-03-26|SIAT1','A/Portugal/151/2019|2019-01-06|SIAT1/SIAT1','A/Torino/780/2019|2019-03-06|SIAT3/SIAT2','A/Malta/53539/2019|2019-01-23|SIAT1','A/Latvia/03-012433/2019|2019-03-04|MDCKx/SIAT1','A/Torino/771/2019|2019-03-05|SIAT3/SIAT2','A/Portugal/146/2019|2019-01-07|MDCK1/SIAT1',
+	"A/Castilla La Mancha/242/2019|2019-01-17|SIAT1")),
+	which(agNames(map111) %in% c('A/Palermo/20/2019|2019-03-06|SIAT4/SIAT2','A/Palermo/13/2019|2019-03-05|SIAT3/SIAT1','A/Ukraine/8103/2019|2019-01-03|MDCK2/SIAT1','A/Basse Normandie/1798/2019|2019-03-26|SIAT1','A/Portugal/151/2019|2019-01-06|SIAT1/SIAT1','A/Torino/780/2019|2019-03-06|SIAT3/SIAT2','A/Malta/53539/2019|2019-01-23|SIAT1','A/Latvia/03-012433/2019|2019-03-04|MDCKx/SIAT1','A/Torino/771/2019|2019-03-05|SIAT3/SIAT2','A/Portugal/146/2019|2019-01-07|MDCK1/SIAT1',	"A/Castilla La Mancha/242/2019|2019-01-17|SIAT1"))
+)
+p_map111_europe_2019_2020 <- ggplot(map111) + ggtitle('europe 2019-2020  (map 111)')
+p_map111_europe_2019_2020
+
+p_map111_europe_2019_2020_png <- file.path(strain_fig_dir, 'map111_europe_2019_2020.png')
+png(file=p_map111_europe_2019_2020_png)
+p_map111_europe_2019_2020
+dev.off()
 
 
 #################### MAP 112 ####################
@@ -2667,8 +6829,38 @@ ag_Sep2019_table8_15 <- agNames(map112) %in% c("A/Mauritania/255-2018/2018|2018-
 agFill(map112)[ag_Sep2019_table8_13] <- '#ea5545'
 agFill(map112)[ag_Sep2019_table8_14] <- '#ef9b20'
 agFill(map112)[ag_Sep2019_table8_15] <- '#ede15b'
-p_map112 <- ggplot(map112) + ggtitle('map 112')
+p_map112 <- ggplot(map112) + ggtitle('map 112 (Sep2019_table8-13, Sep2019_table8-14, Sep2019_table8-15)')
+p_map112_png <- file.path(table_fig_dir, 'map112.png')
+png(file=p_map112_png)
 p_map112
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2019-2020 #########
+agSize(map112) <- 5
+agFill(map112) <- 'grey50'
+vs_lss <- agNames(map112) %in% c('A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1', 'A/Finland/104/2019|2019-04-03|SIAT1/SIAT1')
+ds <- agNames(map112) %in% c('A/Lisboa/92/2019|2019-02-15|MDCK2/SIAT1', 'A/Lisboa/91/2019|2019-02-20|SIAT1/SIAT1', 'A/Lisboa/94/2019|2019-02-26|SIAT1/SIAT1', 'A/Lisboa/95/2019|2019-02-27|SIAT2/SIAT1')
+css <- agNames(map112) %in% c('A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1', 'A/Macedonia/1283/2019|2019-03-11|SIAT1', 'A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1')
+
+agSize(map112)[vs_lss] <- 8
+agFill(map112)[vs_lss] <- '#7eb4f2'
+agSize(map112)[ds] <- 8
+agFill(map112)[ds] <- '#fcd74e'
+agSize(map112)[css] <- 8
+agFill(map112)[css] <- '#d900ba'
+ptDrawingOrder(map112) <- c(seq_len(numSera(map112)) + numAntigens(map112),
+    which(!agNames(map112) %in% c('A/Lisboa/92/2019|2019-02-15|MDCK2/SIAT1', 'A/Finland/104/2019|2019-04-03|SIAT1/SIAT1', 'A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1', 'A/Lisboa/95/2019|2019-02-27|SIAT2/SIAT1', 'A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1', 'A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1', 'A/Lisboa/91/2019|2019-02-20|SIAT1/SIAT1', 'A/Lisboa/94/2019|2019-02-26|SIAT1/SIAT1', 'A/Macedonia/1283/2019|2019-03-11|SIAT1')),
+    which(agNames(map112) %in% c('A/Lisboa/92/2019|2019-02-15|MDCK2/SIAT1', 'A/Finland/104/2019|2019-04-03|SIAT1/SIAT1', 'A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1', 'A/Lisboa/95/2019|2019-02-27|SIAT2/SIAT1', 'A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1', 'A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1', 'A/Lisboa/91/2019|2019-02-20|SIAT1/SIAT1', 'A/Lisboa/94/2019|2019-02-26|SIAT1/SIAT1', 'A/Macedonia/1283/2019|2019-03-11|SIAT1'))
+)
+p_map112_europe_2019_2020 <- ggplot(map112) + ggtitle('europe 2019-2020  (map 112)')
+p_map112_europe_2019_2020
+
+p_map112_europe_2019_2020_png <- file.path(strain_fig_dir, 'map112_europe_2019_2020.png')
+png(file=p_map112_europe_2019_2020_png)
+p_map112_europe_2019_2020
+dev.off()
 
 
 #################### MAP 113 ####################
@@ -2684,8 +6876,39 @@ ag_Sep2019_table8_18 <- agNames(map113) %in% c("NYMC X-327 (A/Kansas/14/17)|2017
 
 agFill(map113)[ag_Sep2019_table8_17] <- '#ea5545'
 agFill(map113)[ag_Sep2019_table8_18] <- '#ef9b20'
-p_map113 <- ggplot(map113) + ggtitle('map 113')
+p_map113 <- ggplot(map113) + ggtitle('map 113 (Sep2019_table8-17, Sep2019_table8-18)')
+p_map113_png <- file.path(table_fig_dir, 'map113.png')
+png(file=p_map113_png)
 p_map113
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2019-2020 #########
+agSize(map113) <- 5
+agFill(map113) <- 'grey50'
+vs_lss <- agNames(map113) %in% c('A/Torino/771/2019|2019-03-05|SIAT3/SIAT2', 'A/England/222/2019|2019-02-20|SIAT1/SIAT1')
+ds <- agNames(map113) %in% c('A/Palermo/13/2019|2019-03-05|SIAT3/SIAT1', 'A/Basse Normandie/1798/2019|2019-03-26|SIAT1', 'A/England/138/2019|2019-01-28|SIAT3/SIAT1', 'A/England/185/2019|2019-02-08|SIAT2/SIAT1', 'A/England/155/2019|2019-02-08|SIAT2/SIAT1', 'A/England/157/2019|2019-02-25|SIAT2/SIAT1', 'A/England/156/2019|2019-02-26|SIAT2/SIAT1')
+css <- agNames(map113) %in% c('A/Torino/780/2019|2019-03-06|SIAT3/SIAT2', 'A/Palermo/20/2019|2019-03-06|SIAT4/SIAT2', 'A/England/102/2019|2019-02-12|SIAT2/SIAT1', 'A/Tomsk/5645V/2019|2019-04-20|MDCK1/SIAT1')
+
+agSize(map113)[vs_lss] <- 8
+agFill(map113)[vs_lss] <- '#7eb4f2'
+agSize(map113)[ds] <- 8
+agFill(map113)[ds] <- '#fcd74e'
+agSize(map113)[css] <- 8
+agFill(map113)[css] <- '#d900ba'
+ptDrawingOrder(map113) <- c(seq_len(numSera(map113)) + numAntigens(map113),
+	which(!agNames(map113) %in% c('A/Palermo/20/2019|2019-03-06|SIAT4/SIAT2','A/Palermo/13/2019|2019-03-05|SIAT3/SIAT1','A/England/155/2019|2019-02-08|SIAT2/SIAT1','A/England/156/2019|2019-02-26|SIAT2/SIAT1','A/Tomsk/5645V/2019|2019-04-20|MDCK1/SIAT1','A/Basse Normandie/1798/2019|2019-03-26|SIAT1','A/England/157/2019|2019-02-25|SIAT2/SIAT1','A/Torino/780/2019|2019-03-06|SIAT3/SIAT2','A/England/138/2019|2019-01-28|SIAT3/SIAT1','A/England/102/2019|2019-02-12|SIAT2/SIAT1',
+	"A/England/222/2019|2019-02-20|SIAT1/SIAT1","A/Torino/771/2019|2019-03-05|SIAT3/SIAT2","A/England/185/2019|2019-02-08|SIAT2/SIAT1")),
+	which(agNames(map113) %in% c('A/Palermo/20/2019|2019-03-06|SIAT4/SIAT2','A/Palermo/13/2019|2019-03-05|SIAT3/SIAT1','A/England/155/2019|2019-02-08|SIAT2/SIAT1','A/England/156/2019|2019-02-26|SIAT2/SIAT1','A/Tomsk/5645V/2019|2019-04-20|MDCK1/SIAT1','A/Basse Normandie/1798/2019|2019-03-26|SIAT1','A/England/157/2019|2019-02-25|SIAT2/SIAT1','A/Torino/780/2019|2019-03-06|SIAT3/SIAT2','A/England/138/2019|2019-01-28|SIAT3/SIAT1','A/England/102/2019|2019-02-12|SIAT2/SIAT1',	"A/England/222/2019|2019-02-20|SIAT1/SIAT1","A/Torino/771/2019|2019-03-05|SIAT3/SIAT2","A/England/185/2019|2019-02-08|SIAT2/SIAT1"))
+)
+p_map113_europe_2019_2020 <- ggplot(map113) + ggtitle('europe 2019-2020  (map 113)')
+p_map113_europe_2019_2020
+
+p_map113_europe_2019_2020_png <- file.path(strain_fig_dir, 'map113_europe_2019_2020.png')
+png(file=p_map113_europe_2019_2020_png)
+p_map113_europe_2019_2020
+dev.off()
 
 
 #################### MAP 114 ####################
@@ -2703,8 +6926,39 @@ ag_Sep2019_table8_5 <- agNames(map114) %in% c("A/Belgium/G0023/2019|2019-01-03|S
 agFill(map114)[ag_Sep2019_table8_6] <- '#ea5545'
 agFill(map114)[ag_Sep2019_table8_3] <- '#ef9b20'
 agFill(map114)[ag_Sep2019_table8_5] <- '#ede15b'
-p_map114 <- ggplot(map114) + ggtitle('map 114')
+p_map114 <- ggplot(map114) + ggtitle('map 114 (Sep2019_table8-6, Sep2019_table8-3, Sep2019_table8-5)')
+p_map114_png <- file.path(table_fig_dir, 'map114.png')
+png(file=p_map114_png)
 p_map114
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2019-2020 #########
+agSize(map114) <- 5
+agFill(map114) <- 'grey50'
+vs_lss <- agNames(map114) %in% c('A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1', 'A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1', 'A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1', 'A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1', 'A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1', 'A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1', 'A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1')
+ds <- agNames(map114) %in% c('A/Belgium/G0023/2019|2019-01-03|SIAT1', 'A/Belgium/S0275/2019|2019-01-15|SIAT1', 'A/Berlin/28/2019|2019-02-11|C1/MDCK1', 'A/Valladolid/24/2019|2019-01-14|SIAT1/SIAT1')
+css <- agNames(map114) %in% c('A/Khmelnytskyi/544/2018|2018-12-06|SIAT2/SIAT1', 'A/Khmelnytskyi/545/2018|2018-12-08|SIAT2/SIAT1', 'A/Khmelnytskyi/547/2018|2018-12-16|SIAT2/SIAT1', 'A/Kyiv/510/2018|2018-12-17|SIAT2/SIAT1')
+
+agSize(map114)[vs_lss] <- 8
+agFill(map114)[vs_lss] <- '#7eb4f2'
+agSize(map114)[ds] <- 8
+agFill(map114)[ds] <- '#fcd74e'
+agSize(map114)[css] <- 8
+agFill(map114)[css] <- '#d900ba'
+ptDrawingOrder(map114) <- c(seq_len(numSera(map114)) + numAntigens(map114),
+	which(!agNames(map114) %in% c('A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1','A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1','A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1','A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1','A/Berlin/28/2019|2019-02-11|C1/MDCK1','A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1','A/Khmelnytskyi/547/2018|2018-12-16|SIAT2/SIAT1','A/Khmelnytskyi/545/2018|2018-12-08|SIAT2/SIAT1','A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1','A/Belgium/S0275/2019|2019-01-15|SIAT1',
+	"A/Kyiv/510/2018|2018-12-17|SIAT2/SIAT1","A/Valladolid/24/2019|2019-01-14|SIAT1/SIAT1","A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1","A/Khmelnytskyi/544/2018|2018-12-06|SIAT2/SIAT1","A/Belgium/G0023/2019|2019-01-03|SIAT1")),
+	which(agNames(map114) %in% c('A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1','A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1','A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1','A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1','A/Berlin/28/2019|2019-02-11|C1/MDCK1','A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1','A/Khmelnytskyi/547/2018|2018-12-16|SIAT2/SIAT1','A/Khmelnytskyi/545/2018|2018-12-08|SIAT2/SIAT1','A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1','A/Belgium/S0275/2019|2019-01-15|SIAT1',	"A/Kyiv/510/2018|2018-12-17|SIAT2/SIAT1","A/Valladolid/24/2019|2019-01-14|SIAT1/SIAT1","A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1","A/Khmelnytskyi/544/2018|2018-12-06|SIAT2/SIAT1","A/Belgium/G0023/2019|2019-01-03|SIAT1"))
+)
+p_map114_europe_2019_2020 <- ggplot(map114) + ggtitle('europe 2019-2020  (map 114)')
+p_map114_europe_2019_2020
+
+p_map114_europe_2019_2020_png <- file.path(strain_fig_dir, 'map114_europe_2019_2020.png')
+png(file=p_map114_europe_2019_2020_png)
+p_map114_europe_2019_2020
+dev.off()
 
 
 #################### MAP 115 ####################
@@ -2722,8 +6976,35 @@ ag_Feb2020_table7_12 <- agNames(map115) %in% c("A/Hong Kong/5738/2014|2014-04-30
 agFill(map115)[ag_Feb2020_table7_5] <- '#ea5545'
 agFill(map115)[ag_Feb2021_table7_3] <- '#ef9b20'
 agFill(map115)[ag_Feb2020_table7_12] <- '#ede15b'
-p_map115 <- ggplot(map115) + ggtitle('map 115')
+p_map115 <- ggplot(map115) + ggtitle('map 115 (Feb2020_table7-5, Feb2021_table7-3, Feb2020_table7-12)')
+p_map115_png <- file.path(table_fig_dir, 'map115.png')
+png(file=p_map115_png)
 p_map115
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2020-2021 #########
+agSize(map115) <- 5
+agFill(map115) <- 'grey50'
+vs_css_lss <- agNames(map115) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4')
+ds <- agNames(map115) %in% c('A/Bangladesh/1001/2020|2020-09-05|SIAT1', 'A/Bangladesh/2004/2020|2020-10-04|SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT1')
+
+agSize(map115)[vs_css_lss] <- 8
+agFill(map115)[vs_css_lss] <- '#d399d8'
+agSize(map115)[ds] <- 8
+agFill(map115)[ds] <- '#fcd74e'
+ptDrawingOrder(map115) <- c(seq_len(numSera(map115)) + numAntigens(map115),
+    which(!agNames(map115) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Bangladesh/4005/2020|2020-10-04|SIAT1', 'A/Bangladesh/2004/2020|2020-10-04|SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Bangladesh/1001/2020|2020-09-05|SIAT1')),
+    which(agNames(map115) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Bangladesh/4005/2020|2020-10-04|SIAT1', 'A/Bangladesh/2004/2020|2020-10-04|SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Bangladesh/1001/2020|2020-09-05|SIAT1'))
+)
+p_map115_europe_2020_2021 <- ggplot(map115) + ggtitle('europe 2020-2021  (map 115)')
+p_map115_europe_2020_2021
+
+p_map115_europe_2020_2021_png <- file.path(strain_fig_dir, 'map115_europe_2020_2021.png')
+png(file=p_map115_europe_2020_2021_png)
+p_map115_europe_2020_2021
+dev.off()
 
 
 #################### MAP 116 ####################
@@ -2740,8 +7021,35 @@ ag_Sep2021_table7_4 <- agNames(map116) %in% c('A/Hong Kong/5738/2014|2014-04-30|
 agFill(map116)[ag_Feb2020_table7_5] <- '#ea5545'
 agFill(map116)[ag_Sep2019_table8_16] <- '#ef9b20'
 agFill(map116)[ag_Sep2021_table7_4] <- '#ede15b'
-p_map116 <- ggplot(map116) + ggtitle('map 116')
+p_map116 <- ggplot(map116) + ggtitle('map 116 (Feb2020_table7-5, Sep2019_table8-16, Sep2021_table7-4)')
+p_map116_png <- file.path(table_fig_dir, 'map116.png')
+png(file=p_map116_png)
 p_map116
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2020-2021 #########
+agSize(map116) <- 5
+agFill(map116) <- 'grey50'
+vs_css_lss <- agNames(map116) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1', 'A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1', 'A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4')
+ds <- agNames(map116) %in% c('A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3')
+
+agSize(map116)[vs_css_lss] <- 8
+agFill(map116)[vs_css_lss] <- '#d399d8'
+agSize(map116)[ds] <- 8
+agFill(map116)[ds] <- '#fcd74e'
+ptDrawingOrder(map116) <- c(seq_len(numSera(map116)) + numAntigens(map116),
+    which(!agNames(map116) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1', 'A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2')),
+    which(agNames(map116) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2676/2019|2019-06-19|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT1', 'A/Hong Kong/2679/2019|2019-06-18|MDCK1/SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2'))
+)
+p_map116_europe_2020_2021 <- ggplot(map116) + ggtitle('europe 2020-2021  (map 116)')
+p_map116_europe_2020_2021
+
+p_map116_europe_2020_2021_png <- file.path(strain_fig_dir, 'map116_europe_2020_2021.png')
+png(file=p_map116_europe_2020_2021_png)
+p_map116_europe_2020_2021
+dev.off()
 
 
 #################### MAP 117 ####################
@@ -2766,8 +7074,35 @@ agFill(map117)[ag_Feb2020_table7_5] <- '#ea5545'
 agFill(map117)[ag_Sep2020_table7_9] <- '#ef9b20'
 agFill(map117)[ag_Feb2022_table9_1] <- '#ede15b'
 agFill(map117)[ag_Sep2021_table7_4] <- '#87bc45'
-p_map117 <- ggplot(map117) + ggtitle('map 117')
+p_map117 <- ggplot(map117) + ggtitle('map 117 (Feb2020_table7-5, Sep2020_table7-9, Feb2022_table9-1, Sep2021_table7-4)')
+p_map117_png <- file.path(table_fig_dir, 'map117.png')
+png(file=p_map117_png)
 p_map117
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2020-2021 #########
+agSize(map117) <- 5
+agFill(map117) <- 'grey50'
+vs_css_lss <- agNames(map117) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4', 'A/Beirut/421/2020|2020-03-05|SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4')
+ds <- agNames(map117) %in% c('A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3')
+
+agSize(map117)[vs_css_lss] <- 8
+agFill(map117)[vs_css_lss] <- '#d399d8'
+agSize(map117)[ds] <- 8
+agFill(map117)[ds] <- '#fcd74e'
+ptDrawingOrder(map117) <- c(seq_len(numSera(map117)) + numAntigens(map117),
+    which(!agNames(map117) %in% c('A/Beirut/421/2020|2020-03-05|SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2')),
+    which(agNames(map117) %in% c('A/Beirut/421/2020|2020-03-05|SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2'))
+)
+p_map117_europe_2020_2021 <- ggplot(map117) + ggtitle('europe 2020-2021  (map 117)')
+p_map117_europe_2020_2021
+
+p_map117_europe_2020_2021_png <- file.path(strain_fig_dir, 'map117_europe_2020_2021.png')
+png(file=p_map117_europe_2020_2021_png)
+p_map117_europe_2020_2021
+dev.off()
 
 
 #################### MAP 118 ####################
@@ -2782,8 +7117,35 @@ ag_Sep2021_table7_5 <- agNames(map118) %in% c('A/Hong Kong/5738/2014|2014-04-30|
 agFill(map118)[ag_Feb2020_table7_5] <- '#ea5545'
 agFill(map118)[ag_Sep2020_table7_1] <- '#ef9b20'
 agFill(map118)[ag_Sep2021_table7_5] <- '#ede15b'
-p_map118 <- ggplot(map118) + ggtitle('map 118')
+p_map118 <- ggplot(map118) + ggtitle('map 118 (Feb2020_table7-5, Sep2020_table7-1, Sep2021_table7-5)')
+p_map118_png <- file.path(table_fig_dir, 'map118.png')
+png(file=p_map118_png)
 p_map118
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2020-2021 #########
+agSize(map118) <- 5
+agFill(map118) <- 'grey50'
+vs_css_lss <- agNames(map118) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4')
+ds <- agNames(map118) %in% c("A/Bangladesh/4005/2020|2020-10-04|SIAT2")
+
+agSize(map118)[vs_css_lss] <- 8
+agFill(map118)[vs_css_lss] <- '#d399d8'
+agSize(map118)[ds] <- 8
+agFill(map118)[ds] <- '#fcd74e'
+ptDrawingOrder(map118) <- c(seq_len(numSera(map118)) + numAntigens(map118),
+    which(!agNames(map118) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2')),
+    which(agNames(map118) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2'))
+)
+p_map118_europe_2020_2021 <- ggplot(map118) + ggtitle('europe 2020-2021  (map 118)')
+p_map118_europe_2020_2021
+
+p_map118_europe_2020_2021_png <- file.path(strain_fig_dir, 'map118_europe_2020_2021.png')
+png(file=p_map118_europe_2020_2021_png)
+p_map118_europe_2020_2021
+dev.off()
 
 
 #################### MAP 119 ####################
@@ -2806,8 +7168,42 @@ agFill(map119)[ag_Feb2020_table7_5] <- '#ea5545'
 agFill(map119)[ag_Feb2021_table7_2] <- '#ef9b20'
 agFill(map119)[ag_Sep2021_table7_10] <- '#ede15b'
 agFill(map119)[ag_Sep2022_table10_17] <- '#87bc45'
-p_map119 <- ggplot(map119) + ggtitle('map 119')
+p_map119 <- ggplot(map119) + ggtitle('map 119 (Feb2020_table7-5, Feb2021_table7-2, Sep2021_table7-10, Sep2022_table10-17)')
+p_map119_png <- file.path(table_fig_dir, 'map119.png')
+png(file=p_map119_png)
 p_map119
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2021-2022 #########
+agSize(map119) <- 5
+agFill(map119) <- 'grey50'
+ds <- agNames(map119) %in% c('A/Netherlands/00007/2021|2021-08-13|SIAT1', 'A/FVG-Trieste/05/2022|2022-01-25|SIAT2/SIAT1', 'A/Parma/2/2022|2022-02-02|SIAT4/SIAT1', 'A/FVG-Trieste/13/2022|2022-02-15|SIAT2/SIAT1', 'A/FVG-Trieste/16/2022|2022-02-17|SIAT2/SIAT1', 'A/Sassari/4/2022|2022-03-29|SIAT1/SIAT1', 'A/Sassari/7/2022|2022-04-01|SIAT1/SIAT1', 'A/Sassari/9/2022|2022-04-08|SIAT1/SIAT1', 'A/Perugia/23/2022|2022-04-12|SIAT3/SIAT1')
+vs <- agNames(map119) %in% c("A/Cambodia/923251/2020|2020-09-22|SIAT2")
+css <- agNames(map119) %in% c('A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/Bangladesh/4005/2020|2020-10-04|SIAT3')
+lss <- agNames(map119) %in% c("A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1")
+
+agSize(map119)[ds] <- 8
+agFill(map119)[ds] <- '#fcd74e'
+agSize(map119)[vs] <- 8
+agFill(map119)[vs] <- '#ffa600'
+agSize(map119)[css] <- 8
+agFill(map119)[css] <- '#d900ba'
+agSize(map119)[lss] <- 8
+agFill(map119)[lss] <- '#0051ff'
+ptDrawingOrder(map119) <- c(seq_len(numSera(map119)) + numAntigens(map119),
+	which(!agNames(map119) %in% c('A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1','A/FVG-Trieste/16/2022|2022-02-17|SIAT2/SIAT1','A/FVG-Trieste/05/2022|2022-01-25|SIAT2/SIAT1','A/Sassari/9/2022|2022-04-08|SIAT1/SIAT1','A/Bangladesh/4005/2020|2020-10-04|SIAT3','A/Sassari/4/2022|2022-03-29|SIAT1/SIAT1','A/Sassari/7/2022|2022-04-01|SIAT1/SIAT1','A/FVG-Trieste/13/2022|2022-02-15|SIAT2/SIAT1','A/Netherlands/00007/2021|2021-08-13|SIAT1','A/Perugia/23/2022|2022-04-12|SIAT3/SIAT1',
+	"A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Parma/2/2022|2022-02-02|SIAT4/SIAT1","A/Bangladesh/4005/2020|2020-10-04|SIAT2")),
+	which(agNames(map119) %in% c('A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1','A/FVG-Trieste/16/2022|2022-02-17|SIAT2/SIAT1','A/FVG-Trieste/05/2022|2022-01-25|SIAT2/SIAT1','A/Sassari/9/2022|2022-04-08|SIAT1/SIAT1','A/Bangladesh/4005/2020|2020-10-04|SIAT3','A/Sassari/4/2022|2022-03-29|SIAT1/SIAT1','A/Sassari/7/2022|2022-04-01|SIAT1/SIAT1','A/FVG-Trieste/13/2022|2022-02-15|SIAT2/SIAT1','A/Netherlands/00007/2021|2021-08-13|SIAT1','A/Perugia/23/2022|2022-04-12|SIAT3/SIAT1',	"A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Parma/2/2022|2022-02-02|SIAT4/SIAT1","A/Bangladesh/4005/2020|2020-10-04|SIAT2"))
+)
+p_map119_europe_2021_2022 <- ggplot(map119) + ggtitle('europe 2021-2022  (map 119)')
+p_map119_europe_2021_2022
+
+p_map119_europe_2021_2022_png <- file.path(strain_fig_dir, 'map119_europe_2021_2022.png')
+png(file=p_map119_europe_2021_2022_png)
+p_map119_europe_2021_2022
+dev.off()
 
 
 #################### MAP 120 ####################
@@ -2831,8 +7227,41 @@ agFill(map120)[ag_Feb2020_table7_5] <- '#ea5545'
 agFill(map120)[ag_Feb2021_table7_2] <- '#ef9b20'
 agFill(map120)[ag_Sep2021_table7_10] <- '#ede15b'
 agFill(map120)[ag_Feb2022_table9_9] <- '#87bc45'
-p_map120 <- ggplot(map120) + ggtitle('map 120')
+p_map120 <- ggplot(map120) + ggtitle('map 120 (Feb2020_table7-5, Feb2021_table7-2, Sep2021_table7-10, Feb2022_table9-9)')
+p_map120_png <- file.path(table_fig_dir, 'map120.png')
+png(file=p_map120_png)
 p_map120
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2021-2022 #########
+agSize(map120) <- 5
+agFill(map120) <- 'grey50'
+ds <- agNames(map120) %in% c('A/Netherlands/00007/2021|2021-08-13|SIAT1', 'A/Iran/80/Ab/8A/2021|2021-11-03|SIAT4/SIAT1', 'A/Iran/86/Ab/8A/2021|2021-11-09|SIAT4/SIAT1', 'A/Romania/495026/2021|2021-12-29|SIAT2/SIAT1', 'A/Hungary/1/2022|2022-01-03|MDCK1/SIAT1', 'A/Hungary/2/2022|2022-01-11|MDCK1/SIAT1')
+vs <- agNames(map120) %in% c("A/Cambodia/923251/2020|2020-09-22|SIAT2")
+css <- agNames(map120) %in% c('A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/Bangladesh/4005/2020|2020-10-04|SIAT3')
+lss <- agNames(map120) %in% c("A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1")
+
+agSize(map120)[ds] <- 8
+agFill(map120)[ds] <- '#fcd74e'
+agSize(map120)[vs] <- 8
+agFill(map120)[vs] <- '#ffa600'
+agSize(map120)[css] <- 8
+agFill(map120)[css] <- '#d900ba'
+agSize(map120)[lss] <- 8
+agFill(map120)[lss] <- '#0051ff'
+ptDrawingOrder(map120) <- c(seq_len(numSera(map120)) + numAntigens(map120),
+    which(!agNames(map120) %in% c('A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1', 'A/Hungary/1/2022|2022-01-03|MDCK1/SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/Bangladesh/4005/2020|2020-10-04|SIAT3', 'A/Hungary/2/2022|2022-01-11|MDCK1/SIAT1', 'A/Iran/86/Ab/8A/2021|2021-11-09|SIAT4/SIAT1', 'A/Netherlands/00007/2021|2021-08-13|SIAT1', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Iran/80/Ab/8A/2021|2021-11-03|SIAT4/SIAT1', 'A/Romania/495026/2021|2021-12-29|SIAT2/SIAT1')),
+    which(agNames(map120) %in% c('A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1', 'A/Hungary/1/2022|2022-01-03|MDCK1/SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/Bangladesh/4005/2020|2020-10-04|SIAT3', 'A/Hungary/2/2022|2022-01-11|MDCK1/SIAT1', 'A/Iran/86/Ab/8A/2021|2021-11-09|SIAT4/SIAT1', 'A/Netherlands/00007/2021|2021-08-13|SIAT1', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Iran/80/Ab/8A/2021|2021-11-03|SIAT4/SIAT1', 'A/Romania/495026/2021|2021-12-29|SIAT2/SIAT1'))
+)
+p_map120_europe_2021_2022 <- ggplot(map120) + ggtitle('europe 2021-2022  (map 120)')
+p_map120_europe_2021_2022
+
+p_map120_europe_2021_2022_png <- file.path(strain_fig_dir, 'map120_europe_2021_2022.png')
+png(file=p_map120_europe_2021_2022_png)
+p_map120_europe_2021_2022
+dev.off()
 
 
 #################### MAP 121 ####################
@@ -2857,8 +7286,43 @@ agFill(map121)[ag_Feb2020_table7_5] <- '#ea5545'
 agFill(map121)[ag_Feb2021_table7_2] <- '#ef9b20'
 agFill(map121)[ag_Sep2021_table7_10] <- '#ede15b'
 agFill(map121)[ag_Feb2022_table9_7] <- '#87bc45'
-p_map121 <- ggplot(map121) + ggtitle('map 121')
+p_map121 <- ggplot(map121) + ggtitle('map 121 (Feb2020_table7-5, Feb2021_table7-2, Sep2021_table7-10, Feb2022_table9-7)')
+p_map121_png <- file.path(table_fig_dir, 'map121.png')
+png(file=p_map121_png)
 p_map121
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2021-2022 #########
+agSize(map121) <- 5
+agFill(map121) <- 'grey50'
+ds <- agNames(map121) %in% c("A/Netherlands/00007/2021|2021-08-13|SIAT1","A/Orebro/1/2021|2021-08-21|SIAT1/SIAT1","A/Uppsala/1/2021|2021-10-21|SIAT1/SIAT1","A/Uppsala/3/2021|2021-10-26|SIAT1/SIAT1","A/Uppsala/6/2021|2021-11-01|SIAT1/SIAT1","A/Sweden/1/2021|2021-11-03|SIAT1/SIAT1","A/Uppsala/8/2021|2021-11-03|SIAT1/SIAT1","A/Uppsala/11/2021|2021-11-09|SIAT1/SIAT1","A/Uppsala/12/2021|2021-11-10|SIAT1/SIAT1","A/Tripoli.LBN/7325/2021|2021-11-23|SIAT1",
+	"A/Baabda.LBN/7463/2021|2021-11-24|SIAT1","A/Baabda.LBN/7462/2021|2021-11-24|SIAT1")
+vs <- agNames(map121) %in% c("A/Cambodia/923251/2020|2020-09-22|SIAT2")
+css <- agNames(map121) %in% c('A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/Bangladesh/4005/2020|2020-10-04|SIAT3')
+lss <- agNames(map121) %in% c("A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1")
+
+agSize(map121)[ds] <- 8
+agFill(map121)[ds] <- '#fcd74e'
+agSize(map121)[vs] <- 8
+agFill(map121)[vs] <- '#ffa600'
+agSize(map121)[css] <- 8
+agFill(map121)[css] <- '#d900ba'
+agSize(map121)[lss] <- 8
+agFill(map121)[lss] <- '#0051ff'
+ptDrawingOrder(map121) <- c(seq_len(numSera(map121)) + numAntigens(map121),
+	which(!agNames(map121) %in% c('A/Sweden/1/2021|2021-11-03|SIAT1/SIAT1','A/Uppsala/12/2021|2021-11-10|SIAT1/SIAT1','A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1','A/Orebro/1/2021|2021-08-21|SIAT1/SIAT1','A/Bangladesh/4005/2020|2020-10-04|SIAT2','A/Bangladesh/4005/2020|2020-10-04|SIAT3','A/Uppsala/11/2021|2021-11-09|SIAT1/SIAT1','A/Uppsala/6/2021|2021-11-01|SIAT1/SIAT1','A/Baabda.LBN/7463/2021|2021-11-24|SIAT1','A/Baabda.LBN/7462/2021|2021-11-24|SIAT1',
+	"A/Netherlands/00007/2021|2021-08-13|SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Tripoli.LBN/7325/2021|2021-11-23|SIAT1","A/Uppsala/1/2021|2021-10-21|SIAT1/SIAT1","A/Uppsala/8/2021|2021-11-03|SIAT1/SIAT1","A/Uppsala/3/2021|2021-10-26|SIAT1/SIAT1")),
+	which(agNames(map121) %in% c('A/Sweden/1/2021|2021-11-03|SIAT1/SIAT1','A/Uppsala/12/2021|2021-11-10|SIAT1/SIAT1','A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1','A/Orebro/1/2021|2021-08-21|SIAT1/SIAT1','A/Bangladesh/4005/2020|2020-10-04|SIAT2','A/Bangladesh/4005/2020|2020-10-04|SIAT3','A/Uppsala/11/2021|2021-11-09|SIAT1/SIAT1','A/Uppsala/6/2021|2021-11-01|SIAT1/SIAT1','A/Baabda.LBN/7463/2021|2021-11-24|SIAT1','A/Baabda.LBN/7462/2021|2021-11-24|SIAT1',	"A/Netherlands/00007/2021|2021-08-13|SIAT1","A/Cambodia/923251/2020|2020-09-22|SIAT2","A/Tripoli.LBN/7325/2021|2021-11-23|SIAT1","A/Uppsala/1/2021|2021-10-21|SIAT1/SIAT1","A/Uppsala/8/2021|2021-11-03|SIAT1/SIAT1","A/Uppsala/3/2021|2021-10-26|SIAT1/SIAT1"))
+)
+p_map121_europe_2021_2022 <- ggplot(map121) + ggtitle('europe 2021-2022  (map 121)')
+p_map121_europe_2021_2022
+
+p_map121_europe_2021_2022_png <- file.path(strain_fig_dir, 'map121_europe_2021_2022.png')
+png(file=p_map121_europe_2021_2022_png)
+p_map121_europe_2021_2022
+dev.off()
 
 
 #################### MAP 122 ####################
@@ -2878,8 +7342,41 @@ agFill(map122)[ag_Feb2020_table7_5] <- '#ea5545'
 agFill(map122)[ag_Feb2021_table7_2] <- '#ef9b20'
 agFill(map122)[ag_Feb2021_table7_3] <- '#ede15b'
 agFill(map122)[ag_Sep2021_table7_10] <- '#87bc45'
-p_map122 <- ggplot(map122) + ggtitle('map 122')
+p_map122 <- ggplot(map122) + ggtitle('map 122 (Feb2020_table7-5, Feb2021_table7-2, Feb2021_table7-3, Sep2021_table7-10)')
+p_map122_png <- file.path(table_fig_dir, 'map122.png')
+png(file=p_map122_png)
 p_map122
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2021-2022 #########
+agSize(map122) <- 5
+agFill(map122) <- 'grey50'
+ds <- agNames(map122) %in% c("A/Netherlands/00007/2021|2021-08-13|SIAT1")
+vs <- agNames(map122) %in% c("A/Cambodia/923251/2020|2020-09-22|SIAT2")
+css <- agNames(map122) %in% c('A/Bangladesh/1001/2020|2020-09-05|SIAT1', 'A/Bangladesh/2004/2020|2020-10-04|SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2')
+lss <- agNames(map122) %in% c("A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1")
+
+agSize(map122)[ds] <- 8
+agFill(map122)[ds] <- '#fcd74e'
+agSize(map122)[vs] <- 8
+agFill(map122)[vs] <- '#ffa600'
+agSize(map122)[css] <- 8
+agFill(map122)[css] <- '#d900ba'
+agSize(map122)[lss] <- 8
+agFill(map122)[lss] <- '#0051ff'
+ptDrawingOrder(map122) <- c(seq_len(numSera(map122)) + numAntigens(map122),
+    which(!agNames(map122) %in% c('A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1', 'A/Bangladesh/2004/2020|2020-10-04|SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT1', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Netherlands/00007/2021|2021-08-13|SIAT1', 'A/Bangladesh/1001/2020|2020-09-05|SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2')),
+    which(agNames(map122) %in% c('A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1', 'A/Bangladesh/2004/2020|2020-10-04|SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT1', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Netherlands/00007/2021|2021-08-13|SIAT1', 'A/Bangladesh/1001/2020|2020-09-05|SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2'))
+)
+p_map122_europe_2021_2022 <- ggplot(map122) + ggtitle('europe 2021-2022  (map 122)')
+p_map122_europe_2021_2022
+
+p_map122_europe_2021_2022_png <- file.path(strain_fig_dir, 'map122_europe_2021_2022.png')
+png(file=p_map122_europe_2021_2022_png)
+p_map122_europe_2021_2022
+dev.off()
 
 
 #################### MAP 123 ####################
@@ -2901,8 +7398,41 @@ ag_Sep2022_table10_8 <- agNames(map123) %in% c("A/Stockholm/5/2021|2021-04-16|SI
 agFill(map123)[ag_Sep2021_table7_6] <- '#ea5545'
 agFill(map123)[ag_Feb2022_table9_11] <- '#ef9b20'
 agFill(map123)[ag_Sep2022_table10_8] <- '#ede15b'
-p_map123 <- ggplot(map123) + ggtitle('map 123')
+p_map123 <- ggplot(map123) + ggtitle('map 123 (Sep2021_table7-6, Feb2022_table9-11, Sep2022_table10-8)')
+p_map123_png <- file.path(table_fig_dir, 'map123.png')
+png(file=p_map123_png)
 p_map123
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2022-2023 #########
+agSize(map123) <- 5
+agFill(map123) <- 'grey50'
+ds <- agNames(map123) %in% c("A/Netherlands/10205/2021|2021-12-19|MDCK-MIX2/SIAT1")
+vs <- agNames(map123) %in% c('A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Darwin/9/2021|2021-04-17|E3/E2')
+css <- agNames(map123) %in% c("A/Darwin/6/2021|2021-03-16|E4/E1")
+lss <- agNames(map123) %in% c('A/Thuringen/1/2022|2022-01-03|P1/SIAT1', 'A/Norway/409/2022|2022-01-04|SIAT1', 'A/Serbia/336/2022|2022-01-17|SIAT1', 'A/Kosova/368/2021|2021-12-14|SIAT1', 'A/Albania/9833/2021|2021-12-16|SIAT1', 'A/Netherlands/10197/2021|2021-12-20|MDCK-MIX2/SIAT1')
+
+agSize(map123)[ds] <- 8
+agFill(map123)[ds] <- '#fcd74e'
+agSize(map123)[vs] <- 8
+agFill(map123)[vs] <- '#ffa600'
+agSize(map123)[css] <- 8
+agFill(map123)[css] <- '#d900ba'
+agSize(map123)[lss] <- 8
+agFill(map123)[lss] <- '#0051ff'
+ptDrawingOrder(map123) <- c(seq_len(numSera(map123)) + numAntigens(map123),
+    which(!agNames(map123) %in% c('A/Thuringen/1/2022|2022-01-03|P1/SIAT1', 'A/Darwin/6/2021|2021-03-16|E4/E1', 'A/Netherlands/10205/2021|2021-12-19|MDCK-MIX2/SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Serbia/336/2022|2022-01-17|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Kosova/368/2021|2021-12-14|SIAT1', 'A/Albania/9833/2021|2021-12-16|SIAT1', 'A/Netherlands/10197/2021|2021-12-20|MDCK-MIX2/SIAT1', 'A/Norway/409/2022|2022-01-04|SIAT1')),
+    which(agNames(map123) %in% c('A/Thuringen/1/2022|2022-01-03|P1/SIAT1', 'A/Darwin/6/2021|2021-03-16|E4/E1', 'A/Netherlands/10205/2021|2021-12-19|MDCK-MIX2/SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Serbia/336/2022|2022-01-17|SIAT1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Kosova/368/2021|2021-12-14|SIAT1', 'A/Albania/9833/2021|2021-12-16|SIAT1', 'A/Netherlands/10197/2021|2021-12-20|MDCK-MIX2/SIAT1', 'A/Norway/409/2022|2022-01-04|SIAT1'))
+)
+p_map123_europe_2022_2023 <- ggplot(map123) + ggtitle('europe 2022-2023  (map 123)')
+p_map123_europe_2022_2023
+
+p_map123_europe_2022_2023_png <- file.path(strain_fig_dir, 'map123_europe_2022_2023.png')
+png(file=p_map123_europe_2022_2023_png)
+p_map123_europe_2022_2023
+dev.off()
 
 
 #################### MAP 124 ####################
@@ -2930,8 +7460,42 @@ agFill(map124)[ag_Sep2021_table7_6] <- '#ea5545'
 agFill(map124)[ag_Sep2022_table10_8] <- '#ef9b20'
 agFill(map124)[ag_Feb2023_tableH3_10] <- '#ede15b'
 agFill(map124)[ag_Feb2023_tableH3_1] <- '#87bc45'
-p_map124 <- ggplot(map124) + ggtitle('map 124')
+p_map124 <- ggplot(map124) + ggtitle('map 124 (Sep2021_table7-6, Sep2022_table10-8, Feb2023_tableH3-10, Feb2023_tableH3-1)')
+p_map124_png <- file.path(table_fig_dir, 'map124.png')
+png(file=p_map124_png)
 p_map124
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2022-2023 #########
+agSize(map124) <- 5
+agFill(map124) <- 'grey50'
+ds <- agNames(map124) %in% c('A/Netherlands/10205/2021|2021-12-19|MDCK-MIX2/SIAT1', 'A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1')
+vs <- agNames(map124) %in% c('A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map124) %in% c("A/Darwin/6/2021|2021-03-16|E4/E1")
+lss <- agNames(map124) %in% c('A/Kosova/368/2021|2021-12-14|SIAT1', 'A/Albania/9833/2021|2021-12-16|SIAT1', 'A/Netherlands/10197/2021|2021-12-20|MDCK-MIX2/SIAT1', 'A/Poland/52/2022|2022-03-30|SIAT2', 'A/Poland/65/2022|2022-04-14|SIAT1', 'A/Argentina/2973/2022|2022-06-15|SIAT1', 'A/Norway/28359/2022|2022-07-24|SIAT3', 'A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2', 'A/Lithuania/48774/2022|2022-11-24|SIAT1')
+
+agSize(map124)[ds] <- 8
+agFill(map124)[ds] <- '#fcd74e'
+agSize(map124)[vs] <- 8
+agFill(map124)[vs] <- '#ffa600'
+agSize(map124)[css] <- 8
+agFill(map124)[css] <- '#d900ba'
+agSize(map124)[lss] <- 8
+agFill(map124)[lss] <- '#0051ff'
+ptDrawingOrder(map124) <- c(seq_len(numSera(map124)) + numAntigens(map124),
+	which(!agNames(map124) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1','A/Argentina/2973/2022|2022-06-15|SIAT1','A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2','A/Lithuania/48774/2022|2022-11-24|SIAT1','A/Netherlands/10205/2021|2021-12-19|MDCK-MIX2/SIAT1','A/Darwin/6/2021|2021-03-16|E4/E1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Poland/65/2022|2022-04-14|SIAT1','A/Norway/28359/2022|2022-07-24|SIAT3','A/Darwin/9/2021|2021-04-17|E3/E2',
+	"A/Kosova/368/2021|2021-12-14|SIAT1","A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1","A/Albania/9833/2021|2021-12-16|SIAT1","A/Darwin/9/2021|2021-04-17|E3/E4","A/Netherlands/10197/2021|2021-12-20|MDCK-MIX2/SIAT1","A/Poland/52/2022|2022-03-30|SIAT2")),
+	which(agNames(map124) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1','A/Argentina/2973/2022|2022-06-15|SIAT1','A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2','A/Lithuania/48774/2022|2022-11-24|SIAT1','A/Netherlands/10205/2021|2021-12-19|MDCK-MIX2/SIAT1','A/Darwin/6/2021|2021-03-16|E4/E1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Poland/65/2022|2022-04-14|SIAT1','A/Norway/28359/2022|2022-07-24|SIAT3','A/Darwin/9/2021|2021-04-17|E3/E2',	"A/Kosova/368/2021|2021-12-14|SIAT1","A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1","A/Albania/9833/2021|2021-12-16|SIAT1","A/Darwin/9/2021|2021-04-17|E3/E4","A/Netherlands/10197/2021|2021-12-20|MDCK-MIX2/SIAT1","A/Poland/52/2022|2022-03-30|SIAT2"))
+)
+p_map124_europe_2022_2023 <- ggplot(map124) + ggtitle('europe 2022-2023  (map 124)')
+p_map124_europe_2022_2023
+
+p_map124_europe_2022_2023_png <- file.path(strain_fig_dir, 'map124_europe_2022_2023.png')
+png(file=p_map124_europe_2022_2023_png)
+p_map124_europe_2022_2023
+dev.off()
 
 
 #################### MAP 125 ####################
@@ -2948,8 +7512,78 @@ ag_Sep2022_table10_19 <- agNames(map125) %in% c("A/Denmark/3264/2019|2019-10-25|
 
 agFill(map125)[ag_Sep2021_table7_6] <- '#ea5545'
 agFill(map125)[ag_Sep2022_table10_19] <- '#ef9b20'
-p_map125 <- ggplot(map125) + ggtitle('map 125')
+p_map125 <- ggplot(map125) + ggtitle('map 125 (Sep2021_table7-6, Sep2022_table10-19)')
+p_map125_png <- file.path(table_fig_dir, 'map125.png')
+png(file=p_map125_png)
 p_map125
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2022-2023 #########
+agSize(map125) <- 5
+agFill(map125) <- 'grey50'
+ds <- agNames(map125) %in% c("A/Belgium/S1074/2022|2022-05-03|SIAT1/SIAT1")
+vs <- agNames(map125) %in% c('A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map125) %in% c("A/Darwin/6/2021|2021-03-16|E4/E1")
+lss <- agNames(map125) %in% c("A/Slovenia/8720/2022|2022-02-10|E3(Am1Al2)","A/Austria/1494246/2022|2022-02-18|Cx/SIAT1","A/Belgium/G0197/2022|2022-04-08|SIAT1/SIAT1","A/Estonia/KL4914/2022|2022-04-13|SIAT1/SIAT1","A/Estonia/KL4911/2022|2022-04-13|SIAT1/SIAT1","A/Estonia/KL4967/2022|2022-04-14|SIAT1/SIAT1","A/Austria/1510167/2022|2022-04-16|SIAT1","A/Estonia/169447/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169303/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169446/2022|2022-04-17|SIAT1/SIAT1",
+	"A/Estonia/169344/2022|2022-04-18|MDCKx/SIAT1","A/Estonia/169343/2022|2022-04-18|MDCKx/SIAT1","A/Austria/1510472/2022|2022-04-19|SIAT1","A/Estonia/169390/2022|2022-04-20|SIAT1/SIAT1","A/Estonia/169421/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169420/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169386/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169385/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169384/2022|2022-04-21|SIAT1/SIAT1","A/Austria/1512885/2022|2022-04-27|SIAT1",
+	"A/Austria/1513868/2022|2022-05-01|SIAT1")
+
+agSize(map125)[ds] <- 8
+agFill(map125)[ds] <- '#fcd74e'
+agSize(map125)[vs] <- 8
+agFill(map125)[vs] <- '#ffa600'
+agSize(map125)[css] <- 8
+agFill(map125)[css] <- '#d900ba'
+agSize(map125)[lss] <- 8
+agFill(map125)[lss] <- '#0051ff'
+ptDrawingOrder(map125) <- c(seq_len(numSera(map125)) + numAntigens(map125),
+	which(!agNames(map125) %in% c('A/Estonia/169421/2022|2022-04-21|SIAT1/SIAT1','A/Estonia/169390/2022|2022-04-20|SIAT1/SIAT1','A/Darwin/6/2021|2021-03-16|E4/E1','A/Estonia/KL4914/2022|2022-04-13|SIAT1/SIAT1','A/Austria/1510167/2022|2022-04-16|SIAT1','A/Estonia/169446/2022|2022-04-17|SIAT1/SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Belgium/S1074/2022|2022-05-03|SIAT1/SIAT1','A/Estonia/169385/2022|2022-04-21|SIAT1/SIAT1','A/Slovenia/8720/2022|2022-02-10|E3(Am1Al2)',
+	"A/Austria/1494246/2022|2022-02-18|Cx/SIAT1","A/Belgium/G0197/2022|2022-04-08|SIAT1/SIAT1","A/Austria/1512885/2022|2022-04-27|SIAT1","A/Darwin/9/2021|2021-04-17|E3/E1","A/Austria/1510472/2022|2022-04-19|SIAT1","A/Estonia/169447/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169303/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169386/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169343/2022|2022-04-18|MDCKx/SIAT1","A/Estonia/169420/2022|2022-04-21|SIAT1/SIAT1",
+	"A/Estonia/KL4911/2022|2022-04-13|SIAT1/SIAT1","A/Estonia/169344/2022|2022-04-18|MDCKx/SIAT1","A/Estonia/KL4967/2022|2022-04-14|SIAT1/SIAT1","A/Austria/1513868/2022|2022-05-01|SIAT1","A/Estonia/169384/2022|2022-04-21|SIAT1/SIAT1")),
+	which(agNames(map125) %in% c('A/Estonia/169421/2022|2022-04-21|SIAT1/SIAT1','A/Estonia/169390/2022|2022-04-20|SIAT1/SIAT1','A/Darwin/6/2021|2021-03-16|E4/E1','A/Estonia/KL4914/2022|2022-04-13|SIAT1/SIAT1','A/Austria/1510167/2022|2022-04-16|SIAT1','A/Estonia/169446/2022|2022-04-17|SIAT1/SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Belgium/S1074/2022|2022-05-03|SIAT1/SIAT1','A/Estonia/169385/2022|2022-04-21|SIAT1/SIAT1','A/Slovenia/8720/2022|2022-02-10|E3(Am1Al2)',	"A/Austria/1494246/2022|2022-02-18|Cx/SIAT1","A/Belgium/G0197/2022|2022-04-08|SIAT1/SIAT1","A/Austria/1512885/2022|2022-04-27|SIAT1","A/Darwin/9/2021|2021-04-17|E3/E1","A/Austria/1510472/2022|2022-04-19|SIAT1","A/Estonia/169447/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169303/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169386/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169343/2022|2022-04-18|MDCKx/SIAT1","A/Estonia/169420/2022|2022-04-21|SIAT1/SIAT1",	"A/Estonia/KL4911/2022|2022-04-13|SIAT1/SIAT1","A/Estonia/169344/2022|2022-04-18|MDCKx/SIAT1","A/Estonia/KL4967/2022|2022-04-14|SIAT1/SIAT1","A/Austria/1513868/2022|2022-05-01|SIAT1","A/Estonia/169384/2022|2022-04-21|SIAT1/SIAT1"))
+)
+p_map125_europe_2022_2023 <- ggplot(map125) + ggtitle('europe 2022-2023  (map 125)')
+p_map125_europe_2022_2023
+
+p_map125_europe_2022_2023_png <- file.path(strain_fig_dir, 'map125_europe_2022_2023.png')
+png(file=p_map125_europe_2022_2023_png)
+p_map125_europe_2022_2023
+dev.off()
+
+
+####### us, 2022-2023 #########
+agSize(map125) <- 5
+agFill(map125) <- 'grey50'
+ds <- agNames(map125) %in% c("A/Belgium/S1074/2022|2022-05-03|SIAT1/SIAT1")
+vs <- agNames(map125) %in% c('A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map125) %in% c("A/Darwin/6/2021|2021-03-16|E4/E1")
+lss <- agNames(map125) %in% c("A/Slovenia/8720/2022|2022-02-10|E3(Am1Al2)","A/Austria/1494246/2022|2022-02-18|Cx/SIAT1","A/Belgium/G0197/2022|2022-04-08|SIAT1/SIAT1","A/Estonia/KL4914/2022|2022-04-13|SIAT1/SIAT1","A/Estonia/KL4911/2022|2022-04-13|SIAT1/SIAT1","A/Estonia/KL4967/2022|2022-04-14|SIAT1/SIAT1","A/Austria/1510167/2022|2022-04-16|SIAT1","A/Estonia/169447/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169303/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169446/2022|2022-04-17|SIAT1/SIAT1",
+	"A/Estonia/169344/2022|2022-04-18|MDCKx/SIAT1","A/Estonia/169343/2022|2022-04-18|MDCKx/SIAT1","A/Austria/1510472/2022|2022-04-19|SIAT1","A/Estonia/169390/2022|2022-04-20|SIAT1/SIAT1","A/Estonia/169421/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169420/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169386/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169385/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169384/2022|2022-04-21|SIAT1/SIAT1","A/Austria/1512885/2022|2022-04-27|SIAT1",
+	"A/Austria/1513868/2022|2022-05-01|SIAT1")
+
+agSize(map125)[ds] <- 8
+agFill(map125)[ds] <- '#fcd74e'
+agSize(map125)[vs] <- 8
+agFill(map125)[vs] <- '#ffa600'
+agSize(map125)[css] <- 8
+agFill(map125)[css] <- '#d900ba'
+agSize(map125)[lss] <- 8
+agFill(map125)[lss] <- '#0051ff'
+ptDrawingOrder(map125) <- c(seq_len(numSera(map125)) + numAntigens(map125),
+	which(!agNames(map125) %in% c('A/Estonia/169421/2022|2022-04-21|SIAT1/SIAT1','A/Estonia/169390/2022|2022-04-20|SIAT1/SIAT1','A/Darwin/6/2021|2021-03-16|E4/E1','A/Estonia/KL4914/2022|2022-04-13|SIAT1/SIAT1','A/Austria/1510167/2022|2022-04-16|SIAT1','A/Estonia/169446/2022|2022-04-17|SIAT1/SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Belgium/S1074/2022|2022-05-03|SIAT1/SIAT1','A/Estonia/169385/2022|2022-04-21|SIAT1/SIAT1','A/Slovenia/8720/2022|2022-02-10|E3(Am1Al2)',
+	"A/Austria/1494246/2022|2022-02-18|Cx/SIAT1","A/Belgium/G0197/2022|2022-04-08|SIAT1/SIAT1","A/Austria/1512885/2022|2022-04-27|SIAT1","A/Darwin/9/2021|2021-04-17|E3/E1","A/Austria/1510472/2022|2022-04-19|SIAT1","A/Estonia/169447/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169303/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169386/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169343/2022|2022-04-18|MDCKx/SIAT1","A/Estonia/169420/2022|2022-04-21|SIAT1/SIAT1",
+	"A/Estonia/KL4911/2022|2022-04-13|SIAT1/SIAT1","A/Estonia/169344/2022|2022-04-18|MDCKx/SIAT1","A/Estonia/KL4967/2022|2022-04-14|SIAT1/SIAT1","A/Austria/1513868/2022|2022-05-01|SIAT1","A/Estonia/169384/2022|2022-04-21|SIAT1/SIAT1")),
+	which(agNames(map125) %in% c('A/Estonia/169421/2022|2022-04-21|SIAT1/SIAT1','A/Estonia/169390/2022|2022-04-20|SIAT1/SIAT1','A/Darwin/6/2021|2021-03-16|E4/E1','A/Estonia/KL4914/2022|2022-04-13|SIAT1/SIAT1','A/Austria/1510167/2022|2022-04-16|SIAT1','A/Estonia/169446/2022|2022-04-17|SIAT1/SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Belgium/S1074/2022|2022-05-03|SIAT1/SIAT1','A/Estonia/169385/2022|2022-04-21|SIAT1/SIAT1','A/Slovenia/8720/2022|2022-02-10|E3(Am1Al2)',	"A/Austria/1494246/2022|2022-02-18|Cx/SIAT1","A/Belgium/G0197/2022|2022-04-08|SIAT1/SIAT1","A/Austria/1512885/2022|2022-04-27|SIAT1","A/Darwin/9/2021|2021-04-17|E3/E1","A/Austria/1510472/2022|2022-04-19|SIAT1","A/Estonia/169447/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169303/2022|2022-04-16|SIAT1/SIAT1","A/Estonia/169386/2022|2022-04-21|SIAT1/SIAT1","A/Estonia/169343/2022|2022-04-18|MDCKx/SIAT1","A/Estonia/169420/2022|2022-04-21|SIAT1/SIAT1",	"A/Estonia/KL4911/2022|2022-04-13|SIAT1/SIAT1","A/Estonia/169344/2022|2022-04-18|MDCKx/SIAT1","A/Estonia/KL4967/2022|2022-04-14|SIAT1/SIAT1","A/Austria/1513868/2022|2022-05-01|SIAT1","A/Estonia/169384/2022|2022-04-21|SIAT1/SIAT1"))
+)
+p_map125_us_2022_2023 <- ggplot(map125) + ggtitle('us 2022-2023  (map 125)')
+p_map125_us_2022_2023
+
+p_map125_us_2022_2023_png <- file.path(strain_fig_dir, 'map125_us_2022_2023.png')
+png(file=p_map125_us_2022_2023_png)
+p_map125_us_2022_2023
+dev.off()
 
 
 #################### MAP 126 ####################
@@ -2967,8 +7601,44 @@ ag_Sep2022_table10_18 <- agNames(map126) %in% c("A/Denmark/3264/2019|2019-10-25|
 
 agFill(map126)[ag_Sep2021_table7_6] <- '#ea5545'
 agFill(map126)[ag_Sep2022_table10_18] <- '#ef9b20'
-p_map126 <- ggplot(map126) + ggtitle('map 126')
+p_map126 <- ggplot(map126) + ggtitle('map 126 (Sep2021_table7-6, Sep2022_table10-18)')
+p_map126_png <- file.path(table_fig_dir, 'map126.png')
+png(file=p_map126_png)
 p_map126
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2022-2023 #########
+agSize(map126) <- 5
+agFill(map126) <- 'grey50'
+ds <- agNames(map126) %in% c("A/Romania/521422/2022|2022-06-18|SIAT1")
+vs <- agNames(map126) %in% c('A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map126) %in% c("A/Darwin/6/2021|2021-03-16|E4/E1")
+lss <- agNames(map126) %in% c("A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2","A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1","A/Poland/76/2022|2022-04-24|SIAT2","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1",
+	"A/Poland/77/2022|2022-04-26|SIAT1","A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2","A/Poland/96/2022|2022-05-08|SIAT1","A/Poland/101/2022|2022-05-15|SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1")
+
+agSize(map126)[ds] <- 8
+agFill(map126)[ds] <- '#fcd74e'
+agSize(map126)[vs] <- 8
+agFill(map126)[vs] <- '#ffa600'
+agSize(map126)[css] <- 8
+agFill(map126)[css] <- '#d900ba'
+agSize(map126)[lss] <- 8
+agFill(map126)[lss] <- '#0051ff'
+ptDrawingOrder(map126) <- c(seq_len(numSera(map126)) + numAntigens(map126),
+	which(!agNames(map126) %in% c('A/Darwin/6/2021|2021-03-16|E4/E1','A/Romania/521422/2022|2022-06-18|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Poland/96/2022|2022-05-08|SIAT1','A/Poland/101/2022|2022-05-15|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2','A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2','A/Poland/76/2022|2022-04-24|SIAT2','A/Poland/77/2022|2022-04-26|SIAT1',
+	"A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2",
+	"A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1")),
+	which(agNames(map126) %in% c('A/Darwin/6/2021|2021-03-16|E4/E1','A/Romania/521422/2022|2022-06-18|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Poland/96/2022|2022-05-08|SIAT1','A/Poland/101/2022|2022-05-15|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Romania/516884/2022|2022-04-29|SIAT1/SIAT2','A/Perugia/26/2022|2022-04-17|SIAT3/SIAT2','A/Poland/76/2022|2022-04-24|SIAT2','A/Poland/77/2022|2022-04-26|SIAT1',	"A/Romania/516376/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516962/2022|2022-05-01|SIAT1/SIAT2","A/Romania/515116/2022|2022-04-14|SIAT1/SIAT1","A/Romania/521767/2022|2022-06-16|SIAT1","A/Romania/516374/2022|2022-04-25|SIAT1/SIAT1","A/Romania/516030/2022|2022-04-15|SIAT0/SIAT1","A/Romania/515274/2022|2022-04-15|SIAT1/SIAT1","A/Romania/516460/2022|2022-04-25|SIAT1/SIAT1","A/Perugia/35/2022|2022-04-24|SIAT3/SIAT2","A/Romania/516961/2022|2022-05-01|SIAT1/SIAT2",	"A/Romania/516042/2022|2022-04-19|SIAT1/SIAT1"))
+)
+p_map126_europe_2022_2023 <- ggplot(map126) + ggtitle('europe 2022-2023  (map 126)')
+p_map126_europe_2022_2023
+
+p_map126_europe_2022_2023_png <- file.path(strain_fig_dir, 'map126_europe_2022_2023.png')
+png(file=p_map126_europe_2022_2023_png)
+p_map126_europe_2022_2023
+dev.off()
 
 
 #################### MAP 127 ####################
@@ -2993,8 +7663,42 @@ agFill(map127)[ag_Sep2021_table7_6] <- '#ea5545'
 agFill(map127)[ag_Sep2022_table10_16] <- '#ef9b20'
 agFill(map127)[ag_Feb2023_tableH3_1] <- '#ede15b'
 agFill(map127)[ag_Feb2023_tableH3_10] <- '#87bc45'
-p_map127 <- ggplot(map127) + ggtitle('map 127')
+p_map127 <- ggplot(map127) + ggtitle('map 127 (Sep2021_table7-6, Sep2022_table10-16, Feb2023_tableH3-1, Feb2023_tableH3-10)')
+p_map127_png <- file.path(table_fig_dir, 'map127.png')
+png(file=p_map127_png)
 p_map127
+dev.off()
+
+#### colered by region and season
+
+####### europe, 2022-2023 #########
+agSize(map127) <- 5
+agFill(map127) <- 'grey50'
+ds <- agNames(map127) %in% c('A/Netherlands/10884/2022|2022-04-05|MDCK-MIX2/SIAT1', 'A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1')
+vs <- agNames(map127) %in% c('A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Darwin/9/2021|2021-04-17|E3/E4', 'A/Darwin/9/2021|2021-04-17|E3/E2')
+css <- agNames(map127) %in% c("A/Darwin/6/2021|2021-03-16|E4/E1")
+lss <- agNames(map127) %in% c('A/Moldova/20837/2022|2022-03-17|SIAT1', 'A/Poland/52/2022|2022-03-30|SIAT2', 'A/Poland/65/2022|2022-04-14|SIAT1', 'A/Argentina/2973/2022|2022-06-15|SIAT1', 'A/Norway/28359/2022|2022-07-24|SIAT3', 'A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2', 'A/Lithuania/48774/2022|2022-11-24|SIAT1')
+
+agSize(map127)[ds] <- 8
+agFill(map127)[ds] <- '#fcd74e'
+agSize(map127)[vs] <- 8
+agFill(map127)[vs] <- '#ffa600'
+agSize(map127)[css] <- 8
+agFill(map127)[css] <- '#d900ba'
+agSize(map127)[lss] <- 8
+agFill(map127)[lss] <- '#0051ff'
+ptDrawingOrder(map127) <- c(seq_len(numSera(map127)) + numAntigens(map127),
+	which(!agNames(map127) %in% c('A/Moldova/20837/2022|2022-03-17|SIAT1','A/Argentina/3151/2022|2022-09-05|SIAT1','A/Argentina/2973/2022|2022-06-15|SIAT1','A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2','A/Lithuania/48774/2022|2022-11-24|SIAT1','A/Darwin/6/2021|2021-03-16|E4/E1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Netherlands/10884/2022|2022-04-05|MDCK-MIX2/SIAT1','A/Poland/65/2022|2022-04-14|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E2',
+	"A/Norway/28359/2022|2022-07-24|SIAT3","A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1","A/Darwin/9/2021|2021-04-17|E3/E4","A/Poland/52/2022|2022-03-30|SIAT2")),
+	which(agNames(map127) %in% c('A/Moldova/20837/2022|2022-03-17|SIAT1','A/Argentina/3151/2022|2022-09-05|SIAT1','A/Argentina/2973/2022|2022-06-15|SIAT1','A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2','A/Lithuania/48774/2022|2022-11-24|SIAT1','A/Darwin/6/2021|2021-03-16|E4/E1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Netherlands/10884/2022|2022-04-05|MDCK-MIX2/SIAT1','A/Poland/65/2022|2022-04-14|SIAT1','A/Darwin/9/2021|2021-04-17|E3/E2',	"A/Norway/28359/2022|2022-07-24|SIAT3","A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1","A/Darwin/9/2021|2021-04-17|E3/E4","A/Poland/52/2022|2022-03-30|SIAT2"))
+)
+p_map127_europe_2022_2023 <- ggplot(map127) + ggtitle('europe 2022-2023  (map 127)')
+p_map127_europe_2022_2023
+
+p_map127_europe_2022_2023_png <- file.path(strain_fig_dir, 'map127_europe_2022_2023.png')
+png(file=p_map127_europe_2022_2023_png)
+p_map127_europe_2022_2023
+dev.off()
 
 
 #################### MAP 128 ####################
@@ -3026,8 +7730,42 @@ agFill(map128)[ag_Sep2006_table6] <- '#ede15b'
 agFill(map128)[ag_Sep2007_table6] <- '#87bc45'
 agFill(map128)[ag_Sep2008_table4A] <- '#27aeef'
 agFill(map128)[ag_Sep2007_table7] <- '#b33dc6'
-p_map128 <- ggplot(map128) + ggtitle('map 128')
+p_map128 <- ggplot(map128) + ggtitle('map 128 (Mar2006_table4, Sep2006_table4, Sep2006_table6, Sep2007_table6, Sep2008_table4A, Sep2007_table7)')
+p_map128_png <- file.path(table_fig_dir, 'map128.png')
+png(file=p_map128_png)
 p_map128
+dev.off()
+
+#### colered by region and season
+
+####### us, 2007-2008 #########
+agSize(map128) <- 5
+agFill(map128) <- 'grey50'
+ds <- agNames(map128) %in% c('A/Paris/2030/2008|2008-02-01|MDCKx_1', 'A/Netherlands/177/2008|2008-02-18|xMDCK2_1')
+vs <- agNames(map128) %in% c('A/Wisconsin/67/2005|*|*', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3', 'A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3')
+css <- agNames(map128) %in% c('A/Netherlands/548/2005|2005-12-26|MDCK1_1', 'A/Slovakia/134/2006|2006-02-06|MDCK1_1', 'A/Slovakia/134/2006|*|*', 'A/Johannesburg/245/2006|2006-06-02|MDCKx_1')
+lss <- agNames(map128) %in% c('A/Hong Kong/2571/2007|2007-05-28|MDCK2_1', 'A/Johannesburg/74/07|2007-07-09|MDCKx_1', 'A/Brisbane/10/2007|2007-02-06|E2_3')
+
+agSize(map128)[ds] <- 8
+agFill(map128)[ds] <- '#fcd74e'
+agSize(map128)[vs] <- 8
+agFill(map128)[vs] <- '#ffa600'
+agSize(map128)[css] <- 8
+agFill(map128)[css] <- '#d900ba'
+agSize(map128)[lss] <- 8
+agFill(map128)[lss] <- '#0051ff'
+ptDrawingOrder(map128) <- c(seq_len(numSera(map128)) + numAntigens(map128),
+	which(!agNames(map128) %in% c('A/Slovakia/134/2006|2006-02-06|MDCK1_1','A/Johannesburg/245/2006|2006-06-02|MDCKx_1','A/Wisconsin/67/2005|*|*','A/Johannesburg/74/07|2007-07-09|MDCKx_1','A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2','A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3','A/Netherlands/548/2005|2005-12-26|MDCK1_1','A/Slovakia/134/2006|*|*','A/Netherlands/177/2008|2008-02-18|xMDCK2_1','A/Paris/2030/2008|2008-02-01|MDCKx_1',
+	"A/Brisbane/10/2007|2007-02-06|E2_3","A/Hong Kong/2571/2007|2007-05-28|MDCK2_1")),
+	which(agNames(map128) %in% c('A/Slovakia/134/2006|2006-02-06|MDCK1_1','A/Johannesburg/245/2006|2006-06-02|MDCKx_1','A/Wisconsin/67/2005|*|*','A/Johannesburg/74/07|2007-07-09|MDCKx_1','A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_2','A/Wisconsin/67/2005|2005-08-31|SpfCk3E3_3','A/Netherlands/548/2005|2005-12-26|MDCK1_1','A/Slovakia/134/2006|*|*','A/Netherlands/177/2008|2008-02-18|xMDCK2_1','A/Paris/2030/2008|2008-02-01|MDCKx_1',	"A/Brisbane/10/2007|2007-02-06|E2_3","A/Hong Kong/2571/2007|2007-05-28|MDCK2_1"))
+)
+p_map128_us_2007_2008 <- ggplot(map128) + ggtitle('us 2007-2008  (map 128)')
+p_map128_us_2007_2008
+
+p_map128_us_2007_2008_png <- file.path(strain_fig_dir, 'map128_us_2007_2008.png')
+png(file=p_map128_us_2007_2008_png)
+p_map128_us_2007_2008
+dev.off()
 
 
 #################### MAP 129 ####################
@@ -3046,8 +7784,39 @@ ag_Feb2010_table12 <- agNames(map129) %in% c("A/Wisconsin/67/2005|*|SpfCk3E3 E7"
 
 agFill(map129)[ag_Sep2009_table6] <- '#ea5545'
 agFill(map129)[ag_Feb2010_table12] <- '#ef9b20'
-p_map129 <- ggplot(map129) + ggtitle('map 129')
+p_map129 <- ggplot(map129) + ggtitle('map 129 (Sep2009_table6, Feb2010_table12)')
+p_map129_png <- file.path(table_fig_dir, 'map129.png')
+png(file=p_map129_png)
 p_map129
+dev.off()
+
+#### colered by region and season
+
+####### us, 2009-2010 #########
+agSize(map129) <- 5
+agFill(map129) <- 'grey50'
+css_lss <- agNames(map129) %in% c("A/England/233/2009|2009-07-01|Cx Siat1")
+ds <- agNames(map129) %in% c('A/Johannesburg/126/2009*|2009-05-21|MDCK2 Siat1', 'A/Victoria/208/2009*|2009-06-02|E3 E1', 'A/Johannesburg/385/2009*|2009-06-08|MDCK1 Siat3', 'A/Mauritius/461/2009*|2009-07-02|MDCK1 Siat1', 'A/Ghana/FS-1031/2009*|2009-07-13|MDCK1 Siat1', 'A/Cameroon/422/2009|2009-09-28|Cx Siat1', 'A/Paris/6047/2009|2009-11-01|C1 Siat2', 'A/Cameroon/658/2009|2009-11-10|Cx Siat1', 'A/Algeria/G46/2009|2009-11-26|MDCK0 Siat2')
+vs <- agNames(map129) %in% c('A/Brisbane/10/2007|2007-02-06|E2/E3', 'A/Brisbane/10/2007|*|E2 E3')
+
+agSize(map129)[css_lss] <- 8
+agFill(map129)[css_lss] <- '#6d21b8'
+agSize(map129)[ds] <- 8
+agFill(map129)[ds] <- '#fcd74e'
+agSize(map129)[vs] <- 8
+agFill(map129)[vs] <- '#ffa600'
+ptDrawingOrder(map129) <- c(seq_len(numSera(map129)) + numAntigens(map129),
+	which(!agNames(map129) %in% c('A/Algeria/G46/2009|2009-11-26|MDCK0 Siat2','A/Mauritius/461/2009*|2009-07-02|MDCK1 Siat1','A/Victoria/208/2009*|2009-06-02|E3 E1','A/Cameroon/422/2009|2009-09-28|Cx Siat1','A/Cameroon/658/2009|2009-11-10|Cx Siat1','A/Brisbane/10/2007|2007-02-06|E2/E3','A/Johannesburg/385/2009*|2009-06-08|MDCK1 Siat3','A/England/233/2009|2009-07-01|Cx Siat1','A/Brisbane/10/2007|*|E2 E3','A/Ghana/FS-1031/2009*|2009-07-13|MDCK1 Siat1',
+	"A/Paris/6047/2009|2009-11-01|C1 Siat2","A/Johannesburg/126/2009*|2009-05-21|MDCK2 Siat1")),
+	which(agNames(map129) %in% c('A/Algeria/G46/2009|2009-11-26|MDCK0 Siat2','A/Mauritius/461/2009*|2009-07-02|MDCK1 Siat1','A/Victoria/208/2009*|2009-06-02|E3 E1','A/Cameroon/422/2009|2009-09-28|Cx Siat1','A/Cameroon/658/2009|2009-11-10|Cx Siat1','A/Brisbane/10/2007|2007-02-06|E2/E3','A/Johannesburg/385/2009*|2009-06-08|MDCK1 Siat3','A/England/233/2009|2009-07-01|Cx Siat1','A/Brisbane/10/2007|*|E2 E3','A/Ghana/FS-1031/2009*|2009-07-13|MDCK1 Siat1',	"A/Paris/6047/2009|2009-11-01|C1 Siat2","A/Johannesburg/126/2009*|2009-05-21|MDCK2 Siat1"))
+)
+p_map129_us_2009_2010 <- ggplot(map129) + ggtitle('us 2009-2010  (map 129)')
+p_map129_us_2009_2010
+
+p_map129_us_2009_2010_png <- file.path(strain_fig_dir, 'map129_us_2009_2010.png')
+png(file=p_map129_us_2009_2010_png)
+p_map129_us_2009_2010
+dev.off()
 
 
 #################### MAP 130 ####################
@@ -3068,8 +7837,38 @@ ag_Feb2012_table14 <- agNames(map130) %in% c("A/Victoria/208/2009|2009-06-02|E3/
 
 agFill(map130)[ag_Sep2013_table7_12] <- '#ea5545'
 agFill(map130)[ag_Feb2012_table14] <- '#ef9b20'
-p_map130 <- ggplot(map130) + ggtitle('map 130')
+p_map130 <- ggplot(map130) + ggtitle('map 130 (Sep2013_table7-12, Feb2012_table14)')
+p_map130_png <- file.path(table_fig_dir, 'map130.png')
+png(file=p_map130_png)
 p_map130
+dev.off()
+
+#### colered by region and season
+
+####### us, 2011-2012 #########
+agSize(map130) <- 5
+agFill(map130) <- 'grey50'
+css_lss <- agNames(map130) %in% c('A/Suceava/87402/2012|2011-12-12|MDCK3/SIAT1', 'A/Bacau/88448/2012|2011-12-19|MDCK3/SIAT1', 'A/Stockholm/44/2011|2011-12-28|C0/SIAT1')
+ds <- agNames(map130) %in% c("A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1")
+vs <- agNames(map130) %in% c("A/Perth/16/2009|2009-07-04|E3/E2")
+
+agSize(map130)[css_lss] <- 8
+agFill(map130)[css_lss] <- '#6d21b8'
+agSize(map130)[ds] <- 8
+agFill(map130)[ds] <- '#fcd74e'
+agSize(map130)[vs] <- 8
+agFill(map130)[vs] <- '#ffa600'
+ptDrawingOrder(map130) <- c(seq_len(numSera(map130)) + numAntigens(map130),
+    which(!agNames(map130) %in% c('A/Stockholm/44/2011|2011-12-28|C0/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Bacau/88448/2012|2011-12-19|MDCK3/SIAT1', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1', 'A/Suceava/87402/2012|2011-12-12|MDCK3/SIAT1')),
+    which(agNames(map130) %in% c('A/Stockholm/44/2011|2011-12-28|C0/SIAT1', 'A/Perth/16/2009|2009-07-04|E3/E2', 'A/Bacau/88448/2012|2011-12-19|MDCK3/SIAT1', 'A/Maevatanana/974/2013|2013-03-11|MDCK1/SIAT1', 'A/Suceava/87402/2012|2011-12-12|MDCK3/SIAT1'))
+)
+p_map130_us_2011_2012 <- ggplot(map130) + ggtitle('us 2011-2012  (map 130)')
+p_map130_us_2011_2012
+
+p_map130_us_2011_2012_png <- file.path(strain_fig_dir, 'map130_us_2011_2012.png')
+png(file=p_map130_us_2011_2012_png)
+p_map130_us_2011_2012
+dev.off()
 
 
 #################### MAP 131 ####################
@@ -3092,8 +7891,38 @@ ag_Feb2012_table12 <- agNames(map131) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E
 
 agFill(map131)[ag_Sep2013_table7_10] <- '#ea5545'
 agFill(map131)[ag_Feb2012_table12] <- '#ef9b20'
-p_map131 <- ggplot(map131) + ggtitle('map 131')
+p_map131 <- ggplot(map131) + ggtitle('map 131 (Sep2013_table7-10, Feb2012_table12)')
+p_map131_png <- file.path(table_fig_dir, 'map131.png')
+png(file=p_map131_png)
 p_map131
+dev.off()
+
+#### colered by region and season
+
+####### us, 2012-2013 #########
+agSize(map131) <- 5
+agFill(map131) <- 'grey50'
+vs_css_lss <- agNames(map131) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4")
+css_lss <- agNames(map131) %in% c('A/Turkey/08/2011|2011-12-13|SIAT2/SIAT1', 'A/Turkey/12/2011|2011-12-14|SIAT2/SIAT1')
+ds <- agNames(map131) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1')
+
+agSize(map131)[vs_css_lss] <- 8
+agFill(map131)[vs_css_lss] <- '#d399d8'
+agSize(map131)[css_lss] <- 8
+agFill(map131)[css_lss] <- '#6d21b8'
+agSize(map131)[ds] <- 8
+agFill(map131)[ds] <- '#fcd74e'
+ptDrawingOrder(map131) <- c(seq_len(numSera(map131)) + numAntigens(map131),
+    which(!agNames(map131) %in% c('A/Turkey/12/2011|2011-12-14|SIAT2/SIAT1', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Turkey/08/2011|2011-12-13|SIAT2/SIAT1')),
+    which(agNames(map131) %in% c('A/Turkey/12/2011|2011-12-14|SIAT2/SIAT1', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Turkey/08/2011|2011-12-13|SIAT2/SIAT1'))
+)
+p_map131_us_2012_2013 <- ggplot(map131) + ggtitle('us 2012-2013  (map 131)')
+p_map131_us_2012_2013
+
+p_map131_us_2012_2013_png <- file.path(strain_fig_dir, 'map131_us_2012_2013.png')
+png(file=p_map131_us_2012_2013_png)
+p_map131_us_2012_2013
+dev.off()
 
 
 #################### MAP 132 ####################
@@ -3118,8 +7947,39 @@ ag_Feb2012_table13 <- agNames(map132) %in% c("A/Victoria/208/2009|2009-06-02|E3/
 
 agFill(map132)[ag_Sep2013_table7_10] <- '#ea5545'
 agFill(map132)[ag_Feb2012_table13] <- '#ef9b20'
-p_map132 <- ggplot(map132) + ggtitle('map 132')
+p_map132 <- ggplot(map132) + ggtitle('map 132 (Sep2013_table7-10, Feb2012_table13)')
+p_map132_png <- file.path(table_fig_dir, 'map132.png')
+png(file=p_map132_png)
 p_map132
+dev.off()
+
+#### colered by region and season
+
+####### us, 2012-2013 #########
+agSize(map132) <- 5
+agFill(map132) <- 'grey50'
+vs_css_lss <- agNames(map132) %in% c('A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Switzerland/5834730/2012|2012-01-13|SIAT3')
+css_lss <- agNames(map132) %in% c('A/Jordan/20110030655/2011|2011-10-31|SIAT1', 'A/Bursa/108/2011|2011-11-22|C1/SIAT1', 'A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2', 'A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1', 'A/Austria/654044/2012|2012-01-03|C2/SIAT1', 'A/Norway/114/2012|2012-01-10|MDCK1/SIAT1', 'A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1', 'A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1')
+ds <- agNames(map132) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1')
+
+agSize(map132)[vs_css_lss] <- 8
+agFill(map132)[vs_css_lss] <- '#d399d8'
+agSize(map132)[css_lss] <- 8
+agFill(map132)[css_lss] <- '#6d21b8'
+agSize(map132)[ds] <- 8
+agFill(map132)[ds] <- '#fcd74e'
+ptDrawingOrder(map132) <- c(seq_len(numSera(map132)) + numAntigens(map132),
+	which(!agNames(map132) %in% c('A/Jordan/20110030655/2011|2011-10-31|SIAT1','A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1','A/Belgrade/648/2013|2013-02-05|C2/SIAT2','A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2','A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1','A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1','A/Norway/114/2012|2012-01-10|MDCK1/SIAT1','A/Bursa/108/2011|2011-11-22|C1/SIAT1',
+	"A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1","A/Austria/654044/2012|2012-01-03|C2/SIAT1","A/Switzerland/5834730/2012|2012-01-13|SIAT3")),
+	which(agNames(map132) %in% c('A/Jordan/20110030655/2011|2011-10-31|SIAT1','A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1','A/Belgrade/648/2013|2013-02-05|C2/SIAT2','A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2','A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1','A/Netherlands/002/2012|2012-01-12|MDCK2/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Austria/653679/2012|2012-01-01|SIAT2/SIAT1','A/Norway/114/2012|2012-01-10|MDCK1/SIAT1','A/Bursa/108/2011|2011-11-22|C1/SIAT1',	"A/Turkey/01/2011|2011-11-28|SIAT2/SIAT2","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Turkey/32/2011|2011-12-20|SIAT1/SIAT1","A/Austria/654044/2012|2012-01-03|C2/SIAT1","A/Switzerland/5834730/2012|2012-01-13|SIAT3"))
+)
+p_map132_us_2012_2013 <- ggplot(map132) + ggtitle('us 2012-2013  (map 132)')
+p_map132_us_2012_2013
+
+p_map132_us_2012_2013_png <- file.path(strain_fig_dir, 'map132_us_2012_2013.png')
+png(file=p_map132_us_2012_2013_png)
+p_map132_us_2012_2013
+dev.off()
 
 
 #################### MAP 133 ####################
@@ -3139,8 +7999,39 @@ ag_Feb2012_table14 <- agNames(map133) %in% c("A/Victoria/208/2009|2009-06-02|E3/
 
 agFill(map133)[ag_Sep2013_table7_10] <- '#ea5545'
 agFill(map133)[ag_Feb2012_table14] <- '#ef9b20'
-p_map133 <- ggplot(map133) + ggtitle('map 133')
+p_map133 <- ggplot(map133) + ggtitle('map 133 (Sep2013_table7-10, Feb2012_table14)')
+p_map133_png <- file.path(table_fig_dir, 'map133.png')
+png(file=p_map133_png)
 p_map133
+dev.off()
+
+#### colered by region and season
+
+####### us, 2012-2013 #########
+agSize(map133) <- 5
+agFill(map133) <- 'grey50'
+vs_css_lss <- agNames(map133) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4")
+css_lss <- agNames(map133) %in% c('A/Stockholm/37/2011|2011-11-27|C3/SIAT1', 'A/Antalya/214/2011|2011-12-20|C1/SIAT2', 'A/Turkey/33/2011|2011-12-22|SIAT1/SIAT1', 'A/Turkey/38/2011|2011-12-22|SIAT1/SIAT1', 'A/Turkey/51/2011|2012-01-03|SIAT1/SIAT1', 'A/Turkey/57/2011|2012-01-11|SIAT1/SIAT1')
+ds <- agNames(map133) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1')
+
+agSize(map133)[vs_css_lss] <- 8
+agFill(map133)[vs_css_lss] <- '#d399d8'
+agSize(map133)[css_lss] <- 8
+agFill(map133)[css_lss] <- '#6d21b8'
+agSize(map133)[ds] <- 8
+agFill(map133)[ds] <- '#fcd74e'
+ptDrawingOrder(map133) <- c(seq_len(numSera(map133)) + numAntigens(map133),
+	which(!agNames(map133) %in% c('A/Turkey/33/2011|2011-12-22|SIAT1/SIAT1','A/Stockholm/37/2011|2011-11-27|C3/SIAT1','A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1','A/Belgrade/648/2013|2013-02-05|C2/SIAT2','A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2','A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1','A/Turkey/38/2011|2011-12-22|SIAT1/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Turkey/57/2011|2012-01-11|SIAT1/SIAT1','A/Antalya/214/2011|2011-12-20|C1/SIAT2',
+	"A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Turkey/51/2011|2012-01-03|SIAT1/SIAT1")),
+	which(agNames(map133) %in% c('A/Turkey/33/2011|2011-12-22|SIAT1/SIAT1','A/Stockholm/37/2011|2011-11-27|C3/SIAT1','A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1','A/Belgrade/648/2013|2013-02-05|C2/SIAT2','A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2','A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1','A/Turkey/38/2011|2011-12-22|SIAT1/SIAT1','A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4','A/Turkey/57/2011|2012-01-11|SIAT1/SIAT1','A/Antalya/214/2011|2011-12-20|C1/SIAT2',	"A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Turkey/51/2011|2012-01-03|SIAT1/SIAT1"))
+)
+p_map133_us_2012_2013 <- ggplot(map133) + ggtitle('us 2012-2013  (map 133)')
+p_map133_us_2012_2013
+
+p_map133_us_2012_2013_png <- file.path(strain_fig_dir, 'map133_us_2012_2013.png')
+png(file=p_map133_us_2012_2013_png)
+p_map133_us_2012_2013
+dev.off()
 
 
 #################### MAP 134 ####################
@@ -3161,8 +8052,39 @@ ag_Feb2012_table11 <- agNames(map134) %in% c("A/Brisbane/10/2007|2007-02-06|E2/E
 
 agFill(map134)[ag_Sep2013_table7_10] <- '#ea5545'
 agFill(map134)[ag_Feb2012_table11] <- '#ef9b20'
-p_map134 <- ggplot(map134) + ggtitle('map 134')
+p_map134 <- ggplot(map134) + ggtitle('map 134 (Sep2013_table7-10, Feb2012_table11)')
+p_map134_png <- file.path(table_fig_dir, 'map134.png')
+png(file=p_map134_png)
 p_map134
+dev.off()
+
+#### colered by region and season
+
+####### us, 2012-2013 #########
+agSize(map134) <- 5
+agFill(map134) <- 'grey50'
+vs_css_lss <- agNames(map134) %in% c("A/Hong Kong/3969/2011|2011-05-19|M2/SIAT4")
+css_lss <- agNames(map134) %in% c('A/Belgium/G1063/2011|2011-11-25|SIAT2', 'A/Meknes/136H/2011|2011-11-28|SIAT2', 'A/Norway/2350/2011|2011-11-30|MDCK1/SIAT1', 'A/Casablanca/155/2011|2011-12-26|SIAT2', 'A/Tiznit/167/2011|2011-12-26|SIAT2', 'A/Oujda/144H/2011|*|SIAT3')
+ds <- agNames(map134) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1')
+
+agSize(map134)[vs_css_lss] <- 8
+agFill(map134)[vs_css_lss] <- '#d399d8'
+agSize(map134)[css_lss] <- 8
+agFill(map134)[css_lss] <- '#6d21b8'
+agSize(map134)[ds] <- 8
+agFill(map134)[ds] <- '#fcd74e'
+ptDrawingOrder(map134) <- c(seq_len(numSera(map134)) + numAntigens(map134),
+	which(!agNames(map134) %in% c('A/Hong Kong/3969/2011|2011-05-19|M2/SIAT4','A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1','A/Belgrade/648/2013|2013-02-05|C2/SIAT2','A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2','A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1','A/Meknes/136H/2011|2011-11-28|SIAT2','A/Tiznit/167/2011|2011-12-26|SIAT2','A/Norway/2350/2011|2011-11-30|MDCK1/SIAT1','A/Casablanca/155/2011|2011-12-26|SIAT2','A/Belgium/G1063/2011|2011-11-25|SIAT2',
+	"A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Oujda/144H/2011|*|SIAT3")),
+	which(agNames(map134) %in% c('A/Hong Kong/3969/2011|2011-05-19|M2/SIAT4','A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1','A/Belgrade/648/2013|2013-02-05|C2/SIAT2','A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2','A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1','A/Meknes/136H/2011|2011-11-28|SIAT2','A/Tiznit/167/2011|2011-12-26|SIAT2','A/Norway/2350/2011|2011-11-30|MDCK1/SIAT1','A/Casablanca/155/2011|2011-12-26|SIAT2','A/Belgium/G1063/2011|2011-11-25|SIAT2',	"A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1","A/Oujda/144H/2011|*|SIAT3"))
+)
+p_map134_us_2012_2013 <- ggplot(map134) + ggtitle('us 2012-2013  (map 134)')
+p_map134_us_2012_2013
+
+p_map134_us_2012_2013_png <- file.path(strain_fig_dir, 'map134_us_2012_2013.png')
+png(file=p_map134_us_2012_2013_png)
+p_map134_us_2012_2013
+dev.off()
 
 
 #################### MAP 135 ####################
@@ -3180,8 +8102,38 @@ ag_Sep2012_table12 <- agNames(map135) %in% c("A/Victoria/208/2009|2009-06-02|E3/
 
 agFill(map135)[ag_Sep2013_table7_10] <- '#ea5545'
 agFill(map135)[ag_Sep2012_table12] <- '#ef9b20'
-p_map135 <- ggplot(map135) + ggtitle('map 135')
+p_map135 <- ggplot(map135) + ggtitle('map 135 (Sep2013_table7-10, Sep2012_table12)')
+p_map135_png <- file.path(table_fig_dir, 'map135.png')
+png(file=p_map135_png)
 p_map135
+dev.off()
+
+#### colered by region and season
+
+####### us, 2012-2013 #########
+agSize(map135) <- 5
+agFill(map135) <- 'grey50'
+vs_css_lss <- agNames(map135) %in% c("A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4")
+css_lss <- agNames(map135) %in% c('A/Belgrade/449/2012|2012-02-02|C1/SIAT1', 'A/Ukraine/114/2012|2012-03-02|C1/SIAT3', 'A/Ireland/12V2794/2012|2012-03-28|C1/SIAT1')
+ds <- agNames(map135) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1')
+
+agSize(map135)[vs_css_lss] <- 8
+agFill(map135)[vs_css_lss] <- '#d399d8'
+agSize(map135)[css_lss] <- 8
+agFill(map135)[css_lss] <- '#6d21b8'
+agSize(map135)[ds] <- 8
+agFill(map135)[ds] <- '#fcd74e'
+ptDrawingOrder(map135) <- c(seq_len(numSera(map135)) + numAntigens(map135),
+    which(!agNames(map135) %in% c('A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Belgrade/449/2012|2012-02-02|C1/SIAT1', 'A/Ukraine/114/2012|2012-03-02|C1/SIAT3', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ireland/12V2794/2012|2012-03-28|C1/SIAT1')),
+    which(agNames(map135) %in% c('A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1', 'A/Hong Kong/3969/2011|2011-05-19|MDCK2/SIAT4', 'A/Belgrade/449/2012|2012-02-02|C1/SIAT1', 'A/Ukraine/114/2012|2012-03-02|C1/SIAT3', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ireland/12V2794/2012|2012-03-28|C1/SIAT1'))
+)
+p_map135_us_2012_2013 <- ggplot(map135) + ggtitle('us 2012-2013  (map 135)')
+p_map135_us_2012_2013
+
+p_map135_us_2012_2013_png <- file.path(strain_fig_dir, 'map135_us_2012_2013.png')
+png(file=p_map135_us_2012_2013_png)
+p_map135_us_2012_2013
+dev.off()
 
 
 #################### MAP 136 ####################
@@ -3212,8 +8164,42 @@ agFill(map136)[ag_Sep2013_table7_10] <- '#ef9b20'
 agFill(map136)[ag_Feb2014_table9_2] <- '#ede15b'
 agFill(map136)[ag_Sep2014_table8_10] <- '#87bc45'
 agFill(map136)[ag_Sep2014_table8_19] <- '#27aeef'
-p_map136 <- ggplot(map136) + ggtitle('map 136')
+p_map136 <- ggplot(map136) + ggtitle('map 136 (Sep2012_table15, Sep2013_table7-10, Feb2014_table9-2, Sep2014_table8-10, Sep2014_table8-19)')
+p_map136_png <- file.path(table_fig_dir, 'map136.png')
+png(file=p_map136_png)
 p_map136
+dev.off()
+
+#### colered by region and season
+
+####### us, 2013-2014 #########
+agSize(map136) <- 5
+agFill(map136) <- 'grey50'
+ds <- agNames(map136) %in% c('A/Dnipro/234/2014|2014-03-11|SIAT2/SIAT3', 'A/Georgia/699/2014|2014-03-26|SIAT2')
+vs <- agNames(map136) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1')
+css <- agNames(map136) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1')
+lss <- agNames(map136) %in% c('A/Serbia/NS-210/2013|2013-01-18|E5', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1')
+
+agSize(map136)[ds] <- 8
+agFill(map136)[ds] <- '#fcd74e'
+agSize(map136)[vs] <- 8
+agFill(map136)[vs] <- '#ffa600'
+agSize(map136)[css] <- 8
+agFill(map136)[css] <- '#d900ba'
+agSize(map136)[lss] <- 8
+agFill(map136)[lss] <- '#0051ff'
+ptDrawingOrder(map136) <- c(seq_len(numSera(map136)) + numAntigens(map136),
+	which(!agNames(map136) %in% c('A/Serbia/NS-210/2013|2013-01-18|E5','A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1','A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1','A/Belgrade/648/2013|2013-02-05|C2/SIAT2','A/Georgia/699/2014|2014-03-26|SIAT2','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2','A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1','A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1',
+	"A/Dnipro/234/2014|2014-03-11|SIAT2/SIAT3","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1")),
+	which(agNames(map136) %in% c('A/Serbia/NS-210/2013|2013-01-18|E5','A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1','A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1','A/Belgrade/648/2013|2013-02-05|C2/SIAT2','A/Georgia/699/2014|2014-03-26|SIAT2','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2','A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1','A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1',	"A/Dnipro/234/2014|2014-03-11|SIAT2/SIAT3","A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1"))
+)
+p_map136_us_2013_2014 <- ggplot(map136) + ggtitle('us 2013-2014  (map 136)')
+p_map136_us_2013_2014
+
+p_map136_us_2013_2014_png <- file.path(strain_fig_dir, 'map136_us_2013_2014.png')
+png(file=p_map136_us_2013_2014_png)
+p_map136_us_2013_2014
+dev.off()
 
 
 #################### MAP 137 ####################
@@ -3246,8 +8232,41 @@ agFill(map137)[ag_Feb2014_table9_7] <- '#ede15b'
 agFill(map137)[ag_Sep2014_table8_13] <- '#87bc45'
 agFill(map137)[ag_Feb2015_table9_3] <- '#27aeef'
 agFill(map137)[ag_Feb2015_table9_4] <- '#b33dc6'
-p_map137 <- ggplot(map137) + ggtitle('map 137')
+p_map137 <- ggplot(map137) + ggtitle('map 137 (Sep2012_table9, Sep2013_table7-10, Feb2014_table9-7, Sep2014_table8-13, Feb2015_table9-3, Feb2015_table9-4)')
+p_map137_png <- file.path(table_fig_dir, 'map137.png')
+png(file=p_map137_png)
 p_map137
+dev.off()
+
+#### colered by region and season
+
+####### us, 2013-2014 #########
+agSize(map137) <- 5
+agFill(map137) <- 'grey50'
+ds <- agNames(map137) %in% c('A/Georgia/215/2014|2014-02-06|SIAT1', 'A/Belgium/14S0070/2014|2014-02-16|SIAT1')
+vs <- agNames(map137) %in% c('A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1')
+css <- agNames(map137) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1')
+lss <- agNames(map137) %in% c("A/Serbia/NS-210/2013|2013-01-18|E5/E1")
+
+agSize(map137)[ds] <- 8
+agFill(map137)[ds] <- '#fcd74e'
+agSize(map137)[vs] <- 8
+agFill(map137)[vs] <- '#ffa600'
+agSize(map137)[css] <- 8
+agFill(map137)[css] <- '#d900ba'
+agSize(map137)[lss] <- 8
+agFill(map137)[lss] <- '#0051ff'
+ptDrawingOrder(map137) <- c(seq_len(numSera(map137)) + numAntigens(map137),
+    which(!agNames(map137) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Georgia/215/2014|2014-02-06|SIAT1', 'A/Belgium/14S0070/2014|2014-02-16|SIAT1', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1')),
+    which(agNames(map137) %in% c('A/Belgrade/648/2013|2013-02-05|C2/SIAT2', 'A/Dnipropetrovsk/390/2013|2013-03-15|MDCK1/SIAT1', 'A/Ukraine/275/2013|2013-03-08|SIAT1/SIAT2', 'A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Dnipropetrovsk/364/2013|2013-03-15|MDCK1/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Georgia/215/2014|2014-02-06|SIAT1', 'A/Belgium/14S0070/2014|2014-02-16|SIAT1', 'A/Dnipropetrovsk/361/2013|2013-03-06|MDCK1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1'))
+)
+p_map137_us_2013_2014 <- ggplot(map137) + ggtitle('us 2013-2014  (map 137)')
+p_map137_us_2013_2014
+
+p_map137_us_2013_2014_png <- file.path(strain_fig_dir, 'map137_us_2013_2014.png')
+png(file=p_map137_us_2013_2014_png)
+p_map137_us_2013_2014
+dev.off()
 
 
 #################### MAP 138 ####################
@@ -3288,8 +8307,39 @@ agFill(map138)[ag_Sep2014_table8_10] <- '#87bc45'
 agFill(map138)[ag_Sep2014_table8_16] <- '#27aeef'
 agFill(map138)[ag_Feb2015_table9_4] <- '#b33dc6'
 agFill(map138)[ag_Sep2015_table8_9] <- '#4e00ff'
-p_map138 <- ggplot(map138) + ggtitle('map 138')
+p_map138 <- ggplot(map138) + ggtitle('map 138 (Sep2012_table9, Sep2013_table7-7, Feb2014_table9-7, Sep2014_table8-10, Sep2014_table8-16, Feb2015_table9-4, Sep2015_table8-9)')
+p_map138_png <- file.path(table_fig_dir, 'map138.png')
+png(file=p_map138_png)
 p_map138
+dev.off()
+
+#### colered by region and season
+
+####### us, 2014-2015 #########
+agSize(map138) <- 5
+agFill(map138) <- 'grey50'
+css_lss <- agNames(map138) %in% c('A/Serbia/NS-200/2013|2013-01-14|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|SIAT3', 'A/Astrakhan/5/2013|2013-02-20|C1/SIAT1', 'A/Valladolid/95/2013|2013-03-14|SIAT2', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1')
+ds <- agNames(map138) %in% c('A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1', 'A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1', 'A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1', 'A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1', 'A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1', 'A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3', 'A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2', 'A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2')
+vs <- agNames(map138) %in% c('A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1')
+
+agSize(map138)[css_lss] <- 8
+agFill(map138)[css_lss] <- '#6d21b8'
+agSize(map138)[ds] <- 8
+agFill(map138)[ds] <- '#fcd74e'
+agSize(map138)[vs] <- 8
+agFill(map138)[vs] <- '#ffa600'
+ptDrawingOrder(map138) <- c(seq_len(numSera(map138)) + numAntigens(map138),
+	which(!agNames(map138) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Serbia/NS-200/2013|2013-01-14|SIAT2','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1','A/Astrakhan/5/2013|2013-02-20|C1/SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Valladolid/95/2013|2013-03-14|SIAT2',
+	"A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1","A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Serbia/NS-210/2013|2013-01-18|SIAT3")),
+	which(agNames(map138) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Serbia/NS-200/2013|2013-01-14|SIAT2','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1','A/Astrakhan/5/2013|2013-02-20|C1/SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Valladolid/95/2013|2013-03-14|SIAT2',	"A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1","A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2","A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1","A/Serbia/NS-210/2013|2013-01-18|SIAT3"))
+)
+p_map138_us_2014_2015 <- ggplot(map138) + ggtitle('us 2014-2015  (map 138)')
+p_map138_us_2014_2015
+
+p_map138_us_2014_2015_png <- file.path(strain_fig_dir, 'map138_us_2014_2015.png')
+png(file=p_map138_us_2014_2015_png)
+p_map138_us_2014_2015
+dev.off()
 
 
 #################### MAP 139 ####################
@@ -3323,8 +8373,39 @@ agFill(map139)[ag_Sep2012_table15] <- '#ef9b20'
 agFill(map139)[ag_Sep2014_table8_19] <- '#ede15b'
 agFill(map139)[ag_Sep2014_table8_10] <- '#87bc45'
 agFill(map139)[ag_Feb2014_table9_6] <- '#27aeef'
-p_map139 <- ggplot(map139) + ggtitle('map 139')
+p_map139 <- ggplot(map139) + ggtitle('map 139 (Sep2013_table7-8, Sep2012_table15, Sep2014_table8-19, Sep2014_table8-10, Feb2014_table9-6)')
+p_map139_png <- file.path(table_fig_dir, 'map139.png')
+png(file=p_map139_png)
 p_map139
+dev.off()
+
+#### colered by region and season
+
+####### us, 2014-2015 #########
+agSize(map139) <- 5
+agFill(map139) <- 'grey50'
+css_lss <- agNames(map139) %in% c('A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1', 'A/Tulkarem/83/2013|2013-01-08|SIAT3', 'A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1', 'A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1', 'A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1')
+ds <- agNames(map139) %in% c('A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2', 'A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2')
+vs <- agNames(map139) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1', 'A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1')
+
+agSize(map139)[css_lss] <- 8
+agFill(map139)[css_lss] <- '#6d21b8'
+agSize(map139)[ds] <- 8
+agFill(map139)[ds] <- '#fcd74e'
+agSize(map139)[vs] <- 8
+agFill(map139)[vs] <- '#ffa600'
+ptDrawingOrder(map139) <- c(seq_len(numSera(map139)) + numAntigens(map139),
+	which(!agNames(map139) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1','A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1','A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Tulkarem/83/2013|2013-01-08|SIAT3','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1','A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1','A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2','A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2',
+	"A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1")),
+	which(agNames(map139) %in% c('A/Molodechno/1598/2012|2012-03-19|MDCK2/SIAT1','A/Minsk/1737/2012|2012-03-28|MDCK2/SIAT1','A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Tulkarem/83/2013|2013-01-08|SIAT3','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1','A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1','A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2','A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2',	"A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1"))
+)
+p_map139_us_2014_2015 <- ggplot(map139) + ggtitle('us 2014-2015  (map 139)')
+p_map139_us_2014_2015
+
+p_map139_us_2014_2015_png <- file.path(strain_fig_dir, 'map139_us_2014_2015.png')
+png(file=p_map139_us_2014_2015_png)
+p_map139_us_2014_2015
+dev.off()
 
 
 #################### MAP 140 ####################
@@ -3361,8 +8442,39 @@ agFill(map140)[ag_Sep2012_table9] <- '#ede15b'
 agFill(map140)[ag_Sep2014_table8_19] <- '#87bc45'
 agFill(map140)[ag_Sep2014_table8_10] <- '#27aeef'
 agFill(map140)[ag_Feb2014_table9_6] <- '#b33dc6'
-p_map140 <- ggplot(map140) + ggtitle('map 140')
+p_map140 <- ggplot(map140) + ggtitle('map 140 (Sep2013_table7-8, Feb2015_table9-4, Sep2012_table9, Sep2014_table8-19, Sep2014_table8-10, Feb2014_table9-6)')
+p_map140_png <- file.path(table_fig_dir, 'map140.png')
+png(file=p_map140_png)
 p_map140
+dev.off()
+
+#### colered by region and season
+
+####### us, 2014-2015 #########
+agSize(map140) <- 5
+agFill(map140) <- 'grey50'
+css_lss <- agNames(map140) %in% c('A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1', 'A/Tulkarem/83/2013|2013-01-08|SIAT3', 'A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1', 'A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1', 'A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1', 'A/Serbia/NS-210/2013|2013-01-18|E5/E1', 'A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1')
+ds <- agNames(map140) %in% c('A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2', 'A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2', 'A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1', 'A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1')
+vs <- agNames(map140) %in% c('A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1', 'A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1')
+
+agSize(map140)[css_lss] <- 8
+agFill(map140)[css_lss] <- '#6d21b8'
+agSize(map140)[ds] <- 8
+agFill(map140)[ds] <- '#fcd74e'
+agSize(map140)[vs] <- 8
+agFill(map140)[vs] <- '#ffa600'
+ptDrawingOrder(map140) <- c(seq_len(numSera(map140)) + numAntigens(map140),
+	which(!agNames(map140) %in% c('A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1','A/Tulkarem/83/2013|2013-01-08|SIAT3','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1','A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1','A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1','A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2','A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2',
+	"A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1")),
+	which(agNames(map140) %in% c('A/Plzen/17/2013|2013-01-03|MDCK4/SIAT1','A/Zambia/13/109/2013|2013-09-21|Cx/SIAT1','A/Novosibirsk/6/2012|2012-03-25|C1/SIAT1','A/Tulkarem/83/2013|2013-01-08|SIAT3','A/Serbia/NS-210/2013|2013-01-18|E5/E1','A/Slovenia/218/2013|2013-01-17|MDCK1/SIAT1','A/Slovenia/466/2013|2013-01-30|MDCKx/SIAT1','A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1','A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2','A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2',	"A/Slovenia/388/2013|2013-01-25|MDCKx/SIAT1","A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1","A/Novosibirsk/8/2012|2012-03-25|C1/SIAT1"))
+)
+p_map140_us_2014_2015 <- ggplot(map140) + ggtitle('us 2014-2015  (map 140)')
+p_map140_us_2014_2015
+
+p_map140_us_2014_2015_png <- file.path(strain_fig_dir, 'map140_us_2014_2015.png')
+png(file=p_map140_us_2014_2015_png)
+p_map140_us_2014_2015
+dev.off()
 
 
 #################### MAP 141 ####################
@@ -3378,8 +8490,35 @@ ag_Feb2015_table9_2 <- agNames(map141) %in% c("A/Victoria/361/2011|2011-10-24|MD
 
 agFill(map141)[ag_Sep2014_table8_19] <- '#ea5545'
 agFill(map141)[ag_Feb2015_table9_2] <- '#ef9b20'
-p_map141 <- ggplot(map141) + ggtitle('map 141')
+p_map141 <- ggplot(map141) + ggtitle('map 141 (Sep2014_table8-19, Feb2015_table9-2)')
+p_map141_png <- file.path(table_fig_dir, 'map141.png')
+png(file=p_map141_png)
 p_map141
+dev.off()
+
+#### colered by region and season
+
+####### us, 2015-2016 #########
+agSize(map141) <- 5
+agFill(map141) <- 'grey50'
+ds_css_lss <- agNames(map141) %in% c('A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2', 'A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2', 'A/Hong Kong/7364/2014|2014-08-18|MDCK2/SIAT3')
+vs <- agNames(map141) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123', 'A/Hong Kong/6033/2014|2014-06-05|MDCKx/SIAT1', 'A/Hong Kong/7229/2014|2014-07-31|MDCKx/SIAT1', 'A/Hong Kong/7313/2014|2014-08-07|MDCKx/SIAT1')
+
+agSize(map141)[ds_css_lss] <- 8
+agFill(map141)[ds_css_lss] <- '#00c1f3'
+agSize(map141)[vs] <- 8
+agFill(map141)[vs] <- '#ffa600'
+ptDrawingOrder(map141) <- c(seq_len(numSera(map141)) + numAntigens(map141),
+    which(!agNames(map141) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3', 'A/Hong Kong/6033/2014|2014-06-05|MDCKx/SIAT1', 'A/Hong Kong/7364/2014|2014-08-18|MDCK2/SIAT3', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Hong Kong/7229/2014|2014-07-31|MDCKx/SIAT1', 'A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2', 'A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2', 'A/Hong Kong/7313/2014|2014-08-07|MDCKx/SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123')),
+    which(agNames(map141) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3', 'A/Hong Kong/6033/2014|2014-06-05|MDCKx/SIAT1', 'A/Hong Kong/7364/2014|2014-08-18|MDCK2/SIAT3', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Hong Kong/7229/2014|2014-07-31|MDCKx/SIAT1', 'A/Hong Kong/5739/2014|2014-04-29|MDCK1/SIAT2', 'A/Hong Kong/4800/2014|2014-02-26|MDCK1/SIAT2', 'A/Hong Kong/7313/2014|2014-08-07|MDCKx/SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123'))
+)
+p_map141_us_2015_2016 <- ggplot(map141) + ggtitle('us 2015-2016  (map 141)')
+p_map141_us_2015_2016
+
+p_map141_us_2015_2016_png <- file.path(strain_fig_dir, 'map141_us_2015_2016.png')
+png(file=p_map141_us_2015_2016_png)
+p_map141_us_2015_2016
+dev.off()
 
 
 #################### MAP 142 ####################
@@ -3394,8 +8533,35 @@ ag_Feb2015_table9_2 <- agNames(map142) %in% c("A/South Africa/4655/2013|2013-06-
 
 agFill(map142)[ag_Feb2015_table9_4] <- '#ea5545'
 agFill(map142)[ag_Feb2015_table9_2] <- '#ef9b20'
-p_map142 <- ggplot(map142) + ggtitle('map 142')
+p_map142 <- ggplot(map142) + ggtitle('map 142 (Feb2015_table9-4, Feb2015_table9-2)')
+p_map142_png <- file.path(table_fig_dir, 'map142.png')
+png(file=p_map142_png)
 p_map142
+dev.off()
+
+#### colered by region and season
+
+####### us, 2015-2016 #########
+agSize(map142) <- 5
+agFill(map142) <- 'grey50'
+ds_css_lss <- agNames(map142) %in% c('A/Hong Kong/7364/2014|2014-08-18|MDCK2/SIAT3', 'A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1', 'A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1')
+vs <- agNames(map142) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123', 'A/Hong Kong/6033/2014|2014-06-05|MDCKx/SIAT1', 'A/Hong Kong/7229/2014|2014-07-31|MDCKx/SIAT1', 'A/Hong Kong/7313/2014|2014-08-07|MDCKx/SIAT1')
+
+agSize(map142)[ds_css_lss] <- 8
+agFill(map142)[ds_css_lss] <- '#00c1f3'
+agSize(map142)[vs] <- 8
+agFill(map142)[vs] <- '#ffa600'
+ptDrawingOrder(map142) <- c(seq_len(numSera(map142)) + numAntigens(map142),
+    which(!agNames(map142) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3', 'A/Hong Kong/6033/2014|2014-06-05|MDCKx/SIAT1', 'A/Hong Kong/7364/2014|2014-08-18|MDCK2/SIAT3', 'A/Hong Kong/7229/2014|2014-07-31|MDCKx/SIAT1', 'A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1', 'A/Hong Kong/7313/2014|2014-08-07|MDCKx/SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123', 'A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1')),
+    which(agNames(map142) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3', 'A/Hong Kong/6033/2014|2014-06-05|MDCKx/SIAT1', 'A/Hong Kong/7364/2014|2014-08-18|MDCK2/SIAT3', 'A/Hong Kong/7229/2014|2014-07-31|MDCKx/SIAT1', 'A/Stockholm/18/2014|2014-08-16|MDCK2/SIAT1', 'A/Hong Kong/7313/2014|2014-08-07|MDCKx/SIAT1', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123', 'A/Stockholm/29/2014|2014-11-18|MDCK1/SIAT1'))
+)
+p_map142_us_2015_2016 <- ggplot(map142) + ggtitle('us 2015-2016  (map 142)')
+p_map142_us_2015_2016
+
+p_map142_us_2015_2016_png <- file.path(strain_fig_dir, 'map142_us_2015_2016.png')
+png(file=p_map142_us_2015_2016_png)
+p_map142_us_2015_2016
+dev.off()
 
 
 #################### MAP 143 ####################
@@ -3411,8 +8577,36 @@ ag_Sep2015_table8_8 <- agNames(map143) %in% c("A/Victoria/361/2011|2011-10-24|MD
 
 agFill(map143)[ag_Sep2015_table8_9] <- '#ea5545'
 agFill(map143)[ag_Sep2015_table8_8] <- '#ef9b20'
-p_map143 <- ggplot(map143) + ggtitle('map 143')
+p_map143 <- ggplot(map143) + ggtitle('map 143 (Sep2015_table8-9, Sep2015_table8-8)')
+p_map143_png <- file.path(table_fig_dir, 'map143.png')
+png(file=p_map143_png)
 p_map143
+dev.off()
+
+#### colered by region and season
+
+####### us, 2015-2016 #########
+agSize(map143) <- 5
+agFill(map143) <- 'grey50'
+ds_css_lss <- agNames(map143) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1', 'A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1', 'A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1', 'A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3', 'A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2', 'A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2')
+vs <- agNames(map143) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123', 'A/Maevatanana/172/2015|2015-01-19|MDCK1', 'A/Tsiroanomandidy/1384/2015|2015-03-30|MDCK1', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2')
+
+agSize(map143)[ds_css_lss] <- 8
+agFill(map143)[ds_css_lss] <- '#00c1f3'
+agSize(map143)[vs] <- 8
+agFill(map143)[vs] <- '#ffa600'
+ptDrawingOrder(map143) <- c(seq_len(numSera(map143)) + numAntigens(map143),
+	which(!agNames(map143) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3','A/Maevatanana/172/2015|2015-01-19|MDCK1','A/Tsiroanomandidy/1384/2015|2015-03-30|MDCK1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2',
+	"A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1")),
+	which(agNames(map143) %in% c('A/Stockholm/7/2015|2015-01-13|MDCK1/SIAT1','A/Ghana/FS-15-0185/2015|2015-03-20|C2/SIAT2','A/Sweden/15/2015|2015-02-27|MDCK2/SIAT3','A/Switzerland/9715293/2013|2013-12-06|E4/E1 clone 123','A/Stockholm/8/2015|2015-01-25|MDCK1/SIAT1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT3','A/Maevatanana/172/2015|2015-01-19|MDCK1','A/Tsiroanomandidy/1384/2015|2015-03-30|MDCK1','A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2','A/Ghana/DILI-15-0233/2015|2015-03-16|Cx/SIAT2',	"A/Stockholm/13/2015|2015-02-10|MDCK0/SIAT1"))
+)
+p_map143_us_2015_2016 <- ggplot(map143) + ggtitle('us 2015-2016  (map 143)')
+p_map143_us_2015_2016
+
+p_map143_us_2015_2016_png <- file.path(strain_fig_dir, 'map143_us_2015_2016.png')
+png(file=p_map143_us_2015_2016_png)
+p_map143_us_2015_2016
+dev.off()
 
 
 #################### MAP 144 ####################
@@ -3428,8 +8622,35 @@ ag_Sep2016_table8_2 <- agNames(map144) %in% c("A/Netherlands/525/2014|2014-12-17
 
 agFill(map144)[ag_Sep2016_table8_6] <- '#ea5545'
 agFill(map144)[ag_Sep2016_table8_2] <- '#ef9b20'
-p_map144 <- ggplot(map144) + ggtitle('map 144')
+p_map144 <- ggplot(map144) + ggtitle('map 144 (Sep2016_table8-6, Sep2016_table8-2)')
+p_map144_png <- file.path(table_fig_dir, 'map144.png')
+png(file=p_map144_png)
 p_map144
+dev.off()
+
+#### colered by region and season
+
+####### us, 2015-2016 #########
+agSize(map144) <- 5
+agFill(map144) <- 'grey50'
+ds_css_lss <- agNames(map144) %in% c('A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Jordan/4054/2015|*|SIAT1', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2')
+vs <- agNames(map144) %in% c('A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|E4/E1')
+
+agSize(map144)[ds_css_lss] <- 8
+agFill(map144)[ds_css_lss] <- '#00c1f3'
+agSize(map144)[vs] <- 8
+agFill(map144)[vs] <- '#ffa600'
+ptDrawingOrder(map144) <- c(seq_len(numSera(map144)) + numAntigens(map144),
+    which(!agNames(map144) %in% c('A/Switzerland/9715293/2013|2013-12-06|E4/E1', 'A/Jordan/4054/2015|*|SIAT1', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2')),
+    which(agNames(map144) %in% c('A/Switzerland/9715293/2013|2013-12-06|E4/E1', 'A/Jordan/4054/2015|*|SIAT1', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2', 'A/Switzerland/9715293/2013|2013-12-06|SIAT1/SIAT2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2'))
+)
+p_map144_us_2015_2016 <- ggplot(map144) + ggtitle('us 2015-2016  (map 144)')
+p_map144_us_2015_2016
+
+p_map144_us_2015_2016_png <- file.path(strain_fig_dir, 'map144_us_2015_2016.png')
+png(file=p_map144_us_2015_2016_png)
+p_map144_us_2015_2016
+dev.off()
 
 
 #################### MAP 145 ####################
@@ -3444,8 +8665,38 @@ ag_Sep2016_table8_6 <- agNames(map145) %in% c("A/Bari/11/2016|2016-01-26|SIAT3/S
 
 agFill(map145)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map145)[ag_Sep2016_table8_6] <- '#ef9b20'
-p_map145 <- ggplot(map145) + ggtitle('map 145')
+p_map145 <- ggplot(map145) + ggtitle('map 145 (Sep2016_table8-7, Sep2016_table8-6)')
+p_map145_png <- file.path(table_fig_dir, 'map145.png')
+png(file=p_map145_png)
 p_map145
+dev.off()
+
+#### colered by region and season
+
+####### us, 2016-2017 #########
+agSize(map145) <- 5
+agFill(map145) <- 'grey50'
+css_lss <- agNames(map145) %in% c('A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2')
+ds <- agNames(map145) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+vs <- agNames(map145) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2')
+
+agSize(map145)[css_lss] <- 8
+agFill(map145)[css_lss] <- '#6d21b8'
+agSize(map145)[ds] <- 8
+agFill(map145)[ds] <- '#fcd74e'
+agSize(map145)[vs] <- 8
+agFill(map145)[vs] <- '#ffa600'
+ptDrawingOrder(map145) <- c(seq_len(numSera(map145)) + numAntigens(map145),
+    which(!agNames(map145) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1')),
+    which(agNames(map145) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Padova/17/2016|2016-02-15|SIAT3/SIAT2', 'A/Bolzano/9/2016|2016-03-27|SIAT3/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1'))
+)
+p_map145_us_2016_2017 <- ggplot(map145) + ggtitle('us 2016-2017  (map 145)')
+p_map145_us_2016_2017
+
+p_map145_us_2016_2017_png <- file.path(strain_fig_dir, 'map145_us_2016_2017.png')
+png(file=p_map145_us_2016_2017_png)
+p_map145_us_2016_2017
+dev.off()
 
 
 #################### MAP 146 ####################
@@ -3462,8 +8713,38 @@ ag_Feb2016_table9_3 <- agNames(map146) %in% c("A/Stockholm/6/2014|2014-02-06|SIA
 agFill(map146)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map146)[ag_Sep2016_table8_2] <- '#ef9b20'
 agFill(map146)[ag_Feb2016_table9_3] <- '#ede15b'
-p_map146 <- ggplot(map146) + ggtitle('map 146')
+p_map146 <- ggplot(map146) + ggtitle('map 146 (Sep2016_table8-7, Sep2016_table8-2, Feb2016_table9-3)')
+p_map146_png <- file.path(table_fig_dir, 'map146.png')
+png(file=p_map146_png)
 p_map146
+dev.off()
+
+#### colered by region and season
+
+####### us, 2016-2017 #########
+agSize(map146) <- 5
+agFill(map146) <- 'grey50'
+css_lss <- agNames(map146) %in% c('A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Jordan/4054/2015|*|SIAT1')
+ds <- agNames(map146) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+vs <- agNames(map146) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2')
+
+agSize(map146)[css_lss] <- 8
+agFill(map146)[css_lss] <- '#6d21b8'
+agSize(map146)[ds] <- 8
+agFill(map146)[ds] <- '#fcd74e'
+agSize(map146)[vs] <- 8
+agFill(map146)[vs] <- '#ffa600'
+ptDrawingOrder(map146) <- c(seq_len(numSera(map146)) + numAntigens(map146),
+    which(!agNames(map146) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1')),
+    which(agNames(map146) %in% c('A/England/333/2015|2015-09-04|MDCK2/SIAT1', 'A/Jordan/4054/2015|*|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Serbia/361/2015|2015-01-19|C2/SIAT2', 'A/Oman/4926/2015|2015-09-27|SIAT2/SIAT2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E1'))
+)
+p_map146_us_2016_2017 <- ggplot(map146) + ggtitle('us 2016-2017  (map 146)')
+p_map146_us_2016_2017
+
+p_map146_us_2016_2017_png <- file.path(strain_fig_dir, 'map146_us_2016_2017.png')
+png(file=p_map146_us_2016_2017_png)
+p_map146_us_2016_2017
+dev.off()
 
 
 #################### MAP 147 ####################
@@ -3485,8 +8766,38 @@ ag_Sep2017_table8_2 <- agNames(map147) %in% c("A/Samara/73/2013|2013-03-12|C1/SI
 agFill(map147)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map147)[ag_Sep2017_table8_16] <- '#ef9b20'
 agFill(map147)[ag_Sep2017_table8_2] <- '#ede15b'
-p_map147 <- ggplot(map147) + ggtitle('map 147')
+p_map147 <- ggplot(map147) + ggtitle('map 147 (Sep2016_table8-7, Sep2017_table8-16, Sep2017_table8-2)')
+p_map147_png <- file.path(table_fig_dir, 'map147.png')
+png(file=p_map147_png)
 p_map147
+dev.off()
+
+#### colered by region and season
+
+####### us, 2017-2018 #########
+agSize(map147) <- 5
+agFill(map147) <- 'grey50'
+css_lss <- agNames(map147) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map147) %in% c('A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1')
+vs <- agNames(map147) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')
+
+agSize(map147)[css_lss] <- 8
+agFill(map147)[css_lss] <- '#6d21b8'
+agSize(map147)[ds] <- 8
+agFill(map147)[ds] <- '#fcd74e'
+agSize(map147)[vs] <- 8
+agFill(map147)[vs] <- '#ffa600'
+ptDrawingOrder(map147) <- c(seq_len(numSera(map147)) + numAntigens(map147),
+    which(!agNames(map147) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1')),
+    which(agNames(map147) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1'))
+)
+p_map147_us_2017_2018 <- ggplot(map147) + ggtitle('us 2017-2018  (map 147)')
+p_map147_us_2017_2018
+
+p_map147_us_2017_2018_png <- file.path(strain_fig_dir, 'map147_us_2017_2018.png')
+png(file=p_map147_us_2017_2018_png)
+p_map147_us_2017_2018
+dev.off()
 
 
 #################### MAP 148 ####################
@@ -3502,8 +8813,38 @@ ag_Sep2017_table8_2 <- agNames(map148) %in% c("A/Samara/73/2013|2013-03-12|C1/SI
 
 agFill(map148)[ag_Sep2016_table8_7] <- '#ea5545'
 agFill(map148)[ag_Sep2017_table8_2] <- '#ef9b20'
-p_map148 <- ggplot(map148) + ggtitle('map 148')
+p_map148 <- ggplot(map148) + ggtitle('map 148 (Sep2016_table8-7, Sep2017_table8-2)')
+p_map148_png <- file.path(table_fig_dir, 'map148.png')
+png(file=p_map148_png)
 p_map148
+dev.off()
+
+#### colered by region and season
+
+####### us, 2017-2018 #########
+agSize(map148) <- 5
+agFill(map148) <- 'grey50'
+css_lss <- agNames(map148) %in% c("A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1")
+ds <- agNames(map148) %in% c('A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1')
+vs <- agNames(map148) %in% c('A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2')
+
+agSize(map148)[css_lss] <- 8
+agFill(map148)[css_lss] <- '#6d21b8'
+agSize(map148)[ds] <- 8
+agFill(map148)[ds] <- '#fcd74e'
+agSize(map148)[vs] <- 8
+agFill(map148)[vs] <- '#ffa600'
+ptDrawingOrder(map148) <- c(seq_len(numSera(map148)) + numAntigens(map148),
+    which(!agNames(map148) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1')),
+    which(agNames(map148) %in% c('A/Hong Kong/4801/2014|2014-02-26|E6/E2', 'A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK2', 'A/Hong Kong/4801/2014|2014-02-26|MDCK4/MDCK1/SIAT1', 'A/Stockholm/28/2016|2016-03-10|MDCK2/SIAT1'))
+)
+p_map148_us_2017_2018 <- ggplot(map148) + ggtitle('us 2017-2018  (map 148)')
+p_map148_us_2017_2018
+
+p_map148_us_2017_2018_png <- file.path(strain_fig_dir, 'map148_us_2017_2018.png')
+png(file=p_map148_us_2017_2018_png)
+p_map148_us_2017_2018
+dev.off()
 
 
 #################### MAP 149 ####################
@@ -3522,8 +8863,38 @@ ag_Feb2019_table8_7 <- agNames(map149) %in% c("A/Stockholm/6/2014|2014-02-06|SIA
 agFill(map149)[ag_Sep2017_table8_16] <- '#ea5545'
 agFill(map149)[ag_Feb2018_table8_6] <- '#ef9b20'
 agFill(map149)[ag_Feb2019_table8_7] <- '#ede15b'
-p_map149 <- ggplot(map149) + ggtitle('map 149')
+p_map149 <- ggplot(map149) + ggtitle('map 149 (Sep2017_table8-16, Feb2018_table8-6, Feb2019_table8-7)')
+p_map149_png <- file.path(table_fig_dir, 'map149.png')
+png(file=p_map149_png)
 p_map149
+dev.off()
+
+#### colered by region and season
+
+####### us, 2018-2019 #########
+agSize(map149) <- 5
+agFill(map149) <- 'grey50'
+css_lss <- agNames(map149) %in% c('A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1')
+ds <- agNames(map149) %in% c('A/Paris/2511/2018|2018-11-29|MDCK1/SIAT1', 'A/Paris/2538/2018|2018-12-04|MDCK1/SIAT1')
+vs <- agNames(map149) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3')
+
+agSize(map149)[css_lss] <- 8
+agFill(map149)[css_lss] <- '#6d21b8'
+agSize(map149)[ds] <- 8
+agFill(map149)[ds] <- '#fcd74e'
+agSize(map149)[vs] <- 8
+agFill(map149)[vs] <- '#ffa600'
+ptDrawingOrder(map149) <- c(seq_len(numSera(map149)) + numAntigens(map149),
+    which(!agNames(map149) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Paris/2511/2018|2018-11-29|MDCK1/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Paris/2538/2018|2018-12-04|MDCK1/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3')),
+    which(agNames(map149) %in% c('A/Hong Kong/3159/2017|2017-07-03|Cx/SIAT1', 'A/Paris/2511/2018|2018-11-29|MDCK1/SIAT1', 'A/Hong Kong/3162/2017|2017-07-04|Cx/SIAT1', 'A/Paris/2538/2018|2018-12-04|MDCK1/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT1', 'A/Thuringen/165/2017|2017-01-13|C1/SIAT2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3'))
+)
+p_map149_us_2018_2019 <- ggplot(map149) + ggtitle('us 2018-2019  (map 149)')
+p_map149_us_2018_2019
+
+p_map149_us_2018_2019_png <- file.path(strain_fig_dir, 'map149_us_2018_2019.png')
+png(file=p_map149_us_2018_2019_png)
+p_map149_us_2018_2019
+dev.off()
 
 
 #################### MAP 150 ####################
@@ -3540,8 +8911,38 @@ ag_Sep2017_table8_2 <- agNames(map150) %in% c("A/Texas/50/2012|2012-04-15|E5/E2"
 agFill(map150)[ag_Feb2019_table8_9] <- '#ea5545'
 agFill(map150)[ag_Feb2018_table8_9] <- '#ef9b20'
 agFill(map150)[ag_Sep2017_table8_2] <- '#ede15b'
-p_map150 <- ggplot(map150) + ggtitle('map 150')
+p_map150 <- ggplot(map150) + ggtitle('map 150 (Feb2019_table8-9, Feb2018_table8-9, Sep2017_table8-2)')
+p_map150_png <- file.path(table_fig_dir, 'map150.png')
+png(file=p_map150_png)
 p_map150
+dev.off()
+
+#### colered by region and season
+
+####### us, 2018-2019 #########
+agSize(map150) <- 5
+agFill(map150) <- 'grey50'
+css_lss <- agNames(map150) %in% c('A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3')
+ds <- agNames(map150) %in% c('A/Paris/2671/2018|2018-12-17|MDCK1/SIAT1', 'A/Bretagne/026/2019|2019-01-02|MDCK1/SIAT1', 'A/Paris/029/2019|2019-01-03|MDCK1/SIAT1')
+vs <- agNames(map150) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3')
+
+agSize(map150)[css_lss] <- 8
+agFill(map150)[css_lss] <- '#6d21b8'
+agSize(map150)[ds] <- 8
+agFill(map150)[ds] <- '#fcd74e'
+agSize(map150)[vs] <- 8
+agFill(map150)[vs] <- '#ffa600'
+ptDrawingOrder(map150) <- c(seq_len(numSera(map150)) + numAntigens(map150),
+    which(!agNames(map150) %in% c('A/Paris/2671/2018|2018-12-17|MDCK1/SIAT1', 'A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Paris/029/2019|2019-01-03|MDCK1/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Bretagne/026/2019|2019-01-02|MDCK1/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3')),
+    which(agNames(map150) %in% c('A/Paris/2671/2018|2018-12-17|MDCK1/SIAT1', 'A/Czech Republic/176/2016|2016-12-19|MDCK2/SIAT1', 'A/Paris/029/2019|2019-01-03|MDCK1/SIAT1', 'A/Belarus/1140/2017|2017-01-15|SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Bretagne/026/2019|2019-01-02|MDCK1/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3'))
+)
+p_map150_us_2018_2019 <- ggplot(map150) + ggtitle('us 2018-2019  (map 150)')
+p_map150_us_2018_2019
+
+p_map150_us_2018_2019_png <- file.path(strain_fig_dir, 'map150_us_2018_2019.png')
+png(file=p_map150_us_2018_2019_png)
+p_map150_us_2018_2019
+dev.off()
 
 
 #################### MAP 151 ####################
@@ -3561,8 +8962,38 @@ ag_Sep2017_table21 <- agNames(map151) %in% c("A/Stockholm/6/2014|2014-02-06|SIAT
 agFill(map151)[ag_Feb2018_table8_9] <- '#ea5545'
 agFill(map151)[ag_Feb2019_table8_7] <- '#ef9b20'
 agFill(map151)[ag_Sep2017_table21] <- '#ede15b'
-p_map151 <- ggplot(map151) + ggtitle('map 151')
+p_map151 <- ggplot(map151) + ggtitle('map 151 (Feb2018_table8-9, Feb2019_table8-7, Sep2017_table21)')
+p_map151_png <- file.path(table_fig_dir, 'map151.png')
+png(file=p_map151_png)
 p_map151
+dev.off()
+
+#### colered by region and season
+
+####### us, 2018-2019 #########
+agSize(map151) <- 5
+agFill(map151) <- 'grey50'
+css_lss <- agNames(map151) %in% c('A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3')
+ds <- agNames(map151) %in% c('A/Paris/2511/2018|2018-11-29|MDCK1/SIAT1', 'A/Paris/2538/2018|2018-12-04|MDCK1/SIAT1')
+vs <- agNames(map151) %in% c('A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3')
+
+agSize(map151)[css_lss] <- 8
+agFill(map151)[css_lss] <- '#6d21b8'
+agSize(map151)[ds] <- 8
+agFill(map151)[ds] <- '#fcd74e'
+agSize(map151)[vs] <- 8
+agFill(map151)[vs] <- '#ffa600'
+ptDrawingOrder(map151) <- c(seq_len(numSera(map151)) + numAntigens(map151),
+    which(!agNames(map151) %in% c('A/Paris/2511/2018|2018-11-29|MDCK1/SIAT1', 'A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3', 'A/Paris/2538/2018|2018-12-04|MDCK1/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1')),
+    which(agNames(map151) %in% c('A/Paris/2511/2018|2018-11-29|MDCK1/SIAT1', 'A/Hong_Kong/2473/2017|2017-06-04|Cx/SIAT1', 'A/Nantes/1441/2017|2017-10-10|MDCK2/SIAT3', 'A/Paris/2538/2018|2018-12-04|MDCK1/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-06-14|E5/E2', 'A/Hong_Kong/3730/2017|2017-07-11|Cx/SIAT1', 'A/Singapore/INFIMH-16-0019/2016|2016-04-14|E5/E3', 'A/Hong_Kong/3823/2017|2017-07-18|Cx/SIAT1'))
+)
+p_map151_us_2018_2019 <- ggplot(map151) + ggtitle('us 2018-2019  (map 151)')
+p_map151_us_2018_2019
+
+p_map151_us_2018_2019_png <- file.path(strain_fig_dir, 'map151_us_2018_2019.png')
+png(file=p_map151_us_2018_2019_png)
+p_map151_us_2018_2019
+dev.off()
 
 
 #################### MAP 152 ####################
@@ -3583,8 +9014,38 @@ ag_Sep2019_table8_14 <- agNames(map152) %in% c("A/Norway/3275/2018|2018-10-04|E6
 agFill(map152)[ag_Sep2019_table8_1] <- '#ea5545'
 agFill(map152)[ag_Sep2019_table8_11] <- '#ef9b20'
 agFill(map152)[ag_Sep2019_table8_14] <- '#ede15b'
-p_map152 <- ggplot(map152) + ggtitle('map 152')
+p_map152 <- ggplot(map152) + ggtitle('map 152 (Sep2019_table8-1, Sep2019_table8-11, Sep2019_table8-14)')
+p_map152_png <- file.path(table_fig_dir, 'map152.png')
+png(file=p_map152_png)
 p_map152
+dev.off()
+
+#### colered by region and season
+
+####### us, 2019-2020 #########
+agSize(map152) <- 5
+agFill(map152) <- 'grey50'
+vs_lss <- agNames(map152) %in% c('A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1', 'A/Finland/104/2019|2019-04-03|SIAT1/SIAT1')
+ds <- agNames(map152) %in% c("A/Pays de Loire/040/2019|2019-01-04|SIAT1")
+css <- agNames(map152) %in% c('A/Austria/1113943/2018|2018-12-31|SIAT1/SIAT1', 'A/Khmelnytskyi/155/2019|2019-02-01|SIAT2/SIAT1')
+
+agSize(map152)[vs_lss] <- 8
+agFill(map152)[vs_lss] <- '#7eb4f2'
+agSize(map152)[ds] <- 8
+agFill(map152)[ds] <- '#fcd74e'
+agSize(map152)[css] <- 8
+agFill(map152)[css] <- '#d900ba'
+ptDrawingOrder(map152) <- c(seq_len(numSera(map152)) + numAntigens(map152),
+    which(!agNames(map152) %in% c('A/Pays de Loire/040/2019|2019-01-04|SIAT1', 'A/Finland/104/2019|2019-04-03|SIAT1/SIAT1', 'A/Austria/1113943/2018|2018-12-31|SIAT1/SIAT1', 'A/Khmelnytskyi/155/2019|2019-02-01|SIAT2/SIAT1', 'A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1')),
+    which(agNames(map152) %in% c('A/Pays de Loire/040/2019|2019-01-04|SIAT1', 'A/Finland/104/2019|2019-04-03|SIAT1/SIAT1', 'A/Austria/1113943/2018|2018-12-31|SIAT1/SIAT1', 'A/Khmelnytskyi/155/2019|2019-02-01|SIAT2/SIAT1', 'A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1'))
+)
+p_map152_us_2019_2020 <- ggplot(map152) + ggtitle('us 2019-2020  (map 152)')
+p_map152_us_2019_2020
+
+p_map152_us_2019_2020_png <- file.path(strain_fig_dir, 'map152_us_2019_2020.png')
+png(file=p_map152_us_2019_2020_png)
+p_map152_us_2019_2020
+dev.off()
 
 
 #################### MAP 153 ####################
@@ -3603,8 +9064,39 @@ ag_Sep2019_table8_1 <- agNames(map153) %in% c("A/Abu Dhabi/240/2018|2018-01-01|E
 agFill(map153)[ag_Sep2019_table8_6] <- '#ea5545'
 agFill(map153)[ag_Sep2019_table8_3] <- '#ef9b20'
 agFill(map153)[ag_Sep2019_table8_1] <- '#ede15b'
-p_map153 <- ggplot(map153) + ggtitle('map 153')
+p_map153 <- ggplot(map153) + ggtitle('map 153 (Sep2019_table8-6, Sep2019_table8-3, Sep2019_table8-1)')
+p_map153_png <- file.path(table_fig_dir, 'map153.png')
+png(file=p_map153_png)
 p_map153
+dev.off()
+
+#### colered by region and season
+
+####### us, 2019-2020 #########
+agSize(map153) <- 5
+agFill(map153) <- 'grey50'
+vs_lss <- agNames(map153) %in% c('A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1', 'A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1', 'A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1', 'A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1', 'A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1', 'A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1', 'A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1')
+ds <- agNames(map153) %in% c("A/Pays de Loire/040/2019|2019-01-04|SIAT1")
+css <- agNames(map153) %in% c('A/Khmelnytskyi/544/2018|2018-12-06|SIAT2/SIAT1', 'A/Khmelnytskyi/545/2018|2018-12-08|SIAT2/SIAT1', 'A/Khmelnytskyi/547/2018|2018-12-16|SIAT2/SIAT1', 'A/Kyiv/510/2018|2018-12-17|SIAT2/SIAT1')
+
+agSize(map153)[vs_lss] <- 8
+agFill(map153)[vs_lss] <- '#7eb4f2'
+agSize(map153)[ds] <- 8
+agFill(map153)[ds] <- '#fcd74e'
+agSize(map153)[css] <- 8
+agFill(map153)[css] <- '#d900ba'
+ptDrawingOrder(map153) <- c(seq_len(numSera(map153)) + numAntigens(map153),
+	which(!agNames(map153) %in% c('A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1','A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1','A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1','A/Pays de Loire/040/2019|2019-01-04|SIAT1','A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1','A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1','A/Khmelnytskyi/547/2018|2018-12-16|SIAT2/SIAT1','A/Khmelnytskyi/545/2018|2018-12-08|SIAT2/SIAT1','A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1','A/Kyiv/510/2018|2018-12-17|SIAT2/SIAT1',
+	"A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1","A/Khmelnytskyi/544/2018|2018-12-06|SIAT2/SIAT1")),
+	which(agNames(map153) %in% c('A/Valladolid/13/2019|2019-01-09|SIAT1/SIAT1','A/Valladolid/25/2019|2019-01-14|SIAT1/SIAT1','A/Tetouan/671/2019|2019-01-24|MDCK1/SIAT1','A/Pays de Loire/040/2019|2019-01-04|SIAT1','A/Valladolid/9/2019|2019-01-08|SIAT1/SIAT1','A/Valladolid/18/2019|2019-01-12|SIAT1/SIAT1','A/Khmelnytskyi/547/2018|2018-12-16|SIAT2/SIAT1','A/Khmelnytskyi/545/2018|2018-12-08|SIAT2/SIAT1','A/Valladolid/2/2019|2019-01-02|SIAT1/SIAT1','A/Kyiv/510/2018|2018-12-17|SIAT2/SIAT1',	"A/Valladolid/560/2018|2018-12-27|SIAT1/SIAT1","A/Khmelnytskyi/544/2018|2018-12-06|SIAT2/SIAT1"))
+)
+p_map153_us_2019_2020 <- ggplot(map153) + ggtitle('us 2019-2020  (map 153)')
+p_map153_us_2019_2020
+
+p_map153_us_2019_2020_png <- file.path(strain_fig_dir, 'map153_us_2019_2020.png')
+png(file=p_map153_us_2019_2020_png)
+p_map153_us_2019_2020
+dev.off()
 
 
 #################### MAP 154 ####################
@@ -3622,8 +9114,38 @@ ag_Sep2019_table8_15 <- agNames(map154) %in% c("A/Mauritania/255-2018/2018|2018-
 agFill(map154)[ag_Feb2019_table8_11] <- '#ea5545'
 agFill(map154)[ag_Sep2019_table8_14] <- '#ef9b20'
 agFill(map154)[ag_Sep2019_table8_15] <- '#ede15b'
-p_map154 <- ggplot(map154) + ggtitle('map 154')
+p_map154 <- ggplot(map154) + ggtitle('map 154 (Feb2019_table8-11, Sep2019_table8-14, Sep2019_table8-15)')
+p_map154_png <- file.path(table_fig_dir, 'map154.png')
+png(file=p_map154_png)
 p_map154
+dev.off()
+
+#### colered by region and season
+
+####### us, 2019-2020 #########
+agSize(map154) <- 5
+agFill(map154) <- 'grey50'
+vs_lss <- agNames(map154) %in% c('A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1', 'A/Finland/104/2019|2019-04-03|SIAT1/SIAT1')
+ds <- agNames(map154) %in% c("A/Switzerland/293/2018|2018-11-01|MDCK1/SIAT3")
+css <- agNames(map154) %in% c('A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1', 'A/Macedonia/1283/2019|2019-03-11|SIAT1', 'A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1')
+
+agSize(map154)[vs_lss] <- 8
+agFill(map154)[vs_lss] <- '#7eb4f2'
+agSize(map154)[ds] <- 8
+agFill(map154)[ds] <- '#fcd74e'
+agSize(map154)[css] <- 8
+agFill(map154)[css] <- '#d900ba'
+ptDrawingOrder(map154) <- c(seq_len(numSera(map154)) + numAntigens(map154),
+    which(!agNames(map154) %in% c('A/Finland/104/2019|2019-04-03|SIAT1/SIAT1', 'A/Switzerland/293/2018|2018-11-01|MDCK1/SIAT3', 'A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1', 'A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1', 'A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1', 'A/Macedonia/1283/2019|2019-03-11|SIAT1')),
+    which(agNames(map154) %in% c('A/Finland/104/2019|2019-04-03|SIAT1/SIAT1', 'A/Switzerland/293/2018|2018-11-01|MDCK1/SIAT3', 'A/Nitra/106/2019|2019-01-24|MDCKx/SIAT1', 'A/Tanger/672/2019|2019-01-24|MDCK2/SIAT1', 'A/Galanta/473/2019|2019-03-12|MDCKx/SIAT1', 'A/Macedonia/1283/2019|2019-03-11|SIAT1'))
+)
+p_map154_us_2019_2020 <- ggplot(map154) + ggtitle('us 2019-2020  (map 154)')
+p_map154_us_2019_2020
+
+p_map154_us_2019_2020_png <- file.path(strain_fig_dir, 'map154_us_2019_2020.png')
+png(file=p_map154_us_2019_2020_png)
+p_map154_us_2019_2020
+dev.off()
 
 
 #################### MAP 155 ####################
@@ -3639,8 +9161,38 @@ ag_Sep2019_table8_18 <- agNames(map155) %in% c("A/Hong Kong/5738/2014|2014-04-30
 
 agFill(map155)[ag_Sep2019_table8_1] <- '#ea5545'
 agFill(map155)[ag_Sep2019_table8_18] <- '#ef9b20'
-p_map155 <- ggplot(map155) + ggtitle('map 155')
+p_map155 <- ggplot(map155) + ggtitle('map 155 (Sep2019_table8-1, Sep2019_table8-18)')
+p_map155_png <- file.path(table_fig_dir, 'map155.png')
+png(file=p_map155_png)
 p_map155
+dev.off()
+
+#### colered by region and season
+
+####### us, 2019-2020 #########
+agSize(map155) <- 5
+agFill(map155) <- 'grey50'
+vs_lss <- agNames(map155) %in% c("A/England/222/2019|2019-02-20|SIAT1/SIAT1")
+ds <- agNames(map155) %in% c("A/Pays de Loire/040/2019|2019-01-04|SIAT1")
+css <- agNames(map155) %in% c('A/England/102/2019|2019-02-12|SIAT2/SIAT1', 'A/Tomsk/5645V/2019|2019-04-20|MDCK1/SIAT1')
+
+agSize(map155)[vs_lss] <- 8
+agFill(map155)[vs_lss] <- '#7eb4f2'
+agSize(map155)[ds] <- 8
+agFill(map155)[ds] <- '#fcd74e'
+agSize(map155)[css] <- 8
+agFill(map155)[css] <- '#d900ba'
+ptDrawingOrder(map155) <- c(seq_len(numSera(map155)) + numAntigens(map155),
+    which(!agNames(map155) %in% c('A/England/222/2019|2019-02-20|SIAT1/SIAT1', 'A/Pays de Loire/040/2019|2019-01-04|SIAT1', 'A/Tomsk/5645V/2019|2019-04-20|MDCK1/SIAT1', 'A/England/102/2019|2019-02-12|SIAT2/SIAT1')),
+    which(agNames(map155) %in% c('A/England/222/2019|2019-02-20|SIAT1/SIAT1', 'A/Pays de Loire/040/2019|2019-01-04|SIAT1', 'A/Tomsk/5645V/2019|2019-04-20|MDCK1/SIAT1', 'A/England/102/2019|2019-02-12|SIAT2/SIAT1'))
+)
+p_map155_us_2019_2020 <- ggplot(map155) + ggtitle('us 2019-2020  (map 155)')
+p_map155_us_2019_2020
+
+p_map155_us_2019_2020_png <- file.path(strain_fig_dir, 'map155_us_2019_2020.png')
+png(file=p_map155_us_2019_2020_png)
+p_map155_us_2019_2020
+dev.off()
 
 
 #################### MAP 156 ####################
@@ -3656,8 +9208,35 @@ ag_Sep2020_table7_5 <- agNames(map156) %in% c("A/Hong Kong/5738/2014|2014-04-30|
 
 agFill(map156)[ag_Sep2021_table7_9] <- '#ea5545'
 agFill(map156)[ag_Sep2020_table7_5] <- '#ef9b20'
-p_map156 <- ggplot(map156) + ggtitle('map 156')
+p_map156 <- ggplot(map156) + ggtitle('map 156 (Sep2021_table7-9, Sep2020_table7-5)')
+p_map156_png <- file.path(table_fig_dir, 'map156.png')
+png(file=p_map156_png)
 p_map156
+dev.off()
+
+#### colered by region and season
+
+####### us, 2020-2021 #########
+agSize(map156) <- 5
+agFill(map156) <- 'grey50'
+vs_css_lss <- agNames(map156) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3')
+ds <- agNames(map156) %in% c("A/Bangladesh/4005/2020|2020-10-04|SIAT2")
+
+agSize(map156)[vs_css_lss] <- 8
+agFill(map156)[vs_css_lss] <- '#d399d8'
+agSize(map156)[ds] <- 8
+agFill(map156)[ds] <- '#fcd74e'
+ptDrawingOrder(map156) <- c(seq_len(numSera(map156)) + numAntigens(map156),
+    which(!agNames(map156) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2')),
+    which(agNames(map156) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2'))
+)
+p_map156_us_2020_2021 <- ggplot(map156) + ggtitle('us 2020-2021  (map 156)')
+p_map156_us_2020_2021
+
+p_map156_us_2020_2021_png <- file.path(strain_fig_dir, 'map156_us_2020_2021.png')
+png(file=p_map156_us_2020_2021_png)
+p_map156_us_2020_2021
+dev.off()
 
 
 #################### MAP 157 ####################
@@ -3674,8 +9253,35 @@ ag_Sep2021_table7_4 <- agNames(map157) %in% c("A/Hong Kong/5738/2014|2014-04-30|
 
 agFill(map157)[ag_Sep2020_table7_9] <- '#ea5545'
 agFill(map157)[ag_Sep2021_table7_4] <- '#ef9b20'
-p_map157 <- ggplot(map157) + ggtitle('map 157')
+p_map157 <- ggplot(map157) + ggtitle('map 157 (Sep2020_table7-9, Sep2021_table7-4)')
+p_map157_png <- file.path(table_fig_dir, 'map157.png')
+png(file=p_map157_png)
 p_map157
+dev.off()
+
+#### colered by region and season
+
+####### us, 2020-2021 #########
+agSize(map157) <- 5
+agFill(map157) <- 'grey50'
+vs_css_lss <- agNames(map157) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4', 'A/Beirut/421/2020|2020-03-05|SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4')
+ds <- agNames(map157) %in% c('A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3')
+
+agSize(map157)[vs_css_lss] <- 8
+agFill(map157)[vs_css_lss] <- '#d399d8'
+agSize(map157)[ds] <- 8
+agFill(map157)[ds] <- '#fcd74e'
+ptDrawingOrder(map157) <- c(seq_len(numSera(map157)) + numAntigens(map157),
+    which(!agNames(map157) %in% c('A/Beirut/421/2020|2020-03-05|SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2')),
+    which(agNames(map157) %in% c('A/Beirut/421/2020|2020-03-05|SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|CK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2'))
+)
+p_map157_us_2020_2021 <- ggplot(map157) + ggtitle('us 2020-2021  (map 157)')
+p_map157_us_2020_2021
+
+p_map157_us_2020_2021_png <- file.path(strain_fig_dir, 'map157_us_2020_2021.png')
+png(file=p_map157_us_2020_2021_png)
+p_map157_us_2020_2021
+dev.off()
 
 
 #################### MAP 158 ####################
@@ -3690,8 +9296,35 @@ ag_Feb2020_table7_12 <- agNames(map158) %in% c("A/Hong Kong/5738/2014|2014-04-30
 
 agFill(map158)[ag_Feb2021_table7_3] <- '#ea5545'
 agFill(map158)[ag_Feb2020_table7_12] <- '#ef9b20'
-p_map158 <- ggplot(map158) + ggtitle('map 158')
+p_map158 <- ggplot(map158) + ggtitle('map 158 (Feb2021_table7-3, Feb2020_table7-12)')
+p_map158_png <- file.path(table_fig_dir, 'map158.png')
+png(file=p_map158_png)
 p_map158
+dev.off()
+
+#### colered by region and season
+
+####### us, 2020-2021 #########
+agSize(map158) <- 5
+agFill(map158) <- 'grey50'
+vs_css_lss <- agNames(map158) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4')
+ds <- agNames(map158) %in% c('A/Bangladesh/1001/2020|2020-09-05|SIAT1', 'A/Bangladesh/2004/2020|2020-10-04|SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT1')
+
+agSize(map158)[vs_css_lss] <- 8
+agFill(map158)[vs_css_lss] <- '#d399d8'
+agSize(map158)[ds] <- 8
+agFill(map158)[ds] <- '#fcd74e'
+ptDrawingOrder(map158) <- c(seq_len(numSera(map158)) + numAntigens(map158),
+    which(!agNames(map158) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Bangladesh/4005/2020|2020-10-04|SIAT1', 'A/Bangladesh/2004/2020|2020-10-04|SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Bangladesh/1001/2020|2020-09-05|SIAT1')),
+    which(agNames(map158) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Bangladesh/4005/2020|2020-10-04|SIAT1', 'A/Bangladesh/2004/2020|2020-10-04|SIAT1', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E1', 'A/Bangladesh/1001/2020|2020-09-05|SIAT1'))
+)
+p_map158_us_2020_2021 <- ggplot(map158) + ggtitle('us 2020-2021  (map 158)')
+p_map158_us_2020_2021
+
+p_map158_us_2020_2021_png <- file.path(strain_fig_dir, 'map158_us_2020_2021.png')
+png(file=p_map158_us_2020_2021_png)
+p_map158_us_2020_2021
+dev.off()
 
 
 #################### MAP 159 ####################
@@ -3711,8 +9344,35 @@ ag_Feb2022_table9_8 <- agNames(map159) %in% c("A/Hong_Kong/2671/2019|2019-06-17|
 
 agFill(map159)[ag_Feb2022_table9_6] <- '#ea5545'
 agFill(map159)[ag_Feb2022_table9_8] <- '#ef9b20'
-p_map159 <- ggplot(map159) + ggtitle('map 159')
+p_map159 <- ggplot(map159) + ggtitle('map 159 (Feb2022_table9-6, Feb2022_table9-8)')
+p_map159_png <- file.path(table_fig_dir, 'map159.png')
+png(file=p_map159_png)
 p_map159
+dev.off()
+
+#### colered by region and season
+
+####### us, 2020-2021 #########
+agSize(map159) <- 5
+agFill(map159) <- 'grey50'
+vs_css_lss <- agNames(map159) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong_Kong/2671/2019|2019-06-17|MDCK1/SIAT4')
+ds <- agNames(map159) %in% c("A/Bangladesh/4005/2020|2020-10-04|SIAT3")
+
+agSize(map159)[vs_css_lss] <- 8
+agFill(map159)[vs_css_lss] <- '#d399d8'
+agSize(map159)[ds] <- 8
+agFill(map159)[ds] <- '#fcd74e'
+ptDrawingOrder(map159) <- c(seq_len(numSera(map159)) + numAntigens(map159),
+    which(!agNames(map159) %in% c('A/Hong_Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Bangladesh/4005/2020|2020-10-04|SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4')),
+    which(agNames(map159) %in% c('A/Hong_Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Bangladesh/4005/2020|2020-10-04|SIAT3', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4'))
+)
+p_map159_us_2020_2021 <- ggplot(map159) + ggtitle('us 2020-2021  (map 159)')
+p_map159_us_2020_2021
+
+p_map159_us_2020_2021_png <- file.path(strain_fig_dir, 'map159_us_2020_2021.png')
+png(file=p_map159_us_2020_2021_png)
+p_map159_us_2020_2021
+dev.off()
 
 
 #################### MAP 160 ####################
@@ -3726,8 +9386,35 @@ ag_Sep2020_table7_5 <- agNames(map160) %in% c("A/Hong Kong/5738/2014|2014-04-30|
 
 agFill(map160)[ag_Sep2021_table7_4] <- '#ea5545'
 agFill(map160)[ag_Sep2020_table7_5] <- '#ef9b20'
-p_map160 <- ggplot(map160) + ggtitle('map 160')
+p_map160 <- ggplot(map160) + ggtitle('map 160 (Sep2021_table7-4, Sep2020_table7-5)')
+p_map160_png <- file.path(table_fig_dir, 'map160.png')
+png(file=p_map160_png)
 p_map160
+dev.off()
+
+#### colered by region and season
+
+####### us, 2020-2021 #########
+agSize(map160) <- 5
+agFill(map160) <- 'grey50'
+vs_css_lss <- agNames(map160) %in% c('A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3')
+ds <- agNames(map160) %in% c('A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3')
+
+agSize(map160)[vs_css_lss] <- 8
+agFill(map160)[vs_css_lss] <- '#d399d8'
+agSize(map160)[ds] <- 8
+agFill(map160)[ds] <- '#fcd74e'
+ptDrawingOrder(map160) <- c(seq_len(numSera(map160)) + numAntigens(map160),
+    which(!agNames(map160) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2')),
+    which(agNames(map160) %in% c('A/Hong Kong/2671/2019|2019-06-17|MDCK1/SIAT4', 'A/Hong Kong/2671/2019|2019-06-17|E8/E2', 'A/Hong Kong/2671/2019|2019-06-17|E8/E3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/Hong Kong/2669/2019|2019-06-18|MDCK1/SIAT5', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2'))
+)
+p_map160_us_2020_2021 <- ggplot(map160) + ggtitle('us 2020-2021  (map 160)')
+p_map160_us_2020_2021
+
+p_map160_us_2020_2021_png <- file.path(strain_fig_dir, 'map160_us_2020_2021.png')
+png(file=p_map160_us_2020_2021_png)
+p_map160_us_2020_2021
+dev.off()
 
 
 #################### MAP 161 ####################
@@ -3751,8 +9438,41 @@ agFill(map161)[ag_Feb2021_table7_2] <- '#ea5545'
 agFill(map161)[ag_Feb2020_table7_5] <- '#ef9b20'
 agFill(map161)[ag_Sep2022_table10_18] <- '#ede15b'
 agFill(map161)[ag_Sep2021_table7_4] <- '#87bc45'
-p_map161 <- ggplot(map161) + ggtitle('map 161')
+p_map161 <- ggplot(map161) + ggtitle('map 161 (Feb2021_table7-2, Feb2020_table7-5, Sep2022_table10-18, Sep2021_table7-4)')
+p_map161_png <- file.path(table_fig_dir, 'map161.png')
+png(file=p_map161_png)
 p_map161
+dev.off()
+
+#### colered by region and season
+
+####### us, 2021-2022 #########
+agSize(map161) <- 5
+agFill(map161) <- 'grey50'
+ds <- agNames(map161) %in% c('A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1', 'A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2')
+vs <- agNames(map161) %in% c("A/Cambodia/923251/2020|2020-09-22|SIAT2")
+css <- agNames(map161) %in% c('A/Bangladesh/4005/2020|2020-10-04|SIAT2', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/Bangladesh/4005/2020|2020-10-04|SIAT3')
+lss <- agNames(map161) %in% c("A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1")
+
+agSize(map161)[ds] <- 8
+agFill(map161)[ds] <- '#fcd74e'
+agSize(map161)[vs] <- 8
+agFill(map161)[vs] <- '#ffa600'
+agSize(map161)[css] <- 8
+agFill(map161)[css] <- '#d900ba'
+agSize(map161)[lss] <- 8
+agFill(map161)[lss] <- '#0051ff'
+ptDrawingOrder(map161) <- c(seq_len(numSera(map161)) + numAntigens(map161),
+    which(!agNames(map161) %in% c('A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1', 'A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2')),
+    which(agNames(map161) %in% c('A/Qatar/16-VI-19-0049409/2019|2019-08-27|SIAT1', 'A/Bangladesh/4005/2020|2020-10-04|SIAT3', 'A/Bangladesh/911009/2020|2020-09-03|SIAT3', 'A/Cambodia/923251/2020|2020-09-22|SIAT2', 'A/Netherlands/10222/2021|2021-12-30|MDCK-MIX2/SIAT1', 'A/Bolzano/3/2022|2022-02-24|SIAT3/SIAT2', 'A/Bangladesh/4005/2020|2020-10-04|SIAT2'))
+)
+p_map161_us_2021_2022 <- ggplot(map161) + ggtitle('us 2021-2022  (map 161)')
+p_map161_us_2021_2022
+
+p_map161_us_2021_2022_png <- file.path(strain_fig_dir, 'map161_us_2021_2022.png')
+png(file=p_map161_us_2021_2022_png)
+p_map161_us_2021_2022
+dev.off()
 
 
 #################### MAP 162 ####################
@@ -3772,8 +9492,42 @@ ag_Sep2022_table10_16 <- agNames(map162) %in% c("A/Netherlands/00092/2021|2021-1
 agFill(map162)[ag_Sep2021_table7_6] <- '#ea5545'
 agFill(map162)[ag_Sep2022_table10_17] <- '#ef9b20'
 agFill(map162)[ag_Sep2022_table10_16] <- '#ede15b'
-p_map162 <- ggplot(map162) + ggtitle('map 162')
+p_map162 <- ggplot(map162) + ggtitle('map 162 (Sep2021_table7-6, Sep2022_table10-17, Sep2022_table10-16)')
+p_map162_png <- file.path(table_fig_dir, 'map162.png')
+png(file=p_map162_png)
 p_map162
+dev.off()
+
+#### colered by region and season
+
+####### us, 2022-2023 #########
+agSize(map162) <- 5
+agFill(map162) <- 'grey50'
+ds <- agNames(map162) %in% c("A/Netherlands/10884/2022|2022-04-05|MDCK-MIX2/SIAT1")
+vs <- agNames(map162) %in% c('A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map162) %in% c("A/Darwin/6/2021|2021-03-16|E4/E1")
+lss <- agNames(map162) %in% c('A/Moldova/20837/2022|2022-03-17|SIAT1', 'A/FVG-Trieste/05/2022|2022-01-25|SIAT2/SIAT1', 'A/Parma/2/2022|2022-02-02|SIAT4/SIAT1', 'A/FVG-Trieste/13/2022|2022-02-15|SIAT2/SIAT1', 'A/FVG-Trieste/16/2022|2022-02-17|SIAT2/SIAT1', 'A/Sassari/4/2022|2022-03-29|SIAT1/SIAT1', 'A/Sassari/7/2022|2022-04-01|SIAT1/SIAT1', 'A/Sassari/9/2022|2022-04-08|SIAT1/SIAT1', 'A/Perugia/23/2022|2022-04-12|SIAT3/SIAT1')
+
+agSize(map162)[ds] <- 8
+agFill(map162)[ds] <- '#fcd74e'
+agSize(map162)[vs] <- 8
+agFill(map162)[vs] <- '#ffa600'
+agSize(map162)[css] <- 8
+agFill(map162)[css] <- '#d900ba'
+agSize(map162)[lss] <- 8
+agFill(map162)[lss] <- '#0051ff'
+ptDrawingOrder(map162) <- c(seq_len(numSera(map162)) + numAntigens(map162),
+	which(!agNames(map162) %in% c('A/FVG-Trieste/16/2022|2022-02-17|SIAT2/SIAT1','A/FVG-Trieste/05/2022|2022-01-25|SIAT2/SIAT1','A/Sassari/9/2022|2022-04-08|SIAT1/SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Darwin/6/2021|2021-03-16|E4/E1','A/Sassari/4/2022|2022-03-29|SIAT1/SIAT1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Netherlands/10884/2022|2022-04-05|MDCK-MIX2/SIAT1','A/FVG-Trieste/13/2022|2022-02-15|SIAT2/SIAT1','A/Sassari/7/2022|2022-04-01|SIAT1/SIAT1',
+	"A/Perugia/23/2022|2022-04-12|SIAT3/SIAT1","A/Parma/2/2022|2022-02-02|SIAT4/SIAT1","A/Moldova/20837/2022|2022-03-17|SIAT1")),
+	which(agNames(map162) %in% c('A/FVG-Trieste/16/2022|2022-02-17|SIAT2/SIAT1','A/FVG-Trieste/05/2022|2022-01-25|SIAT2/SIAT1','A/Sassari/9/2022|2022-04-08|SIAT1/SIAT1','A/Darwin/9/2021|2021-04-17|E3/E4','A/Darwin/6/2021|2021-03-16|E4/E1','A/Sassari/4/2022|2022-03-29|SIAT1/SIAT1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Netherlands/10884/2022|2022-04-05|MDCK-MIX2/SIAT1','A/FVG-Trieste/13/2022|2022-02-15|SIAT2/SIAT1','A/Sassari/7/2022|2022-04-01|SIAT1/SIAT1',	"A/Perugia/23/2022|2022-04-12|SIAT3/SIAT1","A/Parma/2/2022|2022-02-02|SIAT4/SIAT1","A/Moldova/20837/2022|2022-03-17|SIAT1"))
+)
+p_map162_us_2022_2023 <- ggplot(map162) + ggtitle('us 2022-2023  (map 162)')
+p_map162_us_2022_2023
+
+p_map162_us_2022_2023_png <- file.path(strain_fig_dir, 'map162_us_2022_2023.png')
+png(file=p_map162_us_2022_2023_png)
+p_map162_us_2022_2023
+dev.off()
 
 
 #################### MAP 163 ####################
@@ -3796,6 +9550,40 @@ ag_Feb2023_tableH3_1 <- agNames(map163) %in% c("A/Denmark/3264/2019|2019-10-25|S
 agFill(map163)[ag_Sep2021_table7_6] <- '#ea5545'
 agFill(map163)[ag_Feb2023_tableH3_10] <- '#ef9b20'
 agFill(map163)[ag_Feb2023_tableH3_1] <- '#ede15b'
-p_map163 <- ggplot(map163) + ggtitle('map 163')
+p_map163 <- ggplot(map163) + ggtitle('map 163 (Sep2021_table7-6, Feb2023_tableH3-10, Feb2023_tableH3-1)')
+p_map163_png <- file.path(table_fig_dir, 'map163.png')
+png(file=p_map163_png)
 p_map163
+dev.off()
+
+#### colered by region and season
+
+####### us, 2022-2023 #########
+agSize(map163) <- 5
+agFill(map163) <- 'grey50'
+ds <- agNames(map163) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1', 'A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1')
+vs <- agNames(map163) %in% c('A/Darwin/9/2021|2021-04-17|E3/E1', 'A/Darwin/9/2021|2021-04-17|E3/E2', 'A/Darwin/9/2021|2021-04-17|E3/E4')
+css <- agNames(map163) %in% c("A/Darwin/6/2021|2021-03-16|E4/E1")
+lss <- agNames(map163) %in% c('A/Poland/52/2022|2022-03-30|SIAT2', 'A/Poland/65/2022|2022-04-14|SIAT1', 'A/Argentina/2973/2022|2022-06-15|SIAT1', 'A/Norway/28359/2022|2022-07-24|SIAT3', 'A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2', 'A/Lithuania/48774/2022|2022-11-24|SIAT1')
+
+agSize(map163)[ds] <- 8
+agFill(map163)[ds] <- '#fcd74e'
+agSize(map163)[vs] <- 8
+agFill(map163)[vs] <- '#ffa600'
+agSize(map163)[css] <- 8
+agFill(map163)[css] <- '#d900ba'
+agSize(map163)[lss] <- 8
+agFill(map163)[lss] <- '#0051ff'
+ptDrawingOrder(map163) <- c(seq_len(numSera(map163)) + numAntigens(map163),
+	which(!agNames(map163) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1','A/Argentina/2973/2022|2022-06-15|SIAT1','A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2','A/Lithuania/48774/2022|2022-11-24|SIAT1','A/Darwin/6/2021|2021-03-16|E4/E1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Poland/65/2022|2022-04-14|SIAT1','A/Norway/28359/2022|2022-07-24|SIAT3','A/Darwin/9/2021|2021-04-17|E3/E2','A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1',
+	"A/Darwin/9/2021|2021-04-17|E3/E4","A/Poland/52/2022|2022-03-30|SIAT2")),
+	which(agNames(map163) %in% c('A/Argentina/3151/2022|2022-09-05|SIAT1','A/Argentina/2973/2022|2022-06-15|SIAT1','A/Slovenia/8720/2022|2022-02-10|SIAT1/MDCK1/SIAT2','A/Lithuania/48774/2022|2022-11-24|SIAT1','A/Darwin/6/2021|2021-03-16|E4/E1','A/Darwin/9/2021|2021-04-17|E3/E1','A/Poland/65/2022|2022-04-14|SIAT1','A/Norway/28359/2022|2022-07-24|SIAT3','A/Darwin/9/2021|2021-04-17|E3/E2','A/Switzerland/24157/2022|2022-12-23|SIAT3/SIAT1',	"A/Darwin/9/2021|2021-04-17|E3/E4","A/Poland/52/2022|2022-03-30|SIAT2"))
+)
+p_map163_us_2022_2023 <- ggplot(map163) + ggtitle('us 2022-2023  (map 163)')
+p_map163_us_2022_2023
+
+p_map163_us_2022_2023_png <- file.path(strain_fig_dir, 'map163_us_2022_2023.png')
+png(file=p_map163_us_2022_2023_png)
+p_map163_us_2022_2023
+dev.off()
 
