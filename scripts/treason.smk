@@ -64,19 +64,9 @@ else:
     month_dates = []  #only used when HA1_only is specified, specifying to avoid errors
 
 ############### MAIN RULE ####################
-if config["translate"]:
-    rule all:
-        input:
-            tree = expand(f"{config['output']}/protein/{config['subtype']}_{config['segment']}_{{fn}}.nexus", fn=config["file_names"]),
-            fasta = expand(f"{config['output']}/protein/{config['subtype']}_{config['segment']}_{{fn}}_proteins.fasta", fn=config["file_names"])
-            #sequences = expand(f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_{{fn}}.fasta", fn=config["file_names"])
-
-            
-else:
-    rule all:
-        input:
-            LBI = expand(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{fn}}_timetree.nexus", fn=config["file_names"])
-            
+rule all:
+    input:
+        timetree = expand(f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{fn}}_timetree.nexus", fn=config["file_names"]),
 
 rule SequencesPerPeriod:
     input:
@@ -609,105 +599,3 @@ rule TreeTime:
                 shell(f"touch {output.mol_clock}")
                 shell(f"touch {output.ancestral_sequences}")
 
-rule LBI:
-    input:
-        timetree = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{fn}}_timetree.nexus"
-    params:
-        treeformat = "nexus",
-        outputformat = "nexus",
-        tau = 0.3, #might make these command line options
-        normalize = True, #might make these command line options
-    output:
-        lbi_tree = f"{config['output']}/lbi/{config['subtype']}_{config['segment']}_{{fn}}_LBI.nexus"
-    message: "constructing LBI tree for {wildcards.fn}"
-    run:
-        try:
-            #read tree
-            tree = dendropy.Tree.get(path=input.timetree, schema=params.treeformat)
-
-            #prep tree
-            tree = prep_tree_for_lbi(tree)
-
-            #calculate LBI
-            tree = calculate_LBI(tree, params.tau, normalize=params.normalize)
-
-            #write output tree
-            tree.write(path=output.lbi_tree, schema=params.outputformat)
-        except:
-            shell(f"touch {output.lbi_tree}")
-
-###### Proteins ######
-rule Translate:
-    input:
-        sequences = f"{config['output']}/sequences/{config['subtype']}_{config['segment']}_{{fn}}.fasta",
-        msa = f"{config['output']}/alignment/{config['subtype']}_{config['segment']}_{{fn}}_MSA.fasta",
-    params:
-        refdir = config["refdir"],
-        segment = config['segment'],
-    output:
-        proteins = f"{config['output']}/protein/{config['subtype']}_{config['segment']}_{{fn}}_proteins.fasta",
-    message: "translating mcc sequences for {wildcards.fn} into proteins"
-    run:
-        #get length of reference sequence
-        try:
-            for f in os.listdir(params.refdir):
-                if params.segment in f:
-                    reference = os.path.join(params.refdir, f)
-            ref_length = len(list(SeqIO.parse(reference,"fasta"))[0].seq)
-
-            #get msa records 
-            msa_recs = {}
-            for record in SeqIO.parse(input.msa, "fasta"):
-                msa_recs[record.id] = record.seq
-            
-            proteins = []
-            for record in SeqIO.parse(input.sequences, "fasta"):
-                msaseq = msa_recs[record.id] 
-                #get coding region from MSA sequence
-                seq = Seq.Seq(str(msaseq).replace("-","n")).translate()
-                #make protein record and add to  protein dict        
-                protrec = SeqRecord.SeqRecord(seq, id=record.id, name=record.name, description=record.description)
-                proteins.append(protrec)
-            
-            #write output file
-            with open(output.proteins,"w") as fw:
-                SeqIO.write(proteins, fw, "fasta")
-        except:
-            shell(f"touch {output.proteins}")
-
-
-rule TranslateMutations:
-    input:
-        #sequences = f"{config['output']}/clinical/{config['segment']}_{{fn}}_mcc.fasta",
-        temp_msa = f"{config['output']}/treetime/{config['subtype']}_{config['segment']}_{{fn}}.fasta",
-        tree = rules.LBI.output.lbi_tree,
-    params:
-        seed = config['seed'],
-        no_seed = config['no_seed'],
-        o_nonsyn = config['o_nonsyn'], 
-        treeformat = "nexus", #lbi output format should not change
-    output:
-        tree = f"{config['output']}/protein/{config['subtype']}_{config['segment']}_{{fn}}.nexus",
-    message: "translating the mutations within the phylogenetic tree for {wildcards.fn}"
-    run:
-        #making a dict of the isolates with the sequences > using MSA 
-        try:
-            isolates = {}
-            for record in SeqIO.parse(input.temp_msa,"fasta"):
-                if record.id not in isolates.keys():
-                    #only appending from start codon onwards as tree was build this way > important for numbering 
-                    isolates[record.id] = str(record.seq)
-            
-            #load the tree
-            tree = dendropy.Tree.get(path=input.tree, schema=params.treeformat)
-
-            #translate mutations
-            if params.no_seed:
-                tree = translate_tree_mutations(isolates,tree,params.o_nonsyn)
-            else:
-                tree = translate_tree_mutations(isolates,tree,params.o_nonsyn,seed=params.seed)
-        
-            #write tree to output file
-            tree.write(path=output.tree, schema=params.treeformat) 
-        except:
-            shell(f"touch {output.tree}")
