@@ -195,5 +195,11 @@ shc = ["Angola", "Botswana", "Burundi", "Eswatini", "Lesotho", "Madagascar", "Ma
        "Nauru", "New Caledonia", "New Zealand", "Niue", "Norfolk Island", "Papua New Guinea", "Pitcairn, Henderson, Ducie and Oeno Islands", "Samoa", "Solomon Islands", "Tasmania", 
        "Macquarie Island", "Tokelau", "Tonga", "Tuvalu", "Vanuatu", "Wallis and Futuna", "Kiribati", "Sulawesi and Western New Guinea", "Antarctic islands", "Reunion", "Indonesia"]
 
-
-
+#regions used 
+us_countries = ["United States"]
+aunz_countries = ["Australia", "New Zealand"]
+europe_countries = ["Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia and Herzegovina", "Bulgaria", "Croatia", "Czech Republic", "Denmark", "Estonia", "Finland", 
+      "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Malta", "Moldova", "Monaco", 
+      "Montenegro", "Netherlands", "North Macedonia", "Macedonia","Kosovo","Poland", "Portugal", "Romania", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", 
+      "Spain", "Sweden", "Switzerland", "Ukraine", "Vatican City", "France", "Gibraltar", "Norway", "United Kingdom", "England", "Wales", "Scotland", "Northern Ireland",
+      "Jan Mayen", "Svalbard and Jan Mayen","Kaffeklubben Island", "Queen Elizabeth Islands", "Russian Arctic islands", "Svalbard", ]
