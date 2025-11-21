@@ -1,6 +1,6 @@
 # Reproducible and later vaccine strain selection can improve vaccine match to A/H3N2 seasonal influenza viruses  
 
-**Code and analysis/outfile files to replicate De Rooij, et al. (2025)**  
+**Code and analysis/outfile files to replicate [De Rooij, et al. (2025)](https://www.nature.com/articles/s41541-025-01292-w)**  
 
 Complete analysis is compromised out of steps 5:
 
